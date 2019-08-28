@@ -22,7 +22,11 @@ function NH1 {
 		XC=3
 		WC=2
 
-    echo "NH1 $_1VERSION"
+		echo " -------------------------------------"
+		echo -n "            "
+    1tint "NH1 $_1VERSION"
+		echo
+		echo " -------------------------------------"
     echo
 
 		1tint $PC "1roll"
@@ -51,7 +55,7 @@ function NH1 {
 		echo
 		1tint $PC "1ports"
 		echo
-		1tint $PC "1bashrc"
+		1tint $WC "1bashrc"
 		echo             "  Modify .bashrc to NH1 starts on bash start"
 		1tint $XC "1update"
 		echo             "  Update your NH1, using git"
@@ -78,7 +82,7 @@ function NH1 {
 		1tint $WC "working"
 		echo
 		echo " -------------------------------------"
-		echo "Power-up for your shell"
+		echo "        Power-up for your shell"
 		echo " -------------------------------------"
     echo
 }
