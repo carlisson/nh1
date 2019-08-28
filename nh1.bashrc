@@ -1,8 +1,9 @@
 #!/bin/bash
 
+shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.4
+_1VERSION=0.5
 
 _1RC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 _1LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib"
@@ -18,6 +19,12 @@ alias 1d100="1dice 100"
 
 # Menu for NH1
 function NH1 {
+	$("1$1")
+
+	if [ $# -eq 1 ]
+	then
+		$("1$1")
+	else
 		PC=5
 		XC=3
 		WC=2
@@ -29,23 +36,23 @@ function NH1 {
 		echo " -------------------------------------"
     echo
 
-		1tint $PC "1roll"
-		echo
-		1tint $XC "1dice"
+		1tint $XC "1roll"
+		echo           "    Roll dices with RPG formula: 2d10, 1d4+1..."
+		1tint $WC "1dice"
 		echo           "    Roll a single dice from N faces (default: 6)"
-		1tint $XC "1d4"
+		1tint $WC "1d4"
 		echo         "      Roll one d4"
-		1tint $XC "1d6"
+		1tint $WC "1d6"
 		echo         "      Roll one d6"
-		1tint $XC "1d8"
+		1tint $WC "1d8"
 		echo         "      Roll one d8"
-		1tint $XC "1d10"
+		1tint $WC "1d10"
 		echo          "     Roll one d10"
-		1tint $XC "1d12"
+		1tint $WC "1d12"
 		echo          "     Roll one d12"
-		1tint $XC "1d20"
+		1tint $WC "1d20"
 		echo          "     Roll one d20"
-		1tint $XC "1d100"
+		1tint $WC "1d100"
 		echo           "    Roll one d100"
 		1tint $PC "1card"
 		echo
@@ -85,6 +92,7 @@ function NH1 {
 		echo "        Power-up for your shell"
 		echo " -------------------------------------"
     echo
+	fi
 }
 
 # Set text color in shell
@@ -176,6 +184,41 @@ function 1dice {
 	fi
 	shuf -i 1-$SIDES -n 1
 }
+
+# Roll dices from a RPG formula
+# @param Formula like XdY+Z or XdY-Z
+function 1roll {
+	if [ $(echo $1 | grep d) ]
+	then
+		ROLLNUM=$(echo $1 | sed 's/d.*//')
+		if [ $(echo $1 | egrep '[+-]') ]
+		then
+			ROLLSID=$(echo $1 | sed 's/.*d\(.*\)[+-].*/\1/g')
+			ROLLADD=$(echo $1 | sed 's/.*\([+-]\)/\1/g')
+		else
+			ROLLSID=$(echo $1 | sed 's/.*d//g')
+			ROLLADD='+0'
+		fi
+		ROLLDET=""
+		ROLLTOT=0
+		for i in $(seq 1 $ROLLNUM)
+		do
+			AUX=$(1dice $ROLLSID)
+			if [ $ROLLTOT -eq 0 ]
+			then
+				ROLLDET="$AUX"
+			else
+				ROLLDET="$ROLLDET $AUX"
+			fi
+			ROLLTOT=$(($ROLLTOT+$AUX))
+		done
+		ROLLTOT=$(($ROLLTOT $ROLLADD))
+		echo "$ROLLTOT ($ROLLDET $ROLLADD)"
+	else
+		echo "Params: xdy+z. Examples: 3d6, 5d8-4, 1d4+1"
+	fi
+}
+
 
 #MAIN
 
