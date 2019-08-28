@@ -2,10 +2,19 @@
 
 
 # GLOBALS
-_1VERSION=0.3
+_1VERSION=0.4
 
 _1RC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 _1LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib"
+
+# ALIASES
+alias 1d4="1dice 4"
+alias 1d6="1dice"
+alias 1d8="1dice 8"
+alias 1d10="1dice 10"
+alias 1d12="1dice 12"
+alias 1d20="1dice 20"
+alias 1d100="1dice 100"
 
 # Menu for NH1
 function NH1 {
@@ -18,20 +27,22 @@ function NH1 {
 
 		1tint $PC "1roll"
 		echo
-		1tint $PC "1d4"
-		echo
-		1tint $PC "1d6"
-		echo
-		1tint $PC "1d8"
-		echo
-		1tint $PC "1d10"
-		echo
-		1tint $PC "1d12"
-		echo
-		1tint $PC "1d20"
-		echo
-		1tint $PC "1d100"
-		echo
+		1tint $XC "1dice"
+		echo           "    Roll a single dice from N faces (default: 6)"
+		1tint $XC "1d4"
+		echo         "      Roll one d4"
+		1tint $XC "1d6"
+		echo         "      Roll one d6"
+		1tint $XC "1d8"
+		echo         "      Roll one d8"
+		1tint $XC "1d10"
+		echo          "     Roll one d10"
+		1tint $XC "1d12"
+		echo          "     Roll one d12"
+		1tint $XC "1d20"
+		echo          "     Roll one d20"
+		1tint $XC "1d100"
+		echo           "    Roll one d100"
 		1tint $PC "1card"
 		echo
 		1tint $PC "1du"
@@ -44,13 +55,15 @@ function NH1 {
 		echo             "  Modify .bashrc to NH1 starts on bash start"
 		1tint $XC "1update"
 		echo             "  Update your NH1, using git"
-		1tint $XC "1version"
+		1tint $WC "1version"
 		echo              " List NH1 version and latest changes/updates"
 		1tint $PC "1yt3"
 		echo
 		1tint $PC "nh1localnet"
 		echo
 		1tint $PC "nh1connect"
+		echo
+		1tint $PC "nh1interactive"
 		echo
 
 		1tint $WC "1tint"
@@ -149,6 +162,16 @@ function 1version {
 	tail "$_1LIB/changelog.txt"
 }
 
+# Generate a random number, like from a dice from N sides
+# @param number of sides of the dice (default 6)
+function 1dice {
+	SIDES=6
+	if [ $# -eq 1 ]
+	then
+		SIDES=$1
+	fi
+	shuf -i 1-$SIDES -n 1
+}
 
 #MAIN
 
