@@ -2,7 +2,7 @@
 
 
 # GLOBALS
-_1VERSION=0.2
+_1VERSION=0.3
 
 _1RC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 _1LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib"
@@ -138,7 +138,6 @@ function 1update {
 		source "$_1RC"
 		1version
 		echo
-		1tip
 	fi
 }
 
