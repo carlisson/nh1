@@ -42,8 +42,10 @@ function NH1 {
 		echo
 		1tint $PC "1bashrc"
 		echo             "  Modify .bashrc to NH1 starts on bash start"
-		1tint $PC "1update"
-		echo
+		1tint $XC "1update"
+		echo             "  Update your NH1, using git"
+		1tint $XC "1version"
+		echo              " List NH1 version and latest changes/updates"
 		1tint $PC "1yt3"
 		echo
 		1tint $PC "nh1localnet"
@@ -124,6 +126,30 @@ function 1bashrc {
 			echo "Done!"
     fi
 }
+
+# Get git credentials to update NH1
+function 1update {
+	if 1check git
+	then
+		pushd "$_1LIB/.." || return 1
+		git pull
+		popd || return 2
+		# shellcheck source=/dev/null
+		source "$_1RC"
+		1version
+		echo
+		1tip
+	fi
+}
+
+
+# List version software and list latest entries from changelog
+function 1version {
+	echo "NH1 $_1VERSION"
+	echo
+	tail "$_1LIB/changelog.txt"
+}
+
 
 #MAIN
 

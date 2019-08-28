@@ -1,0 +1,3 @@
+0.1    2019-08-28: Initial release
+0.2    2019-08-28: 1bashrc: now NH1 can modify .bashrc
+0.3    2019-08-28: 1update and 1version: update NH1 using git
