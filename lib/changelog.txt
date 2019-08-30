@@ -5,3 +5,4 @@
 0.5    2019-08-28: 1roll: roll dices with RPG formula: 1d12, 3d6, 1d20+1...
 0.6    2019-08-30: 1refresh. RPG functions into rpg.bashrc. Improved output for 1roll
 0.7    2019-08-30: 1iperfd and 1iperf. Created network.bashrc.
+0.8    2019-08-30: 1tcpdump: run tcpdump with generic params
