@@ -7,12 +7,16 @@ _1IPERFPORT=2918
 function _nh1network.menu {
   1tint $XC "1host"
   echo           "    Return a valid ping-available IP for some host or domain name"
+  1tint $XC "1ison"
+  echo           "    Return if server is on. Params: (-q for quiet or name), IP"
   1tint $XC "1isip"
   echo           "    Return if a given string is an IP address"
   1tint $XC "1iperf"
   echo            "   Run iperf connecting to a 1iperfd IP"
   1tint $XC "1iperfd"
   echo             "  Run iperfd, waiting for 1iperf connection"
+  1tint $XC "1ssh"
+  echo          "     Connect a SSH server (working with eXtreme)"
   1tint $XC "1tcpdump"
   echo             "  Run tcpdump in a given network interface"
   1tint $PC "1ports"
@@ -120,5 +124,89 @@ function 1tcpdump {
   	return $?
   else
     return 1
+  fi
+}
+
+# Check using ping if machine is online
+# @param Machine name (optional). -q if you need a quiet mode
+# @param URI or IP
+function 1ison {
+  thehost=$(1host $2)
+	if ping -q -c 1 -w 1 "$thehost" &> /dev/null
+	then
+		if [ $1 != "-q" ]
+		then
+			1tint 2 "$1 is active"
+			echo
+		fi
+    unset thehost
+		return 0
+	else
+		if [ $1 != "-q" ]
+		then
+			1tint 1 "$1 not found"
+			echo
+		fi
+    unset thehost
+		return 1
+	fi
+}
+
+# Internal function, pre-1ssh
+# @param server or user@server, to use with ssh
+function _1pressh {
+	if [ $(echo "$1" | grep "@") ]
+	then
+		aux_u=${1%@*}
+		aux_h=${1#*@}
+	else
+		aux_u="admin"
+		aux_h="$1"
+	fi
+	if ! $(1ison -q $aux_h)
+	then
+		if aux=$(1host "$aux_h")
+		then
+			aux_h=$aux
+		fi
+	fi
+	echo "$aux_u@$aux_h"
+  unset aux_u aux_h
+}
+
+# Access with SSH server (including extreme switchs)
+# @param name or IP, or usr@IP
+# @param Additional options for ssh
+function 1ssh {
+  if 1check ssh
+  then
+    _1verb "Conectando por SSH."
+  	destip=$(_1pressh $1)
+    finalstatus=1
+
+  	# O método que não funcionar, o 7ssh testa o seguinte
+    _1verb "Trying connect in simple mode"
+  	ssh "$destip" $2
+    if [ $? -eq 0 ]
+    then
+      finalstatus=0
+    else
+      _1verb "Trying connect using AES192"
+      ssh -c aes192-cbc "$destip" $2
+      if [ $? -eq 0 ]
+      then
+        finalstatus=0
+      else
+        _1verb "Trying connect with various options"
+  		  ssh -c aes192-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss "$destip" $2
+      fi
+    fi
+    if [ $finalstatus -eq 0 ]
+    then
+      _1verb "It works."
+    else
+      echo "Cannot connect with $1 using SSH"
+    fi
+    unset destip finalstatus
   fi
 }
