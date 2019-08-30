@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.12
+_1VERSION=0.13
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -82,6 +82,7 @@ function NH1 {
 		echo "        Power-up for your shell"
 		echo " -------------------------------------"
     echo
+		unset PC XC WC
 }
 
 # Set text color in shell
@@ -112,6 +113,7 @@ function 1tint {
 	tput setaf $COLOR
 	echo -n $MSG
 	tput sgr0
+	unset COLOR MSG
 	return 0
 }
 alias 1help=NH1
@@ -150,6 +152,7 @@ function 1bashrc {
     	echo "$S1" >> ~/.bashrc
 			echo "Done!"
     fi
+		unset S1
 }
 
 # Reload NH1 and all related modules
@@ -193,6 +196,7 @@ then
 	then
     NH1
 	fi
+	unset S1
 else
 		echo "You need run:"
 		echo "source $_1RC"

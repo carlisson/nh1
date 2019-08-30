@@ -42,6 +42,7 @@ function 1dice {
 		SIDES=$1
 	fi
 	shuf -i 1-$SIDES -n 1
+  unset SIDES
 }
 
 # Roll dices from a RPG formula
@@ -77,6 +78,7 @@ function 1roll {
       ROLLADD=" $ROLLADD"
     fi
 		echo "$ROLLTOT ($ROLLDET$ROLLADD)"
+    unset ROLLNUM ROLLSID ROLLADD ROLLDET ROLLTOT
 	else
 		echo "Params: xdy+z. Examples: 3d6, 5d8-4, 1d4+1"
 	fi

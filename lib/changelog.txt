@@ -9,3 +9,5 @@
 0.9    2019-08-30: 1host: return IP for given host/domain name. _1verb print debug message
 0.10   2019-08-30: 1isip: return if an given string is an IP address
 0.11   2019-08-30: improved 1iperf and _1verb
+0.12   2019-08-30: restructured personal/local directories
+0.13   2019-08-30: applied variable unset in functions footers

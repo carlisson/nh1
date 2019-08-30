@@ -44,6 +44,7 @@ function 1host {
     if 1isip "$HNAM"
     then
       echo "$HNAM"
+      unset HNAM
       return 0
     fi
     if HLIN=$(cat $(find "$_1LIB" -name "*.hosts") | grep "$HNAM ")
@@ -53,6 +54,7 @@ function 1host {
 				if ping -c 1 "$HIP" > /dev/null
 				then
 					echo "$HIP"
+          unset HNUM HLIN
 					return 0
 				fi
 			done
@@ -64,11 +66,13 @@ function 1host {
 				if ping -c 1 "$HIP" > /dev/null
 				then
 					echo "$HIP"
+          unset HNUM HLIN
 					return 0
 				fi
 			done
     fi
 		echo "$HNAM is unkown or unavailable."
+    unset HNAM
 		return 1
 	else
 		echo "You need to put a machine name"
@@ -85,6 +89,7 @@ function 1iperf {
       HNAM=$(1host $1)
       _1verb "Trying to connect $HNAM ($1) with iperf"
       iperf -P 1 -i 5 -p "$_1IPERFPORT" -f M -t 60 -T 1 -c "$HNAM"
+      unset HNAM
     else
       echo "You need to put a IP address where 1iperfd is running."
     fi
@@ -111,6 +116,7 @@ function 1tcpdump {
   		INFA=$(ip address show | grep ^2: |  cut -f 2 -d :)
   	fi
   	tcpdump -c 100 -nv -i $INFA
+    unset INFA
   	return $?
   else
     return 1
