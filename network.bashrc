@@ -26,10 +26,8 @@ function 1isip {
   then
     if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
     then
-      _1verb "$1 is an IP."
       return 0
     else
-      _1verb "$1 is not an IP."
       return 1
     fi
   else
@@ -43,6 +41,11 @@ function 1host {
 	if [ $# -eq 1 ]
 	then
 		HNAM=$1
+    if 1isip "$HNAM"
+    then
+      echo "$HNAM"
+      return 0
+    fi
     if HLIN=$(cat $(find "$_1LIB" -name "*.hosts") | grep "$HNAM ")
     then
 			for HIP in ${HLIN/$HNAM/}
@@ -79,7 +82,9 @@ function 1iperf {
   then
     if [ $# -eq 1 ]
     then
-      iperf -P 1 -i 5 -p "$_1IPERFPORT" -f M -t 60 -T 1 -c "$1"
+      HNAM=$(1host $1)
+      _1verb "Trying to connect $HNAM ($1) with iperf"
+      iperf -P 1 -i 5 -p "$_1IPERFPORT" -f M -t 60 -T 1 -c "$HNAM"
     else
       echo "You need to put a IP address where 1iperfd is running."
     fi

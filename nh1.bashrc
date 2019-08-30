@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.10
+_1VERSION=0.11
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -106,8 +106,8 @@ alias 1help=NH1
 function _1verb {
 	if [ $_1VERBOSE -gt 0 ]
 	then
-		1tint "DEBUG: "
-		echo "   $1"
+		1tint ${FUNCNAME[ 1 ]}
+		echo ": $1"
 	fi
 }
 
