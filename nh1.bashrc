@@ -3,23 +3,20 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.6
+_1VERSION=0.7
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1LIB="$_1DIR/lib"
+_1COLOR=6
 
 # IMPORT MODULES
+source "$_1DIR/network.bashrc"
 source "$_1DIR/rpg.bashrc"
 
 # Menu for NH1
 function NH1 {
-	$("1$1")
 
-	if [ $# -eq 1 ]
-	then
-		$("1$1")
-	else
 		PC=5
 		XC=3
 		WC=2
@@ -31,13 +28,12 @@ function NH1 {
 		echo " -------------------------------------"
     echo
 
+		_nh1network.menu
 		_nh1rpg.menu
 
 		1tint $PC "1du"
 		echo
 		1tint $PC "1install"
-		echo
-		1tint $PC "1ports"
 		echo
 		1tint $WC "1bashrc"
 		echo             "  Modify .bashrc to NH1 starts on bash start"
@@ -69,7 +65,6 @@ function NH1 {
 		echo "        Power-up for your shell"
 		echo " -------------------------------------"
     echo
-	fi
 }
 
 # Set text color in shell
