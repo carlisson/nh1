@@ -3,12 +3,13 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.8
+_1VERSION=0.9
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1LIB="$_1DIR/lib"
 _1COLOR=6
+_1VERBOSE=1
 
 # IMPORT MODULES
 source "$_1DIR/network.bashrc"
@@ -97,8 +98,19 @@ function 1tint {
 	tput sgr0
 	return 0
 }
-
 alias 1help=NH1
+
+
+# Print only if NH1 is in verbose mode
+# @param Message to print
+function _1verb {
+	if [ $_1VERBOSE -gt 0 ]
+	then
+		1tint "DEBUG: "
+		echo "   $1"
+	fi
+}
+
 
 # Check if a program exists. Finish NH1 if it do not exists.
 # @param Program to check
@@ -126,7 +138,9 @@ function 1bashrc {
 
 # Reload NH1 and all related modules
 function 1refresh {
+	_1verb "Loading bashrc from $_1RC."
 	source "$_1RC"
+	_1verb "Done."
 }
 
 # Get git credentials to update NH1

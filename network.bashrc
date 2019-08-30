@@ -11,8 +11,45 @@ function _nh1network.menu {
   echo             "  Run iperfd, waiting for 1iperf connection"
   1tint $XC "1tcpdump"
   echo             "  Run tcpdump in a given network interface"
+  1tint $XC "1host"
+  echo           "    Return a valid ping-available IP for some host or domain name"
   1tint $PC "1ports"
   echo
+}
+
+# Check files .hosts in lib/local and lib/remote, for a name, returning a valid IP
+# @param Host name you need an IP
+function 1host {
+	if [ $# -eq 1 ]
+	then
+		HNAM=$1
+    if HLIN=$(cat $(find "$_1LIB" -name "*.hosts") | grep "$HNAM ")
+    then
+			for HIP in ${HLIN/$HNAM/}
+			do
+				if ping -c 1 "$HIP" > /dev/null
+				then
+					echo "$HIP"
+					return 0
+				fi
+			done
+    fi
+    if HLIN=$(dig +short "$HNAM" | xargs)
+    then
+      for HIP in ${HLIN/$HNAM/}
+			do
+				if ping -c 1 "$HIP" > /dev/null
+				then
+					echo "$HIP"
+					return 0
+				fi
+			done
+    fi
+		echo "$HNAM is unkown or unavailable."
+		return 1
+	else
+		echo "You need to put a machine name"
+	fi
 }
 
 # Run iperf with a simple and functional configuration, connecting iperfd IP
