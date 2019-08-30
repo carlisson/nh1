@@ -3,13 +3,29 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.11
+_1VERSION=0.12
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
-_1LIB="$_1DIR/lib"
+if [ "$_1DIR" = "/usr/bin" ]
+then
+	_1LIB="/usr/share/nh1"
+elif [ "$_1DIR" = "/usr/local/bin" ]
+then
+	_1LIB="/usr/local/share/nh1"
+else
+	_1LIB="$_1DIR/lib"
+fi
+_1LOCAL="$HOME/.nh1/local"
+_1REMOTE="$HOME/.nh1/remote"
+_1PLUS="$HOME/.nh1/plus"
 _1COLOR=6
 _1VERBOSE=1
+
+#STARTING
+mkdir -p "$_1LOCAL"
+mkdir -p "$_1REMOTE"
+mkdir -p "$_1PLUS"
 
 # IMPORT MODULES
 source "$_1DIR/network.bashrc"
