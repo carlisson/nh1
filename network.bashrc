@@ -5,16 +5,36 @@ _1IPERFPORT=2918
 
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
+  1tint $XC "1host"
+  echo           "    Return a valid ping-available IP for some host or domain name"
+  1tint $XC "1isip"
+  echo           "    Return if a given string is an IP address"
   1tint $XC "1iperf"
   echo            "   Run iperf connecting to a 1iperfd IP"
   1tint $XC "1iperfd"
   echo             "  Run iperfd, waiting for 1iperf connection"
   1tint $XC "1tcpdump"
   echo             "  Run tcpdump in a given network interface"
-  1tint $XC "1host"
-  echo           "    Return a valid ping-available IP for some host or domain name"
   1tint $PC "1ports"
   echo
+}
+
+# Check if a string is an IP address
+# @param String to test
+function 1isip {
+  if [ $# -eq 1 ]
+  then
+    if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+    then
+      _1verb "$1 is an IP."
+      return 0
+    else
+      _1verb "$1 is not an IP."
+      return 1
+    fi
+  else
+    echo "You need to give a string to test if it is an IP address."
+  fi
 }
 
 # Check files .hosts in lib/local and lib/remote, for a name, returning a valid IP
