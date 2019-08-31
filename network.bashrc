@@ -23,6 +23,13 @@ function _nh1network.menu {
   echo
 }
 
+# Clean variables
+function _nh1network.clean {
+  unset _1IPERFPORT
+  unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
+  unset -f 1tcpdump 1ison _1pressh 1ssh
+}
+
 # Check if a string is an IP address
 # @param String to test
 function 1isip {

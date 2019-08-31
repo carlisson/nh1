@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.14
+_1VERSION=0.15
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -54,6 +54,8 @@ function NH1 {
 		echo
 		1tint $WC "1bashrc"
 		echo             "  Modify .bashrc to NH1 starts on bash start"
+		1tint $XC "1clean"
+		echo            "   Clean NH1 from memory (undo NH1 charge)"
 		1tint $XC "1update"
 		echo             "  Update your NH1, using git"
 		1tint $WC "1version"
@@ -157,9 +159,12 @@ function 1bashrc {
 
 # Reload NH1 and all related modules
 function 1refresh {
-	_1verb "Loading bashrc from $_1RC."
-	source "$_1RC"
+	LOCAL1RC=$_1RC
+	_1verb "After destroy variables, I will load $_1RC."
+	1clean
+	source "$LOCAL1RC"
 	_1verb "Done."
+	unset LOCAL1RC
 }
 
 # Get git credentials to update NH1
@@ -182,6 +187,16 @@ function 1version {
 	echo "NH1 $_1VERSION"
 	echo
 	tail "$_1LIB/changelog.txt"
+}
+
+# Clean all variables set by nh1
+function 1clean {
+	_1verb "Destroying all variables..."
+	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
+	unalias 1help
+	unset -f NH1 1tint _1verb 1check 1bashrc 1refresh 1update 1version 1clean
+	_nh1network.clean
+	_nh1rpg.clean
 }
 
 #MAIN

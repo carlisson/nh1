@@ -33,6 +33,12 @@ function _nh1rpg.menu {
   echo
 }
 
+# Destroy all global variables created by this file
+function _nh1rpg.clean {
+  unalias 1d4 1d6 1d8 1d10 1d12 1d20 1d100
+  unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll
+}
+
 # Generate a random number, like from a dice from N sides
 # @param number of sides of the dice (default 6)
 function 1dice {
