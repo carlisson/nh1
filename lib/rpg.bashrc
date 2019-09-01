@@ -11,6 +11,7 @@ alias 1d100="1dice 100"
 
 # Generate partial menu (for RPG functions)
 function _nh1rpg.menu {
+  echo "___ RPG ___"
   1tint $XC "1roll"
   echo           "    Roll dices with RPG formula: 2d10, 1d4+1..."
   1tint $WC "1dice"

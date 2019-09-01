@@ -5,6 +5,7 @@ _1IPERFPORT=2918
 
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
+  echo "___ Network ___"
   1tint $XC "1host"
   echo           "    Return a valid ping-available IP for some host or domain name"
   1tint $XC "1ison"

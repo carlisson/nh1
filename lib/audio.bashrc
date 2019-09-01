@@ -4,6 +4,7 @@
 
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
+  echo "___ Audio ___"
   1tint $WC "1id3get"
   echo             "  Extract metadata from an MP3 to a TXT"
   1tint $WC "1id3set"
