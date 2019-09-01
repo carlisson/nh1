@@ -19,3 +19,4 @@
 0.19   2019-08-31: 1ogg2mp3: convert OGG file to MP3 format
 0.20   2019-08-31: 1talkbr: create WAV file from Portuguese string
 0.21   2019-09-01: 1check checking multiple commands
+0.22   2019-09-01: 1yt3: extract youtube video (audio only) to MP3

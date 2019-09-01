@@ -4,24 +4,24 @@
 
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
-  1tint $XC "1id3get"
+  1tint $WC "1id3get"
   echo             "  Extract metadata from an MP3 to a TXT"
-  1tint $XC "1id3set"
+  1tint $WC "1id3set"
   echo             "  Create a new MP3 file applying metadata from a TXT"
   1tint $XC "1ogg2mp3"
   echo              " Convert a ogg file to mp3"
-  1tint $XC "1svideo"
+  1tint $WC "1svideo"
   echo             "  Create static video from MP3 and PNG"
   1tint $XC "1talkbr"
   echo             "  Convert Portuguese text to WAV"
-  1tint $PC "1yt3"
-  echo          "     ca"
+  1tint $WC "1yt3"
+  echo          "     Extract Youtube video to MP3"
 }
 
 # Destroy all global variables created by this file
 function _nh1audio.clean {
   unset -f _nh1audio.menu _nh1audio.clean 1id3get 1id3put 1svideo
-  unset -f 1ogg2mp3 1talkbr
+  unset -f 1ogg2mp3 1talkbr 1yt3
 }
 
 # Extract ID3V2 metadata from an MP3 file
@@ -124,6 +124,39 @@ function 1talkbr {
       espeak -v brazil-mbrola-1 "$1" -w "$2"
     else
       echo "Use: 1talkbr 'Message' <WAV-output>"
+    fi
+  fi
+}
+
+# Create a MP3 file from a youtube video
+# @param Youtube video URL(s)
+function 1yt3 {
+  if 1check youtube-dl ffmpeg
+  then
+    if [ $# -gt 0 ]
+    then
+      YTMPDIR=$(mktemp -d)
+      YLOCAL=$(pwd)
+
+      for YURL in $*
+      do
+    	  YTITLE=`youtube-dl -e "$YURL"`
+    	  YFILE="$YTITLE.mp3"
+
+    	  cd "$YTMPDIR"
+    	  youtube-dl "$YURL"
+    	  YVID=`ls | head -1`
+
+    	  cd "$YLOCAL"
+    	  ffmpeg -i "$YTMPDIR/$YVID" -metadata title="$YTITLE" "$YFILE"
+    	  rm -f "$YTMPDIR/*"
+    	  echo `date` ':' "$YTITLE" >> .yt3.log
+      done
+
+      rm -rf "$YTMPDIR"
+      unset YTITLE YFILE YLOCAL YTMPDIR YVID
+    else
+      echo "You need to give one or more youtube video URLs"
     fi
   fi
 }
