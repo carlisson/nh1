@@ -29,14 +29,14 @@ function _nh1rpg.menu {
   echo          "     Roll one d20"
   1tint $WC "1d100"
   echo           "    Roll one d100"
-  1tint $PC "1card"
-  echo
+  1tint $XC "1card"
+  echo           "    Sort a random playing card"
 }
 
 # Destroy all global variables created by this file
 function _nh1rpg.clean {
   unalias 1d4 1d6 1d8 1d10 1d12 1d20 1d100
-  unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll
+  unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
 }
 
 # Generate a random number, like from a dice from N sides
@@ -88,4 +88,16 @@ function 1roll {
 	else
 		echo "Params: xdy+z. Examples: 3d6, 5d8-4, 1d4+1"
 	fi
+}
+
+# Random playing card
+function 1card {
+	SUIT=`tr -dc 'CDHS' < /dev/urandom | \
+    head -c 1 | sed 's/C/Clubs/' | \
+    sed 's/D/Diamonds/' | sed 's/H/Hearts/' | sed 's/S/Spades/'`
+	NUMB=`tr -dc 'A23456789XJQK' < /dev/urandom | head -c 1 | \
+  sed 's/X/10/' | sed 's/A/Ace/' | sed 's/J/Jack/' | \
+  sed 's/Q/Queen/' | sed 's/K/King/'`
+	echo $NUMB of $SUIT
+  unset SUIT NUMB
 }

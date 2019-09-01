@@ -13,3 +13,4 @@
 0.13   2019-08-30: applied variable unset in functions footers
 0.14   2019-08-30: 1ssh: access with special params (eXtreme switchs)
 0.15   2019-08-31: 1clean: destroy all NH1 global variables
+0.16   2019-08-31: 1card: sort a random playing card
