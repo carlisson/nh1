@@ -15,3 +15,4 @@
 0.15   2019-08-31: 1clean: destroy all NH1 global variables
 0.16   2019-08-31: 1card: sort a random playing card
 0.17   2019-08-31: 1id3get and 1id3set: working with MP3 metadata
+0.18   2019-08-31: 1svideo: create a static MP4 from MP3 and PNG files
