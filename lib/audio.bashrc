@@ -5,18 +5,21 @@
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
   1tint $XC "1id3get"
-  echo              " Extract metadata from an MP3 to a TXT"
+  echo             "  Extract metadata from an MP3 to a TXT"
   1tint $XC "1id3set"
-  echo              " Create a new MP3 file applying metadata from a TXT"
+  echo             "  Create a new MP3 file applying metadata from a TXT"
+  1tint $XC "1ogg2mp3"
+  echo              " Convert a ogg file to mp3"
   1tint $XC "1svideo"
   echo             "  Create static video from MP3 and PNG"
   1tint $PC "1yt3"
-  echo           "    ca"
+  echo          "     ca"
 }
 
 # Destroy all global variables created by this file
 function _nh1audio.clean {
   unset -f _nh1audio.menu _nh1audio.clean 1id3get 1id3put 1svideo
+  unset -f 1ogg2mp3
 }
 
 # Extract ID3V2 metadata from an MP3 file
@@ -80,6 +83,30 @@ function 1svideo {
       unset SVMIN SVPIN SVMOUT
     else
       echo "Call like this: 1svideo <MP3-input> <PNG-input> <MP4-output>"
+    fi
+  fi
+}
+
+# Convert ogg file to mp3
+# @param Ogg input file
+# @param MP3 input file (optional)
+function 1ogg2mp3 {
+  if 1check ffmpeg
+  then
+    if [ $# -gt 1 ]
+    then
+      OGF="$1"
+      if [ $# -eq 2 ]
+      then
+        MPF="$2"
+      else
+        MPF=`basename "$1" .ogg`'.mp3'
+      fi
+  	  ffmpeg -i "$OGF" "$MPF"
+  	  rm "$OGF"
+      unset OGF MPF
+    else
+      echo "You need to info OGG input file and (optional) MP3 output"
     fi
   fi
 }
