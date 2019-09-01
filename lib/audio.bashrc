@@ -5,18 +5,12 @@
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
   echo "___ Audio ___"
-  1tint $WC "1id3get"
-  echo             "  Extract metadata from an MP3 to a TXT"
-  1tint $WC "1id3set"
-  echo             "  Create a new MP3 file applying metadata from a TXT"
-  1tint $XC "1ogg2mp3"
-  echo              " Convert a ogg file to mp3"
-  1tint $WC "1svideo"
-  echo             "  Create static video from MP3 and PNG"
-  1tint $XC "1talkbr"
-  echo             "  Convert Portuguese text to WAV"
-  1tint $WC "1yt3"
-  echo          "     Extract Youtube video to MP3"
+  _1menuitem W 1id3get "Extract metadata from an MP3 to a TXT" ffmpeg
+  _1menuitem W 1id3set "Create a new MP3 file applying metadata from a TXT" ffmpeg
+  _1menuitem X 1ogg2mp3 "Convert a ogg file to mp3" ffmpeg
+  _1menuitem W 1svideo "Create static video from MP3 and PNG" ffmpeg
+  _1menuitem X 1talkbr "Convert Portuguese text to WAV" espeak
+  _1menuitem W 1yt3 "Extract Youtube video to MP3" youtube-dl ffmpeg
 }
 
 # Destroy all global variables created by this file

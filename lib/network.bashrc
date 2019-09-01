@@ -6,21 +6,14 @@ _1IPERFPORT=2918
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
   echo "___ Network ___"
-  1tint $XC "1host"
-  echo           "    Return a valid ping-available IP for some host or domain name"
-  1tint $XC "1ison"
-  echo           "    Return if server is on. Params: (-q for quiet or name), IP"
-  1tint $XC "1isip"
-  echo           "    Return if a given string is an IP address"
-  1tint $XC "1iperf"
-  echo            "   Run iperf connecting to a 1iperfd IP"
-  1tint $XC "1iperfd"
-  echo             "  Run iperfd, waiting for 1iperf connection"
-  1tint $XC "1ssh"
-  echo          "     Connect a SSH server (working with eXtreme)"
-  1tint $XC "1tcpdump"
-  echo             "  Run tcpdump in a given network interface"
-  1tint $PC "1ports"
+  _1menuitem W 1host "Return a valid ping-available IP for some host or domain name"
+  _1menuitem X 1iperf "Run iperf connecting to a 1iperfd IP" iperf
+  _1menuitem X 1iperfd "Run iperfd, waiting for 1iperf connection" iperf
+  _1menuitem X 1isip "Return if a given string is an IP address"
+  _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
+  _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
+  _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
+  _1menuitem P 1ports "to-do"
   echo
 }
 

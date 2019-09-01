@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.24
+_1VERSION=0.25
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -20,7 +20,13 @@ _1LOCAL="$HOME/.nh1/local"
 _1REMOTE="$HOME/.nh1/remote"
 _1PLUS="$HOME/.nh1/plus"
 _1COLOR=6
-_1VERBOSE=1
+_1PCOLOR=5 # Pending
+_1XCOLOR=3 # Experimental
+_1WCOLOR=2 # Working
+_1DCOLOR=1 # Deprecated
+
+_1MENUCOL=13
+_1VERBOSE=0 # 0 - disabled; 1 - enabled
 
 #STARTING
 mkdir -p "$_1LOCAL"
@@ -33,12 +39,50 @@ source "$_1LIB/misc.bashrc"
 source "$_1LIB/network.bashrc"
 source "$_1LIB/rpg.bashrc"
 
+# Print a line to build help menu
+# @param Status of command
+# @param Command name
+# @param Command description
+# @param (optional) list of commands to check
+function _1menuitem {
+	if [ $# -gt 2 ]
+	then
+		# Possible status:
+		#  W - working
+		#  X - experimental
+		#  P - planning
+		#  D - deprecated
+		local mi_status="$1"
+		local mi_comm="$2"
+		local mi_csize=${#mi_comm}
+		local mi_descr="$3"
+		local mi_color=7
+
+		case "$mi_status" in
+			"W") mi_color=$_1WCOLOR ;;
+			"X") mi_color=$_1XCOLOR ;;
+			"P") mi_color=$_1PCOLOR ;;
+			"D") mi_color=$_1DCOLOR ;;
+		esac
+
+		if [ $# -gt 3 ]
+		then
+			if ! 1check -s "${@:4:$#+1}"
+			then
+				return
+			fi
+		fi
+		local mi_spaces=$(($_1MENUCOL - $mi_csize +2))
+		1tint $mi_color "$mi_comm"
+		printf ' %.0s' $(seq 1 $mi_spaces)
+		echo "$mi_descr"
+	else
+		echo "You need to give status, command name, message and dependencies"
+	fi
+}
+
 # Menu for NH1
 function NH1 {
-
-		PC=5
-		XC=3
-		WC=2
 
 		echo " -------------------------------------"
 		echo -n "            "
@@ -53,39 +97,30 @@ function NH1 {
 		_nh1rpg.menu
 
 		echo "___ Main ___"
-		1tint $PC "1install"
-		echo
-		1tint $WC "1bashrc"
-		echo             "  Modify .bashrc to NH1 starts on bash start"
-		1tint $XC "1clean"
-		echo            "   Clean NH1 from memory (undo NH1 charge)"
-		1tint $XC "1update"
-		echo             "  Update your NH1, using git"
-		1tint $WC "1version"
-		echo              " List NH1 version and latest changes/updates"
-		1tint $PC "nh1localnet"
-		echo
-		1tint $PC "nh1connect"
-		echo
-		1tint $PC "nh1interactive"
-		echo
-
-		1tint $WC "1tint"
-		echo           "    Write a string in another color"
+		_1menuitem P 1install "to-do"
+		_1menuitem W 1bashrc "Modify .bashrc to NH1 starts on bash start"
+		_1menuitem W 1clean "Clean NH1 from memory (undo NH1 charge)"
+		_1menuitem W 1tint "Write a string in another color"
+		_1menuitem W 1update "Update your NH1, using git" git
+		_1menuitem W 1version "List NH1 version and latest changes/updates"
+		_1menuitem P nh1localnet "to-do"
+		_1menuitem P nh1connect "to-do"
+		_1menuitem P nh1interactive "to-do"
 
 		echo
 		echo -n "   "
-		1tint $PC "planning"
+		1tint $_1PCOLOR "planning"
 		echo -n "   "
-		1tint $XC "experimental"
+		1tint $_1XCOLOR "experimental"
 		echo -n "   "
-		1tint $WC "working"
+		1tint $_1WCOLOR "working"
+		echo -n "   "
+		1tint $_1DCOLOR "deprecated"
 		echo
 		echo " -------------------------------------"
 		echo "        Power-up for your shell"
 		echo " -------------------------------------"
     echo
-		unset PC XC WC
 }
 
 # Set text color in shell
@@ -127,6 +162,8 @@ alias 1help=NH1
 function _1verb {
 	if [ $_1VERBOSE -gt 0 ]
 	then
+		1tint 3 "▲"
+		echo -n ' '
 		1tint ${FUNCNAME[ 1 ]}
 		echo ": $1"
 	fi
@@ -137,12 +174,23 @@ function _1verb {
 # @param Program to check
 function 1check {
 	CFAILS=0
+	local SILENT=0
 	for PROG in $*
 	do
-		if [ -z "$(whereis -u "$PROG")" ]
+		if [ "$PROG" = "-s" ]
 		then
-			echo "Program $PROG does not exist or it is unavailable for $USER."
-			CFAILS=$((CFAILS+1))
+		  SILENT=1
+		else
+			if [ -z "$(whereis -u "$PROG")" ]
+			then
+				if [ $SILENT -eq 1 ]
+				then
+	        _1verb "$PROG missing for $USER"
+				else
+				  echo "Program $PROG does not exist or it is unavailable for $USER."
+			  fi
+				CFAILS=$((CFAILS+1))
+			fi
 		fi
 	done
 	if [ $CFAILS -gt 0 ]

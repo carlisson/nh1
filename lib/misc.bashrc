@@ -3,12 +3,9 @@
 # Generate partial menu
 function _nh1misc.menu {
   echo "___ Miscelania ___"
-  1tint $PC "1du"
-  echo
-  1tint $XC "1pdfopt"
-  echo             "  Compress a PDF file"
-  1tint $XC "1power"
-  echo            "   Print percentage for battery (notebook)"
+	_1menuitem P 1du "to-do"
+  _1menuitem X 1pdfopt "Compress a PDF file" gs
+  _1menuitem W 1power "Print percentage for battery (notebook)" upower
 }
 
 # Destroy all global variables created by this file
