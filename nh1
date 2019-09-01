@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.26
+_1VERSION=0.27
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -128,6 +128,7 @@ function NH1 {
 # @param The color number (optional)
 # @param Text to 1tint
 function 1tint {
+	local COLOR MSG
 	if [ $# -eq 0 ]
 	then
 		echo "You need to put a string and a color number (optional)"
@@ -152,7 +153,6 @@ function 1tint {
 	tput setaf $COLOR
 	echo -n $MSG
 	tput sgr0
-	unset COLOR MSG
 	return 0
 }
 alias 1help=NH1
@@ -174,7 +174,7 @@ function _1verb {
 # Check if a program exists. Finish NH1 if it do not exists.
 # @param Program to check
 function 1check {
-	CFAILS=0
+	local CFAILS=0
 	local SILENT=0
 	for PROG in $*
 	do
@@ -196,17 +196,15 @@ function 1check {
 	done
 	if [ $CFAILS -gt 0 ]
 	then
-		unset CFAILS
 		return 1
 	else
-		unset CFAILS
 		return 0
 	fi
 }
 
 # Modify ~/.bashrc to init NH1 on bash start
 function 1bashrc {
-    S1="source $_1RC"
+    local S1="source $_1RC"
     if grep "$S1" ~/.bashrc > /dev/null
     then
       echo "NH1 is already installed in your profile. Run NH1 to see all commands available."
@@ -215,17 +213,15 @@ function 1bashrc {
     	echo "$S1" >> ~/.bashrc
 			echo "Done!"
     fi
-		unset S1
 }
 
 # Reload NH1 and all related modules
 function 1refresh {
-	LOCAL1RC=$_1RC
+	local LOCAL1RC=$_1RC
 	_1verb "After destroy variables, I will load $_1RC."
 	1clean
 	source "$LOCAL1RC"
 	_1verb "Done."
-	unset LOCAL1RC
 }
 
 # Get git credentials to update NH1

@@ -29,7 +29,8 @@ function 1pdfopt {
   then
     if [ $# -gt 0 ]
     then
-    	INF="$1"
+    	local INF="$1"
+      local OUF
       if [ $# -eq 2 ]
       then
         OUF="$2"
@@ -37,7 +38,6 @@ function 1pdfopt {
         OUF=`basename "$INF" .pdf`-opt.pdf
       fi
     	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$OUF $INF
-      unset INF OUF
     else
       echo "Use: 1pdfopt <PDF-input> <PDF-output optional>"
     fi

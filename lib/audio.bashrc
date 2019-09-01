@@ -39,6 +39,7 @@ function 1id3get {
 # @param TXT input file
 # @param MP3 output file (optional)
 function 1id3set {
+  local CIN COUT CMD
   if 1check ffmpeg
   then
     if [ $# -gt 1 ]
@@ -53,7 +54,6 @@ function 1id3set {
       fi
 	    ffmpeg -i "$CIN" -i "$CMD" -map_metadata 1 -c:a copy \
         -id3v2_version 3 -write_id3v1 1 "$COUT" &> /dev/null
-      unset CIN COUT CMD
     else
       echo "You need to give 2 or 3 params."
       echo " 1) MP3 input file"
@@ -68,6 +68,7 @@ function 1id3set {
 # @param PNG input file
 # @param MP4 output file
 function 1svideo {
+  local SVMIN SVPIN SVMOUT
   if 1check ffmpeg
   then
     if [ $# -eq 3 ]
@@ -77,7 +78,6 @@ function 1svideo {
       SVMOUT="$3"
 	    ffmpeg -loop 1 -i "$SVPIN" -i "$SVMIN" -c:v libx264 -c:a aac \
         -strict experimental -b:a 192k -shortest "$SVMOUT"
-      unset SVMIN SVPIN SVMOUT
     else
       echo "Call like this: 1svideo <MP3-input> <PNG-input> <MP4-output>"
     fi
@@ -88,6 +88,7 @@ function 1svideo {
 # @param Ogg input file
 # @param MP3 input file (optional)
 function 1ogg2mp3 {
+  local OGF MPF
   if 1check ffmpeg
   then
     if [ $# -gt 1 ]
@@ -101,7 +102,6 @@ function 1ogg2mp3 {
       fi
   	  ffmpeg -i "$OGF" "$MPF"
   	  rm "$OGF"
-      unset OGF MPF
     else
       echo "You need to info OGG input file and (optional) MP3 output"
     fi
@@ -126,6 +126,7 @@ function 1talkbr {
 # Create a MP3 file from a youtube video
 # @param Youtube video URL(s)
 function 1yt3 {
+  local YTITLE YFILE YLOCAL YTMPDIR YVID
   if 1check youtube-dl ffmpeg
   then
     if [ $# -gt 0 ]
@@ -149,7 +150,6 @@ function 1yt3 {
       done
 
       rm -rf "$YTMPDIR"
-      unset YTITLE YFILE YLOCAL YTMPDIR YVID
     else
       echo "You need to give one or more youtube video URLs"
     fi

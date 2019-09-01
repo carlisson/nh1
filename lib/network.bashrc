@@ -43,13 +43,13 @@ function 1isip {
 # Check files .hosts in lib/local and lib/remote, for a name, returning a valid IP
 # @param Host name you need an IP
 function 1host {
+  local HNAM HNUM HLIN
 	if [ $# -eq 1 ]
 	then
 		HNAM=$1
     if 1isip "$HNAM"
     then
       echo "$HNAM"
-      unset HNAM
       return 0
     fi
     if HLIN=$(cat $(find "$_1LIB" -name "*.hosts") | grep "$HNAM ")
@@ -59,7 +59,6 @@ function 1host {
 				if ping -c 1 "$HIP" > /dev/null
 				then
 					echo "$HIP"
-          unset HNUM HLIN
 					return 0
 				fi
 			done
@@ -71,14 +70,12 @@ function 1host {
 				if ping -c 1 "$HIP" > /dev/null
 				then
 					echo "$HIP"
-          unset HNUM HLIN
 					return 0
 				fi
 			done
     fi
 		echo "$HNAM is unkown or unavailable."
-    unset HNAM
-		return 1
+    return 1
 	else
 		echo "You need to put a machine name"
 	fi
@@ -91,10 +88,9 @@ function 1iperf {
   then
     if [ $# -eq 1 ]
     then
-      HNAM=$(1host $1)
+      local HNAM=$(1host $1)
       _1verb "Trying to connect $HNAM ($1) with iperf"
       iperf -P 1 -i 5 -p "$_1IPERFPORT" -f M -t 60 -T 1 -c "$HNAM"
-      unset HNAM
     else
       echo "You need to put a IP address where 1iperfd is running."
     fi
@@ -112,6 +108,7 @@ function 1iperfd {
 # Run tcpdump with a simple and functional configuration
 # @param Interface to listen
 function 1tcpdump {
+  local INFA
   if 1check tcpdump
   then
   	if [ "$#" == 1 ]
@@ -121,7 +118,6 @@ function 1tcpdump {
   		INFA=$(ip address show | grep ^2: |  cut -f 2 -d :)
   	fi
   	tcpdump -c 100 -nv -i $INFA
-    unset INFA
   	return $?
   else
     return 1
@@ -132,7 +128,7 @@ function 1tcpdump {
 # @param Machine name (optional). -q if you need a quiet mode
 # @param URI or IP
 function 1ison {
-  thehost=$(1host $2)
+  local thehost=$(1host $2)
 	if ping -q -c 1 -w 1 "$thehost" &> /dev/null
 	then
 		if [ $1 != "-q" ]
@@ -148,7 +144,6 @@ function 1ison {
 			1tint 1 "$1 not found"
 			echo
 		fi
-    unset thehost
 		return 1
 	fi
 }
@@ -156,6 +151,7 @@ function 1ison {
 # Internal function, pre-1ssh
 # @param server or user@server, to use with ssh
 function _1pressh {
+  local aux_u aux_h
 	if [ $(echo "$1" | grep "@") ]
 	then
 		aux_u=${1%@*}
@@ -172,13 +168,13 @@ function _1pressh {
 		fi
 	fi
 	echo "$aux_u@$aux_h"
-  unset aux_u aux_h
 }
 
 # Access with SSH server (including extreme switchs)
 # @param name or IP, or usr@IP
 # @param Additional options for ssh
 function 1ssh {
+  local destip finalstatus
   if 1check ssh
   then
     _1verb "Conectando por SSH."
@@ -208,6 +204,5 @@ function 1ssh {
     else
       echo "Cannot connect with $1 using SSH"
     fi
-    unset destip finalstatus
   fi
 }

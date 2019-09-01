@@ -33,18 +33,18 @@ function _nh1rpg.clean {
 # Generate a random number, like from a dice from N sides
 # @param number of sides of the dice (default 6)
 function 1dice {
-	SIDES=6
+	local SIDES=6
 	if [ $# -eq 1 ]
 	then
 		SIDES=$1
 	fi
 	shuf -i 1-$SIDES -n 1
-  unset SIDES
 }
 
 # Roll dices from a RPG formula
 # @param Formula like XdY+Z or XdY-Z
 function 1roll {
+  local ROLLNUM ROLLSID ROLLADD ROLLDET ROLLTOT
 	if [ $(echo $1 | grep d) ]
 	then
 		ROLLNUM=$(echo $1 | sed 's/d.*//')
@@ -75,7 +75,6 @@ function 1roll {
       ROLLADD=" $ROLLADD"
     fi
 		echo "$ROLLTOT ($ROLLDET$ROLLADD)"
-    unset ROLLNUM ROLLSID ROLLADD ROLLDET ROLLTOT
 	else
 		echo "Params: xdy+z. Examples: 3d6, 5d8-4, 1d4+1"
 	fi
@@ -83,12 +82,11 @@ function 1roll {
 
 # Random playing card
 function 1card {
-	SUIT=`tr -dc 'CDHS' < /dev/urandom | \
+	local SUIT=`tr -dc 'CDHS' < /dev/urandom | \
     head -c 1 | sed 's/C/Clubs/' | \
     sed 's/D/Diamonds/' | sed 's/H/Hearts/' | sed 's/S/Spades/'`
-	NUMB=`tr -dc 'A23456789XJQK' < /dev/urandom | head -c 1 | \
+	local NUMB=`tr -dc 'A23456789XJQK' < /dev/urandom | head -c 1 | \
   sed 's/X/10/' | sed 's/A/Ace/' | sed 's/J/Jack/' | \
   sed 's/Q/Queen/' | sed 's/K/King/'`
 	echo $NUMB of $SUIT
-  unset SUIT NUMB
 }
