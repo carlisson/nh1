@@ -12,6 +12,8 @@ function _nh1audio.menu {
   echo              " Convert a ogg file to mp3"
   1tint $XC "1svideo"
   echo             "  Create static video from MP3 and PNG"
+  1tint $XC "1talkbr"
+  echo             "  Convert Portuguese text to WAV"
   1tint $PC "1yt3"
   echo          "     ca"
 }
@@ -19,7 +21,7 @@ function _nh1audio.menu {
 # Destroy all global variables created by this file
 function _nh1audio.clean {
   unset -f _nh1audio.menu _nh1audio.clean 1id3get 1id3put 1svideo
-  unset -f 1ogg2mp3
+  unset -f 1ogg2mp3 1talkbr
 }
 
 # Extract ID3V2 metadata from an MP3 file
@@ -107,6 +109,21 @@ function 1ogg2mp3 {
       unset OGF MPF
     else
       echo "You need to info OGG input file and (optional) MP3 output"
+    fi
+  fi
+}
+
+# Create a WAV file from an string
+# @param Message
+# @param WAV output file
+function 1talkbr {
+  if 1check espeak
+  then
+    if [ $# -eq 2 ]
+    then
+      espeak -v brazil-mbrola-1 "$1" -w "$2"
+    else
+      echo "Use: 1talkbr 'Message' <WAV-output>"
     fi
   fi
 }
