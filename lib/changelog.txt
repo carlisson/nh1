@@ -18,3 +18,4 @@
 0.18   2019-08-31: 1svideo: create a static MP4 from MP3 and PNG files
 0.19   2019-08-31: 1ogg2mp3: convert OGG file to MP3 format
 0.20   2019-08-31: 1talkbr: create WAV file from Portuguese string
+0.21   2019-09-01: 1check checking multiple commands

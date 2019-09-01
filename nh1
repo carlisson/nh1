@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.20
+_1VERSION=0.21
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -135,12 +135,23 @@ function _1verb {
 # Check if a program exists. Finish NH1 if it do not exists.
 # @param Program to check
 function 1check {
-	if [ -z "$(whereis -u "$1")" ]
+	CFAILS=0
+	for PROG in $*
+	do
+		if [ -z "$(whereis -u "$PROG")" ]
+		then
+			echo "Program $PROG does not exist or it is unavailable for $USER."
+			CFAILS=$((CFAILS+1))
+		fi
+	done
+	if [ $CFAILS -gt 0 ]
 	then
-		echo "Program $1 does not exist or it is unavailable for $USER."
+		unset CFAILS
 		return 1
+	else
+		unset CFAILS
+		return 0
 	fi
-	return 0
 }
 
 # Modify ~/.bashrc to init NH1 on bash start
@@ -214,6 +225,5 @@ then
 	fi
 	unset S1
 else
-		echo "You need run:"
-		echo "source $_1RC"
+		echo "You need run: source $_1RC"
 fi
