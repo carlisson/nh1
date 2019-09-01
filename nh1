@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.16
+_1VERSION=0.17
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -28,8 +28,9 @@ mkdir -p "$_1REMOTE"
 mkdir -p "$_1PLUS"
 
 # IMPORT MODULES
-source "$_1DIR/network.bashrc"
-source "$_1DIR/rpg.bashrc"
+source "$_1LIB/audio.bashrc"
+source "$_1LIB/network.bashrc"
+source "$_1LIB/rpg.bashrc"
 
 # Menu for NH1
 function NH1 {
@@ -45,6 +46,7 @@ function NH1 {
 		echo " -------------------------------------"
     echo
 
+		_nh1audio.menu
 		_nh1network.menu
 		_nh1rpg.menu
 
@@ -60,8 +62,6 @@ function NH1 {
 		echo             "  Update your NH1, using git"
 		1tint $WC "1version"
 		echo              " List NH1 version and latest changes/updates"
-		1tint $PC "1yt3"
-		echo
 		1tint $PC "nh1localnet"
 		echo
 		1tint $PC "nh1connect"
@@ -195,6 +195,7 @@ function 1clean {
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unalias 1help
 	unset -f NH1 1tint _1verb 1check 1bashrc 1refresh 1update 1version 1clean
+	_nh1audio.clean
 	_nh1network.clean
 	_nh1rpg.clean
 }
