@@ -5,6 +5,7 @@
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
   echo "___ Audio ___"
+  _1menuitem P 1genbigmp3 "Append various MP3 files in one single file"
   _1menuitem W 1id3get "Extract metadata from an MP3 to a TXT" ffmpeg
   _1menuitem W 1id3set "Create a new MP3 file applying metadata from a TXT" ffmpeg
   _1menuitem X 1ogg2mp3 "Convert a ogg file to mp3" ffmpeg
