@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.22
+_1VERSION=0.23
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -29,6 +29,7 @@ mkdir -p "$_1PLUS"
 
 # IMPORT MODULES
 source "$_1LIB/audio.bashrc"
+source "$_1LIB/misc.bashrc"
 source "$_1LIB/network.bashrc"
 source "$_1LIB/rpg.bashrc"
 
@@ -47,11 +48,10 @@ function NH1 {
     echo
 
 		_nh1audio.menu
+		_nh1misc.menu
 		_nh1network.menu
 		_nh1rpg.menu
 
-		1tint $PC "1du"
-		echo
 		1tint $PC "1install"
 		echo
 		1tint $WC "1bashrc"
@@ -207,6 +207,7 @@ function 1clean {
 	unalias 1help
 	unset -f NH1 1tint _1verb 1check 1bashrc 1refresh 1update 1version 1clean
 	_nh1audio.clean
+	_nh1misc.clean
 	_nh1network.clean
 	_nh1rpg.clean
 }
