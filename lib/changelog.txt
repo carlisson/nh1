@@ -23,3 +23,4 @@
 0.23   2019-09-01: 1power: print battery charge status (notebook)
 0.24   2019-09-01: 1pdfopt: compress a PDF file
 0.25   2019-09-01: improved 1help (with _1menuitem). Hide if missing dependence
+0.26   2019-09-01: 1verbose: turn on or off verbose mode

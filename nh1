@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.25
+_1VERSION=0.26
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -102,6 +102,7 @@ function NH1 {
 		_1menuitem W 1clean "Clean NH1 from memory (undo NH1 charge)"
 		_1menuitem W 1tint "Write a string in another color"
 		_1menuitem W 1update "Update your NH1, using git" git
+		_1menuitem X 1verbose "Enable/disable verbose mode"
 		_1menuitem W 1version "List NH1 version and latest changes/updates"
 		_1menuitem P nh1localnet "to-do"
 		_1menuitem P nh1connect "to-do"
@@ -259,6 +260,33 @@ function 1clean {
 	_nh1misc.clean
 	_nh1network.clean
 	_nh1rpg.clean
+}
+
+# Enable or disable verbose mode
+# @param (optional) Bit (0/1) to set verbose mode. Default: invvert current
+function 1verbose {
+	local NEWV=$_1VERBOSE
+	if [ $# -eq 1 ]
+	then
+		if [ $1 -eq 1 ]
+		then
+			_1VERBOSE=1
+			_1verb "Verbose mode is on"
+		else
+			_1verb "Verbose mode is off"
+			_1VERBOSE=0
+		fi
+		return
+	fi
+	# invert verbose
+	if [ $NEWV -eq 1 ]
+	then
+		_1verb "Verbose mode is off"
+		_1VERBOSE=0
+	else
+		_1VERBOSE=1
+		_1verb "Verbose mode is on"
+	fi
 }
 
 #MAIN
