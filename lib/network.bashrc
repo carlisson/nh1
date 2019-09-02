@@ -13,7 +13,7 @@ function _nh1network.menu {
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
-  _1menuitem P 1ports "to-do"
+  _1menuitem X 1ports "Scan 1.500 ports for a given host"
   echo
 }
 
@@ -129,10 +129,12 @@ function 1tcpdump {
 # @param URI or IP
 function 1ison {
   local thename="$1"
-  local thehost=$(1host $1)
+  local thehost
   if [ $# -eq 2 ]
   then
     thehost=$(1host $2)
+  else
+    thehost=$(1host $1)
   fi
 	if ping -q -c 1 -w 1 "$thehost" &> /dev/null
 	then
@@ -209,4 +211,41 @@ function 1ssh {
       echo "Cannot connect with $1 using SSH"
     fi
   fi
+}
+
+# Test open TCP ports [1-1500]
+# @param IP (optional)
+function 1ports {
+  local aux CHECK
+	local IP=${1:-127.0.0.1}
+	local POPE=$(mktemp)
+	local PREF=$(mktemp)
+	if ! $(1ison -q $IP)
+	then
+		if aux=$(1hosts "$IP")
+		then
+			IP=$aux
+		fi
+	fi
+	for p in {1..1500}
+  do
+		timeout 1 bash -c "(</dev/tcp/$IP/$p) &> /dev/null"
+		CHECK=$?
+		if [ $CHECK = 0 ]
+		then
+			echo "$p open" >> $POPE
+			echo -n "#"
+		else
+			if [ $CHECK = 1 ]
+			then
+				echo "$p refused" >> $PREF
+				echo -n "*"
+			else
+				echo -n "."
+			fi
+		fi
+  done
+	echo
+	cat $PREF $POPE
+	rm $PREF $POPE
 }

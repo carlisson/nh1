@@ -25,3 +25,4 @@
 0.25   2019-09-01: improved 1help (with _1menuitem). Hide if missing dependence
 0.26   2019-09-01: 1verbose: turn on or off verbose mode
 0.27   2019-09-01: using local directive (removing "unsets")
+0.28   2019-09-02: 1ports: scan open ports in a given host
