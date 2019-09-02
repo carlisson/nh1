@@ -3,6 +3,7 @@
 # Generate partial menu
 function _nh1misc.menu {
   echo "___ Miscelania ___"
+  _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
 	_1menuitem P 1du "to-do"
   _1menuitem X 1pdfopt "Compress a PDF file" gs
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
@@ -10,7 +11,7 @@ function _nh1misc.menu {
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
-  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt
+  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin
 }
 
 # Print percentage for battery charge
@@ -42,4 +43,13 @@ function 1pdfopt {
       echo "Use: 1pdfopt <PDF-input> <PDF-output optional>"
     fi
   fi
+}
+
+# Join an array, using first param as delimiter
+# @param delimiter, character
+# @param other values to join
+function 1ajoin {
+  local IFS="$1"
+  shift
+  echo "$*"
 }

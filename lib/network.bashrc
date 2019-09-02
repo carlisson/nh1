@@ -13,6 +13,7 @@ function _nh1network.menu {
   _1menuitem X 1iperfd "Run iperfd, waiting for 1iperf connection" iperf
   _1menuitem X 1isip "Return if a given string is an IP address"
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
+  _1menuitem X 1mynet "Return all networks running on network interfaces" ip
   _1menuitem X 1ports "Scan 1.500 ports for a given host"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
@@ -23,7 +24,7 @@ function _nh1network.menu {
 function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
-  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
+  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts 1mynet
 }
 
 # Check if a string is an IP address
@@ -253,11 +254,19 @@ function 1ports {
 }
 
 # Return a possibly big string with all IP addresses in all interfaces
+# @param (optional) Number of your interface. Default=all
 function 1allhosts {
   if 1check ip ipcalc
   then
-    local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4
-    local interfaces=$(ip address | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])/(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v 127.0.0.1)
+    local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4 interfaces
+    aux=$(1mynet)
+    if [ $# -gt 0 ]
+    then
+      interfaces=$(echo $aux | cut -d\  -f $(1ajoin , $@))
+    else
+      interfaces=$aux
+    fi
+    _1verb Interfaces $interfaces
     for ether in $interfaces
     do
       aux=$(ipcalc $ether | grep HostM | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])')
@@ -297,6 +306,14 @@ function 1allhosts {
       fi
       eval echo $p1.$p2.$p3.$p4
     done
+  fi
+}
+
+# Return network(s) for all your interfaces
+function 1mynet {
+  if 1check ip
+  then
+    ip address | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])/(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v 127.0.0.1
   fi
 }
 
