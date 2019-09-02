@@ -6,15 +6,16 @@ _1IPERFPORT=2918
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
   echo "___ Network ___"
+  _1menuitem X 1allhosts "Returns all hosts in all your networks" ip ipcalc
+  _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
   _1menuitem W 1host "Return a valid ping-available IP for some host or domain name"
   _1menuitem X 1iperf "Run iperf connecting to a 1iperfd IP" iperf
   _1menuitem X 1iperfd "Run iperfd, waiting for 1iperf connection" iperf
   _1menuitem X 1isip "Return if a given string is an IP address"
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
+  _1menuitem X 1ports "Scan 1.500 ports for a given host"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
-  _1menuitem X 1ports "Scan 1.500 ports for a given host"
-  _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
   echo
 }
 
@@ -22,7 +23,7 @@ function _nh1network.menu {
 function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
-  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport
+  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
 }
 
 # Check if a string is an IP address
@@ -251,19 +252,11 @@ function 1ports {
 	rm $PREF $POPE
 }
 
-# Scan on network for an given port
-# @param Port to scan
-function 1findport {
+# Return a possibly big string with all IP addresses in all interfaces
+function 1allhosts {
   if 1check ip ipcalc
   then
-    local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4 port
-    local total=0
-    if [ $# -eq 1 ]
-    then
-      port=$1
-    else
-      port=80
-    fi
+    local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4
     local interfaces=$(ip address | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])/(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v 127.0.0.1)
     for ether in $interfaces
     do
@@ -302,17 +295,33 @@ function 1findport {
       else
         p4="{$fp4..$lp4}"
       fi
-      _1verb "Starting in $p1.$p2.$p3.$p4"
-      for aux in $(eval echo $p1.$p2.$p3.$p4)
-      do
-        _1verb "trying $aux"
-        timeout 1 bash -c "(</dev/tcp/$aux/$port) &> /dev/null"
-        if [ $? = 0 ]
-    		then
-          total=$(($total+1))
-    			echo "$aux:$port"
-    		fi
-      done
+      eval echo $p1.$p2.$p3.$p4
+    done
+  fi
+}
+
+# Scan on network for an given port
+# @param Port to scan
+function 1findport {
+  if 1check ip ipcalc
+  then
+    local port
+    local total=0
+    if [ $# -eq 1 ]
+    then
+      port=$1
+    else
+      port=80
+    fi
+    for aux in $(1allhosts)
+    do
+      _1verb "trying $aux"
+      timeout 1 bash -c "(</dev/tcp/$aux/$port) &> /dev/null"
+      if [ $? = 0 ]
+    	then
+        total=$(($total+1))
+    		echo "$aux:$port"
+    	fi
     done
     _1verb "$total hosts with port $port open."
   fi
