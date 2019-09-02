@@ -128,20 +128,24 @@ function 1tcpdump {
 # @param Machine name (optional). -q if you need a quiet mode
 # @param URI or IP
 function 1ison {
-  local thehost=$(1host $2)
+  local thename="$1"
+  local thehost=$(1host $1)
+  if [ $# -eq 2 ]
+  then
+    thehost=$(1host $2)
+  fi
 	if ping -q -c 1 -w 1 "$thehost" &> /dev/null
 	then
-		if [ $1 != "-q" ]
+		if [ $thename != "-q" ]
 		then
-			1tint 2 "$1 is active"
+			1tint 2 "$thename is active"
 			echo
 		fi
-    unset thehost
 		return 0
 	else
-		if [ $1 != "-q" ]
+		if [ $thename != "-q" ]
 		then
-			1tint 1 "$1 not found"
+			1tint 1 "$thename not found"
 			echo
 		fi
 		return 1
