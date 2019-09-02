@@ -14,6 +14,7 @@ function _nh1network.menu {
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
   _1menuitem X 1ports "Scan 1.500 ports for a given host"
+  _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
   echo
 }
 
@@ -21,7 +22,7 @@ function _nh1network.menu {
 function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
-  unset -f 1tcpdump 1ison _1pressh 1ssh
+  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport
 }
 
 # Check if a string is an IP address
@@ -248,4 +249,71 @@ function 1ports {
 	echo
 	cat $PREF $POPE
 	rm $PREF $POPE
+}
+
+# Scan on network for an given port
+# @param Port to scan
+function 1findport {
+  if 1check ip ipcalc
+  then
+    local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4 port
+    local total=0
+    if [ $# -eq 1 ]
+    then
+      port=$1
+    else
+      port=80
+    fi
+    local interfaces=$(ip address | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])/(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v 127.0.0.1)
+    for ether in $interfaces
+    do
+      aux=$(ipcalc $ether | grep HostM | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])')
+      firstip=$(echo $aux | cut -d\  -f 1)
+      lastip=$(echo $aux | cut -d\  -f 2)
+      fp1=$(echo $firstip | cut -d. -f 1)
+      fp2=$(echo $firstip | cut -d. -f 2)
+      fp3=$(echo $firstip | cut -d. -f 3)
+      fp4=$(echo $firstip | cut -d. -f 4)
+      lp1=$(echo $lastip | cut -d. -f 1)
+      lp2=$(echo $lastip | cut -d. -f 2)
+      lp3=$(echo $lastip | cut -d. -f 3)
+      lp4=$(echo $lastip | cut -d. -f 4)
+      if [ $fp1 = $lp1 ]
+      then
+        p1=$fp1
+      else
+        p1="{$fp1..$lp1}"
+      fi
+      if [ $fp2 = $lp2 ]
+      then
+        p2=$fp2
+      else
+        p2="{$fp2..$lp2}"
+      fi
+      if [ $fp3 = $lp3 ]
+      then
+        p3=$fp3
+      else
+        p3="{$fp3..$lp3}"
+      fi
+      if [ $fp4 = $lp4 ]
+      then
+        p4=$fp4
+      else
+        p4="{$fp4..$lp4}"
+      fi
+      _1verb "Starting in $p1.$p2.$p3.$p4"
+      for aux in $(eval echo $p1.$p2.$p3.$p4)
+      do
+        _1verb "trying $aux"
+        timeout 1 bash -c "(</dev/tcp/$aux/$port) &> /dev/null"
+        if [ $? = 0 ]
+    		then
+          total=$(($total+1))
+    			echo "$aux:$port"
+    		fi
+      done
+    done
+    _1verb "$total hosts with port $port open."
+  fi
 }
