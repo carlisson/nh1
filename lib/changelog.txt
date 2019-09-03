@@ -28,4 +28,5 @@
 0.28   2019-09-02: 1ports: scan open ports in a given host
 0.29   2019-09-02: 1findport: scan all networks for hosts with given port open
 0.30   2019-09-02: 1allhosts: returns all hosts in all your networks
-0.31   2019-09-02: 1ajoin (array join) and 1mynet (liste local networks) added
+0.31   2019-09-02: 1ajoin (array join) and 1mynet (list local networks) added
+0.32   2019-09-03: 1ports: also scan ports asked by user

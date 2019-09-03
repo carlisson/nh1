@@ -14,7 +14,7 @@ function _nh1network.menu {
   _1menuitem X 1isip "Return if a given string is an IP address"
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
   _1menuitem X 1mynet "Return all networks running on network interfaces" ip
-  _1menuitem X 1ports "Scan 1.500 ports for a given host"
+  _1menuitem X 1ports "Scan if given port(s) for a given host is/are open"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
   echo
@@ -216,41 +216,69 @@ function 1ssh {
   fi
 }
 
-# Test open TCP ports [1-1500]
-# @param IP (optional)
+# Test open TCP ports
+# @param IP
+# @param (optional). Port (or ports). Default: 1-1500
 function 1ports {
-  local aux CHECK
-	local IP=${1:-127.0.0.1}
-	local POPE=$(mktemp)
-	local PREF=$(mktemp)
-	if ! $(1ison -q $IP)
-	then
-		if aux=$(1hosts "$IP")
-		then
-			IP=$aux
-		fi
-	fi
-	for p in {1..1500}
-  do
-		timeout 1 bash -c "(</dev/tcp/$IP/$p) &> /dev/null"
-		CHECK=$?
-		if [ $CHECK = 0 ]
-		then
-			echo "$p open" >> $POPE
-			echo -n "#"
-		else
-			if [ $CHECK = 1 ]
-			then
-				echo "$p refused" >> $PREF
-				echo -n "*"
-			else
-				echo -n "."
-			fi
-		fi
-  done
-	echo
-	cat $PREF $POPE
-	rm $PREF $POPE
+  if [ $# -gt 0 ]
+  then
+    local aux CHECK
+    local IP="$1"; shift
+  	local POPE=$(mktemp)
+  	local PREF=$(mktemp)
+    local PMOD=0 # 1ports mode. 0 - multiple; 1 - single
+    local PTC #Ports To Check
+    if [ $# -eq 0 ]
+    then
+      PTC=$(echo eval {1..1500})
+    else
+      PTC=$@
+    fi
+    if [ $# -eq 1 ]
+    then
+      PMOD=1
+    fi
+  	for p in $PTC
+    do
+      if [ "$IP" = "NONE" ]
+      then
+        _1verb $p
+        if $(1ison -q $p)
+      	then
+          _1verb "$p is on"
+      		if aux=$(1host "$p")
+      		then
+      			IP=$aux
+          else
+            _1verb "Host not found."
+            return 1
+      		fi
+      	fi
+      else
+    		timeout 1 bash -c "(</dev/tcp/$IP/$p) &> /dev/null"
+    		CHECK=$?
+    		if [ $CHECK = 0 ]
+    		then
+    			echo "$p open" >> $POPE
+    			echo -n "#"
+    		else
+    			if [ $CHECK = 1 ]
+    			then
+    				echo "$p refused" >> $PREF
+    				echo -n "*"
+    			else
+    				echo -n "."
+    			fi
+    		fi
+      fi
+    done
+    cat $PREF $POPE
+  	if [ $PMOD = 1 ]
+    then
+      return $CHECK
+    fi
+  	rm $PREF $POPE
+  fi
 }
 
 # Return a possibly big string with all IP addresses in all interfaces
@@ -333,7 +361,7 @@ function 1findport {
     for aux in $(1allhosts)
     do
       _1verb "trying $aux"
-      timeout 1 bash -c "(</dev/tcp/$aux/$port) &> /dev/null"
+      1ports "$aux" "$port" &> /dev/null
       if [ $? = 0 ]
     	then
         total=$(($total+1))
