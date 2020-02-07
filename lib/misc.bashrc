@@ -6,12 +6,13 @@ function _nh1misc.menu {
   _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
 	_1menuitem P 1du "to-do"
   _1menuitem X 1pdfopt "Compress a PDF file" gs
+  _1menuitem X 1pomo "Run one pomodoro (25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
 }
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
-  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin
+  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
 }
 
 # Print percentage for battery charge
@@ -52,4 +53,20 @@ function 1ajoin {
   local IFS="$1"
   shift
   echo "$*"
+}
+
+# Create a Pomodore in shell
+function 1pomo {
+  1tint 2 "Pomodoro"
+  echo -n ": 25:00"
+  UNCLOCK="\b\b\b\b\b\b"
+  for MIN in `seq -f "%02g" 24 -1 0`
+  do
+    for SEC in `seq -f "%02g" 59 -1 0`
+    do
+      sleep 1
+      echo -en "$UNCLOCK" "$MIN:$SEC"
+    done
+  done
+  echo -e "$UNCLOCK" "finished"
 }
