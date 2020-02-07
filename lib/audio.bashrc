@@ -5,6 +5,8 @@
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
   echo "___ Audio ___"
+  _1menuitem W 1alarm "Play an audio alarm" speaker-test
+  _1menuitem W 1beat "Play a simple beat in given frequency" speaker-test
   _1menuitem P 1genbigmp3 "Append various MP3 files in one single file"
   _1menuitem W 1id3get "Extract metadata from an MP3 to a TXT" ffmpeg
   _1menuitem W 1id3set "Create a new MP3 file applying metadata from a TXT" ffmpeg
@@ -16,7 +18,7 @@ function _nh1audio.menu {
 
 # Destroy all global variables created by this file
 function _nh1audio.clean {
-  unset -f _nh1audio.menu _nh1audio.clean 1id3get 1id3put 1svideo
+  unset -f _nh1audio.menu _nh1audio.clean 1alarm 1id3get 1id3put 1svideo
   unset -f 1ogg2mp3 1talkbr 1yt3
 }
 
@@ -155,4 +157,21 @@ function 1yt3 {
       echo "You need to give one or more youtube video URLs"
     fi
   fi
+}
+
+# Play a simple beat with 0.2 seconds, in given frequency
+# @param Frequency
+function 1beat {
+  ( \speaker-test --frequency $1 --test sine >/dev/null)&
+  pid=$!
+  \sleep 0.200s
+  \kill -9 $pid
+}
+
+# Sound a simple audio alarm
+function 1alarm {
+  for i in `seq 400 100 700`
+  do
+    1beat $i 2> /dev/null
+  done
 }

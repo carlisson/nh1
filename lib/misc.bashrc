@@ -6,7 +6,7 @@ function _nh1misc.menu {
   _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
 	_1menuitem P 1du "to-do"
   _1menuitem X 1pdfopt "Compress a PDF file" gs
-  _1menuitem X 1pomo "Run one pomodoro (25min)" seq
+  _1menuitem W 1pomo "Run one pomodoro (25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
 }
 
@@ -68,5 +68,6 @@ function 1pomo {
       echo -en "$UNCLOCK" "$MIN:$SEC"
     done
   done
+  1alarm
   echo -e "$UNCLOCK" "finished"
 }
