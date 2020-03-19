@@ -6,7 +6,7 @@ function _nh1misc.menu {
   _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
 	_1menuitem P 1du "to-do"
   _1menuitem X 1pdfopt "Compress a PDF file" gs
-  _1menuitem W 1pomo "Run one pomodoro (25min)" seq
+  _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
 }
 
@@ -56,11 +56,28 @@ function 1ajoin {
 }
 
 # Create a Pomodore in shell
+# @param minutes to pomodoro (default 25)
 function 1pomo {
   1tint 2 "Pomodoro"
-  echo -n ": 25:00"
+  MINUTES=25
+  if [ $# -eq 1 ]
+  then
+    if [ $1 -gt 99 ]
+    then
+      MINUTES=99
+    elif [ $1 -gt 0 ]
+    then
+      MINUTES=$1
+    fi
+  fi
+  if [ $MINUTES -ge 10 ]
+  then
+    echo -n ": $MINUTES:00"
+  else
+    echo -n ": 0$MINUTES:00"
+  fi
   UNCLOCK="\b\b\b\b\b\b"
-  for MIN in `seq -f "%02g" 24 -1 0`
+  for MIN in `seq -f "%02g" $((MINUTES-1)) -1 0`
   do
     for SEC in `seq -f "%02g" 59 -1 0`
     do

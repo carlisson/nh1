@@ -33,3 +33,4 @@
 0.33   2019-09-03: 1remconnect: connect to a server (to get hostnames/ips)
 0.34   2020-02-07: 1pomo: run a pomodore timer
 0.35   2020-02-07: 1beat and 1alarm: sound alert
+0.36   2020-03-19: 1pomo: param to set duration in minutes (1..99)
