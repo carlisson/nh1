@@ -2,6 +2,7 @@
 
 #ALIASES
 _1IPERFPORT=2918
+alias 1httpstatus='curl --write-out "%{http_code}\n" --silent --output /dev/null'
 
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
@@ -9,6 +10,7 @@ function _nh1network.menu {
   _1menuitem X 1allhosts "Returns all hosts in all your networks" ip ipcalc
   _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
   _1menuitem W 1host "Return a valid ping-available IP for some host or domain name"
+  _1menuitem X 1httpstatus "Return HTTP status for given URL" curl
   _1menuitem X 1iperf "Run iperf connecting to a 1iperfd IP" iperf
   _1menuitem X 1iperfd "Run iperfd, waiting for 1iperf connection" iperf
   _1menuitem X 1isip "Return if a given string is an IP address"
@@ -25,6 +27,7 @@ function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts 1mynet
+  unalias 1httpstatus
 }
 
 # Check if a string is an IP address
