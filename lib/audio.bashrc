@@ -19,7 +19,7 @@ function _nh1audio.menu {
 # Destroy all global variables created by this file
 function _nh1audio.clean {
   unset -f _nh1audio.menu _nh1audio.clean 1alarm 1id3get 1id3put 1svideo
-  unset -f 1ogg2mp3 1talkbr 1yt3
+  unset -f 1ogg2mp3 1talkbr 1yt3 1beat 1id3set
 }
 
 # Extract ID3V2 metadata from an MP3 file

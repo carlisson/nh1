@@ -12,7 +12,7 @@ function _nh1remote.menu {
 
 # Clean variables
 function _nh1remote.clean {
-  unset -f _nh1remote.menu _nh1remote.clean
+  unset -f _nh1remote.menu _nh1remote.clean 1remconnect
 }
 
 # server;block,block,block
