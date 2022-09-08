@@ -2,9 +2,9 @@
 
 # GLOBALS
 
-_1APPLOCAL="$HOME/.nh1/apps"
+_1APPLOCAL="$HOME/.norg/apps"
 _1APPLBIN="$HOME/bin"
-_1APPGLOBAL="/opt/nh1/apps"
+_1APPGLOBAL="/opt/norg/apps"
 _1APPGBIN="/usr/local/bin"
 
 # Generate partial menu
