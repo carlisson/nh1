@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.37
+_1VERSION=0.37.1
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -43,6 +43,7 @@ mkdir -p "$_1REMOTE"
 mkdir -p "$_1PLUS"
 
 # IMPORT MODULES
+source "$_1LIB/app.bashrc"
 source "$_1LIB/audio.bashrc"
 source "$_1LIB/misc.bashrc"
 source "$_1LIB/network.bashrc"
@@ -101,6 +102,7 @@ function NH1 {
 		echo " -------------------------------------"
     echo
 
+		_nh1app.menu
 		_nh1audio.menu
 		_nh1misc.menu
 		_nh1network.menu
@@ -108,7 +110,6 @@ function NH1 {
 		_nh1rpg.menu
 
 		echo "___ Main ___"
-		_1menuitem P 1install "to-do"
 		_1menuitem W 1bashrc "Modify .bashrc to NH1 starts on bash start"
 		_1menuitem W 1clean "Clean NH1 from memory (undo NH1 charge)"
 		_1menuitem W 1tint "Write a string in another color"
@@ -263,6 +264,7 @@ function 1clean {
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unalias 1help
 	unset -f NH1 1tint _1verb 1check 1bashrc 1refresh 1update 1version 1clean
+    _nh1app.clean
 	_nh1audio.clean
 	_nh1misc.clean
 	_nh1network.clean
