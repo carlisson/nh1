@@ -10,6 +10,9 @@ _1APPGBIN="/usr/local/bin"
 # Generate partial menu
 function _nh1app.menu {
   echo "___ Install AppImage ___"
+  _1menuitem X 1app "List all available appimage"
+  _1menuitem P 1appl "List all local appimage"
+  _1menuitem P 1appg "List all global appimage"
   _1menuitem X 1applsetup "Configure your local path/dir"
   _1menuitem X 1appgsetup "Configure global path/dir"
   _1menuitem P 1appladd "Install an appimage locally"
@@ -20,14 +23,13 @@ function _nh1app.menu {
   _1menuitem P 1appgdel "Remove a global appimage"
   _1menuitem P 1applclear "Remove old versions for a local appimage (or all)"
   _1menuitem P 1appgclear "Remove old versions for a global appimage (or all)"
-  _1menuitem P 1appl "List all local appimage"
-  _1menuitem P 1appg "List all global appimage"
 }
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN
-  unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup
+  unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
+    _nh1app.nextcloud
 }
 
 # Configure your local path/dir
@@ -56,3 +58,49 @@ function 1appgsetup {
     echo "1app installed."
 }
 
+# List all available app image for installation
+function 1app {
+  echo "___ 1app available ___"
+  _1menuitem P nextcloud "Nextcloud client"
+}
+
+# Nextcloud downloader
+# @param app-directory
+# @param symlink
+# @param sudo? 0=yes; 1=no
+function _nh1app.nextcloud {
+    _NADIR="$1"
+    _NASYM="$2/nextcloud"
+    _NAS=$3
+    _NANEW=$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
+        sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
+        sed 's/\(.*\)\///g')
+    if [ -f "$_NADIR/$_NANEW" ]
+    then
+        echo "Nextcloud is already up to date."
+    else
+        pushd $_NADIR
+        if [ $_NAS -eq 0 ]
+        then
+            sudo wget -c "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
+        else
+            wget -c "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
+        fi
+        popd
+        if [ -L "$_NASYM" ]
+        then
+            if [ $_NAS -eq 0 ]
+            then
+                sudo rm "$_NASYM"
+            else
+                rm "$_NASYM"
+            fi
+        fi
+        if [ $_NAS -eq 0 ]
+        then
+            sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
+        else
+            ln -s "$_NADIR/$_NANEW" "$_NASYM"
+        fi
+    fi
+}
