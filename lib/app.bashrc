@@ -15,8 +15,8 @@ function _nh1app.menu {
   _1menuitem P 1appg "List all global appimage"
   _1menuitem X 1applsetup "Configure your local path/dir"
   _1menuitem X 1appgsetup "Configure global path/dir"
-  _1menuitem P 1appladd "Install an appimage locally"
-  _1menuitem P 1appgadd "Install an appimage globaly"
+  _1menuitem X 1appladd "Install an appimage locally"
+  _1menuitem X 1appgadd "Install an appimage globaly"
   _1menuitem P 1applupd "Update a local appimage (or all)"
   _1menuitem P 1appgupd "Update a global appimage (or all)"
   _1menuitem P 1appldel "Remove a local appimage"
@@ -29,7 +29,7 @@ function _nh1app.menu {
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
-    _nh1app.nextcloud
+    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd
 }
 
 # Configure your local path/dir
@@ -61,7 +61,9 @@ function 1appgsetup {
 # List all available app image for installation
 function 1app {
   echo "___ 1app available ___"
-  _1menuitem P nextcloud "Nextcloud client"
+  _1menuitem P funcoeszz "Funções ZZ - A set of shell utils."
+  _1menuitem X nextcloud "Nextcloud client"
+  _1menuitem P onlyoffice "OnlyOffice desktop edition"
 }
 
 # Nextcloud downloader
@@ -83,8 +85,10 @@ function _nh1app.nextcloud {
         if [ $_NAS -eq 0 ]
         then
             sudo wget -c "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
+            sudo chmod a+x "$_NANEW"
         else
             wget -c "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
+            chmod a+x "$_NANEW"
         fi
         popd
         if [ -L "$_NASYM" ]
@@ -104,3 +108,48 @@ function _nh1app.nextcloud {
         fi
     fi
 }
+
+# Internal 1app generic installer
+# @param local or global
+# @param app to install
+function _nh1app.add {
+    if [ "$1" = "global" ]
+    then
+        _NAD=$_1APPGLOBAL
+        _NAB=$_1APPGBIN
+        _NAS=0
+    else
+        _NAD=$_1APPLOCAL
+        _NAB=$_1APPLBIN
+        _NAS=1
+    fi
+    case "$2" in
+        nextcloud)
+            _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
+            ;;
+        *)
+            echo "Unknown app: $2"
+            ;;
+    esac
+}
+
+
+# Install locally an app
+# @param App to install
+function 1appladd {
+    for _NAA in "$@"
+    do
+        _nh1app.add local "$_NAA"
+    done
+}
+
+# Install globally an app
+# @param App to install
+function 1appgadd {
+    for _NAA in "$@"
+    do
+        _nh1app.add global "$_NAA"
+    done
+}
+
+
