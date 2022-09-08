@@ -11,7 +11,7 @@ _1APPGBIN="/usr/local/bin"
 function _nh1app.menu {
   echo "___ Install AppImage ___"
   _1menuitem X 1applsetup "Configure your local path/dir"
-  _1menuitem P 1appgsetup "Configure global path/dir"
+  _1menuitem X 1appgsetup "Configure global path/dir"
   _1menuitem P 1appladd "Install an appimage locally"
   _1menuitem P 1appgadd "Install an appimage globaly"
   _1menuitem P 1applupd "Update a local appimage (or all)"
@@ -27,7 +27,7 @@ function _nh1app.menu {
 # Destroy all global variables created by this file
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN
-  unset -f _nh1app.menu _nh1app.clean 1applsetup
+  unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup
 }
 
 # Configure your local path/dir
@@ -44,3 +44,15 @@ function 1applsetup {
         echo "1app configured"
     fi
 }
+
+# Configure your global path/dir
+function 1appgsetup {
+    if [ "$EUID" -eq 0 ]
+    then
+        mkdir -p "$_1APPGLOBAL"
+    else
+        sudo mkdir -p "$_1APPGLOBAL"
+    fi
+    echo "1app installed."
+}
+
