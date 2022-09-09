@@ -9,7 +9,7 @@ _1APPGBIN="/usr/local/bin"
 
 # Generate partial menu
 function _nh1app.menu {
-  echo "___ Install AppImage ___"
+  echo "___ Install App ___"
   _1menuitem X 1app "List all available appimage"
   _1menuitem P 1appl "List all local appimage"
   _1menuitem P 1appg "List all global appimage"
@@ -29,7 +29,8 @@ function _nh1app.menu {
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
-    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.nextcloud.version
+    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion 1appl \
+    _nh1app.list 1appg
 }
 
 # Configure your local path/dir
@@ -67,24 +68,29 @@ function 1app {
 }
 
 # Return newest Nextcloud file version or actual
+# @param app name
 # @param new, local or global
-function _nh1app.nextcloud.version {
-    case "$1" in
+function _nh1app.checkversion {
+    case "$2" in
         new)
-            curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-            sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
-            sed 's/\(.*\)\///g'
+            case "$1" in
+                nextcloud)
+                    curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
+                    sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
+                    sed 's/\(.*\)\///g'
+                    ;;
+            esac
             ;;
         local)
-            if [ -L "$_1APPLBIN/nextcloud" ]
+            if [ -L "$_1APPLBIN/$1" ]
             then
-                basename -z $(readlink "$_1APPLBIN/nextcloud")
+                basename $(readlink "$_1APPLBIN/$1")
             fi
             ;;
         global)
-            if [ -L "$_1APPGBIN/nextcloud" ]
+            if [ -L "$_1APPGBIN/$1" ]
             then
-                basename -z $(readlink "$_1APPGBIN/nextcloud") | echo -n
+                basename $(readlink "$_1APPGBIN/$1")
             fi
             ;;
     esac
@@ -95,6 +101,7 @@ function _nh1app.nextcloud.version {
 # @param symlink
 # @param sudo? 0=yes; 1=no
 function _nh1app.nextcloud {
+    local _NADIR _NASYM _NAS _NANEW
     if 1check curl
     then
         _NADIR="$1"
@@ -140,6 +147,7 @@ function _nh1app.nextcloud {
 # @param local or global
 # @param app to install
 function _nh1app.add {
+    local _NAD _NAB _NAS
     if [ "$1" = "global" ]
     then
         _NAD=$_1APPGLOBAL
@@ -164,6 +172,7 @@ function _nh1app.add {
 # Install locally an app
 # @param App to install
 function 1appladd {
+    local _NAA
     for _NAA in "$@"
     do
         _nh1app.add local "$_NAA"
@@ -173,10 +182,36 @@ function 1appladd {
 # Install globally an app
 # @param App to install
 function 1appgadd {
+    local _NAA
     for _NAA in "$@"
     do
         _nh1app.add global "$_NAA"
     done
 }
 
+# List all installed apps (local)
+function 1appl {
+        _nh1app.list local
+}
 
+# List all installed apps (global)
+function 1appg {
+    _nh1app.list global
+}
+
+# List all installed apps
+# @param local or global
+function _nh1app.list {
+   local _NAA _NAAC
+   echo "___ Installed Apps ($1) ___"
+   for _NAA in nextcloud funcoeszz
+    do
+        _NAAC=$(_nh1app.checkversion $_NAA $1)
+        if [ -n "$_NAAC" ]
+        then
+            1tint 6 "$_NAA"
+            echo -en '\t'
+            echo $_NAAC
+        fi
+    done
+}
