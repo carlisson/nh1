@@ -35,3 +35,10 @@
 0.35   2020-02-07: 1beat and 1alarm: sound alert
 0.36   2020-03-19: 1pomo: param to set duration in minutes (1..99)
 0.37   2020-04-01: 1httpstatus created (return HTTP status for given URL)
+0.37.1 2022-09-08: 1app init. Utilities to "install" apps
+0.37.2 2022-09-08: 1applsetup to init local repository
+0.37.3 2022-09-08: 1appgsetup to init global repository
+0.37.4 2022-09-08: internal downloader for nextcloud client
+0.37.5 2022-09-08: 1appladd and 1appgadd to install app. Nextcloud added.
+0.37.6 2022-09-08: dirs nh1 and .nh1 renamed to norg and .norg
+0.37.7 2022-09-09: fixed paths, nextcloud downloader using only curl, and checking it before run

@@ -3,25 +3,27 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.37.6
+_1VERSION=0.37.7
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
+_1UDATA="$HOME/.norg"
+_1GDATA="/opt/norg"
 if [ "$_1DIR" = "/usr/bin" ]
 then
-	_1LIB="/usr/share/norg"
+	_1LIB="/usr/lib/norg"
 elif [ "$_1DIR" = "/usr/local/bin" ]
 then
-	_1LIB="/usr/local/share/norg"
+	_1LIB="/usr/local/lib/norg"
 else
 	_1LIB="$_1DIR/lib"
 fi
-_1LOCAL="$HOME/.norg/local"
-_1REMOTE="$HOME/.norg/remote"
-_1PLUS="$HOME/.norg/plus"
+_1LOCAL="$_1UDATA/local"
+_1REMOTE="$_1UDATA/remote"
+_1PLUS="$_1UDATA/plus"
 
 _1REMPORT=8097
-_1REMFILE="$HOME/.norg/servers.list"
+_1REMFILE="$_1UDATA/servers.list"
 if [ ! -f "$_1REMFILE" ]
 then
 	touch "$_1REMFILE"

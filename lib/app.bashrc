@@ -2,9 +2,9 @@
 
 # GLOBALS
 
-_1APPLOCAL="$HOME/.norg/apps"
+_1APPLOCAL="$_1UDATA/apps"
 _1APPLBIN="$HOME/bin"
-_1APPGLOBAL="/opt/norg/apps"
+_1APPGLOBAL="$_1GDATA/apps"
 _1APPGBIN="/usr/local/bin"
 
 # Generate partial menu
@@ -71,40 +71,43 @@ function 1app {
 # @param symlink
 # @param sudo? 0=yes; 1=no
 function _nh1app.nextcloud {
-    _NADIR="$1"
-    _NASYM="$2/nextcloud"
-    _NAS=$3
-    _NANEW=$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-        sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
-        sed 's/\(.*\)\///g')
-    if [ -f "$_NADIR/$_NANEW" ]
+    if 1check curl
     then
-        echo "Nextcloud is already up to date."
-    else
-        pushd $_NADIR
-        if [ $_NAS -eq 0 ]
+        _NADIR="$1"
+        _NASYM="$2/nextcloud"
+        _NAS=$3
+        _NANEW=$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
+            sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
+            sed 's/\(.*\)\///g')
+        if [ -f "$_NADIR/$_NANEW" ]
         then
-            sudo wget -c "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
-            sudo chmod a+x "$_NANEW"
+            echo "Nextcloud is already up to date."
         else
-            wget -c "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
-            chmod a+x "$_NANEW"
-        fi
-        popd
-        if [ -L "$_NASYM" ]
-        then
+            pushd $_NADIR
             if [ $_NAS -eq 0 ]
             then
-                sudo rm "$_NASYM"
+                sudo curl -C "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
+                sudo chmod a+x "$_NANEW"
             else
-                rm "$_NASYM"
+                curl -C "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
+                chmod a+x "$_NANEW"
             fi
-        fi
-        if [ $_NAS -eq 0 ]
-        then
-            sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
-        else
-            ln -s "$_NADIR/$_NANEW" "$_NASYM"
+            popd
+            if [ -L "$_NASYM" ]
+            then
+                if [ $_NAS -eq 0 ]
+                then
+                    sudo rm "$_NASYM"
+                else
+                    rm "$_NASYM"
+                fi
+            fi
+            if [ $_NAS -eq 0 ]
+            then
+                sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
+            else
+                ln -s "$_NADIR/$_NANEW" "$_NASYM"
+            fi
         fi
     fi
 }
