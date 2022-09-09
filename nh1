@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.39
+_1VERSION=0.40
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -184,6 +184,16 @@ function _1verb {
 	fi
 }
 
+# Run the command as root
+# @param Command
+function _1sudo {
+    if [ "$EUID" -eq 0 ]
+    then
+        $@
+    else
+        sudo $@
+    fi
+}
 
 # Check if a program exists. Finish NH1 if it do not exists.
 # @param Program to check
@@ -265,7 +275,7 @@ function 1clean {
 	_1verb "Destroying all variables..."
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unalias 1help
-	unset -f NH1 1tint _1verb 1check 1bashrc 1refresh 1update 1version 1clean
+	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 1clean
     _nh1app.clean
 	_nh1audio.clean
 	_nh1misc.clean
