@@ -6,32 +6,38 @@ _1APPLOCAL="$_1UDATA/apps"
 _1APPLBIN="$HOME/bin"
 _1APPGLOBAL="$_1GDATA/apps"
 _1APPGBIN="/usr/local/bin"
+_1APPAVAIL="nextcloud"
 
 # Generate partial menu
 function _nh1app.menu {
   echo "___ Install App ___"
-  _1menuitem X 1app "List all available appimage"
-  _1menuitem P 1appl "List all local appimage"
-  _1menuitem P 1appg "List all global appimage"
+  _1menuitem X 1app "List all available apps"
+  _1menuitem X 1appl "List all local apps"
+  _1menuitem X 1appg "List all global apps"
   _1menuitem X 1applsetup "Configure your local path/dir"
   _1menuitem X 1appgsetup "Configure global path/dir"
-  _1menuitem X 1appladd "Install an appimage locally"
-  _1menuitem X 1appgadd "Install an appimage globaly"
-  _1menuitem P 1applupd "Update a local appimage (or all)"
-  _1menuitem P 1appgupd "Update a global appimage (or all)"
-  _1menuitem P 1appldel "Remove a local appimage"
-  _1menuitem P 1appgdel "Remove a global appimage"
-  _1menuitem P 1applclear "Remove old versions for a local appimage (or all)"
-  _1menuitem P 1appgclear "Remove old versions for a global appimage (or all)"
+  _1menuitem X 1appladd "Install or update an app locally"
+  _1menuitem X 1appgadd "Install or update an app globaly"
+  _1menuitem X 1applupd "Update all local apps"
+  _1menuitem X 1appgupd "Update all global apps"
+  _1menuitem P 1appldel "Remove a local app"
+  _1menuitem P 1appgdel "Remove a global app"
+  _1menuitem P 1applclear "Remove old versions for a local app (or all)"
+  _1menuitem P 1appgclear "Remove old versions for a global app (or all)"
 }
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
-  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN
+  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1appl 1appg 1applupd 1appgupd
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
-    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion 1appl \
-    _nh1app.list 1appg
+    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion \
+    _nh1app.list
 }
+
+alias 1appl="_nh1app.list local"
+alias 1appg="_nh1app.list global"
+alias 1applupd="_nh1app.update local"
+alias 1appgupd="_nh1app.update global"
 
 # Configure your local path/dir
 function 1applsetup {
@@ -189,22 +195,12 @@ function 1appgadd {
     done
 }
 
-# List all installed apps (local)
-function 1appl {
-        _nh1app.list local
-}
-
-# List all installed apps (global)
-function 1appg {
-    _nh1app.list global
-}
-
 # List all installed apps
 # @param local or global
 function _nh1app.list {
    local _NAA _NAAC
    echo "___ Installed Apps ($1) ___"
-   for _NAA in nextcloud funcoeszz
+   for _NAA in $_1APPAVAIL
     do
         _NAAC=$(_nh1app.checkversion $_NAA $1)
         if [ -n "$_NAAC" ]
@@ -214,4 +210,23 @@ function _nh1app.list {
             echo $_NAAC
         fi
     done
+}
+
+# Update all installed apps
+# @param local or global
+function _nh1app.update {
+    local _NAA _NAAC
+    for _NAA in $_1APPAVAIL
+    do
+        _NAAC=$(_nh1app.checkversion $_NAA $1)
+        if [ -n "$_NAAC" ]
+        then
+            if [ "$1" = "local" ]
+            then
+                1appladd "$_NAA"
+            else
+                1appgadd "$_NAA"
+            fi
+        fi
+    done   
 }
