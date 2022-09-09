@@ -32,7 +32,7 @@ function _nh1app.clean {
     1appldel 1appgdel
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
     _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion \
-    _nh1app.list _nh1app.remove _nh1.checksetup
+    _nh1app.list _nh1app.remove _nh1.checksetup _nh1app.description
 }
 
 alias 1appl="_nh1app.list local"
@@ -86,10 +86,45 @@ function _nh1.checksetup {
 
 # List all available app image for installation
 function 1app {
-  echo "___ 1app available ___"
-  _1menuitem P funcoeszz "Funções ZZ - A set of shell utils."
-  _1menuitem X nextcloud "Nextcloud client"
-  _1menuitem P onlyoffice "OnlyOffice desktop edition"
+    local _NAA _NAS _NAU
+    echo "___ 1app available ___"
+    echo -e 'App\t\tDescription\t\t\tInstallation'
+    for _NAA in $_1APPAVAIL
+    do
+        echo -n $_NAA
+        echo -en '\t'
+        _nh1app.description "$_NAA"
+        echo -en '\t'
+        _NAU=$(_nh1app.checkversion local "$_NAA")
+        if [ -n "$_NAU" ]
+        then
+            1tint 6 "local"
+            echo -en '\t'
+        fi
+        _NAU=$(_nh1app.checkversion global "$_NAA")
+        if [ -n "$_NAU" ]
+        then
+            1tint 6 "global"
+            echo -en '\t'
+        fi
+        echo
+    done
+}
+
+# Return description for an available app
+# @param App name
+function _nh1app.description {
+    case "$1" in
+        funcoeszz)
+            echo -n "Funções ZZ - A set of shell utils."
+            ;;
+        nextcloud)
+            echo -ne 'Nextcloud client\t'
+            ;;
+        onlyoffice)
+            echo -n "OnlyOffice desktop edition"
+            ;;
+    esac
 }
 
 # Return newest Nextcloud file version or actual
