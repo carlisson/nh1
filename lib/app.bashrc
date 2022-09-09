@@ -88,7 +88,7 @@ function _nh1.checksetup {
 
 # List all available app image for installation
 function 1app {
-    local _NAA _NAS _NAU
+    local _NAA _NAS _NAU _NAC
     echo "___ 1app available ___"
     echo -e 'App\t\tDescription\t\t\tInstallation'
     for _NAA in $_1APPAVAIL
@@ -97,17 +97,24 @@ function 1app {
         echo -en '\t'
         _nh1app.description "$_NAA"
         echo -en '\t'
+        _NAC=0
         _NAU=$(_nh1app.checkversion local "$_NAA")
         if [ -n "$_NAU" ]
         then
             1tint 6 "local"
             echo -en '\t'
+            _NAC=$((_NAC+1))
         fi
         _NAU=$(_nh1app.checkversion global "$_NAA")
         if [ -n "$_NAU" ]
         then
             1tint 6 "global"
             echo -en '\t'
+            _NAC=$((_NAC+1))
+        fi
+        if [ "$_NAC" -eq 0 ]
+        then
+            echo -n 'None'
         fi
         echo
     done
@@ -118,10 +125,10 @@ function 1app {
 function _nh1app.description {
     case "$1" in
         funcoeszz)
-            echo -n "Funções ZZ - A set of shell utils."
+            echo -n "A set of shell utils."
             ;;
         nextcloud)
-            echo -ne 'Nextcloud client\t'
+            echo -ne 'Nextcloud desktop client'
             ;;
         onlyoffice)
             echo -n "OnlyOffice desktop edition"
