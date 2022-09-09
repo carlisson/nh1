@@ -42,3 +42,4 @@
 0.37.5 2022-09-08: 1appladd and 1appgadd to install app. Nextcloud added.
 0.37.6 2022-09-08: dirs nh1 and .nh1 renamed to norg and .norg
 0.37.7 2022-09-09: fixed paths, nextcloud downloader using only curl, and checking it before run
+0.37.8 2022-09-09: fixed nextcloud downloader
