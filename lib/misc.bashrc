@@ -93,10 +93,17 @@ function 1pomo {
 # Rename a file or directory, removing special chars
 # @param file
 function 1escape {
-  local EDIR EFIL
-  EDIR=$(dirname "$@")
-  EFIL=$(basename "$@")
-  pushd $EDIR
-  mv "$EFIL" "$(sed 's/[^0-9A-Za-z_.]/_/g' <<< "$EFIL")"
-  popd
+  local EDIR EFIL EFN
+  for EPAR in "$@"
+  do
+    EDIR=$(dirname "$EPAR")
+    EFIL=$(basename "$EPAR")
+    pushd $EDIR > /dev/null
+    EFN="$(sed 's/[^0-9A-Za-z_.]/_/g' <<< "$EFIL")"
+    if [ "$EFIL" != "$EFN" ]
+    then
+      mv "$EFIL" "$(sed 's/[^0-9A-Za-z_.]/_/g' <<< "$EFIL")"
+    fi
+    popd > /dev/null
+  done
 }

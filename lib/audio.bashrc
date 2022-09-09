@@ -7,7 +7,7 @@ function _nh1audio.menu {
   echo "___ Audio ___"
   _1menuitem W 1alarm "Play an audio alarm" speaker-test
   _1menuitem W 1beat "Play a simple beat in given frequency" speaker-test
-  _1menuitem P 1genbigmp3 "Append various MP3 files in one single file"
+  _1menuitem X 1genbigmp3 "Append various MP3 files in one single file" ffmpeg
   _1menuitem W 1id3get "Extract metadata from an MP3 to a TXT" ffmpeg
   _1menuitem W 1id3set "Create a new MP3 file applying metadata from a TXT" ffmpeg
   _1menuitem X 1ogg2mp3 "Convert a ogg file to mp3" ffmpeg
@@ -19,7 +19,7 @@ function _nh1audio.menu {
 # Destroy all global variables created by this file
 function _nh1audio.clean {
   unset -f _nh1audio.menu _nh1audio.clean 1alarm 1id3get 1id3put 1svideo
-  unset -f 1ogg2mp3 1talkbr 1yt3 1beat 1id3set
+  unset -f 1ogg2mp3 1talkbr 1yt3 1beat 1id3set 1genbigmp3
 }
 
 # Extract ID3V2 metadata from an MP3 file
@@ -174,4 +174,44 @@ function 1alarm {
   do
     1beat $i 2> /dev/null
   done
+}
+
+# Create a single random mp3 from various mp3
+# @param input dir with the original music files
+# @param output filename
+function 1genbigmp3 {
+  local OLDIFS IFS f i PBN NUMB
+  1check ffmpeg
+
+  if [ $# -eq 2 ]
+  then
+    PBN="$2"
+    OLDIFS="$IFS"
+    IFS=$'\n'
+
+    for f in $(find $1/* -name '*.mp3')
+    do
+      1escape $f
+    done
+
+    pushd $1 > /dev/null
+
+    for i in $(ls *.mp3)
+    do
+      NUMB=$(1d100)
+      ffmpeg -i "$i" "$NUMB-$i.ogg"
+    done
+
+    cat *.ogg > final.ogg
+
+    IFS="$OLDIFS"
+
+    popd > /dev/null
+
+    ffmpeg -i $1/final.ogg $2
+    rm -f $1/*.ogg
+  else
+    echo Usage: 1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]
+  fi
+
 }

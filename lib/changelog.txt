@@ -52,4 +52,5 @@
 0.43   2022-09-09: 1applclear and 1appgclear to delete unused old versions
 0.44   2022-09-09: Improved output for 1app
 0.45   2022-09-09: funcoeszz to 1app. Fixed global installation
-0.46   2022-09-09: 1escape, strip special chars from a filenam
+0.46   2022-09-09: 1escape, strip special chars from a filename
+0.47   2022-09-09: 1genbigmp3 genrates a single-mp3 playlist from a directory
