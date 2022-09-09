@@ -22,17 +22,17 @@ function _nh1app.menu {
   _1menuitem X 1appgupd "Update all global apps"
   _1menuitem X 1appldel "Remove a local app"
   _1menuitem X 1appgdel "Remove a global app"
-  _1menuitem P 1applclear "Remove old versions for a local app (or all)"
-  _1menuitem P 1appgclear "Remove old versions for a global app (or all)"
+  _1menuitem X 1applclear "Remove old versions for a local app (or all)"
+  _1menuitem X 1appgclear "Remove old versions for a global app (or all)"
 }
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1appl 1appg 1applupd 1appgupd \
-    1appldel 1appgdel
+    1appldel 1appgdel 1applclear 1appgclear
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
     _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion \
-    _nh1app.list _nh1app.remove _nh1.checksetup _nh1app.description
+    _nh1app.list _nh1app.remove _nh1.checksetup _nh1app.description _nh1app.clear
 }
 
 alias 1appl="_nh1app.list local"
@@ -41,6 +41,8 @@ alias 1applupd="_nh1app.update local"
 alias 1appgupd="_nh1app.update global"
 alias 1appldel="_nh1app.remove local"
 alias 1appgdel="_nh1app.remove global"
+alias 1applclear="_nh1app.clear local"
+alias 1appgclear="_nh1app.clear global"
 
 # Configure your local path/dir
 function 1applsetup {
@@ -310,4 +312,35 @@ function _nh1app.remove {
                 ;;
         esac
     fi
+}
+
+# Clear unused old versions for every app
+# @param local or global
+function _nh1app.clear {
+    local _NAA _NAN _NAF _NAD
+    if [ $1 = "local" ]
+    then
+        _NAD=$_1APPLOCAL
+    else
+        _NAD=$_1APPGLOBAL
+    fi
+    for _NAA in "$_1APPAVAIL"
+    do
+        _NAN=$(_nh1app.checkversion "$1" "$_NAA")
+        case "$_NAA" in
+            nextcloud)
+                for _NAF in $(ls $_NAD/Nextcloud* 2>/dev/null)
+                do
+                    if [ "$_NAN" != $(basename "$_NAF") ]
+                    then
+                        if [ "$1" = "global" ]
+                        then
+                            _1sudo rm "$_NAF"
+                        else
+                            rm "$_NAF"
+                        fi
+                    fi
+                done
+        esac
+    done
 }
