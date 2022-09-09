@@ -47,3 +47,4 @@
 0.38   2022-09-09: 1appl and 1appg: listing local and global apps
 0.39   2022-09-09: 1applupd and 1appgupd: update all apps
 0.40   2022-09-09: 1appldel and 1appgdel: remove app.
+0.41   2022-09-09: checking local and global dirs before run 1appladd or 1appgadd

@@ -32,7 +32,7 @@ function _nh1app.clean {
     1appldel 1appgdel
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
     _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion \
-    _nh1app.list _nh1app.remove
+    _nh1app.list _nh1app.remove _nh1.checksetup
 }
 
 alias 1appl="_nh1app.list local"
@@ -61,6 +61,27 @@ function 1applsetup {
 function 1appgsetup {
     _1sudo mkdir -p "$_1APPGLOBAL"
     echo "1app installed."
+}
+
+# Check if setup is ok
+# @param local or global
+function _nh1.checksetup {
+    if [ "$1" = "local" ]
+    then
+        if [ -d "$_1APPLOCAL" ]
+        then
+            return 0
+        else
+            return 1
+        fi
+    else
+        if return [ -d "$_1APPGLOBAL" ]
+        then
+            return 0
+        else
+            return 1
+        fi
+    fi
 }
 
 # List all available app image for installation
@@ -111,9 +132,7 @@ function _nh1app.nextcloud {
         _NADIR="$1"
         _NASYM="$2/nextcloud"
         _NAS=$3
-        _NANEW=$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-            sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
-            sed 's/\(.*\)\///g')
+        _NANEW=$(_nh1app.checkversion new nextcloud)
         if [ -f "$_NADIR/$_NANEW" ]
         then
             echo "Nextcloud is already up to date."
@@ -121,6 +140,7 @@ function _nh1app.nextcloud {
             pushd $_NADIR
             if [ $_NAS = "global" ]
             then
+            
                 _1sudo curl -O -L "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
                 _1sudo chmod a+x "$_NANEW"
             else
@@ -152,23 +172,28 @@ function _nh1app.nextcloud {
 # @param app to install
 function _nh1app.add {
     local _NAD _NAB _NAS
-    _NAS=$1
-    if [ "$1" = "global" ]
+    if $(_nh1.checksetup $1)
     then
-        _NAD=$_1APPGLOBAL
-        _NAB=$_1APPGBIN
+        _NAS=$1
+        if [ "$1" = "global" ]
+        then
+            _NAD=$_1APPGLOBAL
+            _NAB=$_1APPGBIN
+        else
+            _NAD=$_1APPLOCAL
+            _NAB=$_1APPLBIN
+        fi
+        case "$2" in
+            nextcloud)
+                _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
+                ;;
+            *)
+                echo "Unknown app: $2"
+                ;;
+        esac
     else
-        _NAD=$_1APPLOCAL
-        _NAB=$_1APPLBIN
+        echo Run an 1app setup before install...
     fi
-    case "$2" in
-        nextcloud)
-            _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
-            ;;
-        *)
-            echo "Unknown app: $2"
-            ;;
-    esac
 }
 
 
