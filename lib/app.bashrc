@@ -6,7 +6,7 @@ _1APPLOCAL="$_1UDATA/apps"
 _1APPLBIN="$HOME/bin"
 _1APPGLOBAL="$_1GDATA/apps"
 _1APPGBIN="/usr/local/bin"
-_1APPAVAIL="nextcloud"
+_1APPAVAIL="funcoeszz nextcloud"
 
 # Generate partial menu
 function _nh1app.menu {
@@ -77,7 +77,7 @@ function _nh1.checksetup {
             return 1
         fi
     else
-        if return [ -d "$_1APPGLOBAL" ]
+        if [ -d "$_1APPGLOBAL" ]
         then
             return 0
         else
@@ -125,13 +125,13 @@ function 1app {
 function _nh1app.description {
     case "$1" in
         funcoeszz)
-            echo -n "A set of shell utils."
+            echo -ne 'A set of shell utils.\t'
             ;;
         nextcloud)
             echo -ne 'Nextcloud desktop client'
             ;;
         onlyoffice)
-            echo -n "OnlyOffice desktop edition"
+            echo -ne 'OnlyOffice desktop edition'
             ;;
     esac
 }
@@ -147,6 +147,11 @@ function _nh1app.checkversion {
                     curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
                     sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
                     sed 's/\(.*\)\///g'
+                    ;;
+                funcoeszz)
+                    curl -s http://funcoeszz.net/download/ | tr '\n' ' ' | \
+                    sed 's/\(.*\)\/download\/\(funcoeszz-\(.*\).sh\)\(.*\)/\2/' | \
+                    sed 's/"\(.*\)//g'
                     ;;
             esac
             ;;
@@ -211,6 +216,51 @@ function _nh1app.nextcloud {
     fi
 }
 
+# funcoeszz downloader
+# @param app-directory
+# @param symlink
+# @param local or global
+function _nh1app.funcoeszz {
+    local _NADIR _NASYM _NAS _NANEW
+    if 1check curl
+    then
+        _NADIR="$1"
+        _NASYM="$2/funcoeszz"
+        _NAS=$3
+        _NANEW=$(_nh1app.checkversion new funcoeszz)
+        if [ -f "$_NADIR/$_NANEW" ]
+        then
+            echo "funcoeszz is already up to date."
+        else
+            pushd $_NADIR
+            if [ $_NAS = "global" ]
+            then
+                _1sudo curl -O -L "http://funcoeszz.net/download/$_NANEW"
+                _1sudo chmod a+x "$_NANEW"
+            else
+                curl -O -L "http://funcoeszz.net/download/$_NANEW"
+                chmod a+x "$_NANEW"
+            fi
+            popd
+            if [ -L "$_NASYM" ]
+            then
+                if [ $_NAS = "global" ]
+                then
+                    _1sudo rm "$_NASYM"
+                else
+                    rm "$_NASYM"
+                fi
+            fi
+            if [ $_NAS = "global" ]
+            then
+                _1sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
+            else
+                ln -s "$_NADIR/$_NANEW" "$_NASYM"
+            fi
+        fi
+    fi
+}
+
 # Internal 1app generic installer
 # @param local or global
 # @param app to install
@@ -228,6 +278,9 @@ function _nh1app.add {
             _NAB=$_1APPLBIN
         fi
         case "$2" in
+            funcoeszz)
+                _nh1app.funcoeszz "$_NAD" "$_NAB" "$_NAS"
+                ;;
             nextcloud)
                 _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
                 ;;
@@ -307,7 +360,7 @@ function _nh1app.remove {
     if [ -n "$_NAF" ]
     then
         case "$_NAA" in
-            nextcloud)
+            funcoeszz|nextcloud)
                 if [ "$1" = "local" ]
                 then
                     rm "$_1APPLOCAL/$_NAF"
@@ -335,6 +388,20 @@ function _nh1app.clear {
     do
         _NAN=$(_nh1app.checkversion "$1" "$_NAA")
         case "$_NAA" in
+            funcoeszz)
+                for _NAF in $(ls $_NAD/funcoeszz-* 2>/dev/null)
+                do
+                    if [ "$_NAN" != $(basename "$_NAF") ]
+                    then
+                        if [ "$1" = "global" ]
+                        then
+                            _1sudo rm "$_NAF"
+                        else
+                            rm "$_NAF"
+                        fi
+                    fi
+                done
+                ;;
             nextcloud)
                 for _NAF in $(ls $_NAD/Nextcloud* 2>/dev/null)
                 do
@@ -348,6 +415,7 @@ function _nh1app.clear {
                         fi
                     fi
                 done
+                ;;
         esac
     done
 }
