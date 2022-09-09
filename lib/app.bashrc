@@ -29,7 +29,7 @@ function _nh1app.menu {
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN
   unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
-    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd
+    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.nextcloud.version
 }
 
 # Configure your local path/dir
@@ -64,6 +64,30 @@ function 1app {
   _1menuitem P funcoeszz "Funções ZZ - A set of shell utils."
   _1menuitem X nextcloud "Nextcloud client"
   _1menuitem P onlyoffice "OnlyOffice desktop edition"
+}
+
+# Return newest Nextcloud file version or actual
+# @param new, local or global
+function _nh1app.nextcloud.version {
+    case "$1" in
+        new)
+            curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
+            sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
+            sed 's/\(.*\)\///g'
+            ;;
+        local)
+            if [ -L "$_1APPLBIN/nextcloud" ]
+            then
+                basename -z $(readlink "$_1APPLBIN/nextcloud")
+            fi
+            ;;
+        global)
+            if [ -L "$_1APPGBIN/nextcloud" ]
+            then
+                basename -z $(readlink "$_1APPGBIN/nextcloud") | echo -n
+            fi
+            ;;
+    esac
 }
 
 # Nextcloud downloader
