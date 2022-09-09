@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.45
+_1VERSION=0.46
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -118,9 +118,6 @@ function NH1 {
 		_1menuitem W 1update "Update your NH1, using git" git
 		_1menuitem X 1verbose "Enable/disable verbose mode"
 		_1menuitem W 1version "List NH1 version and latest changes/updates"
-		_1menuitem P nh1localnet "to-do"
-		_1menuitem P nh1connect "to-do"
-		_1menuitem P nh1interactive "to-do"
 
 		echo
 		echo -n "   "
@@ -133,7 +130,7 @@ function NH1 {
 		1tint $_1DCOLOR "deprecated"
 		echo
 		echo " -------------------------------------"
-		echo "        Power-up for your shell"
+		echo "          Power-up your shell"
 		echo " -------------------------------------"
     echo
 }

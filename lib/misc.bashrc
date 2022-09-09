@@ -5,6 +5,7 @@ function _nh1misc.menu {
   echo "___ Miscelania ___"
   _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
 	_1menuitem P 1du "to-do"
+  _1menuitem X 1escape "Rename a file or dir, excluding special chars"
   _1menuitem X 1pdfopt "Compress a PDF file" gs
   _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
@@ -12,7 +13,7 @@ function _nh1misc.menu {
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
-  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
+  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo 1escape
 }
 
 # Print percentage for battery charge
@@ -87,4 +88,15 @@ function 1pomo {
   done
   1alarm
   echo -e "$UNCLOCK" "finished"
+}
+
+# Rename a file or directory, removing special chars
+# @param file
+function 1escape {
+  local EDIR EFIL
+  EDIR=$(dirname "$@")
+  EFIL=$(basename "$@")
+  pushd $EDIR
+  mv "$EFIL" "$(sed 's/[^0-9A-Za-z_.]/_/g' <<< "$EFIL")"
+  popd
 }
