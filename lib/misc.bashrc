@@ -4,7 +4,7 @@
 function _nh1misc.menu {
   echo "___ Miscelania ___"
   _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
-	_1menuitem P 1du "to-do"
+	_1menuitem X 1du "Disk usage" du
   _1menuitem X 1escape "Rename a file or dir, excluding special chars"
   _1menuitem X 1pdfopt "Compress a PDF file" gs
   _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
@@ -13,6 +13,7 @@ function _nh1misc.menu {
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
+  unset 1du
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo 1escape
 }
 
@@ -23,6 +24,8 @@ function 1power {
     upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage
   fi
 }
+
+alias 1du="du -h -d 1"
 
 # Compress PDF file
 # @param PDF input file

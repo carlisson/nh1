@@ -181,37 +181,38 @@ function 1alarm {
 # @param output filename
 function 1genbigmp3 {
   local OLDIFS IFS f i PBN NUMB
-  1check ffmpeg
-
-  if [ $# -eq 2 ]
+  if 1check ffmpeg
   then
-    PBN="$2"
-    OLDIFS="$IFS"
-    IFS=$'\n'
+    if [ $# -eq 2 ]
+    then
+      PBN="$2"
+      OLDIFS="$IFS"
+      IFS=$'\n'
 
-    for f in $(find $1/* -name '*.mp3')
-    do
-      1escape $f
-    done
+      for f in $(find $1/* -name '*.mp3')
+      do
+        1escape $f
+      done
 
-    pushd $1 > /dev/null
+      pushd $1 > /dev/null
 
-    for i in $(ls *.mp3)
-    do
-      NUMB=$(1d100)
-      ffmpeg -i "$i" "$NUMB-$i.ogg"
-    done
+      for i in $(ls *.mp3)
+      do
+        NUMB=$(1d100)
+        ffmpeg -i "$i" "$NUMB-$i.ogg"
+      done
 
-    cat *.ogg > final.ogg
+      cat *.ogg > final.ogg
 
-    IFS="$OLDIFS"
+      IFS="$OLDIFS"
 
-    popd > /dev/null
+      popd > /dev/null
 
-    ffmpeg -i $1/final.ogg $2
-    rm -f $1/*.ogg
-  else
-    echo Usage: 1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]
+      ffmpeg -i $1/final.ogg $2
+      rm -f $1/*.ogg
+    else
+      echo Usage: 1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]
+    fi
   fi
 
 }

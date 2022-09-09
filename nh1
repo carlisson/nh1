@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.47
+_1VERSION=0.48
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -49,7 +49,7 @@ source "$_1LIB/app.bashrc"
 source "$_1LIB/audio.bashrc"
 source "$_1LIB/misc.bashrc"
 source "$_1LIB/network.bashrc"
-source "$_1LIB/remote.bashrc"
+# source "$_1LIB/remote.bashrc"
 source "$_1LIB/rpg.bashrc"
 
 # Print a line to build help menu
@@ -108,7 +108,7 @@ function NH1 {
 		_nh1audio.menu
 		_nh1misc.menu
 		_nh1network.menu
-		_nh1remote.menu
+#		_nh1remote.menu
 		_nh1rpg.menu
 
 		echo "___ Main ___"
@@ -277,7 +277,7 @@ function 1clean {
 	_nh1audio.clean
 	_nh1misc.clean
 	_nh1network.clean
-	_nh1remote.clean
+#	_nh1remote.clean
 	_nh1rpg.clean
 }
 

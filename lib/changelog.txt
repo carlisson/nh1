@@ -54,3 +54,4 @@
 0.45   2022-09-09: funcoeszz to 1app. Fixed global installation
 0.46   2022-09-09: 1escape, strip special chars from a filename
 0.47   2022-09-09: 1genbigmp3 genrates a single-mp3 playlist from a directory
+0.48   2022-09-09: 1du (simple alias) added
