@@ -6,6 +6,7 @@ function _nh1misc.menu {
   _1menuitem X 1ajoin "# Join an array, using first param as delimiter"
 	_1menuitem X 1du "Disk usage" du
   _1menuitem X 1escape "Rename a file or dir, excluding special chars"
+  _1menuitem X 1pass "Generate a secure password" gpg
   _1menuitem X 1pdfopt "Compress a PDF file" gs
   _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
@@ -13,7 +14,7 @@ function _nh1misc.menu {
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
-  unset 1du
+  unset 1du 1pass
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo 1escape
 }
 
@@ -26,6 +27,7 @@ function 1power {
 }
 
 alias 1du="du -h -d 1"
+alias 1pass="gpg --gen-random --armor 1 14 | rev | cut -c 2-13 | rev"
 
 # Compress PDF file
 # @param PDF input file
@@ -110,3 +112,4 @@ function 1escape {
     popd > /dev/null
   done
 }
+
