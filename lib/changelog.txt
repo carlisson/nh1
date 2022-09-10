@@ -57,4 +57,5 @@
 0.48   2022-09-09: 1du (simple alias) added
 0.49   2022-09-10: 1pass: generate a random and secure password
 0.50   2022-09-10: 1color: generate a random hexadecimal color
+0.51   2022-09-10: 1timer and 1rr30 (helping to do 30-30-30 router reset)
 
