@@ -58,4 +58,5 @@
 0.49   2022-09-10: 1pass: generate a random and secure password
 0.50   2022-09-10: 1color: generate a random hexadecimal color
 0.51   2022-09-10: 1timer and 1rr30 (helping to do 30-30-30 router reset)
+0.52   2022-09-13: 1app simplyfied. Removed 1app[lg]setup and 1app[lg]
 

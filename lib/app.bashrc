@@ -12,10 +12,6 @@ _1APPAVAIL="funcoeszz nextcloud"
 function _nh1app.menu {
   echo "___ Install App ___"
   _1menuitem X 1app "List all available apps"
-  _1menuitem X 1appl "List all local apps"
-  _1menuitem X 1appg "List all global apps"
-  _1menuitem X 1applsetup "Configure your local path/dir"
-  _1menuitem X 1appgsetup "Configure global path/dir"
   _1menuitem X 1appladd "Install or update an app locally"
   _1menuitem X 1appgadd "Install or update an app globaly"
   _1menuitem X 1applupd "Update all local apps"
@@ -28,15 +24,14 @@ function _nh1app.menu {
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
-  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1appl 1appg 1applupd 1appgupd \
-    1appldel 1appgdel 1applclear 1appgclear
-  unset -f _nh1app.menu _nh1app.clean 1applsetup 1appgsetup 1app \
-    _nh1app.nextcloud _nh1app.add 1appladd 1appgadd _nh1app.checkversion \
-    _nh1app.list _nh1app.remove _nh1.checksetup _nh1app.description _nh1app.clear
+  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1applupd
+  unset 1appgupd 1appldel 1appgdel 1applclear 1appgclear
+  unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
+  unset -f _nh1app.nextcloud _nh1app.add 1appladd 1appgadd 
+  unset -f _nh1app.checkversion _nh1app.list _nh1app.remove 
+  unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
 }
 
-alias 1appl="_nh1app.list local"
-alias 1appg="_nh1app.list global"
 alias 1applupd="_nh1app.update local"
 alias 1appgupd="_nh1app.update global"
 alias 1appldel="_nh1app.remove local"
@@ -44,30 +39,26 @@ alias 1appgdel="_nh1app.remove global"
 alias 1applclear="_nh1app.clear local"
 alias 1appgclear="_nh1app.clear global"
 
-# Configure your local path/dir
-function 1applsetup {
-    mkdir -p "$_1APPLOCAL"
-    mkdir -p "$_1APPLBIN"
-    grep "$_1APPLBIN" "$HOME/.bashrc" 2>1 > /dev/null
-    if [ $? -eq 0 ]
+# Configure your local or global path/dir
+# @param local or global
+function _nh1app.setup {
+    if [ "$1" = "local" ]
     then
-        echo "1app may be installed. Check your .bashrc to confirm."
-        echo "PATH shold include $_1APPLBIN"
+        mkdir -p "$_1APPLOCAL"
+        mkdir -p "$_1APPLBIN"
+        grep "$_1APPLBIN" "$HOME/.bashrc" 2>1 > /dev/null
+        if [ $? -ne 0 ]
+        then
+            echo "PATH=\"\$PATH:$_1APPLBIN\"" >> "$HOME/.bashrc"
+        fi
     else
-        echo "PATH=\"\$PATH:$_1APPLBIN\"" >> "$HOME/.bashrc"
-        echo "1app configured"
+        _1sudo mkdir -p "$_1APPGLOBAL"
     fi
-}
-
-# Configure your global path/dir
-function 1appgsetup {
-    _1sudo mkdir -p "$_1APPGLOBAL"
-    echo "1app installed."
 }
 
 # Check if setup is ok
 # @param local or global
-function _nh1.checksetup {
+function _nh1app.checksetup {
     if [ "$1" = "local" ]
     then
         if [ -d "$_1APPLOCAL" ]
@@ -89,7 +80,7 @@ function _nh1.checksetup {
 # List all available app image for installation
 function 1app {
     local _NAA _NAS _NAU _NAC
-    echo "___ 1app available ___"
+    echo "___ 1app status ___"
     echo -e 'App\t\tDescription\t\t\tInstallation'
     for _NAA in $_1APPAVAIL
     do
@@ -118,6 +109,15 @@ function 1app {
         fi
         echo
     done
+    echo "___ Usage ___"
+    1tint 2 1appladd
+    echo -n " to install locally and "
+    1tint 1 1appldel
+    echo " to uninstall."
+    1tint 2 1appgadd
+    echo -n " to install globally and "
+    1tint 1 1appgdel
+    echo " to uninstall."
 }
 
 # Return description for an available app
@@ -266,31 +266,30 @@ function _nh1app.funcoeszz {
 # @param app to install
 function _nh1app.add {
     local _NAD _NAB _NAS
-    if $(_nh1.checksetup $1)
+    if ! $(_nh1app.checksetup $1)
     then
-        _NAS=$1
-        if [ "$1" = "global" ]
-        then
-            _NAD=$_1APPGLOBAL
-            _NAB=$_1APPGBIN
-        else
-            _NAD=$_1APPLOCAL
-            _NAB=$_1APPLBIN
-        fi
-        case "$2" in
-            funcoeszz)
-                _nh1app.funcoeszz "$_NAD" "$_NAB" "$_NAS"
-                ;;
-            nextcloud)
-                _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
-                ;;
-            *)
-                echo "Unknown app: $2"
-                ;;
-        esac
-    else
-        echo Run an 1app setup before install...
+        _nh1app.setup $1
     fi
+    _NAS=$1
+    if [ "$1" = "global" ]
+    then
+        _NAD=$_1APPGLOBAL
+        _NAB=$_1APPGBIN
+    else
+        _NAD=$_1APPLOCAL
+        _NAB=$_1APPLBIN
+    fi
+    case "$2" in
+        funcoeszz)
+            _nh1app.funcoeszz "$_NAD" "$_NAB" "$_NAS"
+            ;;
+        nextcloud)
+            _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
+            ;;
+        *)
+            echo "Unknown app: $2"
+            ;;
+    esac
 }
 
 
