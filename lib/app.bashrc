@@ -6,7 +6,10 @@ _1APPLOCAL="$_1UDATA/apps"
 _1APPLBIN="$HOME/bin"
 _1APPGLOBAL="$_1GDATA/apps"
 _1APPGBIN="/usr/local/bin"
-_1APPAVAIL="funcoeszz nextcloud"
+#_1APPAVAIL="funcoeszz nextcloud"
+_1APPLIB="$_1LIB"
+_1APPAVAIL=$(pushd $_1APPLIB > /dev/null; ls *.app | sed 's/.app//g' | \
+    xargs; popd -n > /dev/null)
 
 # Generate partial menu
 function _nh1app.menu {
@@ -24,12 +27,13 @@ function _nh1app.menu {
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
-  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1applupd
-  unset 1appgupd 1appldel 1appgdel 1applclear 1appgclear
+  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1applupd _1APPAVAIL
+  unset 1appgupd 1appldel 1appgdel 1applclear 1appgclear _1APPLIB
   unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
-  unset -f _nh1app.nextcloud _nh1app.add 1appladd 1appgadd 
+  unset -f _nh1app.single _nh1app.add 1appladd 1appgadd 
   unset -f _nh1app.checkversion _nh1app.list _nh1app.remove 
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
+  unset -f _nh1app.openapp _nh1app.closeapp
 }
 
 alias 1applupd="_nh1app.update local"
@@ -120,126 +124,93 @@ function 1app {
     echo " to uninstall."
 }
 
+# Open app description
+# @param app name
+function _nh1app.openapp {
+    if [ -f "$_1APPLIB/$1.app" ]
+    then
+        source "$_1APPLIB/$1.app"
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Close app description
+function _nh1app.closeapp {
+  unset APP_DESCRIPTION APP_TYPE APP_BINARY APP_DEPENDS
+  unset -f APP_POSTINST APP_VERSION APP_GET
+}
+
 # Return description for an available app
 # @param App name
 function _nh1app.description {
-    case "$1" in
-        funcoeszz)
-            echo -ne 'A set of shell utils.\t'
-            ;;
-        nextcloud)
-            echo -ne 'Nextcloud desktop client'
-            ;;
-        onlyoffice)
-            echo -ne 'OnlyOffice desktop edition'
-            ;;
-    esac
+    if _nh1app.openapp $1
+    then
+        echo -n $APP_DESCRIPTION
+        _nh1app.closeapp
+    else
+        echo -n "???"
+    fi
 }
 
 # Return newest Nextcloud file version or actual
 # @param new, local or global
 # @param app name
 function _nh1app.checkversion {
-    case "$1" in
-        new)
-            case "$2" in
-                nextcloud)
-                    curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-                    sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
-                    sed 's/\(.*\)\///g'
-                    ;;
-                funcoeszz)
-                    curl -s http://funcoeszz.net/download/ | tr '\n' ' ' | \
-                    sed 's/\(.*\)\/download\/\(funcoeszz-\(.*\).sh\)\(.*\)/\2/' | \
-                    sed 's/"\(.*\)//g'
-                    ;;
-            esac
-            ;;
-        local)
-            if [ -L "$_1APPLBIN/$2" ]
-            then
-                basename $(readlink "$_1APPLBIN/$2")
-            fi
-            ;;
-        global)
-            if [ -L "$_1APPGBIN/$2" ]
-            then
-                basename $(readlink "$_1APPGBIN/$2")
-            fi
-            ;;
-    esac
-}
-
-# Nextcloud downloader
-# @param app-directory
-# @param symlink
-# @param local or global
-function _nh1app.nextcloud {
-    local _NADIR _NASYM _NAS _NANEW
-    if 1check curl
+    if _nh1app.openapp $2
     then
-        _NADIR="$1"
-        _NASYM="$2/nextcloud"
-        _NAS=$3
-        _NANEW=$(_nh1app.checkversion new nextcloud)
-        if [ -f "$_NADIR/$_NANEW" ]
-        then
-            echo "Nextcloud is already up to date."
-        else
-            pushd $_NADIR
-            if [ $_NAS = "global" ]
-            then
-            
-                _1sudo curl -O -L "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
-                _1sudo chmod a+x "$_NANEW"
-            else
-                curl -O -L "$(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')"
-                chmod a+x "$_NANEW"
-            fi
-            popd
-            if [ -L "$_NASYM" ]
-            then
-                if [ $_NAS = "global" ]
+        case "$1" in
+            new)
+                APP_VERSION                
+                ;;
+            local)
+                if [ -L "$_1APPLBIN/$2" ]
                 then
-                    _1sudo rm "$_NASYM"
-                else
-                    rm "$_NASYM"
+                    basename $(readlink "$_1APPLBIN/$2")
                 fi
-            fi
-            if [ $_NAS = "global" ]
-            then
-                _1sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
-            else
-                ln -s "$_NADIR/$_NANEW" "$_NASYM"
-            fi
-        fi
+                ;;
+            global)
+                if [ -L "$_1APPGBIN/$2" ]
+                then
+                    basename $(readlink "$_1APPGBIN/$2")
+                fi
+                ;;
+        esac
+        _nh1app.closeapp
     fi
 }
 
-# funcoeszz downloader
+# Single downloader
+# @param app name
 # @param app-directory
 # @param symlink
 # @param local or global
-function _nh1app.funcoeszz {
-    local _NADIR _NASYM _NAS _NANEW
+function _nh1app.single {
+    local _NAPP _NADIR _NASYM _NAS _NANEW
     if 1check curl
     then
-        _NADIR="$1"
-        _NASYM="$2/funcoeszz"
-        _NAS=$3
-        _NANEW=$(_nh1app.checkversion new funcoeszz)
+        _NAPP="$1"
+        _NADIR="$2"
+        _NASYM="$3/$1"
+        _NAS=$4
+        _NANEW=$(_nh1app.checkversion new $_NAPP)
         if [ -f "$_NADIR/$_NANEW" ]
         then
-            echo "funcoeszz is already up to date."
+            echo "$_NAPP is already up to date."
         else
             pushd $_NADIR
-            if [ $_NAS = "global" ]
+            if _nh1app.openapp $_NAPP
             then
-                _1sudo curl -O -L "http://funcoeszz.net/download/$_NANEW"
-                _1sudo chmod a+x "$_NANEW"
-            else
-                curl -O -L "http://funcoeszz.net/download/$_NANEW"
-                chmod a+x "$_NANEW"
+                if [ $_NAS = "global" ]
+                then
+                    APP_GET sudo
+                    _1sudo chmod a+x "$_NANEW"
+                else
+                    APP_GET
+                    chmod a+x "$_NANEW"
+                fi
+                _nh1app.closeapp
             fi
             popd
             if [ -L "$_NASYM" ]
@@ -265,7 +236,7 @@ function _nh1app.funcoeszz {
 # @param local or global
 # @param app to install
 function _nh1app.add {
-    local _NAD _NAB _NAS
+    local _NAD _NAB _NAS _NAT
     if ! $(_nh1app.checksetup $1)
     then
         _nh1app.setup $1
@@ -279,17 +250,21 @@ function _nh1app.add {
         _NAD=$_1APPLOCAL
         _NAB=$_1APPLBIN
     fi
-    case "$2" in
-        funcoeszz)
-            _nh1app.funcoeszz "$_NAD" "$_NAB" "$_NAS"
-            ;;
-        nextcloud)
-            _nh1app.nextcloud "$_NAD" "$_NAB" "$_NAS"
-            ;;
-        *)
-            echo "Unknown app: $2"
-            ;;
-    esac
+ 
+    if _nh1app.openapp $2
+    then
+        _NAT="$APP_TYPE"
+        _nh1app.closeapp
+        case "$_NAT" in
+            single)
+                 _nh1app.single "$2" "$_NAD" "$_NAB" "$_NAS"
+                 ;;
+            *)
+                echo "Type unsuported: $_NAT"
+            esac
+    else
+        echo "Unknown app: $2"
+    fi
 }
 
 
