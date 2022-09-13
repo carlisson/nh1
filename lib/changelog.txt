@@ -63,4 +63,5 @@
 0.54   2022-09-13: .app files now stored in lib/recipes
 0.55   2022-09-13: fixed bugs in 1app?del and 1app?clear
 0.56   2022-09-13: added 1app kate. Improved 1app with .desktop
+0.57   2022-09-13: fixed bug in 1appgadd with .desktop file
 

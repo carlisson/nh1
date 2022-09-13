@@ -196,7 +196,7 @@ function _nh1app.checkversion {
 # @param symlink
 # @param local or global
 function _nh1app.single {
-    local _NAPP _NADIR _NASYM _NAS _NANEW
+    local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP
     if 1check curl
     then
         _NAPP="$1"
@@ -217,13 +217,17 @@ function _nh1app.single {
                     _1sudo chmod a+x "$_NANEW"
                     if [ -f "$_1APPLIB/$_NAPP.desktop" ]
                     then
-                        _1sudo cp "$_1APPLIB/$_NAPP.desktop" "$_1APPGAPPS/"
-                        _1sudo echo "Exec=$_NASYM" >> "$_1APPGAPPS/$_NAPP.desktop"
+                        _NATMP=$(mktemp)
+                        cp "$_1APPLIB/$_NAPP.desktop" "$_NATMP"
+                        echo "Exec=$_NASYM" >> "$_NATMP"
                         if [ -f "$_1APPLIB/$_NAPP.png" ]
                         then
                             _1sudo cp "$_1APPLIB/$_NAPP.png" "$_1APPGICON/"
-                            _1sudo echo "Icon=$_1APPGICON/$_NAPP.png" >> "$_1APPGAPPS/$_NAPP.desktop" 
+                            echo "Icon=$_1APPGICON/$_NAPP.png" >> "$_NATMP"
                         fi
+                        _1sudo cp "$_NATMP" "$_1APPGAPPS/$_NAPP.desktop"
+                        _1sudo chmod a+r "$_1APPGAPPS/$_NAPP.desktop"
+                        rm "$_NATMP"
                     fi
                 else
                     APP_GET
