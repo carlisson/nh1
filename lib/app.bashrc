@@ -141,7 +141,7 @@ function _nh1app.openapp {
 
 # Close app description
 function _nh1app.closeapp {
-  unset APP_DESCRIPTION APP_TYPE APP_BINARY APP_DEPENDS
+  unset APP_DESCRIPTION APP_TYPE APP_BINARY APP_DEPENDS APP_PREFIX
   unset -f APP_POSTINST APP_VERSION APP_GET
 }
 
@@ -336,25 +336,21 @@ function _nh1app.remove {
     _NAF=$(_nh1app.checkversion $1 $_NAA)
     if [ -n "$_NAF" ]
     then
-        case "$_NAA" in
-            funcoeszz|nextcloud)
-                if [ "$1" = "local" ]
-                then
-                    rm "$_1APPLOCAL/$_NAF"
-                    rm "$_1APPLBIN/$_NAA"
-                else
-                    _1sudo rm "$_1APPGLOBAL/$_NAF"
-                    _1sudo rm "$_1APPGBIN/$_NAA"
-                fi
-                ;;
-        esac
+        if [ "$1" = "local" ]
+        then
+            rm "$_1APPLOCAL/$_NAF"
+            rm "$_1APPLBIN/$_NAA"
+        else
+            _1sudo rm "$_1APPGLOBAL/$_NAF"
+            _1sudo rm "$_1APPGBIN/$_NAA"
+        fi
     fi
 }
 
 # Clear unused old versions for every app
 # @param local or global
 function _nh1app.clear {
-    local _NAA _NAN _NAF _NAD
+    local _NAA _NAN _NAF _NAD _NAP
     if [ $1 = "local" ]
     then
         _NAD=$_1APPLOCAL
@@ -364,35 +360,24 @@ function _nh1app.clear {
     for _NAA in $(_nh1app.avail)
     do
         _NAN=$(_nh1app.checkversion "$1" "$_NAA")
-        case "$_NAA" in
-            funcoeszz)
-                for _NAF in $(ls $_NAD/funcoeszz-* 2>/dev/null)
-                do
-                    if [ "$_NAN" != $(basename "$_NAF") ]
-                    then
-                        if [ "$1" = "global" ]
-                        then
-                            _1sudo rm "$_NAF"
-                        else
-                            rm "$_NAF"
-                        fi
-                    fi
-                done
-                ;;
-            nextcloud)
-                for _NAF in $(ls $_NAD/Nextcloud* 2>/dev/null)
-                do
-                    if [ "$_NAN" != $(basename "$_NAF") ]
-                    then
-                        if [ "$1" = "global" ]
-                        then
-                            _1sudo rm "$_NAF"
-                        else
-                            rm "$_NAF"
-                        fi
-                    fi
-                done
-                ;;
-        esac
-    done
+
+        if _nh1app.openapp $1
+        then
+            _NAP="$APP_PREFIX"
+            _nh1app.closeapp
+        fi
+
+        for _NAF in $(ls $_NAD/$_NAP-* 2>/dev/null)
+        do
+            if [ "$_NAN" != $(basename "$_NAF") ]
+            then
+                if [ "$1" = "global" ]
+                then
+                    _1sudo rm "$_NAF"
+                else
+                    rm "$_NAF"
+                fi
+            fi
+        done
+   done
 }

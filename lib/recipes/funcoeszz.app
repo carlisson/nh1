@@ -16,6 +16,9 @@ APP_BINARY=""
 # Dependences. Specially useful to compilable apps
 APP_DEPENDS=""
 
+# Prefix for filenames
+APP_PREFIX="funcoeszz-"
+
 # To compile or do some procedures post-installation
 function APP_POSTINST {
     return 1

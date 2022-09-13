@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="Client for Nextcloud desktop"
+APP_DESCRIPTION="Code editor for KDE"
 
 # It can be:
 #
@@ -17,7 +17,7 @@ APP_BINARY=""
 APP_DEPENDS=""
 
 # Prefix for the filenames
-APP_PREFIX="Nextcloud-"
+APP_PREFIX="kate-"
 
 # To compile or do some procedures post-installation
 function APP_POSTINST {
@@ -26,20 +26,21 @@ function APP_POSTINST {
 
 # Code to get the newest version filename
 function APP_VERSION {
-    curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-    sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/' | \
-    sed 's/\(.*\)\///g'
+    curl -s https://binary-factory.kde.org/job/Kate_Release_appimage-centos7/ |\
+    tr '\n' ' ' | sed 's/\(.*\)\(kate-\(.*\)\.AppImage\)\(.*\)/\2/'
 }
 
 # Code to effectly do the download
 function APP_GET {
+    local AGpre
+    
     if [ $# -eq 1 ]
     then
-        _1sudo curl -O -L $(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-        sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')
+        AGpre="_1sudo "
     else
-        curl -O -L $(curl -s https://nextcloud.com/install/ | tr '\n' ' ' | \
-        sed 's/\(.*\)\(https\(.*\)\/Nextcloud-\(.*\)-x86_64\.AppImage\)\(.*\)/\2/')
+        AGpre=""
     fi
+
+    $AGpre curl -O -L "https://binary-factory.kde.org/job/Kate_Release_appimage-centos7/lastSuccessfulBuild/artifact/$(APP_VERSION)"
 }
 

@@ -61,3 +61,5 @@
 0.52   2022-09-13: 1app simplyfied. Removed 1app[lg]setup and 1app[lg]
 0.53   2022-09-13: 1app improved. Using .app files for descriptions
 0.54   2022-09-13: .app files now stored in lib/recipes
+0.55   2022-09-13: fixed bugs in 1app?del and 1app?clear
+
