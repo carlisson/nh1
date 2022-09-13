@@ -7,6 +7,10 @@ _1APPLBIN="$HOME/bin"
 _1APPGLOBAL="$_1GDATA/apps"
 _1APPGBIN="/usr/local/bin"
 _1APPLIB="$_1LIB/recipes"
+_1APPLAPPS="$HOME/.local/share/applications"
+_1APPGAPPS="/usr/share/applications"
+_1APPLICON="$HOME/.local/share/icons"
+_1APPGICON="/usr/share/icons"
 
 # Generate partial menu
 function _nh1app.menu {
@@ -53,6 +57,8 @@ function _nh1app.setup {
     then
         mkdir -p "$_1APPLOCAL"
         mkdir -p "$_1APPLBIN"
+        mkdir -p "$_1APPLAPPS"
+        mkdir -p "$_1APPLICON"
         grep "$_1APPLBIN" "$HOME/.bashrc" 2>1 > /dev/null
         if [ $? -ne 0 ]
         then
@@ -209,9 +215,29 @@ function _nh1app.single {
                 then
                     APP_GET sudo
                     _1sudo chmod a+x "$_NANEW"
+                    if [ -f "$_1APPLIB/$_NAPP.desktop" ]
+                    then
+                        _1sudo cp "$_1APPLIB/$_NAPP.desktop" "$_1APPGAPPS/"
+                        _1sudo echo "Exec=$_NASYM" >> "$_1APPGAPPS/$_NAPP.desktop"
+                        if [ -f "$_1APPLIB/$_NAPP.png" ]
+                        then
+                            _1sudo cp "$_1APPLIB/$_NAPP.png" "$_1APPGICON/"
+                            _1sudo echo "Icon=$_1APPGICON/$_NAPP.png" >> "$_1APPGAPPS/$_NAPP.desktop" 
+                        fi
+                    fi
                 else
                     APP_GET
                     chmod a+x "$_NANEW"
+                    if [ -f "$_1APPLIB/$_NAPP.desktop" ]
+                    then
+                        cp "$_1APPLIB/$_NAPP.desktop" "$_1APPLAPPS/"
+                        echo "Exec=$_NASYM" >> "$_1APPLAPPS/$_NAPP.desktop"
+                        if [ -f "$_1APPLIB/$_NAPP.png" ]
+                        then
+                            cp "$_1APPLIB/$_NAPP.png" "$_1APPLICON/"
+                            echo "Icon=$_1APPLICON/$_NAPP.png" >> "$_1APPLAPPS/$_NAPP.desktop" 
+                        fi
+                    fi
                 fi
                 _nh1app.closeapp
             fi
@@ -340,9 +366,13 @@ function _nh1app.remove {
         then
             rm "$_1APPLOCAL/$_NAF"
             rm "$_1APPLBIN/$_NAA"
+            rm -f "$_1APPLAPPS/$_NAA.desktop"
+            rm -f "$_1APPLICON/$_NAA.png"
         else
             _1sudo rm "$_1APPGLOBAL/$_NAF"
             _1sudo rm "$_1APPGBIN/$_NAA"
+            _1sudo rm -f "$_1APPGAPPS/$_NAA.desktop"
+            _1sudo rm -f "$_1APPLICON/$_NAA.png"
         fi
     fi
 }
