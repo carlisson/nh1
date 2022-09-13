@@ -6,10 +6,7 @@ _1APPLOCAL="$_1UDATA/apps"
 _1APPLBIN="$HOME/bin"
 _1APPGLOBAL="$_1GDATA/apps"
 _1APPGBIN="/usr/local/bin"
-#_1APPAVAIL="funcoeszz nextcloud"
-_1APPLIB="$_1LIB"
-_1APPAVAIL=$(pushd $_1APPLIB > /dev/null; ls *.app | sed 's/.app//g' | \
-    xargs; popd -n > /dev/null)
+_1APPLIB="$_1LIB/recipes"
 
 # Generate partial menu
 function _nh1app.menu {
@@ -27,13 +24,13 @@ function _nh1app.menu {
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
-  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1applupd _1APPAVAIL
+  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1applupd 
   unset 1appgupd 1appldel 1appgdel 1applclear 1appgclear _1APPLIB
   unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
   unset -f _nh1app.single _nh1app.add 1appladd 1appgadd 
   unset -f _nh1app.checkversion _nh1app.list _nh1app.remove 
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
-  unset -f _nh1app.openapp _nh1app.closeapp
+  unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
 }
 
 alias 1applupd="_nh1app.update local"
@@ -42,6 +39,12 @@ alias 1appldel="_nh1app.remove local"
 alias 1appgdel="_nh1app.remove global"
 alias 1applclear="_nh1app.clear local"
 alias 1appgclear="_nh1app.clear global"
+
+function _nh1app.avail {
+    pushd $_1APPLIB > /dev/null
+    ls *.app | sed 's/.app//g' | xargs
+    popd -n > /dev/null
+}
 
 # Configure your local or global path/dir
 # @param local or global
@@ -86,7 +89,7 @@ function 1app {
     local _NAA _NAS _NAU _NAC
     echo "___ 1app status ___"
     echo -e 'App\t\tDescription\t\t\tInstallation'
-    for _NAA in $_1APPAVAIL
+    for _NAA in $(_nh1app.avail)
     do
         echo -n $_NAA
         echo -en '\t'
@@ -293,7 +296,7 @@ function 1appgadd {
 function _nh1app.list {
    local _NAA _NAAC
    echo "___ Installed Apps ($1) ___"
-   for _NAA in $_1APPAVAIL
+   for _NAA in $(_nh1app.avail)
     do
         _NAAC=$(_nh1app.checkversion $1 $_NAA)
         if [ -n "$_NAAC" ]
@@ -309,7 +312,7 @@ function _nh1app.list {
 # @param local or global
 function _nh1app.update {
     local _NAA _NAAC
-    for _NAA in $_1APPAVAIL
+    for _NAA in $(_nh1app.avail)
     do
         _NAAC=$(_nh1app.checkversion $1 $_NAA)
         if [ -n "$_NAAC" ]
@@ -358,7 +361,7 @@ function _nh1app.clear {
     else
         _NAD=$_1APPGLOBAL
     fi
-    for _NAA in "$_1APPAVAIL"
+    for _NAA in $(_nh1app.avail)
     do
         _NAN=$(_nh1app.checkversion "$1" "$_NAA")
         case "$_NAA" in
