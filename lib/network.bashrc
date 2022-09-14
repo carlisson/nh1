@@ -9,6 +9,7 @@ alias 1httpstatus='curl --write-out "%{http_code}\n" --silent --output /dev/null
 function _nh1network.menu {
   echo "___ Network ___"
   _1menuitem X 1allhosts "Returns all hosts in all your networks" ip ipcalc
+  _1menuitem X 1areon "Check status for every host in a internal .hosts"
   _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
   _1menuitem W 1host "Return a valid ping-available IP for some host or domain name"
   _1menuitem X 1httpstatus "Return HTTP status for given URL" curl
@@ -27,7 +28,8 @@ function _nh1network.menu {
 function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
-  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts 1mynet
+  unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
+  unset -f 1mynet 1areon
   unalias 1httpstatus
 }
 
@@ -374,4 +376,51 @@ function 1findport {
     done
     _1verb "$total hosts with port $port open."
   fi
+}
+
+# Check status for every host in given .hosts
+# @param set of hosts
+function 1areon {
+    local FILE TOTAL HLIN HNAM OK
+  	if [ $# -ne 1 ]
+	then
+		echo -n "Usage: "
+		1tint 2 '1areon [group]'
+		echo
+		echo
+		echo "  all: every host in all groups"
+		echo
+		echo "Available groups:"
+		find "$_1NETLOCAL" -name "*.hosts" -printf '%f\n' | sed 's/.hosts//g'
+		return 1
+	fi
+	if [ "$1" = "all" ]
+	then
+		FILE=$(mktemp)
+		cat $(find "$_1NETLOCAL" -name "*.hosts") > $FILE
+	else
+		FILE="$_1NETLOCAL/$1.hosts"
+	fi
+	if [ -f "$FILE" ]
+	then
+		TOTAL=$(wc -l < "$FILE")
+		for line in $(seq 1 $TOTAL)
+		do
+			HLIN=$(sed -n "$line"p < "$FILE")
+			HNAM=$(echo $HLIN | cut -f 1 -d " ")
+			OK=1
+			for HIP in ${HLIN/$HNAM/}
+			do
+				if [ $OK -eq 1 ]
+				then
+					1ison $HNAM $HIP
+					OK=0
+				fi
+			done
+		done
+		return 0
+	else
+		echo "Unknown group of hosts."
+		return 1
+	fi
 }

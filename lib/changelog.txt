@@ -68,3 +68,4 @@
 0.59   2022-09-14: 1app new recipe: vscodium
 0.60   2022-09-14: 1host use .host files in ~/.norg/network
 0.61   2022-09-14: 1app new recipe: onlyoffice desktop editors
+0.62   2022-09-14: .hosts now in ~/norg/network. Implement 1areon
