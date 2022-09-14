@@ -66,3 +66,4 @@
 0.57   2022-09-13: fixed bug in 1appgadd with .desktop file
 0.58   2022-09-14: 1app new recipes: freetube, librewolf
 0.59   2022-09-14: 1app new recipe: vscodium
+0.60   2022-09-14: 1host use .host files in ~/.norg/network

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #ALIASES
+_1NETLOCAL="$_1UDATA/network"
 _1IPERFPORT=2918
 alias 1httpstatus='curl --write-out "%{http_code}\n" --silent --output /dev/null'
 
@@ -58,7 +59,7 @@ function 1host {
       echo "$HNAM"
       return 0
     fi
-    if HLIN=$(cat $(find "$_1LIB" -name "*.hosts") | grep "$HNAM ")
+    if HLIN=$(cat $(find "$_1NETLOCAL" -name "*.hosts") | grep "$HNAM ")
     then
 			for HIP in ${HLIN/$HNAM/}
 			do
