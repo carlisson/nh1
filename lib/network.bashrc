@@ -10,6 +10,7 @@ function _nh1network.menu {
   echo "___ Network ___"
   _1menuitem X 1allhosts "Returns all hosts in all your networks" ip ipcalc
   _1menuitem X 1areon "Check status for every host in a internal .hosts"
+  _1menuitem X 1bauds "Returns baudrate for a number from 1 to 13"
   _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
   _1menuitem W 1host "Return a valid ping-available IP for some host or domain name"
   _1menuitem X 1httpstatus "Return HTTP status for given URL" curl
@@ -19,6 +20,7 @@ function _nh1network.menu {
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
   _1menuitem X 1mynet "Return all networks running on network interfaces" ip
   _1menuitem X 1ports "Scan if given port(s) for a given host is/are open"
+  _1menuitem P 1serial "Connect to a serial port"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
   _1menuitem X 1xt-vlan "List all VLANs in given eXtreme switch" ssh
@@ -30,8 +32,40 @@ function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
-  unset -f 1mynet 1areon 1xt-vlan
+  unset -f 1mynet 1areon 1xt-vlan 1bauds
   unalias 1httpstatus
+}
+
+# Returns baudrate for given number
+# @param Number of baudrate
+function 1bauds {
+  if [ $# -eq 1 ]
+  then
+    case $1 in
+      1)  echo    300 ;;
+      2)  echo    600 ;;
+      3)  echo   1200 ;;
+      4)  echo   1800 ;;
+      5)  echo   2400 ;;
+      6)  echo   4800 ;;
+      7)  echo   9600 ;;
+      8)  echo  19200 ;;
+      9)  echo  28800 ;;
+      10) echo  38400 ;;
+      11) echo  57600 ;;
+      12) echo  76800 ;;
+      13) echo 115200 ;;
+    esac
+  else
+    echo "Bauds possible:"
+    echo
+    for i in $(seq 1 13)
+    do
+      1tint "$i"
+      echo -n "  "
+      1bauds $i
+    done
+  fi
 }
 
 # Check if a string is an IP address
