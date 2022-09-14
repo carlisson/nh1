@@ -21,6 +21,7 @@ function _nh1network.menu {
   _1menuitem X 1ports "Scan if given port(s) for a given host is/are open"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
+  _1menuitem X 1xt-vlan "List all VLANs in given eXtreme switch" ssh
   echo
 }
 
@@ -29,7 +30,7 @@ function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
-  unset -f 1mynet 1areon
+  unset -f 1mynet 1areon 1xt-vlan
   unalias 1httpstatus
 }
 
@@ -166,7 +167,7 @@ function 1ison {
 # Internal function, pre-1ssh
 # @param server or user@server, to use with ssh
 function _1pressh {
-  local aux_u aux_h
+  local aux_u aux_h aux
 	if [ $(echo "$1" | grep "@") ]
 	then
 		aux_u=${1%@*}
@@ -175,12 +176,9 @@ function _1pressh {
 		aux_u="admin"
 		aux_h="$1"
 	fi
-	if ! $(1ison -q $aux_h)
+    if aux=$(1host "$aux_h")
 	then
-		if aux=$(1host "$aux_h")
-		then
-			aux_h=$aux
-		fi
+		aux_h=$aux
 	fi
 	echo "$aux_u@$aux_h"
 }
@@ -423,4 +421,33 @@ function 1areon {
 		echo "Unknown group of hosts."
 		return 1
 	fi
+}
+
+# List VLANs in given switch
+# @param IP or name (.hosts) for one or more switchs
+function 1xt-vlan {
+    local AUX usrhst
+	if [ $# -eq 0 ]
+	then
+		echo -n "Usage: "
+		1tint 2 '1xt-vlan <IP> (<IP> ...)'
+		echo
+		echo "You can use hostnames contained in .hosts"
+		return 1
+	fi
+	for AUX in "$@"
+	do
+		echo
+		echo ">>> $AUX"
+		usrhst=$(_1pressh $AUX)
+		echo " VLANs in SWITCH! Please inform password for $usrhst"
+		1ssh "$usrhst" "show vlan detail" | grep -v \( | grep -v 'Description:' | grep -E 'VLAN|,|ag:| Tag ' | sed '
+			s/VLAN\ Interface\ with\ name/nNnVLAN/g
+			s/\ created\ by user/:/g
+			s/[ ^I][ ^I]*/ /g
+			s/.*Tag //g' | tr -d '\r' | tr -d '\n' | sed '
+			s/\(VLAN\|Tag\|Untag\)/\n&/g
+			s/nNn/\n/g'
+		echo
+	done
 }
