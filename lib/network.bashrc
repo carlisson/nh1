@@ -19,6 +19,7 @@ function _nh1network.menu {
   _1menuitem X 1iperfd "Run iperfd, waiting for 1iperf connection" iperf
   _1menuitem X 1isip "Return if a given string is an IP address"
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
+  _1menuitem X 1macvendor "Return prefixes for a given vendor"
   _1menuitem X 1mynet "Return all networks running on network interfaces" ip
   _1menuitem X 1ports "Scan if given port(s) for a given host is/are open"
   _1menuitem X 1serial "Connect to a serial port"
@@ -33,7 +34,7 @@ function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
-  unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial
+  unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor
   unalias 1httpstatus
 }
 
@@ -537,5 +538,18 @@ function 1serial {
       "No ttyUSB found."
       return 2
     fi
+  fi
+}
+
+# Return MAC prefixes for a given vendor
+# @param Vendor
+function 1macvendor {
+  if [ $# -eq 1 ]
+  then
+    grep -i "$1" "$_1LIB/mac-vendors.txt"  | sed 's/\(..\)/\1:/g' | cut -c 1-9 | tr '[:upper:]' '[:lower:]'
+  else
+    echo -n "Usage: "
+    1tint 2 '1macvendor <Company>'
+    echo
   fi
 }
