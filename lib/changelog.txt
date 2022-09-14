@@ -70,3 +70,4 @@
 0.61   2022-09-14: 1app new recipe: onlyoffice desktop editors
 0.62   2022-09-14: .hosts now in ~/norg/network. Implement 1areon
 0.63   2022-09-14: 1xt-vlan shows vlan in a switch (eXtreme)
+0.64   2022-09-14: 1tip to show tips from ~/.norg/misc/*.tips

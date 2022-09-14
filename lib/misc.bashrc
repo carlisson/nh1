@@ -1,5 +1,7 @@
 #!/bin/bash
 
+_1MISCLOCAL="$_1UDATA/misc"
+
 # Generate partial menu
 function _nh1misc.menu {
   echo "___ Miscelania ___"
@@ -13,13 +15,14 @@ function _nh1misc.menu {
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
   _1menuitem W 1rr30 "Counter 30-30-30 to router reset" seq
   _1menuitem W 1timer "Countdown timer." seq
+  _1menuitem X 1tip "Shows a random tip" shuf
 }
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
   unset 1color 1du 1pass
-  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo 1escape
-  unset -f 1timer 1rr30
+  unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
+  unset -f 1escape 1timer 1rr30 1tip
 }
 
 # Print percentage for battery charge
@@ -183,3 +186,33 @@ function 1escape {
   done
 }
 
+# Shows a random tip to the user
+# @param Group of tip ("list" to list all groups)
+function 1tip {
+    local _TFIL
+	if [ $# -eq 0 ]
+	then
+		cat $_1MISCLOCAL/*.tips | shuf | head -1
+	else
+		if [ "$1" = "list" ]
+		then
+			echo -n "Tip groups: "
+			for _TFIL in $(ls $_1MISCLOCAL/*.tips)
+			do
+                1tint 2 $(basename "$_TFIL" ".tips")
+                echo -n " "
+            done
+            echo
+        else
+            _TFIL=$_1MISCLOCAL/$1.tips
+            if [ -f "$_TFIL" ]
+            then
+                shuf "$_TFIL" | head -1
+            else
+                echo "No tips group $1 found."
+                return 1
+            fi
+        fi
+	fi
+	return 0
+}
