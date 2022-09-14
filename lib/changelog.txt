@@ -72,3 +72,4 @@
 0.63   2022-09-14: 1xt-vlan shows vlan in a switch (eXtreme)
 0.64   2022-09-14: 1tip to show tips from ~/.norg/misc/*.tips
 0.65   2022-09-14: 1bauds returns baudrate for a number from 1 to 13
+0.66   2022-09-14: 1serial to access serial port via picocom or minicom

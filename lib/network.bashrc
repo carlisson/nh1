@@ -2,6 +2,7 @@
 
 #ALIASES
 _1NETLOCAL="$_1UDATA/network"
+_1SERIALCOM="picocom minicom"
 _1IPERFPORT=2918
 alias 1httpstatus='curl --write-out "%{http_code}\n" --silent --output /dev/null'
 
@@ -20,7 +21,7 @@ function _nh1network.menu {
   _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
   _1menuitem X 1mynet "Return all networks running on network interfaces" ip
   _1menuitem X 1ports "Scan if given port(s) for a given host is/are open"
-  _1menuitem P 1serial "Connect to a serial port"
+  _1menuitem X 1serial "Connect to a serial port"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
   _1menuitem X 1xt-vlan "List all VLANs in given eXtreme switch" ssh
@@ -32,7 +33,7 @@ function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
-  unset -f 1mynet 1areon 1xt-vlan 1bauds
+  unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial
   unalias 1httpstatus
 }
 
@@ -484,4 +485,57 @@ function 1xt-vlan {
 			s/nNn/\n/g'
 		echo
 	done
+}
+
+# Connect a serial port with appropriated program
+# @param Bauds in 1bauds or traditional scale
+function 1serial {
+  local _BAU _COM _AUX _TTY _ADJ
+
+  if [ $# -eq 1 ]
+  then
+    if [ $1 -lt 14 ]
+    then
+      _BAU=$(1bauds $1)
+    else
+      _BAU=$1
+    fi
+  else
+    _BAU=9600
+  fi
+
+  _COM=""
+  _ADJ=""
+  for _AUX in $_1SERIALCOM
+  do
+    if [ -z "$_COM" ]
+    then
+      if 1check $_AUX
+      then
+        _COM="$_AUX"
+        if [ "$_AUX" = "minicom" ]
+        then
+          _ADJ="-D"
+        fi
+      fi
+    fi
+  done
+
+  if [ -z "$_COM" ]
+  then
+    echo -n "Serial program not found. Checked"
+    1tint 2 $_1SERIALCOM
+    echo
+    return 1
+  else
+    _TTY=$(ls /dev/ttyU*)
+
+    if [ $_TTY ]
+    then
+      _1sudo $_COM -b $_BAU $_ADJ $_TTY
+    else
+      "No ttyUSB found."
+      return 2
+    fi
+  fi
 }
