@@ -14,15 +14,15 @@ function _nh1misc.menu {
   _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
   _1menuitem W 1rr30 "Counter 30-30-30 to router reset" seq
+  _1menuitem X 1spchar "Returns a random special character"
   _1menuitem W 1timer "Countdown timer." seq
   _1menuitem X 1tip "Shows a random tip" shuf
 }
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
-  unset -f 1color 1du 1pass
+  unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
-  unset -f 1escape 1timer 1rr30 1tip
 }
 
 # Print percentage for battery charge
@@ -216,4 +216,50 @@ function 1tip {
         fi
 	fi
 	return 0
+}
+
+# Returns a random special character
+function 1spchar {
+  case $(1roll 1d40 | cut -d\  -f 1) in
+		1)  echo -n "\"" ;;
+		2)  echo -n "'" ;;
+		3)  echo -n "!" ;;
+		4)  echo -n "¹" ;;
+		5)  echo -n "@" ;;
+		6)  echo -n "²" ;;
+		7)  echo -n "#" ;;
+		8)  echo -n "³" ;;
+		9)  echo -n "$" ;;
+		10) echo -n "£" ;;
+		11) echo -n "%" ;;
+		12) echo -n "¢" ;;
+		13) echo -n "¬" ;;
+		14) echo -n "&" ;;
+		15) echo -n "*" ;;
+		16) echo -n "(" ;;
+		17) echo -n ")" ;;
+		18) echo -n "-" ;;
+		19) echo -n "_" ;;
+		20) echo -n "=" ;;
+		21) echo -n "+" ;;
+		22) echo -n "[" ;;
+		23) echo -n "{" ;;
+		24) echo -n "ª" ;;
+		25) echo -n "~" ;;
+		26) echo -n "^" ;;
+		27) echo -n "]" ;;
+		28) echo -n "}" ;;
+		29) echo -n "º" ;;
+		30) echo -n "\\" ;;
+		31) echo -n "|" ;;
+		32) echo -n "<" ;;
+		33) echo -n "," ;;
+		34) echo -n "." ;;
+		35) echo -n ">" ;;
+		36) echo -n ";" ;;
+		37) echo -n ":" ;;
+		38) echo -n "/" ;;
+		39) echo -n "?" ;;
+		40) echo -n "°" ;;
+  esac
 }

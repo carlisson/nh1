@@ -75,3 +75,4 @@
 0.66   2022-09-14: 1serial to access serial port via picocom or minicom
 0.67   2022-09-14: 1macvendor shows MAC address for given Company
 0.68   2022-09-15: nh1 working out of "source". Aliases turned in functions
+0.69   2022-09-15: 1spchar returns a random special character
