@@ -28,21 +28,22 @@ function _nh1app.menu {
 
 # Destroy all global variables created by this file
 function _nh1app.clean {
-  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN 1applupd 
-  unset 1appgupd 1appldel 1appgdel 1applclear 1appgclear _1APPLIB
+  unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN _1APPLIB
   unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
   unset -f _nh1app.single _nh1app.add 1appladd 1appgadd 
   unset -f _nh1app.checkversion _nh1app.list _nh1app.remove 
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
+  unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
 }
 
-alias 1applupd="_nh1app.update local"
-alias 1appgupd="_nh1app.update global"
-alias 1appldel="_nh1app.remove local"
-alias 1appgdel="_nh1app.remove global"
-alias 1applclear="_nh1app.clear local"
-alias 1appgclear="_nh1app.clear global"
+# Alias-like
+function 1applupd   { _nh1app.update local ; }
+function 1appgupd   { _nh1app.update global ; }
+function 1appldel   { _nh1app.remove local ; }
+function 1appgdel   { _nh1app.remove global ; }
+function 1applclear { _nh1app.clear local ; }
+function 1appgclear { _nh1app.clear global ; }
 
 function _nh1app.avail {
     pushd $_1APPLIB > /dev/null

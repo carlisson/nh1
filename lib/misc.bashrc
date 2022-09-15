@@ -20,7 +20,7 @@ function _nh1misc.menu {
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
-  unset 1color 1du 1pass
+  unset -f 1color 1du 1pass
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1escape 1timer 1rr30 1tip
 }
@@ -33,9 +33,10 @@ function 1power {
   fi
 }
 
-alias 1du="du -h -d 1"
-alias 1pass="openssl rand -base64 16 | rev | cut -c 3-13"
-alias 1color="openssl rand -hex 3"
+# Alias like
+function 1du    { du -h -d 1 ; }
+function 1pass  { openssl rand -base64 16 | rev | cut -c 3-13 ; }
+function 1color { openssl rand -hex 3 ; }
 
 # Compress PDF file
 # @param PDF input file

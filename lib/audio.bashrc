@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# ALIASES
-
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
   echo "___ Audio ___"

@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# ALIASES
-alias 1d4="1dice 4"
-alias 1d6="1dice"
-alias 1d8="1dice 8"
-alias 1d10="1dice 10"
-alias 1d12="1dice 12"
-alias 1d20="1dice 20"
-alias 1d100="1dice 100"
 
 # Generate partial menu (for RPG functions)
 function _nh1rpg.menu {
@@ -26,9 +18,18 @@ function _nh1rpg.menu {
 
 # Destroy all global variables created by this file
 function _nh1rpg.clean {
-  unalias 1d4 1d6 1d8 1d10 1d12 1d20 1d100
+  unset -f 1d4 1d6 1d8 1d10 1d12 1d20 1d100
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
 }
+
+# Alias like
+function 1d4   { 1dice 4 ; }
+function 1d6   { 1dice ; }
+function 1d8   { 1dice 8 ; }
+function 1d10  { 1dice 10 ; }
+function 1d12  { 1dice 12 ; }
+function 1d20  { 1dice 20 ; }
+function 1d100 { 1dice 100 ; }
 
 # Generate a random number, like from a dice from N sides
 # @param number of sides of the dice (default 6)

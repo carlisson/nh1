@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.67
+_1VERSION=0.68
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -166,8 +166,9 @@ function 1tint {
 	tput sgr0
 	return 0
 }
-alias 1help=NH1
 
+# Alias like
+function 1help { NH1 ; }
 
 # Print only if NH1 is in verbose mode
 # @param Message to print
@@ -271,8 +272,7 @@ function 1version {
 function 1clean {
 	_1verb "Destroying all variables..."
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
-	unalias 1help
-	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 1clean
+	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 1clean 1help
     _nh1app.clean
 	_nh1audio.clean
 	_nh1misc.clean
@@ -313,14 +313,22 @@ function 1verbose {
 # Try to execute a `return` statement,
 # but do it in a sub-shell and catch the results.
 # If this script isn't sourced, that will raise an error.
-if return >/dev/null 2>&1
+if [ $# -gt 0 ]
 then
-	S1="source $_1RC"
-	if ! grep "$S1" ~/.bashrc > /dev/null
-	then
-    NH1
-	fi
-	unset S1
+	_1RUN=1$1
+	shift
+	$_1RUN $@
+	unset _1RUN
 else
-		echo "You need run: source $_1RC"
+	if return >/dev/null 2>&1
+	then
+		S1="source $_1RC"
+		if ! grep "$S1" ~/.bashrc > /dev/null
+		then
+		NH1
+		fi
+		unset S1
+	else
+			echo "You need run: source $_1RC"
+	fi
 fi

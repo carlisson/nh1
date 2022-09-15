@@ -1,10 +1,8 @@
 #!/bin/bash
 
-#ALIASES
 _1NETLOCAL="$_1UDATA/network"
 _1SERIALCOM="picocom minicom"
 _1IPERFPORT=2918
-alias 1httpstatus='curl --write-out "%{http_code}\n" --silent --output /dev/null'
 
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
@@ -34,9 +32,11 @@ function _nh1network.clean {
   unset _1IPERFPORT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
-  unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor
-  unalias 1httpstatus
+  unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
 }
+
+# Alias like
+function 1httpstatus { curl --write-out "%{http_code}\n" --silent --output /dev/null ; }
 
 # Returns baudrate for given number
 # @param Number of baudrate
