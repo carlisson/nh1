@@ -23,6 +23,7 @@ function _nh1network.menu {
   _1menuitem X 1serial "Connect to a serial port"
   _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
   _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
+  _1menuitem X 1xt-backup "Backup configuration of one or more extreme switchs" ssh
   _1menuitem X 1xt-vlan "List all VLANs in given eXtreme switch" ssh
   echo
 }
@@ -33,6 +34,7 @@ function _nh1network.clean {
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
+  unset -f 1xt-backup
 }
 
 # Alias like
@@ -552,4 +554,36 @@ function 1macvendor {
     1tint 2 '1macvendor <Company>'
     echo
   fi
+}
+
+# Do a single extreme switch backup
+# @param Switch by extreme
+# @param Filename
+function _nh1network.xt-backup {
+  _1verb "Doing backup of $1 to $2"
+	1ssh "$1" "show configuration" > "$2"
+	wc $2
+}
+
+# Backup from one or more switchs extreme
+# @param host or group
+function 1xt-backup {
+  local _HOST _SUF _H
+  _SUF="$(date +%Y-%m-%d).extreme"
+  for _HOST in $@
+  do
+    if 1host $_HOST > /dev/null
+    then
+      _nh1network.xt-backup $_HOST "$_HOST.$_SUF"
+    elif [ -f "$_1NETLOCAL/$_HOST.hosts" ]
+    then
+      for _H in $(1areon $_HOST | grep -v 'not' | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[bmGK]//g" | sed 's/\\033\\(b is active//g')
+      do
+	      if [[ $_H =~ ^x ]]
+	      then
+          _nh1network.xt-backup "$_H" "$_H.$_SUF"
+      	fi
+      done
+    fi
+  done
 }

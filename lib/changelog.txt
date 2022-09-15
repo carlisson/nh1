@@ -76,3 +76,5 @@
 0.67   2022-09-14: 1macvendor shows MAC address for given Company
 0.68   2022-09-15: nh1 working out of "source". Aliases turned in functions
 0.69   2022-09-15: 1spchar returns a random special character
+0.70   2022-09-15: 1booklet to make seq for print 4-page 2-sized
+0.71   2022-09-15: 1xt-backup backups conf from extreme switchs
