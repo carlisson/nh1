@@ -11,6 +11,7 @@ function _nh1misc.menu {
   _1menuitem W 1du "Disk usage" du
   _1menuitem X 1escape "Rename a file or dir, excluding special chars"
   _1menuitem W 1pass "Generate a secure password" openssl
+  _1menuitem X 1pdfbkl "Make a booklet form a PDF file" pdfjam
   _1menuitem X 1pdfopt "Compress a PDF file" gs
   _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
   _1menuitem W 1power "Print percentage for battery (notebook)" upower
@@ -24,7 +25,7 @@ function _nh1misc.menu {
 function _nh1misc.clean {
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
-  unset -f 1booklet
+  unset -f 1booklet 1pdfbkl
 }
 
 # Print percentage for battery charge
@@ -315,20 +316,48 @@ function 1booklet {
   if [ $_REM -eq 3 ]
   then
       _I=$((_TOT - 3))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /")
+      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /g")
       _1verb "3 -- $_I in $_OUT"
   fi
   if [ $_REM -ge 2 ]
   then
       _I=$((_TOT - 2))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /")
+      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /g")
       _1verb "2 -- $_I in $_OUT"
   fi
   if [ $_REM -ge 1 ]
   then
       _I=$((_TOT - 1))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ / $_BLA /" | sed "s/^[0-9]\+/$_PAG/")
+      _OUT=$(echo $_OUT | sed "s/\ $_I\ / $_BLA /g")
+      _OUT=$(echo $_OUT | sed "s/$_TOT/$_PAG/g")
       _1verb "1 -- $_I in $_OUT"
   fi
   echo $_OUT
+}
+
+# Make a booklet from a PDF file
+# @param PDF input file
+# @param single (empty) or double (not empty)
+function 1pdfbkl {
+  local _INF _OUF _PAG _TMP _SEQ _MOD _DOB
+  if 1check pdfinfo pdfjam
+  then
+    if [ $# -gt 1 ]
+    then
+      _MOD="2x2"
+      _DOB="double"
+    else
+      _MOD="2x1 --landscape"
+      _DOB=""
+    fi
+    _INF="$1"
+    _OUF=$(echo "$_INF" | sed 's/\.pdf/-booklet.pdf/')
+    _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
+    _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | sed 's/BLANK/\{\}/g')
+    _TMP=$(mktemp -u)".pdf"
+    _1verb "Input file $_INF with $_PAG pages, output $_OUF. Sequence: $_SEQ Temp file: $_TMP"
+    pdfjam "$_INF" "$_SEQ" -o "$_TMP"
+    pdfjam --nup $_MOD "$_TMP" --outfile "$_OUF"
+    rm $_TMP
+  fi
 }
