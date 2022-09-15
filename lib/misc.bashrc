@@ -6,6 +6,7 @@ _1MISCLOCAL="$_1UDATA/misc"
 function _nh1misc.menu {
   echo "___ Miscelania ___"
   _1menuitem X 1ajoin "Join an array, using first param as delimiter"
+  _1menuitem X 1booklet "Generate a seq for booklet, for given page number"
   _1menuitem W 1color "Generate a random hexadecimal color"
   _1menuitem W 1du "Disk usage" du
   _1menuitem X 1escape "Rename a file or dir, excluding special chars"
@@ -23,6 +24,7 @@ function _nh1misc.menu {
 function _nh1misc.clean {
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
+  unset -f 1booklet
 }
 
 # Print percentage for battery charge
@@ -262,4 +264,71 @@ function 1spchar {
 		39) echo -n "?" ;;
 		40) echo -n "°" ;;
   esac
+}
+
+
+# Generates a seq of pages to make booklet (4 pages i 2-sides paper)
+# @param Number of pages
+# @param Number of the "blank" page. Default: last
+# @param Mode single or double. Default: single. Any-arg: double.
+function 1booklet {
+  local _PAG _MIN _MAJ _TOT _BLA _I _MID _REM _OUT _DOB
+  _PAG=$1
+  if [ $# -ge 2 ]
+  then
+    _BLA=$2
+  else
+    _BLA=$1
+  fi
+  if [ $# -eq 3 ]
+  then
+    _DOB=1
+  else
+    _DOB=0
+  fi
+  
+  _REM=$(((4 - (_PAG % 4)) % 4))
+  _TOT=$((_PAG + _REM))
+  _MID=$((_TOT/2))
+  _MIN=1
+  _MAJ=$_TOT
+  _OUT=""
+  for _I in $(seq 1 $_MID)
+  do
+    if [[ $((_I % 2)) -eq 0 ]]
+    then
+      _OUT="$_OUT $_MIN $_MAJ"
+      if [ $_DOB = 1 ]
+      then
+        _OUT="$_OUT $_MIN $_MAJ"
+      fi
+    else
+      _OUT="$_OUT $_MAJ $_MIN"
+      if [ $_DOB = 1 ]
+      then
+        _OUT="$_OUT $_MAJ $_MIN"
+      fi
+    fi
+    _MIN=$((_MIN+1))
+    _MAJ=$((_MAJ-1))
+  done
+  if [ $_REM -eq 3 ]
+  then
+      _I=$((_TOT - 3))
+      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /")
+      _1verb "3 -- $_I in $_OUT"
+  fi
+  if [ $_REM -ge 2 ]
+  then
+      _I=$((_TOT - 2))
+      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /")
+      _1verb "2 -- $_I in $_OUT"
+  fi
+  if [ $_REM -ge 1 ]
+  then
+      _I=$((_TOT - 1))
+      _OUT=$(echo $_OUT | sed "s/\ $_I\ / $_BLA /" | sed "s/^[0-9]\+/$_PAG/")
+      _1verb "1 -- $_I in $_OUT"
+  fi
+  echo $_OUT
 }

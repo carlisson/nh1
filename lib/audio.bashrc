@@ -212,5 +212,4 @@ function 1genbigmp3 {
       echo Usage: 1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]
     fi
   fi
-
 }
