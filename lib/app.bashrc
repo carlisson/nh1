@@ -95,13 +95,14 @@ function _nh1app.checksetup {
 function 1app {
     local _NAA _NAS _NAU _NAC
     echo "___ 1app status ___"
-    echo -e 'App\t\tDescription\t\t\tInstallation'
+    printf "%-15s %-45s%s\n" "App" "Description" "Installation"
     for _NAA in $(_nh1app.avail)
     do
-        echo -n $_NAA
-        echo -en '\t'
-        _nh1app.description "$_NAA"
-        echo -en '\t'
+        printf "%-15s %-45s" "$_NAA" "$(_nh1app.description $_NAA)"
+        #echo -n $_NAA
+        #echo -en '\t'
+        #_nh1app.description "$_NAA"
+        #echo -en '\t'
         _NAC=0
         _NAU=$(_nh1app.checkversion local "$_NAA")
         if [ -n "$_NAU" ]
