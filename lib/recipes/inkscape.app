@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Vector illustration"
+APP_DESCRIPTION="Vector graphics editor"
 
 # It can be:
 #

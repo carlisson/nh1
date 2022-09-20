@@ -81,3 +81,4 @@
 0.72   2022-09-15: 1app output improved
 0.73   2022-09-15: 1pdfbkl creates a booklet from a given PDF.
 0.74   2022-09-20: 1app: added recipe for Inkscape
+0.75   2022-09-20: 1app: added recipe for OpenComic
