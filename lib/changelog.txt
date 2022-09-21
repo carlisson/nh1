@@ -83,3 +83,4 @@
 0.74   2022-09-20: 1app: added recipe for Inkscape
 0.75   2022-09-20: 1app: added recipe for OpenComic
 0.76   2022-09-20: 1app: added recipe for KeepassXC
+0.77   2022-09-21: 1appxupd upgrade OS packages (apt, dnf, snap...)

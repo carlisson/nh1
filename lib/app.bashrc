@@ -20,6 +20,7 @@ function _nh1app.menu {
   _1menuitem X 1appgadd "Install or update an app globaly"
   _1menuitem X 1applupd "Update all local apps"
   _1menuitem X 1appgupd "Update all global apps"
+  _1menuitem X 1appxupd "Upgrade all packages(using OS)"
   _1menuitem X 1appldel "Remove a local app"
   _1menuitem X 1appgdel "Remove a global app"
   _1menuitem X 1applclear "Remove old versions for a local app (or all)"
@@ -35,6 +36,7 @@ function _nh1app.clean {
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
+  unset -f 1appxupd _nh1app.where
 }
 
 # Alias-like
@@ -357,6 +359,65 @@ function _nh1app.update {
             fi
         fi
     done   
+}
+
+# Returns full path for a command, if exists
+# @param app to test
+function _nh1app.where {
+    local _AUX _PATH
+    _AUX=$(whereis "$1")
+    _PATH=$(echo "$_AUX" | cut -d\  -f 2)
+    if [ "$_PATH" = "$_AUX" ]
+    then
+        return 1
+    else
+        echo $_PATH
+        return 0
+    fi
+}
+
+# Upgrade all packages
+function 1appxupd {
+    local _UPD
+        
+    if _nh1app.where dnf > /dev/null
+    then
+        echo "Upgrading dnf..."
+        _1sudo dnf update
+    fi
+
+    if _nh1app.where apt > /dev/null
+    then
+        echo "Upgrading apt..."
+        _1sudo apt update
+        _1sudo apt upgrade
+        _1sudo apt clean
+    fi
+
+    if _nh1app.where zypper > /dev/null
+    then
+        echo "Upgrading zypper..."
+        _1sudo zypper ref
+        _1sudo zypper update
+    fi
+
+    if _nh1app.where pacman > /dev/null
+    then
+        echo "Upgrading pacman..."
+        _1sudo pacman -Syu
+    fi
+
+    if _nh1app.where snap > /dev/null
+    then
+        echo "Upgrading snap..."
+        _1sudo snap refresh
+    fi
+
+    if _nh1app.where flatpak > /dev/null
+    then
+        echo "Upgrading flatpak..."
+        _1sudo flatpak update
+    fi
 }
 
 # Remove an installed app
