@@ -85,3 +85,4 @@
 0.76   2022-09-20: 1app: added recipe for KeepassXC
 0.77   2022-09-21: 1appxupd upgrade OS packages (apt, dnf, snap...)
 0.78   2022-09-21: 1app: added recipe for CherryTree
+0.79   2022-09-21: 1app: added recipe for Everdo
