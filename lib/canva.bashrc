@@ -8,8 +8,8 @@ _1CANVALOCAL="$_1UDATA/canvas"
 function _nh1canva.menu {
   echo "___ Canva Section ___"
   echo "--- Create images from SVG templates"
-  _1menuitem P 1canva "List all templates or help for given template"
-  _1menuitem P 1canvagen "Generate image from template"
+  _1menuitem X 1canva "List all templates or help for given template"
+  _1menuitem X 1canvagen "Generate image from template"
   _1menuitem P 1canvaadd "Install or update a template"
   _1menuitem P 1canvadel "Remove installed template"
 }
@@ -46,4 +46,50 @@ function 1canva {
     then
         echo "No template found."
     fi
+}
+
+# List help for template or apply it
+# @param template name
+# @param output file (.jpg, .png or other)
+# @param substitutions in key=value syntax
+function 1canvagen {
+    local iter tempf tempi tempib
+    subst=""
+    case $# in
+        0)
+            echo "Usages:"
+            echo "  1canvagen <template>"
+            echo "  1canvagen <template> <outputfile> [key=value]*"
+            ;;
+        1|2)        
+            cat "$_1CANVALOCAL/$1.svg" | tr '\n' ' ' | sed 's/\(.*\)1canva-en-ini\(.*\)1canva-en-end\(.*\)/\2/'
+            ;;
+        *)
+            template="$1"
+            fileout="$2"
+            shift 2
+            tempf=$(mktemp -u)
+            
+            tempi=$(mktemp -u).svg
+            
+            cp "$_1CANVALOCAL/$template.svg" $tempi
+            echo "#!/bin/bash" > $tempf
+            echo "pushd" $(dirname $tempi) "> /dev/null" >> $tempf
+            
+            tempib=$(basename $tempi)
+            for iter in "$@"
+            do
+                echo $iter | sed "s/\(.*\)=\(.*\)/sed -i 's\/-=\\\[\1\\\]=-\/\2\/g' $tempib/" >> $tempf
+                # $(echo $(echo $iter | sed 's/\(.*\)=\(.*\)/sed -i "s\/-=[\1]=-\/\2\/g"/') $tempf)
+            done
+
+            echo "popd > /dev/null" >> $tempf
+
+            bash $tempf
+            rm $tempf
+            
+            convert $tempi $fileout
+            rm $tempi
+            ;;
+    esac
 }
