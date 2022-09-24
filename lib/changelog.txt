@@ -87,3 +87,4 @@
 0.78   2022-09-21: 1app: added recipe for CherryTree
 0.79   2022-09-21: 1app: added recipe for Everdo
 0.80   2022-09-21: 1app: added recipe for Zettlr
+0.81   2022-09-24: 1canva: list svg templates (new feature)
