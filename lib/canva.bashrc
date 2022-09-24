@@ -9,9 +9,9 @@ function _nh1canva.menu {
   echo "___ Canva Section ___"
   echo "--- Create images from SVG templates"
   _1menuitem X 1canva "List all templates or help for given template"
-  _1menuitem X 1canvagen "Generate image from template"
-  _1menuitem P 1canvaadd "Install or update a template"
-  _1menuitem P 1canvadel "Remove installed template"
+  _1menuitem X 1canvagen "Generate image from template" convert
+  _1menuitem X 1canvaadd "Install or update a template"
+  _1menuitem X 1canvadel "Remove installed template"
 }
 
 # Destroy all global variables created by this file
@@ -36,10 +36,10 @@ function 1canva {
     local fn tc
     _nh1canva.setup
     tc=0
-    echo -n "Templates: "
+    echo -n "Templates:"
     for fn in $(ls -1 "$_1CANVALOCAL")
     do        
-        basename  "$fn" ".svg"
+        echo -n " "$(basename  "$fn" ".svg")
         tc=$((tc+1))
     done
     if [ $tc -eq 0 ]
@@ -92,4 +92,40 @@ function 1canvagen {
             rm $tempi
             ;;
     esac
+}
+
+# Add a svg template
+# @param SVG to add
+function 1canvaadd {
+    local ni no
+    case $# in
+        1)
+            ni="$1"
+            no="$(basename $1)"
+            ;;
+        2)
+            ni="$1"
+            no="$2"
+            if [ "${no: -4}" != ".svg" ]
+            then
+                no="$no.svg"
+            fi
+            ;;
+        *)
+            echo "Usage: 1canvaadd <svg-initial> (<name-of-template>)"
+            return
+            ;;
+    esac
+    cp "$ni" "$_1CANVALOCAL/$no"
+}
+
+# Remove a svg template
+# @param Name of template to remove
+function 1canvadel {
+    if [ -f "$_1CANVALOCAL/$1.svg" ]
+    then
+        rm "$_1CANVALOCAL/$1.svg"
+    else
+        print "Template $1 not found."
+    fi
 }
