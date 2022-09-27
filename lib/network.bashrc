@@ -92,41 +92,41 @@ function 1isip {
 # @param Host name you need an IP
 function 1host {
   local HNAM HNUM HLIN
-	if [ $# -eq 1 ]
-	then
-		HNAM=$1
+  if [ $# -eq 1 ]
+  then
+    HNAM=$1
     if 1isip "$HNAM"
     then
       echo "$HNAM"
       return 0
     fi
-    if HLIN=$(cat $(find "$_1NETLOCAL" -name "*.hosts") | grep "$HNAM ")
+    if HLIN=$(cat $(find "$_1NETLOCAL/" -name "*.hosts") | grep "$HNAM ")
     then
-			for HIP in ${HLIN/$HNAM/}
-			do
-				if ping -c 1 "$HIP" > /dev/null
-				then
-					echo "$HIP"
-					return 0
-				fi
-			done
+      for HIP in ${HLIN/$HNAM/}
+      do
+        if ping -c 1 "$HIP" > /dev/null
+        then
+          echo "$HIP"
+          return 0
+        fi
+      done
     fi
     if HLIN=$(dig +short "$HNAM" | xargs)
     then
       for HIP in ${HLIN/$HNAM/}
-			do
-				if ping -c 1 "$HIP" > /dev/null
-				then
-					echo "$HIP"
-					return 0
-				fi
-			done
+      do
+        if ping -c 1 "$HIP" > /dev/null
+        then
+          echo "$HIP"
+          return 0
+        fi
+      done
     fi
-		echo "$HNAM is unkown or unavailable."
+    echo "$HNAM is unkown or unavailable."
     return 1
-	else
-		echo "You need to put a machine name"
-	fi
+  else
+    echo "You need to put a machine name"
+  fi
 }
 
 # Run iperf with a simple and functional configuration, connecting iperfd IP
