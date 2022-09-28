@@ -92,3 +92,4 @@
 0.83   2022-09-24: 1canvaadd and 1canvadel created
 0.84   2022-09-27: Fixed bug in 1host
 0.85   2022-09-28: Fixed bug in 1app?del
+0.86   2022-09-28: 1app: added recipe for shelf
