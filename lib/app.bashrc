@@ -42,8 +42,8 @@ function _nh1app.clean {
 # Alias-like
 function 1applupd   { _nh1app.update local ; }
 function 1appgupd   { _nh1app.update global ; }
-function 1appldel   { _nh1app.remove local ; }
-function 1appgdel   { _nh1app.remove global ; }
+function 1appldel   { _nh1app.remove local "$1"; }
+function 1appgdel   { _nh1app.remove global "$1"; }
 function 1applclear { _nh1app.clear local ; }
 function 1appgclear { _nh1app.clear global ; }
 
@@ -427,6 +427,7 @@ function _nh1app.remove {
     local _NAA _NAF
     _NAA=$2
     _NAF=$(_nh1app.checkversion $1 $_NAA)
+    _1verb "App $_NAA installed with file $_NAF"
     if [ -n "$_NAF" ]
     then
         if [ "$1" = "local" ]
