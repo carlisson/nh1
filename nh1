@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.89
+_1VERSION=0.90
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -274,7 +274,8 @@ function 1version {
 function 1clean {
 	_1verb "Destroying all variables..."
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
-	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 1clean 1help
+	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
+	unset -f 1clean 1help _1compl
     _nh1app.clean
 	_nh1audio.clean
 	_nh1canva.clean
@@ -311,6 +312,33 @@ function 1verbose {
 	fi
 }
 
+# Generic complete function, finding formats
+# @param 1st file format. 0 for none
+# @param 2nd file format. 0 for none
+# @param 3th file format. 0 for none
+# @param 4th file format. 0 for none
+# @param 5th file format. 0 for none
+function _1compl {
+  COMREPLY=()
+  local word="${COMP_WORDS[COMP_CWORD]}"
+    if [ "$COMP_CWORD" -eq 1 ] && [ $1 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$1" -- "$word"))
+    elif [ "$COMP_CWORD" -eq 2 ] && [ $2 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$2" -- "$word"))
+    elif [ "$COMP_CWORD" -eq 3 ] && [ $3 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$3" -- "$word"))    
+    elif [ "$COMP_CWORD" -eq 4 ] && [ $4 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$4" -- "$word"))    
+    elif [ "$COMP_CWORD" -eq 5 ] && [ $5 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$5" -- "$word"))    
+    fi
+}
+
 #MAIN
 
 # Try to execute a `return` statement,
@@ -324,6 +352,7 @@ then
 	unset _1RUN
 else
 	_nh1app.complete
+	_nh1audio.complete
 	if return >/dev/null 2>&1
 	then
 		S1="source $_1RC"

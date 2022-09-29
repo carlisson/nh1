@@ -17,8 +17,22 @@ function _nh1audio.menu {
 # Destroy all global variables created by this file
 function _nh1audio.clean {
   unset -f _nh1audio.menu _nh1audio.clean 1alarm 1id3get 1id3put 1svideo
-  unset -f 1ogg2mp3 1talkbr 1yt3 1beat 1id3set 1genbigmp3
+  unset -f 1ogg2mp3 1talkbr 1yt3 1beat 1id3set 1genbigmp3 _nh1audio.complete
+  unset -f _nh1audio.complete.id3get _nh1audio.complete.id3set
+  unset -f _nh1audio.complete.svideo _nh1audio.complete.ogg2mp3
 }
+
+function _nh1audio.complete {
+  complete -F _nh1audio.complete.id3get 1id3get
+  complete -F _nh1audio.complete.id3set 1id3set
+  complete -F _nh1audio.complete.svideo 1svideo
+  complete -F _nh1audio.complete.ogg2mp3 ogg2mp3
+}
+
+function _nh1audio.complete.id3get { _1compl 'mp3' 0 0 0 0 ; }
+function _nh1audio.complete.id3set { _1compl 'mp3' 'txt' 0 0 0 ; }
+function _nh1audio.complete.svideo { _1compl 'mp3' 'png' 0 0 0 ; }
+function _nh1audio.complete.ogg2mp3 { _1compl 'ogg' 0 0 0 0 ; }
 
 # Extract ID3V2 metadata from an MP3 file
 # @param MP3 input file
@@ -87,7 +101,7 @@ function 1svideo {
 
 # Convert ogg file to mp3
 # @param Ogg input file
-# @param MP3 input file (optional)
+# @param MP3 output file (optional)
 function 1ogg2mp3 {
   local OGF MPF
   if 1check ffmpeg
