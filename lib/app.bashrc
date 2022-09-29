@@ -36,7 +36,7 @@ function _nh1app.clean {
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
-  unset -f 1appxupd _nh1app.where
+  unset -f 1appxupd _nh1app.where _nh1app.complete
 }
 
 # Alias-like
@@ -47,9 +47,17 @@ function 1appgdel   { _nh1app.remove global "$1"; }
 function 1applclear { _nh1app.clear local ; }
 function 1appgclear { _nh1app.clear global ; }
 
+function _nh1app.complete {
+    _1verb "Enabling complete for 1app."
+    complete -W "$(_nh1app.list local 0)" 1appladd
+    complete -W "$(_nh1app.list global 0)" 1appgadd
+    complete -W "$(_nh1app.list local 1)" 1appldel
+    complete -W "$(_nh1app.list global 1)" 1appgdel
+}
+
 function _nh1app.avail {
     pushd $_1APPLIB > /dev/null
-    ls *.app | sed 's/.app//g' | xargs
+    ls *.app | sed 's/.app//g' | tr '\n' ' '
     popd -n > /dev/null
 }
 
@@ -325,22 +333,25 @@ function 1appgadd {
     done
 }
 
-# List all installed apps
+# Based on avail, list apps with filters
 # @param local or global
+# @param installed (1) or not-installed (0)
 function _nh1app.list {
-   local _NAA _NAAC
-   echo "___ Installed Apps ($1) ___"
-   for _NAA in $(_nh1app.avail)
+    local _A _OUT _CHK
+    for _A in $(_nh1app.avail)
     do
-        _NAAC=$(_nh1app.checkversion $1 $_NAA)
-        if [ -n "$_NAAC" ]
+        _CHK=$(_nh1app.checkversion "$1" "$_A")
+        if [ $2 -eq 1 ] && [ -n "$_CHK" ]
         then
-            1tint 6 "$_NAA"
-            echo -en '\t'
-            echo $_NAAC
+            _OUT="$_OUT $_A"
+        elif [ $2 -eq 0 ] && [ -z "$_CHK" ]
+        then
+            _OUT="$_OUT $_A"
         fi
     done
+    echo $_OUT
 }
+
 
 # Update all installed apps
 # @param local or global

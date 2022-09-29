@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.88
+_1VERSION=0.89
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -323,15 +323,17 @@ then
 	$_1RUN $@
 	unset _1RUN
 else
+	_nh1app.complete
 	if return >/dev/null 2>&1
 	then
 		S1="source $_1RC"
 		if ! grep "$S1" ~/.bashrc > /dev/null
 		then
-		NH1
+			NH1
 		fi
 		unset S1
 	else
 			echo "You need run: source $_1RC"
+			return 0
 	fi
 fi

@@ -95,3 +95,4 @@
 0.86   2022-09-28: 1app: added recipe for shelf
 0.87   2022-09-29: Fixed bug in 1areon
 0.88   2022-09-29: 1app: added recipe for Rancher Desktop
+0.89   2022-09 29: 1app: bash completion support
