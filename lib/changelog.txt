@@ -93,3 +93,4 @@
 0.84   2022-09-27: Fixed bug in 1host
 0.85   2022-09-28: Fixed bug in 1app?del
 0.86   2022-09-28: 1app: added recipe for shelf
+0.87   2022-09-29: Fixed bug in 1areon

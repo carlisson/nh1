@@ -427,13 +427,13 @@ function 1areon {
 		echo "  all: every host in all groups"
 		echo
 		echo "Available groups:"
-		find "$_1NETLOCAL" -name "*.hosts" -printf '%f\n' | sed 's/.hosts//g'
+		find "$_1NETLOCAL/" -name "*.hosts" -printf '%f\n' | sed 's/.hosts//g'
 		return 1
 	fi
 	if [ "$1" = "all" ]
 	then
 		FILE=$(mktemp)
-		cat $(find "$_1NETLOCAL" -name "*.hosts") > $FILE
+		cat $(find "$_1NETLOCAL/" -name "*.hosts") > $FILE
 	else
 		FILE="$_1NETLOCAL/$1.hosts"
 	fi
