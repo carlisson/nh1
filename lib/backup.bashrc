@@ -6,8 +6,8 @@ _1BACKDIR="$HOME/Backup"
 _1BACKMAX=0
 
 # Generate partial menu
-function _nh1app.menu {
-  echo "___ Install App ___"
+function _nh1back.menu {
+  echo "___ Backup tools ___"
   _1menuitem X 1backup "Make backup of a dir"
   _1menuitem P 1unback "Restore a backup"
   _1menuitem X 1backlist "List saved backups"
