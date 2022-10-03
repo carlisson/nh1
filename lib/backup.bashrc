@@ -61,28 +61,38 @@ function 1backup {
     _COMPL=""
     _COUNT=0
     _1verb "Name $_NAME, Target $_TARGET, save to $_DEST."
-    mkdir -p "$_DEST"
 
-    if 1check 7z
-    then        
-        _COMPL=".7z"
-        if [ -f "$_DEST/$_FILE$_COMPL" ]
-        then
-            while [ -f "$_DEST/$_FILE.$_COUNT$_COMPL" ]
-            do
-                _COUNT=$((_COUNT + 1))
-            done
-            _FILE="$_DEST/$_FILE.$_COUNT$_COMPL"
+    if [ $# -eq 2 ]
+    then
+
+        mkdir -p "$_DEST"
+
+        if 1check 7z
+        then        
+            _COMPL=".7z"
+            if [ -f "$_DEST/$_FILE$_COMPL" ]
+            then
+                while [ -f "$_DEST/$_FILE.$_COUNT$_COMPL" ]
+                do
+                    _COUNT=$((_COUNT + 1))
+                done
+                _FILE="$_DEST/$_FILE.$_COUNT$_COMPL"
+            else
+                _FILE="$_DEST/$_FILE$_COMPL"
+            fi
+            _1verb "Running 7zip for $_TARGET, saving in $_FILE..."
+            7z a "$_FILE" "$_TARGET"
+            _1verb "7zip finished."
         else
-            _FILE="$_DEST/$_FILE$_COMPL"
+            echo "7zip not installed."
         fi
-        _1verb "Running 7zip for $_TARGET, saving in $_FILE..."
-        7z a "$_FILE" "$_TARGET"
-        _1verb "7zip finished."
+
+        _nh1back.maxcontrol "$_NAME" "$_DEST"
+
     else
-        echo "7zip not installed."
+        echo "Usage: 1backup <name> <directory>"
+        echo "  - Name: backup id"
+        echo "  - Directory: target to backup"
+        echo "    Backups are saved in $_1BACKDIR"
     fi
-
-    _nh1back.maxcontrol "$_NAME" "$_DEST"
-
 }
