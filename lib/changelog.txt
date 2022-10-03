@@ -99,3 +99,4 @@
 0.90   2022-09-29: 1audio: bash completion support
 0.91   2022-10-03: 1backup: using 7zip with some useful things
 0.92   2022-10-03: 1backup: simple help instructions
+0.93   2022-10-03: 1backup: "next filename" code in a function

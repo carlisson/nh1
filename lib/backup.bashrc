@@ -49,6 +49,33 @@ function _nh1back.maxcontrol {
     fi
 }
 
+# Returns next filename for base and extension
+# @param Name (id)
+# @param Extension
+function _nh1back.nextfile {
+    local _NAME _EXT _FILE _DEST _COUNT
+    _NAME="$1"
+    _EXT="$2"
+    _DEST=$(date "+$_1BACKDIR/%Y/%m")
+    _FILE=$(date "+$_NAME-%Y-%m-%d")
+    _COUNT=0
+
+    mkdir -p "$_DEST"
+
+    if [ -f "$_DEST/$_FILE.$_EXT" ]
+    then
+        while [ -f "$_DEST/$_FILE.$_COUNT.$_EXT" ]
+        do
+            _COUNT=$((_COUNT + 1))
+        done
+        _FILE="$_DEST/$_FILE.$_COUNT.$_EXT"
+    else
+        _FILE="$_DEST/$_FILE.$_EXT"
+    fi
+
+    echo $_FILE
+}
+
 # Make backup of a directory
 # @param Name (id) for backup
 # @param Directory to backup
@@ -56,33 +83,14 @@ function 1backup {
     local _NAME _TARGET _DEST _FILE _COMPL _COUNT _OLD
     _NAME="$1"
     _TARGET="$2"
-    _DEST=$(date "+$_1BACKDIR/%Y/%m")
-    _FILE=$(date "+$_NAME-%Y-%m-%d")
-    _COMPL=""
-    _COUNT=0
-    _1verb "Name $_NAME, Target $_TARGET, save to $_DEST."
-
+    
     if [ $# -eq 2 ]
     then
-
-        mkdir -p "$_DEST"
-
         if 1check 7z
         then        
-            _COMPL=".7z"
-            if [ -f "$_DEST/$_FILE$_COMPL" ]
-            then
-                while [ -f "$_DEST/$_FILE.$_COUNT$_COMPL" ]
-                do
-                    _COUNT=$((_COUNT + 1))
-                done
-                _FILE="$_DEST/$_FILE.$_COUNT$_COMPL"
-            else
-                _FILE="$_DEST/$_FILE$_COMPL"
-            fi
+            _FILE=$(_nh1back.nextfile "$_NAME" "7z")
             _1verb "Running 7zip for $_TARGET, saving in $_FILE..."
             7z a "$_FILE" "$_TARGET"
-            _1verb "7zip finished."
         else
             echo "7zip not installed."
         fi
