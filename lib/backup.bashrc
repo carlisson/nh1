@@ -91,8 +91,36 @@ function 1backup {
             _FILE=$(_nh1back.nextfile "$_NAME" "7z")
             _1verb "Running 7zip for $_TARGET, saving in $_FILE..."
             7z a "$_FILE" "$_TARGET"
+        elif 1check zip
+        then
+            _FILE=$(_nh1back.nextfile "$_NAME" "zip")
+            _1verb "Running zip for $_TARGET, saving in $_FILE..."
+            zip -r "$_FILE" "$_TARGET"
+        elif 1check tar
+        then
+            if 1check xz
+            then
+                _FILE=$(_nh1back.nextfile "$_NAME" "tar.xz")
+                _1verb "Running tar with xz for $_TARGET, saving in $_FILE..."
+                tar -cJf "$_FILE" "$_TARGET"
+            elif 1check bzip2
+            then
+                _FILE=$(_nh1back.nextfile "$_NAME" "tar.bz2")
+                _1verb "Running tar with bzip2 for $_TARGET, saving in $_FILE..."
+                tar -cjf "$_FILE" "$_TARGET"
+            elif 1check gzip
+            then
+                _FILE=$(_nh1back.nextfile "$_NAME" "tar.gz")
+                _1verb "Running tar with gzip for $_TARGET, saving in $_FILE..."
+                tar -czf "$_FILE" "$_TARGET"
+            else            
+                echo "Running tar without compression! Install gzip, bzip2 or xz!"
+                _FILE=$(_nh1back.nextfile "$_NAME" "tar")
+                _1verb "Running tar without compression for $_TARGET, saving in $_FILE..."
+                tar -cf "$_FILE" "$_TARGET"
+            fi
         else
-            echo "7zip not installed."
+            echo "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or xz)."
         fi
 
         _nh1back.maxcontrol "$_NAME" "$_DEST"
