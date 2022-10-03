@@ -10,22 +10,39 @@ function _nh1app.menu {
   echo "___ Install App ___"
   _1menuitem X 1backup "Make backup of a dir"
   _1menuitem P 1unback "Restore a backup"
-  _1menuitem P 1backlist "List saved backups"
+  _1menuitem X 1backlist "List saved backups"
   }
 
 # Destroy all global variables created by this file
 function _nh1back.clean {
   unset _1BACKDIR _1BACKMAX
   unset -f 1backup 1unback 1backlist  _nh1back.nextfile _nh1back.maxcontrol
-  unset -f _nh1back.log
+  unset -f _nh1back.log _nh1back.custom 1backlist _nh1back.names
+}
+
+function _nh1back.names {
+    find "$_1BACKDIR" -name '*-????-??-??*' | xargs -n 1 basename | \
+        sed 's/\(.*\)\(-....-..-..\)\(.*\)/\1/g' | sort | uniq | xargs
 }
 
 function _nh1back.complete {
     _1verb "Enabling complete for 1backup."
-    #complete -W "$(_nh1app.list local 0)" 1appladd
+    complete -W "$(_nh1back.names)" 1backlist
     #complete -W "$(_nh1app.list global 0)" 1appgadd
     #complete -W "$(_nh1app.list local 1)" 1appldel
     #complete -W "$(_nh1app.list global 1)" 1appgdel
+}
+
+# Load variables defined by user
+function _nh1back.custom {
+    if [[ $NORG_BACKUP_DIR ]]
+    then
+        _1BACKDIR="$NORG_BACKUP_DIR"
+    fi
+    if [[ $NORG_BACKUP_MAX ]]
+    then
+        _1BACKMAX="$NORG_BACKUP_MAX"
+    fi
 }
 
 function _nh1back.log {
@@ -100,15 +117,8 @@ function 1backup {
     _NAME="$1"
     _TARGET="$2"
 
-    if [[ $NORG_BACKUP_DIR ]]
-    then
-        _1BACKDIR="$NORG_BACKUP_DIR"
-    fi
-    if [[ $NORG_BACKUP_MAX ]]
-    then
-        _1BACKMAX="$NORG_BACKUP_MAX"
-    fi
-    
+    _nh1back.custom
+
     if [ $# -eq 2 ]
     then
         if 1check 7z
@@ -185,5 +195,19 @@ function 1backup {
         echo "  - Name: backup id"
         echo "  - Directory: target to backup"
         echo "    Backups are saved in $_1BACKDIR"
+    fi
+}
+
+# List all backups for one name (id)
+# @param Name (id)
+function 1backlist {
+    _nh1back.custom
+    if [ $# -eq 1 ]
+    then
+        find "$_1BACKDIR" -name "$1*"
+    else
+        echo "Use 1backlist <name> to find all backups for <name>."
+        echo -n "Names: "
+        _nh1back.names
     fi
 }
