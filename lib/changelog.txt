@@ -101,3 +101,4 @@
 0.92   2022-10-03: 1backup: simple help instructions
 0.93   2022-10-03: 1backup: "next filename" code in a function
 0.94   2022-10-03: 1backup: support for zip and tar (gz/bz2/xz)
+0.95   2022-10-03: 1backup making log in 3 files
