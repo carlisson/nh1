@@ -97,3 +97,4 @@
 0.88   2022-09-29: 1app: added recipe for Rancher Desktop
 0.89   2022-09-29: 1app: bash completion support
 0.90   2022-09-29: 1audio: bash completion support
+0.91   2022-09-29: 1backup: using 7zip with some useful things

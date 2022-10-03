@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.90
+_1VERSION=0.91
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -47,6 +47,7 @@ mkdir -p "$_1PLUS"
 # IMPORT MODULES
 source "$_1LIB/app.bashrc"
 source "$_1LIB/audio.bashrc"
+source "$_1LIB/backup.bashrc"
 source "$_1LIB/canva.bashrc"
 source "$_1LIB/misc.bashrc"
 source "$_1LIB/network.bashrc"
@@ -107,6 +108,7 @@ function NH1 {
 
 		_nh1app.menu
 		_nh1audio.menu
+		_nh1back.menu
 		_nh1canva.menu
 		_nh1misc.menu
 		_nh1network.menu
@@ -278,6 +280,7 @@ function 1clean {
 	unset -f 1clean 1help _1compl
     _nh1app.clean
 	_nh1audio.clean
+	_nh1back.clean
 	_nh1canva.clean
 	_nh1misc.clean
 	_nh1network.clean
@@ -353,6 +356,7 @@ then
 else
 	_nh1app.complete
 	_nh1audio.complete
+	_nh1back.complete
 	if return >/dev/null 2>&1
 	then
 		S1="source $_1RC"
