@@ -107,3 +107,4 @@
 0.98   2022-10-05: Internal templates to /lib/templates
 0.99   2022-10-05: Created template for modules .bashrc
 0.100  2022-10-05: Fixed 1backup. 1canva completion ok.
+0.101  2022-10-05: Generic internal _1list

@@ -21,5 +21,10 @@ function _nh1module.complete {
     _1verb "Enabling complete for 1module."
 }
 
+# General information about variables and customizing
+function _nh1module.info {
+    _1verb "Listing user variables"
+}
+
 # Alias-like
 

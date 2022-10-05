@@ -26,7 +26,7 @@ function _nh1audio.complete {
   complete -F _nh1audio.complete.id3get 1id3get
   complete -F _nh1audio.complete.id3set 1id3set
   complete -F _nh1audio.complete.svideo 1svideo
-  complete -F _nh1audio.complete.ogg2mp3 ogg2mp3
+  complete -F _nh1audio.complete.ogg2mp3 1ogg2mp3
 }
 
 function _nh1audio.complete.id3get { _1compl 'mp3' 0 0 0 0 ; }

@@ -35,7 +35,7 @@ function _nh1canva.complete.list {
   COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
-        COMPREPLY=($(_nh1canva.list))
+        COMPREPLY=($(_1list $_1CANVALOCAL "svg"))
     fi
 }
 
@@ -48,22 +48,13 @@ function _nh1canva.setup {
     fi
 }
 
-# Returns all installed templates
-# @param Template to list vars
-function _nh1canva.list {
-    local fn
-    for fn in $(ls -1 "$_1CANVALOCAL")
-    do        
-        echo -n ' '$(basename  "$fn" ".svg")
-    done
-}
-
 # List all installed templates
 function 1canva {
     local _clist
     _nh1canva.setup
     
-    _clist=($(_nh1canva.list))
+    #_clist=($(_nh1canva.list))
+    _clist=($(_1list $_1CANVALOCAL "svg"))
     
     echo "Templates: ${_clist[@]}"
     

@@ -7,7 +7,7 @@ function _nh1misc.menu {
   echo "___ Miscelania ___"
   _1menuitem X 1ajoin "Join an array, using first param as delimiter"
   _1menuitem X 1booklet "Generate a seq for booklet, for given page number"
-  _1menuitem W 1color "Generate a random hexadecimal color"
+  _1menuitem W 1color "Generate a random hexadecimal color" openssl
   _1menuitem W 1du "Disk usage" du
   _1menuitem X 1escape "Rename a file or dir, excluding special chars"
   _1menuitem W 1pass "Generate a secure password" openssl
@@ -25,8 +25,15 @@ function _nh1misc.menu {
 function _nh1misc.clean {
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
-  unset -f 1booklet 1pdfbkl
+  unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
 }
+
+function _nh1misc.complete {
+  complete -F _nh1misc.complete.from_pdf 1pdfbkl
+  complete -F _nh1misc.complete.from_pdf 1pdfopt
+}
+
+function _nh1misc.complete.from_pdf { _1compl 'pdf' 0 0 0 0 ; }
 
 # Print percentage for battery charge
 function 1power {

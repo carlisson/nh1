@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.100
+_1VERSION=0.101
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -277,7 +277,7 @@ function 1clean {
 	_1verb "Destroying all variables..."
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
-	unset -f 1clean 1help _1compl
+	unset -f 1clean 1help _1compl _1list
     _nh1app.clean
 	_nh1audio.clean
 	_nh1back.clean
@@ -340,6 +340,23 @@ function _1compl {
     then
         COMPREPLY=($(compgen -f -X "!*.$5" -- "$word"))    
     fi
+}
+
+# Returns all internal items of one kind
+# @param Path
+# @param File extension
+# @param exclude extension? Default: yes
+function _1list {
+    local fn
+    for fn in $(ls -1 "$1")
+    do        
+		if [ $# -gt 2 ]
+		then
+			echo -n " $fn"
+		else
+        	echo -n ' '$(basename  "$fn" ".$2")
+		fi
+    done
 }
 
 #MAIN
