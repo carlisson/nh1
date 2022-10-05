@@ -27,7 +27,7 @@ function _nh1canva.setup {
     if [ ! -d "$_1CANVALOCAL" ]
     then
         mkdir -p "$_1CANVALOCAL"
-        cp "$_1LIB/canva-template.svg" "$_1CANVALOCAL/hello.svg"
+        cp "$_1LIB/templates/canva-template.svg" "$_1CANVALOCAL/hello.svg"
     fi
 }
 
