@@ -17,10 +17,27 @@ function _nh1canva.menu {
 # Destroy all global variables created by this file
 function _nh1canva.clean {
   unset _1CANVALOCAL _1CANVALIB
-  unset -f 1canva 1canvagen 1canvaadd 1canvadel
+  unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
+  unset -f _nh1canva.complete.canvaadd
+}
+
+# Auto-completion
+function _nh1canva.complete {
+    _1verb "Configuring auto-completion for 1canva"    
+    complete -F _nh1canva.complete.canvaadd 1canvaadd
+    complete -F _nh1canva.complete.list 1canvagen
 }
 
 # Alias-like
+function _nh1canva.complete.canvaadd { _1compl 'svg' 0 0 0 0 ; }
+
+function _nh1canva.complete.list {
+  COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+        COMPREPLY=($(_nh1canva.list))
+    fi
+}
 
 # Configure your template path
 function _nh1canva.setup {
@@ -31,18 +48,26 @@ function _nh1canva.setup {
     fi
 }
 
-# List all installed templates
-function 1canva {
-    local fn tc
-    _nh1canva.setup
-    tc=0
-    echo -n "Templates:"
+# Returns all installed templates
+# @param Template to list vars
+function _nh1canva.list {
+    local fn
     for fn in $(ls -1 "$_1CANVALOCAL")
     do        
-        echo -n " "$(basename  "$fn" ".svg")
-        tc=$((tc+1))
+        echo -n ' '$(basename  "$fn" ".svg")
     done
-    if [ $tc -eq 0 ]
+}
+
+# List all installed templates
+function 1canva {
+    local _clist
+    _nh1canva.setup
+    
+    _clist=($(_nh1canva.list))
+    
+    echo "Templates: ${_clist[@]}"
+    
+    if [ ${#_clist[@]} -eq 0 ]
     then
         echo "No template found."
     fi

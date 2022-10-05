@@ -21,16 +21,16 @@ function _nh1back.clean {
 }
 
 function _nh1back.names {
-    find "$_1BACKDIR" -name '*-????-??-??*' | xargs -n 1 basename | \
-        sed 's/\(.*\)\(-....-..-..\)\(.*\)/\1/g' | sort | uniq | xargs
+    if [ "$(find "$_1BACKDIR" -name '*-????-??-??*')" != "" ]
+    then
+        find "$_1BACKDIR" -name '*-????-??-??*' | xargs -n 1 basename | \
+            sed 's/\(.*\)\(-....-..-..\)\(.*\)/\1/g' | sort | uniq | xargs
+    fi
 }
 
 function _nh1back.complete {
     _1verb "Enabling complete for 1backup."
     complete -W "$(_nh1back.names)" 1backlist
-    #complete -W "$(_nh1app.list global 0)" 1appgadd
-    #complete -W "$(_nh1app.list local 1)" 1appldel
-    #complete -W "$(_nh1app.list global 1)" 1appgdel
 }
 
 # Load variables defined by user
