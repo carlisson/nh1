@@ -105,3 +105,4 @@
 0.96   2022-10-03: 1backlist created (completion enabled)
 0.97   2022-10-03: Fixed 1backup menu
 0.98   2022-10-05: Internal templates to /lib/templates
+0.99   2022-10-05: Created template for modules .bashrc
