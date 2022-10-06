@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 19:11-0300\n"
+"POT-Creation-Date: 2022-10-06 20:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -758,4 +758,96 @@ msgstr ""
 
 #: network.bashrc:572
 msgid "Doing backup of %s to %s"
+msgstr ""
+
+#: rpg.bashrc:6
+msgid "RPG"
+msgstr ""
+
+#: rpg.bashrc:7
+msgid "Roll a single dice from N faces (default: 6)"
+msgstr ""
+
+#: rpg.bashrc:8
+msgid "Roll dices with RPG formula: 2d10, 1d4+1..."
+msgstr ""
+
+#: rpg.bashrc:9
+msgid "Roll one d4 dice"
+msgstr ""
+
+#: rpg.bashrc:10
+msgid "Roll one d6 dice"
+msgstr ""
+
+#: rpg.bashrc:11
+msgid "Roll one d8 dice"
+msgstr ""
+
+#: rpg.bashrc:12
+msgid "Roll one d10 dice"
+msgstr ""
+
+#: rpg.bashrc:13
+msgid "Roll one d12 dice"
+msgstr ""
+
+#: rpg.bashrc:14
+msgid "Roll one d20 dice"
+msgstr ""
+
+#: rpg.bashrc:15
+msgid "Roll one d100 dice"
+msgstr ""
+
+#: rpg.bashrc:16
+msgid "Sort a random playing card"
+msgstr ""
+
+#: rpg.bashrc:80
+msgid "Params"
+msgstr ""
+
+#: rpg.bashrc:80
+msgid "Examples"
+msgstr ""
+
+#: rpg.bashrc:89
+msgid "Joker"
+msgstr ""
+
+#: rpg.bashrc:95
+msgid "Ace"
+msgstr ""
+
+#: rpg.bashrc:96
+msgid "Jack"
+msgstr ""
+
+#: rpg.bashrc:97
+msgid "Queen"
+msgstr ""
+
+#: rpg.bashrc:98
+msgid "King"
+msgstr ""
+
+#: rpg.bashrc:103
+msgid "Clubs"
+msgstr ""
+
+#: rpg.bashrc:104
+msgid "Diamonds"
+msgstr ""
+
+#: rpg.bashrc:105
+msgid "Hearts"
+msgstr ""
+
+#: rpg.bashrc:106
+msgid "Spades"
+msgstr ""
+
+#: rpg.bashrc:108
+msgid "%s of %s"
 msgstr ""

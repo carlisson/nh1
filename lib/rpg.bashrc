@@ -3,17 +3,17 @@
 
 # Generate partial menu (for RPG functions)
 function _nh1rpg.menu {
-  echo "___ RPG ___"
-  _1menuitem W 1dice "Roll a single dice from N faces (default: 6)"
-  _1menuitem W 1roll "Roll dices with RPG formula: 2d10, 1d4+1..."
-  _1menuitem W 1d4 "Roll one d4 dice"
-  _1menuitem W 1d6 "Roll one d6 dice"
-  _1menuitem W 1d8 "Roll one d8 dice"
-  _1menuitem W 1d10 "Roll one d10 dice"
-  _1menuitem W 1d12 "Roll one d12 dice"
-  _1menuitem W 1d20 "Roll one d20 dice"
-  _1menuitem W 1d100 "Roll one d100 dice"
-  _1menuitem W 1card "Sort a random playing card"
+  echo "___ $(_1text RPG) ___"
+  _1menuitem W 1dice "$(_1text "Roll a single dice from N faces (default: 6)")"
+  _1menuitem W 1roll "$(_1text "Roll dices with RPG formula: 2d10, 1d4+1...")"
+  _1menuitem W 1d4 "$(_1text "Roll one d4 dice")"
+  _1menuitem W 1d6 "$(_1text "Roll one d6 dice")"
+  _1menuitem W 1d8 "$(_1text "Roll one d8 dice")"
+  _1menuitem W 1d10 "$(_1text "Roll one d10 dice")"
+  _1menuitem W 1d12 "$(_1text "Roll one d12 dice")"
+  _1menuitem W 1d20 "$(_1text "Roll one d20 dice")"
+  _1menuitem W 1d100 "$(_1text "Roll one d100 dice")"
+  _1menuitem W 1card "$(_1text "Sort a random playing card")"
 }
 
 # Destroy all global variables created by this file
@@ -77,17 +77,34 @@ function 1roll {
     fi
 		echo "$ROLLTOT ($ROLLDET$ROLLADD)"
 	else
-		echo "Params: xdy+z. Examples: 3d6, 5d8-4, 1d4+1"
+		echo "$(_1text "Params"): xdy+z. $(_1text "Examples"): 3d6, 5d8-4, 1d4+1"
 	fi
 }
 
 # Random playing card
 function 1card {
-	local SUIT=`tr -dc 'CDHS' < /dev/urandom | \
-    head -c 1 | sed 's/C/Clubs/' | \
-    sed 's/D/Diamonds/' | sed 's/H/Hearts/' | sed 's/S/Spades/'`
-	local NUMB=`tr -dc 'A23456789XJQK' < /dev/urandom | head -c 1 | \
-  sed 's/X/10/' | sed 's/A/Ace/' | sed 's/J/Jack/' | \
-  sed 's/Q/Queen/' | sed 's/K/King/'`
-	echo $NUMB of $SUIT
+	local FSUIT FNUMB SUIT NUMB
+	if [ $(shuf -i 1-27 -n 1) -eq 1 ]
+	then
+	  _1text "Joker"
+	  echo
+	else
+		SUIT=$(tr -dc 'CDHS' < /dev/urandom | head -c 1)
+		NUMB=$(tr -dc 'A23456789XJQK' < /dev/urandom | head -c 1)
+		case $NUMB in
+			A) FNUMB=$(_1text "Ace") ;;
+			J) FNUMB=$(_1text "Jack") ;;
+			Q) FNUMB=$(_1text "Queen") ;;
+			K) FNUMB=$(_1text "King") ;;
+			X) FNUMB="10" ;;
+			*) FNUMB="$NUMB" ;;
+		esac
+		case $SUIT in
+			C) FSUIT=$(_1text "Clubs") ;;
+			D) FSUIT=$(_1text "Diamonds") ;;
+			H) FSUIT=$(_1text "Hearts") ;;
+			S) FSUIT=$(_1text "Spades") ;;
+		esac
+		printf "$(_1text "%s of %s")\n" $FNUMB $FSUIT
+	fi
 }

@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.116
+_1VERSION=0.117
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -378,7 +378,7 @@ function 1translate {
 			pushd "$_1LIB"
 			xgettext -o "locale/NH1.pot" -L Shell --keyword --keyword=_1text \
 				"$_1DIR/nh1" "app.bashrc" "audio.bashrc" "backup.bashrc" \
-				"canva.bashrc" "misc.bashrc" "network.bashrc"
+				"canva.bashrc" "misc.bashrc" "network.bashrc" "rpg.bashrc"
 			if [ -f "locale/$1.po" ]
 			then
 				msgmerge -U "locale/$1.po" "locale/NH1.pot"

@@ -123,3 +123,4 @@
 0.114  2022-10-06: 1canva using gettext, translation pt_BR ok
 0.115  2022-10-06: 1misc using gettext, translation pt_BR ok
 0.116  2022-10-06: 1network using gettext, translation pt_BR ok
+0.117  2022-10-06: 1rpg using gettext, translation pt_BR ok.
