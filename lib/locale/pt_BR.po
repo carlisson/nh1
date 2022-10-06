@@ -14,7 +14,7 @@ msgstr ""
 "Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
@@ -28,114 +28,116 @@ msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
 #: nh1:130
 msgid "Write a string in another color"
-msgstr ""
+msgstr "Escreve um texto em outra cor"
 
 #: /home/cgaldino/Sources/nh1/nh1:133
 msgid "Create and apply translation for NH1."
-msgstr ""
+msgstr "Cria e aplica tradução para NH1."
 
 #: /home/cgaldino/Sources/nh1/nh1:134
 msgid "Update your NH1, using git"
-msgstr ""
+msgstr "Atualiza seu NH1, usando git"
 
 #: /home/cgaldino/Sources/nh1/nh1:135
 msgid "Enable/disable verbose mode"
-msgstr ""
+msgstr "Habilita/desabilita o modo verboso"
 
 #: /home/cgaldino/Sources/nh1/nh1:136
 msgid "List NH1 version and latest changes/updates"
-msgstr ""
+msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
 #: /home/cgaldino/Sources/nh1/nh1:140
 msgid "planning"
-msgstr ""
+msgstr "planejamento"
 
 #: /home/cgaldino/Sources/nh1/nh1:142
 msgid "experimental"
-msgstr ""
+msgstr "experimental"
 
 #: /home/cgaldino/Sources/nh1/nh1:144
 msgid "working"
-msgstr ""
+msgstr "funcional"
 
 #: /home/cgaldino/Sources/nh1/nh1:146
 msgid "deprecated"
-msgstr ""
+msgstr "obsoleto"
 
 #: /home/cgaldino/Sources/nh1/nh1:149
 msgid "Power-up your shell"
-msgstr ""
+msgstr "Dê poderes ao seu shell"
 
 #: /home/cgaldino/Sources/nh1/nh1:161
 msgid "You need to put a string and a color number (optional)"
-msgstr ""
+msgstr "Você precisa passar um texto e um número de cor (opcional)"
 
 #: /home/cgaldino/Sources/nh1/nh1:162
 msgid "black"
-msgstr ""
+msgstr "preto"
 
 #: /home/cgaldino/Sources/nh1/nh1:163
 msgid "red"
-msgstr ""
+msgstr "vermelho"
 
 #: /home/cgaldino/Sources/nh1/nh1:164
 msgid "green"
-msgstr ""
+msgstr "verde"
 
 #: /home/cgaldino/Sources/nh1/nh1:165
 msgid "yellow"
-msgstr ""
+msgstr "amarelo"
 
 #: /home/cgaldino/Sources/nh1/nh1:166
 msgid "blue"
-msgstr ""
+msgstr "azul"
 
 #: /home/cgaldino/Sources/nh1/nh1:167
 msgid "magenta"
-msgstr ""
+msgstr "magenta"
 
 #: /home/cgaldino/Sources/nh1/nh1:168
 msgid "cyan"
-msgstr ""
+msgstr "ciano"
 
 #: /home/cgaldino/Sources/nh1/nh1:169
 msgid "white"
-msgstr ""
+msgstr "branco"
 
 #: /home/cgaldino/Sources/nh1/nh1:227
 msgid "%s is missing for %s"
-msgstr ""
+msgstr "%s está faltando para %s"
 
 #: /home/cgaldino/Sources/nh1/nh1:229
 msgid "Program %s does not exist or it is unavailable for %s.\\n"
-msgstr ""
+msgstr "O programa %s não existe ou está indisponível para %s.\\n"
 
 #: /home/cgaldino/Sources/nh1/nh1:248
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
 msgstr ""
+"NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
+"disponíveis"
 
 #: /home/cgaldino/Sources/nh1/nh1:252 /home/cgaldino/Sources/nh1/nh1:262
 msgid "Done!"
-msgstr ""
+msgstr "Feito!"
 
 #: /home/cgaldino/Sources/nh1/nh1:259
 msgid "After destroy variables, I will load %s."
-msgstr ""
+msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
 #: /home/cgaldino/Sources/nh1/nh1:289
 msgid "Destroying all variables..."
-msgstr ""
+msgstr "Destruindo todas as variáveis..."
 
 #: /home/cgaldino/Sources/nh1/nh1:305 /home/cgaldino/Sources/nh1/nh1:319
 msgid "Verbose mode is on"
-msgstr ""
+msgstr "Modo verboso está ligado"
 
 #: /home/cgaldino/Sources/nh1/nh1:307 /home/cgaldino/Sources/nh1/nh1:315
 msgid "Verbose mode is off"
-msgstr ""
+msgstr "Modo verboso está desligado"
 
 #: /home/cgaldino/Sources/nh1/nh1:383
 msgid "Usage: %s.\\n"
-msgstr ""
+msgstr "Uso: %s. \\n"
