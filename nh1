@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.109
+_1VERSION=0.110
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -226,7 +226,7 @@ function 1check {
 				then
 	        		_1verb $(printf "$(_1text "%s is missing for %s")" $PROG $USER)
 				else
-					printf "$(_1text "Program %s does not exist or it is unavailable for %s.\n")" $PROG $USER
+					printf "$(_1text "Program %s does not exist or it is unavailable for %s.")\n" $PROG $USER
 			  fi
 				CFAILS=$((CFAILS+1))
 			fi
@@ -371,8 +371,13 @@ function 1translate {
 	local AUX
 	case "$#" in
 		1)
-			xgettext -o "$_1LIB/locale/NH1.pot" -L Shell --keyword --keyword=_1text "$_1DIR/nh1"
-			msginit -o "$_1LIB/locale/$1.po" -l "$1" -i "$_1LIB/locale/NH1.pot"
+			xgettext -o "$_1LIB/locale/NH1.pot" -L Shell --keyword --keyword=_1text "$_1DIR/nh1" "$_1LIB/app.bashrc"
+			if [ -f "$_1LIB/locale/$1.po" ]
+			then
+				msgmerge -U "$_1LIB/locale/$1.po" "$_1LIB/locale/NH1.pot"
+			else
+				msginit -o "$_1LIB/locale/$1.po" -l "$1" -i "$_1LIB/locale/NH1.pot"
+			fi
 			;;
 		2)
 			AUX="$_1LIB/locale/$1/LC_MESSAGES"
@@ -380,7 +385,7 @@ function 1translate {
 			msgfmt -o "$AUX/NH1.mo" "$_1LIB/locale/$1.po"
 			;;
 		*)
-			printf "$(_1text "Usage: %s.\n")" "1translate <language-code> [compile]"
+			printf "$(_1text "Usage: %s.")\n" "1translate <language-code> [compile]"
 			;;
 	esac
 }

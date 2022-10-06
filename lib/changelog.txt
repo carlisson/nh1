@@ -116,3 +116,4 @@
 0.107  2022-10-06: Main file using gettext for all messages
 0.108  2022-10-06: 1translate to help using gettext for NH1
 0.109  2022-10-06: main file translated to pt_BR
+0.110  2022-10-06: 1app using gettext, translation pt_BR ok

@@ -15,16 +15,16 @@ _1APPGICON="/usr/share/icons"
 # Generate partial menu
 function _nh1app.menu {
   echo "___ Install App ___"
-  _1menuitem X 1app "List all available apps"
-  _1menuitem X 1appladd "Install or update an app locally"
-  _1menuitem X 1appgadd "Install or update an app globaly"
-  _1menuitem X 1applupd "Update all local apps"
-  _1menuitem X 1appgupd "Update all global apps"
-  _1menuitem X 1appxupd "Upgrade all packages(using OS)"
-  _1menuitem X 1appldel "Remove a local app"
-  _1menuitem X 1appgdel "Remove a global app"
-  _1menuitem X 1applclear "Remove old versions for a local app (or all)"
-  _1menuitem X 1appgclear "Remove old versions for a global app (or all)"
+  _1menuitem X 1app "$(_1text "List all available apps")"
+  _1menuitem X 1appladd "$(_1text "Install or update an app locally")"
+  _1menuitem X 1appgadd "$(_1text "Install or update an app globaly")"
+  _1menuitem X 1applupd "$(_1text "Update all local apps")"
+  _1menuitem X 1appgupd "$(_1text "Update all global apps")"
+  _1menuitem X 1appxupd "$(_1text "Upgrade all packages(using OS)")"
+  _1menuitem X 1appldel "$(_1text "Remove a local app")"
+  _1menuitem X 1appgdel "$(_1text "Remove a global app")"
+  _1menuitem X 1applclear "$(_1text "Remove old versions for a local app (or all)")"
+  _1menuitem X 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
 }
 
 # Destroy all global variables created by this file
@@ -104,8 +104,8 @@ function _nh1app.checksetup {
 # List all available app image for installation
 function 1app {
     local _NAA _NAS _NAU _NAC
-    echo "___ 1app status ___"
-    printf "%-15s %-45s%s\n" "App" "Description" "Installation"
+    echo "___ $(_1text "1app status") ___"
+    printf "%-15s %-45s%s\n" "$(_1text App)" "$(_1text Description)" "$(_1text Installation)"
     for _NAA in $(_nh1app.avail)
     do
         printf "%-15s %-45s" "$_NAA" "$(_nh1app.description $_NAA)"
@@ -117,32 +117,32 @@ function 1app {
         _NAU=$(_nh1app.checkversion local "$_NAA")
         if [ -n "$_NAU" ]
         then
-            1tint 6 "local"
+            1tint 6 "$(_1text local)"
             echo -en '\t'
             _NAC=$((_NAC+1))
         fi
         _NAU=$(_nh1app.checkversion global "$_NAA")
         if [ -n "$_NAU" ]
         then
-            1tint 6 "global"
+            1tint 6 "$(_1text global)"
             echo -en '\t'
             _NAC=$((_NAC+1))
         fi
         if [ "$_NAC" -eq 0 ]
         then
-            echo -n 'None'
+            echo -n "$(_1text None)"
         fi
         echo
     done
-    echo "___ Usage ___"
+    echo "___ $(_1text Usage) ___"
     1tint 2 1appladd
-    echo -n " to install locally and "
+    echo -n "$(_1text " to install locally and ")"
     1tint 1 1appldel
-    echo " to uninstall."
+    echo "$(_1text " to uninstall.")"
     1tint 2 1appgadd
-    echo -n " to install globally and "
+    echo -n "$(_1text " to install globally and ")"
     1tint 1 1appgdel
-    echo " to uninstall."
+    echo "$(_1text " to uninstall.")"
 }
 
 # Open app description
@@ -218,7 +218,7 @@ function _nh1app.single {
         _NANEW=$(_nh1app.checkversion new $_NAPP)
         if [ -f "$_NADIR/$_NANEW" ]
         then
-            echo "$_NAPP is already up to date."
+            printf "$(_1text "%s is already up to date.")\n" $_NAPP
         else
             pushd $_NADIR
             if _nh1app.openapp $_NAPP
@@ -305,10 +305,10 @@ function _nh1app.add {
                  _nh1app.single "$2" "$_NAD" "$_NAB" "$_NAS"
                  ;;
             *)
-                echo "Type unsuported: $_NAT"
+                printf "$(_1text "Type unsuported: %s.")\n" $_NAT
             esac
     else
-        echo "Unknown app: $2"
+        echo "$(_1text "Unknown app: %s.")" $2
     fi
 }
 
@@ -393,13 +393,13 @@ function 1appxupd {
         
     if _nh1app.where dnf > /dev/null
     then
-        echo "Upgrading dnf..."
+        printf "$(_1text "Upgrading %s...")\n" dnf
         _1sudo dnf update
     fi
 
     if _nh1app.where apt > /dev/null
     then
-        echo "Upgrading apt..."
+        printf "$(_1text "Upgrading %s...")\n" apt
         _1sudo apt update
         _1sudo apt upgrade
         _1sudo apt clean
@@ -407,26 +407,26 @@ function 1appxupd {
 
     if _nh1app.where zypper > /dev/null
     then
-        echo "Upgrading zypper..."
+        printf "$(_1text "Upgrading %s...")\n" zypper
         _1sudo zypper ref
         _1sudo zypper update
     fi
 
     if _nh1app.where pacman > /dev/null
     then
-        echo "Upgrading pacman..."
+        printf "$(_1text "Upgrading %s...")\n" pacman
         _1sudo pacman -Syu
     fi
 
     if _nh1app.where snap > /dev/null
     then
-        echo "Upgrading snap..."
+        printf "$(_1text "Upgrading %s...")\n" snap
         _1sudo snap refresh
     fi
 
     if _nh1app.where flatpak > /dev/null
     then
-        echo "Upgrading flatpak..."
+        printf "$(_1text "Upgrading %s...")\n" flatpak
         _1sudo flatpak update
     fi
 }
@@ -438,7 +438,7 @@ function _nh1app.remove {
     local _NAA _NAF
     _NAA=$2
     _NAF=$(_nh1app.checkversion $1 $_NAA)
-    _1verb "App $_NAA installed with file $_NAF"
+    _1verb "$(printf "$(_1text "App %s installed with file %s")" $_NAA $_NAF)"
     if [ -n "$_NAF" ]
     then
         if [ "$1" = "local" ]
