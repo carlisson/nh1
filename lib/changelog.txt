@@ -118,3 +118,4 @@
 0.109  2022-10-06: main file translated to pt_BR
 0.110  2022-10-06: 1app using gettext, translation pt_BR ok
 0.111  2022-10-06: 1translate with completion
+0.112  2022-10-06: 1audio using gettext, translation pt_BR ok

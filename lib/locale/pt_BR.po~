@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 16:44-0300\n"
+"POT-Creation-Date: 2022-10-06 17:25-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,99 +18,100 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: /home/cgaldino/Sources/nh1/nh1:130
+#: /home/bardo/sources/nh1/nh1:130
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
 
-#: /home/cgaldino/Sources/nh1/nh1:131
+#: /home/bardo/sources/nh1/nh1:131
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
-#: /home/cgaldino/Sources/nh1/nh1:132
+#: /home/bardo/sources/nh1/nh1:132
 msgid "Write a string in another color"
 msgstr "Escreve um texto em outra cor"
 
-#: /home/cgaldino/Sources/nh1/nh1:133
+#: /home/bardo/sources/nh1/nh1:133
 msgid "Create and apply translation for NH1."
 msgstr "Cria e aplica tradução para NH1."
 
-#: /home/cgaldino/Sources/nh1/nh1:134
+#: /home/bardo/sources/nh1/nh1:134
 msgid "Update your NH1, using git"
 msgstr "Atualiza seu NH1, usando git"
 
-#: /home/cgaldino/Sources/nh1/nh1:135
+#: /home/bardo/sources/nh1/nh1:135
 msgid "Enable/disable verbose mode"
 msgstr "Habilita/desabilita o modo verboso"
 
-#: /home/cgaldino/Sources/nh1/nh1:136
+#: /home/bardo/sources/nh1/nh1:136
 msgid "List NH1 version and latest changes/updates"
 msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
-#: /home/cgaldino/Sources/nh1/nh1:140
+#: /home/bardo/sources/nh1/nh1:140
 msgid "planning"
 msgstr "planejamento"
 
-#: /home/cgaldino/Sources/nh1/nh1:142
+#: /home/bardo/sources/nh1/nh1:142
 msgid "experimental"
 msgstr "experimental"
 
-#: /home/cgaldino/Sources/nh1/nh1:144
+#: /home/bardo/sources/nh1/nh1:144
 msgid "working"
 msgstr "funcional"
 
-#: /home/cgaldino/Sources/nh1/nh1:146
+#: /home/bardo/sources/nh1/nh1:146
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: /home/cgaldino/Sources/nh1/nh1:149
+#: /home/bardo/sources/nh1/nh1:149
 msgid "Power-up your shell"
 msgstr "Dê poderes ao seu shell"
 
-#: /home/cgaldino/Sources/nh1/nh1:161
+#: /home/bardo/sources/nh1/nh1:161
 msgid "You need to put a string and a color number (optional)"
 msgstr "Você precisa passar um texto e um número de cor (opcional)"
 
-#: /home/cgaldino/Sources/nh1/nh1:162
+#: /home/bardo/sources/nh1/nh1:162
 msgid "black"
 msgstr "preto"
 
-#: /home/cgaldino/Sources/nh1/nh1:163
+#: /home/bardo/sources/nh1/nh1:163
 msgid "red"
 msgstr "vermelho"
 
-#: /home/cgaldino/Sources/nh1/nh1:164
+#: /home/bardo/sources/nh1/nh1:164
 msgid "green"
 msgstr "verde"
 
-#: /home/cgaldino/Sources/nh1/nh1:165
+#: /home/bardo/sources/nh1/nh1:165
 msgid "yellow"
 msgstr "amarelo"
 
-#: /home/cgaldino/Sources/nh1/nh1:166
+#: /home/bardo/sources/nh1/nh1:166
 msgid "blue"
 msgstr "azul"
 
-#: /home/cgaldino/Sources/nh1/nh1:167
+#: /home/bardo/sources/nh1/nh1:167
 msgid "magenta"
 msgstr "magenta"
 
-#: /home/cgaldino/Sources/nh1/nh1:168
+#: /home/bardo/sources/nh1/nh1:168
 msgid "cyan"
 msgstr "ciano"
 
-#: /home/cgaldino/Sources/nh1/nh1:169
+#: /home/bardo/sources/nh1/nh1:169
 msgid "white"
 msgstr "branco"
 
-#: /home/cgaldino/Sources/nh1/nh1:227
+#: /home/bardo/sources/nh1/nh1:227
 msgid "%s is missing for %s"
 msgstr "%s está faltando para %s"
 
-#: /home/cgaldino/Sources/nh1/nh1:229
-msgid "Program %s does not exist or it is unavailable for %s.\\n"
-msgstr "O programa %s não existe ou está indisponível para %s.\\n"
+#: /home/bardo/sources/nh1/nh1:229
+#, fuzzy
+msgid "Program %s does not exist or it is unavailable for %s."
+msgstr "O programa %s não existe ou está indisponível para %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:248
+#: /home/bardo/sources/nh1/nh1:248
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
@@ -118,137 +119,213 @@ msgstr ""
 "NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
 "disponíveis"
 
-#: /home/cgaldino/Sources/nh1/nh1:252 /home/cgaldino/Sources/nh1/nh1:262
+#: /home/bardo/sources/nh1/nh1:252 /home/bardo/sources/nh1/nh1:262
 msgid "Done!"
 msgstr "Feito!"
 
-#: /home/cgaldino/Sources/nh1/nh1:259
+#: /home/bardo/sources/nh1/nh1:259
 msgid "After destroy variables, I will load %s."
 msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:289
+#: /home/bardo/sources/nh1/nh1:289
 msgid "Destroying all variables..."
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/Sources/nh1/nh1:305 /home/cgaldino/Sources/nh1/nh1:319
+#: /home/bardo/sources/nh1/nh1:305 /home/bardo/sources/nh1/nh1:319
 msgid "Verbose mode is on"
 msgstr "Modo verboso está ligado"
 
-#: /home/cgaldino/Sources/nh1/nh1:307 /home/cgaldino/Sources/nh1/nh1:315
+#: /home/bardo/sources/nh1/nh1:307 /home/bardo/sources/nh1/nh1:315
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/cgaldino/Sources/nh1/nh1:388
-msgid "Usage: %s.\\n"
-msgstr "Uso: %s. \\n"
+#: /home/bardo/sources/nh1/nh1:395 audio.bashrc:136 audio.bashrc:226
+#, fuzzy
+msgid "Usage: %s."
+msgstr "Uso: %s."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:18
+#: app.bashrc:17
+#, fuzzy
+msgid "Install App"
+msgstr "Instalação"
+
+#: app.bashrc:18
 #, fuzzy
 msgid "List all available apps"
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:19
+#: app.bashrc:19
 msgid "Install or update an app locally"
 msgstr "Instala ou atualiza um aplicativo localmente"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:20
+#: app.bashrc:20
 msgid "Install or update an app globaly"
 msgstr "Instala ou atualiza um aplicativo globalmente"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:21
+#: app.bashrc:21
 msgid "Update all local apps"
 msgstr "Atualiza todos os aplicativos locais"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:22
+#: app.bashrc:22
 msgid "Update all global apps"
 msgstr "Atualiza todos os aplicativos globais"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:23
+#: app.bashrc:23
 msgid "Upgrade all packages(using OS)"
 msgstr "Atualiza todos os pacotes (usando o SO)"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:24
+#: app.bashrc:24
 msgid "Remove a local app"
 msgstr "Remove um aplicativo local"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:25
+#: app.bashrc:25
 msgid "Remove a global app"
 msgstr "Remove um aplicativo global"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:26
+#: app.bashrc:26
 msgid "Remove old versions for a local app (or all)"
 msgstr "Remove versões antigas de um aplicativo (ou de todos)"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:27
+#: app.bashrc:27
 msgid "Remove old versions for a global app (or all)"
 msgstr "Remove versões antigas de um aplicativo global (ou de todos)"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:107
+#: app.bashrc:107
 msgid "1app status"
 msgstr "Status do 1App"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:108
+#: app.bashrc:108
 msgid "App"
 msgstr "Aplicativo"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:108
+#: app.bashrc:108
 msgid "Description"
 msgstr "Descrição"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:108
+#: app.bashrc:108
 msgid "Installation"
 msgstr "Instalação"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:120
+#: app.bashrc:120
 msgid "local"
 msgstr "local"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:127
+#: app.bashrc:127
 msgid "global"
 msgstr "global"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:133
+#: app.bashrc:133
 msgid "None"
 msgstr "Nada"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:137
+#: app.bashrc:137
 msgid "Usage"
 msgstr "Uso"
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:139
+#: app.bashrc:139
 msgid " to install locally and "
 msgstr " para instalar localmente e "
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:141
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:145
+#: app.bashrc:141 app.bashrc:145
 msgid " to uninstall."
 msgstr " para desinstalar."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:143
+#: app.bashrc:143
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:221
-msgid "%s is already up to date.\\n"
-msgstr "%s já está atualizado.\\n"
+#: app.bashrc:221
+#, fuzzy
+msgid "%s is already up to date."
+msgstr "%s já está atualizado."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:308
-msgid "Type unsuported: %s.\\n"
-msgstr "Tipo não suportado: %s.\\n"
+#: app.bashrc:308
+#, fuzzy
+msgid "Type unsuported: %s."
+msgstr "Tipo não suportado: %s."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:311
-msgid "Unknown app: %s.\\n"
-msgstr "Aplicativo desconhecido: %s\\n"
+#: app.bashrc:311
+#, fuzzy
+msgid "Unknown app: %s."
+msgstr "Aplicativo desconhecido: %s."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:396
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:402
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:410
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:417
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:423
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:429
+#: app.bashrc:396 app.bashrc:402 app.bashrc:410 app.bashrc:417 app.bashrc:423
+#: app.bashrc:429
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: /home/cgaldino/Sources/nh1/lib/app.bashrc:441
+#: app.bashrc:441
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
+
+#: audio.bashrc:5
+msgid "Audio"
+msgstr "Áudio"
+
+#: audio.bashrc:6
+msgid "Play an audio alarm"
+msgstr "Toca um alarme sonoro"
+
+#: audio.bashrc:7
+msgid "Play a simple beat in given frequency"
+msgstr "Toca um som simples em uma dada frequência"
+
+#: audio.bashrc:8
+msgid "Append various MP3 files in one single file"
+msgstr "Junta vários arquivos MP3 em um único arquivo"
+
+#: audio.bashrc:9
+msgid "Extract metadata from an MP3 to a TXT"
+msgstr "Extrai metadados de um arquivo MP3 para TXT"
+
+#: audio.bashrc:10
+msgid "Create a new MP3 file applying metadata from a TXT"
+msgstr "Cria um novo arquivo MP3 aplicando metadados de um TXT"
+
+#: audio.bashrc:11
+msgid "Convert a ogg file to mp3"
+msgstr "Converte um arquivo ogg para mp3"
+
+#: audio.bashrc:12
+msgid "Create static video from MP3 and PNG"
+msgstr "Cria um vídeo estático a partir de um MP3 e um PNG"
+
+#: audio.bashrc:13
+msgid "Convert Portuguese text to WAV"
+msgstr "Converte textos em Português para WAV"
+
+#: audio.bashrc:14
+msgid "Extract Youtube video to MP3"
+msgstr "Extrai vídeo do Youtube para MP3"
+
+#: audio.bashrc:47
+msgid "You need to give 2 params: %s."
+msgstr "Você precisa dar 2 parâmetros: %s."
+
+#: audio.bashrc:73
+msgid "You need to give 2 or 3 params."
+msgstr "Você precisa dar 2 ou 3 parâmetros."
+
+#: audio.bashrc:74
+msgid "MP3 input file"
+msgstr "Arquivo de entrada MP3"
+
+#: audio.bashrc:75
+msgid " 2) TXT metadata input file"
+msgstr ""
+
+#: audio.bashrc:76
+msgid " 3) (optional) MP3 output file. Default: <input>-c.mp3"
+msgstr ""
+
+#: audio.bashrc:97
+msgid "Call like this: 1svideo <MP3-input> <PNG-input> <MP4-output>"
+msgstr ""
+
+#: audio.bashrc:121
+msgid "You need to info OGG input file and (optional) MP3 output"
+msgstr ""
+
+#: audio.bashrc:169
+msgid "You need to give one or more youtube video URLs"
+msgstr ""

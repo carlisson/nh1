@@ -14,7 +14,7 @@ _1APPGICON="/usr/share/icons"
 
 # Generate partial menu
 function _nh1app.menu {
-  echo "___ Install App ___"
+  echo "___ $(_1text "Install App") ___"
   _1menuitem X 1app "$(_1text "List all available apps")"
   _1menuitem X 1appladd "$(_1text "Install or update an app locally")"
   _1menuitem X 1appgadd "$(_1text "Install or update an app globaly")"

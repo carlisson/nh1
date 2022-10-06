@@ -2,16 +2,16 @@
 
 # Generate partial menu (for audio functions)
 function _nh1audio.menu {
-  echo "___ Audio ___"
-  _1menuitem W 1alarm "Play an audio alarm" speaker-test
-  _1menuitem W 1beat "Play a simple beat in given frequency" speaker-test
-  _1menuitem X 1genbigmp3 "Append various MP3 files in one single file" ffmpeg
-  _1menuitem W 1id3get "Extract metadata from an MP3 to a TXT" ffmpeg
-  _1menuitem W 1id3set "Create a new MP3 file applying metadata from a TXT" ffmpeg
-  _1menuitem X 1ogg2mp3 "Convert a ogg file to mp3" ffmpeg
-  _1menuitem W 1svideo "Create static video from MP3 and PNG" ffmpeg
-  _1menuitem X 1talkbr "Convert Portuguese text to WAV" espeak
-  _1menuitem W 1yt3 "Extract Youtube video to MP3" youtube-dl ffmpeg
+  echo "___ $(_1text "Audio") ___"
+  _1menuitem W 1alarm "$(_1text "Play an audio alarm")" speaker-test
+  _1menuitem W 1beat "$(_1text "Play a simple beat in given frequency")" speaker-test
+  _1menuitem X 1genbigmp3 "$(_1text "Append various MP3 files in one single file")" ffmpeg
+  _1menuitem W 1id3get "$(_1text "Extract metadata from an MP3 to a TXT")" ffmpeg
+  _1menuitem W 1id3set "$(_1text "Create a new MP3 file applying metadata from a TXT")" ffmpeg
+  _1menuitem X 1ogg2mp3 "$(_1text "Convert a ogg file to mp3")" ffmpeg
+  _1menuitem W 1svideo "$(_1text "Create static video from MP3 and PNG")" ffmpeg
+  _1menuitem X 1talkbr "$(_1text "Convert Portuguese text to WAV")" espeak
+  _1menuitem W 1yt3 "$(_1text "Extract Youtube video to MP3")" youtube-dl ffmpeg
 }
 
 # Destroy all global variables created by this file
@@ -44,7 +44,7 @@ function 1id3get {
     then
       ffmpeg -i "$1" -f ffmetadata "$2" &> /dev/null
     else
-      echo "You need to give 2 params: 1id3get <MP3-Input> <TXT-Output>"
+      printf "$(_1text "You need to give 2 params: %s.")\n" "1id3get <MP3-Input> <TXT-Output>"
     fi
   fi
 }
@@ -70,10 +70,10 @@ function 1id3set {
 	    ffmpeg -i "$CIN" -i "$CMD" -map_metadata 1 -c:a copy \
         -id3v2_version 3 -write_id3v1 1 "$COUT" &> /dev/null
     else
-      echo "You need to give 2 or 3 params."
-      echo " 1) MP3 input file"
-      echo " 2) TXT metadata input file"
-      echo " 3) (optional) MP3 output file. Default: <input>-c.mp3"
+      _1text "You need to give 2 or 3 params."
+      printf " 1) %s.\n" "$(_1text "MP3 input file")"
+      printf " 2) %s.\n" "$(_1text "TXT metadata input file")"
+      printf " 3) %s. %s: %s.\n" "$(_1text "(optional) MP3 output file")" "$(_1text "Default")" "<input>-c.mp3"
     fi
   fi
 }
@@ -94,7 +94,7 @@ function 1svideo {
 	    ffmpeg -loop 1 -i "$SVPIN" -i "$SVMIN" -c:v libx264 -c:a aac \
         -strict experimental -b:a 192k -shortest "$SVMOUT"
     else
-      echo "Call like this: 1svideo <MP3-input> <PNG-input> <MP4-output>"
+      printf "$(_1text "Call like this: %s.")\n" "1svideo <MP3-input> <PNG-input> <MP4-output>"
     fi
   fi
 }
@@ -118,7 +118,7 @@ function 1ogg2mp3 {
   	  ffmpeg -i "$OGF" "$MPF"
   	  rm "$OGF"
     else
-      echo "You need to info OGG input file and (optional) MP3 output"
+      _1text "You need to info OGG input file and (optional) MP3 output"
     fi
   fi
 }
@@ -133,7 +133,7 @@ function 1talkbr {
     then
       espeak -v brazil-mbrola-1 "$1" -w "$2"
     else
-      echo "Use: 1talkbr 'Message' <WAV-output>"
+      printf "$(_1text "Usage: %s.")\n" "1talkbr 'Message' <WAV-output>"
     fi
   fi
 }
@@ -161,12 +161,12 @@ function 1yt3 {
     	  cd "$YLOCAL"
     	  ffmpeg -i "$YTMPDIR/$YVID" -metadata title="$YTITLE" "$YFILE"
     	  rm -f "$YTMPDIR/*"
-    	  echo `date` ':' "$YTITLE" >> .yt3.log
+    	  echo $(date) ':' "$YTITLE" >> .yt3.log
       done
 
       rm -rf "$YTMPDIR"
     else
-      echo "You need to give one or more youtube video URLs"
+      _1text "You need to give one or more youtube video URLs"
     fi
   fi
 }
@@ -223,7 +223,7 @@ function 1genbigmp3 {
       ffmpeg -i $1/final.ogg $2
       rm -f $1/*.ogg
     else
-      echo Usage: 1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]
+      printf "$(_1text "Usage: %s.")\n" "1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]"
     fi
   fi
 }

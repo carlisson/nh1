@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.111
+_1VERSION=0.112
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -375,13 +375,16 @@ function 1translate {
 	local AUX
 	case "$#" in
 		1)
-			xgettext -o "$_1LIB/locale/NH1.pot" -L Shell --keyword --keyword=_1text "$_1DIR/nh1" "$_1LIB/app.bashrc"
-			if [ -f "$_1LIB/locale/$1.po" ]
+			pushd "$_1LIB"
+			xgettext -o "locale/NH1.pot" -L Shell --keyword --keyword=_1text \
+				"$_1DIR/nh1" "app.bashrc" "audio.bashrc"
+			if [ -f "locale/$1.po" ]
 			then
-				msgmerge -U "$_1LIB/locale/$1.po" "$_1LIB/locale/NH1.pot"
+				msgmerge -U "locale/$1.po" "locale/NH1.pot"
 			else
-				msginit -o "$_1LIB/locale/$1.po" -l "$1" -i "$_1LIB/locale/NH1.pot"
+				msginit -o "locale/$1.po" -l "$1" -i "locale/NH1.pot"
 			fi
+			popd
 			;;
 		2)
 			AUX="$_1LIB/locale/$1/LC_MESSAGES"
