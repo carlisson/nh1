@@ -120,3 +120,4 @@
 0.111  2022-10-06: 1translate with completion
 0.112  2022-10-06: 1audio using gettext, translation pt_BR ok
 0.113  2022-10-06: 1backup using gettext, translation pt_BR ok
+0.114  2022-10-06: 1canva using gettext, translation pt_BR ok

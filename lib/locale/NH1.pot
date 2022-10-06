@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 18:05-0300\n"
+"POT-Creation-Date: 2022-10-06 18:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,6 +136,7 @@ msgid "Verbose mode is off"
 msgstr ""
 
 #: /home/bardo/sources/nh1/nh1:395 audio.bashrc:136 audio.bashrc:226
+#: backup.bashrc:201 canva.bashrc:131
 msgid "Usage: %s."
 msgstr ""
 
@@ -345,7 +346,7 @@ msgid "Enabling completion for 1backup."
 msgstr ""
 
 #: backup.bashrc:73
-msgid "There are %s backups. Max is %i. Removing %s."
+msgid "There are %i backups. Max is %i. Removing %s."
 msgstr ""
 
 #: backup.bashrc:76
@@ -391,10 +392,6 @@ msgid ""
 "xz)."
 msgstr ""
 
-#: backup.bashrc:201
-msgid "Usage: %s.\\n"
-msgstr ""
-
 #: backup.bashrc:202
 msgid "Name: backup id"
 msgstr ""
@@ -409,4 +406,44 @@ msgstr ""
 
 #: backup.bashrc:217
 msgid "Names"
+msgstr ""
+
+#: canva.bashrc:9
+msgid "Canva Section"
+msgstr ""
+
+#: canva.bashrc:10
+msgid "Create images from SVG templates"
+msgstr ""
+
+#: canva.bashrc:11
+msgid "List all templates or help for given template"
+msgstr ""
+
+#: canva.bashrc:12
+msgid "Generate image from template"
+msgstr ""
+
+#: canva.bashrc:13
+msgid "Install or update a template"
+msgstr ""
+
+#: canva.bashrc:14
+msgid "Remove installed template"
+msgstr ""
+
+#: canva.bashrc:59
+msgid "Templates: %s."
+msgstr ""
+
+#: canva.bashrc:63
+msgid "No template found."
+msgstr ""
+
+#: canva.bashrc:76
+msgid "Usages:"
+msgstr ""
+
+#: canva.bashrc:145
+msgid "Template %s not found."
 msgstr ""

@@ -6,12 +6,12 @@ _1CANVALOCAL="$_1UDATA/canvas"
 
 # Generate partial menu
 function _nh1canva.menu {
-  echo "___ Canva Section ___"
-  echo "--- Create images from SVG templates"
-  _1menuitem X 1canva "List all templates or help for given template"
-  _1menuitem X 1canvagen "Generate image from template" convert
-  _1menuitem X 1canvaadd "Install or update a template"
-  _1menuitem X 1canvadel "Remove installed template"
+  echo "___ $(_1text "Canva Section") ___"
+  echo "--- $(_1text "Create images from SVG templates")"
+  _1menuitem X 1canva "$(_1text "List all templates or help for given template")"
+  _1menuitem X 1canvagen "$(_1text "Generate image from template")" convert
+  _1menuitem X 1canvaadd "$(_1text "Install or update a template")"
+  _1menuitem X 1canvadel "$(_1text "Remove installed template")"
 }
 
 # Destroy all global variables created by this file
@@ -56,11 +56,11 @@ function 1canva {
     #_clist=($(_nh1canva.list))
     _clist=($(_1list $_1CANVALOCAL "svg"))
     
-    echo "Templates: ${_clist[@]}"
+    printf "$(_1text "Templates: %s.")\n" ${_clist[@]}
     
     if [ ${#_clist[@]} -eq 0 ]
     then
-        echo "No template found."
+        _1text "No template found."
     fi
 }
 
@@ -73,7 +73,7 @@ function 1canvagen {
     subst=""
     case $# in
         0)
-            echo "Usages:"
+            _1text "Usages:"
             echo "  1canvagen <template>"
             echo "  1canvagen <template> <outputfile> [key=value]*"
             ;;
@@ -128,7 +128,7 @@ function 1canvaadd {
             fi
             ;;
         *)
-            echo "Usage: 1canvaadd <svg-initial> (<name-of-template>)"
+            printf "$(_1text "Usage: %s.")\n" "1canvaadd <svg-initial> (<name-of-template>)"
             return
             ;;
     esac
@@ -142,6 +142,6 @@ function 1canvadel {
     then
         rm "$_1CANVALOCAL/$1.svg"
     else
-        print "Template $1 not found."
+        printf "$(_1text "Template %s not found.")\n" $1
     fi
 }
