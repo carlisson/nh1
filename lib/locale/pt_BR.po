@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 18:43-0300\n"
+"POT-Creation-Date: 2022-10-06 19:11-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -576,4 +576,194 @@ msgstr "Nenhum grupo de dica com o nome %s."
 
 #: misc.bashrc:366
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
-msgstr "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo temporário: %s."
+msgstr ""
+"Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "
+"temporário: %s."
+
+#: network.bashrc:9
+msgid "Network"
+msgstr "Redes"
+
+#: network.bashrc:10
+msgid "Returns all hosts in all your networks"
+msgstr "Retorna todos os hosts de todas as suas redes"
+
+#: network.bashrc:11
+msgid "Check status for every host in a internal .hosts"
+msgstr "Checa status para cada host em um arquivo interno .hosts"
+
+#: network.bashrc:12
+msgid "Returns baudrate for a number from 1 to 13"
+msgstr "Returna baudrate para um número entre 1 e 13"
+
+#: network.bashrc:13
+msgid "Search in all network every IP with given port open"
+msgstr "Busca em toda a rede os IPs com certa porta aberta"
+
+#: network.bashrc:14
+msgid "Return a valid ping-available IP for some host or domain name"
+msgstr "Retorna um IP válido para algum host ou domínio"
+
+#: network.bashrc:15
+msgid "Return HTTP status for given URL"
+msgstr "Retorna status HTTP para uma URL"
+
+#: network.bashrc:16
+msgid "Run iperf connecting to a 1iperfd IP"
+msgstr "Roda iperf conectando-se a um IP 1iperfd"
+
+#: network.bashrc:17
+msgid "Run iperfd, waiting for 1iperf connection"
+msgstr "Roda iperfd, aguardando uma conexão do 1iperf"
+
+#: network.bashrc:18
+msgid "Return if a given string is an IP address"
+msgstr "Returna se um texto é um endereço IP"
+
+#: network.bashrc:19
+msgid "Return if server is on. Params: (-q for quiet or name), IP"
+msgstr "Retorna se o servidor está ligado. Parâmetros: (-1 para quieto ou nome), IP"
+
+#: network.bashrc:20
+msgid "Return prefixes for a given vendor"
+msgstr "Retorna prefixos para um dado fabricante"
+
+#: network.bashrc:21
+msgid "Return all networks running on network interfaces"
+msgstr "Retorna todas as redes rodando nas interfaces de rede"
+
+#: network.bashrc:22
+msgid "Scan if given port(s) for a given host is/are open"
+msgstr "Busca se dada porta (ou portas) para certo host está/estão aberta(s)"
+
+#: network.bashrc:23
+msgid "Connect to a serial port"
+msgstr "Conecta a uma porta serial"
+
+#: network.bashrc:24
+msgid "Connect a SSH server (working with eXtreme)"
+msgstr "Conecta a um servidor SSH (funciona com eXtreme)"
+
+#: network.bashrc:25
+msgid "Run tcpdump in a given network interface"
+msgstr "Roda tcpdump em uma dada interface de rede"
+
+#: network.bashrc:26
+msgid "Backup configuration of one or more extreme switchs"
+msgstr "Salva a configuração de um ou mais switch(s) eXtreme"
+
+#: network.bashrc:27
+msgid "List all VLANs in given eXtreme switch"
+msgstr "Lista todas as VLANs em um dado switch eXtreme"
+
+#: network.bashrc:73
+msgid "Bauds possible:"
+msgstr "Bauds possíveis:"
+
+#: network.bashrc:96
+msgid "You need to give a string to test if it is an IP address."
+msgstr "Você precisa passar um texto para testar se ele é um endereço IP."
+
+#: network.bashrc:134
+msgid "%s is unkown or unavailable."
+msgstr "%s desconhecido ou indisponível."
+
+#: network.bashrc:137
+msgid "You need to put a machine name"
+msgstr "Você precisa passar um nome de máquina"
+
+#: network.bashrc:149
+msgid "Trying to connect %s (%s) with iperf."
+msgstr "Tentando conectar %s (%s) com iperf."
+
+#: network.bashrc:152
+msgid "You need to put a IP address where 1iperfd is running."
+msgstr "Você precisa passar um endereço IP onde 1iperfd esteja rodando."
+
+#: network.bashrc:200
+msgid "%s is active"
+msgstr "%s está ativo"
+
+#: network.bashrc:207
+msgid "%s not found"
+msgstr "%s não encontrado."
+
+#: network.bashrc:240
+msgid "Connecting via SSH."
+msgstr "Conectando via SSH."
+
+#: network.bashrc:245
+msgid "Trying connect in simple mode"
+msgstr "Tentando conectar em modo simples"
+
+#: network.bashrc:251
+msgid "Trying connect using AES192"
+msgstr "Tentando conectar usando AES192"
+
+#: network.bashrc:257
+msgid "Trying connect with various options"
+msgstr "Tentando conectar com várias opções"
+
+#: network.bashrc:263
+msgid "It works."
+msgstr "Funcionou."
+
+#: network.bashrc:265
+msgid "Cannot connect with %s using SSH."
+msgstr "Não consegui conectar com %s usando SSH."
+
+#: network.bashrc:299
+msgid "%s is on"
+msgstr "%s está ligada"
+
+#: network.bashrc:304
+msgid "Host not found."
+msgstr "Host não encontrado."
+
+#: network.bashrc:313
+msgid "%s open"
+msgstr "%s aberta"
+
+#: network.bashrc:318
+msgid "%s refused"
+msgstr "%s recusada"
+
+#: network.bashrc:414
+msgid "trying %s"
+msgstr "tentando %s"
+
+#: network.bashrc:422
+msgid "%i hosts with port %i open."
+msgstr "%i hosts com porta %i aberta."
+
+#: network.bashrc:437
+msgid "every host in all groups"
+msgstr "todo host em todos os grupos"
+
+#: network.bashrc:439
+msgid "Available groups"
+msgstr "Grupos disponíveis"
+
+#: network.bashrc:468
+msgid "Unknown group of hosts."
+msgstr "Grupo de hosts desconhecido."
+
+#: network.bashrc:482
+msgid "You can use hostnames contained in .hosts"
+msgstr "Você pode usar hostnames contidos em .hosts"
+
+#: network.bashrc:490
+msgid "VLANs in SWITCH! Please inform password for %s."
+msgstr "VLANs no Switch! Por favor, informe senha para %s."
+
+#: network.bashrc:538
+msgid "Serial program not found. Checked"
+msgstr "Programa serial não encontrado."
+
+#: network.bashrc:549
+msgid "No ttyUSB found."
+msgstr "Nenhuma porta ttyUSB foi encontrada."
+
+#: network.bashrc:572
+msgid "Doing backup of %s to %s"
+msgstr "Fazendo backup de %s para %s"

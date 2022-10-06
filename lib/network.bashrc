@@ -6,25 +6,25 @@ _1IPERFPORT=2918
 
 # Generate partial menu (for Network functions)
 function _nh1network.menu {
-  echo "___ Network ___"
-  _1menuitem X 1allhosts "Returns all hosts in all your networks" ip ipcalc
-  _1menuitem X 1areon "Check status for every host in a internal .hosts"
-  _1menuitem X 1bauds "Returns baudrate for a number from 1 to 13"
-  _1menuitem X 1findport "Search in all network every IP with given port open" ip ipcalc
-  _1menuitem W 1host "Return a valid ping-available IP for some host or domain name"
-  _1menuitem X 1httpstatus "Return HTTP status for given URL" curl
-  _1menuitem X 1iperf "Run iperf connecting to a 1iperfd IP" iperf
-  _1menuitem X 1iperfd "Run iperfd, waiting for 1iperf connection" iperf
-  _1menuitem X 1isip "Return if a given string is an IP address"
-  _1menuitem X 1ison "Return if server is on. Params: (-q for quiet or name), IP"
-  _1menuitem X 1macvendor "Return prefixes for a given vendor"
-  _1menuitem X 1mynet "Return all networks running on network interfaces" ip
-  _1menuitem X 1ports "Scan if given port(s) for a given host is/are open"
-  _1menuitem X 1serial "Connect to a serial port"
-  _1menuitem X 1ssh "Connect a SSH server (working with eXtreme)" ssh
-  _1menuitem X 1tcpdump "Run tcpdump in a given network interface" tcpdump
-  _1menuitem X 1xt-backup "Backup configuration of one or more extreme switchs" ssh
-  _1menuitem X 1xt-vlan "List all VLANs in given eXtreme switch" ssh
+  echo "___ $(_1text Network) ___"
+  _1menuitem X 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
+  _1menuitem X 1areon "$(_1text "Check status for every host in a internal .hosts")"
+  _1menuitem X 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
+  _1menuitem X 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
+  _1menuitem W 1host "$(_1text "Return a valid ping-available IP for some host or domain name")"
+  _1menuitem X 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
+  _1menuitem X 1iperf "$(_1text "Run iperf connecting to a 1iperfd IP")" iperf
+  _1menuitem X 1iperfd "$(_1text "Run iperfd, waiting for 1iperf connection")" iperf
+  _1menuitem X 1isip "$(_1text "Return if a given string is an IP address")"
+  _1menuitem X 1ison "$(_1text "Return if server is on. Params: (-q for quiet or name), IP")"
+  _1menuitem X 1macvendor "$(_1text "Return prefixes for a given vendor")"
+  _1menuitem X 1mynet "$(_1text "Return all networks running on network interfaces")" ip
+  _1menuitem X 1ports "$(_1text "Scan if given port(s) for a given host is/are open")"
+  _1menuitem X 1serial "$(_1text "Connect to a serial port")"
+  _1menuitem X 1ssh "$(_1text "Connect a SSH server (working with eXtreme)")" ssh
+  _1menuitem X 1tcpdump "$(_1text "Run tcpdump in a given network interface")" tcpdump
+  _1menuitem X 1xt-backup "$(_1text "Backup configuration of one or more extreme switchs")" ssh
+  _1menuitem X 1xt-vlan "$(_1text "List all VLANs in given eXtreme switch")" ssh
   echo
 }
 
@@ -70,7 +70,7 @@ function 1bauds {
       13) echo 115200 ;;
     esac
   else
-    echo "Bauds possible:"
+    _1text "Bauds possible:"
     echo
     for i in $(seq 1 13)
     do
@@ -93,7 +93,7 @@ function 1isip {
       return 1
     fi
   else
-    echo "You need to give a string to test if it is an IP address."
+    _1text "You need to give a string to test if it is an IP address."
   fi
 }
 
@@ -131,10 +131,10 @@ function 1host {
         fi
       done
     fi
-    echo "$HNAM is unkown or unavailable."
+    printf "$(_1text "%s is unkown or unavailable.")\n" $HNAM
     return 1
   else
-    echo "You need to put a machine name"
+    _1text "You need to put a machine name"
   fi
 }
 
@@ -146,10 +146,10 @@ function 1iperf {
     if [ $# -eq 1 ]
     then
       local HNAM=$(1host $1)
-      _1verb "Trying to connect $HNAM ($1) with iperf"
+      _1verb "$(printf "$(_1text "Trying to connect %s (%s) with iperf.")\n" $HNAM $1)"
       iperf -P 1 -i 5 -p "$_1IPERFPORT" -f M -t 60 -T 1 -c "$HNAM"
     else
-      echo "You need to put a IP address where 1iperfd is running."
+      _1text "You need to put a IP address where 1iperfd is running."
     fi
   fi
 }
@@ -197,14 +197,14 @@ function 1ison {
 	then
 		if [ $thename != "-q" ]
 		then
-			1tint 2 "$thename is active"
+			1tint 2 "$(printf "$(_1text "%s is active")" $thename)"
 			echo
 		fi
 		return 0
 	else
 		if [ $thename != "-q" ]
 		then
-			1tint 1 "$thename not found"
+			1tint 1 "$(printf "$(_1text "%s not found")" $thename)"
 			echo
 		fi
 		return 1
@@ -237,32 +237,32 @@ function 1ssh {
   local destip finalstatus
   if 1check ssh
   then
-    _1verb "Conectando por SSH."
+    _1verb "$(_1text "Connecting via SSH.")"
   	destip=$(_1pressh $1)
     finalstatus=1
 
-  	# O método que não funcionar, o 7ssh testa o seguinte
-    _1verb "Trying connect in simple mode"
+  	# If one method don't works, 1ssh try next
+    _1verb "$(_1text "Trying connect in simple mode")"
   	ssh "$destip" $2
     if [ $? -eq 0 ]
     then
       finalstatus=0
     else
-      _1verb "Trying connect using AES192"
+      _1verb "$(_1text "Trying connect using AES192")"
       ssh -c aes192-cbc "$destip" $2
       if [ $? -eq 0 ]
       then
         finalstatus=0
       else
-        _1verb "Trying connect with various options"
+        _1verb "$(_1text "Trying connect with various options")"
   		  ssh -c aes192-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss "$destip" $2
       fi
     fi
     if [ $finalstatus -eq 0 ]
     then
-      _1verb "It works."
+      _1verb "$(_1text "It works.")"
     else
-      echo "Cannot connect with $1 using SSH"
+      printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
     fi
   fi
 }
@@ -296,12 +296,12 @@ function 1ports {
         _1verb $p
         if $(1ison -q $p)
       	then
-          _1verb "$p is on"
+          _1verb "$(printf "$(_1text "%s is on")" $p)"
       		if aux=$(1host "$p")
       		then
       			IP=$aux
           else
-            _1verb "Host not found."
+            _1verb "$(_1text "Host not found.")"
             return 1
       		fi
       	fi
@@ -310,12 +310,12 @@ function 1ports {
     		CHECK=$?
     		if [ $CHECK = 0 ]
     		then
-    			echo "$p open" >> $POPE
+    			printf "$(_1text "%s open")\n" $p >> $POPE
     			echo -n "#"
     		else
     			if [ $CHECK = 1 ]
     			then
-    				echo "$p refused" >> $PREF
+    				printf "$(_1text "%s refused")\n" $p >> $PREF
     				echo -n "*"
     			else
     				echo -n "."
@@ -411,7 +411,7 @@ function 1findport {
     fi
     for aux in $(1allhosts)
     do
-      _1verb "trying $aux"
+      _1verb "$(printf "$(_1text "trying %s")" $aux)"
       1ports "$aux" "$port" &> /dev/null
       if [ $? = 0 ]
     	then
@@ -419,7 +419,7 @@ function 1findport {
     		echo "$aux:$port"
     	fi
     done
-    _1verb "$total hosts with port $port open."
+    _1verb "$(printf "$(_1text "%i hosts with port %i open.")\n" $total $port)"
   fi
 }
 
@@ -431,12 +431,12 @@ function 1areon {
   	if [ $# -ne 1 ]
 	then
 		echo -n "Usage: "
-		1tint 2 '1areon [group]'
+		1tint 2 '1areon [$(_1text "group")]'
 		echo
 		echo
-		echo "  all: every host in all groups"
+		echo "  all: $(_1text "every host in all groups")"
 		echo
-		echo "Available groups: "$(_1list $_1NETLOCAL "hosts")
+		echo "$(_1text "Available groups"): "$(_1list $_1NETLOCAL "hosts")
 		return 1
 	fi
 	if [ "$1" = "all" ]
@@ -465,7 +465,7 @@ function 1areon {
 		done
 		return 0
 	else
-		echo "Unknown group of hosts."
+		_1text "Unknown group of hosts."
 		return 1
 	fi
 }
@@ -479,7 +479,7 @@ function 1xt-vlan {
 		echo -n "Usage: "
 		1tint 2 '1xt-vlan <IP> (<IP> ...)'
 		echo
-		echo "You can use hostnames contained in .hosts"
+		_1text "You can use hostnames contained in .hosts"
 		return 1
 	fi
 	for AUX in "$@"
@@ -487,7 +487,7 @@ function 1xt-vlan {
 		echo
 		echo ">>> $AUX"
 		usrhst=$(_1pressh $AUX)
-		echo " VLANs in SWITCH! Please inform password for $usrhst"
+		printf " $(_1text "VLANs in SWITCH! Please inform password for %s.")\n" $usrhst
 		1ssh "$usrhst" "show vlan detail" | grep -v \( | grep -v 'Description:' | grep -E 'VLAN|,|ag:| Tag ' | sed '
 			s/VLAN\ Interface\ with\ name/nNnVLAN/g
 			s/\ created\ by user/:/g
@@ -535,7 +535,7 @@ function 1serial {
 
   if [ -z "$_COM" ]
   then
-    echo -n "Serial program not found. Checked"
+    echo -n "$(_1text "Serial program not found. Checked")"
     1tint 2 $_1SERIALCOM
     echo
     return 1
@@ -546,7 +546,7 @@ function 1serial {
     then
       _1sudo $_COM -b $_BAU $_ADJ $_TTY
     else
-      "No ttyUSB found."
+      _1text "No ttyUSB found."
       return 2
     fi
   fi
@@ -569,7 +569,7 @@ function 1macvendor {
 # @param Switch by extreme
 # @param Filename
 function _nh1network.xt-backup {
-  _1verb "Doing backup of $1 to $2"
+  _1verb "$(printf "$(_1text "Doing backup of %s to %s")" $1 $2)"
 	1ssh "$1" "show configuration" > "$2"
 	wc $2
 }

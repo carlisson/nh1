@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 18:43-0300\n"
+"POT-Creation-Date: 2022-10-06 19:11-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -570,4 +570,192 @@ msgstr ""
 
 #: misc.bashrc:366
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
+msgstr ""
+
+#: network.bashrc:9
+msgid "Network"
+msgstr ""
+
+#: network.bashrc:10
+msgid "Returns all hosts in all your networks"
+msgstr ""
+
+#: network.bashrc:11
+msgid "Check status for every host in a internal .hosts"
+msgstr ""
+
+#: network.bashrc:12
+msgid "Returns baudrate for a number from 1 to 13"
+msgstr ""
+
+#: network.bashrc:13
+msgid "Search in all network every IP with given port open"
+msgstr ""
+
+#: network.bashrc:14
+msgid "Return a valid ping-available IP for some host or domain name"
+msgstr ""
+
+#: network.bashrc:15
+msgid "Return HTTP status for given URL"
+msgstr ""
+
+#: network.bashrc:16
+msgid "Run iperf connecting to a 1iperfd IP"
+msgstr ""
+
+#: network.bashrc:17
+msgid "Run iperfd, waiting for 1iperf connection"
+msgstr ""
+
+#: network.bashrc:18
+msgid "Return if a given string is an IP address"
+msgstr ""
+
+#: network.bashrc:19
+msgid "Return if server is on. Params: (-q for quiet or name), IP"
+msgstr ""
+
+#: network.bashrc:20
+msgid "Return prefixes for a given vendor"
+msgstr ""
+
+#: network.bashrc:21
+msgid "Return all networks running on network interfaces"
+msgstr ""
+
+#: network.bashrc:22
+msgid "Scan if given port(s) for a given host is/are open"
+msgstr ""
+
+#: network.bashrc:23
+msgid "Connect to a serial port"
+msgstr ""
+
+#: network.bashrc:24
+msgid "Connect a SSH server (working with eXtreme)"
+msgstr ""
+
+#: network.bashrc:25
+msgid "Run tcpdump in a given network interface"
+msgstr ""
+
+#: network.bashrc:26
+msgid "Backup configuration of one or more extreme switchs"
+msgstr ""
+
+#: network.bashrc:27
+msgid "List all VLANs in given eXtreme switch"
+msgstr ""
+
+#: network.bashrc:73
+msgid "Bauds possible:"
+msgstr ""
+
+#: network.bashrc:96
+msgid "You need to give a string to test if it is an IP address."
+msgstr ""
+
+#: network.bashrc:134
+msgid "%s is unkown or unavailable."
+msgstr ""
+
+#: network.bashrc:137
+msgid "You need to put a machine name"
+msgstr ""
+
+#: network.bashrc:149
+msgid "Trying to connect %s (%s) with iperf."
+msgstr ""
+
+#: network.bashrc:152
+msgid "You need to put a IP address where 1iperfd is running."
+msgstr ""
+
+#: network.bashrc:200
+msgid "%s is active"
+msgstr ""
+
+#: network.bashrc:207
+msgid "%s not found"
+msgstr ""
+
+#: network.bashrc:240
+msgid "Connecting via SSH."
+msgstr ""
+
+#: network.bashrc:245
+msgid "Trying connect in simple mode"
+msgstr ""
+
+#: network.bashrc:251
+msgid "Trying connect using AES192"
+msgstr ""
+
+#: network.bashrc:257
+msgid "Trying connect with various options"
+msgstr ""
+
+#: network.bashrc:263
+msgid "It works."
+msgstr ""
+
+#: network.bashrc:265
+msgid "Cannot connect with %s using SSH."
+msgstr ""
+
+#: network.bashrc:299
+msgid "%s is on"
+msgstr ""
+
+#: network.bashrc:304
+msgid "Host not found."
+msgstr ""
+
+#: network.bashrc:313
+msgid "%s open"
+msgstr ""
+
+#: network.bashrc:318
+msgid "%s refused"
+msgstr ""
+
+#: network.bashrc:414
+msgid "trying %s"
+msgstr ""
+
+#: network.bashrc:422
+msgid "%i hosts with port %i open."
+msgstr ""
+
+#: network.bashrc:437
+msgid "every host in all groups"
+msgstr ""
+
+#: network.bashrc:439
+msgid "Available groups"
+msgstr ""
+
+#: network.bashrc:468
+msgid "Unknown group of hosts."
+msgstr ""
+
+#: network.bashrc:482
+msgid "You can use hostnames contained in .hosts"
+msgstr ""
+
+#: network.bashrc:490
+msgid "VLANs in SWITCH! Please inform password for %s."
+msgstr ""
+
+#: network.bashrc:538
+msgid "Serial program not found. Checked"
+msgstr ""
+
+#: network.bashrc:549
+msgid "No ttyUSB found."
+msgstr ""
+
+#: network.bashrc:572
+msgid "Doing backup of %s to %s"
 msgstr ""
