@@ -34,7 +34,16 @@ function _nh1network.clean {
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
-  unset -f 1xt-backup
+  unset -f 1xt-backup _nh1network.init
+}
+
+function _nh1network.complete {
+  complete -W "$(_1list $_1NETLOCAL "hosts")" 1areon
+  complete -W "$(seq 1 13)" 1bauds
+}
+
+function _nh1network.init {
+  mkdir -p "$_1NETLOCAL"
 }
 
 # Alias like
@@ -418,6 +427,7 @@ function 1findport {
 # @param set of hosts
 function 1areon {
     local FILE TOTAL HLIN HNAM OK
+    _nh1network.init
   	if [ $# -ne 1 ]
 	then
 		echo -n "Usage: "
@@ -426,8 +436,7 @@ function 1areon {
 		echo
 		echo "  all: every host in all groups"
 		echo
-		echo "Available groups:"
-		find "$_1NETLOCAL/" -name "*.hosts" -printf '%f\n' | sed 's/.hosts//g'
+		echo "Available groups: "$(_1list $_1NETLOCAL "hosts")
 		return 1
 	fi
 	if [ "$1" = "all" ]

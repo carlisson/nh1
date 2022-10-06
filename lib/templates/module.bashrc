@@ -26,5 +26,9 @@ function _nh1module.info {
     _1verb "Listing user variables"
 }
 
+# Create paths and copy initial files
+function _nh1module.init {
+    
+}
 # Alias-like
 
