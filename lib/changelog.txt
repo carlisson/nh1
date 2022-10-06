@@ -114,3 +114,4 @@
 0.105  2022-10-06: Starting with Gettext. Not working yet
 0.106  2022-10-06: Gettext working!
 0.107  2022-10-06: Main file using gettext for all messages
+0.108  2022-10-06: 1translate to help using gettext for NH1

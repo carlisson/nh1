@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.107
+_1VERSION=0.108
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -130,6 +130,7 @@ function NH1 {
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
+		_1menuitem X 1translate $(_1text "Create and apply translation for NH1.")
 		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
 		_1menuitem X 1verbose "$(_1text "Enable/disable verbose mode")"
 		_1menuitem W 1version "$(_1text "List NH1 version and latest changes/updates")"
@@ -288,7 +289,7 @@ function 1clean {
 	_1verb "$(_1text "Destroying all variables...")"
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
-	unset -f 1clean 1help _1compl _1list
+	unset -f 1clean 1help _1compl _1list 1translate
     _1modrun "_nh1-=-.clean"
 }
 
@@ -361,6 +362,27 @@ function _1list {
         	echo -n ' '$(basename  "$fn" ".$2")
 		fi
     done
+}
+
+# Creates and apply translation for NH1
+# @param Language code
+# @param Generate binaries. Default: none
+function 1translate {
+	local AUX
+	case "$#" in
+		1)
+			xgettext -o "$_1LIB/locale/NH1.pot" -L Shell --keyword --keyword=_1text "$_1DIR/nh1"
+			msginit -o "$_1LIB/locale/$1.po" -l "$1" -i "$_1LIB/locale/NH1.pot"
+			;;
+		2)
+			AUX="$_1LIB/locale/$1/LC_MESSAGES"
+			mkdir -p "$AUX"
+			msgfmt -o "$AUX/NH1.mo" "$_1LIB/locale/$1.po"
+			;;
+		*)
+			printf "$(_1text "Usage: %s.\n")" "1translate <language-code> [compile]"
+			;;
+	esac
 }
 
 #MAIN
