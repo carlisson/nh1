@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.106
+_1VERSION=0.107
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -25,6 +25,7 @@ _1REMOTE="$_1UDATA/remote"
 _1PLUS="$_1UDATA/plus"
 
 # Gettext configure
+source gettext.sh
 alias _1text="TEXTDOMAINDIR="$_1LIB/locale" gettext 'NH1'"
 
 _1REMPORT=8097
@@ -129,22 +130,22 @@ function NH1 {
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
-		_1menuitem W 1update "Update your NH1, using git" git
-		_1menuitem X 1verbose "Enable/disable verbose mode"
-		_1menuitem W 1version "List NH1 version and latest changes/updates"
+		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
+		_1menuitem X 1verbose "$(_1text "Enable/disable verbose mode")"
+		_1menuitem W 1version "$(_1text "List NH1 version and latest changes/updates")"
 
 		echo
 		echo -n "   "
-		1tint $_1PCOLOR "planning"
+		1tint $_1PCOLOR $(_1text "planning")
 		echo -n "   "
-		1tint $_1XCOLOR "experimental"
+		1tint $_1XCOLOR $(_1text "experimental")
 		echo -n "   "
-		1tint $_1WCOLOR "working"
+		1tint $_1WCOLOR $(_1text "working")
 		echo -n "   "
-		1tint $_1DCOLOR "deprecated"
+		1tint $_1DCOLOR $(_1text "deprecated")
 		echo
 		echo " -------------------------------------"
-		echo "          Power-up your shell"
+		echo "         $(_1text "Power-up your shell")"
 		echo " -------------------------------------"
     echo
 }
@@ -156,15 +157,15 @@ function 1tint {
 	local COLOR MSG
 	if [ $# -eq 0 ]
 	then
-		echo "You need to put a string and a color number (optional)"
-		1tint 0 "0 black"; echo
-		1tint 1 "1 red"; echo
-		1tint 2 "2 green"; echo
-		1tint 3 "3 yellow"; echo
-		1tint 4 "4 blue"; echo
-		1tint 5 "5 magenta"; echo
-		1tint 6 "6 cyan"; echo
-		1tint 7 "7 white"; echo
+		_1text "You need to put a string and a color number (optional)"
+		1tint 0 "0 $(_1text black)"; echo
+		1tint 1 "1 $(_1text red)"; echo
+		1tint 2 "2 $(_1text green)"; echo
+		1tint 3 "3 $(_1text yellow)"; echo
+		1tint 4 "4 $(_1text blue)"; echo
+		1tint 5 "5 $(_1text magenta)"; echo
+		1tint 6 "6 $(_1text cyan)"; echo
+		1tint 7 "7 $(_1text white)"; echo
 		return 1
 	fi
 	if [ $# -eq 1 ]
@@ -222,9 +223,9 @@ function 1check {
 			then
 				if [ $SILENT -eq 1 ]
 				then
-	        _1verb "$PROG missing for $USER"
+	        		_1verb $(printf "$(_1text "%s is missing for %s")" $PROG $USER)
 				else
-				  echo "Program $PROG does not exist or it is unavailable for $USER."
+					printf "$(_1text "Program %s does not exist or it is unavailable for %s.\n")" $PROG $USER
 			  fi
 				CFAILS=$((CFAILS+1))
 			fi
@@ -243,21 +244,21 @@ function 1bashrc {
     local S1="source $_1RC"
     if grep "$S1" ~/.bashrc > /dev/null
     then
-      echo "NH1 is already installed in your profile. Run NH1 to see all commands available."
+      _1text "NH1 is already installed in your profile. Run NH1 to see all commands available."
     else
-			echo -n "Installing NH1 in $HOME/.bashrc... "
+			printf "Installing NH1 in %s/.bashrc... " $HOME
     	echo "$S1" >> ~/.bashrc
-			echo "Done!"
+			_1text "Done!"
     fi
 }
 
 # Reload NH1 and all related modules
 function 1refresh {
 	local LOCAL1RC=$_1RC
-	_1verb "After destroy variables, I will load $_1RC."
+	_1verb "$(printf "$(_1text "After destroy variables, I will load %s.")" $_1RC)"
 	1clean
 	source "$LOCAL1RC"
-	_1verb "Done."
+	_1verb $(_1text "Done!")
 }
 
 # Get git credentials to update NH1
@@ -284,7 +285,7 @@ function 1version {
 
 # Clean all variables set by nh1
 function 1clean {
-	_1verb "Destroying all variables..."
+	_1verb "$(_1text "Destroying all variables...")"
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list
@@ -300,9 +301,9 @@ function 1verbose {
 		if [ $1 -eq 1 ]
 		then
 			_1VERBOSE=1
-			_1verb "Verbose mode is on"
+			_1verb "$(_1text "Verbose mode is on")"
 		else
-			_1verb "Verbose mode is off"
+			_1verb "$(_1text "Verbose mode is off")"
 			_1VERBOSE=0
 		fi
 		return
@@ -310,11 +311,11 @@ function 1verbose {
 	# invert verbose
 	if [ $NEWV -eq 1 ]
 	then
-		_1verb "Verbose mode is off"
+		_1verb "$(_1text "Verbose mode is off")"
 		_1VERBOSE=0
 	else
 		_1VERBOSE=1
-		_1verb "Verbose mode is on"
+		_1verb "$(_1text "Verbose mode is on")"
 	fi
 }
 
