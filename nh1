@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.110
+_1VERSION=0.111
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -352,14 +352,18 @@ function _1compl {
 # @param File extension
 # @param exclude extension? Default: yes
 function _1list {
-    local fn
+    local fn aux
     for fn in $(ls -1 "$1")
     do        
 		if [ $# -gt 2 ]
 		then
 			echo -n " $fn"
 		else
-        	echo -n ' '$(basename  "$fn" ".$2")
+			aux="$(basename  "$fn" ".$2")"
+			if [ "$aux" != "$fn" ]
+			then
+        		echo -n " $aux"
+			fi
 		fi
     done
 }
@@ -402,6 +406,8 @@ then
 	$_1RUN $@
 	unset _1RUN
 else
+	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
+
 	_1modrun "_nh1-=-.complete"
 	if return >/dev/null 2>&1
 	then
