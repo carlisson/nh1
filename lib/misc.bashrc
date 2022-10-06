@@ -31,6 +31,7 @@ function _nh1misc.clean {
 function _nh1misc.complete {
   complete -F _nh1misc.complete.from_pdf 1pdfbkl
   complete -F _nh1misc.complete.from_pdf 1pdfopt
+  complete -W $(_1list $_1MISCLOCAL "tips") 1tip
 }
 
 function _nh1misc.complete.from_pdf { _1compl 'pdf' 0 0 0 0 ; }
@@ -200,30 +201,30 @@ function 1escape {
 # Shows a random tip to the user
 # @param Group of tip ("list" to list all groups)
 function 1tip {
-    local _TFIL
+  local _TFIL
+  if [ ! -d "$_1MISCLOCAL" ]
+  then
+    mkdir "$_1MISCLOCAL"
+    cp "$_1LIB/templates/norg.tips" "$_1MISCLOCAL"
+  fi
 	if [ $# -eq 0 ]
 	then
 		cat $_1MISCLOCAL/*.tips | shuf | head -1
 	else
 		if [ "$1" = "list" ]
 		then
-			echo -n "Tip groups: "
-			for _TFIL in $(ls $_1MISCLOCAL/*.tips)
-			do
-                1tint 2 $(basename "$_TFIL" ".tips")
-                echo -n " "
-            done
-            echo
-        else
-            _TFIL=$_1MISCLOCAL/$1.tips
-            if [ -f "$_TFIL" ]
-            then
-                shuf "$_TFIL" | head -1
-            else
-                echo "No tips group $1 found."
-                return 1
-            fi
-        fi
+			echo "Tip groups: " $(_1list $_1MISCLOCAL "tips")
+			
+    else
+      _TFIL=$_1MISCLOCAL/$1.tips
+      if [ -f "$_TFIL" ]
+      then
+        shuf "$_TFIL" | head -1
+      else
+        echo "No tips group $1 found."
+        return 1
+      fi
+    fi
 	fi
 	return 0
 }

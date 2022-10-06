@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.101
+_1VERSION=0.102
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -375,6 +375,7 @@ else
 	_nh1audio.complete
 	_nh1back.complete
 	_nh1canva.complete
+	_nh1misc.complete
 	if return >/dev/null 2>&1
 	then
 		S1="source $_1RC"
