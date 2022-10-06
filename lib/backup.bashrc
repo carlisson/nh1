@@ -7,10 +7,10 @@ _1BACKMAX=0
 
 # Generate partial menu
 function _nh1backup.menu {
-  echo "___ Backup tools ___"
-  _1menuitem X 1backup "Make backup of a dir"
-  _1menuitem P 1unback "Restore a backup"
-  _1menuitem X 1backlist "List saved backups"
+  echo "___ $(_1text "Backup tools") ___"
+  _1menuitem X 1backup "$(_1text "Make backup of a dir")"
+  _1menuitem P 1unback "$(_1text "Restore a backup")"
+  _1menuitem X 1backlist "$(_1text "List saved backups")"
   }
 
 # Destroy all global variables created by this file
@@ -29,7 +29,7 @@ function _nh1backup.names {
 }
 
 function _nh1backup.complete {
-    _1verb "Enabling complete for 1backup."
+    _1verb "$(_1text "Enabling completion for 1backup.")"
     complete -W "$(_nh1backup.names)" 1backlist
 }
 
@@ -70,12 +70,12 @@ function _nh1backup.maxcontrol {
         _OLD=($(ls --sort=time $_DEST/$_NAME-*))
         while [[ ${#_OLD[@]} -gt $_1BACKMAX ]]
         do
-            _1verb "There are " ${#_OLD[@]} " backups. Max is $_1BACKMAX. Removing " ${_OLD[0]}
+            _1verb "$(printf "$(_1text "There are %i backups. Max is %i. Removing %s.")" ${#_OLD[@]} $_1BACKMAX ${_OLD[0]})"
             if rm ${_OLD[0]}
             then
-                _nh1backup.log "Removed file ${_OLD[0]} from $_DEST"
+                _nh1backup.log "$(printf "$(_1text "Removed file %s from %s.")" ${_OLD[0]} $_DEST)"
             else    
-                _nh1backup.log "ERROR removing ${_OLD[0]} from $_DEST... $?"
+                _nh1backup.log "$(printf "$(_1text "ERROR removing %s from %s... %i")" ${_OLD[0]} $_DEST $?)"
             fi
             _OLD=("${_OLD[@]:1}")
         done
@@ -113,9 +113,10 @@ function _nh1backup.nextfile {
 # @param Name (id) for backup
 # @param Directory to backup
 function 1backup {
-    local _NAME _TARGET _DEST _FILE _COMPL _COUNT _OLD
+    local _NAME _TARGET _DEST _FILE _COMPL _COUNT _OLD _MSG _LMSG
     _NAME="$1"
     _TARGET="$2"
+    _MSG=$(_1text "Running %s for %s, saving in %s...")
 
     _nh1backup.custom
 
@@ -124,77 +125,83 @@ function 1backup {
         if 1check 7z
         then        
             _FILE=$(_nh1backup.nextfile "$_NAME" "7z")
-            _1verb "Running 7zip for $_TARGET, saving in $_FILE..."
+            _LMSG="$(printf "$_MSG" "7-zip" $_TARGET $_FILE)"
+            _1verb "$LMSG"
             if 7z a "$_FILE" "$_TARGET"
             then
-                _nh1backup.log "7zip for $_TARGET, save in $_FILE..."
+                _nh1backup.log "$LMSG"
             else
-                _nh1backup.log "ERROR 7zip for $_TARGET, save in $_FILE... $?"
+                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
             fi
         elif 1check zip
         then
             _FILE=$(_nh1backup.nextfile "$_NAME" "zip")
-            _1verb "Running zip for $_TARGET, saving in $_FILE..."
+            _LMSG="$(printf "$_MSG" "zip" $_TARGET $_FILE)"
+            _1verb "$LMSG"
             if zip -r "$_FILE" "$_TARGET"
             then
-                _nh1backup.log "zip for $_TARGET, save in $_FILE..."
+                _nh1backup.log "$LMSG"
             else
-                _nh1backup.log "ERROR zip for $_TARGET, save in $_FILE... $?"
+                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
             fi
         elif 1check tar
         then
             if 1check xz
             then
                 _FILE=$(_nh1backup.nextfile "$_NAME" "tar.xz")
-                _1verb "Running tar with xz for $_TARGET, saving in $_FILE..."
+                _LMSG="$(printf "$_MSG" "$(_1text "tar with xz")" $_TARGET $_FILE)"
+                _1verb "$LMSG"
                 if tar -cJf "$_FILE" "$_TARGET"
                 then
-                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
-                else    
-                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "$LMSG"
+                else
+                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
                 fi
             elif 1check bzip2
             then
                 _FILE=$(_nh1backup.nextfile "$_NAME" "tar.bz2")
-                _1verb "Running tar with bzip2 for $_TARGET, saving in $_FILE..."
+                _LMSG="$(printf "$_MSG" "$(_1text "tar with bzip2")" $_TARGET $_FILE)"
+                _1verb "$LMSG"
                 if tar -cjf "$_FILE" "$_TARGET"
                 then
-                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
-                else    
-                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "$LMSG"
+                else
+                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
                 fi
             elif 1check gzip
             then
                 _FILE=$(_nh1backup.nextfile "$_NAME" "tar.gz")
-                _1verb "Running tar with gzip for $_TARGET, saving in $_FILE..."
+                _LMSG="$(printf "$_MSG" "$(_1text "tar with gzip")" $_TARGET $_FILE)"
+                _1verb "$LMSG"
                 if tar -czf "$_FILE" "$_TARGET"
                 then
-                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
-                else    
-                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "$LMSG"
+                else
+                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
                 fi
             else            
-                echo "Running tar without compression! Install gzip, bzip2 or xz!"
+                _1text "Running tar without compression! Install gzip, bzip2 or xz!"
                 _FILE=$(_nh1backup.nextfile "$_NAME" "tar")
-                _1verb "Running tar without compression for $_TARGET, saving in $_FILE..."
+                _LMSG="$(printf "$_MSG" "$(_1text "tar without compression")" $_TARGET $_FILE)"
+                _1verb "$LMSG"
                 if tar -cf "$_FILE" "$_TARGET"
                 then
-                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
-                else    
-                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "$LMSG"
+                else
+                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
                 fi
             fi
         else
-            echo "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or xz)."
+            _1text "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or xz)."
         fi
 
         _nh1backup.maxcontrol "$_NAME"
 
     else
-        echo "Usage: 1backup <name> <directory>"
-        echo "  - Name: backup id"
-        echo "  - Directory: target to backup"
-        echo "    Backups are saved in $_1BACKDIR"
+        printf "$(_1text "Usage: %s.")\n" "1backup <name> <directory>"
+        printf "  - %s.\n" "$(_1text "Name: backup id")"
+        printf "  - %s.\n" "$(_1text "Directory: target to backup")"
+        printf "    %s.\n" "$(printf "(_1text "Backups are saved in %s")" $_1BACKDIR)"
     fi
 }
 
@@ -206,8 +213,8 @@ function 1backlist {
     then
         find "$_1BACKDIR" -name "$1*"
     else
-        echo "Use 1backlist <name> to find all backups for <name>."
-        echo -n "Names: "
+        _1text "Use 1backlist <name> to find all backups for <name>."
+        echo -n "$(_1text "Names"): "
         _nh1backup.names
     fi
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 17:33-0300\n"
+"POT-Creation-Date: 2022-10-06 18:05-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -326,3 +326,88 @@ msgstr "Você precisa informar o arquivo de entrada OGG e (opcional) a saída MP
 #: audio.bashrc:169
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
+
+#: backup.bashrc:10
+msgid "Backup tools"
+msgstr "Ferramentas de backup"
+
+#: backup.bashrc:11
+msgid "Make backup of a dir"
+msgstr "Faz backup de um diretório"
+
+#: backup.bashrc:12
+msgid "Restore a backup"
+msgstr "Restaura um backup"
+
+#: backup.bashrc:13
+msgid "List saved backups"
+msgstr "Lista backups salvos"
+
+#: backup.bashrc:32
+msgid "Enabling completion for 1backup."
+msgstr "Habilitando completar para 1backup."
+
+#: backup.bashrc:73
+msgid "There are %i backups. Max is %i. Removing %s."
+msgstr "Há %i backups. Máximo é %i. Removendo %s."
+
+#: backup.bashrc:76
+msgid "Removed file %s from %s."
+msgstr "Removido arquivo %s de %s."
+
+#: backup.bashrc:78
+msgid "ERROR removing %s from %s... %i"
+msgstr "ERRO removendo %s de %s... %i"
+
+#: backup.bashrc:119
+msgid "Running %s for %s, saving in %s..."
+msgstr "Rodando %s para %s, salvando em %s..."
+
+#: backup.bashrc:134 backup.bashrc:145 backup.bashrc:158 backup.bashrc:169
+#: backup.bashrc:180 backup.bashrc:191
+msgid "ERROR"
+msgstr "ERRO"
+
+#: backup.bashrc:152
+msgid "tar with xz"
+msgstr "tar com xz"
+
+#: backup.bashrc:163
+msgid "tar with bzip2"
+msgstr "tar com bzip2"
+
+#: backup.bashrc:174
+msgid "tar with gzip"
+msgstr "tar com gzip"
+
+#: backup.bashrc:183
+msgid "Running tar without compression! Install gzip, bzip2 or xz!"
+msgstr "Rodando tar sem compressão! Instale gzip, bzip2 ou xz!"
+
+#: backup.bashrc:185
+msgid "tar without compression"
+msgstr "tar sem compressão"
+
+#: backup.bashrc:195
+msgid ""
+"No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or "
+"xz)."
+msgstr ""
+"Nenhum compactador encontrado. Tente instalar 7zip, zip ou tar (com"
+"gzip, bzip2 ou xz)."
+
+#: backup.bashrc:202
+msgid "Name: backup id"
+msgstr "Nome: id do backup"
+
+#: backup.bashrc:203
+msgid "Directory: target to backup"
+msgstr "Diretório: alvo para o backup"
+
+#: backup.bashrc:216
+msgid "Use 1backlist <name> to find all backups for <name>."
+msgstr "Use 1backlist <nome> para achar todos os backupa para <nome>."
+
+#: backup.bashrc:217
+msgid "Names"
+msgstr "Nomes"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 17:33-0300\n"
+"POT-Creation-Date: 2022-10-06 18:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -313,7 +313,7 @@ msgid "Default"
 msgstr ""
 
 #: audio.bashrc:97
-msgid "Call like this: %s.\\n"
+msgid "Call like this: %s."
 msgstr ""
 
 #: audio.bashrc:121
@@ -322,4 +322,91 @@ msgstr ""
 
 #: audio.bashrc:169
 msgid "You need to give one or more youtube video URLs"
+msgstr ""
+
+#: backup.bashrc:10
+msgid "Backup tools"
+msgstr ""
+
+#: backup.bashrc:11
+msgid "Make backup of a dir"
+msgstr ""
+
+#: backup.bashrc:12
+msgid "Restore a backup"
+msgstr ""
+
+#: backup.bashrc:13
+msgid "List saved backups"
+msgstr ""
+
+#: backup.bashrc:32
+msgid "Enabling completion for 1backup."
+msgstr ""
+
+#: backup.bashrc:73
+msgid "There are %s backups. Max is %i. Removing %s."
+msgstr ""
+
+#: backup.bashrc:76
+msgid "Removed file %s from %s."
+msgstr ""
+
+#: backup.bashrc:78
+msgid "ERROR removing %s from %s... %i"
+msgstr ""
+
+#: backup.bashrc:119
+msgid "Running %s for %s, saving in %s..."
+msgstr ""
+
+#: backup.bashrc:134 backup.bashrc:145 backup.bashrc:158 backup.bashrc:169
+#: backup.bashrc:180 backup.bashrc:191
+msgid "ERROR"
+msgstr ""
+
+#: backup.bashrc:152
+msgid "tar with xz"
+msgstr ""
+
+#: backup.bashrc:163
+msgid "tar with bzip2"
+msgstr ""
+
+#: backup.bashrc:174
+msgid "tar with gzip"
+msgstr ""
+
+#: backup.bashrc:183
+msgid "Running tar without compression! Install gzip, bzip2 or xz!"
+msgstr ""
+
+#: backup.bashrc:185
+msgid "tar without compression"
+msgstr ""
+
+#: backup.bashrc:195
+msgid ""
+"No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or "
+"xz)."
+msgstr ""
+
+#: backup.bashrc:201
+msgid "Usage: %s.\\n"
+msgstr ""
+
+#: backup.bashrc:202
+msgid "Name: backup id"
+msgstr ""
+
+#: backup.bashrc:203
+msgid "Directory: target to backup"
+msgstr ""
+
+#: backup.bashrc:216
+msgid "Use 1backlist <name> to find all backups for <name>."
+msgstr ""
+
+#: backup.bashrc:217
+msgid "Names"
 msgstr ""

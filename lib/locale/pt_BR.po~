@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 17:25-0300\n"
+"POT-Creation-Date: 2022-10-06 17:33-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -107,7 +107,6 @@ msgid "%s is missing for %s"
 msgstr "%s está faltando para %s"
 
 #: /home/bardo/sources/nh1/nh1:229
-#, fuzzy
 msgid "Program %s does not exist or it is unavailable for %s."
 msgstr "O programa %s não existe ou está indisponível para %s."
 
@@ -140,19 +139,16 @@ msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
 #: /home/bardo/sources/nh1/nh1:395 audio.bashrc:136 audio.bashrc:226
-#, fuzzy
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
 #: app.bashrc:17
-#, fuzzy
 msgid "Install App"
-msgstr "Instalação"
+msgstr "Aplicativos AppImage"
 
 #: app.bashrc:18
-#, fuzzy
 msgid "List all available apps"
-msgstr "Destruindo todas as variáveis..."
+msgstr "Lista todos os aplicativos disponíveis"
 
 #: app.bashrc:19
 msgid "Install or update an app locally"
@@ -235,17 +231,14 @@ msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
 #: app.bashrc:221
-#, fuzzy
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
 #: app.bashrc:308
-#, fuzzy
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
 #: app.bashrc:311
-#, fuzzy
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
@@ -311,21 +304,25 @@ msgid "MP3 input file"
 msgstr "Arquivo de entrada MP3"
 
 #: audio.bashrc:75
-msgid " 2) TXT metadata input file"
-msgstr ""
+msgid "TXT metadata input file"
+msgstr "Arquivo de entrada com metadados em TXT"
 
 #: audio.bashrc:76
-msgid " 3) (optional) MP3 output file. Default: <input>-c.mp3"
-msgstr ""
+msgid "(optional) MP3 output file"
+msgstr "(Opcional) arquivo de entrada MP3"
+
+#: audio.bashrc:76
+msgid "Default"
+msgstr "Default"
 
 #: audio.bashrc:97
-msgid "Call like this: 1svideo <MP3-input> <PNG-input> <MP4-output>"
-msgstr ""
+msgid "Call like this: %s."
+msgstr "Chame assim: %s."
 
 #: audio.bashrc:121
 msgid "You need to info OGG input file and (optional) MP3 output"
-msgstr ""
+msgstr "Você precisa informar o arquivo de entrada OGG e (opcional) a saída MP3"
 
 #: audio.bashrc:169
 msgid "You need to give one or more youtube video URLs"
-msgstr ""
+msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
