@@ -110,3 +110,4 @@
 0.101  2022-10-05: Generic internal _1list
 0.102  2022-10-05: 1misc completion ok.
 0.103  2022-10-05: 1network completion ok.
+0.104  2022-10-05: Improved internal module usage with _1modrun

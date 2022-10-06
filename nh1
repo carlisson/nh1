@@ -3,7 +3,9 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.103
+_1VERSION=0.104
+
+_1MODULES=(app audio backup canva misc network rpg)
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
@@ -44,15 +46,26 @@ mkdir -p "$_1LOCAL"
 mkdir -p "$_1REMOTE"
 mkdir -p "$_1PLUS"
 
+# Run it for all modules
+# @param Command. Replace -=- by module name
+function _1modrun {
+	local _COMM _MOD _AUX
+	_COMM="$1"
+	for _MOD in "${_1MODULES[@]}"
+	do
+		_AUX=$(echo "$_COMM" | sed "s/-=-/$_MOD/")
+		if [ "$(type -t $_AUX)" = 'function' ]
+		then
+			$_AUX
+		elif [ "$(type -t $_AUX)" = 'builtin' ]
+		then
+			eval $_AUX
+		fi
+	done
+}
+
 # IMPORT MODULES
-source "$_1LIB/app.bashrc"
-source "$_1LIB/audio.bashrc"
-source "$_1LIB/backup.bashrc"
-source "$_1LIB/canva.bashrc"
-source "$_1LIB/misc.bashrc"
-source "$_1LIB/network.bashrc"
-# source "$_1LIB/remote.bashrc"
-source "$_1LIB/rpg.bashrc"
+_1modrun "source \"$_1LIB/-=-.bashrc\""
 
 # Print a line to build help menu
 # @param Status of command
@@ -98,7 +111,7 @@ function _1menuitem {
 
 # Menu for NH1
 function NH1 {
-
+	local _MOD
 		echo " -------------------------------------"
 		echo -n "            "
     1tint "NH1 $_1VERSION"
@@ -106,15 +119,9 @@ function NH1 {
 		echo " -------------------------------------"
     echo
 
-		_nh1app.menu
-		_nh1audio.menu
-		_nh1back.menu
-		_nh1canva.menu
-		_nh1misc.menu
-		_nh1network.menu
-#		_nh1remote.menu
-		_nh1rpg.menu
-
+		# Load internal menus
+		_1modrun _nh1-=-.menu
+		
 		echo "___ Main ___"
 		_1menuitem W 1bashrc "Modify .bashrc to NH1 starts on bash start"
 		_1menuitem W 1clean "Clean NH1 from memory (undo NH1 charge)"
@@ -278,14 +285,7 @@ function 1clean {
 	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
 	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list
-    _nh1app.clean
-	_nh1audio.clean
-	_nh1back.clean
-	_nh1canva.clean
-	_nh1misc.clean
-	_nh1network.clean
-#	_nh1remote.clean
-	_nh1rpg.clean
+    _1modrun "_nh1-=-.clean"
 }
 
 # Enable or disable verbose mode
@@ -371,12 +371,7 @@ then
 	$_1RUN $@
 	unset _1RUN
 else
-	_nh1app.complete
-	_nh1audio.complete
-	_nh1back.complete
-	_nh1canva.complete
-	_nh1misc.complete
-	_nh1network.complete
+	_1modrun "_nh1-=-.complete"
 	if return >/dev/null 2>&1
 	then
 		S1="source $_1RC"

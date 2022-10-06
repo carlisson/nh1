@@ -6,7 +6,7 @@ _1BACKDIR="$HOME/Backup"
 _1BACKMAX=0
 
 # Generate partial menu
-function _nh1back.menu {
+function _nh1backup.menu {
   echo "___ Backup tools ___"
   _1menuitem X 1backup "Make backup of a dir"
   _1menuitem P 1unback "Restore a backup"
@@ -14,13 +14,13 @@ function _nh1back.menu {
   }
 
 # Destroy all global variables created by this file
-function _nh1back.clean {
+function _nh1backup.clean {
   unset _1BACKDIR _1BACKMAX
-  unset -f 1backup 1unback 1backlist  _nh1back.nextfile _nh1back.maxcontrol
-  unset -f _nh1back.log _nh1back.custom 1backlist _nh1back.names
+  unset -f 1backup 1unback 1backlist  _nh1backup.nextfile _nh1backup.maxcontrol
+  unset -f _nh1backup.log _nh1backup.custom 1backlist _nh1backup.names
 }
 
-function _nh1back.names {
+function _nh1backup.names {
     if [ "$(find "$_1BACKDIR" -name '*-????-??-??*')" != "" ]
     then
         find "$_1BACKDIR" -name '*-????-??-??*' | xargs -n 1 basename | \
@@ -28,13 +28,13 @@ function _nh1back.names {
     fi
 }
 
-function _nh1back.complete {
+function _nh1backup.complete {
     _1verb "Enabling complete for 1backup."
-    complete -W "$(_nh1back.names)" 1backlist
+    complete -W "$(_nh1backup.names)" 1backlist
 }
 
 # Load variables defined by user
-function _nh1back.custom {
+function _nh1backup.custom {
     if [[ $NORG_BACKUP_DIR ]]
     then
         _1BACKDIR="$NORG_BACKUP_DIR"
@@ -45,7 +45,7 @@ function _nh1back.custom {
     fi
 }
 
-function _nh1back.log {
+function _nh1backup.log {
     local _NOW _L1 _L2 _L3
     _NOW=$(date "+%Y-%m-%d %X")
     mkdir -p "$_1UDATA/log"
@@ -60,7 +60,7 @@ function _nh1back.log {
 # Controls max number of files
 # @param Name (id)
 # @param Directory for saved backups
-function _nh1back.maxcontrol {
+function _nh1backup.maxcontrol {
     local _NAME _DEST
     _NAME="$1"
     _DEST=$(date "+$_1BACKDIR/%Y/%m")
@@ -73,9 +73,9 @@ function _nh1back.maxcontrol {
             _1verb "There are " ${#_OLD[@]} " backups. Max is $_1BACKMAX. Removing " ${_OLD[0]}
             if rm ${_OLD[0]}
             then
-                _nh1back.log "Removed file ${_OLD[0]} from $_DEST"
+                _nh1backup.log "Removed file ${_OLD[0]} from $_DEST"
             else    
-                _nh1back.log "ERROR removing ${_OLD[0]} from $_DEST... $?"
+                _nh1backup.log "ERROR removing ${_OLD[0]} from $_DEST... $?"
             fi
             _OLD=("${_OLD[@]:1}")
         done
@@ -85,7 +85,7 @@ function _nh1back.maxcontrol {
 # Returns next filename for base and extension
 # @param Name (id)
 # @param Extension
-function _nh1back.nextfile {
+function _nh1backup.nextfile {
     local _NAME _EXT _FILE _DEST _COUNT
     _NAME="$1"
     _EXT="$2"
@@ -117,78 +117,78 @@ function 1backup {
     _NAME="$1"
     _TARGET="$2"
 
-    _nh1back.custom
+    _nh1backup.custom
 
     if [ $# -eq 2 ]
     then
         if 1check 7z
         then        
-            _FILE=$(_nh1back.nextfile "$_NAME" "7z")
+            _FILE=$(_nh1backup.nextfile "$_NAME" "7z")
             _1verb "Running 7zip for $_TARGET, saving in $_FILE..."
             if 7z a "$_FILE" "$_TARGET"
             then
-                _nh1back.log "7zip for $_TARGET, save in $_FILE..."
+                _nh1backup.log "7zip for $_TARGET, save in $_FILE..."
             else
-                _nh1back.log "ERROR 7zip for $_TARGET, save in $_FILE... $?"
+                _nh1backup.log "ERROR 7zip for $_TARGET, save in $_FILE... $?"
             fi
         elif 1check zip
         then
-            _FILE=$(_nh1back.nextfile "$_NAME" "zip")
+            _FILE=$(_nh1backup.nextfile "$_NAME" "zip")
             _1verb "Running zip for $_TARGET, saving in $_FILE..."
             if zip -r "$_FILE" "$_TARGET"
             then
-                _nh1back.log "zip for $_TARGET, save in $_FILE..."
+                _nh1backup.log "zip for $_TARGET, save in $_FILE..."
             else
-                _nh1back.log "ERROR zip for $_TARGET, save in $_FILE... $?"
+                _nh1backup.log "ERROR zip for $_TARGET, save in $_FILE... $?"
             fi
         elif 1check tar
         then
             if 1check xz
             then
-                _FILE=$(_nh1back.nextfile "$_NAME" "tar.xz")
+                _FILE=$(_nh1backup.nextfile "$_NAME" "tar.xz")
                 _1verb "Running tar with xz for $_TARGET, saving in $_FILE..."
                 if tar -cJf "$_FILE" "$_TARGET"
                 then
-                    _nh1back.log "tar for $_TARGET, save in $_FILE..."
+                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
                 else    
-                    _nh1back.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
                 fi
             elif 1check bzip2
             then
-                _FILE=$(_nh1back.nextfile "$_NAME" "tar.bz2")
+                _FILE=$(_nh1backup.nextfile "$_NAME" "tar.bz2")
                 _1verb "Running tar with bzip2 for $_TARGET, saving in $_FILE..."
                 if tar -cjf "$_FILE" "$_TARGET"
                 then
-                    _nh1back.log "tar for $_TARGET, save in $_FILE..."
+                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
                 else    
-                    _nh1back.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
                 fi
             elif 1check gzip
             then
-                _FILE=$(_nh1back.nextfile "$_NAME" "tar.gz")
+                _FILE=$(_nh1backup.nextfile "$_NAME" "tar.gz")
                 _1verb "Running tar with gzip for $_TARGET, saving in $_FILE..."
                 if tar -czf "$_FILE" "$_TARGET"
                 then
-                    _nh1back.log "tar for $_TARGET, save in $_FILE..."
+                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
                 else    
-                    _nh1back.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
                 fi
             else            
                 echo "Running tar without compression! Install gzip, bzip2 or xz!"
-                _FILE=$(_nh1back.nextfile "$_NAME" "tar")
+                _FILE=$(_nh1backup.nextfile "$_NAME" "tar")
                 _1verb "Running tar without compression for $_TARGET, saving in $_FILE..."
                 if tar -cf "$_FILE" "$_TARGET"
                 then
-                    _nh1back.log "tar for $_TARGET, save in $_FILE..."
+                    _nh1backup.log "tar for $_TARGET, save in $_FILE..."
                 else    
-                    _nh1back.log "ERROR tar for $_TARGET, save in $_FILE... $?"
+                    _nh1backup.log "ERROR tar for $_TARGET, save in $_FILE... $?"
                 fi
             fi
         else
             echo "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or xz)."
         fi
 
-        _nh1back.maxcontrol "$_NAME"
+        _nh1backup.maxcontrol "$_NAME"
 
     else
         echo "Usage: 1backup <name> <directory>"
@@ -201,13 +201,13 @@ function 1backup {
 # List all backups for one name (id)
 # @param Name (id)
 function 1backlist {
-    _nh1back.custom
+    _nh1backup.custom
     if [ $# -eq 1 ]
     then
         find "$_1BACKDIR" -name "$1*"
     else
         echo "Use 1backlist <name> to find all backups for <name>."
         echo -n "Names: "
-        _nh1back.names
+        _nh1backup.names
     fi
 }
