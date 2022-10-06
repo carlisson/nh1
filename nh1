@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.105
+_1VERSION=0.106
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -25,10 +25,7 @@ _1REMOTE="$_1UDATA/remote"
 _1PLUS="$_1UDATA/plus"
 
 # Gettext configure
-LANG=pt_BR.utf8
-TEXTDOMAIN="NH1" 
-TEXTDOMAINDIR="$_1LIB/locales"
-alias _1text="gettext \"$TEXTDOMAIN\""
+alias _1text="TEXTDOMAINDIR="$_1LIB/locale" gettext 'NH1'"
 
 _1REMPORT=8097
 _1REMFILE="$_1UDATA/servers.list"
