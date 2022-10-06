@@ -4,21 +4,21 @@ _1MISCLOCAL="$_1UDATA/misc"
 
 # Generate partial menu
 function _nh1misc.menu {
-  echo "___ Miscelania ___"
-  _1menuitem X 1ajoin "Join an array, using first param as delimiter"
-  _1menuitem X 1booklet "Generate a seq for booklet, for given page number"
-  _1menuitem W 1color "Generate a random hexadecimal color" openssl
-  _1menuitem W 1du "Disk usage" du
-  _1menuitem X 1escape "Rename a file or dir, excluding special chars"
-  _1menuitem W 1pass "Generate a secure password" openssl
-  _1menuitem X 1pdfbkl "Make a booklet form a PDF file" pdfjam
-  _1menuitem X 1pdfopt "Compress a PDF file" gs
-  _1menuitem W 1pomo "Run one pomodoro (default is 25min)" seq
-  _1menuitem W 1power "Print percentage for battery (notebook)" upower
-  _1menuitem W 1rr30 "Counter 30-30-30 to router reset" seq
-  _1menuitem X 1spchar "Returns a random special character"
-  _1menuitem W 1timer "Countdown timer." seq
-  _1menuitem X 1tip "Shows a random tip" shuf
+  echo "___ $(_1text "Miscelania") ___"
+  _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
+  _1menuitem X 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
+  _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl
+  _1menuitem W 1du "$(_1text "Disk usage")" du
+  _1menuitem X 1escape "$(_1text "Rename a file or dir, excluding special chars")"
+  _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
+  _1menuitem X 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
+  _1menuitem X 1pdfopt "$(_1text "Compress a PDF file")" gs
+  _1menuitem W 1pomo "$(_1text "Run one pomodoro (default is 25min)")" seq
+  _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
+  _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
+  _1menuitem X 1spchar "$(_1text "Returns a random special character")"
+  _1menuitem W 1timer "$(_1text "Countdown timer.")" seq
+  _1menuitem X 1tip "$(_1text "Shows a random tip")" shuf
 }
 
 # Destroy all global variables created by this file
@@ -67,7 +67,7 @@ function 1pdfopt {
       fi
     	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$OUF $INF
     else
-      echo "Use: 1pdfopt <PDF-input> <PDF-output optional>"
+      printf "$(_1text "Usage: %s.")\n" "1pdfopt <PDF-input> <PDF-output optional>"
     fi
   fi
 }
@@ -131,9 +131,9 @@ function 1timer {
       MINUTES=59
       IH=$((IH-1))        
     done
-    echo -e "$UNCLOCK" "finished"
+    echo -e "$UNCLOCK" "$(_1text "finished")"
   else
-    echo "Usage:"
+    _1text "Usage:"
     echo "  1timer <COLOR> <TITLE> <SECONDS> <MINUTES> <HOURS>"
   fi
 }
@@ -161,23 +161,23 @@ function 1pomo {
 # Timer to help to reset a router, using the 30-30-30 method
 function 1rr30 {
   echo
-  1tint 3 "30-30-30 method for router reseting"
-  echo " - your router will lost all configuration"
-  echo " 1. Turn on the router."
-  echo " 2. Press and hold reset button. Wait 30 seconds."
-  echo " 3. Turn off the router. Wait 30 seconds."
-  echo " 4. Turn on the router. Wait 30 seconds."
-  echo " 5. Release the button"
-  1tint 3 "Press ENTER when you are ready."
+  1tint 3 "$(_1text "30-30-30 method for router reseting")"
+  echo " - $(_1text "your router will lost all configuration")"
+  echo " 1. $(_1text "Turn on the router.")"
+  echo " 2. $(_1text "Press and hold reset button. Wait 30 seconds.")"
+  echo " 3. $(_1text "Turn off the router. Wait 30 seconds.")"
+  echo " 4. $(_1text "Turn on the router. Wait 30 seconds.")"
+  echo " 5. $(_1text "Release the button")"
+  1tint 3 "$(_1text "Press ENTER when you are ready.")"
   read
-  1timer 2 "Router on" 30
+  1timer 2 "$(_1text "Router on")" 30
   1alarm
-  1timer 4 "Router off" 30
+  1timer 4 "$(_1text "Router off")" 30
   1alarm
-  1timer 2 "Router on" 30
+  1timer 2 "$(_1text "Router on")" 30
   1alarm
   echo
-  echo "Your router must be restarted with factory settings!"
+  _1text "Your router must be restarted with factory settings!"
 }
 
 # Rename a file or directory, removing special chars
@@ -213,7 +213,7 @@ function 1tip {
 	else
 		if [ "$1" = "list" ]
 		then
-			echo "Tip groups: " $(_1list $_1MISCLOCAL "tips")
+			printf "$(_1text "Tip groups: %s.")\n" "$(_1list $_1MISCLOCAL "tips")"
 			
     else
       _TFIL=$_1MISCLOCAL/$1.tips
@@ -221,7 +221,7 @@ function 1tip {
       then
         shuf "$_TFIL" | head -1
       else
-        echo "No tips group $1 found."
+        printf "$(_1text "No tips group %s found.")\n" $1
         return 1
       fi
     fi
@@ -363,7 +363,7 @@ function 1pdfbkl {
     _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
     _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | sed 's/BLANK/\{\}/g')
     _TMP=$(mktemp -u)".pdf"
-    _1verb "Input file $_INF with $_PAG pages, output $_OUF. Sequence: $_SEQ Temp file: $_TMP"
+    _1verb "$(printf "$(_1text "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s.")" $_INF $_PAG $_OUF $_SEQ $_TMP)"
     pdfjam "$_INF" "$_SEQ" -o "$_TMP"
     pdfjam --nup $_MOD "$_TMP" --outfile "$_OUF"
     rm $_TMP

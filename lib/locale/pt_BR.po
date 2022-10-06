@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 18:24-0300\n"
+"POT-Creation-Date: 2022-10-06 18:43-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -138,8 +138,8 @@ msgstr "Modo verboso está ligado"
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/bardo/sources/nh1/nh1:395 audio.bashrc:136 audio.bashrc:226
-#: backup.bashrc:201 canva.bashrc:131
+#: /home/bardo/sources/nh1/nh1:396 audio.bashrc:136 audio.bashrc:226
+#: backup.bashrc:201 canva.bashrc:131 misc.bashrc:70
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -453,3 +453,127 @@ msgstr "Usos:"
 #: canva.bashrc:145
 msgid "Template %s not found."
 msgstr "Template %s não encontrado."
+
+#: misc.bashrc:7
+msgid "Miscelania"
+msgstr "Miscelânia"
+
+#: misc.bashrc:8
+msgid "Join an array, using first param as delimiter"
+msgstr "Junta um array, usando o primeiro parâmetro como separador"
+
+#: misc.bashrc:9
+msgid "Generate a seq for booklet, for given page number"
+msgstr "Gera sequência para livreto, dado número de páginas"
+
+#: misc.bashrc:10
+msgid "Generate a random hexadecimal color"
+msgstr "Gera uma cor hexadecimal aleatória"
+
+#: misc.bashrc:11
+msgid "Disk usage"
+msgstr "Uso do disco"
+
+#: misc.bashrc:12
+msgid "Rename a file or dir, excluding special chars"
+msgstr "Renomeia um arquivo ou diretório, excluindo caracteres especiais"
+
+#: misc.bashrc:13
+msgid "Generate a secure password"
+msgstr "Gera uma senha segura"
+
+#: misc.bashrc:14
+msgid "Make a booklet form a PDF file"
+msgstr "Faz um livreto a partir de um arquivo PDF"
+
+#: misc.bashrc:15
+msgid "Compress a PDF file"
+msgstr "Comprime um arquivo PDF"
+
+#: misc.bashrc:16
+msgid "Run one pomodoro (default is 25min)"
+msgstr "Roda um pomodoro (default é 25min)"
+
+#: misc.bashrc:17
+msgid "Print percentage for battery (notebook)"
+msgstr "Mostra a porcentagem da bateria (notebook)"
+
+#: misc.bashrc:18
+msgid "Counter 30-30-30 to router reset"
+msgstr "Contador 30-30-30 para reset de roteador"
+
+#: misc.bashrc:19
+msgid "Returns a random special character"
+msgstr "Retorna um caractere especial aleatório"
+
+#: misc.bashrc:20
+msgid "Countdown timer."
+msgstr "Temporizador regressivo."
+
+#: misc.bashrc:21
+msgid "Shows a random tip"
+msgstr "Mostra uma dica aleatória"
+
+#: misc.bashrc:134
+msgid "finished"
+msgstr "concluído"
+
+#: misc.bashrc:136
+msgid "Usage:"
+msgstr "Uso:"
+
+#: misc.bashrc:164
+msgid "30-30-30 method for router reseting"
+msgstr "Método 30-30-30 para resetar um roteador"
+
+#: misc.bashrc:165
+msgid "your router will lost all configuration"
+msgstr "seu roteador perderá toda a configuração"
+
+#: misc.bashrc:166
+msgid "Turn on the router."
+msgstr "Ligue o roteador."
+
+#: misc.bashrc:167
+msgid "Press and hold reset button. Wait 30 seconds."
+msgstr "Pressione e segure o botão reset. Espere 30 segundos."
+
+#: misc.bashrc:168
+msgid "Turn off the router. Wait 30 seconds."
+msgstr "Desligue o roteador. Espere 30 segundos."
+
+#: misc.bashrc:169
+msgid "Turn on the router. Wait 30 seconds."
+msgstr "Ligue o roteador. Espere 30 segundos."
+
+#: misc.bashrc:170
+msgid "Release the button"
+msgstr "Solte o botão"
+
+#: misc.bashrc:171
+msgid "Press ENTER when you are ready."
+msgstr "Pressione ENTER quando estiver pronto."
+
+#: misc.bashrc:173 misc.bashrc:177
+msgid "Router on"
+msgstr "Roteador ligado"
+
+#: misc.bashrc:175
+msgid "Router off"
+msgstr "Roteador desligado"
+
+#: misc.bashrc:180
+msgid "Your router must be restarted with factory settings!"
+msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
+
+#: misc.bashrc:216
+msgid "Tip groups: %s."
+msgstr "Grupos de dicas: %s."
+
+#: misc.bashrc:224
+msgid "No tips group %s found."
+msgstr "Nenhum grupo de dica com o nome %s."
+
+#: misc.bashrc:366
+msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
+msgstr "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo temporário: %s."
