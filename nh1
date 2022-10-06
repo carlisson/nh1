@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.104
+_1VERSION=0.105
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -23,6 +23,12 @@ fi
 _1LOCAL="$_1UDATA/local"
 _1REMOTE="$_1UDATA/remote"
 _1PLUS="$_1UDATA/plus"
+
+# Gettext configure
+LANG=pt_BR.utf8
+TEXTDOMAIN="NH1" 
+TEXTDOMAINDIR="$_1LIB/locales"
+alias _1text="gettext \"$TEXTDOMAIN\""
 
 _1REMPORT=8097
 _1REMFILE="$_1UDATA/servers.list"
@@ -123,9 +129,9 @@ function NH1 {
 		_1modrun _nh1-=-.menu
 		
 		echo "___ Main ___"
-		_1menuitem W 1bashrc "Modify .bashrc to NH1 starts on bash start"
-		_1menuitem W 1clean "Clean NH1 from memory (undo NH1 charge)"
-		_1menuitem W 1tint "Write a string in another color"
+		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
+		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
+		_1menuitem W 1tint "$(_1text "Write a string in another color")"
 		_1menuitem W 1update "Update your NH1, using git" git
 		_1menuitem X 1verbose "Enable/disable verbose mode"
 		_1menuitem W 1version "List NH1 version and latest changes/updates"

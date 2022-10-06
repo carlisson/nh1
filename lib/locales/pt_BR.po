@@ -1,0 +1,31 @@
+# Portuguese translations for nh package
+# Traduções em português brasileiro para o pacote nh.
+# Copyright (C) 2022 THE nh'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the nh package.
+# Cárlisson Galdino <cordeis@vivaldi.net>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: nh 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-06 08:07-0300\n"
+"PO-Revision-Date: 2022-10-06 08:07-0300\n"
+"Last-Translator: Cárlisson Galdino <cordeis@vivaldi.net>\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: nh1:128
+msgid "Modify .bashrc to NH1 starts on bash start"
+msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
+
+#: nh1:129
+msgid "Clean NH1 from memory (undo NH1 charge)"
+msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
+
+#: nh1:130
+msgid "Write a string in another color"
+msgstr "Escreve um texto em outra cor"
