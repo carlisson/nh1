@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.119
+_1VERSION=0.120
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -11,6 +11,7 @@ _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1UDATA="$HOME/.norg"
 _1GDATA="/opt/norg"
+
 if [ "$_1DIR" = "/usr/bin" ]
 then
 	_1LIB="/usr/lib/norg"
@@ -20,9 +21,7 @@ then
 else
 	_1LIB="$_1DIR/lib"
 fi
-_1LOCAL="$_1UDATA/local"
-_1REMOTE="$_1UDATA/remote"
-_1PLUS="$_1UDATA/plus"
+
 
 # Gettext configure
 source gettext.sh
@@ -45,10 +44,6 @@ _1DCOLOR=1 # Deprecated
 _1MENUCOL=13
 _1VERBOSE=0 # 0 - disabled; 1 - enabled
 
-#STARTING
-mkdir -p "$_1LOCAL"
-mkdir -p "$_1REMOTE"
-mkdir -p "$_1PLUS"
 
 # Run it for all modules
 # @param Command. Replace -=- by module name
@@ -287,7 +282,7 @@ function 1version {
 # Clean all variables set by nh1
 function 1clean {
 	_1verb "$(_1text "Destroying all variables...")"
-	unset _1VERSION _1DIR _1RC _1LIB _1LOCAL _1REMOTE _1PLUS _1COLOR _1VERBOSE
+	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
 	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate
     _1modrun "_nh1-=-.clean"
@@ -378,7 +373,7 @@ function 1translate {
 			pushd "$_1LIB"
 			# Generate pot file for all modules
 			xgettext -o "locale/NH1.pot" -L Shell --keyword --keyword=_1text \
-				"$_1DIR/nh1" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g')
+				"$_1RC" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g')
 			if [ -f "locale/$1.po" ]
 			then
 				msgmerge -U "locale/$1.po" "locale/NH1.pot"
