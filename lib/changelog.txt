@@ -127,3 +127,4 @@
 0.118  2022-10-06: improved 1app update output
 0.119  2022-10-07: Update in module template. Improved 1translate
 0.120  2022-10-07: Removed remote.bashrc and references
+0.121  2022-10-07: Refactored main file

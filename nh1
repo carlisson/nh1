@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.120
+_1VERSION=0.121
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -22,18 +22,9 @@ else
 	_1LIB="$_1DIR/lib"
 fi
 
-
 # Gettext configure
 source gettext.sh
 alias _1text="TEXTDOMAINDIR="$_1LIB/locale" gettext 'NH1'"
-
-_1REMPORT=8097
-_1REMFILE="$_1UDATA/servers.list"
-if [ ! -f "$_1REMFILE" ]
-then
-	touch "$_1REMFILE"
-fi
-_1REMLIST=$(cat "$_1REMFILE")
 
 _1COLOR=6
 _1PCOLOR=5 # Pending
@@ -104,7 +95,7 @@ function _1menuitem {
 		printf ' %.0s' $(seq 1 $mi_spaces)
 		echo "$mi_descr"
 	else
-		echo "You need to give status, command name, message and dependencies"
+		_1text "You need to give status, command name, message and dependencies"
 	fi
 }
 
@@ -121,7 +112,7 @@ function NH1 {
 		# Load internal menus
 		_1modrun _nh1-=-.menu
 		
-		echo "___ Main ___"
+		echo "___ $(_1text "Main") ___"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
@@ -242,7 +233,7 @@ function 1bashrc {
     then
       _1text "NH1 is already installed in your profile. Run NH1 to see all commands available."
     else
-			printf "Installing NH1 in %s/.bashrc... " $HOME
+			printf "$(_1text "Installing NH1 in %s/.bashrc...")\n" $HOME
     	echo "$S1" >> ~/.bashrc
 			_1text "Done!"
     fi
@@ -257,17 +248,24 @@ function 1refresh {
 	_1verb $(_1text "Done!")
 }
 
-# Get git credentials to update NH1
+# Update NH1 based in git repository
 function 1update {
 	if 1check git
 	then
 		pushd "$_1LIB/.." || return 1
-		git pull
-		popd || return 2
-		# shellcheck source=/dev/null
-		1refresh
-		1version
-		echo
+		if [ -d ".git" ]
+		then
+			printf "$(_1text "NH1 was in version %s. ")" $_1VERSION
+			git pull
+			1refresh
+			1version
+			echo
+		else
+			_1text "You are using NH1 from tar-ball, not from Git."
+		fi
+		popd || return 2			
+	else
+		_1text "Git program is not available."
 	fi
 }
 

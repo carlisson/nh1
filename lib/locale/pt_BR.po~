@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 21:13-0300\n"
+"POT-Creation-Date: 2022-10-07 08:45-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,99 +18,99 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: /home/cgaldino/sources/nh1/nh1:130
+#: /home/cgaldino/Sources/nh1/nh1:130
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
 
-#: /home/cgaldino/sources/nh1/nh1:131
+#: /home/cgaldino/Sources/nh1/nh1:131
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
-#: /home/cgaldino/sources/nh1/nh1:132
+#: /home/cgaldino/Sources/nh1/nh1:132
 msgid "Write a string in another color"
 msgstr "Escreve um texto em outra cor"
 
-#: /home/cgaldino/sources/nh1/nh1:133
+#: /home/cgaldino/Sources/nh1/nh1:133
 msgid "Create and apply translation for NH1."
 msgstr "Cria e aplica tradução para NH1."
 
-#: /home/cgaldino/sources/nh1/nh1:134
+#: /home/cgaldino/Sources/nh1/nh1:134
 msgid "Update your NH1, using git"
 msgstr "Atualiza seu NH1, usando git"
 
-#: /home/cgaldino/sources/nh1/nh1:135
+#: /home/cgaldino/Sources/nh1/nh1:135
 msgid "Enable/disable verbose mode"
 msgstr "Habilita/desabilita o modo verboso"
 
-#: /home/cgaldino/sources/nh1/nh1:136
+#: /home/cgaldino/Sources/nh1/nh1:136
 msgid "List NH1 version and latest changes/updates"
 msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
-#: /home/cgaldino/sources/nh1/nh1:140
+#: /home/cgaldino/Sources/nh1/nh1:140
 msgid "planning"
 msgstr "planejamento"
 
-#: /home/cgaldino/sources/nh1/nh1:142
+#: /home/cgaldino/Sources/nh1/nh1:142
 msgid "experimental"
 msgstr "experimental"
 
-#: /home/cgaldino/sources/nh1/nh1:144
+#: /home/cgaldino/Sources/nh1/nh1:144
 msgid "working"
 msgstr "funcional"
 
-#: /home/cgaldino/sources/nh1/nh1:146
+#: /home/cgaldino/Sources/nh1/nh1:146
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: /home/cgaldino/sources/nh1/nh1:149
+#: /home/cgaldino/Sources/nh1/nh1:149
 msgid "Power-up your shell"
 msgstr "Dê poderes ao seu shell"
 
-#: /home/cgaldino/sources/nh1/nh1:161
+#: /home/cgaldino/Sources/nh1/nh1:161
 msgid "You need to put a string and a color number (optional)"
 msgstr "Você precisa passar um texto e um número de cor (opcional)"
 
-#: /home/cgaldino/sources/nh1/nh1:162
+#: /home/cgaldino/Sources/nh1/nh1:162
 msgid "black"
 msgstr "preto"
 
-#: /home/cgaldino/sources/nh1/nh1:163
+#: /home/cgaldino/Sources/nh1/nh1:163
 msgid "red"
 msgstr "vermelho"
 
-#: /home/cgaldino/sources/nh1/nh1:164
+#: /home/cgaldino/Sources/nh1/nh1:164
 msgid "green"
 msgstr "verde"
 
-#: /home/cgaldino/sources/nh1/nh1:165
+#: /home/cgaldino/Sources/nh1/nh1:165
 msgid "yellow"
 msgstr "amarelo"
 
-#: /home/cgaldino/sources/nh1/nh1:166
+#: /home/cgaldino/Sources/nh1/nh1:166
 msgid "blue"
 msgstr "azul"
 
-#: /home/cgaldino/sources/nh1/nh1:167
+#: /home/cgaldino/Sources/nh1/nh1:167
 msgid "magenta"
 msgstr "magenta"
 
-#: /home/cgaldino/sources/nh1/nh1:168
+#: /home/cgaldino/Sources/nh1/nh1:168
 msgid "cyan"
 msgstr "ciano"
 
-#: /home/cgaldino/sources/nh1/nh1:169
+#: /home/cgaldino/Sources/nh1/nh1:169
 msgid "white"
 msgstr "branco"
 
-#: /home/cgaldino/sources/nh1/nh1:227
+#: /home/cgaldino/Sources/nh1/nh1:227
 msgid "%s is missing for %s"
 msgstr "%s está faltando para %s"
 
-#: /home/cgaldino/sources/nh1/nh1:229
+#: /home/cgaldino/Sources/nh1/nh1:229
 msgid "Program %s does not exist or it is unavailable for %s."
 msgstr "O programa %s não existe ou está indisponível para %s."
 
-#: /home/cgaldino/sources/nh1/nh1:248
+#: /home/cgaldino/Sources/nh1/nh1:248
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
@@ -118,27 +118,27 @@ msgstr ""
 "NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
 "disponíveis"
 
-#: /home/cgaldino/sources/nh1/nh1:252 /home/cgaldino/sources/nh1/nh1:262
+#: /home/cgaldino/Sources/nh1/nh1:252 /home/cgaldino/Sources/nh1/nh1:262
 msgid "Done!"
 msgstr "Feito!"
 
-#: /home/cgaldino/sources/nh1/nh1:259
+#: /home/cgaldino/Sources/nh1/nh1:259
 msgid "After destroy variables, I will load %s."
 msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
-#: /home/cgaldino/sources/nh1/nh1:289
+#: /home/cgaldino/Sources/nh1/nh1:289
 msgid "Destroying all variables..."
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/sources/nh1/nh1:305 /home/cgaldino/sources/nh1/nh1:319
+#: /home/cgaldino/Sources/nh1/nh1:305 /home/cgaldino/Sources/nh1/nh1:319
 msgid "Verbose mode is on"
 msgstr "Modo verboso está ligado"
 
-#: /home/cgaldino/sources/nh1/nh1:307 /home/cgaldino/sources/nh1/nh1:315
+#: /home/cgaldino/Sources/nh1/nh1:307 /home/cgaldino/Sources/nh1/nh1:315
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/cgaldino/sources/nh1/nh1:396 audio.bashrc:136 audio.bashrc:226
+#: /home/cgaldino/Sources/nh1/nh1:396 audio.bashrc:136 audio.bashrc:226
 #: backup.bashrc:201 canva.bashrc:131 misc.bashrc:70
 msgid "Usage: %s."
 msgstr "Uso: %s."
@@ -247,12 +247,12 @@ msgstr "Tipo não suportado: %s."
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:400 app.bashrc:406 app.bashrc:414 app.bashrc:421 app.bashrc:427
-#: app.bashrc:433
+#: app.bashrc:399 app.bashrc:405 app.bashrc:413 app.bashrc:420 app.bashrc:426
+#: app.bashrc:432
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:445
+#: app.bashrc:444
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
