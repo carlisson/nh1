@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 21:10-0300\n"
+"POT-Creation-Date: 2022-10-06 21:13-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -235,24 +235,24 @@ msgstr " para instalar globalmente e "
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:308
+#: app.bashrc:224
+msgid "To install/upgrade:"
+msgstr "Prestes a instalar/atualizar:"
+
+#: app.bashrc:311
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:311
+#: app.bashrc:314
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:365
-msgid "Upgrading %s."
-msgstr "Atualizando %s..."
-
-#: app.bashrc:398 app.bashrc:404 app.bashrc:412 app.bashrc:419 app.bashrc:425
-#: app.bashrc:431
+#: app.bashrc:400 app.bashrc:406 app.bashrc:414 app.bashrc:421 app.bashrc:427
+#: app.bashrc:433
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:443
+#: app.bashrc:445
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -864,3 +864,6 @@ msgstr "Espadas"
 #: rpg.bashrc:108
 msgid "%s of %s"
 msgstr "%s de %s"
+
+#~ msgid "Upgrading %s."
+#~ msgstr "Atualizando %s..."

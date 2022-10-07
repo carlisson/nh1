@@ -125,3 +125,4 @@
 0.116  2022-10-06: 1network using gettext, translation pt_BR ok
 0.117  2022-10-06: 1rpg using gettext, translation pt_BR ok.
 0.118  2022-10-06: improved 1app update output
+0.119  2022-10-07: Update in module template. Improved 1translate
