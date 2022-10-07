@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.124
+_1VERSION=0.125
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -152,30 +152,35 @@ function _1list {
 # @param Text to 1tint
 function 1tint {
 	local COLOR MSG
-	if [ $# -eq 0 ]
-	then
-		_1text "You need to put a string and a color number (optional)"
-		1tint 0 "0 $(_1text black)"; echo
-		1tint 1 "1 $(_1text red)"; echo
-		1tint 2 "2 $(_1text green)"; echo
-		1tint 3 "3 $(_1text yellow)"; echo
-		1tint 4 "4 $(_1text blue)"; echo
-		1tint 5 "5 $(_1text magenta)"; echo
-		1tint 6 "6 $(_1text cyan)"; echo
-		1tint 7 "7 $(_1text white)"; echo
-		return 1
-	fi
-	if [ $# -eq 1 ]
-	then
-		COLOR=$_1COLOR
-		MSG=$1
-	else
-		COLOR=$1
-		MSG=$2
-	fi
+
+	case "$#" in
+		0)
+			_1text "You need to put a string and a color number (optional)"
+			1tint 0 "0 $(_1text black)"; echo
+			1tint 1 "1 $(_1text red)"; echo
+			1tint 2 "2 $(_1text green)"; echo
+			1tint 3 "3 $(_1text yellow)"; echo
+			1tint 4 "4 $(_1text blue)"; echo
+			1tint 5 "5 $(_1text magenta)"; echo
+			1tint 6 "6 $(_1text cyan)"; echo
+			1tint 7 "7 $(_1text white)"; echo
+			return 1
+			;;
+		1) # param is text
+			COLOR=$_1COLOR
+			MSG=$1
+			;;
+		*) # every param after first is text
+			COLOR=$1
+			shift  
+			MSG=$*
+			;;
+	esac
+
 	tput setaf $COLOR
 	echo -n $MSG
 	tput sgr0
+
 	return 0
 }
 
