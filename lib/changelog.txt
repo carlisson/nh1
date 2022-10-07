@@ -132,3 +132,4 @@
 0.123  2022-10-07: Refactored main file
 0.124  2022-10-07: Working with vars from .norg/nh1.conf
 0.125  2022-10-07: Improved 1tint
+0.126  2022-10-07: Improved 1translate and 1refresh

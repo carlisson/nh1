@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-07 11:54-0300\n"
+"POT-Creation-Date: 2022-10-07 12:56-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -22,111 +22,111 @@ msgstr ""
 msgid "You need to give status, command name, message and dependencies"
 msgstr "Você precisa passar status, nome do comando, mensagem e dependências"
 
-#: /home/cgaldino/Sources/nh1/nh1:157
+#: /home/cgaldino/Sources/nh1/nh1:215
 msgid "You need to put a string and a color number (optional)"
 msgstr "Você precisa passar um texto e um número de cor (opcional)"
 
-#: /home/cgaldino/Sources/nh1/nh1:158
+#: /home/cgaldino/Sources/nh1/nh1:216
 msgid "black"
 msgstr "preto"
 
-#: /home/cgaldino/Sources/nh1/nh1:159
+#: /home/cgaldino/Sources/nh1/nh1:217
 msgid "red"
 msgstr "vermelho"
 
-#: /home/cgaldino/Sources/nh1/nh1:160
+#: /home/cgaldino/Sources/nh1/nh1:218
 msgid "green"
 msgstr "verde"
 
-#: /home/cgaldino/Sources/nh1/nh1:161
+#: /home/cgaldino/Sources/nh1/nh1:219
 msgid "yellow"
 msgstr "amarelo"
 
-#: /home/cgaldino/Sources/nh1/nh1:162
+#: /home/cgaldino/Sources/nh1/nh1:220
 msgid "blue"
 msgstr "azul"
 
-#: /home/cgaldino/Sources/nh1/nh1:163
+#: /home/cgaldino/Sources/nh1/nh1:221
 msgid "magenta"
 msgstr "magenta"
 
-#: /home/cgaldino/Sources/nh1/nh1:164
+#: /home/cgaldino/Sources/nh1/nh1:222
 msgid "cyan"
 msgstr "ciano"
 
-#: /home/cgaldino/Sources/nh1/nh1:165
+#: /home/cgaldino/Sources/nh1/nh1:223
 msgid "white"
 msgstr "branco"
 
-#: /home/cgaldino/Sources/nh1/nh1:257
+#: /home/cgaldino/Sources/nh1/nh1:259
 msgid "%s is missing for %s"
 msgstr "%s está faltando para %s"
 
-#: /home/cgaldino/Sources/nh1/nh1:259
+#: /home/cgaldino/Sources/nh1/nh1:261
 msgid "Program %s does not exist or it is unavailable for %s."
 msgstr "O programa %s não existe ou está indisponível para %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:275
+#: /home/cgaldino/Sources/nh1/nh1:277
 msgid "Destroying all variables..."
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/Sources/nh1/nh1:297
+#: /home/cgaldino/Sources/nh1/nh1:299
 msgid "Main"
 msgstr "Sessão Principal"
 
-#: /home/cgaldino/Sources/nh1/nh1:298
+#: /home/cgaldino/Sources/nh1/nh1:300
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
 
-#: /home/cgaldino/Sources/nh1/nh1:299
+#: /home/cgaldino/Sources/nh1/nh1:301
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
-#: /home/cgaldino/Sources/nh1/nh1:300
+#: /home/cgaldino/Sources/nh1/nh1:302
 msgid "List possible custom variables"
 msgstr "Lista possíveis variáveis custom"
 
-#: /home/cgaldino/Sources/nh1/nh1:301
+#: /home/cgaldino/Sources/nh1/nh1:303
 msgid "Write a string in another color"
 msgstr "Escreve um texto em outra cor"
 
-#: /home/cgaldino/Sources/nh1/nh1:302
+#: /home/cgaldino/Sources/nh1/nh1:304
 msgid "Create and apply translation for NH1."
 msgstr "Cria e aplica tradução para NH1."
 
-#: /home/cgaldino/Sources/nh1/nh1:303
+#: /home/cgaldino/Sources/nh1/nh1:305
 msgid "Update your NH1, using git"
 msgstr "Atualiza seu NH1, usando git"
 
-#: /home/cgaldino/Sources/nh1/nh1:304
+#: /home/cgaldino/Sources/nh1/nh1:306
 msgid "Enable/disable verbose mode"
 msgstr "Habilita/desabilita o modo verboso"
 
-#: /home/cgaldino/Sources/nh1/nh1:305
+#: /home/cgaldino/Sources/nh1/nh1:307
 msgid "List NH1 version and latest changes/updates"
 msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
-#: /home/cgaldino/Sources/nh1/nh1:309
+#: /home/cgaldino/Sources/nh1/nh1:311
 msgid "planning"
 msgstr "planejamento"
 
-#: /home/cgaldino/Sources/nh1/nh1:311
+#: /home/cgaldino/Sources/nh1/nh1:313
 msgid "experimental"
 msgstr "experimental"
 
-#: /home/cgaldino/Sources/nh1/nh1:313
+#: /home/cgaldino/Sources/nh1/nh1:315
 msgid "working"
 msgstr "funcional"
 
-#: /home/cgaldino/Sources/nh1/nh1:315
+#: /home/cgaldino/Sources/nh1/nh1:317
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: /home/cgaldino/Sources/nh1/nh1:318
+#: /home/cgaldino/Sources/nh1/nh1:320
 msgid "Power-up your shell"
 msgstr "Dê poderes ao seu shell"
 
-#: /home/cgaldino/Sources/nh1/nh1:328
+#: /home/cgaldino/Sources/nh1/nh1:330
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
@@ -134,54 +134,91 @@ msgstr ""
 "NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
 "disponíveis"
 
-#: /home/cgaldino/Sources/nh1/nh1:330
-msgid "Installing NH1 in %s/.bashrc..."
-msgstr ""
+#: /home/cgaldino/Sources/nh1/nh1:332
+msgid "Installing NH1 in %s..."
+msgstr "Instalando NH1 em %s..."
 
-#: /home/cgaldino/Sources/nh1/nh1:332 /home/cgaldino/Sources/nh1/nh1:342
+#: /home/cgaldino/Sources/nh1/nh1:334 /home/cgaldino/Sources/nh1/nh1:344
 msgid "Done!"
 msgstr "Feito!"
 
-#: /home/cgaldino/Sources/nh1/nh1:339
+#: /home/cgaldino/Sources/nh1/nh1:341
 msgid "After destroy variables, I will load %s."
 msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:352
+#: /home/cgaldino/Sources/nh1/nh1:354
 msgid "NH1 was in version %s. "
 msgstr "NH1 estava na versão %s. "
 
-#: /home/cgaldino/Sources/nh1/nh1:358
+#: /home/cgaldino/Sources/nh1/nh1:360
 msgid "You are using NH1 from tar-ball, not from Git."
 msgstr "Você está usando NH1 a partir do tar-ball, não do Git."
 
-#: /home/cgaldino/Sources/nh1/nh1:362
+#: /home/cgaldino/Sources/nh1/nh1:364
 msgid "Git program is not available."
 msgstr "Programa git não está disponível."
 
-#: /home/cgaldino/Sources/nh1/nh1:382 /home/cgaldino/Sources/nh1/nh1:396
+#: /home/cgaldino/Sources/nh1/nh1:384 /home/cgaldino/Sources/nh1/nh1:398
 msgid "Verbose mode is on"
 msgstr "Modo verboso está ligado"
 
-#: /home/cgaldino/Sources/nh1/nh1:384 /home/cgaldino/Sources/nh1/nh1:392
+#: /home/cgaldino/Sources/nh1/nh1:386 /home/cgaldino/Sources/nh1/nh1:394
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/cgaldino/Sources/nh1/nh1:424 audio.bashrc:136 audio.bashrc:226
+#: /home/cgaldino/Sources/nh1/nh1:408
+msgid "Generating translation file."
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:414
+msgid ".pot file generated. Trying to create/update .po"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:429 audio.bashrc:136 audio.bashrc:226
 #: backup.bashrc:201 canva.bashrc:131 misc.bashrc:70
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
+#: /home/cgaldino/Sources/nh1/nh1:430
+msgid "Steps to translate"
+msgstr ""
+
 #: /home/cgaldino/Sources/nh1/nh1:431
+msgid "Run 1translate <language-code>. For example, 1translate pt_BR"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:432
+msgid "Edit the file <language-code>.po in %s, puting the translated strings"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:433
+msgid ""
+"Run 1translate <language-code> build. This will generate .mo file. \"build\" "
+"can be replaced to anything"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:434
+msgid ""
+"Enjoy NH1 in your language! It's useful if you return translated .po to "
+"improve NH1 project!"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:441
 msgid "Custom variables"
 msgstr "Variáveis Custom"
 
-#: /home/cgaldino/Sources/nh1/nh1:432
+#: /home/cgaldino/Sources/nh1/nh1:442
 msgid "You can configure custom variables for NH1. Edit %s to define it."
-msgstr "Você pode configurar variáveis custom para o NH1. Edite %s para definí-las."
+msgstr ""
+"Você pode configurar variáveis custom para o NH1. Edite %s para definí-las."
 
-#: /home/cgaldino/Sources/nh1/nh1:434
+#: /home/cgaldino/Sources/nh1/nh1:444
 msgid "Set verbose mode (1 or 0). Default: 0"
 msgstr "Define o modo verboso (1 ou 0). Default: 0"
+
+#: /home/cgaldino/Sources/nh1/nh1:477
+msgid "You need run: source %s."
+msgstr "Você precisa rodar: source %s."
 
 #: app.bashrc:17
 msgid "Install App"

@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.125
+_1VERSION=0.126
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -35,12 +35,63 @@ _1DCOLOR=1 # Deprecated
 _1MENUCOL=13
 _1VERBOSE=0 # 0 - disabled; 1 - enabled
 
+# Set text color in shell
+# @param The color number (optional)
+# @param Text to 1tint
+function 1tint {
+	local COLOR MSG
+
+	case "$#" in
+		0)
+			_1text "You need to put a string and a color number (optional)"
+			1tint 0 "0 $(_1text black)"; echo
+			1tint 1 "1 $(_1text red)"; echo
+			1tint 2 "2 $(_1text green)"; echo
+			1tint 3 "3 $(_1text yellow)"; echo
+			1tint 4 "4 $(_1text blue)"; echo
+			1tint 5 "5 $(_1text magenta)"; echo
+			1tint 6 "6 $(_1text cyan)"; echo
+			1tint 7 "7 $(_1text white)"; echo
+			return 1
+			;;
+		1) # param is text
+			COLOR=$_1COLOR
+			MSG=$1
+			;;
+		*) # every param after first is text
+			COLOR=$1
+			shift  
+			MSG=$*
+			;;
+	esac
+
+	tput setaf $COLOR
+	echo -n $MSG
+	tput sgr0
+
+	return 0
+}
+
+# Print only if NH1 is in verbose mode
+# @param Message to print
+function _1verb {
+	if [ $_1VERBOSE -gt 0 ]
+	then
+		1tint 3 "▲"
+		echo -n ' '
+		1tint ${FUNCNAME[ 1 ]}
+		echo ": $1"
+	fi
+}
 
 # Run it for all modules
 # @param Command. Replace -=- by module name
 function _1modrun {
-	local _COMM _MOD _AUX
+	local _COMM _MOD _AUX _COUNT
 	_COMM="$1"
+	_COUNT=0
+	_1verb "$(printf "$(_1text "Running for %s")" "$_COMM")"
+
 	for _MOD in "${_1MODULES[@]}"
 	do
 		_AUX=$(echo "$_COMM" | sed "s/-=-/$_MOD/")
@@ -50,8 +101,11 @@ function _1modrun {
 		elif [ "$(type -t $_AUX)" = 'builtin' ]
 		then
 			eval $_AUX
+		else
+			_COUNT=$((_COUNT+1))
 		fi
 	done
+	_1verb "$(printf "$(_1text "Done. %i modules not ready for this command.")" $_COUNT)"
 }
 
 # IMPORT MODULES
@@ -147,57 +201,6 @@ function _1list {
     done
 }
 
-# Set text color in shell
-# @param The color number (optional)
-# @param Text to 1tint
-function 1tint {
-	local COLOR MSG
-
-	case "$#" in
-		0)
-			_1text "You need to put a string and a color number (optional)"
-			1tint 0 "0 $(_1text black)"; echo
-			1tint 1 "1 $(_1text red)"; echo
-			1tint 2 "2 $(_1text green)"; echo
-			1tint 3 "3 $(_1text yellow)"; echo
-			1tint 4 "4 $(_1text blue)"; echo
-			1tint 5 "5 $(_1text magenta)"; echo
-			1tint 6 "6 $(_1text cyan)"; echo
-			1tint 7 "7 $(_1text white)"; echo
-			return 1
-			;;
-		1) # param is text
-			COLOR=$_1COLOR
-			MSG=$1
-			;;
-		*) # every param after first is text
-			COLOR=$1
-			shift  
-			MSG=$*
-			;;
-	esac
-
-	tput setaf $COLOR
-	echo -n $MSG
-	tput sgr0
-
-	return 0
-}
-
-# Alias like
-function 1help { NH1 ; }
-
-# Print only if NH1 is in verbose mode
-# @param Message to print
-function _1verb {
-	if [ $_1VERBOSE -gt 0 ]
-	then
-		1tint 3 "▲"
-		echo -n ' '
-		1tint ${FUNCNAME[ 1 ]}
-		echo ": $1"
-	fi
-}
 
 # Run the command as root
 # @param Command
@@ -277,17 +280,19 @@ function 1check {
 
 # Clean all variables set by nh1
 function 1clean {
+	_1COLOR=1
 	_1verb "$(_1text "Destroying all variables...")"
-	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
-	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
-	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
-	unset -f _nh1customvars 1info
 
-    _1modrun "_nh1-=-.clean"
+	_1modrun "_nh1-=-.clean"
+
+	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
+	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
+	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
+	unset -f _nh1customvars 1info _1modrun   
 }
 
 # Menu for NH1
-function NH1 {
+function 1help {
 	local _MOD
 		echo " -------------------------------------"
 		echo -n "            "
@@ -302,11 +307,11 @@ function NH1 {
 		echo "___ $(_1text "Main") ___"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
-		_1menuitem X 1info "$(_1text "List possible custom variables")"
+		_1menuitem W 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
-		_1menuitem X 1translate "$(_1text "Create and apply translation for NH1.")"
+		_1menuitem W 1translate "$(_1text "Create and apply translation for NH1.")"
 		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
-		_1menuitem X 1verbose "$(_1text "Enable/disable verbose mode")"
+		_1menuitem W 1verbose "$(_1text "Enable/disable verbose mode")"
 		_1menuitem W 1version "$(_1text "List NH1 version and latest changes/updates")"
 
 		echo
@@ -332,7 +337,7 @@ function 1bashrc {
     then
       _1text "NH1 is already installed in your profile. Run NH1 to see all commands available."
     else
-			printf "$(_1text "Installing NH1 in %s/.bashrc...")\n" $HOME
+		printf "$(_1text "Installing NH1 in %s...")\n" "$HOME/.bashrc"
     	echo "$S1" >> ~/.bashrc
 			_1text "Done!"
     fi
@@ -408,25 +413,36 @@ function 1translate {
 	local AUX
 	case "$#" in
 		1)
+			_1verb "$(_1text "Generating translation file.")"
 			pushd "$_1LIB"
 			# Generate pot file for all modules
 			xgettext -o "locale/NH1.pot" -L Shell --keyword --keyword=_1text \
 				"$_1RC" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g')
+			
+			_1verb "$(_1text ".pot file generated. Trying to create/update .po")"
 			if [ -f "locale/$1.po" ]
 			then
 				msgmerge -U "locale/$1.po" "locale/NH1.pot"
 			else
 				msginit -o "locale/$1.po" -l "$1" -i "locale/NH1.pot"
 			fi
+			_1verb "Done!"
 			popd
 			;;
 		2)
 			AUX="$_1LIB/locale/$1/LC_MESSAGES"
 			mkdir -p "$AUX"
+			_1verb "$(printf "$(_1text "Generating .mo file for %s language")" $1)"
 			msgfmt -o "$AUX/NH1.mo" "$_1LIB/locale/$1.po"
+			_1verb "Done!"
 			;;
 		*)
 			printf "$(_1text "Usage: %s.")\n" "1translate <language-code> [compile]"
+			printf "$(_1text "Steps to translate"):\n"
+			printf "  1) $(_1text "Run 1translate <language-code>. For example, 1translate pt_BR");\n"
+			printf "  2) $(_1text "Edit the file <language-code>.po in %s, puting the translated strings");\n" "$_1LIB/locale"
+			printf "  3) $(_1text "Run 1translate <language-code> build. This will generate .mo file. \"build\" can be replaced to anything");\n"
+			printf "  4) $(_1text "Enjoy NH1 in your language! It's useful if you return translated .po to improve NH1 project!").\n"
 			;;
 	esac
 }
@@ -465,11 +481,11 @@ else
 		S1="source $_1RC"
 		if ! grep "$S1" ~/.bashrc > /dev/null
 		then
-			NH1
+			1help
 		fi
 		unset S1
 	else
-			echo "You need run: source $_1RC"
+			printf "$(_1text "You need run: source %s.")\n" "$_1RC"
 			return 0
 	fi
 fi
