@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.121
+_1VERSION=0.122
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -115,6 +115,7 @@ function NH1 {
 		echo "___ $(_1text "Main") ___"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
+		_1menuitem X 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
 		_1menuitem X 1translate $(_1text "Create and apply translation for NH1.")
 		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
@@ -282,7 +283,9 @@ function 1clean {
 	_1verb "$(_1text "Destroying all variables...")"
 	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
 	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
-	unset -f 1clean 1help _1compl _1list 1translate
+	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
+	unset -f _nh1customvars 1info
+
     _1modrun "_nh1-=-.clean"
 }
 
@@ -391,6 +394,31 @@ function 1translate {
 	esac
 }
 
+# Configure completion for main and file all modules.
+function _nh1complete {
+	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
+
+	_1modrun "_nh1-=-.complete"
+}
+
+# Initial functions, configuring and create dirs
+function _nh1init {
+	_1modrun "_nh1-=-.init"
+}
+
+# Apply custom variables to internals
+function _nh1customvars {
+	_1modrun "_nh1-=-.customvars"
+}
+
+# Information about user variables
+function 1info {
+	echo "_______ $(_1text "Custom variables") _______"
+	_1text "You can configure custom variables for NH1"
+	echo
+	_1modrun "nh1-=-.info"
+}
+
 #MAIN
 
 # Try to execute a `return` statement,
@@ -403,9 +431,9 @@ then
 	$_1RUN $@
 	unset _1RUN
 else
-	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
 
-	_1modrun "_nh1-=-.complete"
+	_nh1complete
+
 	if return >/dev/null 2>&1
 	then
 		S1="source $_1RC"
