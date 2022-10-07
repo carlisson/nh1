@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.122
+_1VERSION=0.123
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -99,43 +99,52 @@ function _1menuitem {
 	fi
 }
 
-# Menu for NH1
-function NH1 {
-	local _MOD
-		echo " -------------------------------------"
-		echo -n "            "
-    1tint "NH1 $_1VERSION"
-		echo
-		echo " -------------------------------------"
-    echo
+# Generic complete function, finding formats
+# @param 1st file format. 0 for none
+# @param 2nd file format. 0 for none
+# @param 3th file format. 0 for none
+# @param 4th file format. 0 for none
+# @param 5th file format. 0 for none
+function _1compl {
+  COMREPLY=()
+  local word="${COMP_WORDS[COMP_CWORD]}"
+    if [ "$COMP_CWORD" -eq 1 ] && [ $1 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$1" -- "$word"))
+    elif [ "$COMP_CWORD" -eq 2 ] && [ $2 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$2" -- "$word"))
+    elif [ "$COMP_CWORD" -eq 3 ] && [ $3 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$3" -- "$word"))    
+    elif [ "$COMP_CWORD" -eq 4 ] && [ $4 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$4" -- "$word"))    
+    elif [ "$COMP_CWORD" -eq 5 ] && [ $5 != "0" ]
+    then
+        COMPREPLY=($(compgen -f -X "!*.$5" -- "$word"))    
+    fi
+}
 
-		# Load internal menus
-		_1modrun _nh1-=-.menu
-		
-		echo "___ $(_1text "Main") ___"
-		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
-		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
-		_1menuitem X 1info "$(_1text "List possible custom variables")"
-		_1menuitem W 1tint "$(_1text "Write a string in another color")"
-		_1menuitem X 1translate $(_1text "Create and apply translation for NH1.")
-		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
-		_1menuitem X 1verbose "$(_1text "Enable/disable verbose mode")"
-		_1menuitem W 1version "$(_1text "List NH1 version and latest changes/updates")"
-
-		echo
-		echo -n "   "
-		1tint $_1PCOLOR $(_1text "planning")
-		echo -n "   "
-		1tint $_1XCOLOR $(_1text "experimental")
-		echo -n "   "
-		1tint $_1WCOLOR $(_1text "working")
-		echo -n "   "
-		1tint $_1DCOLOR $(_1text "deprecated")
-		echo
-		echo " -------------------------------------"
-		echo "         $(_1text "Power-up your shell")"
-		echo " -------------------------------------"
-    echo
+# Returns all internal items of one kind
+# @param Path
+# @param File extension
+# @param exclude extension? Default: yes
+function _1list {
+    local fn aux
+    for fn in $(ls -1 "$1")
+    do        
+		if [ $# -gt 2 ]
+		then
+			echo -n " $fn"
+		else
+			aux="$(basename  "$fn" ".$2")"
+			if [ "$aux" != "$fn" ]
+			then
+        		echo -n " $aux"
+			fi
+		fi
+    done
 }
 
 # Set text color in shell
@@ -196,6 +205,23 @@ function _1sudo {
     fi
 }
 
+# Configure completion for main and file all modules.
+function _nh1complete {
+	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
+
+	_1modrun "_nh1-=-.complete"
+}
+
+# Initial functions, configuring and create dirs
+function _nh1init {
+	_1modrun "_nh1-=-.init"
+}
+
+# Apply custom variables to internals
+function _nh1customvars {
+	_1modrun "_nh1-=-.customvars"
+}
+
 # Check if a program exists. Finish NH1 if it do not exists.
 # @param Program to check
 function 1check {
@@ -225,6 +251,56 @@ function 1check {
 	else
 		return 0
 	fi
+}
+
+# Clean all variables set by nh1
+function 1clean {
+	_1verb "$(_1text "Destroying all variables...")"
+	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
+	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
+	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
+	unset -f _nh1customvars 1info
+
+    _1modrun "_nh1-=-.clean"
+}
+
+# Menu for NH1
+function NH1 {
+	local _MOD
+		echo " -------------------------------------"
+		echo -n "            "
+    1tint "NH1 $_1VERSION"
+		echo
+		echo " -------------------------------------"
+    echo
+
+		# Load internal menus
+		_1modrun _nh1-=-.menu
+		
+		echo "___ $(_1text "Main") ___"
+		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
+		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
+		_1menuitem X 1info "$(_1text "List possible custom variables")"
+		_1menuitem W 1tint "$(_1text "Write a string in another color")"
+		_1menuitem X 1translate $(_1text "Create and apply translation for NH1.")
+		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
+		_1menuitem X 1verbose "$(_1text "Enable/disable verbose mode")"
+		_1menuitem W 1version "$(_1text "List NH1 version and latest changes/updates")"
+
+		echo
+		echo -n "   "
+		1tint $_1PCOLOR $(_1text "planning")
+		echo -n "   "
+		1tint $_1XCOLOR $(_1text "experimental")
+		echo -n "   "
+		1tint $_1WCOLOR $(_1text "working")
+		echo -n "   "
+		1tint $_1DCOLOR $(_1text "deprecated")
+		echo
+		echo " -------------------------------------"
+		echo "         $(_1text "Power-up your shell")"
+		echo " -------------------------------------"
+    echo
 }
 
 # Modify ~/.bashrc to init NH1 on bash start
@@ -270,23 +346,11 @@ function 1update {
 	fi
 }
 
-
 # List version software and list latest entries from changelog
 function 1version {
 	echo "NH1 $_1VERSION"
 	echo
 	tail "$_1LIB/changelog.txt"
-}
-
-# Clean all variables set by nh1
-function 1clean {
-	_1verb "$(_1text "Destroying all variables...")"
-	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
-	unset -f NH1 1tint _1verb _1sudo 1check 1bashrc 1refresh 1update 1version 
-	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
-	unset -f _nh1customvars 1info
-
-    _1modrun "_nh1-=-.clean"
 }
 
 # Enable or disable verbose mode
@@ -315,55 +379,6 @@ function 1verbose {
 		_1verb "$(_1text "Verbose mode is on")"
 	fi
 }
-
-# Generic complete function, finding formats
-# @param 1st file format. 0 for none
-# @param 2nd file format. 0 for none
-# @param 3th file format. 0 for none
-# @param 4th file format. 0 for none
-# @param 5th file format. 0 for none
-function _1compl {
-  COMREPLY=()
-  local word="${COMP_WORDS[COMP_CWORD]}"
-    if [ "$COMP_CWORD" -eq 1 ] && [ $1 != "0" ]
-    then
-        COMPREPLY=($(compgen -f -X "!*.$1" -- "$word"))
-    elif [ "$COMP_CWORD" -eq 2 ] && [ $2 != "0" ]
-    then
-        COMPREPLY=($(compgen -f -X "!*.$2" -- "$word"))
-    elif [ "$COMP_CWORD" -eq 3 ] && [ $3 != "0" ]
-    then
-        COMPREPLY=($(compgen -f -X "!*.$3" -- "$word"))    
-    elif [ "$COMP_CWORD" -eq 4 ] && [ $4 != "0" ]
-    then
-        COMPREPLY=($(compgen -f -X "!*.$4" -- "$word"))    
-    elif [ "$COMP_CWORD" -eq 5 ] && [ $5 != "0" ]
-    then
-        COMPREPLY=($(compgen -f -X "!*.$5" -- "$word"))    
-    fi
-}
-
-# Returns all internal items of one kind
-# @param Path
-# @param File extension
-# @param exclude extension? Default: yes
-function _1list {
-    local fn aux
-    for fn in $(ls -1 "$1")
-    do        
-		if [ $# -gt 2 ]
-		then
-			echo -n " $fn"
-		else
-			aux="$(basename  "$fn" ".$2")"
-			if [ "$aux" != "$fn" ]
-			then
-        		echo -n " $aux"
-			fi
-		fi
-    done
-}
-
 # Creates and apply translation for NH1
 # @param Language code
 # @param Generate binaries. Default: none
@@ -392,23 +407,6 @@ function 1translate {
 			printf "$(_1text "Usage: %s.")\n" "1translate <language-code> [compile]"
 			;;
 	esac
-}
-
-# Configure completion for main and file all modules.
-function _nh1complete {
-	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
-
-	_1modrun "_nh1-=-.complete"
-}
-
-# Initial functions, configuring and create dirs
-function _nh1init {
-	_1modrun "_nh1-=-.init"
-}
-
-# Apply custom variables to internals
-function _nh1customvars {
-	_1modrun "_nh1-=-.customvars"
 }
 
 # Information about user variables
