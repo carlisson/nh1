@@ -36,7 +36,7 @@ function _nh1app.clean {
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
-  unset -f 1appxupd _nh1app.where _nh1app.complete
+  unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
 }
 
 # Alias-like
@@ -165,6 +165,7 @@ function _nh1app.openapp {
 # Close app description
 function _nh1app.closeapp {
   unset APP_DESCRIPTION APP_TYPE APP_BINARY APP_DEPENDS APP_PREFIX
+  unset APP_NAME APP_CATEGORIES APP_MIME
   unset -f APP_POSTINST APP_VERSION APP_GET
 }
 
@@ -207,6 +208,49 @@ function _nh1app.checkversion {
     fi
 }
 
+# Create a Desktop file
+# @param App internal name
+# @param local or global
+function _nh1app.mkdesktop {
+    local _APP _NATMP
+    _APP="$1"
+    
+    _1verb "$(printf "$(_1text "Creating desktop file for %s.")\n" $_APP)"
+
+    if [ -f "$_1APPLIB/$_APP.png" ]
+    then
+        _NATMP=$(mktemp)                    
+        cp "$_1LIB/templates/blank.desktop" "$_NATMP"
+        echo "Name=$APP_NAME" >> "$_NATMP"
+        echo "Comment=$APP_DESCRIPTION (NH1)" >> "$_NATMP"
+        if [[ $APP_CATEGORIES ]]
+        then
+            echo "Categories=$APP_CATEGORIES" >> "$_NATMP"
+        fi
+        if [[ $APP_MIME ]]
+        then
+            echo "Mime=$APP_MIME" >> "$_NATMP"
+        fi
+        echo "Exec=$_NASYM" >> "$_NATMP"
+        
+        if [ $2 = "global" ]
+        then
+            _1sudo cp "$_1APPLIB/$_APP.png" "$_1APPGICON/"
+            echo "Icon=$_1APPGICON/$_APP.png" >> "$_NATMP"
+            _1sudo cp "$_NATMP" "$_1APPGAPPS/$_APP.desktop"
+            _1sudo chmod a+r "$_1APPGAPPS/$_APP.desktop"
+        else
+            cp "$_1APPLIB/$_APP.png" "$_1APPLICON/"
+            echo "Icon=$_1APPLICON/$_APP.png" >> "$_NATMP"
+            cp "$_NATMP" "$_1APPLAPPS/$_APP.desktop"
+            chmod a+r "$_1APPLAPPS/$_APP.desktop"
+        fi
+        rm "$_NATMP"
+    else
+        _1verb "$(_1text "No PNG for app. No desktop file created.")"
+    fi
+}
+
 # Single downloader
 # @param app name
 # @param app-directory
@@ -221,51 +265,26 @@ function _nh1app.single {
         _NASYM="$3/$1"
         _NAS=$4
         _NANEW=$(_nh1app.checkversion new $_NAPP)
+        
+        pushd $_NADIR > /dev/null
+        _nh1app.openapp $_NAPP
         if [ -f "$_NADIR/$_NANEW" ]
         then
             printf "$(_1text "%s is already up to date.")\n" $_NAPP
         else
-            pushd $_NADIR
             _1text "To install/upgrade:"
             1tint $_1COLOR " $_NAA"
             echo
-            if _nh1app.openapp $_NAPP
+            
+            if [ $_NAS = "global" ]
             then
-                if [ $_NAS = "global" ]
-                then
-                    APP_GET sudo
-                    _1sudo chmod a+x "$_NANEW"
-                    if [ -f "$_1APPLIB/$_NAPP.desktop" ]
-                    then
-                        _NATMP=$(mktemp)
-                        cp "$_1APPLIB/$_NAPP.desktop" "$_NATMP"
-                        echo "Exec=$_NASYM" >> "$_NATMP"
-                        if [ -f "$_1APPLIB/$_NAPP.png" ]
-                        then
-                            _1sudo cp "$_1APPLIB/$_NAPP.png" "$_1APPGICON/"
-                            echo "Icon=$_1APPGICON/$_NAPP.png" >> "$_NATMP"
-                        fi
-                        _1sudo cp "$_NATMP" "$_1APPGAPPS/$_NAPP.desktop"
-                        _1sudo chmod a+r "$_1APPGAPPS/$_NAPP.desktop"
-                        rm "$_NATMP"
-                    fi
-                else
-                    APP_GET
-                    chmod a+x "$_NANEW"
-                    if [ -f "$_1APPLIB/$_NAPP.desktop" ]
-                    then
-                        cp "$_1APPLIB/$_NAPP.desktop" "$_1APPLAPPS/"
-                        echo "Exec=$_NASYM" >> "$_1APPLAPPS/$_NAPP.desktop"
-                        if [ -f "$_1APPLIB/$_NAPP.png" ]
-                        then
-                            cp "$_1APPLIB/$_NAPP.png" "$_1APPLICON/"
-                            echo "Icon=$_1APPLICON/$_NAPP.png" >> "$_1APPLAPPS/$_NAPP.desktop" 
-                        fi
-                    fi
-                fi
-                _nh1app.closeapp
+                APP_GET sudo
+                _1sudo chmod a+x "$_NANEW"
+            else
+                APP_GET
+                chmod a+x "$_NANEW"
             fi
-            popd
+            
             if [ -L "$_NASYM" ]
             then
                 if [ $_NAS = "global" ]
@@ -282,7 +301,18 @@ function _nh1app.single {
                 ln -s "$_NADIR/$_NANEW" "$_NASYM"
             fi
         fi
-    fi
+
+        # Creates a desktop file any way
+        if [ -f "$_NASYM" ]
+        then
+            _nh1app.mkdesktop "$_NAPP" "$_NAS"
+        fi
+
+        _nh1app.closeapp
+        popd > /dev/null
+    else
+        _1text "curl not found."
+    fi    
 }
 
 # Internal 1app generic installer
