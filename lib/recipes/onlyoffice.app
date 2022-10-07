@@ -1,6 +1,8 @@
 # Description for install Nextcloud client via AppImage
 
+APP_NAME="OnlyOffice Desktop Edition"
 APP_DESCRIPTION="$(_1text "OnlyOffice Desktop")"
+APP_CATEGORIES="Office"
 
 # It can be:
 #

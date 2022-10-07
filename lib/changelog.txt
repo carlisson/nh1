@@ -134,3 +134,4 @@
 0.125  2022-10-07: Improved 1tint
 0.126  2022-10-07: Improved 1translate and 1refresh
 0.127  2022-10-07: 1app recipes translated
+0.128  2022-10-07: 1app recipes including new vars

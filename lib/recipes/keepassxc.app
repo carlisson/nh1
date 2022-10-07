@@ -1,6 +1,9 @@
 # Description for install via AppImage
 
+APP_NAME="KeepassXC"
 APP_DESCRIPTION="$(_1text "Comic and PDF viewer")"
+APP_CATEGORIES="Utility;"
+APP_MIME="application/x-keepass2;"
 
 # It can be:
 #

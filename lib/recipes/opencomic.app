@@ -1,6 +1,8 @@
 # Description for install via AppImage
 
+APP_NAME="OpenComic"
 APP_DESCRIPTION="$(_1text "Comic and PDF viewer")"
+APP_CATEGORIES="Graphics;"
 
 # It can be:
 #

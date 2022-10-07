@@ -1,6 +1,8 @@
-# Description for install Nextcloud client via AppImage
+# Description for install FreeTube client via AppImage
 
+APP_NAME="FeeTube"
 APP_DESCRIPTION="$(_1text "Client for Youtube")"
+APP_CATEGORIES="AudioVideo;Video"
 
 # It can be:
 #

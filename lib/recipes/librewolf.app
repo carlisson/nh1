@@ -1,6 +1,9 @@
 # Description for install Nextcloud client via AppImage
 
+APP_NAME="LibreWolf"
 APP_DESCRIPTION="$(_1text "Web Browser")"
+APP_CATEGORIES="Network;WebBrowser"
+APP_MIME="text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;"
 
 # It can be:
 #

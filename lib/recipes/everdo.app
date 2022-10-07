@@ -1,6 +1,8 @@
 # Description for install via AppImage
 
+APP_NAME="Everdo"
 APP_DESCRIPTION="$(_1text "Get Things Done with Privacity")"
+APP_CATEGORIES="Utility;"
 
 # It can be:
 #

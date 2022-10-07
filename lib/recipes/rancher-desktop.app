@@ -1,6 +1,8 @@
 # Description for install via AppImage
 
+APP_NAME="Rancher Desktop"
 APP_DESCRIPTION="$(_1text "Docker Kubernetes manager")"
+APP_CATEGORIES="Utility;"
 
 # It can be:
 #

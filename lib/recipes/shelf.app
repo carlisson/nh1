@@ -1,6 +1,9 @@
 # Description for install via AppImage
 
+APP_NAME="Shelf"
 APP_DESCRIPTION="$(_1text "Document viewer for different formats")"
+APP_CATEGORIES="Qt;KDE;Graphics;Office;Viewer;"
+APP_MIME="application/x-pdf;application/pdf;application/x-gzpdf;application/x-bzpdf;application/x-wwf;"
 
 # It can be:
 #

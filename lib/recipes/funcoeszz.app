@@ -1,5 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
+APP_NAME="Funções ZZ"
 APP_DESCRIPTION="$(_1text "A set of utilities for shell")"
 
 # It can be:

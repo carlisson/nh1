@@ -1,6 +1,9 @@
 # Description for install via AppImage
 
+APP_NAME="Zettlr"
 APP_DESCRIPTION="$(_1text "Markdown editor for the 21st century")"
+APP_CATEGORIES="Office;"
+APP_MIME="text/x-markdown"
 
 # It can be:
 #

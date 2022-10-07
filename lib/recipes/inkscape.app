@@ -1,6 +1,9 @@
 # Description for install via AppImage
 
+APP_NAME="Inkscape"
 APP_DESCRIPTION="Vector graphics editor"
+APP_CATEGORIES="Graphics;"
+APP_MIME="image/svg+xml"
 
 # It can be:
 #

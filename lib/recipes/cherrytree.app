@@ -1,6 +1,8 @@
 # Description for install via AppImage
 
+APP_NAME="CherryTree"
 APP_DESCRIPTION="$(_1text "Hierarchical note taking")"
+APP_CATEGORIES="Utility;"
 
 # It can be:
 #

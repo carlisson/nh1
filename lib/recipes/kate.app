@@ -1,6 +1,9 @@
 # Description for install Nextcloud client via AppImage
 
+APP_NAME="Kate"
 APP_DESCRIPTION="$(_1text "Code editor for KDE")"
+APP_CATEGORIES="Development;IDE;Qt"
+APP_MIME="text/plain;text/x-chdr;text/x-csrc;text/x-c++hdr;text/x-c++src;text/x-java;text/x-dsrc;text/x-pascal;text/x-perl;text/x-python;application/x-php;application/x-httpd-php3;application/x-httpd-php4;application/x-httpd-php5;application/xml;text/html;text/css;text/x-sql;text/x-diff;"
 
 # It can be:
 #
