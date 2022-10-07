@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="Client for Youtube"
+APP_DESCRIPTION="$(_1text "Client for Youtube")"
 
 # It can be:
 #

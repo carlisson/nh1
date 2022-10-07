@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.126
+_1VERSION=0.127
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -414,11 +414,11 @@ function 1translate {
 	case "$#" in
 		1)
 			_1verb "$(_1text "Generating translation file.")"
-			pushd "$_1LIB"
+			pushd "$_1LIB" > /dev/null
 			# Generate pot file for all modules
 			xgettext -o "locale/NH1.pot" -L Shell --keyword --keyword=_1text \
-				"$_1RC" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g')
-			
+				"$_1RC" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g') \
+				$(_nh1app.avail | xargs -n 1 | sed 's/^\(.*\)$/recipes\/\1.app/g')
 			_1verb "$(_1text ".pot file generated. Trying to create/update .po")"
 			if [ -f "locale/$1.po" ]
 			then
@@ -427,7 +427,7 @@ function 1translate {
 				msginit -o "locale/$1.po" -l "$1" -i "locale/NH1.pot"
 			fi
 			_1verb "Done!"
-			popd
+			popd > /dev/null
 			;;
 		2)
 			AUX="$_1LIB/locale/$1/LC_MESSAGES"

@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Get Things Done with Privacity"
+APP_DESCRIPTION="$(_1text "Get Things Done with Privacity")"
 
 # It can be:
 #

@@ -15,7 +15,7 @@ _1APPGICON="/usr/share/icons"
 # Generate partial menu
 function _nh1app.menu {
   echo "___ $(_1text "Install App") ___"
-  _1menuitem X 1app "$(_1text "List all available apps")"
+  _1menuitem W 1app "$(_1text "List all available apps")"
   _1menuitem X 1appladd "$(_1text "Install or update an app locally")"
   _1menuitem X 1appgadd "$(_1text "Install or update an app globaly")"
   _1menuitem X 1applupd "$(_1text "Update all local apps")"
@@ -78,6 +78,11 @@ function _nh1app.setup {
     else
         _1sudo mkdir -p "$_1APPGLOBAL"
     fi
+}
+
+# Startup function
+function _nh1app.init {
+    _nh1app.setup local
 }
 
 # Check if setup is ok
@@ -166,7 +171,7 @@ function _nh1app.closeapp {
 # Return description for an available app
 # @param App name
 function _nh1app.description {
-    if _nh1app.openapp $1
+    if _nh1app.openapp $11
     then
         echo -n $APP_DESCRIPTION
         _nh1app.closeapp

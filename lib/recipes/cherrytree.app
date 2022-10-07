@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Hierarchical note taking"
+APP_DESCRIPTION="$(_1text "Hierarchical note taking")"
 
 # It can be:
 #

@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Docker Kubernetes manager"
+APP_DESCRIPTION="$(_1text "Docker Kubernetes manager")"
 
 # It can be:
 #

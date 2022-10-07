@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="Code editor for KDE"
+APP_DESCRIPTION="$(_1text "Code editor for KDE")"
 
 # It can be:
 #

@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Comic and PDF viewer"
+APP_DESCRIPTION="$(_1text "Comic and PDF viewer")"
 
 # It can be:
 #

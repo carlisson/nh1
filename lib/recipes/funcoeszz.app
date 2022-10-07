@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="A set of utilities for shell"
+APP_DESCRIPTION="$(_1text "A set of utilities for shell")"
 
 # It can be:
 #

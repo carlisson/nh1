@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Markdown editor for the 21st century"
+APP_DESCRIPTION="$(_1text "Markdown editor for the 21st century")"
 
 # It can be:
 #

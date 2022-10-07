@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="Editor for programmer"
+APP_DESCRIPTION="$(_1text "Editor for programmer")"
 
 # It can be:
 #

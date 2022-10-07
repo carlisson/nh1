@@ -1,6 +1,6 @@
 # Description for install via AppImage
 
-APP_DESCRIPTION="Document viewer for different formats"
+APP_DESCRIPTION="$(_1text "Document viewer for different formats")"
 
 # It can be:
 #

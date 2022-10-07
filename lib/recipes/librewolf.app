@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="Web Browser"
+APP_DESCRIPTION="$(_1text "Web Browser")"
 
 # It can be:
 #

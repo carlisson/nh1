@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="OnlyOffice Desktop"
+APP_DESCRIPTION="$(_1text "OnlyOffice Desktop")"
 
 # It can be:
 #

@@ -1,6 +1,6 @@
 # Description for install Nextcloud client via AppImage
 
-APP_DESCRIPTION="Client for Nextcloud desktop"
+APP_DESCRIPTION="$(_1text "Client for Nextcloud desktop")"
 
 # It can be:
 #
