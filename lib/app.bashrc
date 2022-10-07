@@ -221,6 +221,9 @@ function _nh1app.single {
             printf "$(_1text "%s is already up to date.")\n" $_NAPP
         else
             pushd $_NADIR
+            _1text "To install/upgrade:"
+            1tint $_1COLOR " $_NAA"
+            echo
             if _nh1app.openapp $_NAPP
             then
                 if [ $_NAS = "global" ]

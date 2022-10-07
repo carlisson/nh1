@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.117
+_1VERSION=0.118
 
 _1MODULES=(app audio backup canva misc network rpg)
 
