@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.123
+_1VERSION=0.124
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -214,11 +214,28 @@ function _nh1complete {
 
 # Initial functions, configuring and create dirs
 function _nh1init {
+	mkdir -p "$_1UDATA"
+
 	_1modrun "_nh1-=-.init"
 }
 
 # Apply custom variables to internals
 function _nh1customvars {
+	if [ -f "$_1UDATA/nh1.conf" ]
+	then
+		source "$_1UDATA/nh1.conf"
+		if [[ $NORG_VERBOSE ]]
+		then
+			if [ "$NORG_VERBOSE" = "1" ]
+			then
+				_1VERBOSE=1
+			else
+				_1VERBOSE=0
+			fi
+			unset NORG_VERBOSE
+		fi
+	fi
+
 	_1modrun "_nh1-=-.customvars"
 }
 
@@ -282,7 +299,7 @@ function NH1 {
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
 		_1menuitem X 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
-		_1menuitem X 1translate $(_1text "Create and apply translation for NH1.")
+		_1menuitem X 1translate "$(_1text "Create and apply translation for NH1.")"
 		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
 		_1menuitem X 1verbose "$(_1text "Enable/disable verbose mode")"
 		_1menuitem W 1version "$(_1text "List NH1 version and latest changes/updates")"
@@ -412,8 +429,10 @@ function 1translate {
 # Information about user variables
 function 1info {
 	echo "_______ $(_1text "Custom variables") _______"
-	_1text "You can configure custom variables for NH1"
-	echo
+	printf "$(_1text "You can configure custom variables for NH1. Edit %s to define it.")\n" "$_1UDATA/nh1.conf"
+
+	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode (1 or 0). Default: 0")"
+	
 	_1modrun "nh1-=-.info"
 }
 
@@ -422,6 +441,10 @@ function 1info {
 # Try to execute a `return` statement,
 # but do it in a sub-shell and catch the results.
 # If this script isn't sourced, that will raise an error.
+
+_nh1init
+_nh1customvars
+
 if [ $# -gt 0 ]
 then
 	_1RUN=1$1
