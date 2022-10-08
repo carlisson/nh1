@@ -50,13 +50,14 @@ function _nh1canva.setup {
 
 # List all installed templates
 function 1canva {
-    local _clist
+    local _clist _slist
     _nh1canva.setup
     
     #_clist=($(_nh1canva.list))
     _clist=($(_1list $_1CANVALOCAL "svg"))
+    _slist="${_clist[@]}"
     
-    printf "$(_1text "Templates: %s.")\n" ${_clist[@]}
+    printf "$(_1text "Templates: %s.")\n" "$_slist"
     
     if [ ${#_clist[@]} -eq 0 ]
     then
