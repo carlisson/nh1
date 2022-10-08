@@ -114,10 +114,6 @@ function 1app {
     for _NAA in $(_nh1app.avail)
     do
         printf "%-15s %-45s" "$_NAA" "$(_nh1app.description $_NAA)"
-        #echo -n $_NAA
-        #echo -en '\t'
-        #_nh1app.description "$_NAA"
-        #echo -en '\t'
         _NAC=0
         _NAU=$(_nh1app.checkversion local "$_NAA")
         if [ -n "$_NAU" ]
@@ -172,7 +168,7 @@ function _nh1app.closeapp {
 # Return description for an available app
 # @param App name
 function _nh1app.description {
-    if _nh1app.openapp $11
+    if _nh1app.openapp $1
     then
         echo -n $APP_DESCRIPTION
         _nh1app.closeapp
