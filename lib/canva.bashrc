@@ -62,6 +62,7 @@ function 1canva {
     if [ ${#_clist[@]} -eq 0 ]
     then
         _1text "No template found."
+        echo
     fi
 }
 

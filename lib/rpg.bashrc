@@ -1,5 +1,6 @@
 #!/bin/bash
 
+_1RPGDRAW="$_1UDATA/drawlists"
 
 # Generate partial menu (for RPG functions)
 function _nh1rpg.menu {
@@ -14,12 +15,21 @@ function _nh1rpg.menu {
   _1menuitem W 1d20 "$(_1text "Roll one d20 dice")"
   _1menuitem W 1d100 "$(_1text "Roll one d100 dice")"
   _1menuitem W 1card "$(_1text "Sort a random playing card")"
+  _1menuitem P 1draw "$(_1text "Draw an item from a list")"
+  _1menuitem P 1drawlist "$(_1text "List groups to draw-functions")"
+  _1menuitem P 1drawadd "$(_1text "Add a new group to draw-functions")"
+  _1menuitem P 1drawdel "$(_1text "Delete a group from draw-functions")"
 }
 
 # Destroy all global variables created by this file
 function _nh1rpg.clean {
   unset -f 1d4 1d6 1d8 1d10 1d12 1d20 1d100
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
+  unset -f 1draw 1drawlist 1drawadd 1drawdel
+}
+
+function _nh1rpg.init {
+	mkdir -p "$_1RPGDRAW"
 }
 
 # Alias like
@@ -107,4 +117,20 @@ function 1card {
 		esac
 		printf "$(_1text "%s of %s")\n" $FNUMB $FSUIT
 	fi
+}
+
+# List all groups/lists from where to draw elements
+function 1drawlist {
+    local _dlist _slist
+    
+    _dlist=($(_1list "$_1RPGDRAW" "list"))
+    _slist="${_dlist[@]}"
+    
+    if [ ${#_dlist[@]} -eq 0 ]
+    then
+        _1text "No group found."
+		echo
+	else
+ 	    printf "$(_1text "Groups: %s.")\n" "$_slist"
+    fi
 }
