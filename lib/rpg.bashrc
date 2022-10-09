@@ -15,7 +15,7 @@ function _nh1rpg.menu {
   _1menuitem W 1d20 "$(_1text "Roll one d20 dice")"
   _1menuitem W 1d100 "$(_1text "Roll one d100 dice")"
   _1menuitem W 1card "$(_1text "Sort a random playing card")"
-  _1menuitem P 1draw "$(_1text "Draw an item from a list")"
+  _1menuitem X 1draw "$(_1text "Draw an item from a list")"
   _1menuitem X 1drawlist "$(_1text "List groups to draw-functions")"
   _1menuitem X 1drawadd "$(_1text "Add a new group to draw-functions")"
   _1menuitem P 1drawdel "$(_1text "Delete a group from draw-functions")"
@@ -161,4 +161,23 @@ function 1drawadd {
             ;;
     esac
     cp "$ni" "$_1RPGDRAW/$no"
+}
+
+# Withdraw one item from a given group
+# @param Group name
+function 1draw {
+	local _group _list
+	_group="$1"
+	_list="$_1RPGDRAW/$_group.list"
+	if [ $# -eq 0 ]
+	then
+		printf "$(_1text "Usage: %s.")\n" "1draw <group-name>"
+	else
+		if [ -f "$_list" ]
+		then
+			cat "$_list" | shuf | head -1
+		else
+			printf "$(_1text "File not found for group %s.")\n" "$_group"
+		fi
+	fi
 }
