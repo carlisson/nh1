@@ -120,19 +120,30 @@ function 1card {
 }
 
 # List all groups/lists from where to draw elements
+# @param group name (optional)
 function 1drawlist {
     local _dlist _slist
     
     _dlist=($(_1list "$_1RPGDRAW" "list"))
     _slist="${_dlist[@]}"
     
-    if [ ${#_dlist[@]} -eq 0 ]
-    then
-        _1text "No group found."
-		echo
+	if [ $# -eq 1 ]
+	then
+		if 1check less
+		then
+			less -N "$_1RPGDRAW/$1.list"
+		else
+			cat -n "$_1RPGDRAW/$1.list"
+		fi
 	else
- 	    printf "$(_1text "Groups: %s.")\n" "$_slist"
-    fi
+    	if [ ${#_dlist[@]} -eq 0 ]
+    	then
+	        _1text "No group found."
+			echo
+		else
+ 	    	printf "$(_1text "Groups: %s.")\n" "$_slist"
+    	fi
+	fi
 }
 
 # Add a group list from a text file, with one option per line
