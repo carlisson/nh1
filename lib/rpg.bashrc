@@ -18,7 +18,7 @@ function _nh1rpg.menu {
   _1menuitem X 1draw "$(_1text "Draw an item from a list")"
   _1menuitem X 1drawlist "$(_1text "List groups to draw-functions")"
   _1menuitem X 1drawadd "$(_1text "Add a new group to draw-functions")"
-  _1menuitem P 1drawdel "$(_1text "Delete a group from draw-functions")"
+  _1menuitem X 1drawdel "$(_1text "Delete a group from draw-functions")"
 }
 
 # Destroy all global variables created by this file
@@ -180,4 +180,15 @@ function 1draw {
 			printf "$(_1text "File not found for group %s.")\n" "$_group"
 		fi
 	fi
+}
+
+# Delete a group list
+# @param Group name
+function 1drawdel {
+    if [ -f "$_1RPGDRAW/$1.list" ]
+    then
+        rm "$_1RPGDRAW/$1.list"
+    else
+        printf "$(_1text "Group %s not found.")\n" $1
+    fi
 }
