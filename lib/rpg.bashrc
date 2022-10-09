@@ -25,7 +25,21 @@ function _nh1rpg.menu {
 function _nh1rpg.clean {
   unset -f 1d4 1d6 1d8 1d10 1d12 1d20 1d100
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
-  unset -f 1draw 1drawlist 1drawadd 1drawdel
+  unset -f 1draw 1drawlist 1drawadd 1drawdel _nh1rpg.init
+  unset -f _nh1rpg.complete _nh1rpg.complete.draw
+}
+
+function _nh1rpg.complete {
+    complete -F _nh1rpg.complete.draw 1draw
+    complete -F _nh1rpg.complete.draw 1drawlist
+}
+
+function _nh1rpg.complete.draw {
+  COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+        COMPREPLY=($(_1list $_1RPGDRAW "list"))
+    fi
 }
 
 function _nh1rpg.init {
