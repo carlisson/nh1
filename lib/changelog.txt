@@ -139,3 +139,4 @@
 0.130  2022-10-07: Bug fix in _nh1app.description
 0.131  2022-10-08: Fixed bug in 1canva
 0.132  2022-10-09: 1drawlist created (draw from list feature)
+0.133  2022-10-09: 1drawadd created

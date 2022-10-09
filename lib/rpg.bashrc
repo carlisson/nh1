@@ -16,8 +16,8 @@ function _nh1rpg.menu {
   _1menuitem W 1d100 "$(_1text "Roll one d100 dice")"
   _1menuitem W 1card "$(_1text "Sort a random playing card")"
   _1menuitem P 1draw "$(_1text "Draw an item from a list")"
-  _1menuitem P 1drawlist "$(_1text "List groups to draw-functions")"
-  _1menuitem P 1drawadd "$(_1text "Add a new group to draw-functions")"
+  _1menuitem X 1drawlist "$(_1text "List groups to draw-functions")"
+  _1menuitem X 1drawadd "$(_1text "Add a new group to draw-functions")"
   _1menuitem P 1drawdel "$(_1text "Delete a group from draw-functions")"
 }
 
@@ -133,4 +133,32 @@ function 1drawlist {
 	else
  	    printf "$(_1text "Groups: %s.")\n" "$_slist"
     fi
+}
+
+# Add a group list from a text file, with one option per line
+# @param Input text file
+function 1drawadd {
+    local ni no
+    case $# in
+        1)
+            ni="$1"
+            no="$(basename $1 .txt).list"
+            ;;
+        2)
+            ni="$1"
+            no="$2"
+            if [ "${no: -4}" = ".txt" ]
+			then
+				no="$(basename $1 .txt).list"
+            elif [ "${no: -5}" != ".list" ]
+            then
+                no="$no.list"
+			fi
+            ;;
+        *)
+            printf "$(_1text "Usage: %s.")\n" "1drawadd <text-file> (<group-name>)"
+            return
+            ;;
+    esac
+    cp "$ni" "$_1RPGDRAW/$no"
 }
