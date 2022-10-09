@@ -307,7 +307,7 @@ function _nh1app.single {
         _nh1app.closeapp
         popd > /dev/null
     else
-        _1text "curl not found."
+        printf "$(_1text "%s not found.")\n" "curl"
     fi    
 }
 

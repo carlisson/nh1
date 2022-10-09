@@ -144,3 +144,4 @@
 0.135  2022-10-09: 1drawdel created
 0.136  2022-10-09: 1drawlist improved, listing group content
 0.137  2022-10-09: Completion for 1draw and 1drawlist
+0.138  2022-10-09: 1draw* translated to pt_BR

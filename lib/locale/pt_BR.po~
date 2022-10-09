@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-07 14:57-0300\n"
+"POT-Creation-Date: 2022-10-09 12:43-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -187,7 +187,8 @@ msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
 #: /home/cgaldino/sources/nh1/nh1:440 audio.bashrc:136 audio.bashrc:226
-#: backup.bashrc:201 canva.bashrc:131 misc.bashrc:70
+#: backup.bashrc:201 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
+#: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -297,56 +298,70 @@ msgstr "Descrição"
 msgid "Installation"
 msgstr "Instalação"
 
-#: app.bashrc:125
+#: app.bashrc:121
 msgid "local"
 msgstr "local"
 
-#: app.bashrc:132
+#: app.bashrc:128
 msgid "global"
 msgstr "global"
 
-#: app.bashrc:138
+#: app.bashrc:134
 msgid "None"
 msgstr "Nada"
 
-#: app.bashrc:142
+#: app.bashrc:138
 msgid "Usage"
 msgstr "Uso"
 
-#: app.bashrc:144
+#: app.bashrc:140
 msgid " to install locally and "
 msgstr " para instalar localmente e "
 
-#: app.bashrc:146 app.bashrc:150
+#: app.bashrc:142 app.bashrc:146
 msgid " to uninstall."
 msgstr " para desinstalar."
 
-#: app.bashrc:148
+#: app.bashrc:144
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: app.bashrc:226
+#: app.bashrc:214
+#, fuzzy
+msgid "Creating desktop file for %s."
+msgstr "Gerando arquivo .mo para o idioma %s"
+
+#: app.bashrc:246
+msgid "No PNG for app. No desktop file created."
+msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
+
+#: app.bashrc:269
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:229
+#: app.bashrc:271
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:316
+#: app.bashrc:310
+#, fuzzy
+msgid "curl not found."
+msgstr "%s não encontrado."
+
+#: app.bashrc:342
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:319
+#: app.bashrc:345
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:404 app.bashrc:410 app.bashrc:418 app.bashrc:425 app.bashrc:431
-#: app.bashrc:437
+#: app.bashrc:430 app.bashrc:436 app.bashrc:444 app.bashrc:451 app.bashrc:457
+#: app.bashrc:463
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:449
+#: app.bashrc:475
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -536,19 +551,19 @@ msgstr "Instala ou atualiza um template"
 msgid "Remove installed template"
 msgstr "Remove um template instalado"
 
-#: canva.bashrc:59
+#: canva.bashrc:60
 msgid "Templates: %s."
 msgstr "Templates: %s."
 
-#: canva.bashrc:63
+#: canva.bashrc:64
 msgid "No template found."
 msgstr "Nenhum template encontrado."
 
-#: canva.bashrc:76
+#: canva.bashrc:78
 msgid "Usages:"
 msgstr "Usos:"
 
-#: canva.bashrc:145
+#: canva.bashrc:147
 msgid "Template %s not found."
 msgstr "Template %s não encontrado."
 
@@ -867,101 +882,184 @@ msgstr "Nenhuma porta ttyUSB foi encontrada."
 msgid "Doing backup of %s to %s"
 msgstr "Fazendo backup de %s para %s"
 
-#: rpg.bashrc:6
+#: rpg.bashrc:7
 msgid "RPG"
 msgstr "RPG"
 
-#: rpg.bashrc:7
+#: rpg.bashrc:8
 msgid "Roll a single dice from N faces (default: 6)"
 msgstr "Role um dado simples de N lados (default: 6)"
 
-#: rpg.bashrc:8
+#: rpg.bashrc:9
 msgid "Roll dices with RPG formula: 2d10, 1d4+1..."
 msgstr "Role dados com fórmula de RPG: 2d10, 1d4+1..."
 
-#: rpg.bashrc:9
+#: rpg.bashrc:10
 msgid "Roll one d4 dice"
 msgstr "Role um dado d4"
 
-#: rpg.bashrc:10
+#: rpg.bashrc:11
 msgid "Roll one d6 dice"
 msgstr "Role um dado d6"
 
-#: rpg.bashrc:11
+#: rpg.bashrc:12
 msgid "Roll one d8 dice"
 msgstr "Rolde um dado d8"
 
-#: rpg.bashrc:12
+#: rpg.bashrc:13
 msgid "Roll one d10 dice"
 msgstr "Role um dado d10"
 
-#: rpg.bashrc:13
+#: rpg.bashrc:14
 msgid "Roll one d12 dice"
 msgstr "Role um dado d12"
 
-#: rpg.bashrc:14
+#: rpg.bashrc:15
 msgid "Roll one d20 dice"
 msgstr "Role um dado d20"
 
-#: rpg.bashrc:15
+#: rpg.bashrc:16
 msgid "Roll one d100 dice"
 msgstr "Role um dado d100"
 
-#: rpg.bashrc:16
+#: rpg.bashrc:17
 msgid "Sort a random playing card"
 msgstr "Sorteie uma carta de baralho"
 
-#: rpg.bashrc:80
+#: rpg.bashrc:18
+msgid "Draw an item from a list"
+msgstr ""
+
+#: rpg.bashrc:19
+msgid "List groups to draw-functions"
+msgstr ""
+
+#: rpg.bashrc:20
+msgid "Add a new group to draw-functions"
+msgstr ""
+
+#: rpg.bashrc:21
+msgid "Delete a group from draw-functions"
+msgstr ""
+
+#: rpg.bashrc:104
 msgid "Params"
 msgstr "Parâmetros"
 
-#: rpg.bashrc:80
+#: rpg.bashrc:104
 msgid "Examples"
 msgstr "Exemplos"
 
-#: rpg.bashrc:89
+#: rpg.bashrc:113
 msgid "Joker"
 msgstr "Coringa"
 
-#: rpg.bashrc:95
+#: rpg.bashrc:119
 msgid "Ace"
 msgstr "Ás"
 
-#: rpg.bashrc:96
+#: rpg.bashrc:120
 msgid "Jack"
 msgstr "Valete"
 
-#: rpg.bashrc:97
+#: rpg.bashrc:121
 msgid "Queen"
 msgstr "Rainha"
 
-#: rpg.bashrc:98
+#: rpg.bashrc:122
 msgid "King"
 msgstr "Rei"
 
-#: rpg.bashrc:103
+#: rpg.bashrc:127
 msgid "Clubs"
 msgstr "Paus"
 
-#: rpg.bashrc:104
+#: rpg.bashrc:128
 msgid "Diamonds"
 msgstr "Ouros"
 
-#: rpg.bashrc:105
+#: rpg.bashrc:129
 msgid "Hearts"
 msgstr "Copas"
 
-#: rpg.bashrc:106
+#: rpg.bashrc:130
 msgid "Spades"
 msgstr "Espadas"
 
-#: rpg.bashrc:108
+#: rpg.bashrc:132
 msgid "%s of %s"
 msgstr "%s de %s"
 
-#: recipes/cherrytree.app:3
-msgid "Hierarchical note taking"
+#: rpg.bashrc:155
+#, fuzzy
+msgid "No group found."
+msgstr "Nenhum grupo de dica com o nome %s."
+
+#: rpg.bashrc:158
+#, fuzzy
+msgid "Groups: %s."
+msgstr "Grupos de dicas: %s."
+
+#: rpg.bashrc:205
+msgid "File not found for group %s."
 msgstr ""
+
+#: rpg.bashrc:217
+#, fuzzy
+msgid "Group %s not found."
+msgstr "%s não encontrado."
+
+#: recipes/cherrytree.app:4
+msgid "Hierarchical note taking"
+msgstr "Anotações hierárquicas"
+
+#: recipes/everdo.app:4
+msgid "Get Things Done with Privacity"
+msgstr "Use GTD com Privacidade"
+
+#: recipes/freetube.app:4
+msgid "Client for Youtube"
+msgstr "Cliente para Youtube"
+
+#: recipes/funcoeszz.app:4
+msgid "A set of utilities for shell"
+msgstr "Conjunto de utilitários shell"
+
+#: recipes/kate.app:4
+msgid "Code editor for KDE"
+msgstr "Editor de código para KDE"
+
+#: recipes/keepassxc.app:4 recipes/opencomic.app:4
+msgid "Comic and PDF viewer"
+msgstr "Visualizador de PDF e quadrinhos"
+
+#: recipes/librewolf.app:4
+msgid "Web Browser"
+msgstr "Navegador Web"
+
+#: recipes/nextcloud.app:4
+msgid "Client for Nextcloud desktop"
+msgstr "Cliente desktop para Nextcloud"
+
+#: recipes/onlyoffice.app:4
+msgid "OnlyOffice Desktop"
+msgstr "OnlyOffice para Desktop"
+
+#: recipes/rancher-desktop.app:4
+msgid "Docker Kubernetes manager"
+msgstr "Gerenciador de Kubernates (docker)"
+
+#: recipes/shelf.app:4
+msgid "Document viewer for different formats"
+msgstr "Visualizador de documentos"
+
+#: recipes/vscodium.app:4
+msgid "Editor for programmer"
+msgstr "Editor para programadores"
+
+#: recipes/zettlr.app:4
+msgid "Markdown editor for the 21st century"
+msgstr "Um editor Markdown para o século 21"
 
 #~ msgid "Upgrading %s."
 #~ msgstr "Atualizando %s..."
