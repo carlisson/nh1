@@ -264,7 +264,7 @@ function _nh1app.single {
         
         pushd $_NADIR > /dev/null
         _nh1app.openapp $_NAPP
-        if [ -f "$_NADIR/$_NANEW" ]
+        if [ -f "$_NADIR/$_NANEW" ] && [ "$_NANEW" != "" ]
         then
             printf "$(_1text "%s is already up to date.")\n" $_NAPP
         else

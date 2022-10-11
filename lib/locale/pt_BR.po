@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-09 12:45-0300\n"
+"POT-Creation-Date: 2022-10-11 09:02-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1024,9 +1024,9 @@ msgstr "Conjunto de utilitários shell"
 msgid "Code editor for KDE"
 msgstr "Editor de código para KDE"
 
-#: recipes/keepassxc.app:4 recipes/opencomic.app:4
-msgid "Comic and PDF viewer"
-msgstr "Visualizador de PDF e quadrinhos"
+#: recipes/keepassxc.app:4
+msgid "Password manager"
+msgstr "Gerenciador de senhas"
 
 #: recipes/librewolf.app:4
 msgid "Web Browser"
@@ -1039,6 +1039,10 @@ msgstr "Cliente desktop para Nextcloud"
 #: recipes/onlyoffice.app:4
 msgid "OnlyOffice Desktop"
 msgstr "OnlyOffice para Desktop"
+
+#: recipes/opencomic.app:4
+msgid "Comic and PDF viewer"
+msgstr "Visualizador de PDF e quadrinhos"
 
 #: recipes/rancher-desktop.app:4
 msgid "Docker Kubernetes manager"

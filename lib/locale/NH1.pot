@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-09 12:45-0300\n"
+"POT-Creation-Date: 2022-10-11 09:02-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1009,8 +1009,8 @@ msgstr ""
 msgid "Code editor for KDE"
 msgstr ""
 
-#: recipes/keepassxc.app:4 recipes/opencomic.app:4
-msgid "Comic and PDF viewer"
+#: recipes/keepassxc.app:4
+msgid "Password manager"
 msgstr ""
 
 #: recipes/librewolf.app:4
@@ -1023,6 +1023,10 @@ msgstr ""
 
 #: recipes/onlyoffice.app:4
 msgid "OnlyOffice Desktop"
+msgstr ""
+
+#: recipes/opencomic.app:4
+msgid "Comic and PDF viewer"
 msgstr ""
 
 #: recipes/rancher-desktop.app:4

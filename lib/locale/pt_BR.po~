@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-09 12:43-0300\n"
+"POT-Creation-Date: 2022-10-09 12:45-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -327,9 +327,8 @@ msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
 #: app.bashrc:214
-#, fuzzy
 msgid "Creating desktop file for %s."
-msgstr "Gerando arquivo .mo para o idioma %s"
+msgstr "Gerando arquivo desktop para %s"
 
 #: app.bashrc:246
 msgid "No PNG for app. No desktop file created."
@@ -344,8 +343,7 @@ msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
 #: app.bashrc:310
-#, fuzzy
-msgid "curl not found."
+msgid "%s not found."
 msgstr "%s não encontrado."
 
 #: app.bashrc:342
@@ -928,19 +926,19 @@ msgstr "Sorteie uma carta de baralho"
 
 #: rpg.bashrc:18
 msgid "Draw an item from a list"
-msgstr ""
+msgstr "Sorteia um ítem de uma lista"
 
 #: rpg.bashrc:19
 msgid "List groups to draw-functions"
-msgstr ""
+msgstr "Lista grupos para funções de sorteio"
 
 #: rpg.bashrc:20
 msgid "Add a new group to draw-functions"
-msgstr ""
+msgstr "Adiciona um novo grupo às funções de sorteio"
 
 #: rpg.bashrc:21
 msgid "Delete a group from draw-functions"
-msgstr ""
+msgstr "Deleta um grupo das funções de sorteio"
 
 #: rpg.bashrc:104
 msgid "Params"
@@ -991,23 +989,20 @@ msgid "%s of %s"
 msgstr "%s de %s"
 
 #: rpg.bashrc:155
-#, fuzzy
 msgid "No group found."
-msgstr "Nenhum grupo de dica com o nome %s."
+msgstr "Nenhum grupo encontrado."
 
 #: rpg.bashrc:158
-#, fuzzy
 msgid "Groups: %s."
-msgstr "Grupos de dicas: %s."
+msgstr "Grupos: %s."
 
 #: rpg.bashrc:205
 msgid "File not found for group %s."
-msgstr ""
+msgstr "Arquivo não encontrado para o grupo %s."
 
 #: rpg.bashrc:217
-#, fuzzy
 msgid "Group %s not found."
-msgstr "%s não encontrado."
+msgstr "Grupo %s não encontrado."
 
 #: recipes/cherrytree.app:4
 msgid "Hierarchical note taking"
@@ -1060,6 +1055,3 @@ msgstr "Editor para programadores"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
-
-#~ msgid "Upgrading %s."
-#~ msgstr "Atualizando %s..."
