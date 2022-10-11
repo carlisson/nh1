@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-11 09:02-0300\n"
+"POT-Creation-Date: 2022-10-11 16:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Generating .mo file for %s language"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:440 audio.bashrc:136 audio.bashrc:226
+#: /home/cgaldino/sources/nh1/nh1:440 audio.bashrc:136 audio.bashrc:233
 #: backup.bashrc:201 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
@@ -426,7 +426,15 @@ msgstr ""
 msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 
-#: audio.bashrc:169
+#: audio.bashrc:156
+msgid "Downloading %s to file %s."
+msgstr ""
+
+#: audio.bashrc:161
+msgid "Local file: %s."
+msgstr ""
+
+#: audio.bashrc:176
 msgid "You need to give one or more youtube video URLs"
 msgstr ""
 

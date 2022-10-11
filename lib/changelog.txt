@@ -146,3 +146,4 @@
 0.137  2022-10-09: Completion for 1draw and 1drawlist
 0.138  2022-10-09: 1draw* translated to pt_BR
 0.139  2022-10-11: Some minor bug fixes
+0.140  2022-10-11: 1yt3 improved

@@ -151,17 +151,24 @@ function 1yt3 {
 
       for YURL in $*
       do
-    	  YTITLE=`youtube-dl -e "$YURL"`
+    	  YTITLE="$(youtube-dl -e "$YURL")"
     	  YFILE="$YTITLE.mp3"
+        _1verb "$(printf "$(_1text "Downloading %s to file %s.")\n" "$YTITLE" "$YFILE")"
 
     	  cd "$YTMPDIR"
-    	  youtube-dl "$YURL"
-    	  YVID=`ls | head -1`
+    	  youtube-dl -x "$YURL"
+    	  YVID="$(ls | head -1)"
+        _1verb "$(printf "$(_1text "Local file: %s.")\n" "$YVID")"
 
     	  cd "$YLOCAL"
     	  ffmpeg -i "$YTMPDIR/$YVID" -metadata title="$YTITLE" "$YFILE"
-    	  rm -f "$YTMPDIR/*"
+        1escape "$YFILE"
+        
+    	  rm -rf "$YTMPDIR"
+        mkdir "$YTMPDIR"
+        1
     	  echo $(date) ':' "$YTITLE" >> .yt3.log
+        _1verb "$(tail -1 .yt3.log)"
       done
 
       rm -rf "$YTMPDIR"
