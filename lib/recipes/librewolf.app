@@ -20,7 +20,7 @@ APP_BINARY=""
 APP_DEPENDS=""
 
 # Prefix for the filenames
-APP_PREFIX="FreeTube_"
+APP_PREFIX="LibreWolf-"
 
 # To compile or do some procedures post-installation
 function APP_POSTINST {

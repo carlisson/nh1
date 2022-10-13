@@ -149,3 +149,4 @@
 0.140  2022-10-11: 1yt3 improved
 0.141  2022-10-13: 1app[gl]upd improved, for incomplete installs
 0.142  2022-10-13: 1app: custom var NORG_APP_RETAINS
+0.143  2022-10-13: fixed bug in LibreWolf recipe
