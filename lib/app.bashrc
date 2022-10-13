@@ -11,6 +11,7 @@ _1APPLAPPS="$HOME/.local/share/applications"
 _1APPGAPPS="/usr/share/applications"
 _1APPLICON="$HOME/.local/share/icons"
 _1APPGICON="/usr/share/icons"
+_1APPRETAINS=0
 
 # Generate partial menu
 function _nh1app.menu {
@@ -37,6 +38,7 @@ function _nh1app.clean {
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
+  unset -f _nh1app.clearold _nh1app.customvars _nh1app.info
 }
 
 # Alias-like
@@ -83,6 +85,25 @@ function _nh1app.setup {
 # Startup function
 function _nh1app.init {
     _nh1app.setup local
+}
+
+# Apply custom vars
+function _nh1app.customvars {
+    if [[ $NORG_APP_RETAINS ]]
+	then
+		if [ "$NORG_APP_RETAINS" = "1" ]
+		then
+				_1APPRETAINS=1
+		else
+				_1APPRETAINS=0
+			fi
+			unset NORG_APP_RETAINS
+	fi
+}
+
+function _nh1app.info {
+    echo 'ha'
+    _1menuitem W NORG_APP_RETAINS "$(_1text "Retains old app files? (1 or 0). Default: 0")"
 }
 
 # Check if setup is ok
@@ -247,13 +268,44 @@ function _nh1app.mkdesktop {
     fi
 }
 
+# Remove old files for app
+# @param Path of files
+# @param Latest file name
+# @param App prefix
+# @param local or global
+function _nh1app.clearold {
+    local _DIR _LAT _PRE _SCO _F
+    _DIR="$1"
+    _LAT="$2"
+    _PRE="$3"
+    _SCO="$4"
+
+    if [ $_1APPRETAINS = 1 ]
+    then
+        for _F in $(find "$_DIR" -name "$_PRE*")
+        do
+            _F="$(basename "$_F")"
+            if [ "$_LAT" != "$_F" ]
+            then
+                _1verb "$(printf "$(_1text "Removing old file %s.")\n" $_F)"
+                if [ "$_SCO" = "local" ]
+                then
+                    rm "$_DIR/$_F"
+                else
+                    sudo rm "$_DIR/$_F"
+                fi
+            fi
+        done
+    fi
+}
+
 # Single downloader
 # @param app name
 # @param app-directory
 # @param symlink
 # @param local or global
 function _nh1app.single {
-    local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP
+    local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP _PREV
     if 1check curl
     then
         _NAPP="$1"
@@ -289,6 +341,8 @@ function _nh1app.single {
                 fi
             fi
         fi
+
+        _nh1app.clearold "$_NADIR" "$_NANEW" "$APP_PREFIX" "$_NAS"
 
         if [ ! -x "$_NANEW" ]
         then

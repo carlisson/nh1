@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.141
+_1VERSION=0.142
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -95,6 +95,7 @@ function _1modrun {
 	for _MOD in "${_1MODULES[@]}"
 	do
 		_AUX=$(echo "$_COMM" | sed "s/-=-/$_MOD/")
+		
 		if [ "$(type -t $_AUX)" = 'function' ]
 		then
 			$_AUX
@@ -454,7 +455,7 @@ function 1info {
 
 	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode (1 or 0). Default: 0")"
 	
-	_1modrun "nh1-=-.info"
+	_1modrun "_nh1-=-.info"
 }
 
 #MAIN

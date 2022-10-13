@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-11 16:47-0300\n"
+"POT-Creation-Date: 2022-10-13 13:19-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,123 +18,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: /home/cgaldino/sources/nh1/nh1:46
+#: /home/cgaldino/Sources/nh1/nh1:46
 msgid "You need to put a string and a color number (optional)"
 msgstr "Você precisa passar um texto e um número de cor (opcional)"
 
-#: /home/cgaldino/sources/nh1/nh1:47
+#: /home/cgaldino/Sources/nh1/nh1:47
 msgid "black"
 msgstr "preto"
 
-#: /home/cgaldino/sources/nh1/nh1:48
+#: /home/cgaldino/Sources/nh1/nh1:48
 msgid "red"
 msgstr "vermelho"
 
-#: /home/cgaldino/sources/nh1/nh1:49
+#: /home/cgaldino/Sources/nh1/nh1:49
 msgid "green"
 msgstr "verde"
 
-#: /home/cgaldino/sources/nh1/nh1:50
+#: /home/cgaldino/Sources/nh1/nh1:50
 msgid "yellow"
 msgstr "amarelo"
 
-#: /home/cgaldino/sources/nh1/nh1:51
+#: /home/cgaldino/Sources/nh1/nh1:51
 msgid "blue"
 msgstr "azul"
 
-#: /home/cgaldino/sources/nh1/nh1:52
+#: /home/cgaldino/Sources/nh1/nh1:52
 msgid "magenta"
 msgstr "magenta"
 
-#: /home/cgaldino/sources/nh1/nh1:53
+#: /home/cgaldino/Sources/nh1/nh1:53
 msgid "cyan"
 msgstr "ciano"
 
-#: /home/cgaldino/sources/nh1/nh1:54
+#: /home/cgaldino/Sources/nh1/nh1:54
 msgid "white"
 msgstr "branco"
 
-#: /home/cgaldino/sources/nh1/nh1:93
+#: /home/cgaldino/Sources/nh1/nh1:93
 msgid "Running for %s"
 msgstr "Rodando para %s"
 
-#: /home/cgaldino/sources/nh1/nh1:108
+#: /home/cgaldino/Sources/nh1/nh1:109
 msgid "Done. %i modules not ready for this command."
 msgstr "Feito. %i módulos não estavam prontos para este comando."
 
-#: /home/cgaldino/sources/nh1/nh1:152
+#: /home/cgaldino/Sources/nh1/nh1:153
 msgid "You need to give status, command name, message and dependencies"
 msgstr "Você precisa passar status, nome do comando, mensagem e dependências"
 
-#: /home/cgaldino/sources/nh1/nh1:265
+#: /home/cgaldino/Sources/nh1/nh1:266
 msgid "%s is missing for %s"
 msgstr "%s está faltando para %s"
 
-#: /home/cgaldino/sources/nh1/nh1:267
+#: /home/cgaldino/Sources/nh1/nh1:268
 msgid "Program %s does not exist or it is unavailable for %s."
 msgstr "O programa %s não existe ou está indisponível para %s."
 
-#: /home/cgaldino/sources/nh1/nh1:284
+#: /home/cgaldino/Sources/nh1/nh1:285
 msgid "Destroying all variables..."
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/sources/nh1/nh1:307
+#: /home/cgaldino/Sources/nh1/nh1:308
 msgid "Main"
 msgstr "Sessão Principal"
 
-#: /home/cgaldino/sources/nh1/nh1:308
+#: /home/cgaldino/Sources/nh1/nh1:309
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
 
-#: /home/cgaldino/sources/nh1/nh1:309
+#: /home/cgaldino/Sources/nh1/nh1:310
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
-#: /home/cgaldino/sources/nh1/nh1:310
+#: /home/cgaldino/Sources/nh1/nh1:311
 msgid "List possible custom variables"
 msgstr "Lista possíveis variáveis custom"
 
-#: /home/cgaldino/sources/nh1/nh1:311
+#: /home/cgaldino/Sources/nh1/nh1:312
 msgid "Write a string in another color"
 msgstr "Escreve um texto em outra cor"
 
-#: /home/cgaldino/sources/nh1/nh1:312
+#: /home/cgaldino/Sources/nh1/nh1:313
 msgid "Create and apply translation for NH1."
 msgstr "Cria e aplica tradução para NH1."
 
-#: /home/cgaldino/sources/nh1/nh1:313
+#: /home/cgaldino/Sources/nh1/nh1:314
 msgid "Update your NH1, using git"
 msgstr "Atualiza seu NH1, usando git"
 
-#: /home/cgaldino/sources/nh1/nh1:314
+#: /home/cgaldino/Sources/nh1/nh1:315
 msgid "Enable/disable verbose mode"
 msgstr "Habilita/desabilita o modo verboso"
 
-#: /home/cgaldino/sources/nh1/nh1:315
+#: /home/cgaldino/Sources/nh1/nh1:316
 msgid "List NH1 version and latest changes/updates"
 msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
-#: /home/cgaldino/sources/nh1/nh1:319
+#: /home/cgaldino/Sources/nh1/nh1:320
 msgid "planning"
 msgstr "planejamento"
 
-#: /home/cgaldino/sources/nh1/nh1:321
+#: /home/cgaldino/Sources/nh1/nh1:322
 msgid "experimental"
 msgstr "experimental"
 
-#: /home/cgaldino/sources/nh1/nh1:323
+#: /home/cgaldino/Sources/nh1/nh1:324
 msgid "working"
 msgstr "funcional"
 
-#: /home/cgaldino/sources/nh1/nh1:325
+#: /home/cgaldino/Sources/nh1/nh1:326
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: /home/cgaldino/sources/nh1/nh1:328
+#: /home/cgaldino/Sources/nh1/nh1:329
 msgid "Power-up your shell"
 msgstr "Dê poderes ao seu shell"
 
-#: /home/cgaldino/sources/nh1/nh1:338
+#: /home/cgaldino/Sources/nh1/nh1:339
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
@@ -142,70 +142,70 @@ msgstr ""
 "NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
 "disponíveis"
 
-#: /home/cgaldino/sources/nh1/nh1:340
+#: /home/cgaldino/Sources/nh1/nh1:341
 msgid "Installing NH1 in %s..."
 msgstr "Instalando NH1 em %s..."
 
-#: /home/cgaldino/sources/nh1/nh1:342 /home/cgaldino/sources/nh1/nh1:352
+#: /home/cgaldino/Sources/nh1/nh1:343 /home/cgaldino/Sources/nh1/nh1:353
 msgid "Done!"
 msgstr "Feito!"
 
-#: /home/cgaldino/sources/nh1/nh1:349
+#: /home/cgaldino/Sources/nh1/nh1:350
 msgid "After destroy variables, I will load %s."
 msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
-#: /home/cgaldino/sources/nh1/nh1:362
+#: /home/cgaldino/Sources/nh1/nh1:363
 msgid "NH1 was in version %s. "
 msgstr "NH1 estava na versão %s. "
 
-#: /home/cgaldino/sources/nh1/nh1:368
+#: /home/cgaldino/Sources/nh1/nh1:369
 msgid "You are using NH1 from tar-ball, not from Git."
 msgstr "Você está usando NH1 a partir do tar-ball, não do Git."
 
-#: /home/cgaldino/sources/nh1/nh1:372
+#: /home/cgaldino/Sources/nh1/nh1:373
 msgid "Git program is not available."
 msgstr "Programa git não está disponível."
 
-#: /home/cgaldino/sources/nh1/nh1:392 /home/cgaldino/sources/nh1/nh1:406
+#: /home/cgaldino/Sources/nh1/nh1:393 /home/cgaldino/Sources/nh1/nh1:407
 msgid "Verbose mode is on"
 msgstr "Modo verboso está ligado"
 
-#: /home/cgaldino/sources/nh1/nh1:394 /home/cgaldino/sources/nh1/nh1:402
+#: /home/cgaldino/Sources/nh1/nh1:395 /home/cgaldino/Sources/nh1/nh1:403
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/cgaldino/sources/nh1/nh1:416
+#: /home/cgaldino/Sources/nh1/nh1:417
 msgid "Generating translation file."
 msgstr "Gerando arquivo de tradução."
 
-#: /home/cgaldino/sources/nh1/nh1:422
+#: /home/cgaldino/Sources/nh1/nh1:423
 msgid ".pot file generated. Trying to create/update .po"
 msgstr "Arquivo .pot gerado. Tentando criar/atualizar .po"
 
-#: /home/cgaldino/sources/nh1/nh1:435
+#: /home/cgaldino/Sources/nh1/nh1:436
 msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
-#: /home/cgaldino/sources/nh1/nh1:440 audio.bashrc:136 audio.bashrc:233
+#: /home/cgaldino/Sources/nh1/nh1:441 audio.bashrc:136 audio.bashrc:233
 #: backup.bashrc:201 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: /home/cgaldino/sources/nh1/nh1:441
+#: /home/cgaldino/Sources/nh1/nh1:442
 msgid "Steps to translate"
 msgstr "Passos para traduzir"
 
-#: /home/cgaldino/sources/nh1/nh1:442
+#: /home/cgaldino/Sources/nh1/nh1:443
 msgid "Run 1translate <language-code>. For example, 1translate pt_BR"
 msgstr "Rode 1translate <language-code>. Por exemplo, 1translate pt_BR"
 
-#: /home/cgaldino/sources/nh1/nh1:443
+#: /home/cgaldino/Sources/nh1/nh1:444
 msgid "Edit the file <language-code>.po in %s, puting the translated strings"
 msgstr ""
 "Edite o arquivo <language-code>.po em %s, colocando os textos traduzidos"
 
-#: /home/cgaldino/sources/nh1/nh1:444
+#: /home/cgaldino/Sources/nh1/nh1:445
 msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
@@ -213,7 +213,7 @@ msgstr ""
 "Rode 1translate <language-code> gen. Isso vai gerar o arquivo .mo. \"gen\" "
 "pode ser substituído por qualquer coisa"
 
-#: /home/cgaldino/sources/nh1/nh1:445
+#: /home/cgaldino/Sources/nh1/nh1:446
 msgid ""
 "Enjoy NH1 in your language! It's useful if you return translated .po to "
 "improve NH1 project!"
@@ -221,145 +221,153 @@ msgstr ""
 "Aproveite NH1 no seu idioma! Considere reotrnar o .po traduzido para "
 "melhorar o projeto NH1!"
 
-#: /home/cgaldino/sources/nh1/nh1:452
+#: /home/cgaldino/Sources/nh1/nh1:453
 msgid "Custom variables"
 msgstr "Variáveis Custom"
 
-#: /home/cgaldino/sources/nh1/nh1:453
+#: /home/cgaldino/Sources/nh1/nh1:454
 msgid "You can configure custom variables for NH1. Edit %s to define it."
 msgstr ""
 "Você pode configurar variáveis custom para o NH1. Edite %s para definí-las."
 
-#: /home/cgaldino/sources/nh1/nh1:455
+#: /home/cgaldino/Sources/nh1/nh1:456
 msgid "Set verbose mode (1 or 0). Default: 0"
 msgstr "Define o modo verboso (1 ou 0). Default: 0"
 
-#: /home/cgaldino/sources/nh1/nh1:488
+#: /home/cgaldino/Sources/nh1/nh1:489
 msgid "You need run: source %s."
 msgstr "Você precisa rodar: source %s."
 
-#: app.bashrc:17
+#: app.bashrc:18
 msgid "Install App"
 msgstr "Aplicativos AppImage"
 
-#: app.bashrc:18
+#: app.bashrc:19
 msgid "List all available apps"
 msgstr "Lista todos os aplicativos disponíveis"
 
-#: app.bashrc:19
+#: app.bashrc:20
 msgid "Install or update an app locally"
 msgstr "Instala ou atualiza um aplicativo localmente"
 
-#: app.bashrc:20
+#: app.bashrc:21
 msgid "Install or update an app globaly"
 msgstr "Instala ou atualiza um aplicativo globalmente"
 
-#: app.bashrc:21
+#: app.bashrc:22
 msgid "Update all local apps"
 msgstr "Atualiza todos os aplicativos locais"
 
-#: app.bashrc:22
+#: app.bashrc:23
 msgid "Update all global apps"
 msgstr "Atualiza todos os aplicativos globais"
 
-#: app.bashrc:23
+#: app.bashrc:24
 msgid "Upgrade all packages(using OS)"
 msgstr "Atualiza todos os pacotes (usando o SO)"
 
-#: app.bashrc:24
+#: app.bashrc:25
 msgid "Remove a local app"
 msgstr "Remove um aplicativo local"
 
-#: app.bashrc:25
+#: app.bashrc:26
 msgid "Remove a global app"
 msgstr "Remove um aplicativo global"
 
-#: app.bashrc:26
+#: app.bashrc:27
 msgid "Remove old versions for a local app (or all)"
 msgstr "Remove versões antigas de um aplicativo (ou de todos)"
 
-#: app.bashrc:27
+#: app.bashrc:28
 msgid "Remove old versions for a global app (or all)"
 msgstr "Remove versões antigas de um aplicativo global (ou de todos)"
 
-#: app.bashrc:112
+#: app.bashrc:106
+msgid "Retains old app files? (1 or 0). Default: 0"
+msgstr "Reter arquivos antigos de app? (1 ou 0). Default: 0"
+
+#: app.bashrc:133
 msgid "1app status"
 msgstr "Status do 1App"
 
-#: app.bashrc:113
+#: app.bashrc:134
 msgid "App"
 msgstr "Aplicativo"
 
-#: app.bashrc:113
+#: app.bashrc:134
 msgid "Description"
 msgstr "Descrição"
 
-#: app.bashrc:113
+#: app.bashrc:134
 msgid "Installation"
 msgstr "Instalação"
 
-#: app.bashrc:121
+#: app.bashrc:142
 msgid "local"
 msgstr "local"
 
-#: app.bashrc:128
+#: app.bashrc:149
 msgid "global"
 msgstr "global"
 
-#: app.bashrc:134
+#: app.bashrc:155
 msgid "None"
 msgstr "Nada"
 
-#: app.bashrc:138
+#: app.bashrc:159
 msgid "Usage"
 msgstr "Uso"
 
-#: app.bashrc:140
+#: app.bashrc:161
 msgid " to install locally and "
 msgstr " para instalar localmente e "
 
-#: app.bashrc:142 app.bashrc:146
+#: app.bashrc:163 app.bashrc:167
 msgid " to uninstall."
 msgstr " para desinstalar."
 
-#: app.bashrc:144
+#: app.bashrc:165
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: app.bashrc:214
+#: app.bashrc:235
 msgid "Creating desktop file for %s."
 msgstr "Gerando arquivo desktop para %s"
 
-#: app.bashrc:246
+#: app.bashrc:267
 msgid "No PNG for app. No desktop file created."
 msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 
-#: app.bashrc:269
+#: app.bashrc:290
+msgid "Removing old file %s."
+msgstr "Removendo arquivo antigo %s."
+
+#: app.bashrc:321
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:271
+#: app.bashrc:323
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:310
+#: app.bashrc:376
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:342
+#: app.bashrc:408
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:345
+#: app.bashrc:411
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:430 app.bashrc:436 app.bashrc:444 app.bashrc:451 app.bashrc:457
-#: app.bashrc:463
+#: app.bashrc:496 app.bashrc:502 app.bashrc:510 app.bashrc:517 app.bashrc:523
+#: app.bashrc:529
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:475
+#: app.bashrc:541
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
