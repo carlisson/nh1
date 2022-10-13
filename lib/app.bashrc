@@ -331,13 +331,16 @@ function _nh1app.single {
                 APP_GET
             fi
             
-            if [ -L "$_NASYM" ]
+            if [ -f "$__NADIR/$_NANEW" ]
             then
-                if [ $_NAS = "global" ]
+                if [ -L "$_NASYM" ]
                 then
-                    _1sudo rm "$_NASYM"
-                else
-                    rm "$_NASYM"
+                    if [ $_NAS = "global" ]
+                    then    
+                        _1sudo rm "$_NASYM"
+                    else    
+                        rm "$_NASYM"
+                    fi
                 fi
             fi
         fi
