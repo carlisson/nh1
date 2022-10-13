@@ -275,10 +275,8 @@ function _nh1app.single {
             if [ $_NAS = "global" ]
             then
                 APP_GET sudo
-                _1sudo chmod a+x "$_NANEW"
             else
                 APP_GET
-                chmod a+x "$_NANEW"
             fi
             
             if [ -L "$_NASYM" ]
@@ -290,6 +288,20 @@ function _nh1app.single {
                     rm "$_NASYM"
                 fi
             fi
+        fi
+
+        if [ ! -x "$_NANEW" ]
+        then
+            if [ $_NAS = "global" ]
+            then
+                _1sudo chmod a+x "$_NANEW"
+            else
+                chmod a+x "$_NANEW"
+            fi
+        fi
+
+        if [ ! -L "$_NASYM" ]
+        then
             if [ $_NAS = "global" ]
             then
                 _1sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
