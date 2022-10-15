@@ -173,6 +173,11 @@ function _nh1app.openapp {
     if [ -f "$_1APPLIB/$1.app" ]
     then
         source "$_1APPLIB/$1.app"
+        if [ ! "$APP_SUFFIX" ]
+        then
+            _1verb "$(printf "$(_1text "Suffix not found in app recipe. Using %s.")\n" ".AppImage")"
+            APP_SUFFIX=".AppImage"
+        fi
         return 0
     else
         return 1
@@ -182,7 +187,7 @@ function _nh1app.openapp {
 # Close app description
 function _nh1app.closeapp {
   unset APP_DESCRIPTION APP_TYPE APP_BINARY APP_DEPENDS APP_PREFIX
-  unset APP_NAME APP_CATEGORIES APP_MIME
+  unset APP_NAME APP_CATEGORIES APP_MIME APP_SUFFIX
   unset -f APP_POSTINST APP_VERSION APP_GET
 }
 
@@ -316,61 +321,70 @@ function _nh1app.single {
         
         pushd $_NADIR > /dev/null
         _nh1app.openapp $_NAPP
-        if [ -f "$_NADIR/$_NANEW" ] && [ "$_NANEW" != "" ]
+        if [[ "$_NANEW" = *$APP_SUFFIX ]]
         then
-            printf "$(_1text "%s is already up to date.")\n" $_NAPP
-        else
-            _1text "To install/upgrade:"
-            1tint $_1COLOR " $_NAA"
-            echo
-            
-            if [ $_NAS = "global" ]
+            if [ -f "$_NADIR/$_NANEW" ]
             then
-                APP_GET sudo
+                printf "$(_1text "%s is already up to date.")\n" $_NAPP
             else
+                _1text "To install/upgrade:"
+                1tint $_1COLOR " $_NAA"
+                echo
+
+                if [ $_NAS = "global" ]
+                then    
+                    APP_GET sudo
+                else
                 APP_GET
-            fi
+                fi
             
-            if [ -f "$__NADIR/$_NANEW" ]
-            then
-                if [ -L "$_NASYM" ]
+                if [ -f "$__NADIR/$_NANEW" ]
                 then
-                    if [ $_NAS = "global" ]
+                    if [ -L "$_NASYM" ]
                     then    
-                        _1sudo rm "$_NASYM"
-                    else    
-                        rm "$_NASYM"
+                        if [ $_NAS = "global" ]
+                        then    
+                            _1sudo rm "$_NASYM"
+                        else    
+                            rm "$_NASYM"
+                        fi
                     fi
                 fi
             fi
-        fi
+        
 
-        _nh1app.clearold "$_NADIR" "$_NANEW" "$APP_PREFIX" "$_NAS"
+            _nh1app.clearold "$_NADIR" "$_NANEW" "$APP_PREFIX" "$_NAS"
 
-        if [ ! -x "$_NANEW" ]
-        then
-            if [ $_NAS = "global" ]
+            if [ ! -x "$_NANEW" ]
             then
-                _1sudo chmod a+x "$_NANEW"
-            else
-                chmod a+x "$_NANEW"
+                if [ $_NAS = "global" ]
+                then
+                    _1sudo chmod a+x "$_NANEW"
+                else
+                    chmod a+x "$_NANEW"
+                fi
             fi
-        fi
 
-        if [ ! -L "$_NASYM" ]
-        then
-            if [ $_NAS = "global" ]
+            if [ ! -L "$_NASYM" ]
             then
-                _1sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
-            else
-                ln -s "$_NADIR/$_NANEW" "$_NASYM"
+                if [ $_NAS = "global" ]
+                then
+                    _1sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
+                else
+                    ln -s "$_NADIR/$_NANEW" "$_NASYM"
+                fi
             fi
-        fi
 
-        # Creates a desktop file any way
-        if [ -f "$_NASYM" ]
-        then
-            _nh1app.mkdesktop "$_NAPP" "$_NAS"
+            # Creates a desktop file any way
+            if [ -f "$_NASYM" ]
+            then
+                _nh1app.mkdesktop "$_NAPP" "$_NAS"
+            fi
+        
+        else
+        
+            printf "$(_1text "Error geting %s file name. Check the recipe or try again later.")\n" $APP_NAME
+
         fi
 
         _nh1app.closeapp
