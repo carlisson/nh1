@@ -5,12 +5,12 @@ function _nh1audio.menu {
   echo "___ $(_1text "Audio") ___"
   _1menuitem W 1alarm "$(_1text "Play an audio alarm")" speaker-test
   _1menuitem W 1beat "$(_1text "Play a simple beat in given frequency")" speaker-test
-  _1menuitem X 1genbigmp3 "$(_1text "Append various MP3 files in one single file")" ffmpeg
+  _1menuitem W 1genbigmp3 "$(_1text "Append various MP3 files in one single file")" ffmpeg
   _1menuitem W 1id3get "$(_1text "Extract metadata from an MP3 to a TXT")" ffmpeg
   _1menuitem W 1id3set "$(_1text "Create a new MP3 file applying metadata from a TXT")" ffmpeg
-  _1menuitem X 1ogg2mp3 "$(_1text "Convert a ogg file to mp3")" ffmpeg
+  _1menuitem W 1ogg2mp3 "$(_1text "Convert a ogg file to mp3")" ffmpeg
   _1menuitem W 1svideo "$(_1text "Create static video from MP3 and PNG")" ffmpeg
-  _1menuitem X 1talkbr "$(_1text "Convert Portuguese text to WAV")" espeak
+  _1menuitem W 1talkbr "$(_1text "Convert Portuguese text to WAV")" espeak
   _1menuitem W 1yt3 "$(_1text "Extract Youtube video to MP3")" youtube-dl ffmpeg
 }
 
