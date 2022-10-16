@@ -124,11 +124,14 @@ function 1timer {
             UNCLOCK="\b$UNCLOCK"
           done
           sleep 1
+          _1verb "Seconds: $CLOCK"
         done
         SECONDS=59
-        IM=$((IM-1))        
+        IM="$(printf "%.0f" "$IM")" # forcing decimal syntax (not octal)
+        IM=$((IM-1))
       done
       MINUTES=59
+      IH="$(printf "%.0f" "$IH")" # forcing decimal syntax (not octal)
       IH=$((IH-1))        
     done
     echo -e "$UNCLOCK" "$(_1text "finished")"
