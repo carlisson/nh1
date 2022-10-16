@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 10:36-0300\n"
+"POT-Creation-Date: 2022-10-16 15:18-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -187,7 +187,7 @@ msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
 #: /home/cgaldino/sources/nh1/nh1:441 audio.bashrc:136 audio.bashrc:233
-#: backup.bashrc:201 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
+#: backup.bashrc:209 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr "Uso: %s."
@@ -282,104 +282,104 @@ msgstr "Remove versões antigas de um aplicativo (ou de todos)"
 msgid "Remove old versions for a global app (or all)"
 msgstr "Remove versões antigas de um aplicativo global (ou de todos)"
 
-#: app.bashrc:106
+#: app.bashrc:105
 msgid "Retains old app files? (1 or 0). Default: 0"
 msgstr "Reter arquivos antigos de app? (1 ou 0). Default: 0"
 
-#: app.bashrc:133
+#: app.bashrc:132
 msgid "1app status"
 msgstr "Status do 1App"
 
-#: app.bashrc:134
+#: app.bashrc:133
 msgid "App"
 msgstr "Aplicativo"
 
-#: app.bashrc:134
+#: app.bashrc:133
 msgid "Description"
 msgstr "Descrição"
 
-#: app.bashrc:134
+#: app.bashrc:133
 msgid "Installation"
 msgstr "Instalação"
 
-#: app.bashrc:142
+#: app.bashrc:141
 msgid "local"
 msgstr "local"
 
-#: app.bashrc:148
+#: app.bashrc:147
 msgid "global"
 msgstr "global"
 
-#: app.bashrc:155
+#: app.bashrc:154
 msgid "system"
 msgstr "sistema"
 
-#: app.bashrc:157
+#: app.bashrc:156
 msgid "None"
 msgstr "Nada"
 
-#: app.bashrc:162
+#: app.bashrc:161
 msgid "Usage"
 msgstr "Uso"
 
-#: app.bashrc:164
+#: app.bashrc:163
 msgid " to install locally and "
 msgstr " para instalar localmente e "
 
-#: app.bashrc:166 app.bashrc:170
+#: app.bashrc:165 app.bashrc:169
 msgid " to uninstall."
 msgstr " para desinstalar."
 
-#: app.bashrc:168
+#: app.bashrc:167
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: app.bashrc:181
+#: app.bashrc:180
 msgid "Suffix not found in app recipe. Using %s."
 msgstr ""
 
-#: app.bashrc:243
+#: app.bashrc:242
 msgid "Creating desktop file for %s."
 msgstr "Gerando arquivo desktop para %s"
 
-#: app.bashrc:275
+#: app.bashrc:274
 msgid "No PNG for app. No desktop file created."
 msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 
-#: app.bashrc:298
+#: app.bashrc:297
 msgid "Removing old file %s."
 msgstr "Removendo arquivo antigo %s."
 
-#: app.bashrc:331
+#: app.bashrc:330
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:333
+#: app.bashrc:332
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:389
+#: app.bashrc:388
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:396
+#: app.bashrc:395
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:428
+#: app.bashrc:427
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:431
+#: app.bashrc:430
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:516 app.bashrc:522 app.bashrc:530 app.bashrc:537 app.bashrc:543
-#: app.bashrc:549
+#: app.bashrc:515 app.bashrc:521 app.bashrc:529 app.bashrc:536 app.bashrc:542
+#: app.bashrc:548
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:561
+#: app.bashrc:560
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -468,68 +468,76 @@ msgstr "Arquivo local: %s."
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
 
-#: backup.bashrc:10
+#: backup.bashrc:12
 msgid "Backup tools"
 msgstr "Ferramentas de backup"
 
-#: backup.bashrc:11
+#: backup.bashrc:13
 msgid "Make backup of a dir"
 msgstr "Faz backup de um diretório"
 
-#: backup.bashrc:12
+#: backup.bashrc:14
 msgid "Restore a backup"
 msgstr "Restaura um backup"
 
-#: backup.bashrc:13
+#: backup.bashrc:15
 msgid "List saved backups"
 msgstr "Lista backups salvos"
 
-#: backup.bashrc:32
+#: backup.bashrc:35
 msgid "Enabling completion for 1backup."
 msgstr "Habilitando completar para 1backup."
 
-#: backup.bashrc:73
+#: backup.bashrc:52
+msgid "Path for backups."
+msgstr "Caminho para os backup"
+
+#: backup.bashrc:53
+msgid "Max quantity of files to keep for each backup."
+msgstr "Quantidade máxima de arquivos a manter para cada backup"
+
+#: backup.bashrc:81
 msgid "There are %i backups. Max is %i. Removing %s."
 msgstr "Há %i backups. Máximo é %i. Removendo %s."
 
-#: backup.bashrc:76
+#: backup.bashrc:84
 msgid "Removed file %s from %s."
 msgstr "Removido arquivo %s de %s."
 
-#: backup.bashrc:78
+#: backup.bashrc:86
 msgid "ERROR removing %s from %s... %i"
 msgstr "ERRO removendo %s de %s... %i"
 
-#: backup.bashrc:119
+#: backup.bashrc:127
 msgid "Running %s for %s, saving in %s..."
 msgstr "Rodando %s para %s, salvando em %s..."
 
-#: backup.bashrc:134 backup.bashrc:145 backup.bashrc:158 backup.bashrc:169
-#: backup.bashrc:180 backup.bashrc:191
+#: backup.bashrc:142 backup.bashrc:153 backup.bashrc:166 backup.bashrc:177
+#: backup.bashrc:188 backup.bashrc:199
 msgid "ERROR"
 msgstr "ERRO"
 
-#: backup.bashrc:152
+#: backup.bashrc:160
 msgid "tar with xz"
 msgstr "tar com xz"
 
-#: backup.bashrc:163
+#: backup.bashrc:171
 msgid "tar with bzip2"
 msgstr "tar com bzip2"
 
-#: backup.bashrc:174
+#: backup.bashrc:182
 msgid "tar with gzip"
 msgstr "tar com gzip"
 
-#: backup.bashrc:183
+#: backup.bashrc:191
 msgid "Running tar without compression! Install gzip, bzip2 or xz!"
 msgstr "Rodando tar sem compressão! Instale gzip, bzip2 ou xz!"
 
-#: backup.bashrc:185
+#: backup.bashrc:193
 msgid "tar without compression"
 msgstr "tar sem compressão"
 
-#: backup.bashrc:195
+#: backup.bashrc:203
 msgid ""
 "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or "
 "xz)."
@@ -537,19 +545,19 @@ msgstr ""
 "Nenhum compactador encontrado. Tente instalar 7zip, zip ou tar (comgzip, "
 "bzip2 ou xz)."
 
-#: backup.bashrc:202
+#: backup.bashrc:210
 msgid "Name: backup id"
 msgstr "Nome: id do backup"
 
-#: backup.bashrc:203
+#: backup.bashrc:211
 msgid "Directory: target to backup"
 msgstr "Diretório: alvo para o backup"
 
-#: backup.bashrc:216
+#: backup.bashrc:224
 msgid "Use 1backlist <name> to find all backups for <name>."
 msgstr "Use 1backlist <nome> para achar todos os backupa para <nome>."
 
-#: backup.bashrc:217
+#: backup.bashrc:225
 msgid "Names"
 msgstr "Nomes"
 

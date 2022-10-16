@@ -156,3 +156,4 @@
 0.147  2022-10-16: 1app lists system status for managed apps
 0.148  2022-10-16: 1app marked as working
 0.149  2022-10-16: 1audio marked as working
+0.150  2022-10-16: 1backup: using .customvars and .info.

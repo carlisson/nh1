@@ -4,6 +4,8 @@
 
 _1BACKDIR="$HOME/Backup"
 _1BACKMAX=0
+# _1BACKGROUPING
+# NORG/backup.dirs : aliases Name > original path
 
 # Generate partial menu
 function _nh1backup.menu {
@@ -17,7 +19,8 @@ function _nh1backup.menu {
 function _nh1backup.clean {
   unset _1BACKDIR _1BACKMAX
   unset -f 1backup 1unback 1backlist  _nh1backup.nextfile _nh1backup.maxcontrol
-  unset -f _nh1backup.log _nh1backup.custom 1backlist _nh1backup.names
+  unset -f _nh1backup.log _nh1backup.customvars 1backlist _nh1backup.names
+  unset -f _nh1backup.info
 }
 
 function _nh1backup.names {
@@ -34,7 +37,7 @@ function _nh1backup.complete {
 }
 
 # Load variables defined by user
-function _nh1backup.custom {
+function _nh1backup.customvars {
     if [[ $NORG_BACKUP_DIR ]]
     then
         _1BACKDIR="$NORG_BACKUP_DIR"
@@ -43,6 +46,11 @@ function _nh1backup.custom {
     then
         _1BACKMAX="$NORG_BACKUP_MAX"
     fi
+}
+
+function _nh1backup.info {
+    	_1menuitem W NORG_BACKUP_DIR "$(_1text "Path for backups.")"
+        _1menuitem W NORG_BACKUP_MAX "$(_1text "Max quantity of files to keep for each backup.")"
 }
 
 function _nh1backup.log {
@@ -118,7 +126,7 @@ function 1backup {
     _TARGET="$2"
     _MSG=$(_1text "Running %s for %s, saving in %s...")
 
-    _nh1backup.custom
+    _nh1backup.customvars
 
     if [ $# -eq 2 ]
     then
@@ -208,7 +216,7 @@ function 1backup {
 # List all backups for one name (id)
 # @param Name (id)
 function 1backlist {
-    _nh1backup.custom
+    _nh1backup.customvars
     if [ $# -eq 1 ]
     then
         find "$_1BACKDIR" -name "$1*"

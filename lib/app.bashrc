@@ -102,7 +102,6 @@ function _nh1app.customvars {
 }
 
 function _nh1app.info {
-    echo 'ha'
     _1menuitem W NORG_APP_RETAINS "$(_1text "Retains old app files? (1 or 0). Default: 0")"
 }
 
