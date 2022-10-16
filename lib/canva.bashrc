@@ -8,10 +8,10 @@ _1CANVALOCAL="$_1UDATA/canvas"
 function _nh1canva.menu {
   echo "___ $(_1text "Canva Section") ___"
   echo "--- $(_1text "Create images from SVG templates")"
-  _1menuitem X 1canva "$(_1text "List all templates or help for given template")"
-  _1menuitem X 1canvagen "$(_1text "Generate image from template")" convert
-  _1menuitem X 1canvaadd "$(_1text "Install or update a template")"
-  _1menuitem X 1canvadel "$(_1text "Remove installed template")"
+  _1menuitem W 1canva "$(_1text "List all templates or help for given template")"
+  _1menuitem W 1canvagen "$(_1text "Generate image from template")" convert
+  _1menuitem W 1canvaadd "$(_1text "Install or update a template")"
+  _1menuitem W 1canvadel "$(_1text "Remove installed template")"
 }
 
 # Destroy all global variables created by this file
@@ -19,6 +19,7 @@ function _nh1canva.clean {
   unset _1CANVALOCAL _1CANVALIB
   unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
   unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
+  unset -f _nh1canva.thelp
 }
 
 # Auto-completion
@@ -61,6 +62,20 @@ function _nh1canva.setup {
     fi
 }
 
+# Show 1canva help for saved template
+# @param Template name
+function _nh1canva.thelp {
+    local _LANG _OUT
+    _LANG="$(echo "$LANG" | sed 's/\(.*\)\.\(.*\)/\1/')"    
+    _1verb "$(printf "$(_1text "Help for template: %s.")" "$1")"
+    if ! grep "1canva-$_LANG-ini" "$_1CANVALOCAL/$1.svg" > /dev/null
+    then
+        _LANG="en"
+    fi
+    
+    cat "$_1CANVALOCAL/$1.svg" | tr '\n' ' ' | sed "s/\(.*\)1canva-$_LANG-ini\(.*\)1canva-$_LANG-end\(.*\)/\2/"
+}
+
 # List all installed templates
 function 1canva {
     local _clist _slist
@@ -93,7 +108,7 @@ function 1canvagen {
             echo "  1canvagen <template> <outputfile> [key=value]*"
             ;;
         1|2)        
-            cat "$_1CANVALOCAL/$1.svg" | tr '\n' ' ' | sed 's/\(.*\)1canva-en-ini\(.*\)1canva-en-end\(.*\)/\2/'
+            _nh1canva.thelp $1
             ;;
         *)
             template="$1"

@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.153
+_1VERSION=0.154
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -431,7 +431,7 @@ function 1translate {
 			else
 				msginit -o "locale/$1.po" -l "$1" -i "locale/NH1.pot"
 			fi
-			_1verb "Done!"
+			_1verb "$(_1text "Done!")"
 			popd > /dev/null
 			;;
 		2)
@@ -439,7 +439,7 @@ function 1translate {
 			mkdir -p "$AUX"
 			_1verb "$(printf "$(_1text "Generating .mo file for %s language")" $1)"
 			msgfmt -o "$AUX/NH1.mo" "$_1LIB/locale/$1.po"
-			_1verb "Done!"
+			_1verb "$(_1text "Done!")"
 			;;
 		*)
 			printf "$(_1text "Usage: %s.")\n" "1translate <language-code> [compile]"

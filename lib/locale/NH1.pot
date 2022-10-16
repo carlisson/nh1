@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 17:53-0300\n"
+"POT-Creation-Date: 2022-10-16 20:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,7 +184,7 @@ msgid "Generating .mo file for %s language"
 msgstr ""
 
 #: /home/cgaldino/sources/nh1/nh1:445 audio.bashrc:136 audio.bashrc:233
-#: backup.bashrc:237 canva.bashrc:146 misc.bashrc:70 rpg.bashrc:184
+#: backup.bashrc:237 canva.bashrc:161 misc.bashrc:70 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr ""
@@ -579,23 +579,27 @@ msgstr ""
 msgid "Remove installed template"
 msgstr ""
 
-#: canva.bashrc:40
-msgid "Path for 1canva internal templates"
+#: canva.bashrc:41
+msgid "Path for 1canva internal templates."
 msgstr ""
 
-#: canva.bashrc:73
+#: canva.bashrc:70
+msgid "Help for template: %s."
+msgstr ""
+
+#: canva.bashrc:88
 msgid "Templates: %s."
 msgstr ""
 
-#: canva.bashrc:77
+#: canva.bashrc:92
 msgid "No template found."
 msgstr ""
 
-#: canva.bashrc:91
+#: canva.bashrc:106
 msgid "Usages:"
 msgstr ""
 
-#: canva.bashrc:160
+#: canva.bashrc:175
 msgid "Template %s not found."
 msgstr ""
 
