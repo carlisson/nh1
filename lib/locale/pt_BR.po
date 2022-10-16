@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 15:18-0300\n"
+"POT-Creation-Date: 2022-10-16 16:35-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -187,7 +187,7 @@ msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
 #: /home/cgaldino/sources/nh1/nh1:441 audio.bashrc:136 audio.bashrc:233
-#: backup.bashrc:209 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
+#: backup.bashrc:237 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr "Uso: %s."
@@ -488,56 +488,63 @@ msgstr "Lista backups salvos"
 msgid "Enabling completion for 1backup."
 msgstr "Habilitando completar para 1backup."
 
-#: backup.bashrc:52
+#: backup.bashrc:77
 msgid "Path for backups."
-msgstr "Caminho para os backup"
+msgstr "Caminho para os backup."
 
-#: backup.bashrc:53
+#: backup.bashrc:78
 msgid "Max quantity of files to keep for each backup."
-msgstr "Quantidade máxima de arquivos a manter para cada backup"
+msgstr "Quantidade máxima de arquivos a manter para cada backup."
 
-#: backup.bashrc:81
+#: backup.bashrc:80
+msgid ""
+"Group backups by: day (%s), weekly (%s), month (%s), year (%s) or no-group "
+"(%s)."
+msgstr ""
+"Agrupar backups por: dia (%s), semana (%s), mês (%s), ano (%s) ou não agrupar (%s)."
+
+#: backup.bashrc:109
 msgid "There are %i backups. Max is %i. Removing %s."
 msgstr "Há %i backups. Máximo é %i. Removendo %s."
 
-#: backup.bashrc:84
+#: backup.bashrc:112
 msgid "Removed file %s from %s."
 msgstr "Removido arquivo %s de %s."
 
-#: backup.bashrc:86
+#: backup.bashrc:114
 msgid "ERROR removing %s from %s... %i"
 msgstr "ERRO removendo %s de %s... %i"
 
-#: backup.bashrc:127
+#: backup.bashrc:155
 msgid "Running %s for %s, saving in %s..."
 msgstr "Rodando %s para %s, salvando em %s..."
 
-#: backup.bashrc:142 backup.bashrc:153 backup.bashrc:166 backup.bashrc:177
-#: backup.bashrc:188 backup.bashrc:199
+#: backup.bashrc:170 backup.bashrc:181 backup.bashrc:194 backup.bashrc:205
+#: backup.bashrc:216 backup.bashrc:227
 msgid "ERROR"
 msgstr "ERRO"
 
-#: backup.bashrc:160
+#: backup.bashrc:188
 msgid "tar with xz"
 msgstr "tar com xz"
 
-#: backup.bashrc:171
+#: backup.bashrc:199
 msgid "tar with bzip2"
 msgstr "tar com bzip2"
 
-#: backup.bashrc:182
+#: backup.bashrc:210
 msgid "tar with gzip"
 msgstr "tar com gzip"
 
-#: backup.bashrc:191
+#: backup.bashrc:219
 msgid "Running tar without compression! Install gzip, bzip2 or xz!"
 msgstr "Rodando tar sem compressão! Instale gzip, bzip2 ou xz!"
 
-#: backup.bashrc:193
+#: backup.bashrc:221
 msgid "tar without compression"
 msgstr "tar sem compressão"
 
-#: backup.bashrc:203
+#: backup.bashrc:231
 msgid ""
 "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or "
 "xz)."
@@ -545,19 +552,19 @@ msgstr ""
 "Nenhum compactador encontrado. Tente instalar 7zip, zip ou tar (comgzip, "
 "bzip2 ou xz)."
 
-#: backup.bashrc:210
+#: backup.bashrc:238
 msgid "Name: backup id"
 msgstr "Nome: id do backup"
 
-#: backup.bashrc:211
+#: backup.bashrc:239
 msgid "Directory: target to backup"
 msgstr "Diretório: alvo para o backup"
 
-#: backup.bashrc:224
+#: backup.bashrc:252
 msgid "Use 1backlist <name> to find all backups for <name>."
 msgstr "Use 1backlist <nome> para achar todos os backupa para <nome>."
 
-#: backup.bashrc:225
+#: backup.bashrc:253
 msgid "Names"
 msgstr "Nomes"
 

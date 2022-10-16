@@ -157,3 +157,4 @@
 0.148  2022-10-16: 1app marked as working
 0.149  2022-10-16: 1audio marked as working
 0.150  2022-10-16: 1backup: using .customvars and .info.
+0.151  2022-10-16: 1backup: grouping yearly, daily, etc...

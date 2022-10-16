@@ -4,7 +4,7 @@
 
 _1BACKDIR="$HOME/Backup"
 _1BACKMAX=0
-# _1BACKGROUPING
+_1BACKGRP='m' # options: d,w,m,y,n
 # NORG/backup.dirs : aliases Name > original path
 
 # Generate partial menu
@@ -20,7 +20,7 @@ function _nh1backup.clean {
   unset _1BACKDIR _1BACKMAX
   unset -f 1backup 1unback 1backlist  _nh1backup.nextfile _nh1backup.maxcontrol
   unset -f _nh1backup.log _nh1backup.customvars 1backlist _nh1backup.names
-  unset -f _nh1backup.info
+  unset -f _nh1backup.info _1BACKGRP _nh1backup.bdir
 }
 
 function _nh1backup.names {
@@ -46,11 +46,39 @@ function _nh1backup.customvars {
     then
         _1BACKMAX="$NORG_BACKUP_MAX"
     fi
+    if [[ $NORG_BACKUP_GROUP ]]
+    then
+        _1BACKGRP="$NORG_BACKUP_GROUP"
+    fi
+}
+
+# Returns right backup dir
+function _nh1backup.bdir {
+    case "$_1BACKGRP" in
+        'd')
+            date "+$_1BACKDIR/%Y/%m/%d"
+            ;;
+        'w')
+            date "+$_1BACKDIR/%Y/w%U"
+            ;;
+        'm')
+            date "+$_1BACKDIR/%Y/%m"
+            ;;
+        'y')
+            date "+$_1BACKDIR/%Y"
+            ;;
+        *)
+            echo "$_1BACKDIR"
+            ;;
+    esac
 }
 
 function _nh1backup.info {
     	_1menuitem W NORG_BACKUP_DIR "$(_1text "Path for backups.")"
         _1menuitem W NORG_BACKUP_MAX "$(_1text "Max quantity of files to keep for each backup.")"
+        _1menuitem W NORG_BACKUP_GROUP "$(printf \
+            "$(_1text "Group backups by: day (%s), weekly (%s), month (%s), year (%s) or no-group (%s).")" \
+            'd' 'w' 'm' 'y' 'n')"
 }
 
 function _nh1backup.log {
@@ -59,7 +87,7 @@ function _nh1backup.log {
     mkdir -p "$_1UDATA/log"
     _L1="$_1UDATA/log/backup.txt"
     _L2="$_1BACKDIR/log.txt"
-    _L3=$(date "+$_1BACKDIR/%Y/%m/log.txt")
+    _L3="$(_nh1backup.bdir)/log.txt"
     echo "$_NOW: $*" >> $_L1
     echo "$_NOW: $*" >> $_L2
     echo "$_NOW: $*" >> $_L3
@@ -71,7 +99,7 @@ function _nh1backup.log {
 function _nh1backup.maxcontrol {
     local _NAME _DEST
     _NAME="$1"
-    _DEST=$(date "+$_1BACKDIR/%Y/%m")
+    _DEST=$(_nh1backup.bdir)
     if [ $_1BACKMAX -gt 0 ]
     then
         _1verb "Scanning $_DEST/$_NAME-*"
@@ -97,7 +125,7 @@ function _nh1backup.nextfile {
     local _NAME _EXT _FILE _DEST _COUNT
     _NAME="$1"
     _EXT="$2"
-    _DEST=$(date "+$_1BACKDIR/%Y/%m")
+    _DEST=$(_nh1backup.bdir)
     _FILE=$(date "+$_NAME-%Y-%m-%d")
     _COUNT=0
 

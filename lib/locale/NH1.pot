@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 15:18-0300\n"
+"POT-Creation-Date: 2022-10-16 16:35-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,7 +184,7 @@ msgid "Generating .mo file for %s language"
 msgstr ""
 
 #: /home/cgaldino/sources/nh1/nh1:441 audio.bashrc:136 audio.bashrc:233
-#: backup.bashrc:209 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
+#: backup.bashrc:237 canva.bashrc:133 misc.bashrc:70 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr ""
@@ -478,74 +478,80 @@ msgstr ""
 msgid "Enabling completion for 1backup."
 msgstr ""
 
-#: backup.bashrc:52
+#: backup.bashrc:77
 msgid "Path for backups."
 msgstr ""
 
-#: backup.bashrc:53
+#: backup.bashrc:78
 msgid "Max quantity of files to keep for each backup."
 msgstr ""
 
-#: backup.bashrc:81
+#: backup.bashrc:80
+msgid ""
+"Group backups by: day (%s), weekly (%s), month (%s), year (%s) or no-group "
+"(%s)."
+msgstr ""
+
+#: backup.bashrc:109
 msgid "There are %i backups. Max is %i. Removing %s."
 msgstr ""
 
-#: backup.bashrc:84
+#: backup.bashrc:112
 msgid "Removed file %s from %s."
 msgstr ""
 
-#: backup.bashrc:86
+#: backup.bashrc:114
 msgid "ERROR removing %s from %s... %i"
 msgstr ""
 
-#: backup.bashrc:127
+#: backup.bashrc:155
 msgid "Running %s for %s, saving in %s..."
 msgstr ""
 
-#: backup.bashrc:142 backup.bashrc:153 backup.bashrc:166 backup.bashrc:177
-#: backup.bashrc:188 backup.bashrc:199
+#: backup.bashrc:170 backup.bashrc:181 backup.bashrc:194 backup.bashrc:205
+#: backup.bashrc:216 backup.bashrc:227
 msgid "ERROR"
 msgstr ""
 
-#: backup.bashrc:160
+#: backup.bashrc:188
 msgid "tar with xz"
 msgstr ""
 
-#: backup.bashrc:171
+#: backup.bashrc:199
 msgid "tar with bzip2"
 msgstr ""
 
-#: backup.bashrc:182
+#: backup.bashrc:210
 msgid "tar with gzip"
 msgstr ""
 
-#: backup.bashrc:191
+#: backup.bashrc:219
 msgid "Running tar without compression! Install gzip, bzip2 or xz!"
 msgstr ""
 
-#: backup.bashrc:193
+#: backup.bashrc:221
 msgid "tar without compression"
 msgstr ""
 
-#: backup.bashrc:203
+#: backup.bashrc:231
 msgid ""
 "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or "
 "xz)."
 msgstr ""
 
-#: backup.bashrc:210
+#: backup.bashrc:238
 msgid "Name: backup id"
 msgstr ""
 
-#: backup.bashrc:211
+#: backup.bashrc:239
 msgid "Directory: target to backup"
 msgstr ""
 
-#: backup.bashrc:224
+#: backup.bashrc:252
 msgid "Use 1backlist <name> to find all backups for <name>."
 msgstr ""
 
-#: backup.bashrc:225
+#: backup.bashrc:253
 msgid "Names"
 msgstr ""
 
