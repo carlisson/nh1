@@ -159,3 +159,4 @@
 0.150  2022-10-16: 1backup: using .customvars and .info.
 0.151  2022-10-16: 1backup: grouping yearly, daily, etc...
 0.152  2022-10-16: hiding pending and deprecated options
+0.153  2022-10-16: 1canva: custom var NORG_CANVA_DIR

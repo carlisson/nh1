@@ -18,7 +18,7 @@ function _nh1canva.menu {
 function _nh1canva.clean {
   unset _1CANVALOCAL _1CANVALIB
   unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
-  unset -f _nh1canva.complete.canvaadd
+  unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
 }
 
 # Auto-completion
@@ -27,6 +27,19 @@ function _nh1canva.complete {
     complete -F _nh1canva.complete.canvaadd 1canvaadd
     complete -F _nh1canva.complete.list 1canvagen
 }
+
+# Load variables defined by user
+function _nh1canva.customvars {
+    if [[ $NORG_CANVA_DIR ]]
+    then
+        _1CANVALOCAL="$NORG_CANVA_DIR"
+    fi
+}
+
+function _nh1canva.info {
+    _1menuitem W NORG_CANVA_DIR "$(_1text "Path for 1canva internal templates.")"
+}
+
 
 # Alias-like
 function _nh1canva.complete.canvaadd { _1compl 'svg' 0 0 0 0 ; }
