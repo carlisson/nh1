@@ -139,20 +139,23 @@ function 1app {
         _NAU=$(_nh1app.checkversion local "$_NAA")
         if [ -n "$_NAU" ]
         then
-            1tint 6 "$(_1text local)"
-            echo -en '\t'
+            1tint 6 "$(_1text local) "
             _NAC=$((_NAC+1))
         fi
         _NAU=$(_nh1app.checkversion global "$_NAA")
         if [ -n "$_NAU" ]
         then
-            1tint 6 "$(_1text global)"
-            echo -en '\t'
+            1tint 6 "$(_1text global) "
             _NAC=$((_NAC+1))
         fi
         if [ "$_NAC" -eq 0 ]
         then
-            echo -n "$(_1text None)"
+            if 1check -s "$_NAA"
+            then
+                1tint 6 "$(_1text system)"
+            else
+                echo -n "$(_1text None)"
+            fi
         fi
         echo
     done

@@ -153,3 +153,4 @@
 0.144  2022-10-13: 1app.single improved
 0.145  2022-10-15: 1app. APP_SUFFIX added to recipes. Error control.
 0.146  2022-10-16: 1timer bug fix: 0x recognized as octal
+0.147  2022-10-16: 1app lists system status for managed apps
