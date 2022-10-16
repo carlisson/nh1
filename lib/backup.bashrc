@@ -10,9 +10,9 @@ _1BACKGRP='m' # options: d,w,m,y,n
 # Generate partial menu
 function _nh1backup.menu {
   echo "___ $(_1text "Backup tools") ___"
-  _1menuitem X 1backup "$(_1text "Make backup of a dir")"
+  _1menuitem W 1backup "$(_1text "Make backup of a dir")"
   _1menuitem P 1unback "$(_1text "Restore a backup")"
-  _1menuitem X 1backlist "$(_1text "List saved backups")"
+  _1menuitem W 1backlist "$(_1text "List saved backups")"
   }
 
 # Destroy all global variables created by this file

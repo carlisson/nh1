@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.151
+_1VERSION=0.152
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -145,10 +145,14 @@ function _1menuitem {
 				return
 			fi
 		fi
-		local mi_spaces=$(($_1MENUCOL - $mi_csize +2))
-		1tint $mi_color "$mi_comm"
-		printf ' %.0s' $(seq 1 $mi_spaces)
-		echo "$mi_descr"
+
+		if [ "$_1VERBOSE" = "1" ] || [ "$mi_status" = 'W' ] || [ "$mi_status" = "X" ]
+		then
+			local mi_spaces=$(($_1MENUCOL - $mi_csize +2))
+			1tint $mi_color "$mi_comm"
+			printf ' %.0s' $(seq 1 $mi_spaces)
+			echo "$mi_descr"
+		fi
 	else
 		_1text "You need to give status, command name, message and dependencies"
 	fi

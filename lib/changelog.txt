@@ -158,3 +158,4 @@
 0.149  2022-10-16: 1audio marked as working
 0.150  2022-10-16: 1backup: using .customvars and .info.
 0.151  2022-10-16: 1backup: grouping yearly, daily, etc...
+0.152  2022-10-16: hiding pending and deprecated options
