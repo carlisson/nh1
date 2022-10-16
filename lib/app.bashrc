@@ -17,15 +17,15 @@ _1APPRETAINS=0
 function _nh1app.menu {
   echo "___ $(_1text "Install App") ___"
   _1menuitem W 1app "$(_1text "List all available apps")"
-  _1menuitem X 1appladd "$(_1text "Install or update an app locally")"
-  _1menuitem X 1appgadd "$(_1text "Install or update an app globaly")"
-  _1menuitem X 1applupd "$(_1text "Update all local apps")"
-  _1menuitem X 1appgupd "$(_1text "Update all global apps")"
-  _1menuitem X 1appxupd "$(_1text "Upgrade all packages(using OS)")"
-  _1menuitem X 1appldel "$(_1text "Remove a local app")"
-  _1menuitem X 1appgdel "$(_1text "Remove a global app")"
-  _1menuitem X 1applclear "$(_1text "Remove old versions for a local app (or all)")"
-  _1menuitem X 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
+  _1menuitem W 1appladd "$(_1text "Install or update an app locally")"
+  _1menuitem W 1appgadd "$(_1text "Install or update an app globaly")"
+  _1menuitem W 1applupd "$(_1text "Update all local apps")"
+  _1menuitem W 1appgupd "$(_1text "Update all global apps")"
+  _1menuitem W 1appxupd "$(_1text "Upgrade all packages(using OS)")"
+  _1menuitem W 1appldel "$(_1text "Remove a local app")"
+  _1menuitem W 1appgdel "$(_1text "Remove a global app")"
+  _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
+  _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
 }
 
 # Destroy all global variables created by this file
