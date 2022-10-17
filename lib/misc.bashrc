@@ -167,7 +167,7 @@ function 1timer {
 function 1pomo {
   local MINUTES
   
-  MINUTES=25
+  MINUTES=$_1MISCPOMOMIN
   if [ $# -eq 1 ]
   then
     if [ $1 -gt 99 ]
