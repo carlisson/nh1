@@ -23,6 +23,7 @@ function _nh1rpg.menu {
 
 # Destroy all global variables created by this file
 function _nh1rpg.clean {
+  unset _1RPGDRAW
   unset -f 1d4 1d6 1d8 1d10 1d12 1d20 1d100
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
   unset -f 1draw 1drawlist 1drawadd 1drawdel _nh1rpg.init

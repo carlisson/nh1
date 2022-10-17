@@ -29,7 +29,7 @@ function _nh1misc.clean {
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
-  unset -f _nh1misc.customvars _nh1misc.info
+  unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
 }
 
 function _nh1misc.complete {

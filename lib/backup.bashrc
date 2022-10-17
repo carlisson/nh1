@@ -20,7 +20,8 @@ function _nh1backup.clean {
   unset _1BACKDIR _1BACKMAX _1BACKGRP
   unset -f 1backup 1unback 1backlist  _nh1backup.nextfile _nh1backup.maxcontrol
   unset -f _nh1backup.log _nh1backup.customvars 1backlist _nh1backup.names
-  unset -f _nh1backup.info _1BACKGRP _nh1backup.bdir
+  unset -f _nh1backup.info _1BACKGRP _nh1backup.bdir _nh1backup.clean
+  unset -f _nh1backup.complete _nh1backup.menu
 }
 
 function _nh1backup.names {

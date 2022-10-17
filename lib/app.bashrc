@@ -39,7 +39,8 @@ function _nh1app.clean {
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
-  unset -f _nh1app.clearold _nh1app.customvars _nh1app.info
+  unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
+  unset -f _nh1app.update
 }
 
 # Alias-like

@@ -34,7 +34,8 @@ function _nh1network.clean {
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
-  unset -f 1xt-backup _nh1network.init _1network.customvar _1network.info
+  unset -f 1xt-backup _nh1network.init _nh1network.customvars _nh1network.info
+  unset -f _nh1network.complete _nh1network.xt-backup
 }
 
 function _nh1network.complete {

@@ -19,7 +19,8 @@ function _nh1canva.clean {
   unset _1CANVALOCAL
   unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
   unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
-  unset -f _nh1canva.thelp
+  unset -f _nh1canva.thelp _nh1canva.clean _nh1canva.complete.list
+  unset -f _nh1canva.menu _nh1canva.setup
 }
 
 # Auto-completion
