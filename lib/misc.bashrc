@@ -1,6 +1,7 @@
 #!/bin/bash
 
 _1MISCLOCAL="$_1UDATA/misc"
+_1MISCTIPS="$_1MISCLOCAL"
 _1MISCPOMOMIN=25
 
 # Generate partial menu
@@ -24,6 +25,7 @@ function _nh1misc.menu {
 
 # Destroy all global variables created by this file
 function _nh1misc.clean {
+  unset _1MISCLOCAL _1MISCTIPS _1MISCPOMOMIN
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
@@ -33,7 +35,7 @@ function _nh1misc.clean {
 function _nh1misc.complete {
   complete -F _nh1misc.complete.from_pdf 1pdfbkl
   complete -F _nh1misc.complete.from_pdf 1pdfopt
-  complete -W $(_1list $_1MISCLOCAL "tips") 1tip
+  complete -W $(_1list $_1MISCTIPS "tips") 1tip
 }
 
 # Load variables defined by user
@@ -42,10 +44,15 @@ function _nh1misc.customvars {
     then
         _1MISCPOMOMIN="$NORG_POMODORO_MINS"
     fi
+  if [[ $NORG_TIPS_DIR ]]
+    then
+        _1MISCTIPS="$NORG_TIPS_DIR"
+    fi
 }
 
 function _nh1misc.info {
   _1menuitem W NORG_POMODORO_MINS "$(printf "$(_1text "Duration of a Pomodoro (%s). Default: %s min.")" "1pomo" "25")"
+  _1menuitem W NORG_TIPS_DIR "$(_1text "Path for tip groups (text files).")"
 }
 
 function _nh1misc.complete.from_pdf { _1compl 'pdf' 0 0 0 0 ; }
@@ -219,21 +226,21 @@ function 1escape {
 # @param Group of tip ("list" to list all groups)
 function 1tip {
   local _TFIL
-  if [ ! -d "$_1MISCLOCAL" ]
+  if [ ! -d "$_1MISCTIPS" ]
   then
-    mkdir "$_1MISCLOCAL"
-    cp "$_1LIB/templates/norg.tips" "$_1MISCLOCAL"
+    mkdir "$_1MISCTIPS"
+    cp "$_1LIB/templates/norg.tips" "$_1MISCTIPS"
   fi
 	if [ $# -eq 0 ]
 	then
-		cat $_1MISCLOCAL/*.tips | shuf | head -1
+		cat $_1MISCTIPS/*.tips | shuf | head -1
 	else
 		if [ "$1" = "list" ]
 		then
-			printf "$(_1text "Tip groups: %s.")\n" "$(_1list $_1MISCLOCAL "tips")"
+			printf "$(_1text "Tip groups: %s.")\n" "$(_1list $_1MISCTIPS "tips")"
 			
     else
-      _TFIL=$_1MISCLOCAL/$1.tips
+      _TFIL=$_1MISCTIPS/$1.tips
       if [ -f "$_TFIL" ]
       then
         shuf "$_TFIL" | head -1

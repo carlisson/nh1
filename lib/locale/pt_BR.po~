@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-17 09:04-0300\n"
+"POT-Creation-Date: 2022-10-17 09:06-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -655,8 +655,8 @@ msgid "Compress a PDF file"
 msgstr "Comprime um arquivo PDF"
 
 #: misc.bashrc:17
-msgid "Run one pomodoro (default is 25min)"
-msgstr "Roda um pomodoro (default é 25min)"
+msgid "Run one pomodoro (default is %s min)"
+msgstr "Roda um pomodoro (default é %s min)"
 
 #: misc.bashrc:18
 msgid "Print percentage for battery (notebook)"

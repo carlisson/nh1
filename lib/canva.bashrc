@@ -16,7 +16,7 @@ function _nh1canva.menu {
 
 # Destroy all global variables created by this file
 function _nh1canva.clean {
-  unset _1CANVALOCAL _1CANVALIB
+  unset _1CANVALOCAL
   unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
   unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
   unset -f _nh1canva.thelp
@@ -40,7 +40,6 @@ function _nh1canva.customvars {
 function _nh1canva.info {
     _1menuitem W NORG_CANVA_DIR "$(_1text "Path for 1canva internal templates.")"
 }
-
 
 # Alias-like
 function _nh1canva.complete.canvaadd { _1compl 'svg' 0 0 0 0 ; }

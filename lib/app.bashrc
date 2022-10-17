@@ -31,6 +31,7 @@ function _nh1app.menu {
 # Destroy all global variables created by this file
 function _nh1app.clean {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN _1APPLIB
+  unset _1APPLAPPS _1APPGAPPS _1APPLICON _1APPGICON _1APPRETAINS
   unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
   unset -f _nh1app.single _nh1app.add 1appladd 1appgadd 
   unset -f _nh1app.checkversion _nh1app.list _nh1app.remove 

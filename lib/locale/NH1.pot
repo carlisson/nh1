@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-17 09:06-0300\n"
+"POT-Creation-Date: 2022-10-17 09:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,7 +185,7 @@ msgid "Generating .mo file for %s language"
 msgstr ""
 
 #: /home/cgaldino/Sources/nh1/nh1:445 audio.bashrc:136 audio.bashrc:233
-#: backup.bashrc:237 canva.bashrc:161 misc.bashrc:84 rpg.bashrc:184
+#: backup.bashrc:237 canva.bashrc:160 misc.bashrc:91 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr ""
@@ -274,104 +274,104 @@ msgstr ""
 msgid "Remove old versions for a global app (or all)"
 msgstr ""
 
-#: app.bashrc:105
+#: app.bashrc:106
 msgid "Retains old app files? (1 or 0). Default: 0"
 msgstr ""
 
-#: app.bashrc:132
+#: app.bashrc:133
 msgid "1app status"
 msgstr ""
 
-#: app.bashrc:133
+#: app.bashrc:134
 msgid "App"
 msgstr ""
 
-#: app.bashrc:133
+#: app.bashrc:134
 msgid "Description"
 msgstr ""
 
-#: app.bashrc:133
+#: app.bashrc:134
 msgid "Installation"
 msgstr ""
 
-#: app.bashrc:141
+#: app.bashrc:142
 msgid "local"
 msgstr ""
 
-#: app.bashrc:147
+#: app.bashrc:148
 msgid "global"
 msgstr ""
 
-#: app.bashrc:154
+#: app.bashrc:155
 msgid "system"
 msgstr ""
 
-#: app.bashrc:156
+#: app.bashrc:157
 msgid "None"
 msgstr ""
 
-#: app.bashrc:161
+#: app.bashrc:162
 msgid "Usage"
 msgstr ""
 
-#: app.bashrc:163
+#: app.bashrc:164
 msgid " to install locally and "
 msgstr ""
 
-#: app.bashrc:165 app.bashrc:169
+#: app.bashrc:166 app.bashrc:170
 msgid " to uninstall."
 msgstr ""
 
-#: app.bashrc:167
+#: app.bashrc:168
 msgid " to install globally and "
 msgstr ""
 
-#: app.bashrc:180
+#: app.bashrc:181
 msgid "Suffix not found in app recipe. Using %s."
 msgstr ""
 
-#: app.bashrc:242
+#: app.bashrc:243
 msgid "Creating desktop file for %s."
 msgstr ""
 
-#: app.bashrc:274
+#: app.bashrc:275
 msgid "No PNG for app. No desktop file created."
 msgstr ""
 
-#: app.bashrc:297
+#: app.bashrc:298
 msgid "Removing old file %s."
 msgstr ""
 
-#: app.bashrc:330
+#: app.bashrc:331
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:332
+#: app.bashrc:333
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:388
+#: app.bashrc:389
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:395
+#: app.bashrc:396
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:427
+#: app.bashrc:428
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:430
+#: app.bashrc:431
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:515 app.bashrc:521 app.bashrc:529 app.bashrc:536 app.bashrc:542
-#: app.bashrc:548
+#: app.bashrc:516 app.bashrc:522 app.bashrc:530 app.bashrc:537 app.bashrc:543
+#: app.bashrc:549
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:560
+#: app.bashrc:561
 msgid "App %s installed with file %s"
 msgstr ""
 
@@ -584,151 +584,155 @@ msgstr ""
 msgid "Path for 1canva internal templates."
 msgstr ""
 
-#: canva.bashrc:70
+#: canva.bashrc:69
 msgid "Help for template: %s."
 msgstr ""
 
-#: canva.bashrc:88
+#: canva.bashrc:87
 msgid "Templates: %s."
 msgstr ""
 
-#: canva.bashrc:92
+#: canva.bashrc:91
 msgid "No template found."
 msgstr ""
 
-#: canva.bashrc:106
+#: canva.bashrc:105
 msgid "Usages:"
 msgstr ""
 
-#: canva.bashrc:175
+#: canva.bashrc:174
 msgid "Template %s not found."
 msgstr ""
 
-#: misc.bashrc:8
+#: misc.bashrc:9
 msgid "Miscelania"
 msgstr ""
 
-#: misc.bashrc:9
+#: misc.bashrc:10
 msgid "Join an array, using first param as delimiter"
 msgstr ""
 
-#: misc.bashrc:10
+#: misc.bashrc:11
 msgid "Generate a seq for booklet, for given page number"
 msgstr ""
 
-#: misc.bashrc:11
+#: misc.bashrc:12
 msgid "Generate a random hexadecimal color"
 msgstr ""
 
-#: misc.bashrc:12
+#: misc.bashrc:13
 msgid "Disk usage"
 msgstr ""
 
-#: misc.bashrc:13
+#: misc.bashrc:14
 msgid "Rename a file or dir, excluding special chars"
 msgstr ""
 
-#: misc.bashrc:14
+#: misc.bashrc:15
 msgid "Generate a secure password"
 msgstr ""
 
-#: misc.bashrc:15
+#: misc.bashrc:16
 msgid "Make a booklet form a PDF file"
 msgstr ""
 
-#: misc.bashrc:16
+#: misc.bashrc:17
 msgid "Compress a PDF file"
 msgstr ""
 
-#: misc.bashrc:17
+#: misc.bashrc:18
 msgid "Run one pomodoro (default is %s min)"
 msgstr ""
 
-#: misc.bashrc:18
+#: misc.bashrc:19
 msgid "Print percentage for battery (notebook)"
 msgstr ""
 
-#: misc.bashrc:19
+#: misc.bashrc:20
 msgid "Counter 30-30-30 to router reset"
 msgstr ""
 
-#: misc.bashrc:20
+#: misc.bashrc:21
 msgid "Returns a random special character"
 msgstr ""
 
-#: misc.bashrc:21
+#: misc.bashrc:22
 msgid "Countdown timer."
 msgstr ""
 
-#: misc.bashrc:22
+#: misc.bashrc:23
 msgid "Shows a random tip"
 msgstr ""
 
-#: misc.bashrc:48
+#: misc.bashrc:54
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr ""
 
-#: misc.bashrc:151
+#: misc.bashrc:55
+msgid "Path for tip groups (text files)."
+msgstr ""
+
+#: misc.bashrc:158
 msgid "finished"
 msgstr ""
 
-#: misc.bashrc:153
+#: misc.bashrc:160
 msgid "Usage:"
 msgstr ""
 
-#: misc.bashrc:181
+#: misc.bashrc:188
 msgid "30-30-30 method for router reseting"
 msgstr ""
 
-#: misc.bashrc:182
+#: misc.bashrc:189
 msgid "your router will lost all configuration"
 msgstr ""
 
-#: misc.bashrc:183
+#: misc.bashrc:190
 msgid "Turn on the router."
 msgstr ""
 
-#: misc.bashrc:184
+#: misc.bashrc:191
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:185
+#: misc.bashrc:192
 msgid "Turn off the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:186
+#: misc.bashrc:193
 msgid "Turn on the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:187
+#: misc.bashrc:194
 msgid "Release the button"
 msgstr ""
 
-#: misc.bashrc:188
+#: misc.bashrc:195
 msgid "Press ENTER when you are ready."
 msgstr ""
 
-#: misc.bashrc:190 misc.bashrc:194
+#: misc.bashrc:197 misc.bashrc:201
 msgid "Router on"
 msgstr ""
 
-#: misc.bashrc:192
+#: misc.bashrc:199
 msgid "Router off"
 msgstr ""
 
-#: misc.bashrc:197
+#: misc.bashrc:204
 msgid "Your router must be restarted with factory settings!"
 msgstr ""
 
-#: misc.bashrc:233
+#: misc.bashrc:240
 msgid "Tip groups: %s."
 msgstr ""
 
-#: misc.bashrc:241
+#: misc.bashrc:248
 msgid "No tips group %s found."
 msgstr ""
 
-#: misc.bashrc:383
+#: misc.bashrc:390
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 
