@@ -20,6 +20,8 @@ APP_DEPENDS=""
 # Prefix for filenames
 APP_PREFIX="funcoeszz-"
 
+APP_SUFFIX=".sh"
+
 # To compile or do some procedures post-installation
 function APP_POSTINST {
     return 1
@@ -36,15 +38,17 @@ function APP_VERSION {
 #alias APP_GET="curl -O -L "http://funcoeszz.net/download/$_NANEW"
 
 function APP_GET {
+    local AGpre
+    
     if [ $# -eq 1 ]
     then
-        _1sudo curl -O -L http://funcoeszz.net/download/$(curl -s http://funcoeszz.net/download/ | tr '\n' ' ' | \
-        sed 's/\(.*\)\/download\/\(funcoeszz-\(.*\).sh\)\(.*\)/\2/' | \
-        sed 's/"\(.*\)//g')
+        AGpre="_1sudo "
     else
-        curl -O -L http://funcoeszz.net/download/$(curl -s http://funcoeszz.net/download/ | tr '\n' ' ' | \
-        sed 's/\(.*\)\/download\/\(funcoeszz-\(.*\).sh\)\(.*\)/\2/' | \
-        sed 's/"\(.*\)//g')
+        AGpre=""
     fi
+
+    $AGpre curl -O -L http://funcoeszz.net/download/$(curl -s http://funcoeszz.net/download/ | tr '\n' ' ' | \
+        sed 's/\(.*\)\/download\/\(funcoeszz-\(.*\).sh\)\(.*\)/\2/' | \
+        sed 's/"\(.*\)//g')    
 }
 
