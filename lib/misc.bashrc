@@ -1,6 +1,7 @@
 #!/bin/bash
 
 _1MISCLOCAL="$_1UDATA/misc"
+_1MISCPOMOMIN=25
 
 # Generate partial menu
 function _nh1misc.menu {
@@ -13,7 +14,7 @@ function _nh1misc.menu {
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
   _1menuitem X 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
   _1menuitem X 1pdfopt "$(_1text "Compress a PDF file")" gs
-  _1menuitem W 1pomo "$(_1text "Run one pomodoro (default is 25min)")" seq
+  _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
@@ -26,12 +27,25 @@ function _nh1misc.clean {
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
+  unset -f _nh1misc.customvars _nh1misc.info
 }
 
 function _nh1misc.complete {
   complete -F _nh1misc.complete.from_pdf 1pdfbkl
   complete -F _nh1misc.complete.from_pdf 1pdfopt
   complete -W $(_1list $_1MISCLOCAL "tips") 1tip
+}
+
+# Load variables defined by user
+function _nh1misc.customvars {
+  if [[ $NORG_POMODORO_MINS ]]
+    then
+        _1MISCPOMOMIN="$NORG_POMODORO_MINS"
+    fi
+}
+
+function _nh1misc.info {
+  _1menuitem W NORG_POMODORO_MINS "$(printf "$(_1text "Duration of a Pomodoro (%s). Default: %s min.")" "1pomo" "25")"
 }
 
 function _nh1misc.complete.from_pdf { _1compl 'pdf' 0 0 0 0 ; }

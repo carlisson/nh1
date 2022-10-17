@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.155
+_1VERSION=0.156
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -454,12 +454,18 @@ function 1translate {
 
 # Information about user variables
 function 1info {
+	local _OLDMC
 	echo "_______ $(_1text "Custom variables") _______"
 	printf "$(_1text "You can configure custom variables for NH1. Edit %s to define it.")\n" "$_1UDATA/nh1.conf"
+
+	_OLDMC=$_1MENUCOL
+	_1MENUCOL=25
 
 	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode (1 or 0). Default: 0")"
 	
 	_1modrun "_nh1-=-.info"
+
+	_1MENUCOL=$_OLDMC
 }
 
 #MAIN
