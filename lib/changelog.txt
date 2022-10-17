@@ -164,3 +164,4 @@
 0.155  2022-10-17: Bug fix in recipe for funcoeszz
 0.156  2022-10-17: 1misc: custom var NORG_POMODORO_MINS
 0.157  2022-10-17: 1misc: custom var NORG_TIPS_DIR
+0.158  2022-10-17: 1network: 2 custom vars

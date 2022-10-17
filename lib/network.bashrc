@@ -30,11 +30,11 @@ function _nh1network.menu {
 
 # Clean variables
 function _nh1network.clean {
-  unset _1IPERFPORT
+  unset _1IPERFPORT _1NETLOCAL _1SERIALCOM
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
-  unset -f 1xt-backup _nh1network.init
+  unset -f 1xt-backup _nh1network.init _1network.customvar _1network.info
 }
 
 function _nh1network.complete {
@@ -44,6 +44,23 @@ function _nh1network.complete {
 
 function _nh1network.init {
   mkdir -p "$_1NETLOCAL"
+}
+
+# Load variables defined by user
+function _nh1network.customvars {
+  if [[ $NORG_NETWORK_DIR ]]
+    then
+        _1NETLOCAL="$NORG_NETWORK_DIR"
+    fi
+  if [[ $NORG_IPERF_PORT ]]
+    then
+        _1IPERFPORT="$NORG_IPERF_PORT"
+    fi
+}
+
+function _nh1network.info {
+  _1menuitem W NORG_NETWORK_DIR "$(_1text "Path for network (hosts and groups) files.")"
+  _1menuitem W NORG_IPERF_PORT "$(printf "$(_1text "Server port. Default: %s.")" "2918")"
 }
 
 # Alias like

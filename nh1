@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=0.157
+_1VERSION=0.158
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -290,7 +290,8 @@ function 1clean {
 
 	_1modrun "_nh1-=-.clean"
 
-	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE
+	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE _1PCOLOR _1XCOLOR
+	unset _1WCOLOR _1DCOLOR _1MENUCOL _1GDATA _1UDATA _1MODULES
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
 	unset -f _nh1customvars 1info _1modrun   
