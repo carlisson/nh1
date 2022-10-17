@@ -33,9 +33,14 @@ function _nh1misc.clean {
 }
 
 function _nh1misc.complete {
-  complete -F _nh1misc.complete.from_pdf 1pdfbkl
+  local _AUX
+  complete -F _nh1misc.complete.from_pdf 1pdfbkl _nh1misc.init
   complete -F _nh1misc.complete.from_pdf 1pdfopt
-  complete -W $(_1list $_1MISCTIPS "tips") 1tip
+  _AUX=$(_1list $_1MISCTIPS "tips")
+  if [ -n "$_AUX" ]
+  then
+    complete -W "$_AUX" 1tip
+  fi
 }
 
 # Load variables defined by user
@@ -53,6 +58,11 @@ function _nh1misc.customvars {
 function _nh1misc.info {
   _1menuitem W NORG_POMODORO_MINS "$(printf "$(_1text "Duration of a Pomodoro (%s). Default: %s min.")" "1pomo" "25")"
   _1menuitem W NORG_TIPS_DIR "$(_1text "Path for tip groups (text files).")"
+}
+
+function _nh1misc.init {
+  mkdir -p "$_1MISCLOCAL"
+  mkdir -p "$_1MISCTIPS"
 }
 
 function _nh1misc.complete.from_pdf { _1compl 'pdf' 0 0 0 0 ; }

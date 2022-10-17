@@ -3,7 +3,7 @@
 shopt -s expand_aliases
 
 # GLOBALS
-_1VERSION=1.0rc1
+_1VERSION=1.0rc2
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -476,8 +476,8 @@ function 1info {
 # but do it in a sub-shell and catch the results.
 # If this script isn't sourced, that will raise an error.
 
-_nh1init
 _nh1customvars
+_nh1init
 
 if [ $# -gt 0 ]
 then

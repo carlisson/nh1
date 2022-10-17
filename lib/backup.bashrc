@@ -21,7 +21,7 @@ function _nh1backup.clean {
   unset -f 1backup 1unback 1backlist  _nh1backup.nextfile _nh1backup.maxcontrol
   unset -f _nh1backup.log _nh1backup.customvars 1backlist _nh1backup.names
   unset -f _nh1backup.info _1BACKGRP _nh1backup.bdir _nh1backup.clean
-  unset -f _nh1backup.complete _nh1backup.menu
+  unset -f _nh1backup.complete _nh1backup.menu _nh1backup.init
 }
 
 function _nh1backup.names {
@@ -51,6 +51,10 @@ function _nh1backup.customvars {
     then
         _1BACKGRP="$NORG_BACKUP_GROUP"
     fi
+}
+
+function _nh1backup.init {
+	mkdir -p "$_1BACKDIR"
 }
 
 # Returns right backup dir

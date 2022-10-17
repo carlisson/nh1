@@ -168,3 +168,4 @@
 0.159  2022-10-17: 1clean fixed to clear all vars and functions
 0.160  2022-10-17: 1rpg: custom var NORG_DRAW_LISTS_DIR
 1.0rc1 2022-10-17: bug fix in 1pomo (custom var)
+1.0rc2 2022-10-17: some minor bug fixes

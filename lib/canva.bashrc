@@ -20,7 +20,7 @@ function _nh1canva.clean {
   unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
   unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
   unset -f _nh1canva.thelp _nh1canva.clean _nh1canva.complete.list
-  unset -f _nh1canva.menu _nh1canva.setup
+  unset -f _nh1canva.menu _nh1canva.init
 }
 
 # Auto-completion
@@ -54,7 +54,7 @@ function _nh1canva.complete.list {
 }
 
 # Configure your template path
-function _nh1canva.setup {
+function _nh1canva.init {
     if [ ! -d "$_1CANVALOCAL" ]
     then
         mkdir -p "$_1CANVALOCAL"
@@ -79,7 +79,7 @@ function _nh1canva.thelp {
 # List all installed templates
 function 1canva {
     local _clist _slist
-    _nh1canva.setup
+    _nh1canva.init
     
     #_clist=($(_nh1canva.list))
     _clist=($(_1list $_1CANVALOCAL "svg"))

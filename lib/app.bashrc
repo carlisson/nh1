@@ -74,7 +74,7 @@ function _nh1app.setup {
         mkdir -p "$_1APPLBIN"
         mkdir -p "$_1APPLAPPS"
         mkdir -p "$_1APPLICON"
-        grep "$_1APPLBIN" "$HOME/.bashrc" 2>1 > /dev/null
+        grep "$_1APPLBIN" "$HOME/.bashrc" 2>&1 > /dev/null
         if [ $? -ne 0 ]
         then
             echo "PATH=\"\$PATH:$_1APPLBIN\"" >> "$HOME/.bashrc"
