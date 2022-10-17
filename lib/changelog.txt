@@ -166,3 +166,4 @@
 0.157  2022-10-17: 1misc: custom var NORG_TIPS_DIR
 0.158  2022-10-17: 1network: 2 custom vars
 0.159  2022-10-17: 1clean fixed to clear all vars and functions
+0.160  2022-10-17: 1rpg: custom var NORG_DRAW_LISTS_DIR

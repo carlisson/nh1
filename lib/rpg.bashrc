@@ -15,10 +15,10 @@ function _nh1rpg.menu {
   _1menuitem W 1d20 "$(_1text "Roll one d20 dice")"
   _1menuitem W 1d100 "$(_1text "Roll one d100 dice")"
   _1menuitem W 1card "$(_1text "Sort a random playing card")"
-  _1menuitem X 1draw "$(_1text "Draw an item from a list")"
-  _1menuitem X 1drawlist "$(_1text "List groups to draw-functions")"
-  _1menuitem X 1drawadd "$(_1text "Add a new group to draw-functions")"
-  _1menuitem X 1drawdel "$(_1text "Delete a group from draw-functions")"
+  _1menuitem W 1draw "$(_1text "Draw an item from a list")"
+  _1menuitem W 1drawlist "$(_1text "List groups to draw-functions")"
+  _1menuitem W 1drawadd "$(_1text "Add a new group to draw-functions")"
+  _1menuitem W 1drawdel "$(_1text "Delete a group from draw-functions")"
 }
 
 # Destroy all global variables created by this file
@@ -45,6 +45,18 @@ function _nh1rpg.complete.draw {
 
 function _nh1rpg.init {
 	mkdir -p "$_1RPGDRAW"
+}
+
+function _nh1rpg.customvars {
+  if [[ $NORG_DRAW_LISTS_DIR ]]
+    then
+        _1RPGDRAW="$NORG_DRAW_LISTS_DIR"
+    fi
+}
+
+# General information about variables and customizing
+function _nh1rpg.info {
+  _1menuitem W NORG_DRAW_LISTS_DIR "$(_1text "Path for draw-lists (RPG).")"
 }
 
 # Alias like

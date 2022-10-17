@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-17 09:22-0300\n"
+"POT-Creation-Date: 2022-10-17 09:58-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -78,63 +78,63 @@ msgstr "O programa %s não existe ou está indisponível para %s."
 msgid "Destroying all variables..."
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/Sources/nh1/nh1:312
+#: /home/cgaldino/Sources/nh1/nh1:313
 msgid "Main"
 msgstr "Sessão Principal"
 
-#: /home/cgaldino/Sources/nh1/nh1:313
+#: /home/cgaldino/Sources/nh1/nh1:314
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
 
-#: /home/cgaldino/Sources/nh1/nh1:314
+#: /home/cgaldino/Sources/nh1/nh1:315
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
-#: /home/cgaldino/Sources/nh1/nh1:315
+#: /home/cgaldino/Sources/nh1/nh1:316
 msgid "List possible custom variables"
 msgstr "Lista possíveis variáveis custom"
 
-#: /home/cgaldino/Sources/nh1/nh1:316
+#: /home/cgaldino/Sources/nh1/nh1:317
 msgid "Write a string in another color"
 msgstr "Escreve um texto em outra cor"
 
-#: /home/cgaldino/Sources/nh1/nh1:317
+#: /home/cgaldino/Sources/nh1/nh1:318
 msgid "Create and apply translation for NH1."
 msgstr "Cria e aplica tradução para NH1."
 
-#: /home/cgaldino/Sources/nh1/nh1:318
+#: /home/cgaldino/Sources/nh1/nh1:319
 msgid "Update your NH1, using git"
 msgstr "Atualiza seu NH1, usando git"
 
-#: /home/cgaldino/Sources/nh1/nh1:319
+#: /home/cgaldino/Sources/nh1/nh1:320
 msgid "Enable/disable verbose mode"
 msgstr "Habilita/desabilita o modo verboso"
 
-#: /home/cgaldino/Sources/nh1/nh1:320
+#: /home/cgaldino/Sources/nh1/nh1:321
 msgid "List NH1 version and latest changes/updates"
 msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
-#: /home/cgaldino/Sources/nh1/nh1:324
+#: /home/cgaldino/Sources/nh1/nh1:325
 msgid "planning"
 msgstr "planejamento"
 
-#: /home/cgaldino/Sources/nh1/nh1:326
+#: /home/cgaldino/Sources/nh1/nh1:327
 msgid "experimental"
 msgstr "experimental"
 
-#: /home/cgaldino/Sources/nh1/nh1:328
+#: /home/cgaldino/Sources/nh1/nh1:329
 msgid "working"
 msgstr "funcional"
 
-#: /home/cgaldino/Sources/nh1/nh1:330
+#: /home/cgaldino/Sources/nh1/nh1:331
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: /home/cgaldino/Sources/nh1/nh1:333
+#: /home/cgaldino/Sources/nh1/nh1:334
 msgid "Power-up your shell"
 msgstr "Dê poderes ao seu shell"
 
-#: /home/cgaldino/Sources/nh1/nh1:343
+#: /home/cgaldino/Sources/nh1/nh1:344
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
@@ -142,71 +142,71 @@ msgstr ""
 "NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
 "disponíveis"
 
-#: /home/cgaldino/Sources/nh1/nh1:345
+#: /home/cgaldino/Sources/nh1/nh1:346
 msgid "Installing NH1 in %s..."
 msgstr "Instalando NH1 em %s..."
 
-#: /home/cgaldino/Sources/nh1/nh1:347 /home/cgaldino/Sources/nh1/nh1:357
-#: /home/cgaldino/Sources/nh1/nh1:434 /home/cgaldino/Sources/nh1/nh1:442
+#: /home/cgaldino/Sources/nh1/nh1:348 /home/cgaldino/Sources/nh1/nh1:358
+#: /home/cgaldino/Sources/nh1/nh1:435 /home/cgaldino/Sources/nh1/nh1:443
 msgid "Done!"
 msgstr "Feito!"
 
-#: /home/cgaldino/Sources/nh1/nh1:354
+#: /home/cgaldino/Sources/nh1/nh1:355
 msgid "After destroy variables, I will load %s."
 msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:367
+#: /home/cgaldino/Sources/nh1/nh1:368
 msgid "NH1 was in version %s. "
 msgstr "NH1 estava na versão %s. "
 
-#: /home/cgaldino/Sources/nh1/nh1:373
+#: /home/cgaldino/Sources/nh1/nh1:374
 msgid "You are using NH1 from tar-ball, not from Git."
 msgstr "Você está usando NH1 a partir do tar-ball, não do Git."
 
-#: /home/cgaldino/Sources/nh1/nh1:377
+#: /home/cgaldino/Sources/nh1/nh1:378
 msgid "Git program is not available."
 msgstr "Programa git não está disponível."
 
-#: /home/cgaldino/Sources/nh1/nh1:397 /home/cgaldino/Sources/nh1/nh1:411
+#: /home/cgaldino/Sources/nh1/nh1:398 /home/cgaldino/Sources/nh1/nh1:412
 msgid "Verbose mode is on"
 msgstr "Modo verboso está ligado"
 
-#: /home/cgaldino/Sources/nh1/nh1:399 /home/cgaldino/Sources/nh1/nh1:407
+#: /home/cgaldino/Sources/nh1/nh1:400 /home/cgaldino/Sources/nh1/nh1:408
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/cgaldino/Sources/nh1/nh1:421
+#: /home/cgaldino/Sources/nh1/nh1:422
 msgid "Generating translation file."
 msgstr "Gerando arquivo de tradução."
 
-#: /home/cgaldino/Sources/nh1/nh1:427
+#: /home/cgaldino/Sources/nh1/nh1:428
 msgid ".pot file generated. Trying to create/update .po"
 msgstr "Arquivo .pot gerado. Tentando criar/atualizar .po"
 
-#: /home/cgaldino/Sources/nh1/nh1:440
+#: /home/cgaldino/Sources/nh1/nh1:441
 msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
-#: /home/cgaldino/Sources/nh1/nh1:445 audio.bashrc:136 audio.bashrc:233
+#: /home/cgaldino/Sources/nh1/nh1:446 audio.bashrc:136 audio.bashrc:233
 #: backup.bashrc:237 canva.bashrc:160 misc.bashrc:91 rpg.bashrc:184
 #: rpg.bashrc:199
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:446
+#: /home/cgaldino/Sources/nh1/nh1:447
 msgid "Steps to translate"
 msgstr "Passos para traduzir"
 
-#: /home/cgaldino/Sources/nh1/nh1:447
+#: /home/cgaldino/Sources/nh1/nh1:448
 msgid "Run 1translate <language-code>. For example, 1translate pt_BR"
 msgstr "Rode 1translate <language-code>. Por exemplo, 1translate pt_BR"
 
-#: /home/cgaldino/Sources/nh1/nh1:448
+#: /home/cgaldino/Sources/nh1/nh1:449
 msgid "Edit the file <language-code>.po in %s, puting the translated strings"
 msgstr ""
 "Edite o arquivo <language-code>.po em %s, colocando os textos traduzidos"
 
-#: /home/cgaldino/Sources/nh1/nh1:449
+#: /home/cgaldino/Sources/nh1/nh1:450
 msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
@@ -214,7 +214,7 @@ msgstr ""
 "Rode 1translate <language-code> gen. Isso vai gerar o arquivo .mo. \"gen\" "
 "pode ser substituído por qualquer coisa"
 
-#: /home/cgaldino/Sources/nh1/nh1:450
+#: /home/cgaldino/Sources/nh1/nh1:451
 msgid ""
 "Enjoy NH1 in your language! It's useful if you return translated .po to "
 "improve NH1 project!"
@@ -222,20 +222,20 @@ msgstr ""
 "Aproveite NH1 no seu idioma! Considere reotrnar o .po traduzido para "
 "melhorar o projeto NH1!"
 
-#: /home/cgaldino/Sources/nh1/nh1:458
+#: /home/cgaldino/Sources/nh1/nh1:459
 msgid "Custom variables"
 msgstr "Variáveis Custom"
 
-#: /home/cgaldino/Sources/nh1/nh1:459
+#: /home/cgaldino/Sources/nh1/nh1:460
 msgid "You can configure custom variables for NH1. Edit %s to define it."
 msgstr ""
 "Você pode configurar variáveis custom para o NH1. Edite %s para definí-las."
 
-#: /home/cgaldino/Sources/nh1/nh1:464
+#: /home/cgaldino/Sources/nh1/nh1:465
 msgid "Set verbose mode (1 or 0). Default: 0"
 msgstr "Define o modo verboso (1 ou 0). Default: 0"
 
-#: /home/cgaldino/Sources/nh1/nh1:499
+#: /home/cgaldino/Sources/nh1/nh1:500
 msgid "You need run: source %s."
 msgstr "Você precisa rodar: source %s."
 
@@ -829,115 +829,123 @@ msgstr "Salva a configuração de um ou mais switch(s) eXtreme"
 msgid "List all VLANs in given eXtreme switch"
 msgstr "Lista todas as VLANs em um dado switch eXtreme"
 
-#: network.bashrc:73
+#: network.bashrc:62
+msgid "Path for network (hosts and groups) files."
+msgstr "Caminho para os arquivos de rede (hosts e grupos)."
+
+#: network.bashrc:63
+msgid "Server port. Default: %s."
+msgstr "Porta do servidor. Default: %s."
+
+#: network.bashrc:90
 msgid "Bauds possible:"
 msgstr "Bauds possíveis:"
 
-#: network.bashrc:96
+#: network.bashrc:113
 msgid "You need to give a string to test if it is an IP address."
 msgstr "Você precisa passar um texto para testar se ele é um endereço IP."
 
-#: network.bashrc:134
+#: network.bashrc:151
 msgid "%s is unkown or unavailable."
 msgstr "%s desconhecido ou indisponível."
 
-#: network.bashrc:137
+#: network.bashrc:154
 msgid "You need to put a machine name"
 msgstr "Você precisa passar um nome de máquina"
 
-#: network.bashrc:149
+#: network.bashrc:166
 msgid "Trying to connect %s (%s) with iperf."
 msgstr "Tentando conectar %s (%s) com iperf."
 
-#: network.bashrc:152
+#: network.bashrc:169
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr "Você precisa passar um endereço IP onde 1iperfd esteja rodando."
 
-#: network.bashrc:200
+#: network.bashrc:217
 msgid "%s is active"
 msgstr "%s está ativo"
 
-#: network.bashrc:207
+#: network.bashrc:224
 msgid "%s not found"
 msgstr "%s não encontrado."
 
-#: network.bashrc:240
+#: network.bashrc:257
 msgid "Connecting via SSH."
 msgstr "Conectando via SSH."
 
-#: network.bashrc:245
+#: network.bashrc:262
 msgid "Trying connect in simple mode"
 msgstr "Tentando conectar em modo simples"
 
-#: network.bashrc:251
+#: network.bashrc:268
 msgid "Trying connect using AES192"
 msgstr "Tentando conectar usando AES192"
 
-#: network.bashrc:257
+#: network.bashrc:274
 msgid "Trying connect with various options"
 msgstr "Tentando conectar com várias opções"
 
-#: network.bashrc:263
+#: network.bashrc:280
 msgid "It works."
 msgstr "Funcionou."
 
-#: network.bashrc:265
+#: network.bashrc:282
 msgid "Cannot connect with %s using SSH."
 msgstr "Não consegui conectar com %s usando SSH."
 
-#: network.bashrc:299
+#: network.bashrc:316
 msgid "%s is on"
 msgstr "%s está ligada"
 
-#: network.bashrc:304
+#: network.bashrc:321
 msgid "Host not found."
 msgstr "Host não encontrado."
 
-#: network.bashrc:313
+#: network.bashrc:330
 msgid "%s open"
 msgstr "%s aberta"
 
-#: network.bashrc:318
+#: network.bashrc:335
 msgid "%s refused"
 msgstr "%s recusada"
 
-#: network.bashrc:414
+#: network.bashrc:431
 msgid "trying %s"
 msgstr "tentando %s"
 
-#: network.bashrc:422
+#: network.bashrc:439
 msgid "%i hosts with port %i open."
 msgstr "%i hosts com porta %i aberta."
 
-#: network.bashrc:437
+#: network.bashrc:454
 msgid "every host in all groups"
 msgstr "todo host em todos os grupos"
 
-#: network.bashrc:439
+#: network.bashrc:456
 msgid "Available groups"
 msgstr "Grupos disponíveis"
 
-#: network.bashrc:468
+#: network.bashrc:485
 msgid "Unknown group of hosts."
 msgstr "Grupo de hosts desconhecido."
 
-#: network.bashrc:482
+#: network.bashrc:499
 msgid "You can use hostnames contained in .hosts"
 msgstr "Você pode usar hostnames contidos em .hosts"
 
-#: network.bashrc:490
+#: network.bashrc:507
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr "VLANs no Switch! Por favor, informe senha para %s."
 
-#: network.bashrc:538
+#: network.bashrc:555
 msgid "Serial program not found. Checked"
 msgstr "Programa serial não encontrado."
 
-#: network.bashrc:549
+#: network.bashrc:566
 msgid "No ttyUSB found."
 msgstr "Nenhuma porta ttyUSB foi encontrada."
 
-#: network.bashrc:572
+#: network.bashrc:589
 msgid "Doing backup of %s to %s"
 msgstr "Fazendo backup de %s para %s"
 
