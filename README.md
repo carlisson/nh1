@@ -1,11 +1,32 @@
 
 NH1 is a toolkit with various commands:
 
+## Features
+
+ * Autocomplete
+ * Messages in languages: English, Portuguese.
+ * 1app: "package manager" for AppImage files. Softwares are downloaded directly from its creators' website.
+ * 1backup: tools to backup folders using any available compressor.
+ * 1canva: using templates in SVG, 1canva ease cover/banner/etc creation.
+ * 1booklet: makes a page sequence for printing in booklet mode. 1pdfbkl generates the booklet PDF ready to print.
+ * 1timer: simple timer, including 1pomo for pomodoro.
+ * 1network: tools for network management.
+ * 1roll: simple dice roller (2d10, 3d6, 1d20-2)...
+ * 1draw: simple drawlist manager.
+
+50+ commands 1-something. To get full list:
+
+```
+$ 1help
+```
+
 ## Install
 
 ```
 $ git clone https://carlisson/nh1
 ```
+
+Or you can download and extract the latest release.
 
 Run (load):
 
@@ -25,22 +46,8 @@ or (running):
 $ 1bashrc
 ```
 
-Upgrade can be made with:
+(git only) Upgrade can be made with:
 
 ```
 $ 1update
-```
-
-## What's offered
-
-* **1app** - tools to install, uninstall and upgrade softwares (AppImage)
-* **audio** - utilities
-* **misc** - timers, randoms and pdf modifiers
-* **network** - chekcers and calcs
-* **rpg** - dice rollers
-
-50+ commands 1-something. To get full list:
-
-```
-$ 1help
 ```
