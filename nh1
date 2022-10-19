@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0rc4
+_1VERSION=1.0rc5
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -88,8 +88,6 @@ _1VERBOSE=0 # 0 - disabled; 1 - enabled
 	return 0
 }
 
-# @section Internal functions
-
 # @description Print only if NH1 is in verbose mode
 #
 # @arg $1 string Message to print
@@ -103,9 +101,10 @@ _1verb() {
 	fi
 }
 
-# Run it for all modules
-# @param Command. Replace -=- by module name
-function _1modrun {
+# @description Run it for all modules
+#
+# @arg $1 command Replace -=- by module name
+_1modrun() {
 	local _COMM _MOD _AUX _COUNT
 	_COMM="$1"
 	_COUNT=0
@@ -131,12 +130,14 @@ function _1modrun {
 # IMPORT MODULES
 _1modrun "source \"$_1LIB/-=-.bashrc\""
 
-# Print a line to build help menu
-# @param Status of command
-# @param Command name
-# @param Command description
-# @param (optional) list of commands to check
-function _1menuitem {
+# @description Print a line to build help menu
+# @arg $1 char Status of command (W, X, P or D: working, experimental, planning, deprecated)
+# @arg $2 string Command name
+# @arg $3 string Command description
+# @arg $4 string list of commands to check (optional)
+# @exitcode 0 If successful.
+# @exitcode 1 Some command fail in checking
+_1menuitem() {
 	if [ $# -gt 2 ]
 	then
 		# Possible status:
@@ -161,7 +162,7 @@ function _1menuitem {
 		then
 			if ! 1check -s "${@:4:$#+1}"
 			then
-				return
+				return 1
 			fi
 		fi
 
@@ -175,6 +176,7 @@ function _1menuitem {
 	else
 		_1text "You need to give status, command name, message and dependencies"
 	fi
+	return 0
 }
 
 # Generic complete function, finding formats

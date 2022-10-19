@@ -15,6 +15,8 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 
 * [1tint](#1tint)
 * [_1verb](#_1verb)
+* [_1modrun](#_1modrun)
+* [_1menuitem](#_1menuitem)
 
 ### 1tint
 
@@ -36,10 +38,6 @@ echo "test: $(1tint 6 "Hello World")"
 * **0**: If successful.
 * **1**: If an empty string passed.
 
-## Internal functions
-
-Print only if NH1 is in verbose mode
-
 ### _1verb
 
 Print only if NH1 is in verbose mode
@@ -47,4 +45,28 @@ Print only if NH1 is in verbose mode
 #### Arguments
 
 * **$1** (string): Message to print
+
+### _1modrun
+
+Run it for all modules
+
+#### Arguments
+
+* **$1** (command): Replace -=- by module name
+
+### _1menuitem
+
+Print a line to build help menu
+
+#### Arguments
+
+* **$1** (char): Status of command (W, X, P or D: working, experimental, planning, deprecated)
+* **$2** (string): Command name
+* **$3** (string): Command description
+* **$4** (string): list of commands to check (optional)
+
+#### Exit codes
+
+* **0**: If successful.
+* **1**: Some command fail in checking
 
