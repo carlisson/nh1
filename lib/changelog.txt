@@ -172,3 +172,4 @@
 1.0rc3 2022-10-17: Readme.md updated
 1.0rc4 2022-10-19: Migrating to shdoc (first steps)
 1.0rc5 2022-10-19: Migrating to shdoc
+1.0rc6 2022-10-19: Fixed 1check to search apps in ~/bin too
