@@ -170,3 +170,4 @@
 1.0rc1 2022-10-17: bug fix in 1pomo (custom var)
 1.0rc2 2022-10-17: some minor bug fixes
 1.0rc3 2022-10-17: Readme.md updated
+1.0rc4 2022-10-19: Migrating to shdoc (first steps)
