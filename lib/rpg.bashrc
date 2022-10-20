@@ -1,9 +1,11 @@
 #!/bin/bash
+# @file rpg.bashrc
+# @brief RPG tools
 
 _1RPGDRAW="$_1UDATA/drawlists"
 
-# Generate partial menu (for RPG functions)
-function _nh1rpg.menu {
+# @description Generate partial menu (for RPG functions)
+_nh1rpg.menu() {
   echo "___ $(_1text RPG) ___"
   _1menuitem W 1dice "$(_1text "Roll a single dice from N faces (default: 6)")"
   _1menuitem W 1roll "$(_1text "Roll dices with RPG formula: 2d10, 1d4+1...")"
@@ -21,8 +23,8 @@ function _nh1rpg.menu {
   _1menuitem W 1drawdel "$(_1text "Delete a group from draw-functions")"
 }
 
-# Destroy all global variables created by this file
-function _nh1rpg.clean {
+# @description Destroy all global variables created by this file
+_nh1rpg.clean() {
   unset _1RPGDRAW
   unset -f 1d4 1d6 1d8 1d10 1d12 1d20 1d100
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
@@ -30,12 +32,14 @@ function _nh1rpg.clean {
   unset -f _nh1rpg.complete _nh1rpg.complete.draw
 }
 
-function _nh1rpg.complete {
+# @description Auto-completion
+_nh1rpg.complete() {
     complete -F _nh1rpg.complete.draw 1draw
     complete -F _nh1rpg.complete.draw 1drawlist
 }
 
-function _nh1rpg.complete.draw {
+# @description Auto-completion for 1draw
+_nh1rpg.complete.draw() {
   COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
@@ -43,34 +47,66 @@ function _nh1rpg.complete.draw {
     fi
 }
 
-function _nh1rpg.init {
+# @description Initial commands
+_nh1rpg.init() {
 	mkdir -p "$_1RPGDRAW"
 }
 
-function _nh1rpg.customvars {
+# @description Apply custom vars from config file
+_nh1rpg.customvars() {
   if [[ $NORG_DRAW_LISTS_DIR ]]
     then
         _1RPGDRAW="$NORG_DRAW_LISTS_DIR"
     fi
 }
 
-# General information about variables and customizing
-function _nh1rpg.info {
+# @description General information about variables and customizing
+_nh1rpg.info() {
   _1menuitem W NORG_DRAW_LISTS_DIR "$(_1text "Path for draw-lists (RPG).")"
 }
 
 # Alias like
-function 1d4   { 1dice 4 ; }
-function 1d6   { 1dice ; }
-function 1d8   { 1dice 8 ; }
-function 1d10  { 1dice 10 ; }
-function 1d12  { 1dice 12 ; }
-function 1d20  { 1dice 20 ; }
-function 1d100 { 1dice 100 ; }
 
-# Generate a random number, like from a dice from N sides
-# @param number of sides of the dice (default 6)
-function 1dice {
+# @description Rolls a 4-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d4()   { 1dice 4 ; }
+
+# @description Rolls a 6-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d6()   { 1dice ; }
+
+# @description Rolls an 8-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d8()   { 1dice 8 ; }
+
+# @description Rolls a 10-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d10()  { 1dice 10 ; }
+
+# @description Rolls a 12-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d12()  { 1dice 12 ; }
+
+# @description Rolls a 20-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d20()  { 1dice 20 ; }
+
+# @description Rolls a 100-sided dice
+# @stdout Result for rolling
+# @see 1dice
+1d100() { 1dice 100 ; }
+
+# @description Generate a random number, like from a dice from N sides
+# @arg $1 int number of sides of the dice (default 6)
+# @stdout Result for rolling
+# @see 1roll
+1dice() {
 	local SIDES=6
 	if [ $# -eq 1 ]
 	then
@@ -79,9 +115,10 @@ function 1dice {
 	shuf -i 1-$SIDES -n 1
 }
 
-# Roll dices from a RPG formula
-# @param Formula like XdY+Z or XdY-Z
-function 1roll {
+# @description Roll dices from a RPG formula
+# @arg $1 string Formula like XdY+Z or XdY-Z
+# @see 1dice
+1roll() {
   local ROLLNUM ROLLSID ROLLADD ROLLDET ROLLTOT
 	if [ $(echo $1 | grep d) ]
 	then
@@ -118,8 +155,8 @@ function 1roll {
 	fi
 }
 
-# Random playing card
-function 1card {
+# @description Random playing card
+1card() {
 	local FSUIT FNUMB SUIT NUMB
 	if [ $(shuf -i 1-27 -n 1) -eq 1 ]
 	then
@@ -146,9 +183,9 @@ function 1card {
 	fi
 }
 
-# List all groups/lists from where to draw elements
-# @param group name (optional)
-function 1drawlist {
+# @description List all groups/lists from where to draw elements
+# @arg $1 string group name (optional)
+1drawlist() {
     local _dlist _slist
     
     _dlist=($(_1list "$_1RPGDRAW" "list"))
@@ -173,9 +210,9 @@ function 1drawlist {
 	fi
 }
 
-# Add a group list from a text file, with one option per line
-# @param Input text file
-function 1drawadd {
+# @description Add a group list from a text file, with one option per line
+# @arg $1 string Input text file
+1drawadd() {
     local ni no
     case $# in
         1)
@@ -201,9 +238,9 @@ function 1drawadd {
     cp "$ni" "$_1RPGDRAW/$no"
 }
 
-# Withdraw one item from a given group
-# @param Group name
-function 1draw {
+# @description Withdraw one item from a given group
+# @arg $1 string Group name
+1draw() {
 	local _group _list
 	_group="$1"
 	_list="$_1RPGDRAW/$_group.list"
@@ -220,9 +257,9 @@ function 1draw {
 	fi
 }
 
-# Delete a group list
-# @param Group name
-function 1drawdel {
+# @description Delete a group list
+# @arg $1 string Group name
+1drawdel() {
     if [ -f "$_1RPGDRAW/$1.list" ]
     then
         rm "$_1RPGDRAW/$1.list"

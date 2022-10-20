@@ -1,11 +1,13 @@
 #!/bin/bash
+# @file misc.bashrc
+# @brief Miscelania
 
 _1MISCLOCAL="$_1UDATA/misc"
 _1MISCTIPS="$_1MISCLOCAL"
 _1MISCPOMOMIN=25
 
-# Generate partial menu
-function _nh1misc.menu {
+# @description Generate partial menu
+_nh1misc.menu() {
   echo "___ $(_1text "Miscelania") ___"
   _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
   _1menuitem X 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
@@ -23,8 +25,8 @@ function _nh1misc.menu {
   _1menuitem X 1tip "$(_1text "Shows a random tip")" shuf
 }
 
-# Destroy all global variables created by this file
-function _nh1misc.clean {
+# @description Destroy all global variables created by this file
+_nh1misc.clean() {
   unset _1MISCLOCAL _1MISCTIPS _1MISCPOMOMIN
   unset -f 1color 1du 1pass 1escape 1timer 1rr30 1tip 1spchar
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
@@ -32,7 +34,8 @@ function _nh1misc.clean {
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
 }
 
-function _nh1misc.complete {
+# @description Autocompletion
+_nh1misc.complete() {
   local _AUX
   complete -F _nh1misc.complete.from_pdf 1pdfbkl _nh1misc.init
   complete -F _nh1misc.complete.from_pdf 1pdfopt
@@ -43,8 +46,8 @@ function _nh1misc.complete {
   fi
 }
 
-# Load variables defined by user
-function _nh1misc.customvars {
+# @description Load variables defined by user
+_nh1misc.customvars() {
   if [[ $NORG_POMODORO_MINS ]]
     then
         _1MISCPOMOMIN="$NORG_POMODORO_MINS"
@@ -55,20 +58,23 @@ function _nh1misc.customvars {
     fi
 }
 
-function _nh1misc.info {
+# @description Information about custom vars
+_nh1misc.info() {
   _1menuitem W NORG_POMODORO_MINS "$(printf "$(_1text "Duration of a Pomodoro (%s). Default: %s min.")" "1pomo" "25")"
   _1menuitem W NORG_TIPS_DIR "$(_1text "Path for tip groups (text files).")"
 }
 
-function _nh1misc.init {
+# @description Initialization
+_nh1misc.init() {
   mkdir -p "$_1MISCLOCAL"
   mkdir -p "$_1MISCTIPS"
 }
 
-function _nh1misc.complete.from_pdf { _1compl 'pdf' 0 0 0 0 ; }
+# @description Completion for functions with pdf input
+_nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 
-# Print percentage for battery charge
-function 1power {
+# @description Print percentage for battery charge
+1power() {
   if 1check upower
   then
     upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage
@@ -76,14 +82,19 @@ function 1power {
 }
 
 # Alias like
-function 1du    { du -h -d 1 ; }
-function 1pass  { openssl rand -base64 16 | rev | cut -c 3-13 ; }
-function 1color { openssl rand -hex 3 ; }
+# @description Disk usage
+1du()    { du -h -d 1 ; }
 
-# Compress PDF file
-# @param PDF input file
-# @param PDF output file (optional)
-function 1pdfopt {
+# @description Random password generator
+1pass()  { openssl rand -base64 16 | rev | cut -c 3-13 ; }
+
+# @description Random color generator
+1color() { openssl rand -hex 3 ; }
+
+# @description Compress PDF file
+# @arg $1 string PDF input file
+# @arg $2 string PDF output file (optional)
+1pdfopt() {
   if 1check gs
   then
     if [ $# -gt 0 ]
@@ -103,22 +114,22 @@ function 1pdfopt {
   fi
 }
 
-# Join an array, using first param as delimiter
-# @param delimiter, character
-# @param other values to join
-function 1ajoin {
+# @description Join an array, using first param as delimiter
+# @arg $1 string delimiter, character
+# @arg $2 string other values to join
+1ajoin() {
   local IFS="$1"
   shift
   echo "$*"
 }
 
-# Countdown timer
-# @param color for timer (0 to 7)
-# @param title for timer
-# @param seconds
-# @param minutes
-# @param hours to countdown
-function 1timer {
+# @description Countdown timer
+# @arg $1 int color for timer (0 to 7)
+# @arg $2 string title for timer
+# @arg $3 int seconds
+# @arg $4 int minutes
+# @arg $5 int hours to countdown
+1timer() {
   local HOURS MINUTES SECONDS TITLE COLOR CLOCK IH IM IS UNCLOCK IU
   if [ $# -gt 4 ]
   then
@@ -172,9 +183,10 @@ function 1timer {
   fi
 }
 
-# Create a Pomodore in shell
-# @param minutes to pomodoro (default 25)
-function 1pomo {
+# @description Create a Pomodore in shell
+# @arg $1 int minutes to pomodoro (default 25)
+# @see 1timer
+1pomo() {
   local MINUTES
   
   MINUTES=$_1MISCPOMOMIN
@@ -192,8 +204,9 @@ function 1pomo {
   1alarm
 }
 
-# Timer to help to reset a router, using the 30-30-30 method
-function 1rr30 {
+# @description Timer to help to reset a router, using the 30-30-30 method
+# @see 1timer
+1rr30() {
   echo
   1tint 3 "$(_1text "30-30-30 method for router reseting")"
   echo " - $(_1text "your router will lost all configuration")"
@@ -214,9 +227,9 @@ function 1rr30 {
   _1text "Your router must be restarted with factory settings!"
 }
 
-# Rename a file or directory, removing special chars
-# @param file
-function 1escape {
+# @description Rename a file or directory, removing special chars
+# @arg $1 string file
+1escape() {
   local EDIR EFIL EFN
   for EPAR in "$@"
   do
@@ -232,9 +245,11 @@ function 1escape {
   done
 }
 
-# Shows a random tip to the user
-# @param Group of tip ("list" to list all groups)
-function 1tip {
+# @description Shows a random tip to the user
+# @arg $1 string Group of tip ("list" to list all groups)
+# @exitcode 0 It works
+# @exitcode 1 Tip file not found
+1tip() {
   local _TFIL
   if [ ! -d "$_1MISCTIPS" ]
   then
@@ -263,8 +278,9 @@ function 1tip {
 	return 0
 }
 
-# Returns a random special character
-function 1spchar {
+# @description Returns a random special character
+# @stdout A special char
+1spchar() {
   case $(1roll 1d40 | cut -d\  -f 1) in
 		1)  echo -n "\"" ;;
 		2)  echo -n "'" ;;
@@ -310,11 +326,13 @@ function 1spchar {
 }
 
 
-# Generates a seq of pages to make booklet (4 pages i 2-sides paper)
-# @param Number of pages
-# @param Number of the "blank" page. Default: last
-# @param Mode single or double. Default: single. Any-arg: double.
-function 1booklet {
+# @description Generates a seq of pages to make booklet (4 pages i 2-sides paper)
+# @arg $1 int Number of pages
+# @arg $2 int Number of the "blank" page. Default: last
+# @arg $3 string Mode single or double. Default: single. Any-arg: double.
+# @stdout Pages sequence
+# @see 1pdfbkl
+1booklet() {
   local _PAG _MIN _MAJ _TOT _BLA _I _MID _REM _OUT _DOB
   _PAG=$1
   if [ $# -ge 2 ]
@@ -377,10 +395,11 @@ function 1booklet {
   echo $_OUT
 }
 
-# Make a booklet from a PDF file
-# @param PDF input file
-# @param single (empty) or double (not empty)
-function 1pdfbkl {
+# @description Make a booklet from a PDF file
+# @arg $1 string PDF input file
+# @arg $2 string single (empty) or double (not empty)
+# @see 1booklet
+1pdfbkl() {
   local _INF _OUF _PAG _TMP _SEQ _MOD _DOB
   if 1check pdfinfo pdfjam
   then

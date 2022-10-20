@@ -1,22 +1,23 @@
 #!/bin/bash
+# @file backup.bashrc
+# @brief Tools for backup
 
 # GLOBALS
 
 _1BACKDIR="$HOME/Backup"
 _1BACKMAX=0
 _1BACKGRP='m' # options: d,w,m,y,n
-# NORG/backup.dirs : aliases Name > original path
 
-# Generate partial menu
-function _nh1backup.menu {
+# @description Generate partial menu
+_nh1backup.menu() {
   echo "___ $(_1text "Backup tools") ___"
   _1menuitem W 1backup "$(_1text "Make backup of a dir")"
   _1menuitem P 1unback "$(_1text "Restore a backup")"
   _1menuitem W 1backlist "$(_1text "List saved backups")"
   }
 
-# Destroy all global variables created by this file
-function _nh1backup.clean {
+# @description Destroy all global variables created by this file
+_nh1backup.clean() {
   unset _1BACKDIR _1BACKMAX _1BACKGRP
   unset -f 1backup 1unback 1backlist  _nh1backup.nextfile _nh1backup.maxcontrol
   unset -f _nh1backup.log _nh1backup.customvars 1backlist _nh1backup.names
@@ -24,7 +25,9 @@ function _nh1backup.clean {
   unset -f _nh1backup.complete _nh1backup.menu _nh1backup.init
 }
 
-function _nh1backup.names {
+# @description List backup names from saved backups
+# @stdout List of backup names
+_nh1backup.names() {
     if [ "$(find "$_1BACKDIR" -name '*-????-??-??*')" != "" ]
     then
         find "$_1BACKDIR" -name '*-????-??-??*' | xargs -n 1 basename | \
@@ -32,13 +35,14 @@ function _nh1backup.names {
     fi
 }
 
-function _nh1backup.complete {
+# @description Autocomplete
+_nh1backup.complete() {
     _1verb "$(_1text "Enabling completion for 1backup.")"
     complete -W "$(_nh1backup.names)" 1backlist
 }
 
-# Load variables defined by user
-function _nh1backup.customvars {
+# @description Load variables defined by user
+_nh1backup.customvars() {
     if [[ $NORG_BACKUP_DIR ]]
     then
         _1BACKDIR="$NORG_BACKUP_DIR"
@@ -53,12 +57,14 @@ function _nh1backup.customvars {
     fi
 }
 
-function _nh1backup.init {
+# @description Initializing NH1 Backup
+_nh1backup.init() {
 	mkdir -p "$_1BACKDIR"
 }
 
-# Returns right backup dir
-function _nh1backup.bdir {
+# @description Returns right backup dir
+# @stdout Path where to save backups now
+_nh1backup.bdir() {
     case "$_1BACKGRP" in
         'd')
             date "+$_1BACKDIR/%Y/%m/%d"
@@ -78,7 +84,8 @@ function _nh1backup.bdir {
     esac
 }
 
-function _nh1backup.info {
+# @description Information about possible custom vars
+_nh1backup.info() {
     	_1menuitem W NORG_BACKUP_DIR "$(_1text "Path for backups.")"
         _1menuitem W NORG_BACKUP_MAX "$(_1text "Max quantity of files to keep for each backup.")"
         _1menuitem W NORG_BACKUP_GROUP "$(printf \
@@ -86,7 +93,8 @@ function _nh1backup.info {
             'd' 'w' 'm' 'y' 'n')"
 }
 
-function _nh1backup.log {
+# @description Registry log message in 3 locals.
+_nh1backup.log() {
     local _NOW _L1 _L2 _L3
     _NOW=$(date "+%Y-%m-%d %X")
     mkdir -p "$_1UDATA/log"
@@ -98,10 +106,10 @@ function _nh1backup.log {
     echo "$_NOW: $*" >> $_L3
 }
 
-# Controls max number of files
-# @param Name (id)
-# @param Directory for saved backups
-function _nh1backup.maxcontrol {
+# @description Controls max number of files
+# @arg $1 string Name (id)
+# @arg $2 string Directory for saved backups
+_nh1backup.maxcontrol() {
     local _NAME _DEST
     _NAME="$1"
     _DEST=$(_nh1backup.bdir)
@@ -123,10 +131,11 @@ function _nh1backup.maxcontrol {
     fi
 }
 
-# Returns next filename for base and extension
-# @param Name (id)
-# @param Extension
-function _nh1backup.nextfile {
+# @description Returns next filename for base and extension
+# @arg $1 string Name (id)
+# @arg $2 string Extension
+# @stdout File name for use in next backup operation
+_nh1backup.nextfile() {
     local _NAME _EXT _FILE _DEST _COUNT
     _NAME="$1"
     _EXT="$2"
@@ -150,10 +159,10 @@ function _nh1backup.nextfile {
     echo $_FILE
 }
 
-# Make backup of a directory
-# @param Name (id) for backup
-# @param Directory to backup
-function 1backup {
+# @description Make backup of a directory
+# @arg $1 string Name (id) for backup
+# @arg $2 string Directory to backup
+1backup() {
     local _NAME _TARGET _DEST _FILE _COMPL _COUNT _OLD _MSG _LMSG
     _NAME="$1"
     _TARGET="$2"
@@ -246,9 +255,9 @@ function 1backup {
     fi
 }
 
-# List all backups for one name (id)
-# @param Name (id)
-function 1backlist {
+# @description List all backups for one name (id)
+# @arg $1 string Name (id)
+1backlist() {
     _nh1backup.customvars
     if [ $# -eq 1 ]
     then

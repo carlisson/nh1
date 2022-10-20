@@ -1,11 +1,13 @@
 #!/bin/bash
+# @file canva.bashrc
+# @brief Tools to generate images from templates
 
 # GLOBALS
 
 _1CANVALOCAL="$_1UDATA/canvas"
 
-# Generate partial menu
-function _nh1canva.menu {
+# @description Generate partial menu
+_nh1canva.menu() {
   echo "___ $(_1text "Canva Section") ___"
   echo "--- $(_1text "Create images from SVG templates")"
   _1menuitem W 1canva "$(_1text "List all templates or help for given template")"
@@ -14,8 +16,8 @@ function _nh1canva.menu {
   _1menuitem W 1canvadel "$(_1text "Remove installed template")"
 }
 
-# Destroy all global variables created by this file
-function _nh1canva.clean {
+# @description Destroy all global variables created by this file
+_nh1canva.clean() {
   unset _1CANVALOCAL
   unset -f 1canva 1canvagen 1canvaadd 1canvadel _nh1canva.complete
   unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
@@ -23,29 +25,33 @@ function _nh1canva.clean {
   unset -f _nh1canva.menu _nh1canva.init
 }
 
-# Auto-completion
-function _nh1canva.complete {
+# @description Auto-completion
+_nh1canva.complete() {
     _1verb "Configuring auto-completion for 1canva"    
     complete -F _nh1canva.complete.canvaadd 1canvaadd
     complete -F _nh1canva.complete.list 1canvagen
 }
 
-# Load variables defined by user
-function _nh1canva.customvars {
+# @description Load variables defined by user
+_nh1canva.customvars() {
     if [[ $NORG_CANVA_DIR ]]
     then
         _1CANVALOCAL="$NORG_CANVA_DIR"
     fi
 }
 
-function _nh1canva.info {
+# @description Information about custom vars
+_nh1canva.info() {
     _1menuitem W NORG_CANVA_DIR "$(_1text "Path for 1canva internal templates.")"
 }
 
 # Alias-like
-function _nh1canva.complete.canvaadd { _1compl 'svg' 0 0 0 0 ; }
 
-function _nh1canva.complete.list {
+# @description Autocomplete for 1canvaadd
+_nh1canva.complete.canvaadd() { _1compl 'svg' 0 0 0 0 ; }
+
+# @description Autocomplete list of canva templates
+_nh1canva.complete.list() {
   COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
@@ -53,8 +59,8 @@ function _nh1canva.complete.list {
     fi
 }
 
-# Configure your template path
-function _nh1canva.init {
+# @description Configure your template path
+_nh1canva.init() {
     if [ ! -d "$_1CANVALOCAL" ]
     then
         mkdir -p "$_1CANVALOCAL"
@@ -62,9 +68,9 @@ function _nh1canva.init {
     fi
 }
 
-# Show 1canva help for saved template
-# @param Template name
-function _nh1canva.thelp {
+# @description Show 1canva help for saved template
+# @arg $1 string Template name
+_nh1canva.thelp() {
     local _LANG _OUT
     _LANG="$(echo "$LANG" | sed 's/\(.*\)\.\(.*\)/\1/')"    
     _1verb "$(printf "$(_1text "Help for template: %s.")" "$1")"
@@ -76,8 +82,8 @@ function _nh1canva.thelp {
     cat "$_1CANVALOCAL/$1.svg" | tr '\n' ' ' | sed "s/\(.*\)1canva-$_LANG-ini\(.*\)1canva-$_LANG-end\(.*\)/\2/"
 }
 
-# List all installed templates
-function 1canva {
+# @description List all installed templates
+1canva() {
     local _clist _slist
     _nh1canva.init
     
@@ -94,11 +100,11 @@ function 1canva {
     fi
 }
 
-# List help for template or apply it
-# @param template name
-# @param output file (.jpg, .png or other)
-# @param substitutions in key=value syntax
-function 1canvagen {
+# @description List help for template or apply it
+# @arg $1 string template name
+# @arg $2 string output file (.jpg, .png or other)
+# @arg $3 string substitutions in key=value syntax
+1canvagen() {
     local iter tempf tempi tempib
     subst=""
     case $# in
@@ -140,9 +146,9 @@ function 1canvagen {
     esac
 }
 
-# Add a svg template
-# @param SVG to add
-function 1canvaadd {
+# @description Add a svg template
+# @arg $1 string SVG to add
+1canvaadd() {
     local ni no
     case $# in
         1)
@@ -165,9 +171,9 @@ function 1canvaadd {
     cp "$ni" "$_1CANVALOCAL/$no"
 }
 
-# Remove a svg template
-# @param Name of template to remove
-function 1canvadel {
+# @description Remove a svg template
+# @arg $1 string Name of template to remove
+1canvadel() {
     if [ -f "$_1CANVALOCAL/$1.svg" ]
     then
         rm "$_1CANVALOCAL/$1.svg"

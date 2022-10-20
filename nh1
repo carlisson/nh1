@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0rc8
+_1VERSION=1.0
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -512,12 +512,22 @@ _nh1customvars() {
 
 # @description Build documentation
 1builddoc() {
+	local _INDEX
+	_INDEX="$_1DOC/readme.md"
 	if 1check shdoc
 	then
     	_1verb "$(printf "$(_1text "Building documentation for nh1 %s...")" "$(_1text "main file")")"
     	shdoc < "$_1RC" > "$_1DOC/nh1.md"
 		_1verb "$(printf "$(_1text "Building documentation for nh1 %s...")" "$(_1text "module files")")"    	
 		_1modrun "shdoc < \"$_1LIB/-=-.bashrc\" > \"$_1DOC/-=-.md\""
+		echo "# NH1 Documentation" > "$_INDEX"
+		echo >> "$_INDEX"
+		echo "Generated for NH1 $_1VERSION at $(date "+%Y-%m-%d")">> "$_INDEX"
+		echo >> "$_INDEX"
+		echo "## Index">> "$_INDEX"
+		echo >> "$_INDEX"
+		echo "* [Main file](nh1.md)">> "$_INDEX"
+		_1modrun "echo \"* [-=- module](-=-.md)\" >> \"$_1DOC/readme.md\""
 		printf "$(_1text "Documentation available in %s.")\n" "$_1DOC"
 	fi
 }

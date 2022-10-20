@@ -1,11 +1,13 @@
 #!/bin/bash
+# @file network.bashrc
+# @brief Network utilities
 
 _1NETLOCAL="$_1UDATA/network"
 _1SERIALCOM="picocom minicom"
 _1IPERFPORT=2918
 
-# Generate partial menu (for Network functions)
-function _nh1network.menu {
+# @description Generate partial menu (for Network functions)
+_nh1network.menu() {
   echo "___ $(_1text Network) ___"
   _1menuitem X 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
   _1menuitem X 1areon "$(_1text "Check status for every host in a internal .hosts")"
@@ -28,8 +30,8 @@ function _nh1network.menu {
   echo
 }
 
-# Clean variables
-function _nh1network.clean {
+# @description Clean variables
+_nh1network.clean() {
   unset _1IPERFPORT _1NETLOCAL _1SERIALCOM
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
@@ -38,17 +40,19 @@ function _nh1network.clean {
   unset -f _nh1network.complete _nh1network.xt-backup
 }
 
-function _nh1network.complete {
+# @description Auto-completion
+_nh1network.complete() {
   complete -W "$(_1list $_1NETLOCAL "hosts")" 1areon
   complete -W "$(seq 1 13)" 1bauds
 }
 
-function _nh1network.init {
+# @description Initial commands
+_nh1network.init() {
   mkdir -p "$_1NETLOCAL"
 }
 
-# Load variables defined by user
-function _nh1network.customvars {
+# @description Load variables defined by user
+_nh1network.customvars() {
   if [[ $NORG_NETWORK_DIR ]]
     then
         _1NETLOCAL="$NORG_NETWORK_DIR"
@@ -59,17 +63,23 @@ function _nh1network.customvars {
     fi
 }
 
-function _nh1network.info {
+# @description Information about custom vars
+_nh1network.info() {
   _1menuitem W NORG_NETWORK_DIR "$(_1text "Path for network (hosts and groups) files.")"
   _1menuitem W NORG_IPERF_PORT "$(printf "$(_1text "Server port. Default: %s.")" "2918")"
 }
 
 # Alias like
-function 1httpstatus { curl --write-out "%{http_code}\n" --silent --output /dev/null ; }
 
-# Returns baudrate for given number
-# @param Number of baudrate
-function 1bauds {
+# @description Get HTTP status for given URL
+# @arg $1 string URL
+# @stdout Code for HTTP status
+1httpstatus() { curl --write-out "%{http_code}\n" --silent --output /dev/null "$1" ; }
+
+# @description Returns baudrate for given number
+# @arg $1 int Number of baudrate in interval 1-13
+# @stdout Real baudrate equivalent to given number
+1bauds() {
   if [ $# -eq 1 ]
   then
     case $1 in
@@ -99,9 +109,11 @@ function 1bauds {
   fi
 }
 
-# Check if a string is an IP address
-# @param String to test
-function 1isip {
+# @description Check if a string is an IP address
+# @arg $i string Value to test if is an IP
+# @exitcode 0 Confirm $1 is IP
+# @exitcode 1 It's not an IP address
+1isip() {
   if [ $# -eq 1 ]
   then
     if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
@@ -115,9 +127,12 @@ function 1isip {
   fi
 }
 
-# Check files .hosts in lib/local and lib/remote, for a name, returning a valid IP
-# @param Host name you need an IP
-function 1host {
+# @description Check files .hosts in lib/local and lib/remote, for a name, returning a valid IP
+# @arg $1 string Host name you need an IP
+# @stdout IP address correspondent to given hostname
+# @exitcode 0 1host works fine
+# @exitcode 1 Unknown or unaccessible host
+1host() {
   local HNAM HNUM HLIN
   if [ $# -eq 1 ]
   then
@@ -156,9 +171,10 @@ function 1host {
   fi
 }
 
-# Run iperf with a simple and functional configuration, connecting iperfd IP
-# @param IP of a machine running 1iperfd
-function 1iperf {
+# @description Run iperf with a simple and functional configuration, connecting iperfd IP
+# @arg $1 string IP of a machine running 1iperfd
+# @see 1iperfd
+1iperf() {
   if 1check iperf
   then
     if [ $# -eq 1 ]
@@ -172,17 +188,20 @@ function 1iperf {
   fi
 }
 
-# Run iperf with a simple and functional configuration, as daemon, wainting connection
-function 1iperfd {
+# @description Run iperf with a simple and functional configuration, as daemon, wainting connection
+# @see 1iperf
+1iperfd() {
   if 1check iperf
   then
     iperf -s -P 2 -i 5 -p "$_1IPERFPORT" -f M
   fi
 }
 
-# Run tcpdump with a simple and functional configuration
-# @param Interface to listen
-function 1tcpdump {
+# @description Run tcpdump with a simple and functional configuration
+# @arg $1 string Interface to listen
+# @exitcode 0 tcpdump works
+# @exitcode 1 tcpdump not found
+1tcpdump() {
   local INFA
   if 1check tcpdump
   then
@@ -199,10 +218,12 @@ function 1tcpdump {
   fi
 }
 
-# Check using ping if machine is online
-# @param Machine name (optional). -q if you need a quiet mode
-# @param URI or IP
-function 1ison {
+# @description Check using ping if machine is online
+# @arg $1 string Machine name (optional). -q if you need a quiet mode
+# @arg $2 string URI or IP
+# @exitcode 0 Machine is on
+# @exitcode 1 Machine not accessible
+1ison() {
   local thename="$1"
   local thehost
   if [ $# -eq 2 ]
@@ -229,9 +250,11 @@ function 1ison {
 	fi
 }
 
-# Internal function, pre-1ssh
-# @param server or user@server, to use with ssh
-function _1pressh {
+# @description Internal function, pre-1ssh
+# @arg $1 string server or user@server, to use with ssh
+# @stdout user@machine, to use as argument for 1ssh
+# @see 1ssh
+_1pressh() {
   local aux_u aux_h aux
 	if [ $(echo "$1" | grep "@") ]
 	then
@@ -248,10 +271,10 @@ function _1pressh {
 	echo "$aux_u@$aux_h"
 }
 
-# Access with SSH server (including extreme switchs)
-# @param name or IP, or usr@IP
-# @param Additional options for ssh
-function 1ssh {
+# @description Access with SSH server (including extreme switchs)
+# @arg $1 string name or IP, or usr@IP
+# @arg $2 string Additional options for ssh
+1ssh() {
   local destip finalstatus
   if 1check ssh
   then
@@ -285,10 +308,10 @@ function 1ssh {
   fi
 }
 
-# Test open TCP ports
-# @param IP
-# @param (optional). Port (or ports). Default: 1-1500
-function 1ports {
+# @description Test open TCP ports
+# @arg $1 string IP
+# @arg $2 int Port (or ports). Optional. Default: 1-1500
+1ports() {
   if [ $# -gt 0 ]
   then
     local aux CHECK
@@ -350,9 +373,10 @@ function 1ports {
   fi
 }
 
-# Return a possibly big string with all IP addresses in all interfaces
-# @param (optional) Number of your interface. Default=all
-function 1allhosts {
+# @description Return a possibly big string with all IP addresses in all interfaces
+# @arg $1 int (optional) Number of your interface. Default=all
+# @stdout All IP address in network inteface(s)
+1allhosts() {
   if 1check ip ipcalc
   then
     local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4 interfaces
@@ -406,17 +430,18 @@ function 1allhosts {
   fi
 }
 
-# Return network(s) for all your interfaces
-function 1mynet {
+# @description Return network(s) for all your interfaces
+# @stdout Network addresses for all interfaces
+1mynet() {
   if 1check ip
   then
     ip address | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])/(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v 127.0.0.1
   fi
 }
 
-# Scan on network for an given port
-# @param Port to scan
-function 1findport {
+# @description Scan on network for an given port
+# @arg $1 int Port to scan
+1findport() {
   if 1check ip ipcalc
   then
     local port
@@ -441,9 +466,9 @@ function 1findport {
   fi
 }
 
-# Check status for every host in given .hosts
-# @param set of hosts
-function 1areon {
+# @description Check status for every host in given .hosts
+# @arg $1 string set of hosts
+1areon() {
     local FILE TOTAL HLIN HNAM OK
     _nh1network.init
   	if [ $# -ne 1 ]
@@ -488,9 +513,9 @@ function 1areon {
 	fi
 }
 
-# List VLANs in given switch
-# @param IP or name (.hosts) for one or more switchs
-function 1xt-vlan {
+# @description List VLANs in given switch
+# @arg $1 string IP or name (.hosts) for one or more switchs
+1xt-vlan() {
     local AUX usrhst
 	if [ $# -eq 0 ]
 	then
@@ -517,9 +542,9 @@ function 1xt-vlan {
 	done
 }
 
-# Connect a serial port with appropriated program
-# @param Bauds in 1bauds or traditional scale
-function 1serial {
+# @description Connect a serial port with appropriated program
+# @arg $1 int Bauds in 1bauds or traditional scale
+1serial() {
   local _BAU _COM _AUX _TTY _ADJ
 
   if [ $# -eq 1 ]
@@ -570,9 +595,10 @@ function 1serial {
   fi
 }
 
-# Return MAC prefixes for a given vendor
-# @param Vendor
-function 1macvendor {
+# @description Return MAC prefixes for a given vendor
+# @arg $1 string Vendor
+# @stdout MAC prefixes
+1macvendor() {
   if [ $# -eq 1 ]
   then
     grep -i "$1" "$_1LIB/mac-vendors.txt"  | sed 's/\(..\)/\1:/g' | cut -c 1-9 | tr '[:upper:]' '[:lower:]'
@@ -583,18 +609,18 @@ function 1macvendor {
   fi
 }
 
-# Do a single extreme switch backup
-# @param Switch by extreme
-# @param Filename
-function _nh1network.xt-backup {
+# @description Do a single extreme switch backup
+# @arg $1 string Switch by extreme
+# @arg $2 string Filename
+_nh1network.xt-backup() {
   _1verb "$(printf "$(_1text "Doing backup of %s to %s")" $1 $2)"
 	1ssh "$1" "show configuration" > "$2"
 	wc $2
 }
 
-# Backup from one or more switchs extreme
-# @param host or group
-function 1xt-backup {
+# @description Backup from one or more switchs extreme
+# @arg $1 string host or group
+1xt-backup() {
   local _HOST _SUF _H
   _SUF="$(date +%Y-%m-%d).extreme"
   for _HOST in $@
