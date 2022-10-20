@@ -1,4 +1,6 @@
 #!/bin/bash
+# @file app.bashrc
+# @brief Package manager for AppImage applications
 
 # GLOBALS
 
@@ -13,8 +15,8 @@ _1APPLICON="$HOME/.local/share/icons"
 _1APPGICON="/usr/share/icons"
 _1APPRETAINS=0
 
-# Generate partial menu
-function _nh1app.menu {
+# @description Generates partial menu
+_nh1app.menu() {
   echo "___ $(_1text "Install App") ___"
   _1menuitem W 1app "$(_1text "List all available apps")"
   _1menuitem W 1appladd "$(_1text "Install or update an app locally")"
@@ -28,8 +30,8 @@ function _nh1app.menu {
   _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
 }
 
-# Destroy all global variables created by this file
-function _nh1app.clean {
+# @description Destroy all global variables created by this file
+_nh1app.clean() {
   unset _1APPLOCAL _1APPLBIN _1APPGLOBAL _1APPGBIN _1APPLIB
   unset _1APPLAPPS _1APPGAPPS _1APPLICON _1APPGICON _1APPRETAINS
   unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
@@ -44,14 +46,29 @@ function _nh1app.clean {
 }
 
 # Alias-like
-function 1applupd   { _nh1app.update local ; }
-function 1appgupd   { _nh1app.update global ; }
-function 1appldel   { _nh1app.remove local "$1"; }
-function 1appgdel   { _nh1app.remove global "$1"; }
-function 1applclear { _nh1app.clear local ; }
-function 1appgclear { _nh1app.clear global ; }
 
-function _nh1app.complete {
+# @description Update all local apps
+1applupd()   { _nh1app.update local ; }
+
+# @description Update all global apps
+1appgupd()   { _nh1app.update global ; }
+
+# @description Uninstall local app
+# @arg $1 string Application name
+1appldel()   { _nh1app.remove local "$1"; }
+
+# @description Uninstall global app
+# @arg $1 string Application name
+1appgdel()   { _nh1app.remove global "$1"; }
+
+# @description Remove old versions of local apps
+1applclear() { _nh1app.clear local ; }
+
+# @description Remove old versions of global apps
+1appgclear() { _nh1app.clear global ; }
+
+# @description Autocompletion for 1app
+_nh1app.complete() {
     _1verb "Enabling complete for 1app."
     complete -W "$(_nh1app.list local 0)" 1appladd
     complete -W "$(_nh1app.list global 0)" 1appgadd
@@ -59,15 +76,17 @@ function _nh1app.complete {
     complete -W "$(_nh1app.list global 1)" 1appgdel
 }
 
-function _nh1app.avail {
+# @description List all available apps
+# @stdout List of available apps
+_nh1app.avail() {
     pushd $_1APPLIB > /dev/null
     ls *.app | sed 's/.app//g' | tr '\n' ' '
     popd -n > /dev/null
 }
 
-# Configure your local or global path/dir
-# @param local or global
-function _nh1app.setup {
+# @description Configure your local or global path/dir
+# @arg $1 string local or global
+_nh1app.setup() {
     if [ "$1" = "local" ]
     then
         mkdir -p "$_1APPLOCAL"
@@ -84,13 +103,14 @@ function _nh1app.setup {
     fi
 }
 
-# Startup function
-function _nh1app.init {
+# @description Startup function
+# @see _nh1app.setup
+_nh1app.init() {
     _nh1app.setup local
 }
 
-# Apply custom vars
-function _nh1app.customvars {
+# @description Apply custom vars
+_nh1app.customvars() {
     if [[ $NORG_APP_RETAINS ]]
 	then
 		if [ "$NORG_APP_RETAINS" = "1" ]
@@ -103,13 +123,17 @@ function _nh1app.customvars {
 	fi
 }
 
-function _nh1app.info {
+# @description Information about custom vars
+# @see _nh1app.customvars
+_nh1app.info() {
     _1menuitem W NORG_APP_RETAINS "$(_1text "Retains old app files? (1 or 0). Default: 0")"
 }
 
-# Check if setup is ok
-# @param local or global
-function _nh1app.checksetup {
+# @description Check if setup is ok
+# @arg $1 string local or global
+# @exitcode 0 Setup is ok
+# @exitcode 1 Setup is not ok
+_nh1app.checksetup() {
     if [ "$1" = "local" ]
     then
         if [ -d "$_1APPLOCAL" ]
@@ -128,8 +152,8 @@ function _nh1app.checksetup {
     fi
 }
 
-# List all available app image for installation
-function 1app {
+# @description List all available app image for installation
+1app() {
     local _NAA _NAS _NAU _NAC
     echo "___ $(_1text "1app status") ___"
     printf "%-15s %-45s%s\n" "$(_1text App)" "$(_1text Description)" "$(_1text Installation)"
@@ -171,15 +195,18 @@ function 1app {
     echo "$(_1text " to uninstall.")"
 }
 
-# Open app description
-# @param app name
-function _nh1app.openapp {
+# @description Open app recipe file
+# @arg $1 string App name
+# @exitcode 0 It's ok
+# @exitcode 1 File not found
+# @see _nh1app.closeapp
+_nh1app.openapp() {
     if [ -f "$_1APPLIB/$1.app" ]
     then
         source "$_1APPLIB/$1.app"
         if [ ! "$APP_SUFFIX" ]
         then
-            _1verb "$(printf "$(_1text "Suffix not found in app recipe. Using %s.")\n" ".AppImage")"
+            # _1verb "$(printf "$(_1text "Suffix not found in app recipe. Using %s.")\n" ".AppImage")"
             APP_SUFFIX=".AppImage"
         fi
         return 0
@@ -188,16 +215,18 @@ function _nh1app.openapp {
     fi
 }
 
-# Close app description
-function _nh1app.closeapp {
+# @description Close app recipe (clear all loaded vars for recipe)
+# @see _nh1app.openapp
+_nh1app.closeapp() {
   unset APP_DESCRIPTION APP_TYPE APP_BINARY APP_DEPENDS APP_PREFIX
   unset APP_NAME APP_CATEGORIES APP_MIME APP_SUFFIX
   unset -f APP_POSTINST APP_VERSION APP_GET
 }
 
-# Return description for an available app
-# @param App name
-function _nh1app.description {
+# @description Returns description for an available app
+# @arg $1 string Application name
+# @stdout Application description
+_nh1app.description() {
     if _nh1app.openapp $1
     then
         echo -n $APP_DESCRIPTION
@@ -207,10 +236,11 @@ function _nh1app.description {
     fi
 }
 
-# Return newest Nextcloud file version or actual
-# @param new, local or global
-# @param app name
-function _nh1app.checkversion {
+# @description Returns newest file version or actual
+# @arg $1 string What to check: new, local or global
+# @arg $2 string Application name
+# @stdout Full file name
+_nh1app.checkversion() {
     if _nh1app.openapp $2
     then
         case "$1" in
@@ -234,10 +264,10 @@ function _nh1app.checkversion {
     fi
 }
 
-# Create a Desktop file
-# @param App internal name
-# @param local or global
-function _nh1app.mkdesktop {
+# @description Creates a Desktop file
+# @arg $1 string App internal name
+# @arg $2 string local or global
+_nh1app.mkdesktop() {
     local _APP _NATMP
     _APP="$1"
     
@@ -277,12 +307,12 @@ function _nh1app.mkdesktop {
     fi
 }
 
-# Remove old files for app
-# @param Path of files
-# @param Latest file name
-# @param App prefix
-# @param local or global
-function _nh1app.clearold {
+# @description Removes old files for app
+# @arg $1 string Path of files
+# @arg $2 string Latest file name
+# @arg $3 string App prefix
+# @arg $4 string local or global
+_nh1app.clearold() {
     local _DIR _LAT _PRE _SCO _F
     _DIR="$1"
     _LAT="$2"
@@ -308,12 +338,12 @@ function _nh1app.clearold {
     fi
 }
 
-# Single downloader
-# @param app name
-# @param app-directory
-# @param symlink
-# @param local or global
-function _nh1app.single {
+# @description Single downloader
+# @arg $1 string App name
+# @arg $2 string app-directory
+# @arg $3 string symlink
+# @arg $4 string local or global
+_nh1app.single() {
     local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP _PREV
     if 1check curl
     then
@@ -398,10 +428,10 @@ function _nh1app.single {
     fi    
 }
 
-# Internal 1app generic installer
-# @param local or global
-# @param app to install
-function _nh1app.add {
+# @description Internal 1app generic installer
+# @arg $1 string local or global
+# @arg $2 string App to install
+_nh1app.add() {
     local _NAD _NAB _NAS _NAT
     if ! $(_nh1app.checksetup $1)
     then
@@ -433,10 +463,10 @@ function _nh1app.add {
     fi
 }
 
-
-# Install locally an app
-# @param App to install
-function 1appladd {
+# @description Install locally an app
+# @arg $1 string App to install
+# @see _nh1app.add
+1appladd() {
     local _NAA
     for _NAA in "$@"
     do
@@ -444,9 +474,10 @@ function 1appladd {
     done
 }
 
-# Install globally an app
-# @param App to install
-function 1appgadd {
+# @description Install globally an app
+# @arg $1 string App to install
+# @see _nh1app.add
+1appgadd() {
     local _NAA
     for _NAA in "$@"
     do
@@ -454,10 +485,11 @@ function 1appgadd {
     done
 }
 
-# Based on avail, list apps with filters
-# @param local or global
-# @param installed (1) or not-installed (0)
-function _nh1app.list {
+# @description Based on avail, list apps with filters
+# @arg $1 string local or global
+# @arg $2 int installed (1) or not-installed (0)
+# @stdout A list of apps
+_nh1app.list() {
     local _A _OUT _CHK
     for _A in $(_nh1app.avail)
     do
@@ -473,10 +505,9 @@ function _nh1app.list {
     echo $_OUT
 }
 
-
-# Update all installed apps
-# @param local or global
-function _nh1app.update {
+# @description Update all installed apps
+# @arg $1 string local or global
+_nh1app.update() {
     local _NAA _NAAC
     for _NAA in $(_nh1app.avail)
     do
@@ -493,9 +524,12 @@ function _nh1app.update {
     done   
 }
 
-# Returns full path for a command, if exists
-# @param app to test
-function _nh1app.where {
+# @description Returns full path for a command, if exists
+# @arg $1 string App to test
+# @stdout Path for command
+# @exitcode 0 Command exists
+# @exitcode 1 Command not found
+_nh1app.where() {
     local _AUX _PATH
     _AUX=$(whereis "$1")
     _PATH=$(echo "$_AUX" | cut -d\  -f 2)
@@ -508,8 +542,8 @@ function _nh1app.where {
     fi
 }
 
-# Upgrade all packages
-function 1appxupd {
+# @description Upgrade all system packages
+1appxupd() {
     local _UPD
         
     if _nh1app.where dnf > /dev/null
@@ -552,10 +586,10 @@ function 1appxupd {
     fi
 }
 
-# Remove an installed app
-# @param local or global 
-# @param app name
-function _nh1app.remove {
+# @description Removes an installed app
+# @arg $1 string local or global 
+# @arg $2 string App name
+_nh1app.remove() {
     local _NAA _NAF
     _NAA=$2
     _NAF=$(_nh1app.checkversion $1 $_NAA)
@@ -577,9 +611,9 @@ function _nh1app.remove {
     fi
 }
 
-# Clear unused old versions for every app
-# @param local or global
-function _nh1app.clear {
+# @description Clear unused old versions for every app
+# @arg $1 string local or global
+_nh1app.clear() {
     local _NAA _NAN _NAF _NAD _NAP
     if [ $1 = "local" ]
     then

@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0rc6
+_1VERSION=1.0rc7
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -24,11 +24,14 @@ _1GDATA="/opt/norg"
 if [ "$_1DIR" = "/usr/bin" ]
 then
 	_1LIB="/usr/lib/norg"
+	_1DOC="/usr/share/doc/norg"
 elif [ "$_1DIR" = "/usr/local/bin" ]
 then
 	_1LIB="/usr/local/lib/norg"
+	_1DOC="/usr/share/doc/norg"
 else
 	_1LIB="$_1DIR/lib"
+	_1DOC="$_1DIR/doc"
 fi
 
 # Gettext configure
@@ -112,13 +115,19 @@ _1modrun() {
 
 	for _MOD in "${_1MODULES[@]}"
 	do
-		_AUX=$(echo "$_COMM" | sed "s/-=-/$_MOD/")
+		_AUX=$(echo "$_COMM" | sed "s/-=-/$_MOD/g")
 		
 		if [ "$(type -t $_AUX)" = 'function' ]
 		then
+			#_1verb "$(printf "$(_1text "%s identified as a %s.")\n" "$_AUX" "function")"
 			$_AUX
 		elif [ "$(type -t $_AUX)" = 'builtin' ]
 		then
+			#_1verb "$(printf "$(_1text "%s identified as a %s.")\n" "$_AUX" "built-in")"
+			eval $_AUX
+		elif [ "$(type -t "$(echo "$_AUX" | cut -d\  -f 1)")" = "file" ]
+		then
+			#_1verb "$(printf "$(_1text "%s identified as a %s.")\n" "$_AUX" "file")"
 			eval $_AUX
 		else
 			_COUNT=$((_COUNT+1))
@@ -179,13 +188,13 @@ _1menuitem() {
 	return 0
 }
 
-# Generic complete function, finding formats
-# @param 1st file format. 0 for none
-# @param 2nd file format. 0 for none
-# @param 3th file format. 0 for none
-# @param 4th file format. 0 for none
-# @param 5th file format. 0 for none
-function _1compl {
+# @description Generic complete function, finding formats
+# @arg $1 string 1st file format. 0 for none
+# @arg $2 string 2nd file format. 0 for none
+# @arg $3 string 3th file format. 0 for none
+# @arg $4 string 4th file format. 0 for none
+# @arg $5 string 5th file format. 0 for none
+_1compl() {
   COMREPLY=()
   local word="${COMP_WORDS[COMP_CWORD]}"
     if [ "$COMP_CWORD" -eq 1 ] && [ $1 != "0" ]
@@ -206,11 +215,12 @@ function _1compl {
     fi
 }
 
-# Returns all internal items of one kind
-# @param Path
-# @param File extension
-# @param exclude extension? Default: yes
-function _1list {
+# @description Returns all internal items of one kind
+# @arg $1 string Path
+# @arg $2 string File extension
+# @arg $3 string exclude extension? (Optional. Default: yes)
+# @stdout The list of items
+_1list() {
     local fn aux
     for fn in $(ls -1 "$1")
     do        
@@ -228,9 +238,9 @@ function _1list {
 }
 
 
-# Run the command as root
-# @param Command
-function _1sudo {
+# @description Run the command as root
+# @arg $1 string Command
+_1sudo() {
     if [ "$EUID" -eq 0 ]
     then
         $@
@@ -239,22 +249,24 @@ function _1sudo {
     fi
 }
 
-# Configure completion for main and file all modules.
-function _nh1complete {
+# @description Configure completion for main file and all modules.
+# @see _1compl
+_nh1complete() {
 	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
 
 	_1modrun "_nh1-=-.complete"
 }
 
-# Initial functions, configuring and create dirs
-function _nh1init {
+# @description Initial functions, configuring and creating dirs
+_nh1init() {
 	mkdir -p "$_1UDATA"
 
 	_1modrun "_nh1-=-.init"
 }
 
-# Apply custom variables to internals
-function _nh1customvars {
+# @description Apply custom variables to internals
+# @see 1info
+_nh1customvars() {
 	if [ -f "$_1UDATA/nh1.conf" ]
 	then
 		source "$_1UDATA/nh1.conf"
@@ -273,9 +285,11 @@ function _nh1customvars {
 	_1modrun "_nh1-=-.customvars"
 }
 
-# Check if a program exists. Finish NH1 if it do not exists.
-# @param Program to check
-function 1check {
+# @description Check if a program exists. Finish NH1 if it do not exists.
+# @arg $* string Program to check or "-s"
+# @exitcode 0 Successful
+# @exitcode 1 Fail in one or more checkings
+1check() {
 	local CFAILS=0
 	local SILENT=0
 	for PROG in $*
@@ -288,7 +302,7 @@ function 1check {
 			then
 				if [ $SILENT -eq 1 ]
 				then
-	        		_1verb $(printf "$(_1text "%s is missing for %s")" $PROG $USER)
+	        		_1verb "$(printf "$(_1text "%s is missing for %s")" $PROG $USER)"
 				else
 					printf "$(_1text "Program %s does not exist or it is unavailable for %s.")\n" $PROG $USER
 			  fi
@@ -304,23 +318,24 @@ function 1check {
 	fi
 }
 
-# Clean all variables set by nh1
-function 1clean {
+# @description Clean all variables defined by nh1
+1clean() {
 	_1COLOR=1
 	_1verb "$(_1text "Destroying all variables...")"
 
 	_1modrun "_nh1-=-.clean"
 
 	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE _1PCOLOR _1XCOLOR
-	unset _1WCOLOR _1DCOLOR _1MENUCOL _1GDATA _1UDATA _1MODULES
+	unset _1WCOLOR _1DCOLOR _1MENUCOL _1GDATA _1UDATA _1MODULES _1DOC
 	unalias _1text
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
 	unset -f _nh1customvars 1info _1modrun 1verbose _1menuitem _1verb
 }
 
-# Menu for NH1
-function 1help {
+# @description Menu for NH1.
+# @see _1menuitem
+1help() {
 	local _MOD
 		echo " -------------------------------------"
 		echo -n "            "
@@ -334,6 +349,7 @@ function 1help {
 		
 		echo "___ $(_1text "Main") ___"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
+		_1menuitem W 1builddoc "$(_1text "Build documentation files for NH1")" shdoc
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
 		_1menuitem W 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
@@ -358,8 +374,8 @@ function 1help {
     echo
 }
 
-# Modify ~/.bashrc to init NH1 on bash start
-function 1bashrc {
+# @description Modify ~/.bashrc to init NH1 on bash start
+1bashrc() {
     local S1="source $_1RC"
     if grep "$S1" ~/.bashrc > /dev/null
     then
@@ -371,8 +387,8 @@ function 1bashrc {
     fi
 }
 
-# Reload NH1 and all related modules
-function 1refresh {
+# @description Reload NH1 and all related modules
+1refresh() {
 	local LOCAL1RC=$_1RC
 	_1verb "$(printf "$(_1text "After destroy variables, I will load %s.")" $_1RC)"
 	1clean
@@ -380,8 +396,8 @@ function 1refresh {
 	_1verb $(_1text "Done!")
 }
 
-# Update NH1 based in git repository
-function 1update {
+# @description Update NH1 based in git repository
+1update() {
 	if 1check git
 	then
 		pushd "$_1LIB/.." || return 1
@@ -401,16 +417,17 @@ function 1update {
 	fi
 }
 
-# List version software and list latest entries from changelog
-function 1version {
+# @description List software version and list latest entries from changelog
+1version() {
 	echo "NH1 $_1VERSION"
 	echo
 	tail "$_1LIB/changelog.txt"
 }
 
-# Enable or disable verbose mode
-# @param (optional) Bit (0/1) to set verbose mode. Default: invvert current
-function 1verbose {
+# @description Enable or disable verbose mode
+# @arg $1 int Bit (0/1) to set verbose mode. Default: invert current. (Optional)
+# @see _1verb
+1verbose() {
 	local NEWV=$_1VERBOSE
 	if [ $# -eq 1 ]
 	then
@@ -434,10 +451,12 @@ function 1verbose {
 		_1verb "$(_1text "Verbose mode is on")"
 	fi
 }
-# Creates and apply translation for NH1
-# @param Language code
-# @param Generate binaries. Default: none
-function 1translate {
+
+# @description Creates and applies translation for NH1
+# @arg $1 string Language code
+# @arg $2 string Generate binaries. Optional. Default: none
+# @see _1text
+1translate() {
 	local AUX
 	case "$#" in
 		1)
@@ -475,8 +494,8 @@ function 1translate {
 	esac
 }
 
-# Information about user variables
-function 1info {
+# @description Information about user variables
+1info() {
 	local _OLDMC
 	echo "_______ $(_1text "Custom variables") _______"
 	printf "$(_1text "You can configure custom variables for NH1. Edit %s to define it.")\n" "$_1UDATA/nh1.conf"
@@ -491,7 +510,19 @@ function 1info {
 	_1MENUCOL=$_OLDMC
 }
 
-#MAIN
+# @description Build documentation
+1builddoc() {
+	if 1check shdoc
+	then
+    	_1verb "$(printf "$(_1text "Building documentation for nh1 %s...")" "$(_1text "main file")")"
+    	shdoc < "$_1RC" > "$_1DOC/nh1.md"
+		_1verb "$(printf "$(_1text "Building documentation for nh1 %s...")" "$(_1text "module files")")"    	
+		_1modrun "shdoc < \"$_1LIB/-=-.bashrc\" > \"$_1DOC/-=-.md\""
+		printf "$(_1text "Documentation available in %s.")\n" "$_1DOC"
+	fi
+}
+
+# @section Main Section
 
 # Try to execute a `return` statement,
 # but do it in a sub-shell and catch the results.

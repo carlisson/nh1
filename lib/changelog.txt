@@ -173,3 +173,4 @@
 1.0rc4 2022-10-19: Migrating to shdoc (first steps)
 1.0rc5 2022-10-19: Migrating to shdoc
 1.0rc6 2022-10-19: Fixed 1check to search apps in ~/bin too
+1.0rc7 2022-10-20: 1builddock created.
