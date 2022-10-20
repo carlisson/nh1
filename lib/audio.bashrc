@@ -1,7 +1,9 @@
 #!/bin/bash
+# @file audio.bashrc
+# @brief Audio and audio files related funtions
 
-# Generate partial menu (for audio functions)
-function _nh1audio.menu {
+# @description Generate partial menu (for audio functions)
+_nh1audio.menu() {
   echo "___ $(_1text "Audio") ___"
   _1menuitem W 1alarm "$(_1text "Play an audio alarm")" speaker-test
   _1menuitem W 1beat "$(_1text "Play a simple beat in given frequency")" speaker-test
@@ -14,30 +16,43 @@ function _nh1audio.menu {
   _1menuitem W 1yt3 "$(_1text "Extract Youtube video to MP3")" youtube-dl ffmpeg
 }
 
-# Destroy all global variables created by this file
-function _nh1audio.clean {
+# @description Destroy all global variables created by this file
+_nh1audio.clean() {
   unset -f _nh1audio.menu _nh1audio.clean 1alarm 1id3get 1id3put 1svideo
   unset -f 1ogg2mp3 1talkbr 1yt3 1beat 1id3set 1genbigmp3 _nh1audio.complete
   unset -f _nh1audio.complete.id3get _nh1audio.complete.id3set
   unset -f _nh1audio.complete.svideo _nh1audio.complete.ogg2mp3
 }
 
-function _nh1audio.complete {
+# @description Autocomplete config
+_nh1audio.complete() {
   complete -F _nh1audio.complete.id3get 1id3get
   complete -F _nh1audio.complete.id3set 1id3set
   complete -F _nh1audio.complete.svideo 1svideo
   complete -F _nh1audio.complete.ogg2mp3 1ogg2mp3
 }
 
-function _nh1audio.complete.id3get { _1compl 'mp3' 0 0 0 0 ; }
-function _nh1audio.complete.id3set { _1compl 'mp3' 'txt' 0 0 0 ; }
-function _nh1audio.complete.svideo { _1compl 'mp3' 'png' 0 0 0 ; }
-function _nh1audio.complete.ogg2mp3 { _1compl 'ogg' 0 0 0 0 ; }
+# @description Autocomplete for 1id3get
+# @see _nh1audio.complete
+_nh1audio.complete.id3get() { _1compl 'mp3' 0 0 0 0 ; }
 
-# Extract ID3V2 metadata from an MP3 file
-# @param MP3 input file
-# @param TXT output file
-function 1id3get {
+# @description Autocomplete for 1id3set
+# @see _nh1audio.complete
+_nh1audio.complete.id3set() { _1compl 'mp3' 'txt' 0 0 0 ; }
+
+# @description Autocomplete for 1svideo
+# @see _nh1audio.complete
+_nh1audio.complete.svideo() { _1compl 'mp3' 'png' 0 0 0 ; }
+
+# @description Autocomplete for 1ogg2mp3
+# @see _nh1audio.complete
+_nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
+
+# @description Extract ID3V2 metadata from an MP3 file
+# @arg $1 string MP3 input file
+# @arg $1 string TXT output file
+# @see 1id3set
+1id3get() {
   if 1check ffmpeg
   then
     if [ $# -eq 2 ]
@@ -49,11 +64,12 @@ function 1id3get {
   fi
 }
 
-# Apply ID3V2 metadata into a MP3 file
-# @param MP3 input file
-# @param TXT input file
-# @param MP3 output file (optional)
-function 1id3set {
+# @description Apply ID3V2 metadata into a MP3 file
+# @arg $1 string MP3 input file
+# @arg $2 string TXT input file
+# @arg $3 string MP3 output file (optional)
+# @see 1id3get
+1id3set() {
   local CIN COUT CMD
   if 1check ffmpeg
   then
@@ -78,11 +94,11 @@ function 1id3set {
   fi
 }
 
-# Create a static video from a MP3 and an image
-# @param MP3 input file
-# @param PNG input file
-# @param MP4 output file
-function 1svideo {
+# @description Create a static video from a MP3 and an image
+# @arg $1 string MP3 input file
+# @arg $2 string PNG input file
+# @arg $3 string MP4 output file
+1svideo() {
   local SVMIN SVPIN SVMOUT
   if 1check ffmpeg
   then
@@ -99,10 +115,10 @@ function 1svideo {
   fi
 }
 
-# Convert ogg file to mp3
-# @param Ogg input file
-# @param MP3 output file (optional)
-function 1ogg2mp3 {
+# @description Convert ogg file to mp3
+# @arg $1 string Ogg input file
+# @arg $2 string MP3 output file (optional)
+1ogg2mp3() {
   local OGF MPF
   if 1check ffmpeg
   then
@@ -123,10 +139,10 @@ function 1ogg2mp3 {
   fi
 }
 
-# Create a WAV file from an string
-# @param Message
-# @param WAV output file
-function 1talkbr {
+# @description Create a WAV file from an string
+# @arg $1 string Message
+# @arg $2 string WAV output file
+1talkbr() {
   if 1check espeak
   then
     if [ $# -eq 2 ]
@@ -138,9 +154,9 @@ function 1talkbr {
   fi
 }
 
-# Create a MP3 file from a youtube video
-# @param Youtube video URL(s)
-function 1yt3 {
+# @description Create a MP3 file from a youtube video
+# @arg $1 string Youtube video URL(s)
+1yt3() {
   local YTITLE YFILE YLOCAL YTMPDIR YVID
   if 1check youtube-dl ffmpeg
   then
@@ -178,27 +194,28 @@ function 1yt3 {
   fi
 }
 
-# Play a simple beat with 0.2 seconds, in given frequency
-# @param Frequency
-function 1beat {
+# @description Play a simple beat with 0.2 seconds, in given frequency
+# @arg $1 int Frequency
+1beat() {
   ( \speaker-test --frequency $1 --test sine >/dev/null)&
   pid=$!
   \sleep 0.200s
   \kill -9 $pid
 }
 
-# Sound a simple audio alarm
-function 1alarm {
+# @description Sound a simple audio alarm
+# @see 1beat
+1alarm() {
   for i in `seq 400 100 700`
   do
     1beat $i 2> /dev/null
   done
 }
 
-# Create a single random mp3 from various mp3
-# @param input dir with the original music files
-# @param output filename
-function 1genbigmp3 {
+# @description Create a single random mp3 from various mp3
+# @arg $1 string input dir with the original music files
+# @arg $2 string output filename
+1genbigmp3() {
   local OLDIFS IFS f i PBN NUMB
   if 1check ffmpeg
   then
