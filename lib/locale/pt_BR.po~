@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 08:26-0300\n"
+"POT-Creation-Date: 2022-10-20 08:36-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -243,6 +243,14 @@ msgstr "Define o modo verboso (1 ou 0). Default: 0"
 msgid "Building documentation for nh1 %s..."
 msgstr "Gerando documentação para %s do nh1..."
 
+#: /home/cgaldino/sources/nh1/nh1:517
+msgid "main file"
+msgstr "Arquivo principal"
+
+#: /home/cgaldino/sources/nh1/nh1:519
+msgid "module files"
+msgstr "arquivos de módulo"
+
 #: /home/cgaldino/sources/nh1/nh1:521
 msgid "Documentation available in %s."
 msgstr "Documentação está disponível em %s."
@@ -369,7 +377,9 @@ msgstr "Prestes a instalar/atualizar:"
 
 #: app.bashrc:420
 msgid "Error geting %s file name. Check the recipe or try again later."
-msgstr "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais tarde."
+msgstr ""
+"Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
+"tarde."
 
 #: app.bashrc:427
 msgid "%s not found."
