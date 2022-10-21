@@ -51,3 +51,7 @@ $ 1bashrc
 ```
 $ 1update
 ```
+
+## Reference
+
+Documentation is available in [doc folder](doc/).
