@@ -176,3 +176,4 @@
 1.0rc7 2022-10-20: 1builddoc created.
 1.0rc8 2022-10-20: audio module documented in shdoc
 1.0    2022-10-20: complete documentation
+1.0n1  2022-10-21: Minor bug fix in 1areon

@@ -474,12 +474,12 @@ _1pressh() {
   	if [ $# -ne 1 ]
 	then
 		echo -n "Usage: "
-		1tint 2 '1areon [$(_1text "group")]'
+		1tint 2 "1areon [$(_1text "group")]"
 		echo
 		echo
 		echo "  all: $(_1text "every host in all groups")"
 		echo
-		echo "$(_1text "Available groups"): "$(_1list $_1NETLOCAL "hosts")
+		echo "$(_1text "Available groups"): "$(_1list "$_1NETLOCAL" "hosts")
 		return 1
 	fi
 	if [ "$1" = "all" ]
