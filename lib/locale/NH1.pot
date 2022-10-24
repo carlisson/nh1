@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-24 11:21-0300\n"
+"POT-Creation-Date: 2022-10-24 14:10-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -832,131 +832,136 @@ msgstr ""
 msgid "List all VLANs in given eXtreme switch"
 msgstr ""
 
-#: network.bashrc:69
+#: network.bashrc:71
 msgid "Path for network (hosts and groups) files."
 msgstr ""
 
-#: network.bashrc:70
+#: network.bashrc:72
 msgid "Server port. Default: %s."
 msgstr ""
 
-#: network.bashrc:102
+#: network.bashrc:104
 msgid "Bauds possible:"
 msgstr ""
 
-#: network.bashrc:127
+#: network.bashrc:129
 msgid "You need to give a string to test if it is an IP address."
 msgstr ""
 
-#: network.bashrc:168
+#: network.bashrc:170
 msgid "%s is unkown or unavailable."
 msgstr ""
 
-#: network.bashrc:171
+#: network.bashrc:173
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:184
+#: network.bashrc:186
 msgid "Trying to connect %s (%s) with iperf."
 msgstr ""
 
-#: network.bashrc:187
+#: network.bashrc:189
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
-#: network.bashrc:240
+#: network.bashrc:242
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:247
+#: network.bashrc:249
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:303 network.bashrc:347
+#: network.bashrc:305
+msgid "SSH is not available. Trying to connect via Telnet."
+msgstr ""
+
+#: network.bashrc:310 network.bashrc:313
+msgid ""
+"Telnet is not available. You can access this IP in your browser: %s://%s."
+msgstr ""
+
+#: network.bashrc:315
+msgid "Cannot connect %s."
+msgstr ""
+
+#: network.bashrc:385
+msgid "Trying to connect using cipher %s and host-key %s"
+msgstr ""
+
+#: network.bashrc:397 network.bashrc:455
 msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:309
+#: network.bashrc:405
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:316
-msgid "Trying connect using AES192"
-msgstr ""
-
-#: network.bashrc:321
-msgid "Trying connect with various options"
-msgstr ""
-
-#: network.bashrc:329
+#: network.bashrc:426
 msgid "It works."
 msgstr ""
 
-#: network.bashrc:331
+#: network.bashrc:428
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:334
-msgid "SSH not available. Trying to connect via Telnet."
-msgstr ""
-
-#: network.bashrc:383
+#: network.bashrc:491
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:388
+#: network.bashrc:496
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:397
+#: network.bashrc:505
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:402
+#: network.bashrc:510
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:500
+#: network.bashrc:608
 msgid "trying %s"
 msgstr ""
 
-#: network.bashrc:508
+#: network.bashrc:616
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:520
+#: network.bashrc:628
 msgid "group"
 msgstr ""
 
-#: network.bashrc:523
+#: network.bashrc:631
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:525
+#: network.bashrc:633
 msgid "Available groups"
 msgstr ""
 
-#: network.bashrc:554
+#: network.bashrc:662
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:568
+#: network.bashrc:676
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:576
+#: network.bashrc:684
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:624
+#: network.bashrc:732
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:635
+#: network.bashrc:743
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:659
+#: network.bashrc:767
 msgid "Doing backup of %s to %s"
 msgstr ""
 

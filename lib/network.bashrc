@@ -40,6 +40,7 @@ _nh1network.clean() {
   unset -f 1xt-backup _nh1network.init _nh1network.customvars _nh1network.info
   unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
+  unset -f _nh1network.nossh
 }
 
 # @description Auto-completion
@@ -294,14 +295,71 @@ _1pretelnet() {
 	echo "$aux_h"
 }
 
+# @description What to do when SSH port is closed
+# @arg $1 string IP
+_nh1network.nossh() {
+  local onlyip
+  onlyip="$1"
+  if 1ports "$onlyip" 23 > /dev/null
+  then
+    _1text "SSH is not available. Trying to connect via Telnet."
+    1telnet $onlyip
+  else
+    if 1ports "$onlyip" 443 > /dev/null
+    then
+      printf "$(_1text "Telnet is not available. You can access this IP in your browser: %s://%s.")\n" "https" "$onlyip"
+    elif 1ports "$onlyip" 80 > /dev/null
+    then
+      printf "$(_1text "Telnet is not available. You can access this IP in your browser: %s://%s.")\n" "http" "$onlyip"
+    else
+      printf "$(_1text "Cannot connect %s.")\n" "$onlyip"
+    fi
+  fi
+
+}
+
 # @description SSH discovery using nmap
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
 _nh1network.smartssh() {
+  local  line next comm aux SAVEIFS pressh args
   if 1check nmap
   then
     onlyip=$(_1pretelnet $1)
-    return 1 # work in progress...
+    next=""
+    comm="ssh "
+    args="$2"
+    pressh="$(_1pressh $1)"
+
+    if 1ports "$onlyip" 22 > /dev/null
+    then
+
+      SAVEIFS=$IFS
+      IFS=$(echo -en "\n\b")
+      for line in $(nmap --script ssh2-enum-algos -sV -p 22 "$onlyip")
+      do
+        if [ -n "$next" ]
+        then
+          comm="$comm $next$(echo $line | tr -d '[:space:]' | tr -d '|')"
+          next=""
+        fi
+        if $(echo $line | grep -q kex_algorithms)
+        then
+          next="-oKexAlgorithms=+"
+        elif $(echo $line | grep -q server_host_key_algorithms)
+        then
+          next="-oHostKeyAlgorithms=+"
+        elif $(echo $line | grep -q encryption_algorithms)
+        then
+          next="-c "
+        fi
+      done
+      IFS=$SAVEIFS
+      $comm "$pressh" $args
+    else
+      _nh1network.nossh "$onlyip"
+    fi
+    return 0
   else
     return 1
   fi
@@ -370,21 +428,7 @@ _nh1network.simplessh() {
         printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
       fi
     else
-      if 1ports "$onlyip" 23 > /dev/null
-      then
-        _1text "SSH not available. Trying to connect via Telnet."
-        1telnet $onlyip
-      else
-        if 1ports "$onlyip" 443 > /dev/null
-        then
-          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "https" "$onlyip"
-        elif 1ports "$onlyip" 80 > /dev/null
-        then
-          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "http" "$onlyip"
-        else
-          printf "$(_1text "Cannot connect %s.")\n" "$onlyip"
-        fi
-      fi
+      _nh1network.nossh "$onlyip"
     fi
   fi
 }
@@ -394,72 +438,10 @@ _nh1network.simplessh() {
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
 1ssh() {
-  if ! _nh1network.smartssh "$1" "$2" "$3"
+  _nh1network.smartssh "$1" "$2" "$3"
+  if [ $? -gt 0 ]
   then
     _nh1network.simplessh "$1" "$2" "$3"
-  fi
-}
-
-# @description Access with SSH server (including extreme switchs)
-# @arg $1 string name or IP, or usr@IP
-# @arg $2 string Additional options for ssh
-old-1ssh() {
-  local destip finalstatus onlyip
-  if 1check ssh
-  then
-    _1verb "$(printf "$(_1text "Connecting via %s.")" "ssh")"
-  	destip=$(_1pressh $1)
-    onlyip=$(_1pretelnet $1)
-    finalstatus=1
-
-  	# If one method don't works, 1ssh try next
-    _1verb "$(_1text "Trying connect in simple mode")"
-    if 1ports "$onlyip" 22 > /dev/null
-    then
-      ssh "$destip" $2
-      finalstatus=$?
-      if [ $finalstatus -gt 0 ]
-      then
-        _1verb "$(_1text "Trying connect using AES192")"
-        ssh -c aes192-cbc "$destip" $2
-        finalstatus=$?
-        if [ $finalstatus -gt 0 ]
-        then
-          _1verb "$(_1text "Trying connect with various options")"
-          ssh -c aes192-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss "$destip" $2
-          finalstatus=$?
-          if [ $finalstatus -gt 0 ]
-          then
-            _1verb "$(_1text "Trying connect with various options")"
-            ssh -oHostKeyAlgorithms=+ssh-rsa "$destip" $2
-            finalstatus=$?
-          fi
-        fi
-      fi
-
-      if [ $finalstatus -eq 0 ]
-      then
-        _1verb "$(_1text "It works.")"
-      else
-        printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
-      fi
-    else
-      if 1ports "$onlyip" 23 > /dev/null
-      then
-        _1text "SSH not available. Trying to connect via Telnet."
-        1telnet $onlyip
-      else
-        if 1ports "$onlyip" 443 > /dev/null
-        then
-          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "https" "$onlyip"
-        elif 1ports "$onlyip" 80 > /dev/null
-        then
-          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "http" "$onlyip"
-        else
-          printf "$(_1text "Cannot connect %s.")\n" "$onlyip"
-        fi
-      fi
-    fi
   fi
 }
 
