@@ -182,3 +182,4 @@
 1.0n4  2022-10-24: 1telnet to connect via telnet
 1.0n5  2022-10-24: 1ssh tries 1telnet if ssh is not available
 1.0n6  2022-10-24: 1ssh improved, offering web access if not else works
+1.0n7  2022-10-24: 1ssh improved

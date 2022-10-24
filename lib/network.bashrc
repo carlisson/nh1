@@ -39,6 +39,7 @@ _nh1network.clean() {
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
   unset -f 1xt-backup _nh1network.init _nh1network.customvars _nh1network.info
   unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
+  unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
 }
 
 # @description Auto-completion
@@ -293,10 +294,116 @@ _1pretelnet() {
 	echo "$aux_h"
 }
 
+# @description SSH discovery using nmap
+# @arg $1 string name or IP, or usr@IP
+# @arg $2 string Additional options for ssh
+_nh1network.smartssh() {
+  if 1check nmap
+  then
+    onlyip=$(_1pretelnet $1)
+    return 1 # work in progress...
+  else
+    return 1
+  fi
+}
+
+# @description Connetc SSH server with specified protocol
+# @arg $1 string name or IP, or usr@IP
+# @arg $2 Host-key algorithm
+# @arg $3 Cipher algorithm
+# @arg $4 string Additional options for ssh
+_nh1network.ssh() {
+  local destin hostkey ciph comm pre
+  destin="$1"
+  hostkey="$2"
+  ciph="$3"
+  comm="$4"
+  pre=" "
+  case $hostkey in
+    ssh-dss)
+      pre="-oKexAlgorithms=+diffie-hellman-group1-sha1"
+      ;;
+  esac
+  _1verb "$(printf "$(_1text "Trying to connect using cipher %s and host-key %s")" "$ciph" "$hostkey")"
+  ssh -c "$ciph" $pre -oHostKeyAlgorithms=+$hostkey "$destin" $comm
+  return $?
+}
+
 # @description Access with SSH server (including extreme switchs)
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
+_nh1network.simplessh() {
+  local destip finalstatus onlyip
+  if 1check ssh
+  then
+    _1verb "$(printf "$(_1text "Connecting via %s.")" "ssh")"
+  	destip=$(_1pressh $1)
+    onlyip=$(_1pretelnet $1)
+    finalstatus=1
+
+  	# If one method don't works, 1ssh try next
+    if 1ports "$onlyip" 22 > /dev/null
+    then
+      _1verb "$(_1text "Trying connect in simple mode")"
+      ssh "$destip" $2
+      finalstatus=$?
+      if [ $finalstatus -gt 0 ]
+      then
+        _nh1network.ssh $destip rsa-sha2-256 aes192-cbc "$2"
+        finalstatus=$?
+        if [ $finalstatus -gt 0 ]
+        then
+          _nh1network.ssh $destip ssh-dss aes192-cbc "$2"
+          finalstatus=$?
+          if [ $finalstatus -gt 0 ]
+          then
+            _nh1network.ssh $destip ssh-rsa aes256-ctr "$2"
+            finalstatus=$?
+          fi
+        fi
+      fi
+
+      if [ $finalstatus -eq 0 ]
+      then
+        _1verb "$(_1text "It works.")"
+      else
+        printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
+      fi
+    else
+      if 1ports "$onlyip" 23 > /dev/null
+      then
+        _1text "SSH not available. Trying to connect via Telnet."
+        1telnet $onlyip
+      else
+        if 1ports "$onlyip" 443 > /dev/null
+        then
+          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "https" "$onlyip"
+        elif 1ports "$onlyip" 80 > /dev/null
+        then
+          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "http" "$onlyip"
+        else
+          printf "$(_1text "Cannot connect %s.")\n" "$onlyip"
+        fi
+      fi
+    fi
+  fi
+}
+
+# @description Try to use smart ssh. If it don't works, use simplessh
+# @arg $1 string name or IP
+# @arg $1 string name or IP, or usr@IP
+# @arg $2 string Additional options for ssh
 1ssh() {
+  if ! _nh1network.smartssh "$1" "$2" "$3"
+  then
+    _nh1network.simplessh "$1" "$2" "$3"
+  fi
+}
+
+# @description Access with SSH server (including extreme switchs)
+# @arg $1 string name or IP, or usr@IP
+# @arg $2 string Additional options for ssh
+old-1ssh() {
   local destip finalstatus onlyip
   if 1check ssh
   then
@@ -321,6 +428,12 @@ _1pretelnet() {
           _1verb "$(_1text "Trying connect with various options")"
           ssh -c aes192-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss "$destip" $2
           finalstatus=$?
+          if [ $finalstatus -gt 0 ]
+          then
+            _1verb "$(_1text "Trying connect with various options")"
+            ssh -oHostKeyAlgorithms=+ssh-rsa "$destip" $2
+            finalstatus=$?
+          fi
         fi
       fi
 
