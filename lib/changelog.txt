@@ -179,3 +179,4 @@
 1.0n1  2022-10-21: Minor bug fix in 1areon
 1.0n2  2022-10-21: Added recipe for xonsh
 1.0n3  2022-10-24: 1pdfopt improved
+1.0n4  2022-10-24: 1telnet to connect via telnet

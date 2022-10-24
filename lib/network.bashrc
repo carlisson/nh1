@@ -25,6 +25,7 @@ _nh1network.menu() {
   _1menuitem X 1serial "$(_1text "Connect to a serial port")"
   _1menuitem X 1ssh "$(_1text "Connect a SSH server (working with eXtreme)")" ssh
   _1menuitem X 1tcpdump "$(_1text "Run tcpdump in a given network interface")" tcpdump
+  _1menuitem X 1telnet "$(_1text "Connect a Telnet server")" telnet
   _1menuitem X 1xt-backup "$(_1text "Backup configuration of one or more extreme switchs")" ssh
   _1menuitem X 1xt-vlan "$(_1text "List all VLANs in given eXtreme switch")" ssh
   echo
@@ -37,7 +38,7 @@ _nh1network.clean() {
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
   unset -f 1xt-backup _nh1network.init _nh1network.customvars _nh1network.info
-  unset -f _nh1network.complete _nh1network.xt-backup
+  unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
 }
 
 # @description Auto-completion
@@ -271,6 +272,27 @@ _1pressh() {
 	echo "$aux_u@$aux_h"
 }
 
+# @description Internal function, pre-1telnet
+# @arg $1 string server or user@server
+# @stdout arguments for use with telnet
+# @see 1telnet
+_1pretelnet() {
+  local aux_u aux_h aux
+	if [ $(echo "$1" | grep "@") ]
+	then
+		aux_u=${1%@*}
+		aux_h=${1#*@}
+	else
+		aux_u="admin"
+		aux_h="$1"
+	fi
+    if aux=$(1host "$aux_h")
+	then
+		aux_h=$aux
+	fi
+	echo "-l $aux_u $aux_h"
+}
+
 # @description Access with SSH server (including extreme switchs)
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
@@ -278,7 +300,7 @@ _1pressh() {
   local destip finalstatus
   if 1check ssh
   then
-    _1verb "$(_1text "Connecting via SSH.")"
+    _1verb "$(printf "$(_1text "Connecting via %s.")" "ssh")"
   	destip=$(_1pressh $1)
     finalstatus=1
 
@@ -305,6 +327,20 @@ _1pressh() {
     else
       printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
     fi
+  fi
+}
+
+# @description Access with telnet server
+# @arg $1 string name or IP, or usr@IP
+# @arg $2 string Additional options for telnet
+1telnet() {
+  local destip finalstatus
+  if 1check telnet
+  then
+    _1verb "$(printf "$(_1text "Connecting via %s.")" "telnet")"
+    destip=$(_1pretelnet $1)
+    finalstatus=1
+    telnet $destip $2
   fi
 }
 
