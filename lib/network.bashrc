@@ -290,42 +290,49 @@ _1pretelnet() {
 	then
 		aux_h=$aux
 	fi
-	echo "-l $aux_u $aux_h"
+	echo "$aux_h"
 }
 
 # @description Access with SSH server (including extreme switchs)
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
 1ssh() {
-  local destip finalstatus
+  local destip finalstatus onlyip
   if 1check ssh
   then
     _1verb "$(printf "$(_1text "Connecting via %s.")" "ssh")"
   	destip=$(_1pressh $1)
+    onlyip=$(_1pretelnet $1)
     finalstatus=1
 
   	# If one method don't works, 1ssh try next
     _1verb "$(_1text "Trying connect in simple mode")"
-  	ssh "$destip" $2
-    if [ $? -eq 0 ]
+    if 1ports "$onlyip" 22 > /dev/null
     then
-      finalstatus=0
-    else
-      _1verb "$(_1text "Trying connect using AES192")"
-      ssh -c aes192-cbc "$destip" $2
-      if [ $? -eq 0 ]
+      ssh "$destip" $2
+      finalstatus=$?
+      if [ $finalstatus -gt 0 ]
       then
-        finalstatus=0
-      else
-        _1verb "$(_1text "Trying connect with various options")"
-  		  ssh -c aes192-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss "$destip" $2
+        _1verb "$(_1text "Trying connect using AES192")"
+        ssh -c aes192-cbc "$destip" $2
+        finalstatus=$?
+        if [ $finalstatus -gt 0 ]
+        then
+          _1verb "$(_1text "Trying connect with various options")"
+          ssh -c aes192-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss "$destip" $2
+          finalstatus=$?
+        fi
       fi
-    fi
-    if [ $finalstatus -eq 0 ]
-    then
-      _1verb "$(_1text "It works.")"
+
+      if [ $finalstatus -eq 0 ]
+      then
+        _1verb "$(_1text "It works.")"
+      else
+        printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
+      fi
     else
-      printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
+      _1text "SSH not available. Trying to connect via Telnet."
+      1telnet $onlyip
     fi
   fi
 }
@@ -351,7 +358,7 @@ _1pretelnet() {
   if [ $# -gt 0 ]
   then
     local aux CHECK
-    local IP="$1"; shift
+    local IP="$(1host $1)"; shift
   	local POPE=$(mktemp)
   	local PREF=$(mktemp)
     local PMOD=0 # 1ports mode. 0 - multiple; 1 - single

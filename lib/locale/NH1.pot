@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-21 11:47-0300\n"
+"POT-Creation-Date: 2022-10-24 11:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,7 +189,7 @@ msgid "Generating .mo file for %s language"
 msgstr ""
 
 #: /home/cgaldino/Sources/nh1/nh1:487 audio.bashrc:152 audio.bashrc:250
-#: backup.bashrc:251 canva.bashrc:167 misc.bashrc:112 rpg.bashrc:234
+#: backup.bashrc:251 canva.bashrc:167 misc.bashrc:118 rpg.bashrc:234
 #: rpg.bashrc:249
 msgid "Usage: %s."
 msgstr ""
@@ -688,67 +688,67 @@ msgstr ""
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:179
+#: misc.bashrc:185
 msgid "finished"
 msgstr ""
 
-#: misc.bashrc:181
+#: misc.bashrc:187
 msgid "Usage:"
 msgstr ""
 
-#: misc.bashrc:211
+#: misc.bashrc:217
 msgid "30-30-30 method for router reseting"
 msgstr ""
 
-#: misc.bashrc:212
+#: misc.bashrc:218
 msgid "your router will lost all configuration"
 msgstr ""
 
-#: misc.bashrc:213
+#: misc.bashrc:219
 msgid "Turn on the router."
 msgstr ""
 
-#: misc.bashrc:214
+#: misc.bashrc:220
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:215
+#: misc.bashrc:221
 msgid "Turn off the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:216
+#: misc.bashrc:222
 msgid "Turn on the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:217
+#: misc.bashrc:223
 msgid "Release the button"
 msgstr ""
 
-#: misc.bashrc:218
+#: misc.bashrc:224
 msgid "Press ENTER when you are ready."
 msgstr ""
 
-#: misc.bashrc:220 misc.bashrc:224
+#: misc.bashrc:226 misc.bashrc:230
 msgid "Router on"
 msgstr ""
 
-#: misc.bashrc:222
+#: misc.bashrc:228
 msgid "Router off"
 msgstr ""
 
-#: misc.bashrc:227
+#: misc.bashrc:233
 msgid "Your router must be restarted with factory settings!"
 msgstr ""
 
-#: misc.bashrc:265
+#: misc.bashrc:271
 msgid "Tip groups: %s."
 msgstr ""
 
-#: misc.bashrc:273
+#: misc.bashrc:279
 msgid "No tips group %s found."
 msgstr ""
 
-#: misc.bashrc:419
+#: misc.bashrc:425
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 
@@ -821,134 +821,142 @@ msgid "Run tcpdump in a given network interface"
 msgstr ""
 
 #: network.bashrc:28
-msgid "Backup configuration of one or more extreme switchs"
+msgid "Connect a Telnet server"
 msgstr ""
 
 #: network.bashrc:29
+msgid "Backup configuration of one or more extreme switchs"
+msgstr ""
+
+#: network.bashrc:30
 msgid "List all VLANs in given eXtreme switch"
 msgstr ""
 
-#: network.bashrc:68
+#: network.bashrc:69
 msgid "Path for network (hosts and groups) files."
 msgstr ""
 
-#: network.bashrc:69
+#: network.bashrc:70
 msgid "Server port. Default: %s."
 msgstr ""
 
-#: network.bashrc:101
+#: network.bashrc:102
 msgid "Bauds possible:"
 msgstr ""
 
-#: network.bashrc:126
+#: network.bashrc:127
 msgid "You need to give a string to test if it is an IP address."
 msgstr ""
 
-#: network.bashrc:167
+#: network.bashrc:168
 msgid "%s is unkown or unavailable."
 msgstr ""
 
-#: network.bashrc:170
+#: network.bashrc:171
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:183
+#: network.bashrc:184
 msgid "Trying to connect %s (%s) with iperf."
 msgstr ""
 
-#: network.bashrc:186
+#: network.bashrc:187
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
-#: network.bashrc:239
+#: network.bashrc:240
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:246
+#: network.bashrc:247
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:281
-msgid "Connecting via SSH."
+#: network.bashrc:303 network.bashrc:347
+msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:286
+#: network.bashrc:309
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:292
+#: network.bashrc:316
 msgid "Trying connect using AES192"
 msgstr ""
 
-#: network.bashrc:298
+#: network.bashrc:321
 msgid "Trying connect with various options"
 msgstr ""
 
-#: network.bashrc:304
+#: network.bashrc:329
 msgid "It works."
 msgstr ""
 
-#: network.bashrc:306
+#: network.bashrc:331
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:340
+#: network.bashrc:334
+msgid "SSH not available. Trying to connect via Telnet."
+msgstr ""
+
+#: network.bashrc:383
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:345
+#: network.bashrc:388
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:354
+#: network.bashrc:397
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:359
+#: network.bashrc:402
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:457
+#: network.bashrc:500
 msgid "trying %s"
 msgstr ""
 
-#: network.bashrc:465
+#: network.bashrc:508
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:477
+#: network.bashrc:520
 msgid "group"
 msgstr ""
 
-#: network.bashrc:480
+#: network.bashrc:523
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:482
+#: network.bashrc:525
 msgid "Available groups"
 msgstr ""
 
-#: network.bashrc:511
+#: network.bashrc:554
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:525
+#: network.bashrc:568
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:533
+#: network.bashrc:576
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:581
+#: network.bashrc:624
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:592
+#: network.bashrc:635
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:616
+#: network.bashrc:659
 msgid "Doing backup of %s to %s"
 msgstr ""
 
