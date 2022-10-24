@@ -107,7 +107,13 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       else
         OUF=`basename "$INF" .pdf`-opt.pdf
       fi
-    	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$OUF $INF
+    	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH \
+        -dPrinted=false -dSubsetFonts=true -dCompressFonts=true -dEmbedAllFonts=true -dDetectDuplicateImages=true \
+        -dColorImageDownsampleType=/Bicubic -dColorImageResolution=300 -dGrayImageDownsampleType=/Bicubic \
+        -dGrayImageResolution=300 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=300 \
+        -dDownsampleColorImages=true -sProcessColorModel=DeviceRGB -sColorConversionStrategy=RGB \
+        -sColorConversionStrategyForImages=RGB -dConvertCMYKImagesToRGB=true \
+        -sOutputFile=$OUF $INF
     else
       printf "$(_1text "Usage: %s.")\n" "1pdfopt <PDF-input> <PDF-output optional>"
     fi
