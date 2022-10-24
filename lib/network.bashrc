@@ -331,8 +331,21 @@ _1pretelnet() {
         printf "$(_1text "Cannot connect with %s using SSH.")\n" $1
       fi
     else
-      _1text "SSH not available. Trying to connect via Telnet."
-      1telnet $onlyip
+      if 1ports "$onlyip" 23 > /dev/null
+      then
+        _1text "SSH not available. Trying to connect via Telnet."
+        1telnet $onlyip
+      else
+        if 1ports "$onlyip" 443 > /dev/null
+        then
+          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "https" "$onlyip"
+        elif 1ports "$onlyip" 80 > /dev/null
+        then
+          printf "$(_1text "Telnet not available. You can access this IP in your browser: %s://%s.")\n" "http" "$onlyip"
+        else
+          printf "$(_1text "Cannot connect %s.")\n" "$onlyip"
+        fi
+      fi
     fi
   fi
 }
