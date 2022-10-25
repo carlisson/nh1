@@ -104,6 +104,7 @@ _nh1canva.thelp() {
     fi
     
     cat "$_1CANVALOCAL/$1.svg" | tr '\n' ' ' | sed "s/\(.*\)1canva-$_LANG-ini\(.*\)1canva-$_LANG-end\(.*\)/\2/"
+    echo
 }
 
 # @description List all installed templates

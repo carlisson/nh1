@@ -187,3 +187,4 @@
 1.0n9  2022-10-24: 1token created
 1.0n10 2022-10-24: 1tokengen apply mask to circle crop input image
 1.0n11 2022-10-25: 1token: custom var NORG_TOKEN_SIZE
+1.0n12 2022-10-25: Minor fixes
