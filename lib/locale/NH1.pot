@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 11:27-0300\n"
+"POT-Creation-Date: 2022-10-25 12:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,47 +262,63 @@ msgstr ""
 msgid "Documentation available in %s."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:557
+#: /home/cgaldino/Sources/nh1/nh1:566
 msgid "Creating database file for %s."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:563
+#: /home/cgaldino/Sources/nh1/nh1:572
 msgid "Database %s exists."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:568
+#: /home/cgaldino/Sources/nh1/nh1:577
 msgid "Excluding database file for %s."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:574
+#: /home/cgaldino/Sources/nh1/nh1:583
 msgid "Database %s does not exist."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:581
+#: /home/cgaldino/Sources/nh1/nh1:616
+msgid "Variable %s not found in database %s."
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:620
+msgid "Database %s not found."
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:639
 msgid "Internal databases:%s."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:583
+#: /home/cgaldino/Sources/nh1/nh1:641 /home/cgaldino/Sources/nh1/nh1:658
 msgid "Usage: "
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:584
+#: /home/cgaldino/Sources/nh1/nh1:642
 msgid "list all databases."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:585 /home/cgaldino/Sources/nh1/nh1:586
+#: /home/cgaldino/Sources/nh1/nh1:643 /home/cgaldino/Sources/nh1/nh1:644
 msgid "name"
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:585
+#: /home/cgaldino/Sources/nh1/nh1:643
 msgid "creates a new database."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:586
+#: /home/cgaldino/Sources/nh1/nh1:644
 msgid "removes the database."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:618
+#: /home/cgaldino/Sources/nh1/nh1:659
+msgid "database name"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:659
+msgid "variable name"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:692
 msgid "You need run: source %s."
 msgstr ""
 

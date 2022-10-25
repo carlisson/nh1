@@ -190,3 +190,5 @@
 1.0n12 2022-10-25: Minor fixes
 1.0n13 2022-10-25: 1db (not working yet) - simple key/value storage
 1.0n14 2022-10-25: _1db to internal usage
+1.0n15 2022-10-25: _1db.get and 1dbget created
+
