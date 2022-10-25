@@ -194,3 +194,4 @@
 1.0n16 2022-10-25: _1db.set and 1dbset created
 1.0n17 2022-10-25: _1customvar eases custom vars loading, using _1db.get
 1.0n18 2022-10-25: 1dbshow shows variables and values for given db
+1.0n19 2022-10-25: 1dbshow - fixing _ bug in var names
