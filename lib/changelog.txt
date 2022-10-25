@@ -186,3 +186,4 @@
 1.0n8  2022-10-24: 1ssh improved with _nh1network.smartssh, using nmap
 1.0n9  2022-10-24: 1token created
 1.0n10 2022-10-24: 1tokengen apply mask to circle crop input image
+1.0n11 2022-10-25: 1token: custom var NORG_TOKEN_SIZE

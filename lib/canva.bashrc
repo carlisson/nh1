@@ -46,11 +46,16 @@ _nh1canva.customvars() {
     then
         _1CANVALOCAL="$NORG_CANVA_DIR"
     fi
+    if [[ $NORG_TOKEN_SIZE ]]
+    then
+        _1TOKENSIZE=$((NORG_TOKEN_SIZE*1))
+    fi
 }
 
 # @description Information about custom vars
 _nh1canva.info() {
     _1menuitem W NORG_CANVA_DIR "$(_1text "Path for 1canva and 1token internal templates.")"
+    _1menuitem W NORG_TOKEN_SIZE "$(_1text "Size for 1token images (it will be generated as squares sizexsize).")"
 }
 
 # Alias-like
