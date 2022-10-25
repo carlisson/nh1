@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n16
+_1VERSION=1.0n17
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -266,26 +266,35 @@ _nh1init() {
 	_1modrun "_nh1-=-.init"
 }
 
+# @description Load custom var from config
+# @arg $1 string Custom var name
+# @arg $2 string Internal var name
+# @arg $3 string Type. string or number. Default: string.
+_1customvar() {
+	local CVVAL
+	CVVAL=$(_1db.get "$_1UDATA" "conf" "nh1" "$1")
+	if [ $? -eq 0 ]
+	then
+		if [ $# -gt 2 ]
+		then
+			if [ "$3" = "number" ]
+			then
+				eval "$2=\$(($CVVAL*1))"
+				return 0
+			fi
+		fi
+		eval "$2=\"$CVVAL\""
+		return 0
+	fi
+}
+
 # @description Apply custom variables to internals
 # @see 1info
 _nh1customvars() {
 	if [ -f "$_1UDATA/nh1.conf" ]
 	then
-		source "$_1UDATA/nh1.conf"
-		if [[ $NORG_VERBOSE ]]
-		then
-			if [ "$NORG_VERBOSE" = "1" ]
-			then
-				_1VERBOSE=1
-			else
-				_1VERBOSE=0
-			fi
-			unset NORG_VERBOSE
-		fi
-		if [[ $NORG_DB_DIR ]]
-		then
-			_1DBDIR=$_NORG_DB_DIR
-		fi
+		_1customvar NORG_VERBOSE _1VERBOSE number
+		_1customvar NORG_DB_DIR _1DBDIR
 	fi
 
 	_1modrun "_nh1-=-.customvars"
@@ -337,7 +346,7 @@ _nh1customvars() {
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
 	unset -f _nh1customvars 1info _1modrun 1verbose _1menuitem _1verb
-	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set
+	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set _1customvar
 }
 
 # @description Menu for NH1.

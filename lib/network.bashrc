@@ -56,14 +56,8 @@ _nh1network.init() {
 
 # @description Load variables defined by user
 _nh1network.customvars() {
-  if [[ $NORG_NETWORK_DIR ]]
-    then
-        _1NETLOCAL="$NORG_NETWORK_DIR"
-    fi
-  if [[ $NORG_IPERF_PORT ]]
-    then
-        _1IPERFPORT="$NORG_IPERF_PORT"
-    fi
+  _1customvar NORG_NETWORK_DIR _1NETLOCAL
+  _1customvar NORG_IPERF_PORT _1IPERFPORT
 }
 
 # @description Information about custom vars

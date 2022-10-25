@@ -42,14 +42,8 @@ _nh1canva.complete() {
 
 # @description Load variables defined by user
 _nh1canva.customvars() {
-    if [[ $NORG_CANVA_DIR ]]
-    then
-        _1CANVALOCAL="$NORG_CANVA_DIR"
-    fi
-    if [[ $NORG_TOKEN_SIZE ]]
-    then
-        _1TOKENSIZE=$((NORG_TOKEN_SIZE*1))
-    fi
+    _1customvar NORG_CANVA_DIR _1CANVALOCAL
+    _1customvar NORG_TOKEN_SIZE _1TOKENSIZE number
 }
 
 # @description Information about custom vars

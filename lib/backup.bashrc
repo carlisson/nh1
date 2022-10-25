@@ -43,18 +43,9 @@ _nh1backup.complete() {
 
 # @description Load variables defined by user
 _nh1backup.customvars() {
-    if [[ $NORG_BACKUP_DIR ]]
-    then
-        _1BACKDIR="$NORG_BACKUP_DIR"
-    fi
-    if [[ $NORG_BACKUP_MAX ]]
-    then
-        _1BACKMAX="$NORG_BACKUP_MAX"
-    fi
-    if [[ $NORG_BACKUP_GROUP ]]
-    then
-        _1BACKGRP="$NORG_BACKUP_GROUP"
-    fi
+    _1customvar NORG_BACKUP_DIR _1BACKDIR
+    _1customvar NORG_BACKUP_MAX _1BACKMAX
+    _1customvar NORG_BACKUP_GROUP _1BACKGRP
 }
 
 # @description Initializing NH1 Backup

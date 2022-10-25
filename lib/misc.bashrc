@@ -48,14 +48,8 @@ _nh1misc.complete() {
 
 # @description Load variables defined by user
 _nh1misc.customvars() {
-  if [[ $NORG_POMODORO_MINS ]]
-    then
-        _1MISCPOMOMIN="$NORG_POMODORO_MINS"
-    fi
-  if [[ $NORG_TIPS_DIR ]]
-    then
-        _1MISCTIPS="$NORG_TIPS_DIR"
-    fi
+  _1customvar NORG_POMODORO_MINS _1MISCPOMOMIN number
+  _1customvar NORG_TIPS_DIR _1MISCTIPS
 }
 
 # @description Information about custom vars

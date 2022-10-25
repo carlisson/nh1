@@ -111,16 +111,7 @@ _nh1app.init() {
 
 # @description Apply custom vars
 _nh1app.customvars() {
-    if [[ $NORG_APP_RETAINS ]]
-	then
-		if [ "$NORG_APP_RETAINS" = "1" ]
-		then
-				_1APPRETAINS=1
-		else
-				_1APPRETAINS=0
-			fi
-			unset NORG_APP_RETAINS
-	fi
+    _1customvar NORG_APP_RETAINS _1APPRETAINS number
 }
 
 # @description Information about custom vars
