@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n12
+_1VERSION=1.0n13
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -33,6 +33,7 @@ else
 	_1LIB="$_1DIR/lib"
 	_1DOC="$_1DIR/doc"
 fi
+_1DBDIR="$_1UDATA/database"
 
 # Gettext configure
 source gettext.sh
@@ -260,6 +261,7 @@ _nh1complete() {
 # @description Initial functions, configuring and creating dirs
 _nh1init() {
 	mkdir -p "$_1UDATA"
+	mkdir -p "$_1DBDIR"
 
 	_1modrun "_nh1-=-.init"
 }
@@ -279,6 +281,10 @@ _nh1customvars() {
 				_1VERBOSE=0
 			fi
 			unset NORG_VERBOSE
+		fi
+		if [[ $NORG_DB_DIR ]]
+		then
+			_1DBDIR=$_NORG_DB_DIR
 		fi
 	fi
 
@@ -331,7 +337,7 @@ _nh1customvars() {
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
 	unset -f _nh1customvars 1info _1modrun 1verbose _1menuitem _1verb
-	unset -f 1builddoc
+	unset -f 1builddoc 1db 1dbget 1dbset
 }
 
 # @description Menu for NH1.
@@ -352,6 +358,9 @@ _nh1customvars() {
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1builddoc "$(_1text "Build documentation files for NH1")" shdoc
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
+		_1menuitem X 1db "$(_1text "List, create or delete a internal key-value DB.")"
+		_1menuitem X 1dbget "$(_1text "Get a value from a DB variable.")"
+		_1menuitem X 1dbset "$(_1text "Set in DB a value for a variable.")"
 		_1menuitem W 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
 		_1menuitem W 1translate "$(_1text "Create and apply translation for NH1.")"
@@ -504,6 +513,7 @@ _nh1customvars() {
 	_OLDMC=$_1MENUCOL
 	_1MENUCOL=25
 
+	_1menuitem W NORG_DB_DIR "$(_1text "Path to internal key-value databases")"
 	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode (1 or 0). Default: 0")"
 	
 	_1modrun "_nh1-=-.info"
@@ -531,6 +541,50 @@ _nh1customvars() {
 		_1modrun "echo \"* [-=- module](-=-.md)\" >> \"$_1DOC/readme.md\""
 		printf "$(_1text "Documentation available in %s.")\n" "$_1DOC"
 	fi
+}
+
+# @description List or manage a internal key-value database
+# @arg $1 string Command: new or del (optional).
+# @arg $2 string Database name (optional)
+# @exitcode 0 Ok
+# @exitcode 1 File exists
+# @exitcode 2 File not exists
+1db() {
+	case $# in
+		2)
+			if [ "$1" = "new" ]
+			then
+				_1verb "$(printf "$(_1text "Creating database file for %s.")\n" "$2")"					
+				if [ ! -f "$_1DBDIR/$2.1db" ]
+				then
+					touch "$_1DBDIR/$2.1db"
+					return 0
+				else
+					printf "$(_1text "Database %s exists.")\n" "$2"
+					return 1
+				fi
+			elif [ "$1" = "del" ]
+			then
+				_1verb "$(printf "$(_1text "Excluding database file for %s.")\n" "$2")"					
+				if [ -f "$_1DBDIR/$2.1db" ]
+				then
+					rm "$_1DBDIR/$2.1db"
+					return 0
+				else
+					printf "$(_1text "Database %s does not exist.")\n" "$2"
+					return 1
+				fi
+			fi
+			;;
+	esac
+
+	printf "$(_1text "Internal databases:%s.")\n" "$(_1list "$_1DBDIR" "1db")"
+	echo "---"
+	_1text "Usage: "
+	printf "1db - %s\n" "$(_1text "list all databases.")"
+	printf "1db new [%s] - %s\n" "$(_1text "name")" "$(_1text "creates a new database.")"
+	printf "1db del [%s] - %s\n" "$(_1text "name")" "$(_1text "removes the database.")"
+	return 0
 }
 
 # @section Main Section
