@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 12:23-0300\n"
+"POT-Creation-Date: 2022-10-25 12:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,47 +278,52 @@ msgstr ""
 msgid "Database %s does not exist."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:616
+#: /home/cgaldino/Sources/nh1/nh1:620
 msgid "Variable %s not found in database %s."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:620
+#: /home/cgaldino/Sources/nh1/nh1:624 /home/cgaldino/Sources/nh1/nh1:657
 msgid "Database %s not found."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:639
+#: /home/cgaldino/Sources/nh1/nh1:676
 msgid "Internal databases:%s."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:641 /home/cgaldino/Sources/nh1/nh1:658
+#: /home/cgaldino/Sources/nh1/nh1:678 /home/cgaldino/Sources/nh1/nh1:695
+#: /home/cgaldino/Sources/nh1/nh1:715
 msgid "Usage: "
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:642
+#: /home/cgaldino/Sources/nh1/nh1:679
 msgid "list all databases."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:643 /home/cgaldino/Sources/nh1/nh1:644
+#: /home/cgaldino/Sources/nh1/nh1:680 /home/cgaldino/Sources/nh1/nh1:681
 msgid "name"
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:643
+#: /home/cgaldino/Sources/nh1/nh1:680
 msgid "creates a new database."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:644
+#: /home/cgaldino/Sources/nh1/nh1:681
 msgid "removes the database."
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:659
+#: /home/cgaldino/Sources/nh1/nh1:696 /home/cgaldino/Sources/nh1/nh1:716
 msgid "database name"
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:659
+#: /home/cgaldino/Sources/nh1/nh1:696 /home/cgaldino/Sources/nh1/nh1:716
 msgid "variable name"
 msgstr ""
 
-#: /home/cgaldino/Sources/nh1/nh1:692
+#: /home/cgaldino/Sources/nh1/nh1:716
+msgid "variable value"
+msgstr ""
+
+#: /home/cgaldino/Sources/nh1/nh1:749
 msgid "You need run: source %s."
 msgstr ""
 

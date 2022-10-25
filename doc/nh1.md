@@ -34,6 +34,12 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 * [1translate](#1translate)
 * [1info](#1info)
 * [1builddoc](#1builddoc)
+* [_1db](#_1db)
+* [_1db.get](#_1dbget)
+* [_1db.set](#_1dbset)
+* [1db](#1db)
+* [1dbget](#1dbget)
+* [1dbset](#1dbset)
 
 ### 1tint
 
@@ -214,4 +220,93 @@ Information about user variables
 ### 1builddoc
 
 Build documentation
+
+### _1db
+
+List or manage a internal key-value database
+
+#### Arguments
+
+* **$1** (string): Path for database
+* **$2** (string): File extension
+* **$3** (string): Command: new or del.
+* **$4** (string): Database name
+
+#### Exit codes
+
+* **0**: Ok
+* **1**: File exists
+* **2**: File not exists
+* **3**: Wrong usage
+
+### _1db.get
+
+Get value for some saved variable
+
+#### Arguments
+
+* **$1** (string): Path for database
+* **$2** (string): File extension
+* **$3** (string): Database name
+* **$4** (string): Variable name
+* **$5** (string): Silent mode (optional)
+
+#### Exit codes
+
+* **0**: Ok
+* **1**: Var not found
+* **2**: File not found
+* **3**: Wrong usage
+
+### _1db.set
+
+Set value for a variable
+
+#### Arguments
+
+* **$1** (string): Path for database
+* **$2** (string): File extension
+* **$3** (string): Database name
+* **$4** (string): Variable name
+* **$5** (string): Value
+
+#### Exit codes
+
+* **0**: Ok
+* **1**: File not found
+* **2**: Wrong usage
+
+### 1db
+
+List or manage a internal key-value database
+
+#### Arguments
+
+* **$1** (string): Command: new or del (optional).
+* **$2** (string): Database name (optional)
+
+#### Exit codes
+
+* **0**: Ok
+* **1**: File exists
+* **2**: File not exists
+
+### 1dbget
+
+Get a value from internal key-valeu database
+
+#### Arguments
+
+* **$1** (string): Database name
+* **$2** (string): Variable name
+
+### 1dbset
+
+Set a value from internal key-valeu database
+
+#### Arguments
+
+* **$1** (string): Database name
+* **$2** (string): Variable name
+* **$3** (string): Variable value
 

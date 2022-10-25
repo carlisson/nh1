@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n15
+_1VERSION=1.0n16
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -337,7 +337,7 @@ _nh1customvars() {
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
 	unset -f _nh1customvars 1info _1modrun 1verbose _1menuitem _1verb
-	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get
+	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set
 }
 
 # @description Menu for NH1.
@@ -593,6 +593,7 @@ _1db() {
 # @arg $2 string File extension
 # @arg $3 string Database name
 # @arg $4 string Variable name
+# @arg $5 string Silent mode (optional)
 # @exitcode 0 Ok
 # @exitcode 1 Var not found
 # @exitcode 2 File not found
@@ -603,14 +604,17 @@ _1db.get() {
 	DBEXT="$2"
 	DBNAME="$3"
 	VARNAME="$4"
-	if [ $# -eq 4 ]
+	if [ $# -ge 4 ]
 	then
 		if [ -f "$DBPATH/$DBNAME.$DBEXT" ]
 		then
 			LIN=$(grep "^$VARNAME=" "$DBPATH/$DBNAME.$DBEXT")
 			if [ $? -eq 0 ]
 			then
-				echo "$LIN" | sed "s/$VARNAME=\(.*\)/\1/"
+				if [ $# -eq 4 ]
+				then
+					echo "$LIN" | sed "s/$VARNAME=\(.*\)/\1/"
+				fi
 				return 0
 			else
 				_1verb "$(printf "$(_1text "Variable %s not found in database %s.")\n" "$VARNAME" "$DBNAME")"
@@ -622,6 +626,39 @@ _1db.get() {
 		fi
 	fi
 	return 3
+}
+
+# @description Set value for a variable
+# @arg $1 string Path for database
+# @arg $2 string File extension
+# @arg $3 string Database name
+# @arg $4 string Variable name
+# @arg $5 string Value
+# @exitcode 0 Ok
+# @exitcode 1 File not found
+# @exitcode 2 Wrong usage
+_1db.set() {
+	local DBPATH DBEXT DBNAME VARNAME VARVALUE LIN AUX
+	DBPATH="$1"
+	DBEXT="$2"
+	DBNAME="$3"
+	VARNAME="$4"
+	VARVALUE="$5"
+	AUX="$(mktemp -u)"
+	if [ $# -ge 4 ]
+	then
+		if [ -f "$DBPATH/$DBNAME.$DBEXT" ]
+		then
+			grep -v "^$VARNAME=" "$DBPATH/$DBNAME.$DBEXT" > "$AUX"
+			mv "$AUX" "$DBPATH/$DBNAME.$DBEXT"
+			echo "$VARNAME=$VARVALUE" >> "$DBPATH/$DBNAME.$DBEXT"
+			return 0
+		else
+			_1verb "$(printf "$(_1text "Database %s not found.")\n" "$DBNAME")"
+			return 1
+		fi
+	fi
+	return 2
 }
 
 # @description List or manage a internal key-value database
@@ -657,6 +694,26 @@ _1db.get() {
 	else
 		_1text "Usage: "
 		printf "1dbget [%s] [%s]\n" "$(_1text "database name")" "$(_1text "variable name")"
+		return 0
+	fi
+}
+
+# @description Set a value from internal key-valeu database
+# @arg $1 string Database name
+# @arg $2 string Variable name
+# @arg $3 string Variable value
+1dbset() {
+	local DBNAME VARNAME
+	DBNAME="$1"
+	VARNAME="$2"
+	if [ $# -ge 3 ]
+	then
+		shift 2
+		_1db.set "$_1DBDIR" "1db" "$DBNAME" "$VARNAME" "$*"
+		return $?
+	else
+		_1text "Usage: "
+		printf "1dbset [%s] [%s] [%s]\n" "$(_1text "database name")" "$(_1text "variable name")" "$(_1text "variable value")"
 		return 0
 	fi
 }

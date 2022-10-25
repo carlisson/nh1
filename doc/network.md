@@ -23,7 +23,13 @@ Generate partial menu (for Network functions)
 * [1tcpdump](#1tcpdump)
 * [1ison](#1ison)
 * [_1pressh](#_1pressh)
+* [_1pretelnet](#_1pretelnet)
+* [_nh1network.nossh](#_nh1networknossh)
+* [_nh1network.smartssh](#_nh1networksmartssh)
+* [_nh1network.ssh](#_nh1networkssh)
+* [_nh1network.simplessh](#_nh1networksimplessh)
 * [1ssh](#1ssh)
+* [1telnet](#1telnet)
 * [1ports](#1ports)
 * [1allhosts](#1allhosts)
 * [1mynet](#1mynet)
@@ -176,7 +182,51 @@ Internal function, pre-1ssh
 
 * [1ssh](#1ssh)
 
-### 1ssh
+### _1pretelnet
+
+Internal function, pre-1telnet
+
+#### Arguments
+
+* **$1** (string): server or user@server
+
+#### Output on stdout
+
+* arguments for use with telnet
+
+#### See also
+
+* [1telnet](#1telnet)
+
+### _nh1network.nossh
+
+What to do when SSH port is closed
+
+#### Arguments
+
+* **$1** (string): IP
+
+### _nh1network.smartssh
+
+SSH discovery using nmap
+
+#### Arguments
+
+* **$1** (string): name or IP, or usr@IP
+* **$2** (string): Additional options for ssh
+
+### _nh1network.ssh
+
+Connetc SSH server with specified protocol
+
+#### Arguments
+
+* **$1** (string): name or IP, or usr@IP
+* **$2** (Host-key): algorithm
+* **$3** (Cipher): algorithm
+* **$4** (string): Additional options for ssh
+
+### _nh1network.simplessh
 
 Access with SSH server (including extreme switchs)
 
@@ -184,6 +234,25 @@ Access with SSH server (including extreme switchs)
 
 * **$1** (string): name or IP, or usr@IP
 * **$2** (string): Additional options for ssh
+
+### 1ssh
+
+Try to use smart ssh. If it don't works, use simplessh
+
+#### Arguments
+
+* **$1** (string): name or IP
+* **$1** (string): name or IP, or usr@IP
+* **$2** (string): Additional options for ssh
+
+### 1telnet
+
+Access with telnet server
+
+#### Arguments
+
+* **$1** (string): name or IP, or usr@IP
+* **$2** (string): Additional options for telnet
 
 ### 1ports
 

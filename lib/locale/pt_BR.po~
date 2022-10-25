@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 11:27-0300\n"
+"POT-Creation-Date: 2022-10-25 12:23-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -271,47 +271,63 @@ msgstr "arquivos de módulo"
 msgid "Documentation available in %s."
 msgstr "Documentação está disponível em %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:557
+#: /home/cgaldino/Sources/nh1/nh1:566
 msgid "Creating database file for %s."
 msgstr "Gerando arquivo de banco para %s"
 
-#: /home/cgaldino/Sources/nh1/nh1:563
+#: /home/cgaldino/Sources/nh1/nh1:572
 msgid "Database %s exists."
 msgstr "Banco %s existe."
 
-#: /home/cgaldino/Sources/nh1/nh1:568
+#: /home/cgaldino/Sources/nh1/nh1:577
 msgid "Excluding database file for %s."
 msgstr "Excluindo arquivo de banco para %s."
 
-#: /home/cgaldino/Sources/nh1/nh1:574
+#: /home/cgaldino/Sources/nh1/nh1:583
 msgid "Database %s does not exist."
 msgstr "Banco %s não existe."
 
-#: /home/cgaldino/Sources/nh1/nh1:581
+#: /home/cgaldino/Sources/nh1/nh1:616
+msgid "Variable %s not found in database %s."
+msgstr "Variável %s não encontrada no banco %s."
+
+#: /home/cgaldino/Sources/nh1/nh1:620
+msgid "Database %s not found."
+msgstr "Banco %s não encontrado."
+
+#: /home/cgaldino/Sources/nh1/nh1:639
 msgid "Internal databases:%s."
 msgstr "Bancos internos:%s."
 
-#: /home/cgaldino/Sources/nh1/nh1:583
+#: /home/cgaldino/Sources/nh1/nh1:641 /home/cgaldino/Sources/nh1/nh1:658
 msgid "Usage: "
 msgstr "Uso: "
 
-#: /home/cgaldino/Sources/nh1/nh1:584
+#: /home/cgaldino/Sources/nh1/nh1:642
 msgid "list all databases."
 msgstr "Lista todos os bancos disponíveis"
 
-#: /home/cgaldino/Sources/nh1/nh1:585 /home/cgaldino/Sources/nh1/nh1:586
+#: /home/cgaldino/Sources/nh1/nh1:643 /home/cgaldino/Sources/nh1/nh1:644
 msgid "name"
 msgstr "nome"
 
-#: /home/cgaldino/Sources/nh1/nh1:585
+#: /home/cgaldino/Sources/nh1/nh1:643
 msgid "creates a new database."
 msgstr "cria um novo banco."
 
-#: /home/cgaldino/Sources/nh1/nh1:586
+#: /home/cgaldino/Sources/nh1/nh1:644
 msgid "removes the database."
 msgstr "remove o banco."
 
-#: /home/cgaldino/Sources/nh1/nh1:618
+#: /home/cgaldino/Sources/nh1/nh1:659
+msgid "database name"
+msgstr "nome do banco"
+
+#: /home/cgaldino/Sources/nh1/nh1:659
+msgid "variable name"
+msgstr "nome da variável"
+
+#: /home/cgaldino/Sources/nh1/nh1:692
 msgid "You need run: source %s."
 msgstr "Você precisa rodar: source %s."
 
