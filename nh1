@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n17
+_1VERSION=1.0n18
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -347,6 +347,7 @@ _nh1customvars() {
 	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
 	unset -f _nh1customvars 1info _1modrun 1verbose _1menuitem _1verb
 	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set _1customvar
+	unset -f _nh1info.customizable _1db.show 1dbshow
 }
 
 # @description Menu for NH1.
@@ -370,6 +371,7 @@ _nh1customvars() {
 		_1menuitem X 1db "$(_1text "List, create or delete a internal key-value DB.")"
 		_1menuitem X 1dbget "$(_1text "Get a value from a DB variable.")"
 		_1menuitem X 1dbset "$(_1text "Set in DB a value for a variable.")"
+		_1menuitem X 1dbshow "$(_1text "List all variables in a DB.")"
 		_1menuitem W 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
 		_1menuitem W 1translate "$(_1text "Create and apply translation for NH1.")"
@@ -514,7 +516,7 @@ _nh1customvars() {
 }
 
 # @description Information about user variables
-1info() {
+_nh1info.customizable() {
 	local _OLDMC
 	echo "_______ $(_1text "Custom variables") _______"
 	printf "$(_1text "You can configure custom variables for NH1. Edit %s to define it.")\n" "$_1UDATA/nh1.conf"
@@ -529,6 +531,22 @@ _nh1customvars() {
 
 	_1MENUCOL=$_OLDMC
 }
+
+# @description General information
+# @arg $1 string Type of information. Default: all
+1info() {
+	case "$1" in
+		customizable)
+			_nh1info.customizable
+			return 0
+			;;
+		*)
+			printf "$(_1verb "Unknown option: %s.")\n" "$1"
+			;;
+	esac
+	_nh1info.customizable
+}
+
 
 # @description Build documentation
 1builddoc() {
@@ -670,6 +688,33 @@ _1db.set() {
 	return 2
 }
 
+# @description List all variables in a DB
+# @arg $1 string Path for database
+# @arg $2 string File extension
+# @arg $3 string Database name
+# @exitcode 0 Ok
+# @exitcode 1 File not found
+# @exitcode 2 Wrong usage
+_1db.show() {
+	local DBPATH DBEXT DBNAME AUXVAR AUXVAL LINE OLDMC
+	DBPATH="$1"
+	DBEXT="$2"
+	DBNAME="$3"
+	_1verb "$(printf "$(_1text "Listing content for %s database.")\n" "$DBNAME")"
+	SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+	OLDMC=$_1MENUCOL
+	_1MENUCOL=10
+    for LINE in $(sort "$DBPATH/$DBNAME.$DBEXT")
+	do
+		AUXVAR=$(echo "$LINE" | sed 's/\([a-zA-Z0-0]*\)=\(.*\)/\1/')
+		AUXVAL=$(echo "$LINE" | sed 's/\([a-zA-Z0-0]*\)=\(.*\)/\2/')
+		_1menuitem W $AUXVAR "$AUXVAL"
+	done
+	_1MENUCOL=$OLDMC
+    IFS=$SAVEIFS	
+}
+
 # @description List or manage a internal key-value database
 # @arg $1 string Command: new or del (optional).
 # @arg $2 string Database name (optional)
@@ -724,6 +769,18 @@ _1db.set() {
 		_1text "Usage: "
 		printf "1dbset [%s] [%s] [%s]\n" "$(_1text "database name")" "$(_1text "variable name")" "$(_1text "variable value")"
 		return 0
+	fi
+}
+
+# @description Shows all variables for a database
+# @arg $1 string Database filename
+1dbshow() {
+	if [ $# -eq 1 ]
+	then
+		_1db.show "$_1DBDIR" "1db" "$1"
+	else
+		_1text "Usage: "
+		printf "1dbshow [%s]\n" "$(_1text "database name")"
 	fi
 }
 
