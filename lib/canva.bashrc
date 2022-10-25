@@ -188,22 +188,23 @@ _nh1canva.thelp() {
 # @arg $2 string output file (.jpg, .png or other)
 # @arg $3 string input file to apply token template
 1tokengen() {
-    local template filein fileout tempi tempib
+    local template filein fileout temp half hminor
     case $# in
         3)
             template="$1"
             filein="$2"
             fileout="$3"
-            tempt="$(mktemp -u).png"
-            tempi="$(mktemp -u).png"
+            temp="$(mktemp -u)"
+            half=$((_1TOKENSIZE/2))
+            hminor=$((half-30))            
 
-            convert "$_1CANVALOCAL/$template.png" -resize "$_1TOKENSIZE"x"$_1TOKENSIZE" "$tempt"
-            convert "$filein" "$tempi"
-            mogrify -resize "$_1TOKENSIZE"x"$_1TOKENSIZE"^ -gravity Center \
-                -extent "$_1TOKENSIZE"x"$_1TOKENSIZE" "$tempi"
-            convert "$tempi" "$tempt" -flip -background none -mosaic -flip "$fileout"
-            rm $tempt
-            rm $tempi
+            convert "$_1CANVALOCAL/$template.png" -resize "$_1TOKENSIZE"x"$_1TOKENSIZE" "$temp.t.png"
+            convert -size "$_1TOKENSIZE"x"$_1TOKENSIZE" xc: -draw "circle $half,$half $hminor,5" -negate "$temp.m.png"
+            
+            convert "$filein" -resize "$_1TOKENSIZE"x"$_1TOKENSIZE" "$temp.x.png"
+            convert "$temp.x.png" "$temp.m.png" -alpha off -compose CopyOpacity -composite "$temp.i.png"
+            convert "$temp.i.png" "$temp.t.png" -flip -background none -mosaic -flip "$fileout"
+            rm $temp.?.png
             ;;
         *)
             _1text "Usages:"
