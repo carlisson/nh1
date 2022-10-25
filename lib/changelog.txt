@@ -184,3 +184,4 @@
 1.0n6  2022-10-24: 1ssh improved, offering web access if not else works
 1.0n7  2022-10-24: 1ssh improved
 1.0n8  2022-10-24: 1ssh improved with _nh1network.smartssh, using nmap
+1.0n9  2022-10-24: 1token created

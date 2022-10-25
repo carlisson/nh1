@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-24 14:09-0300\n"
+"POT-Creation-Date: 2022-10-24 14:10-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -892,23 +892,22 @@ msgid "%s not found"
 msgstr "%s não encontrado."
 
 #: network.bashrc:305
-msgid "SSH not available. Trying to connect via Telnet."
-msgstr "SSH não disponível. Tentando conectar via Telnet."
+#, fuzzy
+msgid "SSH is not available. Trying to connect via Telnet."
+msgstr "SSH não está disponível. Tentando conectar via Telnet."
 
 #: network.bashrc:310 network.bashrc:313
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
-msgstr ""
+msgstr "Telnet não está disponível. Você pode acessar este IP pelo seu navegador: %s://%s."
 
 #: network.bashrc:315
-#, fuzzy
 msgid "Cannot connect %s."
-msgstr "Não consegui conectar com %s usando SSH."
+msgstr "Não consegui conectar com %s."
 
 #: network.bashrc:385
-#, fuzzy
 msgid "Trying to connect using cipher %s and host-key %s"
-msgstr "Tentando conectar em modo simples"
+msgstr "Tentando conectar usando cipher %s e host-key %s"
 
 #: network.bashrc:397 network.bashrc:455
 msgid "Connecting via %s."
@@ -1173,9 +1172,3 @@ msgstr "Shell poderoso com suporte a Python"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
-
-#~ msgid "Trying connect using AES192"
-#~ msgstr "Tentando conectar usando AES192"
-
-#~ msgid "Trying connect with various options"
-#~ msgstr "Tentando conectar com várias opções"
