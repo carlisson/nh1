@@ -189,3 +189,4 @@
 1.0n11 2022-10-25: 1token: custom var NORG_TOKEN_SIZE
 1.0n12 2022-10-25: Minor fixes
 1.0n13 2022-10-25: 1db (not working yet) - simple key/value storage
+1.0n14 2022-10-25: _1db to internal usage
