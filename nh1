@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n20
+_1VERSION=1.0n21
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -49,7 +49,6 @@ _1MENUCOL=13
 _1VERBOSE=0 # 0 - disabled; 1 - enabled
 
 # @description Set text color in shell
-#
 # @example
 #    echo "test: $(1tint 6 "Hello World")"
 #
@@ -64,6 +63,7 @@ _1VERBOSE=0 # 0 - disabled; 1 - enabled
 	case "$#" in
 		0)
 			_1text "You need to put a string and a color number (optional)"
+			echo
 			1tint 0 "0 $(_1text black)"; echo
 			1tint 1 "1 $(_1text red)"; echo
 			1tint 2 "2 $(_1text green)"; echo
@@ -86,6 +86,47 @@ _1VERBOSE=0 # 0 - disabled; 1 - enabled
 	esac
 
 	tput setaf $COLOR
+	echo -n $MSG
+	tput sgr0
+
+	return 0
+}
+
+# @description Set text background color in shell
+# @arg $1 int The color number (optional)
+# @arg $2 string Text to color
+#
+# @exitcode 0 If successful.
+# @exitcode 1 If an empty string passed.
+1tintb() {
+	local COLOR MSG
+
+	case "$#" in
+		0)
+			_1text "You need to put a string and a color number (optional)"
+			echo
+			1tintb 0 "0 $(_1text black)"; echo
+			1tintb 1 "1 $(_1text red)"; echo
+			1tintb 2 "2 $(_1text green)"; echo
+			1tintb 3 "3 $(_1text yellow)"; echo
+			1tintb 4 "4 $(_1text blue)"; echo
+			1tintb 5 "5 $(_1text magenta)"; echo
+			1tintb 6 "6 $(_1text cyan)"; echo
+			1tintb 7 "7 $(_1text white)"; echo
+			return 1
+			;;
+		1) # param is text
+			COLOR=$_1COLOR
+			MSG=$1
+			;;
+		*) # every param after first is text
+			COLOR=$1
+			shift  
+			MSG=$*
+			;;
+	esac
+
+	tput setab $COLOR
 	echo -n $MSG
 	tput sgr0
 
@@ -192,13 +233,17 @@ _1menuitem() {
 # @description Print menu header
 # @arg $1 string Title for menu
 _1menuheader() {
-	echo "___ $* ___"
+	echo -n "       "
+	1tint $_1COLOR ".: $* :."
+	echo
 }
 
 # @description Print a tip in user menu
 # @arg $1 string Tip or details
 _1menutip() {
-	echo "--- $*"
+	echo -n "       "
+	1tint $_1COLOR ".."
+	echo " $*"
 }
 
 # @description Generic complete function, finding formats
@@ -386,6 +431,7 @@ _nh1customvars() {
 		_1menuitem X 1dbshow "$(_1text "List all variables in a DB.")"
 		_1menuitem W 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
+		_1menuitem W 1tintb "$(_1text "Write a string with background color")"
 		_1menuitem W 1translate "$(_1text "Create and apply translation for NH1.")"
 		_1menuitem W 1update "$(_1text "Update your NH1, using git")" git
 		_1menuitem W 1verbose "$(_1text "Enable/disable verbose mode")"
