@@ -200,3 +200,4 @@
 1.0n22 2022-10-26: 1info improved (shows custom vars avilable and in use)
 1.0n23 2022-10-26: 1backup now stores id:path
 1.0n24 2022-10-26: 1appxadd created (apt and dnf)
+1.0n25 2022-10-26: 1timer saves custom timers

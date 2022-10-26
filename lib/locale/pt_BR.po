@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-26 12:49-0300\n"
+"POT-Creation-Date: 2022-10-26 13:11-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -212,7 +212,7 @@ msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
 #: /home/bardo/sources/nh1/nh1:568 audio.bashrc:152 audio.bashrc:250
-#: backup.bashrc:193 canva.bashrc:234 canva.bashrc:259 misc.bashrc:112
+#: backup.bashrc:193 canva.bashrc:234 canva.bashrc:259 misc.bashrc:113
 #: rpg.bashrc:231 rpg.bashrc:246
 msgid "Usage: %s."
 msgstr "Uso: %s."
@@ -349,7 +349,7 @@ msgstr "nome da variável"
 msgid "variable value"
 msgstr "valor da variável"
 
-#: /home/bardo/sources/nh1/nh1:912
+#: /home/bardo/sources/nh1/nh1:919
 msgid "You need run: source %s."
 msgstr "Você precisa rodar: source %s."
 
@@ -506,7 +506,9 @@ msgstr "O pacote %s não foi encontrado em %s."
 
 #: app.bashrc:622
 msgid "Sorry. Package %s not found in known/installed package managers."
-msgstr "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes conhecidos/instalados."
+msgstr ""
+"Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
+"conhecidos/instalados."
 
 #: app.bashrc:632
 msgid "App %s installed with file %s"
@@ -828,67 +830,71 @@ msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:179
-msgid "finished"
-msgstr "concluído"
-
-#: misc.bashrc:181
+#: misc.bashrc:174
 msgid "Usage:"
 msgstr "Uso:"
 
-#: misc.bashrc:211
+#: misc.bashrc:177
+msgid "Available timers"
+msgstr "Temporizadores disponíveis"
+
+#: misc.bashrc:208
+msgid "finished"
+msgstr "concluído"
+
+#: misc.bashrc:237
 msgid "30-30-30 method for router reseting"
 msgstr "Método 30-30-30 para resetar um roteador"
 
-#: misc.bashrc:212
+#: misc.bashrc:238
 msgid "your router will lost all configuration"
 msgstr "seu roteador perderá toda a configuração"
 
-#: misc.bashrc:213
+#: misc.bashrc:239
 msgid "Turn on the router."
 msgstr "Ligue o roteador."
 
-#: misc.bashrc:214
+#: misc.bashrc:240
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr "Pressione e segure o botão reset. Espere 30 segundos."
 
-#: misc.bashrc:215
+#: misc.bashrc:241
 msgid "Turn off the router. Wait 30 seconds."
 msgstr "Desligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:216
+#: misc.bashrc:242
 msgid "Turn on the router. Wait 30 seconds."
 msgstr "Ligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:217
+#: misc.bashrc:243
 msgid "Release the button"
 msgstr "Solte o botão"
 
-#: misc.bashrc:218
+#: misc.bashrc:244
 msgid "Press ENTER when you are ready."
 msgstr "Pressione ENTER quando estiver pronto."
 
-#: misc.bashrc:220 misc.bashrc:224
+#: misc.bashrc:246 misc.bashrc:250
 msgid "Router on"
 msgstr "Roteador ligado"
 
-#: misc.bashrc:222
+#: misc.bashrc:248
 msgid "Router off"
 msgstr "Roteador desligado"
 
-#: misc.bashrc:227
+#: misc.bashrc:253
 msgid "Your router must be restarted with factory settings!"
 msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
 
-#: misc.bashrc:265
+#: misc.bashrc:291
 msgid "Tip groups: %s."
 msgstr "Grupos de dicas: %s."
 
-#: misc.bashrc:273
+#: misc.bashrc:299
 msgid "No tips group %s found."
 msgstr "Nenhum grupo de dica com o nome %s."
 
-#: misc.bashrc:419
+#: misc.bashrc:445
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "

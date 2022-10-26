@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n24
+_1VERSION=1.0n25
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -878,6 +878,13 @@ _1vardb.get() {
 # @arg $3 string Value
 _1vardb.set() {
 	_1db.set "$_1VARSDB" "vars" "$1" "$2" "$3"
+	return $?
+}
+
+# @description Shows all saved vars for db
+# @arg $1 string Database name
+_1vardb.show() {
+	_1db.show "$_1VARSDB" "vars" "$1"
 	return $?
 }
 

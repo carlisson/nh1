@@ -62,6 +62,7 @@ _nh1misc.info() {
 _nh1misc.init() {
   mkdir -p "$_1MISCLOCAL"
   mkdir -p "$_1MISCTIPS"
+  _1vardb.init "timer"
 }
 
 # @description Completion for functions with pdf input
@@ -126,32 +127,61 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @description Countdown timer
 # @arg $1 int color for timer (0 to 7)
 # @arg $2 string title for timer
-# @arg $3 int seconds
-# @arg $4 int minutes
-# @arg $5 int hours to countdown
+# @arg $3 int seconds (optional)
+# @arg $4 int minutes (optional)
+# @arg $5 int hours to countdown (optional)
 1timer() {
-  local HOURS MINUTES SECONDS TITLE COLOR CLOCK IH IM IS UNCLOCK IU
-  if [ $# -gt 4 ]
+  local HOURS MINUTES SECONDS TITLE COLOR CLOCK IH IM IS UNCLOCK IU AUX
+  AUX=""
+  if [ $# -eq 1 ]
   then
-    HOURS=$5
+    AUX=$(_1vardb.get timer "$1")
+    if [ $? -eq 0 ]
+    then
+      TITLE="$1"
+      COLOR=$(echo $AUX | sed 's/\(.*\) \(.*\):\(.*\):\(.*\)/\1/')
+      HOURS=$(echo $AUX | sed 's/\(.*\) \(.*\):\(.*\):\(.*\)/\2/')
+      MINUTES=$(echo $AUX | sed 's/\(.*\) \(.*\):\(.*\):\(.*\)/\3/')
+      SECONDS=$(echo $AUX | sed 's/\(.*\) \(.*\):\(.*\):\(.*\)/\4/')
+    else
+      AUX="usage"
+    fi
   else
-    HOURS=0
+    if [ $# -gt 4 ]
+    then
+      HOURS=$5
+    else
+      HOURS=0
+    fi
+    if [ $# -gt 3 ]
+    then
+      MINUTES=$4
+    else
+      MINUTES=0
+    fi
+    if [ $# -gt 2 ]
+    then
+      COLOR=$1
+      TITLE=$2
+      SECONDS=$3
+    else
+      AUX="usage"
+    fi
   fi
-  if [ $# -gt 3 ]
+
+  if [ "$AUX" = "usage" ]
   then
-    MINUTES=$4
+    _1text "Usage:"
+    echo "  1timer <COLOR> <TITLE> <SECONDS> <MINUTES> <HOURS>"
+    echo "  1timer <NAME>"
+    _1menuheader "$(_1text "Available timers")"
+    _1vardb.show timer
   else
-    MINUTES=0
-  fi
-  if [ $# -gt 2 ]
-  then
-    COLOR=$1
-    TITLE=$2
-    SECONDS=$3
     UNCLOCK=""
 
     1tint $COLOR "$TITLE"
 
+    _1vardb.set timer "$TITLE" "$COLOR $HOURS:$MINUTES:$SECONDS"
     for IH in $(seq -f "%02g" $HOURS -1 0)
     do
       for IM in $(seq -f "%02g" $MINUTES -1 0)
@@ -166,7 +196,6 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
             UNCLOCK="\b$UNCLOCK"
           done
           sleep 1
-          _1verb "Seconds: $CLOCK"
         done
         SECONDS=59
         IM="$(printf "%.0f" "$IM")" # forcing decimal syntax (not octal)
@@ -177,9 +206,6 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       IH=$((IH-1))        
     done
     echo -e "$UNCLOCK" "$(_1text "finished")"
-  else
-    _1text "Usage:"
-    echo "  1timer <COLOR> <TITLE> <SECONDS> <MINUTES> <HOURS>"
   fi
 }
 
