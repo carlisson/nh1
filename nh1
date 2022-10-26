@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n21
+_1VERSION=1.0n22
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -149,7 +149,7 @@ _1verb() {
 # @description Run it for all modules
 #
 # @arg $1 command Replace -=- by module name
-_1modrun() {
+_nh1.modrun() {
 	local _COMM _MOD _AUX _COUNT
 	_COMM="$1"
 	_COUNT=0
@@ -179,7 +179,7 @@ _1modrun() {
 }
 
 # IMPORT MODULES
-_1modrun "source \"$_1LIB/-=-.bashrc\""
+_nh1.modrun "source \"$_1LIB/-=-.bashrc\""
 
 # @description Print a line to build help menu
 # @arg $1 char Status of command (W, X, P or D: working, experimental, planning, deprecated)
@@ -309,18 +309,18 @@ _1sudo() {
 
 # @description Configure completion for main file and all modules.
 # @see _1compl
-_nh1complete() {
+_nh1.complete() {
 	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
 
-	_1modrun "_nh1-=-.complete"
+	_nh1.modrun "_nh1-=-.complete"
 }
 
 # @description Initial functions, configuring and creating dirs
-_nh1init() {
+_nh1.init() {
 	mkdir -p "$_1UDATA"
 	mkdir -p "$_1DBDIR"
 
-	_1modrun "_nh1-=-.init"
+	_nh1.modrun "_nh1-=-.init"
 }
 
 # @description Load custom var from config
@@ -347,14 +347,14 @@ _1customvar() {
 
 # @description Apply custom variables to internals
 # @see 1info
-_nh1customvars() {
+_nh1.customvars() {
 	if [ -f "$_1UDATA/nh1.conf" ]
 	then
 		_1customvar NORG_VERBOSE _1VERBOSE number
 		_1customvar NORG_DB_DIR _1DBDIR
 	fi
 
-	_1modrun "_nh1-=-.customvars"
+	_nh1.modrun "_nh1-=-.customvars"
 }
 
 # @description Check if a program exists. Finish NH1 if it do not exists.
@@ -395,16 +395,17 @@ _nh1customvars() {
 	_1COLOR=1
 	_1verb "$(_1text "Destroying all variables...")"
 
-	_1modrun "_nh1-=-.clean"
+	_nh1.modrun "_nh1-=-.clean"
 
 	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE _1PCOLOR _1XCOLOR
 	unset _1WCOLOR _1DCOLOR _1MENUCOL _1GDATA _1UDATA _1MODULES _1DOC
 	unalias _1text
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
-	unset -f 1clean 1help _1compl _1list 1translate _nh1complete _nh1init
-	unset -f _nh1customvars 1info _1modrun 1verbose _1menuitem _1verb
+	unset -f 1clean 1help _1compl _1list 1translate _nh1.complete _nh1.init
+	unset -f _nh1.customvars 1info _nh1.modrun 1verbose _1menuitem _1verb
 	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set _1customvar
 	unset -f _nh1info.customizable _1db.show 1dbshow _1menuheader _1menutip
+	unset -f _nh1info.customvars
 }
 
 # @description Menu for NH1.
@@ -419,7 +420,7 @@ _nh1customvars() {
     echo
 
 		# Load internal menus
-		_1modrun _nh1-=-.menu
+		_nh1.modrun _nh1-=-.menu
 		
 		_1menuheader "$(_1text "Main")"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
@@ -576,7 +577,7 @@ _nh1customvars() {
 # @description Information about user variables
 _nh1info.customizable() {
 	local _OLDMC
-	echo "_______ $(_1text "Custom variables") _______"
+	_1menuheader "$(_1text "Custom variables")"
 	printf "$(_1text "You can configure custom variables for NH1. Edit %s to define it.")\n" "$_1UDATA/nh1.conf"
 
 	_OLDMC=$_1MENUCOL
@@ -585,9 +586,16 @@ _nh1info.customizable() {
 	_1menuitem W NORG_DB_DIR "$(_1text "Path to internal key-value databases")"
 	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode (1 or 0). Default: 0")"
 	
-	_1modrun "_nh1-=-.info"
+	_nh1.modrun "_nh1-=-.info"
 
 	_1MENUCOL=$_OLDMC
+}
+
+# @description Shows user-defined variables
+_nh1info.customvars() {
+	_1menuheader "$(_1text "Custom variables (in use)")"
+
+	_1db.show "$_1UDATA" "conf" "nh1" 20
 }
 
 # @description General information
@@ -603,6 +611,7 @@ _nh1info.customizable() {
 			;;
 	esac
 	_nh1info.customizable
+	_nh1info.customvars
 }
 
 
@@ -615,7 +624,7 @@ _nh1info.customizable() {
     	_1verb "$(printf "$(_1text "Building documentation for nh1 %s...")" "$(_1text "main file")")"
     	shdoc < "$_1RC" > "$_1DOC/nh1.md"
 		_1verb "$(printf "$(_1text "Building documentation for nh1 %s...")" "$(_1text "module files")")"    	
-		_1modrun "shdoc < \"$_1LIB/-=-.bashrc\" > \"$_1DOC/-=-.md\""
+		_nh1.modrun "shdoc < \"$_1LIB/-=-.bashrc\" > \"$_1DOC/-=-.md\""
 		echo "# NH1 Documentation" > "$_INDEX"
 		echo >> "$_INDEX"
 		echo "Generated for NH1 $_1VERSION at $(date "+%Y-%m-%d")">> "$_INDEX"
@@ -623,7 +632,7 @@ _nh1info.customizable() {
 		echo "## Index">> "$_INDEX"
 		echo >> "$_INDEX"
 		echo "* [Main file](nh1.md)">> "$_INDEX"
-		_1modrun "echo \"* [-=- module](-=-.md)\" >> \"$_1DOC/readme.md\""
+		_nh1.modrun "echo \"* [-=- module](-=-.md)\" >> \"$_1DOC/readme.md\""
 		printf "$(_1text "Documentation available in %s.")\n" "$_1DOC"
 	fi
 }
@@ -750,6 +759,7 @@ _1db.set() {
 # @arg $1 string Path for database
 # @arg $2 string File extension
 # @arg $3 string Database name
+# @arg $4 int Size of variable column (optional. Default: 10)
 # @exitcode 0 Ok
 # @exitcode 1 File not found
 # @exitcode 2 Wrong usage
@@ -762,7 +772,12 @@ _1db.show() {
 	SAVEIFS=$IFS
     IFS=$(echo -en "\n\b")
 	OLDMC=$_1MENUCOL
-	_1MENUCOL=10
+	if [ $# -gt 3 ]
+	then
+		_1MENUCOL=$4
+	else
+		_1MENUCOL=10
+	fi
     for LINE in $(sort "$DBPATH/$DBNAME.$DBEXT")
 	do
 		AUXVAR=$(echo "$LINE" | sed 's/\([a-zA-Z0-9\-_\+]*\)=\(.*\)/\1/')
@@ -848,8 +863,8 @@ _1db.show() {
 # but do it in a sub-shell and catch the results.
 # If this script isn't sourced, that will raise an error.
 
-_nh1customvars
-_nh1init
+_nh1.customvars
+_nh1.init
 
 if [ $# -gt 0 ]
 then
@@ -859,7 +874,7 @@ then
 	unset _1RUN
 else
 
-	_nh1complete
+	_nh1.complete
 
 	if return >/dev/null 2>&1
 	then
