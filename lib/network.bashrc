@@ -14,6 +14,9 @@ _nh1network.menu() {
   _1menuitem X 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
   _1menuitem X 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
   _1menuitem W 1host "$(_1text "Return a valid ping-available IP for some host or domain name")"
+  _1menuitem X 1hostgroup "$(_1text "Lists all hosts in given group")"
+  _1menuitem X 1hostset "$(_1text "Create or update a host entry")"
+  _1menuitem X 1hostdel "$(_1text "Removes a host entry")"
   _1menuitem X 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
   _1menuitem X 1iperf "$(_1text "Run iperf connecting to a 1iperfd IP")" iperf
   _1menuitem X 1iperfd "$(_1text "Run iperfd, waiting for 1iperf connection")" iperf
@@ -40,12 +43,13 @@ _nh1network.clean() {
   unset -f 1xt-backup _nh1network.init _nh1network.customvars _nh1network.info
   unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
-  unset -f _nh1network.nossh
+  unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel
 }
 
 # @description Auto-completion
 _nh1network.complete() {
   complete -W "$(_1list $_1NETLOCAL "hosts")" 1areon
+  complete -W "$(_1list $_1NETLOCAL "hosts")" 1hostgroup
   complete -W "$(seq 1 13)" 1bauds
 }
 
@@ -139,9 +143,9 @@ _nh1network.info() {
       echo "$HNAM"
       return 0
     fi
-    if HLIN=$(cat $(find "$_1NETLOCAL/" -name "*.hosts") | grep "$HNAM ")
+    if HLIN=$(cat $(find "$_1NETLOCAL/" -name "*.hosts") | grep "$HNAM=")
     then
-      for HIP in ${HLIN/$HNAM/}
+      for HIP in ${HLIN/$HNAM=/}
       do
         if ping -c 1 "$HIP" > /dev/null
         then
@@ -165,6 +169,81 @@ _nh1network.info() {
     return 1
   else
     _1text "You need to put a machine name"
+  fi
+}
+
+# @description Lists all hosts in given group
+# @arg $1 string Command: list, new or del (optional. Default: list)
+# @arg $2 string Group name
+1hostgroup() {
+  local COMM GRP
+  case $# in
+    1)
+      COMM="list"
+      GRP="$1"
+      ;;
+    2)
+      COMM="$1"
+      GRP="$2"
+      ;;
+    *)
+      COMM="unknown"
+      ;;
+  esac
+
+  case $COMM in
+    list)
+      _1db.show "$_1NETLOCAL" "hosts" "$GRP"
+      return $?
+      ;;
+    new)
+      _1db "$_1NETLOCAL" "hosts" new "$GRP"
+      return $?
+      ;;
+    del)
+      _1db "$_1NETLOCAL" "hosts" del "$GRP"
+      return $?
+      ;;
+    *)
+      _1text "Usage:"
+      echo "1hostgroup [group-name]"
+      echo "1hostgroup (new|del) [group-name]"
+		  echo "$(_1text "Available groups"): "$(_1list "$_1NETLOCAL" "hosts")
+      ;;
+  esac
+}
+
+# @description Create or update a host entry
+# @arg $1 string Group name
+# @arg $2 string Host name
+# @arg $3 string Host IP or IPs
+1hostset() {
+  local GRP HNM
+  if [ $# -lt 3 ]
+  then
+    _1text "Usage:"
+    echo "1hostset <group> <name> [<ips>]"
+  else
+    GRP="$1"
+    HNM="$2"
+    shift 2
+    _1db.set "$_1NETLOCAL" "hosts" "$GRP" "$HNM" "$*"
+    return $?
+  fi
+}
+
+# @description Removes a host entry
+# @arg $1 string Group name
+# @arg $2 string Host name
+1hostdel() {
+  local GRP HNM
+  if [ $# -ne 2 ]
+  then
+    _1text "Usage:"
+    echo "1hostdel <group> <name>"
+  else
+    _1db.set "$_1NETLOCAL" "hosts" "$1" "$2"
+    return $?
   fi
 }
 
@@ -229,7 +308,7 @@ _nh1network.info() {
   else
     thehost=$(1host $1)
   fi
-	if ping -q -c 1 -w 1 "$thehost" &> /dev/null
+  if ping -q -c 1 -w 1 "$thehost" &> /dev/null
 	then
 		if [ $thename != "-q" ]
 		then
@@ -614,7 +693,7 @@ _nh1network.simplessh() {
 # @description Check status for every host in given .hosts
 # @arg $1 string set of hosts
 1areon() {
-    local FILE TOTAL HLIN HNAM OK
+    local FILE TOTAL HLIN HNAM OK AUX
     _nh1network.init
   	if [ $# -ne 1 ]
 	then
@@ -640,16 +719,17 @@ _nh1network.simplessh() {
 		for line in $(seq 1 $TOTAL)
 		do
 			HLIN=$(sed -n "$line"p < "$FILE")
-			HNAM=$(echo $HLIN | cut -f 1 -d " ")
+			HNAM=$(echo $HLIN | cut -f 1 -d "=")
 			OK=1
-			for HIP in ${HLIN/$HNAM/}
+			for HIP in ${HLIN/$HNAM=/}
 			do
-				if [ $OK -eq 1 ]
+        if [ $OK -eq 1 ]
 				then
-					1ison $HNAM $HIP
-					OK=0
+					AUX=$(1ison $HNAM $HIP)
+					OK=$?
 				fi
 			done
+      echo $AUX
 		done
 		return 0
 	else

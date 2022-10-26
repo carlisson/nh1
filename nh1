@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n25
+_1VERSION=1.0n26
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -746,7 +746,10 @@ _1db.set() {
 		then
 			grep -v "^$VARNAME=" "$DBPATH/$DBNAME.$DBEXT" > "$AUX"
 			mv "$AUX" "$DBPATH/$DBNAME.$DBEXT"
-			echo "$VARNAME=$VARVALUE" >> "$DBPATH/$DBNAME.$DBEXT"
+			if [ $# -gt 4 ]
+			then
+				echo "$VARNAME=$VARVALUE" >> "$DBPATH/$DBNAME.$DBEXT"
+			fi
 			return 0
 		else
 			_1verb "$(printf "$(_1text "Database %s not found.")\n" "$DBNAME")"
