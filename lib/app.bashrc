@@ -21,6 +21,7 @@ _nh1app.menu() {
   _1menuitem W 1app "$(_1text "List all available apps")"
   _1menuitem W 1appladd "$(_1text "Install or update an app locally")"
   _1menuitem W 1appgadd "$(_1text "Install or update an app globaly")"
+  _1menuitem W 1appxadd "$(_1text "Install or update a package (using OS)")"
   _1menuitem W 1applupd "$(_1text "Update all local apps")"
   _1menuitem W 1appgupd "$(_1text "Update all global apps")"
   _1menuitem W 1appxupd "$(_1text "Upgrade all packages(using OS)")"
@@ -42,7 +43,7 @@ _nh1app.clean() {
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
-  unset -f _nh1app.update
+  unset -f _nh1app.update 1appxadd
 }
 
 # Alias-like
@@ -575,6 +576,50 @@ _nh1app.where() {
         printf "$(_1text "Upgrading %s...")\n" flatpak
         _1sudo flatpak update
     fi
+}
+
+# @description Install program using system package manager
+# @arg $1 string Package name
+# @exitcode 0
+1appxadd() {
+    local _PKG
+
+    _PKG="$1"
+        
+    if _nh1app.where dnf > /dev/null
+    then
+        if $(dnf info "$_PKG" &>/dev/null )
+        then
+            _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
+            _1sudo dnf install "$_PKG"
+            return 0
+        elif $(dnf info "${_PKG^}" &>/dev/null )
+        then
+            _
+            _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
+            _1sudo dnf install "${_PKG^}"
+            return 0
+        else
+            printf "$(_1text "Package %s not found in %s.")\n" "$_PKG" "dnf"
+        fi
+    fi
+
+    if _nh1app.where apt > /dev/null
+    then
+        if $(apt show "$_PKG" &>/dev/null)
+        then
+            _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
+            _1sudo apt update
+            _1sudo apt install "$_PKG"
+            _1sudo apt clean
+            return 0
+        else
+            printf "$(_1text "Package %s not found in %s.")\n" "$_PKG" "apt"
+        fi
+    fi
+
+    # Pending: zypper pacman snap flatpak
+    printf "$(_1text "Sorry. Package %s not found in known/installed package managers.")\n" "$_PKG"
 }
 
 # @description Removes an installed app
