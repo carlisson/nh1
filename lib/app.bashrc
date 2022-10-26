@@ -588,15 +588,14 @@ _nh1app.where() {
         
     if _nh1app.where dnf > /dev/null
     then
-        if $(dnf info "$_PKG" &>/dev/null )
+        if $(dnf search -q "$_PKG" | grep -q "^$_PKG\.")
         then
             _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
             _1sudo dnf install "$_PKG"
             return 0
-        elif $(dnf info "${_PKG^}" &>/dev/null )
+        elif $(dnf search -q "${_PKG^}" | grep -q "^${_PKG^}\.")
         then
-            _
-            _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
+            _1verb "$(printf "$(_1text "Package %s found.")\n" "${_PKG^}")"
             _1sudo dnf install "${_PKG^}"
             return 0
         else
