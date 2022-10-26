@@ -8,7 +8,7 @@ _1MISCPOMOMIN=25
 
 # @description Generate partial menu
 _nh1misc.menu() {
-  echo "___ $(_1text "Miscelania") ___"
+  _1menuheader "$(_1text "Miscelania")"
   _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
   _1menuitem X 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
   _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl

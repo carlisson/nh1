@@ -8,7 +8,7 @@ _1IPERFPORT=2918
 
 # @description Generate partial menu (for Network functions)
 _nh1network.menu() {
-  echo "___ $(_1text Network) ___"
+  _1menuheader "$(_1text Network)"
   _1menuitem X 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
   _1menuitem X 1areon "$(_1text "Check status for every host in a internal .hosts")"
   _1menuitem X 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"

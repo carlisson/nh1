@@ -17,7 +17,7 @@ _1APPRETAINS=0
 
 # @description Generates partial menu
 _nh1app.menu() {
-  echo "___ $(_1text "Install App") ___"
+  _1menuheader "$(_1text "Install App")"
   _1menuitem W 1app "$(_1text "List all available apps")"
   _1menuitem W 1appladd "$(_1text "Install or update an app locally")"
   _1menuitem W 1appgadd "$(_1text "Install or update an app globaly")"

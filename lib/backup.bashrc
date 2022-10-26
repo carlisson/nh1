@@ -10,7 +10,7 @@ _1BACKGRP='m' # options: d,w,m,y,n
 
 # @description Generate partial menu
 _nh1backup.menu() {
-  echo "___ $(_1text "Backup tools") ___"
+  _1menuheader "$(_1text "Backup tools")"
   _1menuitem W 1backup "$(_1text "Make backup of a dir")"
   _1menuitem P 1unback "$(_1text "Restore a backup")"
   _1menuitem W 1backlist "$(_1text "List saved backups")"

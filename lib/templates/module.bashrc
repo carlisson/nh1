@@ -19,7 +19,8 @@ _1LOCALVAR=0
 
 # @description Generates partial menu
 _nh1module.menu() {
-  echo "___ Section Title ___"
+  _1menuheader "Section Title"
+  # _1menutip Optional complementar instruction
   # _1menuitem X command "Description"
 }
 
@@ -38,10 +39,7 @@ _nh1module.complete() {
 
 # @description Set global vars from custom vars (config file)
 _nh1module.customvars() {
-  if [[ $NORG_CUSTOM_VAR ]]
-    then
-        _1LOCALVAR="$NORG_CUSTOM_VAR"
-    fi
+  _1customvar NORG_CUSTOM_VAR _1LOCALVAR
 }
 
 # @description General information about variables and customizing

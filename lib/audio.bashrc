@@ -4,7 +4,7 @@
 
 # @description Generate partial menu (for audio functions)
 _nh1audio.menu() {
-  echo "___ $(_1text "Audio") ___"
+  _1menuheader "$(_1text "Audio")"
   _1menuitem W 1alarm "$(_1text "Play an audio alarm")" speaker-test
   _1menuitem W 1beat "$(_1text "Play a simple beat in given frequency")" speaker-test
   _1menuitem W 1genbigmp3 "$(_1text "Append various MP3 files in one single file")" ffmpeg

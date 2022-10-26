@@ -6,7 +6,7 @@ _1RPGDRAW="$_1UDATA/drawlists"
 
 # @description Generate partial menu (for RPG functions)
 _nh1rpg.menu() {
-  echo "___ $(_1text RPG) ___"
+  _1menuheader "$(_1text RPG)"
   _1menuitem W 1dice "$(_1text "Roll a single dice from N faces (default: 6)")"
   _1menuitem W 1roll "$(_1text "Roll dices with RPG formula: 2d10, 1d4+1...")"
   _1menuitem W 1d4 "$(_1text "Roll one d4 dice")"

@@ -9,8 +9,8 @@ _1TOKENSIZE=500
 
 # @description Generate partial menu
 _nh1canva.menu() {
-  echo "___ $(_1text "Canva Section") ___"
-  echo "--- $(_1text "Create images from SVG templates")"
+  _1menuheader "$(_1text "Canva Section")"
+  _1menutip "$(_1text "Create images from SVG templates")"
   _1menuitem W 1canva "$(_1text "List all templates or help for given template")"
   _1menuitem W 1canvagen "$(_1text "Generate image from template")" convert
   _1menuitem W 1canvaadd "$(_1text "Install or update a template")"
