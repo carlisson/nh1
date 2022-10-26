@@ -7,6 +7,7 @@
 _1BACKDIR="$HOME/Backup"
 _1BACKMAX=0
 _1BACKGRP='m' # options: d,w,m,y,n
+_1BACKDB="$_1UDATA/backup.vars"
 
 # @description Generate partial menu
 _nh1backup.menu() {
@@ -23,6 +24,7 @@ _nh1backup.clean() {
   unset -f _nh1backup.log _nh1backup.customvars 1backlist _nh1backup.names
   unset -f _nh1backup.info _1BACKGRP _nh1backup.bdir _nh1backup.clean
   unset -f _nh1backup.complete _nh1backup.menu _nh1backup.init
+  unset -f _nh1backup.getpath _nh1backup.setpath
 }
 
 # @description List backup names from saved backups
@@ -51,6 +53,7 @@ _nh1backup.customvars() {
 # @description Initializing NH1 Backup
 _nh1backup.init() {
 	mkdir -p "$_1BACKDIR"
+    _1vardb.init "backup"
 }
 
 # @description Returns right backup dir
@@ -95,6 +98,21 @@ _nh1backup.log() {
     echo "$_NOW: $*" >> $_L1
     echo "$_NOW: $*" >> $_L2
     echo "$_NOW: $*" >> $_L3
+}
+
+# @description Get path from backup database
+# @arg $1 string Name of backup
+_nh1backup.getpath() {
+    _1vardb.get "backup" "$1"
+    return $?
+}
+
+# @description Set path for backup database
+# @arg $1 string Name of backup
+# @arg $2 string Path for backup
+_nh1backup.setpath() {
+    _1vardb.set "backup" "$1" "$(realpath "$2")"
+    return $?
 }
 
 # @description Controls max number of files
@@ -152,98 +170,121 @@ _nh1backup.nextfile() {
 
 # @description Make backup of a directory
 # @arg $1 string Name (id) for backup
-# @arg $2 string Directory to backup
+# @arg $2 string Directory to backup (optional, if its not the first backup for this id)
+# @exitcode 0 It works
+# @exitcode 1 Unknown backup id
+# @exitcode 2 Compression error
+# @exitcode 3 No compression found
 1backup() {
     local _NAME _TARGET _DEST _FILE _COMPL _COUNT _OLD _MSG _LMSG
     _NAME="$1"
-    _TARGET="$2"
-    _MSG=$(_1text "Running %s for %s, saving in %s...")
-
-    _nh1backup.customvars
-
     if [ $# -eq 2 ]
     then
-        if 1check 7z
-        then        
-            _FILE=$(_nh1backup.nextfile "$_NAME" "7z")
-            _LMSG="$(printf "$_MSG" "7-zip" $_TARGET $_FILE)"
-            _1verb "$LMSG"
-            if 7z a "$_FILE" "$_TARGET"
-            then
-                _nh1backup.log "$LMSG"
-            else
-                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
-            fi
-        elif 1check zip
+        _TARGET="$2"
+    elif [ $# -eq 1 ]
+    then
+        _TARGET=$(_nh1backup.getpath "$_NAME")
+        if [ $? -gt 0 ]
         then
-            _FILE=$(_nh1backup.nextfile "$_NAME" "zip")
-            _LMSG="$(printf "$_MSG" "zip" $_TARGET $_FILE)"
-            _1verb "$LMSG"
-            if zip -r "$_FILE" "$_TARGET"
-            then
-                _nh1backup.log "$LMSG"
-            else
-                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
-            fi
-        elif 1check tar
-        then
-            if 1check xz
-            then
-                _FILE=$(_nh1backup.nextfile "$_NAME" "tar.xz")
-                _LMSG="$(printf "$_MSG" "$(_1text "tar with xz")" $_TARGET $_FILE)"
-                _1verb "$LMSG"
-                if tar -cJf "$_FILE" "$_TARGET"
-                then
-                    _nh1backup.log "$LMSG"
-                else
-                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
-                fi
-            elif 1check bzip2
-            then
-                _FILE=$(_nh1backup.nextfile "$_NAME" "tar.bz2")
-                _LMSG="$(printf "$_MSG" "$(_1text "tar with bzip2")" $_TARGET $_FILE)"
-                _1verb "$LMSG"
-                if tar -cjf "$_FILE" "$_TARGET"
-                then
-                    _nh1backup.log "$LMSG"
-                else
-                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
-                fi
-            elif 1check gzip
-            then
-                _FILE=$(_nh1backup.nextfile "$_NAME" "tar.gz")
-                _LMSG="$(printf "$_MSG" "$(_1text "tar with gzip")" $_TARGET $_FILE)"
-                _1verb "$LMSG"
-                if tar -czf "$_FILE" "$_TARGET"
-                then
-                    _nh1backup.log "$LMSG"
-                else
-                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
-                fi
-            else            
-                _1text "Running tar without compression! Install gzip, bzip2 or xz!"
-                _FILE=$(_nh1backup.nextfile "$_NAME" "tar")
-                _LMSG="$(printf "$_MSG" "$(_1text "tar without compression")" $_TARGET $_FILE)"
-                _1verb "$LMSG"
-                if tar -cf "$_FILE" "$_TARGET"
-                then
-                    _nh1backup.log "$LMSG"
-                else
-                    _nh1backup.log "$(_1text "ERROR") $LMSG $?"
-                fi
-            fi
-        else
-            _1text "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or xz)."
+            printf "$(_1text "Backup id %s not recognized.")\n" "$_NAME"
+            return 1
         fi
-
-        _nh1backup.maxcontrol "$_NAME"
-
     else
         printf "$(_1text "Usage: %s.")\n" "1backup <name> <directory>"
         printf "  - %s.\n" "$(_1text "Name: backup id")"
         printf "  - %s.\n" "$(_1text "Directory: target to backup")"
         printf "    %s.\n" "$(printf "(_1text "Backups are saved in %s")" $_1BACKDIR)"
+        return 0
     fi
+    _MSG=$(_1text "Running %s for %s, saving in %s...")
+
+    _nh1backup.customvars
+
+    if 1check 7z
+    then        
+        _FILE=$(_nh1backup.nextfile "$_NAME" "7z")
+        _LMSG="$(printf "$_MSG" "7-zip" $_TARGET $_FILE)"
+        _1verb "$LMSG"
+        if 7z a "$_FILE" "$_TARGET"
+        then
+            _nh1backup.log "$LMSG"                
+        else
+            _nh1backup.log "$(_1text "ERROR") $LMSG $?"
+            return 2
+        fi
+    elif 1check zip
+    then
+        _FILE=$(_nh1backup.nextfile "$_NAME" "zip")
+        _LMSG="$(printf "$_MSG" "zip" $_TARGET $_FILE)"
+        _1verb "$LMSG"
+        if zip -r "$_FILE" "$_TARGET"
+        then
+            _nh1backup.log "$LMSG"
+        else
+            _nh1backup.log "$(_1text "ERROR") $LMSG $?"
+            return 2
+        fi
+    elif 1check tar
+    then
+        if 1check xz
+        then
+            _FILE=$(_nh1backup.nextfile "$_NAME" "tar.xz")
+            _LMSG="$(printf "$_MSG" "$(_1text "tar with xz")" $_TARGET $_FILE)"
+            _1verb "$LMSG"
+            if tar -cJf "$_FILE" "$_TARGET"
+            then
+                _nh1backup.log "$LMSG"
+            else
+                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
+                return 2
+            fi
+        elif 1check bzip2
+        then
+            _FILE=$(_nh1backup.nextfile "$_NAME" "tar.bz2")
+            _LMSG="$(printf "$_MSG" "$(_1text "tar with bzip2")" $_TARGET $_FILE)"
+            _1verb "$LMSG"
+            if tar -cjf "$_FILE" "$_TARGET"
+            then
+                _nh1backup.log "$LMSG"
+            else
+                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
+                return 2
+            fi
+        elif 1check gzip
+        then
+            _FILE=$(_nh1backup.nextfile "$_NAME" "tar.gz")
+            _LMSG="$(printf "$_MSG" "$(_1text "tar with gzip")" $_TARGET $_FILE)"
+            _1verb "$LMSG"
+            if tar -czf "$_FILE" "$_TARGET"
+            then
+                _nh1backup.log "$LMSG"
+            else
+                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
+                return 2
+            fi
+        else            
+            _1text "Running tar without compression! Install gzip, bzip2 or xz!"
+            _FILE=$(_nh1backup.nextfile "$_NAME" "tar")
+            _LMSG="$(printf "$_MSG" "$(_1text "tar without compression")" $_TARGET $_FILE)"
+            _1verb "$LMSG"
+            if tar -cf "$_FILE" "$_TARGET"
+            then
+                _nh1backup.log "$LMSG"
+            else
+                _nh1backup.log "$(_1text "ERROR") $LMSG $?"
+                return 2
+            fi
+        fi
+    else
+        _1text "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or xz)."
+        return 3
+    fi
+
+    _nh1backup.maxcontrol "$_NAME"
+
+    _nh1backup.setpath "$_NAME" "$_TARGET"
+
+    return 0
 }
 
 # @description List all backups for one name (id)

@@ -12,13 +12,14 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n22
+_1VERSION=1.0n23
 
 _1MODULES=(app audio backup canva misc network rpg)
 
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1UDATA="$HOME/.norg"
+_1VARSDB="$_1UDATA"
 _1GDATA="/opt/norg"
 
 if [ "$_1DIR" = "/usr/bin" ]
@@ -405,7 +406,7 @@ _nh1.customvars() {
 	unset -f _nh1.customvars 1info _nh1.modrun 1verbose _1menuitem _1verb
 	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set _1customvar
 	unset -f _nh1info.customizable _1db.show 1dbshow _1menuheader _1menutip
-	unset -f _nh1info.customvars
+	unset -f _nh1info.customvars _1vardb.init _1vardb.get _1vardb.set
 }
 
 # @description Menu for NH1.
@@ -855,6 +856,29 @@ _1db.show() {
 		_1text "Usage: "
 		printf "1dbshow [%s]\n" "$(_1text "database name")"
 	fi
+}
+
+# @description initialize var database (internal)
+# @arg $1 string Database name
+_1vardb.init() {
+	touch "$_1VARSDB/$1.vars"
+}
+
+# @description returns value for internal var
+# @arg $1 string Database name
+# @arg $2 string Variable name
+_1vardb.get() {
+	_1db.get "$_1VARSDB" "vars" "$1" "$2"
+	return $?
+}
+
+# @description Sets a value for internal var
+# @arg $1 string Database name
+# @arg $2 string Variable name
+# @arg $3 string Value
+_1vardb.set() {
+	_1db.set "$_1VARSDB" "vars" "$1" "$2" "$3"
+	return $?
 }
 
 # @section Main Section

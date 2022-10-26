@@ -198,3 +198,4 @@
 1.0n20 2022-10-26: _1menuheader and _1menutip created
 1.0n21 2022-10-26: menu header improved
 1.0n22 2022-10-26: 1info improved (shows custom vars avilable and in use)
+1.0n23 2022-10-26: 1backup now stores id:path
