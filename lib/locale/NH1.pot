@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-26 13:52-0300\n"
+"POT-Creation-Date: 2022-10-27 15:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -485,19 +485,19 @@ msgstr ""
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:593 app.bashrc:599 app.bashrc:611
+#: app.bashrc:593 app.bashrc:598 app.bashrc:610
 msgid "Package %s found."
 msgstr ""
 
-#: app.bashrc:603 app.bashrc:617
+#: app.bashrc:602 app.bashrc:616
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:622
+#: app.bashrc:621
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:632
+#: app.bashrc:631
 msgid "App %s installed with file %s"
 msgstr ""
 
@@ -641,6 +641,10 @@ msgstr ""
 
 #: backup.bashrc:195
 msgid "Directory: target to backup"
+msgstr ""
+
+#: backup.bashrc:196
+msgid "Backups are saved in %s"
 msgstr ""
 
 #: backup.bashrc:199

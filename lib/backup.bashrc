@@ -193,7 +193,7 @@ _nh1backup.nextfile() {
         printf "$(_1text "Usage: %s.")\n" "1backup <name> <directory>"
         printf "  - %s.\n" "$(_1text "Name: backup id")"
         printf "  - %s.\n" "$(_1text "Directory: target to backup")"
-        printf "    %s.\n" "$(printf "(_1text "Backups are saved in %s")" $_1BACKDIR)"
+        printf "    %s.\n" "$(printf "$(_1text "Backups are saved in %s")" $_1BACKDIR)"
         return 0
     fi
     _MSG=$(_1text "Running %s for %s, saving in %s...")

@@ -203,3 +203,4 @@
 1.0n25 2022-10-26: 1timer saves custom timers
 1.0n26 2022-10-26: 1hostgroup, 1hostset and 1hostdel created
 1.0n27 2022-10-26: 1appxadd fixed for dnf packages
+1.0n28 2022-10-27: 1backup message fix
