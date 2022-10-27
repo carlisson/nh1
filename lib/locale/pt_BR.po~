@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-26 13:52-0300\n"
+"POT-Creation-Date: 2022-10-27 15:43-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -496,21 +496,21 @@ msgstr "Aplicativo desconhecido: %s."
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:593 app.bashrc:599 app.bashrc:611
+#: app.bashrc:593 app.bashrc:598 app.bashrc:610
 msgid "Package %s found."
 msgstr "O pacote %s foi encontrado."
 
-#: app.bashrc:603 app.bashrc:617
+#: app.bashrc:602 app.bashrc:616
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:622
+#: app.bashrc:621
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:632
+#: app.bashrc:631
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -658,6 +658,10 @@ msgstr "Nome: id do backup"
 #: backup.bashrc:195
 msgid "Directory: target to backup"
 msgstr "Diretório: alvo para o backup"
+
+#: backup.bashrc:196
+msgid "Backups are saved in %s"
+msgstr "Backups são salvos em %s"
 
 #: backup.bashrc:199
 msgid "Running %s for %s, saving in %s..."

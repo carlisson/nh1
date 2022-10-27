@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-27 15:43-0300\n"
+"POT-Creation-Date: 2022-10-27 17:35-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1021,7 +1021,7 @@ msgstr "%s desconhecido ou indisponível."
 msgid "You need to put a machine name"
 msgstr "Você precisa passar um nome de máquina"
 
-#: network.bashrc:211 network.bashrc:706
+#: network.bashrc:211 network.bashrc:707
 msgid "Available groups"
 msgstr "Grupos disponíveis"
 
@@ -1034,102 +1034,105 @@ msgid "You need to put a IP address where 1iperfd is running."
 msgstr "Você precisa passar um endereço IP onde 1iperfd esteja rodando."
 
 #: network.bashrc:315
+msgid "IP %s returned for machine %s."
+msgstr "IP %s respondeu (máquina %s)."
+
+#: network.bashrc:316
 msgid "%s is active"
 msgstr "%s está ativo"
 
-#: network.bashrc:322
+#: network.bashrc:323
 msgid "%s not found"
 msgstr "%s não encontrado."
 
-#: network.bashrc:378
-#, fuzzy
+#: network.bashrc:379
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr "SSH não está disponível. Tentando conectar via Telnet."
 
-#: network.bashrc:383 network.bashrc:386
+#: network.bashrc:384 network.bashrc:387
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 "Telnet não está disponível. Você pode acessar este IP pelo seu navegador: "
 "%s://%s."
 
-#: network.bashrc:388
+#: network.bashrc:389
 msgid "Cannot connect %s."
 msgstr "Não consegui conectar com %s."
 
-#: network.bashrc:458
+#: network.bashrc:459
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr "Tentando conectar usando cipher %s e host-key %s"
 
-#: network.bashrc:470 network.bashrc:528
+#: network.bashrc:471 network.bashrc:529
 msgid "Connecting via %s."
 msgstr "Conectando via %s."
 
-#: network.bashrc:478
+#: network.bashrc:479
 msgid "Trying connect in simple mode"
 msgstr "Tentando conectar em modo simples"
 
-#: network.bashrc:499
+#: network.bashrc:500
 msgid "It works."
 msgstr "Funcionou."
 
-#: network.bashrc:501
+#: network.bashrc:502
 msgid "Cannot connect with %s using SSH."
 msgstr "Não consegui conectar com %s usando SSH."
 
-#: network.bashrc:564
+#: network.bashrc:565
 msgid "%s is on"
 msgstr "%s está ligada"
 
-#: network.bashrc:569
+#: network.bashrc:570
 msgid "Host not found."
 msgstr "Host não encontrado."
 
-#: network.bashrc:578
+#: network.bashrc:579
 msgid "%s open"
 msgstr "%s aberta"
 
-#: network.bashrc:583
+#: network.bashrc:584
 msgid "%s refused"
 msgstr "%s recusada"
 
-#: network.bashrc:681
+#: network.bashrc:682
 msgid "trying %s"
 msgstr "tentando %s"
 
-#: network.bashrc:689
+#: network.bashrc:690
 msgid "%i hosts with port %i open."
 msgstr "%i hosts com porta %i aberta."
 
-#: network.bashrc:701
+#: network.bashrc:702
 msgid "group"
 msgstr ""
 
-#: network.bashrc:704
+#: network.bashrc:705
 msgid "every host in all groups"
 msgstr "todo host em todos os grupos"
 
-#: network.bashrc:736
+#: network.bashrc:737
 msgid "Unknown group of hosts."
 msgstr "Grupo de hosts desconhecido."
 
-#: network.bashrc:750
+#: network.bashrc:751
 msgid "You can use hostnames contained in .hosts"
 msgstr "Você pode usar hostnames contidos em .hosts"
 
-#: network.bashrc:758
+#: network.bashrc:759
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr "VLANs no Switch! Por favor, informe senha para %s."
 
-#: network.bashrc:806
+#: network.bashrc:807
 msgid "Serial program not found. Checked"
 msgstr "Programa serial não encontrado."
 
-#: network.bashrc:817
+#: network.bashrc:818
 msgid "No ttyUSB found."
 msgstr "Nenhuma porta ttyUSB foi encontrada."
 
-#: network.bashrc:841
+#: network.bashrc:842
 msgid "Doing backup of %s to %s"
 msgstr "Fazendo backup de %s para %s"
 

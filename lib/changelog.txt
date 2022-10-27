@@ -204,3 +204,4 @@
 1.0n26 2022-10-26: 1hostgroup, 1hostset and 1hostdel created
 1.0n27 2022-10-26: 1appxadd fixed for dnf packages
 1.0n28 2022-10-27: 1backup message fix
+1.0n29 2022-10-27: 1ison prints IP in verbose mode

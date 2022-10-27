@@ -312,6 +312,7 @@ _nh1network.info() {
 	then
 		if [ $thename != "-q" ]
 		then
+      _1verb "$(printf "$(_1text "IP %s returned for machine %s.")" "$thehost" "$thename")"
 			1tint 2 "$(printf "$(_1text "%s is active")" $thename)"
 			echo
 		fi

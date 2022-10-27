@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-27 15:43-0300\n"
+"POT-Creation-Date: 2022-10-27 17:35-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -998,7 +998,7 @@ msgstr ""
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:211 network.bashrc:706
+#: network.bashrc:211 network.bashrc:707
 msgid "Available groups"
 msgstr ""
 
@@ -1011,99 +1011,103 @@ msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
 #: network.bashrc:315
+msgid "IP %s returned for machine %s."
+msgstr ""
+
+#: network.bashrc:316
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:322
+#: network.bashrc:323
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:378
+#: network.bashrc:379
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr ""
 
-#: network.bashrc:383 network.bashrc:386
+#: network.bashrc:384 network.bashrc:387
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 
-#: network.bashrc:388
+#: network.bashrc:389
 msgid "Cannot connect %s."
 msgstr ""
 
-#: network.bashrc:458
+#: network.bashrc:459
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr ""
 
-#: network.bashrc:470 network.bashrc:528
+#: network.bashrc:471 network.bashrc:529
 msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:478
+#: network.bashrc:479
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:499
+#: network.bashrc:500
 msgid "It works."
 msgstr ""
 
-#: network.bashrc:501
+#: network.bashrc:502
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:564
+#: network.bashrc:565
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:569
+#: network.bashrc:570
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:578
+#: network.bashrc:579
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:583
+#: network.bashrc:584
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:681
+#: network.bashrc:682
 msgid "trying %s"
 msgstr ""
 
-#: network.bashrc:689
+#: network.bashrc:690
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:701
+#: network.bashrc:702
 msgid "group"
 msgstr ""
 
-#: network.bashrc:704
+#: network.bashrc:705
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:736
+#: network.bashrc:737
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:750
+#: network.bashrc:751
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:758
+#: network.bashrc:759
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:806
+#: network.bashrc:807
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:817
+#: network.bashrc:818
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:841
+#: network.bashrc:842
 msgid "Doing backup of %s to %s"
 msgstr ""
 
