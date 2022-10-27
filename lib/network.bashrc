@@ -17,6 +17,7 @@ _nh1network.menu() {
   _1menuitem X 1hostgroup "$(_1text "Lists all hosts in given group")"
   _1menuitem X 1hostset "$(_1text "Create or update a host entry")"
   _1menuitem X 1hostdel "$(_1text "Removes a host entry")"
+  _1menuitem X 1hostmig "$(_1text "Migrates a host to another group")"
   _1menuitem X 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
   _1menuitem X 1iperf "$(_1text "Run iperf connecting to a 1iperfd IP")" iperf
   _1menuitem X 1iperfd "$(_1text "Run iperfd, waiting for 1iperf connection")" iperf
@@ -43,7 +44,7 @@ _nh1network.clean() {
   unset -f 1xt-backup _nh1network.init _nh1network.customvars _nh1network.info
   unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
-  unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel
+  unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
 }
 
 # @description Auto-completion
@@ -245,6 +246,38 @@ _nh1network.info() {
     _1db.set "$_1NETLOCAL" "hosts" "$1" "$2"
     return $?
   fi
+}
+
+# @description Migrates a host to another group
+# @arg $1 string Actual group name
+# @arg $2 string Host name
+# @arg $3 string New group name
+# @exitcode 0 It works
+# @exitcode 1 Variable not found
+# @exitcode 2 Insertion fails
+1hostmig() {
+  local HVAL
+  if [ $# -eq 3 ]
+  then
+    HVAL=$(_1db.get "$_1NETLOCAL" "hosts" "$1" "$2")
+    if [ $? -eq 0 ]
+    then
+      1hostdel "$1" "$2"
+      1hostset "$3" "$2" "$HVAL"
+      if [ $? -gt 0 ]
+      then
+        1hostset "$1" "$2" "$HVAL"
+        return 2
+      fi
+    else
+      _1text "Host or group not found."
+      echo
+      return 1
+    fi
+  else
+    printf "$(_1text "Usage: %s.")\n" "1hostmig [group] [host] [new-group]"
+  fi
+  return 0
 }
 
 # @description Run iperf with a simple and functional configuration, connecting iperfd IP

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-27 17:35-0300\n"
+"POT-Creation-Date: 2022-10-27 19:41-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -213,7 +213,7 @@ msgstr "Gerando arquivo .mo para o idioma %s"
 
 #: /home/bardo/sources/nh1/nh1:568 audio.bashrc:152 audio.bashrc:250
 #: backup.bashrc:193 canva.bashrc:234 canva.bashrc:259 misc.bashrc:113
-#: rpg.bashrc:231 rpg.bashrc:246
+#: network.bashrc:278 rpg.bashrc:231 rpg.bashrc:246
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -834,7 +834,7 @@ msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:174 network.bashrc:208 network.bashrc:224 network.bashrc:242
+#: misc.bashrc:174 network.bashrc:209 network.bashrc:225 network.bashrc:243
 msgid "Usage:"
 msgstr "Uso:"
 
@@ -941,198 +941,206 @@ msgid "Removes a host entry"
 msgstr "Remove uma entrada de host"
 
 #: network.bashrc:20
+msgid "Migrates a host to another group"
+msgstr "Migra um host para outro grupo"
+
+#: network.bashrc:21
 msgid "Return HTTP status for given URL"
 msgstr "Retorna status HTTP para uma URL"
 
-#: network.bashrc:21
+#: network.bashrc:22
 msgid "Run iperf connecting to a 1iperfd IP"
 msgstr "Roda iperf conectando-se a um IP 1iperfd"
 
-#: network.bashrc:22
+#: network.bashrc:23
 msgid "Run iperfd, waiting for 1iperf connection"
 msgstr "Roda iperfd, aguardando uma conexão do 1iperf"
 
-#: network.bashrc:23
+#: network.bashrc:24
 msgid "Return if a given string is an IP address"
 msgstr "Returna se um texto é um endereço IP"
 
-#: network.bashrc:24
+#: network.bashrc:25
 msgid "Return if server is on. Params: (-q for quiet or name), IP"
 msgstr ""
 "Retorna se o servidor está ligado. Parâmetros: (-1 para quieto ou nome), IP"
 
-#: network.bashrc:25
+#: network.bashrc:26
 msgid "Return prefixes for a given vendor"
 msgstr "Retorna prefixos para um dado fabricante"
 
-#: network.bashrc:26
+#: network.bashrc:27
 msgid "Return all networks running on network interfaces"
 msgstr "Retorna todas as redes rodando nas interfaces de rede"
 
-#: network.bashrc:27
+#: network.bashrc:28
 msgid "Scan if given port(s) for a given host is/are open"
 msgstr "Busca se dada porta (ou portas) para certo host está/estão aberta(s)"
 
-#: network.bashrc:28
+#: network.bashrc:29
 msgid "Connect to a serial port"
 msgstr "Conecta a uma porta serial"
 
-#: network.bashrc:29
+#: network.bashrc:30
 msgid "Connect a SSH server (working with eXtreme)"
 msgstr "Conecta a um servidor SSH (funciona com eXtreme)"
 
-#: network.bashrc:30
+#: network.bashrc:31
 msgid "Run tcpdump in a given network interface"
 msgstr "Roda tcpdump em uma dada interface de rede"
 
-#: network.bashrc:31
+#: network.bashrc:32
 msgid "Connect a Telnet server"
 msgstr "Conecta a um servidor Telnet"
 
-#: network.bashrc:32
+#: network.bashrc:33
 msgid "Backup configuration of one or more extreme switchs"
 msgstr "Salva a configuração de um ou mais switch(s) eXtreme"
 
-#: network.bashrc:33
+#: network.bashrc:34
 msgid "List all VLANs in given eXtreme switch"
 msgstr "Lista todas as VLANs em um dado switch eXtreme"
 
-#: network.bashrc:69
+#: network.bashrc:70
 msgid "Path for network (hosts and groups) files."
 msgstr "Caminho para os arquivos de rede (hosts e grupos)."
 
-#: network.bashrc:70
+#: network.bashrc:71
 msgid "Server port. Default: %s."
 msgstr "Porta do servidor. Default: %s."
 
-#: network.bashrc:102
+#: network.bashrc:103
 msgid "Bauds possible:"
 msgstr "Bauds possíveis:"
 
-#: network.bashrc:127
+#: network.bashrc:128
 msgid "You need to give a string to test if it is an IP address."
 msgstr "Você precisa passar um texto para testar se ele é um endereço IP."
 
-#: network.bashrc:168
+#: network.bashrc:169
 msgid "%s is unkown or unavailable."
 msgstr "%s desconhecido ou indisponível."
 
-#: network.bashrc:171
+#: network.bashrc:172
 msgid "You need to put a machine name"
 msgstr "Você precisa passar um nome de máquina"
 
-#: network.bashrc:211 network.bashrc:707
+#: network.bashrc:212 network.bashrc:740
 msgid "Available groups"
 msgstr "Grupos disponíveis"
 
-#: network.bashrc:259
+#: network.bashrc:273
+msgid "Host or group not found."
+msgstr "Host ou grupo não encontrado."
+
+#: network.bashrc:292
 msgid "Trying to connect %s (%s) with iperf."
 msgstr "Tentando conectar %s (%s) com iperf."
 
-#: network.bashrc:262
+#: network.bashrc:295
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr "Você precisa passar um endereço IP onde 1iperfd esteja rodando."
 
-#: network.bashrc:315
+#: network.bashrc:348
 msgid "IP %s returned for machine %s."
 msgstr "IP %s respondeu (máquina %s)."
 
-#: network.bashrc:316
+#: network.bashrc:349
 msgid "%s is active"
 msgstr "%s está ativo"
 
-#: network.bashrc:323
+#: network.bashrc:356
 msgid "%s not found"
 msgstr "%s não encontrado."
 
-#: network.bashrc:379
+#: network.bashrc:412
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr "SSH não está disponível. Tentando conectar via Telnet."
 
-#: network.bashrc:384 network.bashrc:387
+#: network.bashrc:417 network.bashrc:420
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 "Telnet não está disponível. Você pode acessar este IP pelo seu navegador: "
 "%s://%s."
 
-#: network.bashrc:389
+#: network.bashrc:422
 msgid "Cannot connect %s."
 msgstr "Não consegui conectar com %s."
 
-#: network.bashrc:459
+#: network.bashrc:492
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr "Tentando conectar usando cipher %s e host-key %s"
 
-#: network.bashrc:471 network.bashrc:529
+#: network.bashrc:504 network.bashrc:562
 msgid "Connecting via %s."
 msgstr "Conectando via %s."
 
-#: network.bashrc:479
+#: network.bashrc:512
 msgid "Trying connect in simple mode"
 msgstr "Tentando conectar em modo simples"
 
-#: network.bashrc:500
+#: network.bashrc:533
 msgid "It works."
 msgstr "Funcionou."
 
-#: network.bashrc:502
+#: network.bashrc:535
 msgid "Cannot connect with %s using SSH."
 msgstr "Não consegui conectar com %s usando SSH."
 
-#: network.bashrc:565
+#: network.bashrc:598
 msgid "%s is on"
 msgstr "%s está ligada"
 
-#: network.bashrc:570
+#: network.bashrc:603
 msgid "Host not found."
 msgstr "Host não encontrado."
 
-#: network.bashrc:579
+#: network.bashrc:612
 msgid "%s open"
 msgstr "%s aberta"
 
-#: network.bashrc:584
+#: network.bashrc:617
 msgid "%s refused"
 msgstr "%s recusada"
 
-#: network.bashrc:682
+#: network.bashrc:715
 msgid "trying %s"
 msgstr "tentando %s"
 
-#: network.bashrc:690
+#: network.bashrc:723
 msgid "%i hosts with port %i open."
 msgstr "%i hosts com porta %i aberta."
 
-#: network.bashrc:702
+#: network.bashrc:735
 msgid "group"
 msgstr ""
 
-#: network.bashrc:705
+#: network.bashrc:738
 msgid "every host in all groups"
 msgstr "todo host em todos os grupos"
 
-#: network.bashrc:737
+#: network.bashrc:770
 msgid "Unknown group of hosts."
 msgstr "Grupo de hosts desconhecido."
 
-#: network.bashrc:751
+#: network.bashrc:784
 msgid "You can use hostnames contained in .hosts"
 msgstr "Você pode usar hostnames contidos em .hosts"
 
-#: network.bashrc:759
+#: network.bashrc:792
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr "VLANs no Switch! Por favor, informe senha para %s."
 
-#: network.bashrc:807
+#: network.bashrc:840
 msgid "Serial program not found. Checked"
 msgstr "Programa serial não encontrado."
 
-#: network.bashrc:818
+#: network.bashrc:851
 msgid "No ttyUSB found."
 msgstr "Nenhuma porta ttyUSB foi encontrada."
 
-#: network.bashrc:842
+#: network.bashrc:875
 msgid "Doing backup of %s to %s"
 msgstr "Fazendo backup de %s para %s"
 
