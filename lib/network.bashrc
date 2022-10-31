@@ -19,6 +19,7 @@ _nh1network.menu() {
   _1menuitem W 1hostdel "$(_1text "Removes a host entry")"
   _1menuitem W 1hostmig "$(_1text "Migrates a host to another group")"
   _1menuitem W 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
+  _1menuitem W 1interfaces "$(_1text "List network interfaces")" ip
   _1menuitem X 1iperf "$(_1text "Run iperf connecting to a 1iperfd IP")" iperf
   _1menuitem X 1iperfd "$(_1text "Run iperfd, waiting for 1iperf connection")" iperf
   _1menuitem W 1isip "$(_1text "Return if a given string is an IP address")"
@@ -46,6 +47,7 @@ _nh1network.clean() {
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complet.hostmig
+  unset -f 1interfaces
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -82,6 +84,7 @@ _nh1network.complete() {
   complete -W "$(_1list $_1NETLOCAL "hosts")" 1areon
   complete -W "$(_1list $_1NETLOCAL "hosts")" 1hostgroup
   complete -W "$(seq 1 13)" 1bauds
+  complete -W "$(1interfaces)" 1tcpdump
   complete -F _nh1network.complete.hostvar 1hostset 1hostdel
   complete -F _nh1network.complete.hostmig 1hostmig
 }
@@ -929,4 +932,9 @@ _nh1network.xt-backup() {
       done
     fi
   done
+}
+
+# @description List network interfaces, excluding loopback
+1interfaces() {
+    ip a | grep "^[[:digit:]]" | cut -d\: -f 2 | grep -v lo | xargs
 }
