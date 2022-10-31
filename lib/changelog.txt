@@ -207,3 +207,4 @@
 1.0n29 2022-10-27: 1ison prints IP in verbose mode
 1.0n30 2022-10-27: _1db.show bug fixed
 1.0n31 2022-10-27: 1hostmig migrates a host inter groups
+1.0n32 2022-10-31: _1text is now a function
