@@ -45,6 +45,36 @@ _nh1network.clean() {
   unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
+  unset -f _nh1network.complete.hostvar _nh1network.complet.hostmig
+}
+
+# @description Autocompletion for 1hostget and 1hostget
+_nh1network.complete.hostvar() {
+	local _ARG
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=($(_1list $_1NETLOCAL "hosts"))
+	elif [ "$COMP_CWORD" -eq 2 ]
+	then
+		_ARG=("${COMP_WORDS[1]}");
+		COMPREPLY=($(_1db.show "$_1NETLOCAL" "hosts" "$_ARG" "list"))
+  fi
+}
+
+# @description Autocompletion for 1hostmig
+_nh1network.complete.hostmig() {
+	local _ARG
+  	COMREPLY=()
+    case "$COMP_CWORD" in
+      1|3)
+    		COMPREPLY=($(_1list $_1NETLOCAL "hosts"))
+        ;;
+      2) 
+    		_ARG=("${COMP_WORDS[1]}");
+    		COMPREPLY=($(_1db.show "$_1NETLOCAL" "hosts" "$_ARG" "list"))
+        ;;
+	esac
 }
 
 # @description Auto-completion
@@ -52,6 +82,8 @@ _nh1network.complete() {
   complete -W "$(_1list $_1NETLOCAL "hosts")" 1areon
   complete -W "$(_1list $_1NETLOCAL "hosts")" 1hostgroup
   complete -W "$(seq 1 13)" 1bauds
+  complete -F _nh1network.complete.hostvar 1hostset 1hostdel
+  complete -F _nh1network.complete.hostmig 1hostmig
 }
 
 # @description Initial commands
