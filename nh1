@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n33
+_1VERSION=1.0n34
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -319,13 +319,14 @@ _1sudo() {
 _nh1.complete() {
 	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
     complete -F _nh1.complete.db 1db
+    complete -F _nh1.complete.dbget 1dbget
 
 	_nh1.modrun "_nh1-=-.complete"
 }
 
 # @description Autocompletion for 1db
 _nh1.complete.db() {
-	local _ARGS
+	local _ARG
   	COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
@@ -337,6 +338,20 @@ _nh1.complete.db() {
 		then
 			COMPREPLY=($(_1list $_1DBDIR "1db"))
 		fi
+    fi
+}
+
+# @description Autocompletion for 1dbget
+_nh1.complete.dbget() {
+	local _ARG
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=($(_1list $_1DBDIR "1db"))
+	elif [ "$COMP_CWORD" -eq 2 ]
+	then
+		_ARG=("${COMP_WORDS[1]}");
+		COMPREPLY=($(1dbshow "$_ARG" "list"))
     fi
 }
 
@@ -788,32 +803,50 @@ _1db.set() {
 # @arg $2 string File extension
 # @arg $3 string Database name
 # @arg $4 int Size of variable column (optional. Default: 10)
+# @arg $4 string If value is "list", it works lik _1list
 # @exitcode 0 Ok
 # @exitcode 1 File not found
 # @exitcode 2 Wrong usage
 _1db.show() {
-	local DBPATH DBEXT DBNAME AUXVAR AUXVAL LINE OLDMC
+	local DBPATH DBEXT DBNAME AUXVAR AUXVAL LINE OLDMC MODE
 	DBPATH="$1"
 	DBEXT="$2"
 	DBNAME="$3"
-	_1verb "$(printf "$(_1text "Listing content for %s database.")\n" "$DBNAME")"
-	SAVEIFS=$IFS
-    IFS=$(echo -en "\n\b")
 	OLDMC=$_1MENUCOL
+	MODE="show"
 	if [ $# -gt 3 ]
 	then
-		_1MENUCOL=$4
+		if [ "$4" = "list" ]
+		then
+			MODE="list"
+		else
+			_1MENUCOL=$4
+		fi
 	else
 		_1MENUCOL=10
+	fi
+	if [ "$MODE" = "show" ]
+	then
+		_1verb "$(printf "$(_1text "Listing content for %s database.")\n" "$DBNAME")"
+		SAVEIFS=$IFS
+	    IFS=$(echo -en "\n\b")
 	fi
     for LINE in $(sort "$DBPATH/$DBNAME.$DBEXT")
 	do
 		AUXVAR=$(echo "$LINE" | sed 's/\([a-zA-Z0-9\-_\+]*\)=\(.*\)/\1/')
-		AUXVAL=$(echo "$LINE" | sed 's/\([a-zA-Z0-9\-_\+]*\)=\(.*\)/\2/')
-		_1menuitem W $AUXVAR "$AUXVAL"
+		if [ "$MODE" = "show" ]
+		then
+			AUXVAL=$(echo "$LINE" | sed 's/\([a-zA-Z0-9\-_\+]*\)=\(.*\)/\2/')
+			_1menuitem W $AUXVAR "$AUXVAL"
+		else
+			echo -n "$AUXVAR "
+		fi
 	done
 	_1MENUCOL=$OLDMC
-    IFS=$SAVEIFS	
+	if [ "$MODE" = "show" ]
+	then
+    	IFS=$SAVEIFS	
+	fi
 }
 
 # @description List or manage a internal key-value database
@@ -875,10 +908,20 @@ _1db.show() {
 
 # @description Shows all variables for a database
 # @arg $1 string Database filename
+# @arg $2 string Mode: show or list. Default: show
 1dbshow() {
-	if [ $# -eq 1 ]
+	local _PLUS
+	_PLUS=""
+	if [ "$#" -eq 2 ]
 	then
-		_1db.show "$_1DBDIR" "1db" "$1"
+		if [ "$2" = "list" -o "$2" = "show" ]
+		then
+			_PLUS="$2"
+		fi
+	fi
+	if [ $# -gt 0 ]
+	then
+		_1db.show "$_1DBDIR" "1db" "$1" $_PLUS
 	else
 		_1text "Usage: "
 		printf "1dbshow [%s]\n" "$(_1text "database name")"
