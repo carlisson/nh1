@@ -10,13 +10,13 @@ _1MISCPOMOMIN=25
 _nh1misc.menu() {
   _1menuheader "$(_1text "Miscelania")"
   _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
-  _1menuitem X 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
+  _1menuitem W 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
   _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl
   _1menuitem W 1du "$(_1text "Disk usage")" du
-  _1menuitem X 1escape "$(_1text "Rename a file or dir, excluding special chars")"
+  _1menuitem W 1escape "$(_1text "Rename a file or dir, excluding special chars")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
-  _1menuitem X 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
-  _1menuitem X 1pdfopt "$(_1text "Compress a PDF file")" gs
+  _1menuitem W 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
+  _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
   _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
@@ -32,13 +32,16 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
+  unset -f _nh1misc.init
 }
 
 # @description Autocompletion
 _nh1misc.complete() {
   local _AUX
-  complete -F _nh1misc.complete.from_pdf 1pdfbkl _nh1misc.init
+  complete -F _nh1misc.complete.from_pdf 1pdfbkl
   complete -F _nh1misc.complete.from_pdf 1pdfopt
+  complete -W "$(_1vardb.show "timer" "list")" 1timer
+	complete -W "$(_1list $_1MISCTIPS "tips")" 1tip
   _AUX=$(_1list $_1MISCTIPS "tips")
   if [ -n "$_AUX" ]
   then

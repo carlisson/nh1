@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n35
+_1VERSION=1.0n36
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -460,7 +460,8 @@ _nh1.customvars() {
 	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set _1customvar
 	unset -f _nh1info.customizable _1db.show 1dbshow _1menuheader _1menutip
 	unset -f _nh1info.customvars _1vardb.init _1vardb.get _1vardb.set
-	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.comlete.dbshow
+	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.complete.dbshow
+	unset -f 1tintb _1vardb.show
 
 	# Keep isolated to prevent improper extraction
 	unset -f _1text 
@@ -484,10 +485,10 @@ _nh1.customvars() {
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1builddoc "$(_1text "Build documentation files for NH1")" shdoc
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
-		_1menuitem X 1db "$(_1text "List, create or delete a internal key-value DB.")"
-		_1menuitem X 1dbget "$(_1text "Get a value from a DB variable.")"
-		_1menuitem X 1dbset "$(_1text "Set in DB a value for a variable.")"
-		_1menuitem X 1dbshow "$(_1text "List all variables in a DB.")"
+		_1menuitem W 1db "$(_1text "List, create or delete a internal key-value DB.")"
+		_1menuitem W 1dbget "$(_1text "Get a value from a DB variable.")"
+		_1menuitem W 1dbset "$(_1text "Set in DB a value for a variable.")"
+		_1menuitem W 1dbshow "$(_1text "List all variables in a DB.")"
 		_1menuitem W 1info "$(_1text "List possible custom variables")"
 		_1menuitem W 1tint "$(_1text "Write a string in another color")"
 		_1menuitem W 1tintb "$(_1text "Write a string with background color")"
@@ -843,11 +844,11 @@ _1db.show() {
 	else
 		_1MENUCOL=10
 	fi
+	SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
 	if [ "$MODE" = "show" ]
 	then
 		_1verb "$(printf "$(_1text "Listing content for %s database.")\n" "$DBNAME")"
-		SAVEIFS=$IFS
-	    IFS=$(echo -en "\n\b")
 	fi
     for LINE in $(sort "$DBPATH/$DBNAME.$DBEXT")
 	do
@@ -861,10 +862,7 @@ _1db.show() {
 		fi
 	done
 	_1MENUCOL=$OLDMC
-	if [ "$MODE" = "show" ]
-	then
-    	IFS=$SAVEIFS	
-	fi
+   	IFS=$SAVEIFS	
 }
 
 # @description List or manage a internal key-value database
@@ -972,8 +970,18 @@ _1vardb.set() {
 
 # @description Shows all saved vars for db
 # @arg $1 string Database name
+# @arg $2 string Mode: list or show. Default: show
 _1vardb.show() {
-	_1db.show "$_1VARSDB" "vars" "$1"
+	local _PLUS
+	_PLUS=""
+	if [ "$#" -eq 2 ]
+	then
+		if [ "$2" = "list" -o "$2" = "show" ]
+		then
+			_PLUS="$2"
+		fi
+	fi
+	_1db.show "$_1VARSDB" "vars" "$1" "$_PLUS"
 	return $?
 }
 

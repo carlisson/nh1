@@ -28,7 +28,7 @@ _nh1canva.clean() {
   unset -f _nh1canva.complete.canvaadd _nh1canva.customvars _nh1canva.info
   unset -f _nh1canva.thelp _nh1canva.clean _nh1canva.complete.list
   unset -f _nh1canva.menu _nh1canva.init 1token 1tokenadd 1tokengen
-  unset -f 1tokendel
+  unset -f 1tokendel _nh1canva.complete.listp _nh1canva.complete.tokenadd
 }
 
 # @description Auto-completion
