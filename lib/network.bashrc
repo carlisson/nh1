@@ -46,7 +46,7 @@ _nh1network.clean() {
   unset -f _nh1network.complete _nh1network.xt-backup 1telnet _1pretelnet
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
-  unset -f _nh1network.complete.hostvar _nh1network.complet.hostmig
+  unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
   unset -f 1interfaces
 }
 

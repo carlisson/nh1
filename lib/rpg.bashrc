@@ -29,13 +29,14 @@ _nh1rpg.clean() {
   unset -f 1d4 1d6 1d8 1d10 1d12 1d20 1d100 _nh1rpg.customvars
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
   unset -f 1draw 1drawlist 1drawadd 1drawdel _nh1rpg.init
-  unset -f _nh1rpg.complete _nh1rpg.complete.draw
+  unset -f _nh1rpg.complete _nh1rpg.complete.draw _nh1rpg.info
 }
 
 # @description Auto-completion
 _nh1rpg.complete() {
     complete -F _nh1rpg.complete.draw 1draw
     complete -F _nh1rpg.complete.draw 1drawlist
+    complete -F _nh1rpg.complete.draw 1drawdel
 }
 
 # @description Auto-completion for 1draw

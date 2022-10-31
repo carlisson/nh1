@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n39
+_1VERSION=1.0n40
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -454,6 +454,7 @@ _nh1.customvars() {
 
 	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE _1PCOLOR _1XCOLOR
 	unset _1WCOLOR _1DCOLOR _1MENUCOL _1GDATA _1UDATA _1MODULES _1DOC
+	unset _1DBDIR _1VARSDB
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1.complete _nh1.init
 	unset -f _nh1.customvars 1info _nh1.modrun 1verbose _1menuitem _1verb
