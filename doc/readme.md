@@ -1,6 +1,6 @@
 # NH1 Documentation
 
-Generated for NH1 1.0n16 at 2022-10-25
+Generated for NH1 1.0n40 at 2022-10-31
 
 ## Index
 

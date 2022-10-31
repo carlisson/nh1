@@ -10,6 +10,8 @@ Generate partial menu (for Network functions)
 
 * [_nh1network.menu](#_nh1networkmenu)
 * [_nh1network.clean](#_nh1networkclean)
+* [_nh1network.complete.hostvar](#_nh1networkcompletehostvar)
+* [_nh1network.complete.hostmig](#_nh1networkcompletehostmig)
 * [_nh1network.complete](#_nh1networkcomplete)
 * [_nh1network.init](#_nh1networkinit)
 * [_nh1network.customvars](#_nh1networkcustomvars)
@@ -18,6 +20,10 @@ Generate partial menu (for Network functions)
 * [1bauds](#1bauds)
 * [1isip](#1isip)
 * [1host](#1host)
+* [1hostgroup](#1hostgroup)
+* [1hostset](#1hostset)
+* [1hostdel](#1hostdel)
+* [1hostmig](#1hostmig)
 * [1iperf](#1iperf)
 * [1iperfd](#1iperfd)
 * [1tcpdump](#1tcpdump)
@@ -40,6 +46,7 @@ Generate partial menu (for Network functions)
 * [1macvendor](#1macvendor)
 * [_nh1network.xt-backup](#_nh1networkxt-backup)
 * [1xt-backup](#1xt-backup)
+* [1interfaces](#1interfaces)
 
 ### _nh1network.menu
 
@@ -48,6 +55,14 @@ Generate partial menu (for Network functions)
 ### _nh1network.clean
 
 Clean variables
+
+### _nh1network.complete.hostvar
+
+Autocompletion for 1hostget and 1hostget
+
+### _nh1network.complete.hostmig
+
+Autocompletion for 1hostmig
 
 ### _nh1network.complete
 
@@ -118,6 +133,50 @@ Check files .hosts in lib/local and lib/remote, for a name, returning a valid IP
 #### Output on stdout
 
 * IP address correspondent to given hostname
+
+### 1hostgroup
+
+Lists all hosts in given group
+
+#### Arguments
+
+* **$1** (string): Command: list, new or del (optional. Default: list)
+* **$2** (string): Group name
+
+### 1hostset
+
+Create or update a host entry
+
+#### Arguments
+
+* **$1** (string): Group name
+* **$2** (string): Host name
+* **$3** (string): Host IP or IPs
+
+### 1hostdel
+
+Removes a host entry
+
+#### Arguments
+
+* **$1** (string): Group name
+* **$2** (string): Host name
+
+### 1hostmig
+
+Migrates a host to another group
+
+#### Arguments
+
+* **$1** (string): Actual group name
+* **$2** (string): Host name
+* **$3** (string): New group name
+
+#### Exit codes
+
+* **0**: It works
+* **1**: Variable not found
+* **2**: Insertion fails
 
 ### 1iperf
 
@@ -343,4 +402,8 @@ Backup from one or more switchs extreme
 #### Arguments
 
 * **$1** (string): host or group
+
+### 1interfaces
+
+List network interfaces, excluding loopback
 

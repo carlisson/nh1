@@ -13,16 +13,24 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 
 ## Index
 
+* [_1text](#_1text)
 * [1tint](#1tint)
+* [1tintb](#1tintb)
 * [_1verb](#_1verb)
-* [_1modrun](#_1modrun)
+* [_nh1.modrun](#_nh1modrun)
 * [_1menuitem](#_1menuitem)
+* [_1menuheader](#_1menuheader)
+* [_1menutip](#_1menutip)
 * [_1compl](#_1compl)
 * [_1list](#_1list)
 * [_1sudo](#_1sudo)
-* [_nh1complete](#_nh1complete)
-* [_nh1init](#_nh1init)
-* [_nh1customvars](#_nh1customvars)
+* [_nh1.complete](#_nh1complete)
+* [_nh1.complete.db](#_nh1completedb)
+* [_nh1.complete.dbvar](#_nh1completedbvar)
+* [_nh1.complete.dbshow](#_nh1completedbshow)
+* [_nh1.init](#_nh1init)
+* [_1customvar](#_1customvar)
+* [_nh1.customvars](#_nh1customvars)
 * [1check](#1check)
 * [1clean](#1clean)
 * [1help](#1help)
@@ -32,14 +40,30 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 * [1version](#1version)
 * [1verbose](#1verbose)
 * [1translate](#1translate)
+* [_nh1info.customizable](#_nh1infocustomizable)
+* [_nh1info.customvars](#_nh1infocustomvars)
 * [1info](#1info)
 * [1builddoc](#1builddoc)
 * [_1db](#_1db)
 * [_1db.get](#_1dbget)
 * [_1db.set](#_1dbset)
+* [_1db.show](#_1dbshow)
 * [1db](#1db)
 * [1dbget](#1dbget)
 * [1dbset](#1dbset)
+* [1dbshow](#1dbshow)
+* [_1vardb.init](#_1vardbinit)
+* [_1vardb.get](#_1vardbget)
+* [_1vardb.set](#_1vardbset)
+* [_1vardb.show](#_1vardbshow)
+
+### _1text
+
+Prints message in user language, using Gettext
+
+#### Arguments
+
+* **$1** (string): Message in English to translate
 
 ### 1tint
 
@@ -61,6 +85,20 @@ echo "test: $(1tint 6 "Hello World")"
 * **0**: If successful.
 * **1**: If an empty string passed.
 
+### 1tintb
+
+Set text background color in shell
+
+#### Arguments
+
+* **$1** (int): The color number (optional)
+* **$2** (string): Text to color
+
+#### Exit codes
+
+* **0**: If successful.
+* **1**: If an empty string passed.
+
 ### _1verb
 
 Print only if NH1 is in verbose mode
@@ -69,7 +107,7 @@ Print only if NH1 is in verbose mode
 
 * **$1** (string): Message to print
 
-### _1modrun
+### _nh1.modrun
 
 Run it for all modules
 
@@ -92,6 +130,22 @@ Print a line to build help menu
 
 * **0**: If successful.
 * **1**: Some command fail in checking
+
+### _1menuheader
+
+Print menu header
+
+#### Arguments
+
+* **$1** (string): Title for menu
+
+### _1menutip
+
+Print a tip in user menu
+
+#### Arguments
+
+* **$1** (string): Tip or details
 
 ### _1compl
 
@@ -127,7 +181,7 @@ Run the command as root
 
 * **$1** (string): Command
 
-### _nh1complete
+### _nh1.complete
 
 Configure completion for main file and all modules.
 
@@ -135,11 +189,33 @@ Configure completion for main file and all modules.
 
 * [_1compl](#_1compl)
 
-### _nh1init
+### _nh1.complete.db
+
+Autocompletion for 1db
+
+### _nh1.complete.dbvar
+
+Autocompletion for 1dbget and 1dbget
+
+### _nh1.complete.dbshow
+
+Autocompletion for 1dbshow
+
+### _nh1.init
 
 Initial functions, configuring and creating dirs
 
-### _nh1customvars
+### _1customvar
+
+Load custom var from config
+
+#### Arguments
+
+* **$1** (string): Custom var name
+* **$2** (string): Internal var name
+* **$3** (string): Type. string or number. Default: string.
+
+### _nh1.customvars
 
 Apply custom variables to internals
 
@@ -213,9 +289,21 @@ Creates and applies translation for NH1
 
 * [_1text](#_1text)
 
-### 1info
+### _nh1info.customizable
 
 Information about user variables
+
+### _nh1info.customvars
+
+Shows user-defined variables
+
+### 1info
+
+General information
+
+#### Arguments
+
+* **$1** (string): Type of information. Default: all
 
 ### 1builddoc
 
@@ -276,6 +364,24 @@ Set value for a variable
 * **1**: File not found
 * **2**: Wrong usage
 
+### _1db.show
+
+List all variables in a DB
+
+#### Arguments
+
+* **$1** (string): Path for database
+* **$2** (string): File extension
+* **$3** (string): Database name
+* **$4** (int): Size of variable column (optional. Default: 10)
+* **$4** (string): If value is "list", it works lik _1list
+
+#### Exit codes
+
+* **0**: Ok
+* **1**: File not found
+* **2**: Wrong usage
+
 ### 1db
 
 List or manage a internal key-value database
@@ -309,4 +415,49 @@ Set a value from internal key-valeu database
 * **$1** (string): Database name
 * **$2** (string): Variable name
 * **$3** (string): Variable value
+
+### 1dbshow
+
+Shows all variables for a database
+
+#### Arguments
+
+* **$1** (string): Database filename
+* **$2** (string): Mode: show or list. Default: show
+
+### _1vardb.init
+
+initialize var database (internal)
+
+#### Arguments
+
+* **$1** (string): Database name
+
+### _1vardb.get
+
+returns value for internal var
+
+#### Arguments
+
+* **$1** (string): Database name
+* **$2** (string): Variable name
+
+### _1vardb.set
+
+Sets a value for internal var
+
+#### Arguments
+
+* **$1** (string): Database name
+* **$2** (string): Variable name
+* **$3** (string): Value
+
+### _1vardb.show
+
+Shows all saved vars for db
+
+#### Arguments
+
+* **$1** (string): Database name
+* **$2** (string): Mode: list or show. Default: show
 

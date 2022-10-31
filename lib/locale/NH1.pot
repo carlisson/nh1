@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 12:32-0300\n"
+"POT-Creation-Date: 2022-10-31 13:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,278 +77,278 @@ msgstr ""
 msgid "Destroying all variables..."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:484
+#: /home/cgaldino/sources/nh1/nh1:485
 msgid "Main"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:485
+#: /home/cgaldino/sources/nh1/nh1:486
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:486
+#: /home/cgaldino/sources/nh1/nh1:487
 msgid "Build documentation files for NH1"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:487
+#: /home/cgaldino/sources/nh1/nh1:488
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:488
+#: /home/cgaldino/sources/nh1/nh1:489
 msgid "List, create or delete a internal key-value DB."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:489
+#: /home/cgaldino/sources/nh1/nh1:490
 msgid "Get a value from a DB variable."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:490
+#: /home/cgaldino/sources/nh1/nh1:491
 msgid "Set in DB a value for a variable."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:491
+#: /home/cgaldino/sources/nh1/nh1:492
 msgid "List all variables in a DB."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:492
+#: /home/cgaldino/sources/nh1/nh1:493
 msgid "List possible custom variables"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:493
+#: /home/cgaldino/sources/nh1/nh1:494
 msgid "Write a string in another color"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:494
+#: /home/cgaldino/sources/nh1/nh1:495
 msgid "Write a string with background color"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:495
+#: /home/cgaldino/sources/nh1/nh1:496
 msgid "Create and apply translation for NH1."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:496
+#: /home/cgaldino/sources/nh1/nh1:497
 msgid "Update your NH1, using git"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:497
+#: /home/cgaldino/sources/nh1/nh1:498
 msgid "Enable/disable verbose mode"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:498
+#: /home/cgaldino/sources/nh1/nh1:499
 msgid "List NH1 version and latest changes/updates"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:502
+#: /home/cgaldino/sources/nh1/nh1:503
 msgid "planning"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:504
+#: /home/cgaldino/sources/nh1/nh1:505
 msgid "experimental"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:506
+#: /home/cgaldino/sources/nh1/nh1:507
 msgid "working"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:508
+#: /home/cgaldino/sources/nh1/nh1:509
 msgid "deprecated"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:511
+#: /home/cgaldino/sources/nh1/nh1:512
 msgid "Power-up your shell"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:521
+#: /home/cgaldino/sources/nh1/nh1:522
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:523
+#: /home/cgaldino/sources/nh1/nh1:524
 msgid "Installing NH1 in %s..."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:525 /home/cgaldino/sources/nh1/nh1:535
-#: /home/cgaldino/sources/nh1/nh1:615 /home/cgaldino/sources/nh1/nh1:623
+#: /home/cgaldino/sources/nh1/nh1:526 /home/cgaldino/sources/nh1/nh1:536
+#: /home/cgaldino/sources/nh1/nh1:616 /home/cgaldino/sources/nh1/nh1:624
 msgid "Done!"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:532
+#: /home/cgaldino/sources/nh1/nh1:533
 msgid "After destroy variables, I will load %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:545
+#: /home/cgaldino/sources/nh1/nh1:546
 msgid "NH1 was in version %s. "
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:551
+#: /home/cgaldino/sources/nh1/nh1:552
 msgid "You are using NH1 from tar-ball, not from Git."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:555
+#: /home/cgaldino/sources/nh1/nh1:556
 msgid "Git program is not available."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:576 /home/cgaldino/sources/nh1/nh1:590
+#: /home/cgaldino/sources/nh1/nh1:577 /home/cgaldino/sources/nh1/nh1:591
 msgid "Verbose mode is on"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:578 /home/cgaldino/sources/nh1/nh1:586
+#: /home/cgaldino/sources/nh1/nh1:579 /home/cgaldino/sources/nh1/nh1:587
 msgid "Verbose mode is off"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:602
+#: /home/cgaldino/sources/nh1/nh1:603
 msgid "Generating translation file."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:608
+#: /home/cgaldino/sources/nh1/nh1:609
 msgid ".pot file generated. Trying to create/update .po"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:621
+#: /home/cgaldino/sources/nh1/nh1:622
 msgid "Generating .mo file for %s language"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:626 audio.bashrc:152 audio.bashrc:250
+#: /home/cgaldino/sources/nh1/nh1:627 audio.bashrc:152 audio.bashrc:250
 #: backup.bashrc:193 canva.bashrc:234 canva.bashrc:259 misc.bashrc:116
-#: network.bashrc:278 rpg.bashrc:231 rpg.bashrc:246
+#: network.bashrc:313 rpg.bashrc:232 rpg.bashrc:247
 msgid "Usage: %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:627
+#: /home/cgaldino/sources/nh1/nh1:628
 msgid "Steps to translate"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:628
+#: /home/cgaldino/sources/nh1/nh1:629
 msgid "Run 1translate <language-code>. For example, 1translate pt_BR"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:629
+#: /home/cgaldino/sources/nh1/nh1:630
 msgid "Edit the file <language-code>.po in %s, puting the translated strings"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:630
+#: /home/cgaldino/sources/nh1/nh1:631
 msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:631
+#: /home/cgaldino/sources/nh1/nh1:632
 msgid ""
 "Enjoy NH1 in your language! It's useful if you return translated .po to "
 "improve NH1 project!"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:639
+#: /home/cgaldino/sources/nh1/nh1:640
 msgid "Custom variables"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:640
+#: /home/cgaldino/sources/nh1/nh1:641
 msgid "You can configure custom variables for NH1. Edit %s to define it."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:645
+#: /home/cgaldino/sources/nh1/nh1:646
 msgid "Path to internal key-value databases"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:646
+#: /home/cgaldino/sources/nh1/nh1:647
 msgid "Set verbose mode (1 or 0). Default: 0"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:655
+#: /home/cgaldino/sources/nh1/nh1:656
 msgid "Custom variables (in use)"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:683 /home/cgaldino/sources/nh1/nh1:685
+#: /home/cgaldino/sources/nh1/nh1:684 /home/cgaldino/sources/nh1/nh1:686
 msgid "Building documentation for nh1 %s..."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:683
+#: /home/cgaldino/sources/nh1/nh1:684
 msgid "main file"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:685
+#: /home/cgaldino/sources/nh1/nh1:686
 msgid "module files"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:695
+#: /home/cgaldino/sources/nh1/nh1:696
 msgid "Documentation available in %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:719
+#: /home/cgaldino/sources/nh1/nh1:720
 msgid "Creating database file for %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:725
+#: /home/cgaldino/sources/nh1/nh1:726
 msgid "Database %s exists."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:730
+#: /home/cgaldino/sources/nh1/nh1:731
 msgid "Excluding database file for %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:736
+#: /home/cgaldino/sources/nh1/nh1:737
 msgid "Database %s does not exist."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:773
+#: /home/cgaldino/sources/nh1/nh1:774
 msgid "Variable %s not found in database %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:777 /home/cgaldino/sources/nh1/nh1:813
+#: /home/cgaldino/sources/nh1/nh1:778 /home/cgaldino/sources/nh1/nh1:814
 msgid "Database %s not found."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:851
+#: /home/cgaldino/sources/nh1/nh1:852
 msgid "Listing content for %s database."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:880
+#: /home/cgaldino/sources/nh1/nh1:881
 msgid "Internal databases:%s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:882 /home/cgaldino/sources/nh1/nh1:899
-#: /home/cgaldino/sources/nh1/nh1:919 /home/cgaldino/sources/nh1/nh1:942
+#: /home/cgaldino/sources/nh1/nh1:883 /home/cgaldino/sources/nh1/nh1:900
+#: /home/cgaldino/sources/nh1/nh1:920 /home/cgaldino/sources/nh1/nh1:943
 msgid "Usage: "
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:883
+#: /home/cgaldino/sources/nh1/nh1:884
 msgid "list all databases."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:884 /home/cgaldino/sources/nh1/nh1:885
+#: /home/cgaldino/sources/nh1/nh1:885 /home/cgaldino/sources/nh1/nh1:886
 msgid "name"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:884
+#: /home/cgaldino/sources/nh1/nh1:885
 msgid "creates a new database."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:885
+#: /home/cgaldino/sources/nh1/nh1:886
 msgid "removes the database."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:900 /home/cgaldino/sources/nh1/nh1:920
-#: /home/cgaldino/sources/nh1/nh1:943
+#: /home/cgaldino/sources/nh1/nh1:901 /home/cgaldino/sources/nh1/nh1:921
+#: /home/cgaldino/sources/nh1/nh1:944
 msgid "database name"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:900 /home/cgaldino/sources/nh1/nh1:920
+#: /home/cgaldino/sources/nh1/nh1:901 /home/cgaldino/sources/nh1/nh1:921
 msgid "variable name"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:920
+#: /home/cgaldino/sources/nh1/nh1:921
 msgid "variable value"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:943
+#: /home/cgaldino/sources/nh1/nh1:944
 msgid "mode"
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:944
+#: /home/cgaldino/sources/nh1/nh1:945
 msgid "Mode: %s or %s. Default: %s."
 msgstr ""
 
-#: /home/cgaldino/sources/nh1/nh1:1016
+#: /home/cgaldino/sources/nh1/nh1:1017
 msgid "You need run: source %s."
 msgstr ""
 
@@ -822,7 +822,7 @@ msgstr ""
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:177 network.bashrc:209 network.bashrc:225 network.bashrc:243
+#: misc.bashrc:177 network.bashrc:244 network.bashrc:260 network.bashrc:278
 msgid "Usage:"
 msgstr ""
 
@@ -935,195 +935,199 @@ msgid "Return HTTP status for given URL"
 msgstr ""
 
 #: network.bashrc:22
-msgid "Run iperf connecting to a 1iperfd IP"
+msgid "List network interfaces"
 msgstr ""
 
 #: network.bashrc:23
-msgid "Run iperfd, waiting for 1iperf connection"
+msgid "Run iperf connecting to a 1iperfd IP"
 msgstr ""
 
 #: network.bashrc:24
-msgid "Return if a given string is an IP address"
+msgid "Run iperfd, waiting for 1iperf connection"
 msgstr ""
 
 #: network.bashrc:25
-msgid "Return if server is on. Params: (-q for quiet or name), IP"
+msgid "Return if a given string is an IP address"
 msgstr ""
 
 #: network.bashrc:26
-msgid "Return prefixes for a given vendor"
+msgid "Return if server is on. Params: (-q for quiet or name), IP"
 msgstr ""
 
 #: network.bashrc:27
-msgid "Return all networks running on network interfaces"
+msgid "Return prefixes for a given vendor"
 msgstr ""
 
 #: network.bashrc:28
-msgid "Scan if given port(s) for a given host is/are open"
+msgid "Return all networks running on network interfaces"
 msgstr ""
 
 #: network.bashrc:29
-msgid "Connect to a serial port"
+msgid "Scan if given port(s) for a given host is/are open"
 msgstr ""
 
 #: network.bashrc:30
-msgid "Connect a SSH server (working with eXtreme)"
+msgid "Connect to a serial port"
 msgstr ""
 
 #: network.bashrc:31
-msgid "Run tcpdump in a given network interface"
+msgid "Connect a SSH server (working with eXtreme)"
 msgstr ""
 
 #: network.bashrc:32
-msgid "Connect a Telnet server"
+msgid "Run tcpdump in a given network interface"
 msgstr ""
 
 #: network.bashrc:33
-msgid "Backup configuration of one or more extreme switchs"
+msgid "Connect a Telnet server"
 msgstr ""
 
 #: network.bashrc:34
+msgid "Backup configuration of one or more extreme switchs"
+msgstr ""
+
+#: network.bashrc:35
 msgid "List all VLANs in given eXtreme switch"
 msgstr ""
 
-#: network.bashrc:70
+#: network.bashrc:105
 msgid "Path for network (hosts and groups) files."
 msgstr ""
 
-#: network.bashrc:71
+#: network.bashrc:106
 msgid "Server port. Default: %s."
 msgstr ""
 
-#: network.bashrc:103
+#: network.bashrc:138
 msgid "Bauds possible:"
 msgstr ""
 
-#: network.bashrc:128
+#: network.bashrc:163
 msgid "You need to give a string to test if it is an IP address."
 msgstr ""
 
-#: network.bashrc:169
+#: network.bashrc:204
 msgid "%s is unkown or unavailable."
 msgstr ""
 
-#: network.bashrc:172
+#: network.bashrc:207
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:212 network.bashrc:739
+#: network.bashrc:247 network.bashrc:774
 msgid "Available groups"
 msgstr ""
 
-#: network.bashrc:273
+#: network.bashrc:308
 msgid "Host or group not found."
 msgstr ""
 
-#: network.bashrc:292
+#: network.bashrc:327
 msgid "Trying to connect %s (%s) with iperf."
 msgstr ""
 
-#: network.bashrc:295
+#: network.bashrc:330
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
-#: network.bashrc:348
+#: network.bashrc:383
 msgid "IP %s returned for machine %s."
 msgstr ""
 
-#: network.bashrc:349
+#: network.bashrc:384
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:356
+#: network.bashrc:391
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:412
+#: network.bashrc:447
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr ""
 
-#: network.bashrc:417 network.bashrc:420
+#: network.bashrc:452 network.bashrc:455
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 
-#: network.bashrc:422
+#: network.bashrc:457
 msgid "Cannot connect %s."
 msgstr ""
 
-#: network.bashrc:492
+#: network.bashrc:527
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr ""
 
-#: network.bashrc:504 network.bashrc:562
+#: network.bashrc:539 network.bashrc:597
 msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:512
+#: network.bashrc:547
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:533
+#: network.bashrc:568
 msgid "It works."
 msgstr ""
 
-#: network.bashrc:535
+#: network.bashrc:570
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:598
+#: network.bashrc:633
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:603
+#: network.bashrc:638
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:612
+#: network.bashrc:647
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:617
+#: network.bashrc:652
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:714
+#: network.bashrc:749
 msgid "trying %s:%s"
 msgstr ""
 
-#: network.bashrc:722
+#: network.bashrc:757
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:734
+#: network.bashrc:769
 msgid "group"
 msgstr ""
 
-#: network.bashrc:737
+#: network.bashrc:772
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:769
+#: network.bashrc:804
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:783
+#: network.bashrc:818
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:791
+#: network.bashrc:826
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:839
+#: network.bashrc:874
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:850
+#: network.bashrc:885
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:874
+#: network.bashrc:909
 msgid "Doing backup of %s to %s"
 msgstr ""
 
@@ -1187,71 +1191,71 @@ msgstr ""
 msgid "Delete a group from draw-functions"
 msgstr ""
 
-#: rpg.bashrc:62
+#: rpg.bashrc:63
 msgid "Path for draw-lists (RPG)."
 msgstr ""
 
-#: rpg.bashrc:151
+#: rpg.bashrc:152
 msgid "Params"
 msgstr ""
 
-#: rpg.bashrc:151
+#: rpg.bashrc:152
 msgid "Examples"
 msgstr ""
 
-#: rpg.bashrc:160
+#: rpg.bashrc:161
 msgid "Joker"
 msgstr ""
 
-#: rpg.bashrc:166
+#: rpg.bashrc:167
 msgid "Ace"
 msgstr ""
 
-#: rpg.bashrc:167
+#: rpg.bashrc:168
 msgid "Jack"
 msgstr ""
 
-#: rpg.bashrc:168
+#: rpg.bashrc:169
 msgid "Queen"
 msgstr ""
 
-#: rpg.bashrc:169
+#: rpg.bashrc:170
 msgid "King"
 msgstr ""
 
-#: rpg.bashrc:174
+#: rpg.bashrc:175
 msgid "Clubs"
 msgstr ""
 
-#: rpg.bashrc:175
+#: rpg.bashrc:176
 msgid "Diamonds"
 msgstr ""
 
-#: rpg.bashrc:176
+#: rpg.bashrc:177
 msgid "Hearts"
 msgstr ""
 
-#: rpg.bashrc:177
+#: rpg.bashrc:178
 msgid "Spades"
 msgstr ""
 
-#: rpg.bashrc:179
+#: rpg.bashrc:180
 msgid "%s of %s"
 msgstr ""
 
-#: rpg.bashrc:202
+#: rpg.bashrc:203
 msgid "No group found."
 msgstr ""
 
-#: rpg.bashrc:205
+#: rpg.bashrc:206
 msgid "Groups: %s."
 msgstr ""
 
-#: rpg.bashrc:252
+#: rpg.bashrc:253
 msgid "File not found for group %s."
 msgstr ""
 
-#: rpg.bashrc:264
+#: rpg.bashrc:265
 msgid "Group %s not found."
 msgstr ""
 

@@ -216,3 +216,4 @@
 1.0n38 2022-10-31: Completion for 1hostset, 1hostdel and 1hostmig
 1.0n39 2022-10-31: Completion for 1tcpdump. Created 1interfaces
 1.0n40 2022-10-31: Completion for 1drawdel
+1.1    2022-10-31: New release. Translations and docs up todate

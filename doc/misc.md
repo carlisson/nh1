@@ -100,9 +100,9 @@ Countdown timer
 
 * **$1** (int): color for timer (0 to 7)
 * **$2** (string): title for timer
-* **$3** (int): seconds
-* **$4** (int): minutes
-* **$5** (int): hours to countdown
+* **$3** (int): seconds (optional)
+* **$4** (int): minutes (optional)
+* **$5** (int): hours to countdown (optional)
 
 ### 1pomo
 

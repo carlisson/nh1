@@ -38,6 +38,7 @@ Generates partial menu
 * [_nh1app.update](#_nh1appupdate)
 * [_nh1app.where](#_nh1appwhere)
 * [1appxupd](#1appxupd)
+* [1appxadd](#1appxadd)
 * [_nh1app.remove](#_nh1appremove)
 * [_nh1app.clear](#_nh1appclear)
 
@@ -293,6 +294,18 @@ Returns full path for a command, if exists
 ### 1appxupd
 
 Upgrade all system packages
+
+### 1appxadd
+
+Install program using system package manager
+
+#### Arguments
+
+* **$1** (string): Package name
+
+#### Exit codes
+
+* 0
 
 ### _nh1app.remove
 

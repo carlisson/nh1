@@ -17,6 +17,8 @@ Generate partial menu
 * [_nh1backup.bdir](#_nh1backupbdir)
 * [_nh1backup.info](#_nh1backupinfo)
 * [_nh1backup.log](#_nh1backuplog)
+* [_nh1backup.getpath](#_nh1backupgetpath)
+* [_nh1backup.setpath](#_nh1backupsetpath)
 * [_nh1backup.maxcontrol](#_nh1backupmaxcontrol)
 * [_nh1backup.nextfile](#_nh1backupnextfile)
 * [1backup](#1backup)
@@ -66,6 +68,23 @@ Information about possible custom vars
 
 Registry log message in 3 locals.
 
+### _nh1backup.getpath
+
+Get path from backup database
+
+#### Arguments
+
+* **$1** (string): Name of backup
+
+### _nh1backup.setpath
+
+Set path for backup database
+
+#### Arguments
+
+* **$1** (string): Name of backup
+* **$2** (string): Path for backup
+
 ### _nh1backup.maxcontrol
 
 Controls max number of files
@@ -95,7 +114,14 @@ Make backup of a directory
 #### Arguments
 
 * **$1** (string): Name (id) for backup
-* **$2** (string): Directory to backup
+* **$2** (string): Directory to backup (optional, if its not the first backup for this id)
+
+#### Exit codes
+
+* **0**: It works
+* **1**: Unknown backup id
+* **2**: Compression error
+* **3**: No compression found
 
 ### 1backlist
 
