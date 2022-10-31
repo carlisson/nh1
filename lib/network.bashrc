@@ -9,29 +9,29 @@ _1IPERFPORT=2918
 # @description Generate partial menu (for Network functions)
 _nh1network.menu() {
   _1menuheader "$(_1text Network)"
-  _1menuitem X 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
-  _1menuitem X 1areon "$(_1text "Check status for every host in a internal .hosts")"
-  _1menuitem X 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
-  _1menuitem X 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
+  _1menuitem W 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
+  _1menuitem W 1areon "$(_1text "Check status for every host in a internal .hosts")"
+  _1menuitem W 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
+  _1menuitem W 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
   _1menuitem W 1host "$(_1text "Return a valid ping-available IP for some host or domain name")"
-  _1menuitem X 1hostgroup "$(_1text "Lists all hosts in given group")"
-  _1menuitem X 1hostset "$(_1text "Create or update a host entry")"
-  _1menuitem X 1hostdel "$(_1text "Removes a host entry")"
-  _1menuitem X 1hostmig "$(_1text "Migrates a host to another group")"
-  _1menuitem X 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
+  _1menuitem W 1hostgroup "$(_1text "Lists all hosts in given group")"
+  _1menuitem W 1hostset "$(_1text "Create or update a host entry")"
+  _1menuitem W 1hostdel "$(_1text "Removes a host entry")"
+  _1menuitem W 1hostmig "$(_1text "Migrates a host to another group")"
+  _1menuitem W 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
   _1menuitem X 1iperf "$(_1text "Run iperf connecting to a 1iperfd IP")" iperf
   _1menuitem X 1iperfd "$(_1text "Run iperfd, waiting for 1iperf connection")" iperf
-  _1menuitem X 1isip "$(_1text "Return if a given string is an IP address")"
-  _1menuitem X 1ison "$(_1text "Return if server is on. Params: (-q for quiet or name), IP")"
-  _1menuitem X 1macvendor "$(_1text "Return prefixes for a given vendor")"
-  _1menuitem X 1mynet "$(_1text "Return all networks running on network interfaces")" ip
-  _1menuitem X 1ports "$(_1text "Scan if given port(s) for a given host is/are open")"
-  _1menuitem X 1serial "$(_1text "Connect to a serial port")"
-  _1menuitem X 1ssh "$(_1text "Connect a SSH server (working with eXtreme)")" ssh
-  _1menuitem X 1tcpdump "$(_1text "Run tcpdump in a given network interface")" tcpdump
-  _1menuitem X 1telnet "$(_1text "Connect a Telnet server")" telnet
-  _1menuitem X 1xt-backup "$(_1text "Backup configuration of one or more extreme switchs")" ssh
-  _1menuitem X 1xt-vlan "$(_1text "List all VLANs in given eXtreme switch")" ssh
+  _1menuitem W 1isip "$(_1text "Return if a given string is an IP address")"
+  _1menuitem W 1ison "$(_1text "Return if server is on. Params: (-q for quiet or name), IP")"
+  _1menuitem W 1macvendor "$(_1text "Return prefixes for a given vendor")"
+  _1menuitem W 1mynet "$(_1text "Return all networks running on network interfaces")" ip
+  _1menuitem W 1ports "$(_1text "Scan if given port(s) for a given host is/are open")"
+  _1menuitem W 1serial "$(_1text "Connect to a serial port")"
+  _1menuitem W 1ssh "$(_1text "Connect a SSH server (working with eXtreme)")" ssh
+  _1menuitem W 1tcpdump "$(_1text "Run tcpdump in a given network interface")" tcpdump
+  _1menuitem W 1telnet "$(_1text "Connect a Telnet server")" telnet
+  _1menuitem W 1xt-backup "$(_1text "Backup configuration of one or more extreme switchs")" ssh
+  _1menuitem W 1xt-vlan "$(_1text "List all VLANs in given eXtreme switch")" ssh
   echo
 }
 
@@ -645,7 +645,6 @@ _nh1network.simplessh() {
     else
       interfaces=$aux
     fi
-    _1verb Interfaces $interfaces
     for ether in $interfaces
     do
       aux=$(ipcalc $ether | grep HostM | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])')
@@ -712,7 +711,7 @@ _nh1network.simplessh() {
     fi
     for aux in $(1allhosts)
     do
-      _1verb "$(printf "$(_1text "trying %s")" $aux)"
+      _1verb "$(printf "$(_1text "trying %s:%s")" $aux $port)"
       1ports "$aux" "$port" &> /dev/null
       if [ $? = 0 ]
     	then

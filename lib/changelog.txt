@@ -212,3 +212,4 @@
 1.0n34 2022-10-31: Completion for 1dbget
 1.0n35 2022-10-31: completion for 1dbset and 1dbshow
 1.0n36 2022-10-31: Completion for 1tip and 1timer
+1.0n37 2022-10-31: 1findport fixed (bug with verbose mode on)
