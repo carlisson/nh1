@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n32
+_1VERSION=1.0n33
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -215,6 +215,7 @@ _1menuitem() {
 			"D") mi_color=$_1DCOLOR ;;
 		esac
 
+		# If commands not found, abort and don't show this menu item
 		if [ $# -gt 3 ]
 		then
 			if ! 1check -s "${@:4:$#+1}"
@@ -317,8 +318,26 @@ _1sudo() {
 # @see _1compl
 _nh1.complete() {
 	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
+    complete -F _nh1.complete.db 1db
 
 	_nh1.modrun "_nh1-=-.complete"
+}
+
+# @description Autocompletion for 1db
+_nh1.complete.db() {
+	local _ARGS
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=(new del)
+	elif [ "$COMP_CWORD" -eq 2 ]
+	then
+		_ARG=("${COMP_WORDS[1]}");
+        if [ "$_ARG" = "del" ]
+		then
+			COMPREPLY=($(_1list $_1DBDIR "1db"))
+		fi
+    fi
 }
 
 # @description Initial functions, configuring and creating dirs
