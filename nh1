@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.0n34
+_1VERSION=1.0n35
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -319,7 +319,9 @@ _1sudo() {
 _nh1.complete() {
 	complete -W "$(_1list "$_1LIB/locale" "po")" 1translate
     complete -F _nh1.complete.db 1db
-    complete -F _nh1.complete.dbget 1dbget
+    complete -F _nh1.complete.dbvar 1dbget
+    complete -F _nh1.complete.dbvar 1dbset
+    complete -F _nh1.complete.dbshow 1dbshow
 
 	_nh1.modrun "_nh1-=-.complete"
 }
@@ -341,8 +343,8 @@ _nh1.complete.db() {
     fi
 }
 
-# @description Autocompletion for 1dbget
-_nh1.complete.dbget() {
+# @description Autocompletion for 1dbget and 1dbget
+_nh1.complete.dbvar() {
 	local _ARG
   	COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
@@ -352,6 +354,19 @@ _nh1.complete.dbget() {
 	then
 		_ARG=("${COMP_WORDS[1]}");
 		COMPREPLY=($(1dbshow "$_ARG" "list"))
+    fi
+}
+
+# @description Autocompletion for 1dbshow
+_nh1.complete.dbshow() {
+	local _ARG
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=($(_1list $_1DBDIR "1db"))
+	elif [ "$COMP_CWORD" -eq 2 ]
+	then
+		COMPREPLY=(list show)
     fi
 }
 
@@ -445,7 +460,10 @@ _nh1.customvars() {
 	unset -f 1builddoc 1db 1dbget 1dbset _1db _1db.get _1db.set _1customvar
 	unset -f _nh1info.customizable _1db.show 1dbshow _1menuheader _1menutip
 	unset -f _nh1info.customvars _1vardb.init _1vardb.get _1vardb.set
-	unset -f _1text
+	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.comlete.dbshow
+
+	# Keep isolated to prevent improper extraction
+	unset -f _1text 
 }
 
 # @description Menu for NH1.
@@ -924,7 +942,8 @@ _1db.show() {
 		_1db.show "$_1DBDIR" "1db" "$1" $_PLUS
 	else
 		_1text "Usage: "
-		printf "1dbshow [%s]\n" "$(_1text "database name")"
+		printf "1dbshow [%s] [%s]\n" "$(_1text "database name")" "$(_1text "mode")"
+		printf " - $(_1text "Mode: %s or %s. Default: %s.")\n" "list" "show" "show"
 	fi
 }
 

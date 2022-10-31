@@ -210,3 +210,4 @@
 1.0n32 2022-10-31: _1text is now a function
 1.0n33 2022-10-31: Completion for 1db
 1.0n34 2022-10-31: Completion for 1dbget
+1.0n35 2022-10-31: completion for 1dbset and 1dbshow
