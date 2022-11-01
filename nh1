@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1
+_1VERSION=1.1n1
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -35,7 +35,9 @@ else
 	_1DOC="$_1DIR/doc"
 fi
 _1DBDIR="$_1UDATA/database"
-
+# Spool of messages, when it can't be show imediatly
+_1MSGSPOOL="$_1UDATA/.messages"
+_1VRBSPOOL="$_1UDATA/.messages.verbose"
 # Gettext configure
 source gettext.sh
 
@@ -45,11 +47,15 @@ _1text() {
 	TEXTDOMAINDIR="$_1LIB/locale" gettext 'NH1' "$*"
 }
 
+
 _1COLOR=6
 _1PCOLOR=5 # Pending
 _1XCOLOR=3 # Experimental
 _1WCOLOR=2 # Working
 _1DCOLOR=1 # Deprecated
+_1IMCOLOR=6 # Info
+_1WMCOLOR=3 # Warning
+_1EMCOLOR=1 # Error
 
 _1MENUCOL=13
 _1VERBOSE=0 # 0 - disabled; 1 - enabled
@@ -139,16 +145,69 @@ _1VERBOSE=0 # 0 - disabled; 1 - enabled
 	return 0
 }
 
+# @description Proccess message spool
+# @arg $1 string Filename to proccess
+# @arg $2 string Prefix for every line
+_nh1.spool() {
+	local SAVEIFS _LIN _PRE
+	if [ $# -gt 1 ]
+	then
+		_PRE="$2"
+	else
+		_PRE=""
+	fi
+	SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
+	for _LIN in $(cat "$1")
+	do
+		echo "$_PRE$_LIN"
+	done
+	IFS=$SAVEIFS
+	rm "$1"
+	touch "$1"
+}
+
+# @description Internal message
+# @arg $1 string Type of message: info, warning, error, bg
+# @arg $2 string Message to show
+_1message() {
+	local _TYP
+	if [ $# -eq 2 ]
+	then
+		_TYP="$1"
+		shift
+	fi
+	if [ $# -eq 1 ]
+	then
+		case "$_TYP" in
+			info)
+				1tintb $_IMCOLOR "INFO"
+				;;
+			warning)
+				1tintb $_WMCOLOR "WARNING"
+				;;	
+			error)
+				1tintb $_EMCOLOR "ERROR"
+				;;
+			bg)
+				echo "$*" >> "$_1MSGSPOOL"
+				return 0
+				;;
+		esac
+	else
+		_nh1.spool "$_1MSGSPOOL" "$(1tintb $_IMCOLOR " > ") "
+	fi
+	echo " $*"
+}
+
 # @description Print only if NH1 is in verbose mode
 #
 # @arg $1 string Message to print
 _1verb() {
 	if [ $_1VERBOSE -gt 0 ]
 	then
-		1tint 3 "▲"
-		echo -n ' '
-		1tint ${FUNCNAME[ 1 ]}
-		echo ": $1"
+		echo "$(1tint 3 "▲") $(1tint ${FUNCNAME[ 1 ]}): $*"
+		_nh1.spool $_1VRBSPOOL "$(1tint 3 "▲") $(1tint ${FUNCNAME[ 1 ]}): "
 	fi
 }
 
@@ -374,6 +433,8 @@ _nh1.complete.dbshow() {
 _nh1.init() {
 	mkdir -p "$_1UDATA"
 	mkdir -p "$_1DBDIR"
+	touch "$_1MSGSPOOL"
+	touch "$_1VRBSPOOL"
 
 	_nh1.modrun "_nh1-=-.init"
 }
@@ -421,6 +482,7 @@ _nh1.customvars() {
 	local SILENT=0
 	for PROG in $*
 	do
+		_1message bg "1check test for $PROG"
 		if [ "$PROG" = "-s" ]
 		then
 		  SILENT=1
@@ -462,7 +524,7 @@ _nh1.customvars() {
 	unset -f _nh1info.customizable _1db.show 1dbshow _1menuheader _1menutip
 	unset -f _nh1info.customvars _1vardb.init _1vardb.get _1vardb.set
 	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.complete.dbshow
-	unset -f 1tintb _1vardb.show
+	unset -f 1tintb _1vardb.show _1message _nh1.spool
 
 	# Keep isolated to prevent improper extraction
 	unset -f _1text 
