@@ -12,10 +12,12 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n2
+_1VERSION=1.1n3
 
 _1MODULES=(app audio backup canva misc network rpg)
 
+_1PID=$$
+_1TMPDIR="$(mktemp -d)"
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1UDATA="$HOME/.norg"
@@ -37,7 +39,7 @@ fi
 _1DBDIR="$_1UDATA/database"
 # Spool of messages, when it can't be show imediatly
 _1MSGSPOOL="$_1UDATA/.messages"
-_1VRBSPOOL="$_1UDATA/.messages.verbose"
+_1VRBSPOOL="$_1TMPDIR/nh1_messages.$_1PID"
 # Gettext configure
 source gettext.sh
 
@@ -160,11 +162,12 @@ _nh1.spool() {
     IFS=$(echo -en "\n\b")
 	for _LIN in $(cat "$1")
 	do
-		echo "$_PRE$_LIN"
+		echo -n "$_PRE"
+		echo "$_LIN"
 	done
 	IFS=$SAVEIFS
-	rm "$1"
-	touch "$1"
+	#rm "$1"
+	#touch "$1"
 }
 
 # @description Internal message
@@ -207,8 +210,27 @@ _1verb() {
 	if [ $_1VERBOSE -gt 0 ]
 	then
 		echo "$(1tint 3 "▲") $(1tint ${FUNCNAME[ 1 ]}): $*"
-		_nh1.spool $_1VRBSPOOL "$(1tint 3 "▲") $(1tint ${FUNCNAME[ 1 ]}): "
 	fi
+}
+
+# @description Spools message to shows when possible
+#
+# @arg $1 string Message to print
+_1verbs() {
+	if [ $_1VERBOSE -gt 0 ]
+	then
+		echo "${FUNCNAME[1]}: $*" >> $_1VRBSPOOL
+	fi
+}
+
+# @description Prints dammed verbose messages
+_1verbs.spool() {
+	_nh1.spool $_1VRBSPOOL "$(1tint 3 "▲"): "
+}
+
+# @description Procedores to do before all user command
+_1before() {
+	_1verbs.spool
 }
 
 # @description Run it for all modules
@@ -491,7 +513,7 @@ _nh1.customvars() {
 			then
 				if [ $SILENT -eq 1 ]
 				then
-	        		_1verb "$(printf "$(_1text "%s is missing for %s")" $PROG $USER)"
+	        		_1verbs "$(printf "$(_1text "%s is missing for %s")" $PROG $USER)"
 				else
 					printf "$(_1text "Program %s does not exist or it is unavailable for %s.")\n" $PROG $USER
 			  fi
@@ -509,14 +531,18 @@ _nh1.customvars() {
 
 # @description Clean all variables defined by nh1
 1clean() {
+	_1before
+
 	_1COLOR=1
 	_1verb "$(_1text "Destroying all variables...")"
 
 	_nh1.modrun "_nh1-=-.clean"
 
+	rm -rf "$_1TMPDIR"
+
 	unset _1VERSION _1DIR _1RC _1LIB _1COLOR _1VERBOSE _1PCOLOR _1XCOLOR
 	unset _1WCOLOR _1DCOLOR _1MENUCOL _1GDATA _1UDATA _1MODULES _1DOC
-	unset _1DBDIR _1VARSDB
+	unset _1DBDIR _1VARSDB _1PID _1TMPDIR
 	unset -f 1help 1tint _1sudo 1check 1bashrc 1refresh 1update 1version 
 	unset -f 1clean 1help _1compl _1list 1translate _nh1.complete _nh1.init
 	unset -f _nh1.customvars 1info _nh1.modrun 1verbose _1menuitem _1verb
@@ -524,7 +550,8 @@ _nh1.customvars() {
 	unset -f _nh1info.customizable _1db.show 1dbshow _1menuheader _1menutip
 	unset -f _nh1info.customvars _1vardb.init _1vardb.get _1vardb.set
 	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.complete.dbshow
-	unset -f 1tintb _1vardb.show _1message _nh1.spool
+	unset -f 1tintb _1vardb.show _1message _nh1.spool _1verbs.spool _1verbs
+	unset -f _1before
 
 	# Keep isolated to prevent improper extraction
 	unset -f _1text 
@@ -533,6 +560,8 @@ _nh1.customvars() {
 # @description Menu for NH1.
 # @see _1menuitem
 1help() {
+	_1before
+
 	local _MOD
 		echo " -------------------------------------"
 		echo -n "            "
@@ -578,6 +607,8 @@ _nh1.customvars() {
 
 # @description Modify ~/.bashrc to init NH1 on bash start
 1bashrc() {
+	_1before
+
     local S1="source $_1RC"
     if grep "$S1" ~/.bashrc > /dev/null
     then
@@ -591,6 +622,8 @@ _nh1.customvars() {
 
 # @description Reload NH1 and all related modules
 1refresh() {
+	_1before
+
 	local LOCAL1RC=$_1RC
 	_1verb "$(printf "$(_1text "After destroy variables, I will load %s.")" $_1RC)"
 	1clean
@@ -600,6 +633,8 @@ _nh1.customvars() {
 
 # @description Update NH1 based in git repository
 1update() {
+	_1before
+
 	if 1check git
 	then
 		pushd "$_1LIB/.." || return 1
@@ -659,6 +694,8 @@ _nh1.customvars() {
 # @arg $2 string Generate binaries. Optional. Default: none
 # @see _1text
 1translate() {
+	_1before
+
 	local AUX
 	case "$#" in
 		1)
@@ -723,6 +760,8 @@ _nh1info.customvars() {
 # @description General information
 # @arg $1 string Type of information. Default: all
 1info() {
+	_1before
+
 	case "$1" in
 		customizable)
 			_nh1info.customizable
@@ -739,6 +778,8 @@ _nh1info.customvars() {
 
 # @description Build documentation
 1builddoc() {
+	_1before
+
 	local _INDEX
 	_INDEX="$_1DOC/readme.md"
 	if 1check shdoc
@@ -935,6 +976,8 @@ _1db.show() {
 # @exitcode 1 File exists
 # @exitcode 2 File not exists
 1db() {
+	_1before
+
 	if [ $# -eq 2 ]
 	then
 		_1db "$_1DBDIR" "1db" "$1" "$2"
@@ -954,6 +997,8 @@ _1db.show() {
 # @arg $1 string Database name
 # @arg $2 string Variable name
 1dbget() {
+	_1before 
+
 	if [ $# -eq 2 ]
 	then
 		_1db.get "$_1DBDIR" "1db" "$1" "$2"
@@ -970,6 +1015,8 @@ _1db.show() {
 # @arg $2 string Variable name
 # @arg $3 string Variable value
 1dbset() {
+	_1before
+
 	local DBNAME VARNAME
 	DBNAME="$1"
 	VARNAME="$2"
@@ -989,6 +1036,8 @@ _1db.show() {
 # @arg $1 string Database filename
 # @arg $2 string Mode: show or list. Default: show
 1dbshow() {
+	_1before
+	
 	local _PLUS
 	_PLUS=""
 	if [ "$#" -eq 2 ]

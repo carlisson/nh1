@@ -219,3 +219,4 @@
 1.1    2022-10-31: New release. Translations and docs up todate
 1.1n1  2022-11-01: _1message to show info, warning and Error
 1.1n2  2022-11-03: 1appxclear to remove old versions of snap and flatpak
+1.1n3  2022-11-03: _1before, _1verbs and _1verbs.spool created
