@@ -221,3 +221,4 @@
 1.1n2  2022-11-03: 1appxclear to remove old versions of snap and flatpak
 1.1n3  2022-11-03: _1before, _1verbs and _1verbs.spool created
 1.1n4  2022-11-03: _1message normal mode
+1.1n5  2022-11-03: Fixed bugs in 1app[lg]upd and 1app[lg]clear

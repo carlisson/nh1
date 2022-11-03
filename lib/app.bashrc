@@ -365,7 +365,7 @@ _nh1app.single() {
                 APP_GET
                 fi
             
-                if [ -f "$__NADIR/$_NANEW" ]
+                if [ -f "$_NADIR/$_NANEW" ]
                 then
                     if [ -L "$_NASYM" ]
                     then    
@@ -672,6 +672,7 @@ _nh1app.remove() {
 # @arg $1 string local or global
 _nh1app.clear() {
     local _NAA _NAN _NAF _NAD _NAP
+    _NAP="none"
     if [ $1 = "local" ]
     then
         _NAD=$_1APPLOCAL
@@ -682,13 +683,13 @@ _nh1app.clear() {
     do
         _NAN=$(_nh1app.checkversion "$1" "$_NAA")
 
-        if _nh1app.openapp $1
+        if _nh1app.openapp $_NAA
         then
             _NAP="$APP_PREFIX"
             _nh1app.closeapp
         fi
 
-        for _NAF in $(ls $_NAD/$_NAP-* 2>/dev/null)
+        for _NAF in $(ls $_NAD/$_NAP* 2>/dev/null)
         do
             if [ "$_NAN" != $(basename "$_NAF") ]
             then
