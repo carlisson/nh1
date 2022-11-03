@@ -218,3 +218,4 @@
 1.0n40 2022-10-31: Completion for 1drawdel
 1.1    2022-10-31: New release. Translations and docs up todate
 1.1n1  2022-11-01: _1message to show info, warning and Error
+1.1n2  2022-11-03: 1appxclear to remove old versions of snap and flatpak

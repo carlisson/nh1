@@ -29,6 +29,7 @@ _nh1app.menu() {
   _1menuitem W 1appgdel "$(_1text "Remove a global app")"
   _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
   _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
+  _1menuitem X 1appxclear "$(_1text "Remove old versions for all system apps")"
 }
 
 # @description Destroy all global variables created by this file
@@ -43,7 +44,7 @@ _nh1app.clean() {
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
-  unset -f _nh1app.update 1appxadd
+  unset -f _nh1app.update 1appxadd 1appxclear
 }
 
 # Alias-like
@@ -620,6 +621,27 @@ _nh1app.where() {
     # Pending: zypper pacman snap flatpak
     printf "$(_1text "Sorry. Package %s not found in known/installed package managers.")\n" "$_PKG"
 }
+
+# @description Remove old versions of system apps, in debian, snap, flatpak...
+1appxclear() {
+    local _APP _AUX
+    if _nh1app.where snap > /dev/null
+    then
+        _1message info "$(_1text "Cleaning %s...")\n" snap
+        LANG=en_US.UTF-8 snap list --all | awk '/disabled/{print $1, $3}' | \
+            while read _APP _AUX
+            do
+                _1sudo snap remove "$_APP" --revision="$_AUX"
+            done
+    fi
+
+    if _nh1app.where flatpak > /dev/null
+    then
+        printf "$(_1text "Cleaning %s...")\n" flatpak
+        _1sudo flatpak uninstall --unused
+    fi
+}
+
 
 # @description Removes an installed app
 # @arg $1 string local or global 
