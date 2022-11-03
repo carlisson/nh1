@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n3
+_1VERSION=1.1n4
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -166,8 +166,8 @@ _nh1.spool() {
 		echo "$_LIN"
 	done
 	IFS=$SAVEIFS
-	#rm "$1"
-	#touch "$1"
+	rm "$1"
+	touch "$1"
 }
 
 # @description Internal message
@@ -175,6 +175,7 @@ _nh1.spool() {
 # @arg $2 string Message to show
 _1message() {
 	local _TYP
+	_TYP="normal"
 	if [ $# -eq 2 ]
 	then
 		_TYP="$1"
@@ -183,6 +184,8 @@ _1message() {
 	if [ $# -eq 1 ]
 	then
 		case "$_TYP" in
+			normal)
+				;;
 			info)
 				1tintb $_IMCOLOR "INFO"
 				;;
@@ -219,7 +222,7 @@ _1verb() {
 _1verbs() {
 	if [ $_1VERBOSE -gt 0 ]
 	then
-		echo "${FUNCNAME[1]}: $*" >> $_1VRBSPOOL
+		echo "$(date +%H:%M) ${FUNCNAME[1]}: $*" >> $_1VRBSPOOL
 	fi
 }
 
@@ -230,6 +233,7 @@ _1verbs.spool() {
 
 # @description Procedores to do before all user command
 _1before() {
+	_1message
 	_1verbs.spool
 }
 
@@ -313,7 +317,7 @@ _1menuitem() {
 			echo "$mi_descr"
 		fi
 	else
-		_1text "You need to give status, command name, message and dependencies"
+		_1message info "$(_1text "You need to give status, command name, message and dependencies")"
 	fi
 	return 0
 }
@@ -504,7 +508,6 @@ _nh1.customvars() {
 	local SILENT=0
 	for PROG in $*
 	do
-		_1message bg "1check test for $PROG"
 		if [ "$PROG" = "-s" ]
 		then
 		  SILENT=1
@@ -515,7 +518,7 @@ _nh1.customvars() {
 				then
 	        		_1verbs "$(printf "$(_1text "%s is missing for %s")" $PROG $USER)"
 				else
-					printf "$(_1text "Program %s does not exist or it is unavailable for %s.")\n" $PROG $USER
+					_1message info "$(_1text "Program %s does not exist or it is unavailable for %s.")\n" $PROG $USER
 			  fi
 				CFAILS=$((CFAILS+1))
 			fi
@@ -1037,7 +1040,7 @@ _1db.show() {
 # @arg $2 string Mode: show or list. Default: show
 1dbshow() {
 	_1before
-	
+
 	local _PLUS
 	_PLUS=""
 	if [ "$#" -eq 2 ]
