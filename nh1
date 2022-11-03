@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n5
+_1VERSION=1.1n6
 
 _1MODULES=(app audio backup canva misc network rpg)
 
@@ -322,6 +322,53 @@ _1menuitem() {
 	return 0
 }
 
+# @description Print a message inside a banner
+# @arg $1 string Width (optional)
+# @art $2 string Message
+1banner() {
+	local _WID _MSG _I _SPB _SPA _MSZ
+	# If width is not given, use screen width
+	if [ $# -eq 0 ]
+	then
+		_1message info "$(printf "$(_1text "Usage: 1banner [%s] [%s].")" "$(_1text "size")" "$(_1text "text")")"
+		return 0
+	fi
+	if [ "$#" -ge 2 -a "$1" -eq "$1" ] &> /dev/null
+	then
+		_WID=$1
+		shift
+	else
+		if 1check tput
+		then
+			_WID=$(tput cols)
+		else
+			_WID=40
+		fi
+		_WID=$((_WID-2))
+	fi	
+	_MSG="$*"
+	_MSZ=${#_MSG}
+	_SPA=$(( (_WID - _MSZ) / 2 ))
+	_SPB=$((_WID - _MSZ - _SPA))
+
+	1tint "╔"
+	1tint "$(printf '═%.0s' $(seq $_WID))"
+	1tint "╗"
+	echo
+
+	1tint "║"
+	printf ' %.0s' $(seq $_SPB)
+	echo -n $_MSG
+	printf ' %.0s' $(seq $_SPA)
+	1tint "║"
+	echo
+
+	1tint "╚"
+	1tint "$(printf '═%.0s' $(seq $_WID))"
+	1tint "╝"
+	echo
+}
+
 # @description Print menu header
 # @arg $1 string Title for menu
 _1menuheader() {
@@ -518,7 +565,7 @@ _nh1.customvars() {
 				then
 	        		_1verbs "$(printf "$(_1text "%s is missing for %s")" $PROG $USER)"
 				else
-					_1message info "$(_1text "Program %s does not exist or it is unavailable for %s.")\n" $PROG $USER
+					_1message info "$(printf "$(_1text "Program %s does not exist or it is unavailable for %s.")" $PROG $USER)"
 			  fi
 				CFAILS=$((CFAILS+1))
 			fi
@@ -554,7 +601,7 @@ _nh1.customvars() {
 	unset -f _nh1info.customvars _1vardb.init _1vardb.get _1vardb.set
 	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.complete.dbshow
 	unset -f 1tintb _1vardb.show _1message _nh1.spool _1verbs.spool _1verbs
-	unset -f _1before
+	unset -f _1before 1banner
 
 	# Keep isolated to prevent improper extraction
 	unset -f _1text 
@@ -566,17 +613,13 @@ _nh1.customvars() {
 	_1before
 
 	local _MOD
-		echo " -------------------------------------"
-		echo -n "            "
-    1tint "NH1 $_1VERSION"
-		echo
-		echo " -------------------------------------"
-    echo
+    1banner 60 "NH1 $_1VERSION"
 
 		# Load internal menus
 		_nh1.modrun _nh1-=-.menu
 		
 		_1menuheader "$(_1text "Main")"
+		_1menuitem W 1banner "$(_1text "Prints a header inside a banner.")"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"
 		_1menuitem W 1builddoc "$(_1text "Build documentation files for NH1")" shdoc
 		_1menuitem W 1clean "$(_1text "Clean NH1 from memory (undo NH1 charge)")"
