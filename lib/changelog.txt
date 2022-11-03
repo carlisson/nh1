@@ -224,4 +224,4 @@
 1.1n5  2022-11-03: Fixed bugs in 1app[lg]upd and 1app[lg]clear
 1.1n6  2022-11-03: 1banner created
 1.1n7  2022-11-03: development of cron module begins
-
+1.1n8  2022-11-03: 1cronset created

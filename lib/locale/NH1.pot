@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-03 18:49-0300\n"
+"POT-Creation-Date: 2022-11-03 19:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -776,6 +776,58 @@ msgstr ""
 
 #: canva.bashrc:273 canva.bashrc:284
 msgid "Template %s not found."
+msgstr ""
+
+#: cron.bashrc:16
+msgid "Set a cron entry"
+msgstr ""
+
+#: cron.bashrc:17
+msgid "Remove a cron entry"
+msgstr ""
+
+#: cron.bashrc:18
+msgid "List all cron entries"
+msgstr ""
+
+#: cron.bashrc:19
+msgid "Check and run due commands"
+msgstr ""
+
+#: cron.bashrc:20
+msgid "Run a command now"
+msgstr ""
+
+#: cron.bashrc:34
+msgid "Enabling complete for cron module."
+msgstr ""
+
+#: cron.bashrc:44
+msgid "Path for cron rules"
+msgstr ""
+
+#: cron.bashrc:84
+msgid "Unknown cron time"
+msgstr ""
+
+#: cron.bashrc:88
+msgid "Usage %s [%s] [%s] [%s]."
+msgstr ""
+
+#: cron.bashrc:88
+msgid "cron time"
+msgstr ""
+
+#: cron.bashrc:88
+msgid "command id"
+msgstr ""
+
+#: cron.bashrc:88
+msgid "command"
+msgstr ""
+
+#: cron.bashrc:89
+msgid "Time values: "
 msgstr ""
 
 #: misc.bashrc:11
