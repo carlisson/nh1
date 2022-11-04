@@ -18,7 +18,7 @@ _nh1cron.menu() {
   _1menuitem X 1crondel "$(_1text "Remove a cron entry")"
   _1menuitem X 1cronlist "$(_1text "List all cron entries")"
   _1menuitem X 1cron "$(_1text "Check and run due commands")"
-  _1menuitem P 1crond "$(_1text "Run cron in daemon mode")"
+  _1menuitem X 1crond "$(_1text "Run cron in daemon mode")"
   _1menuitem X 1run "$(_1text "Run a command now")"
 }
 
@@ -29,7 +29,7 @@ _nh1cron.clean() {
   unset -f _nh1cron.menu _nh1cron.complete _nh1cron.init
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
-  unset -f 1run _nh1cron.now _nh1cron.tick 1cron
+  unset -f 1run _nh1cron.now _nh1cron.tick 1cron 1crond
 }
 
 # @description Autocompletion instructions
@@ -266,4 +266,21 @@ _nh1cron.tick() {
         done
     done
     _1verb "$(_1text "Cron finished.")"
+}
+
+# @description Run cron as a daemon
+1crond() {
+    if [ "$_1CRONENABLED" -eq 0 ]
+    then
+        while true
+        do
+            1cron
+            _1message
+            sleep 50
+            if [ $? -gt 0 ] # If sleep is interrupted, abort 1crond
+            then
+                return $?
+            fi
+        done
+    fi
 }
