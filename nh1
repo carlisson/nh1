@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n9
+_1VERSION=1.1n10
 
 _1MODULES=(app audio backup canva cron misc network rpg)
 
@@ -702,7 +702,7 @@ _nh1.customvars() {
 
 # @description List software version and list latest entries from changelog
 1version() {
-	echo "NH1 $_1VERSION"
+	_1menuheader "NH1 $_1VERSION"
 	echo
 	tail "$_1LIB/changelog.txt"
 }
@@ -920,11 +920,11 @@ _1db.get() {
 				fi
 				return 0
 			else
-				_1verb "$(printf "$(_1text "Variable %s not found in database %s.")\n" "$VARNAME" "$DBNAME")"
+				_1verbs "$(printf "$(_1text "Variable %s not found in database %s.")\n" "$VARNAME" "$DBNAME")"
 				return 1
 			fi
 		else
-			_1verb "$(printf "$(_1text "Database %s not found.")\n" "$DBNAME")"
+			_1verbs "$(printf "$(_1text "Database %s not found.")\n" "$DBNAME")"
 			return 2
 		fi
 	fi

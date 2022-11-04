@@ -16,7 +16,7 @@ _nh1cron.menu() {
   # _1menuitem X command "Description"
   _1menuitem X 1cronset "$(_1text "Set a cron entry")"
   _1menuitem X 1crondel "$(_1text "Remove a cron entry")"
-  _1menuitem P 1cronlist "$(_1text "List all cron entries")"
+  _1menuitem X 1cronlist "$(_1text "List all cron entries")"
   _1menuitem P 1cron "$(_1text "Check and run due commands")"
   _1menuitem P 1crond "$(_1text "Run cron in daemon mode")"
   _1menuitem P 1run "$(_1text "Run a command now")"
@@ -25,10 +25,10 @@ _nh1cron.menu() {
 # @description Destroys all global variables created by this file
 _nh1cron.clean() {
   # unset variables
-  unset _1CRONDIR
+  unset _1CRONDIR _1CRONTIMES _1CRPONENABLED
   unset -f _nh1cron.menu _nh1cron.complete _nh1cron.init
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
-  unset -f _nh1cron.listtimes 1cronset
+  unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
 }
 
 # @description Autocompletion instructions
@@ -120,4 +120,19 @@ _nh1cron.listtimes() {
         _1message "$(_1text "Time values: ") $(_nh1cron.listtimes)"
     fi
     return 0
+}
+
+# @descritpion List all cron configurations
+1cronlist() {
+    local _TIM _CMD _PTH _VAL
+    for _TIM in "${_1CRONTIMES[@]}"
+    do
+        _1menuheader "$_TIM"
+        for _CMD in $(_1db.show "$_1CRONDIR" "cron" "$_TIM" list)
+        do
+            _PTH=$(_1db.get "$_1CRONDIR" "cron" "$_TIM" "$_CMD")
+            _VAL=$(_1db.get "$_1CRONDIR" "status" "$_TIM" "$_CMD")
+            _1menuitem W "$_CMD" "$_VAL ($_PTH)"
+        done
+    done
 }
