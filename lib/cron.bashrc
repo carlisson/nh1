@@ -30,6 +30,7 @@ _nh1cron.clean() {
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
   unset -f 1run _nh1cron.now _nh1cron.tick 1cron 1crond
+  unset -f _nh1cron.interrupt
 }
 
 # @description Autocompletion instructions
@@ -57,7 +58,8 @@ _nh1cron.init() {
     for _TIM in "${_1CRONTIMES[@]}"
     do
         touch "$_1CRONDIR/$_TIM.cron" #commands to run
-        touch "$_1CRONDIR/$_TIM.status" #latest execution or PID
+        touch "$_1CRONDIR/$_TIM.status" #latest execution
+        touch "$_1CRONDIR/$_TIM.pid" #PID for running processes
     done
 }
 
@@ -107,8 +109,19 @@ _nh1cron.tick() {
         1run "$1" "$2"
     else
         _1db.set "$_1CRONDIR" "status" "$1" "$2" "$_STA"
+        _1db.set "$_1CRONDIR" "pid" "$1" "$2"
         _1message bg "$(printf "$(_1text "Command %s finished at %s.")" "$2" "$(date)")"
     fi
+}
+
+# @description Routine to run if interrupted
+_nh1cron.interrupt() {
+    local _PID
+    for _PID in $(cat "$_1CRONDIR/*.pid" | sed 's/^\(.*\)=\([0-9]*\)$/\2 /g')
+    do
+        _1verb "$(printf "$(_1text "Finishing command %s.")" $_PID )"
+        kill $_PID
+    done
 }
 
 # Alias-like
@@ -198,6 +211,10 @@ _nh1cron.tick() {
             if [ $? -eq 0 ]
             then
                 eval "$_CMD" &> /dev/null
+                if [ $? -gt 0 ]
+                then
+                    _nh1cron.interrupt
+                fi
                 _nh1cron.tick "$_TIM" "$2"
             else
                 _1message error "$(_1text "Command not found")"
@@ -212,6 +229,10 @@ _nh1cron.tick() {
                 if [ $? -eq 0 ]
                 then
                     eval "$_CMD" &> /dev/null
+                    if [ $? -gt 0 ]
+                    then
+                        _nh1cron.interrupt
+                    fi
                     _nh1cron.tick "$_TIM" "$1"
                 else
                     _1message error "$(_1text "Command not found")"
@@ -232,7 +253,7 @@ _nh1cron.tick() {
 # @description Check and run commands from cron
 # @arg $1 string Mode: normal/force/teste. Default: normal
 1cron() {
-    local _MOD _TIM _CMD _NOW _STA _MSG
+    local _MOD _TIM _CMD _NOW _STA _MSG _PID
     if [ $# -eq 1 ]
     then
         _MOD="$1"
@@ -251,16 +272,40 @@ _nh1cron.tick() {
         for _CMD in $(_1db.show "$_1CRONDIR" "cron" "$_TIM" list)
         do
             _STA=$(_1db.get "$_1CRONDIR" "status" "$_TIM" "$_CMD")
+            if [ -z "$_STA" ]
+            then
+                _STA="none"
+            fi
             _NOW=$(_nh1cron.now "$_TIM")
             if [ "$_STA" != "$_NOW" ]
             then
-                _MSG="$(printf "$(_1text "Run (frequency: %s) the command %s.")" "$_TIM" "$_CMD")"
-                if [ "$_MOD" = "test" ]
+                _PID=$(_1db.get "$_1CRONDIR" "pid" "$_TIM" "$_CMD")
+
+                _1verb "$(printf "$(_1text "Command %s executed at %s. Running now (%s) again. %i")" "$_CMD" "$_STA" "$_NOW" "$_PID")"
+
+                if [ -n "$_PID" ]
                 then
-                    _1message info "$_MSG"
-                else
-                    _1verb "$_MSG"
-                    1run "$_TIM" "$_CMD" &
+                    if ps -p $_PID > /dev/null
+                    then
+                        _1message info "$(printf "$(_1text "Command %s is still running (PID %i).")" "$_CMD" "$_PID")"
+                    else
+                        _1verb "$(printf "$(_1text "Command %s is not more running.")" "$_CMD")"
+                        _1db.set "$_1CRONDIR" "pid" "$_TIM" "$_CMD"
+                       _PID=
+                    fi
+                fi
+
+                if [ -z "$_PID" ]
+                then
+                    _MSG="$(printf "$(_1text "Run (frequency: %s) the command %s.")" "$_TIM" "$_CMD")"
+                    if [ "$_MOD" = "test" ]
+                    then
+                        _1message info "$_MSG"
+                    else
+                        _1verb "$_MSG"
+                        1run "$_TIM" "$_CMD" &
+                        _1db.set "$_1CRONDIR" "pid" "$_TIM" "$_CMD" "$!"
+                    fi
                 fi
             fi
         done
@@ -270,6 +315,7 @@ _nh1cron.tick() {
 
 # @description Run cron as a daemon
 1crond() {
+    local _PID
     if [ "$_1CRONENABLED" -eq 0 ]
     then
         while true
@@ -279,6 +325,7 @@ _nh1cron.tick() {
             sleep 50
             if [ $? -gt 0 ] # If sleep is interrupted, abort 1crond
             then
+                _nh1cron.interrupt
                 return $?
             fi
         done

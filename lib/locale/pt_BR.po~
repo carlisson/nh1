@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-04 10:14-0300\n"
+"POT-Creation-Date: 2022-11-04 11:03-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -834,45 +834,61 @@ msgstr "Caminho para as regras do cron"
 msgid "Turn on (0) or off (1) cron checkings"
 msgstr "Liga (0) ou desliga (1) as checagens do cron"
 
-#: cron.bashrc:90
+#: cron.bashrc:110
+msgid "Command %s finished at %s."
+msgstr "Comando %s finalizado em %s."
+
+#: cron.bashrc:135
 msgid "Unknown cron time"
 msgstr "Tempo de cron desconhecido"
 
-#: cron.bashrc:94
+#: cron.bashrc:139
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr "Uso: %s [%s] [%s] [%s]."
 
-#: cron.bashrc:94 cron.bashrc:120
+#: cron.bashrc:139 cron.bashrc:165
 msgid "cron time"
 msgstr "tempo do cron"
 
-#: cron.bashrc:94 cron.bashrc:120 cron.bashrc:179
+#: cron.bashrc:139 cron.bashrc:165 cron.bashrc:226
 msgid "command id"
 msgstr "id do comando"
 
-#: cron.bashrc:94
+#: cron.bashrc:139
 msgid "command"
 msgstr "comando"
 
-#: cron.bashrc:95 cron.bashrc:121
+#: cron.bashrc:140 cron.bashrc:166
 msgid "Time values: "
 msgstr "Valores de tempo: "
 
-#: cron.bashrc:116 cron.bashrc:174
+#: cron.bashrc:161 cron.bashrc:221
 msgid "Unknown cron time."
 msgstr "Tempo de cron desconhecido."
 
-#: cron.bashrc:120 cron.bashrc:179
+#: cron.bashrc:165 cron.bashrc:226
 msgid "Usage: %s [%s] [%s]."
 msgstr "Uso: %s [%s] [%s]."
 
-#: cron.bashrc:157 cron.bashrc:170
+#: cron.bashrc:203 cron.bashrc:217
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: cron.bashrc:179
+#: cron.bashrc:226
 msgid "cron time (optional)"
 msgstr "tempo do cron (opcional)"
+
+#: cron.bashrc:248
+msgid "Starting cron function."
+msgstr "Iniciando a função cron."
+
+#: cron.bashrc:257
+msgid "Run (frequency: %s) the command %s."
+msgstr "Rodar (frequência: %s) o comando %s."
+
+#: cron.bashrc:268
+msgid "Cron finished."
+msgstr "Cron concluído."
 
 #: misc.bashrc:11
 msgid "Miscelania"
