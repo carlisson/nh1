@@ -17,7 +17,7 @@ _nh1cron.menu() {
   _1menuitem X 1cronset "$(_1text "Set a cron entry")"
   _1menuitem X 1crondel "$(_1text "Remove a cron entry")"
   _1menuitem X 1cronlist "$(_1text "List all cron entries")"
-  _1menuitem P 1cron "$(_1text "Check and run due commands")"
+  _1menuitem X 1cron "$(_1text "Check and run due commands")"
   _1menuitem P 1crond "$(_1text "Run cron in daemon mode")"
   _1menuitem X 1run "$(_1text "Run a command now")"
 }
@@ -29,7 +29,7 @@ _nh1cron.clean() {
   unset -f _nh1cron.menu _nh1cron.complete _nh1cron.init
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
-  unset -f 1run _nh1cron.now _nh1cron.tick
+  unset -f 1run _nh1cron.now _nh1cron.tick 1cron
 }
 
 # @description Autocompletion instructions
@@ -107,6 +107,7 @@ _nh1cron.tick() {
         1run "$1" "$2"
     else
         _1db.set "$_1CRONDIR" "status" "$1" "$2" "$_STA"
+        _1message bg "$(printf "$(_1text "Command %s finished at %s.")" "$2" "$(date)")"
     fi
 }
 
@@ -196,7 +197,7 @@ _nh1cron.tick() {
             _CMD=$(_1db.get "$_1CRONDIR" "cron" "$_TIM" "$2")
             if [ $? -eq 0 ]
             then
-                eval "$_CMD"
+                eval "$_CMD" &> /dev/null
                 _nh1cron.tick "$_TIM" "$2"
             else
                 _1message error "$(_1text "Command not found")"
@@ -210,7 +211,7 @@ _nh1cron.tick() {
                 _CMD=$(_1db.get "$_1CRONDIR" "cron" "$_TIM" "$1")
                 if [ $? -eq 0 ]
                 then
-                    eval "$_CMD"
+                    eval "$_CMD" &> /dev/null
                     _nh1cron.tick "$_TIM" "$1"
                 else
                     _1message error "$(_1text "Command not found")"
@@ -226,4 +227,43 @@ _nh1cron.tick() {
             ;;            
     esac
     return 0
+}
+
+# @description Check and run commands from cron
+# @arg $1 string Mode: normal/force/teste. Default: normal
+1cron() {
+    local _MOD _TIM _CMD _NOW _STA _MSG
+    if [ $# -eq 1 ]
+    then
+        _MOD="$1"
+    else
+        _MOD="normal"
+    fi
+
+    if [ "$_MOD" = "normal" -a $_1CRONENABLED -eq 1 ]
+    then
+        return 0
+    fi
+
+    _1verb "$(_1text "Starting cron function.")"
+    for _TIM in $(_nh1cron.listtimes)
+    do
+        for _CMD in $(_1db.show "$_1CRONDIR" "cron" "$_TIM" list)
+        do
+            _STA=$(_1db.get "$_1CRONDIR" "status" "$_TIM" "$_CMD")
+            _NOW=$(_nh1cron.now "$_TIM")
+            if [ "$_STA" != "$_NOW" ]
+            then
+                _MSG="$(printf "$(_1text "Run (frequency: %s) the command %s.")" "$_TIM" "$_CMD")"
+                if [ "$_MOD" = "test" ]
+                then
+                    _1message info "$_MSG"
+                else
+                    _1verb "$_MSG"
+                    1run "$_TIM" "$_CMD" &
+                fi
+            fi
+        done
+    done
+    _1verb "$(_1text "Cron finished.")"
 }

@@ -834,12 +834,11 @@ msgstr "Caminho para as regras do cron"
 msgid "Turn on (0) or off (1) cron checkings"
 msgstr "Liga (0) ou desliga (1) as checagens do cron"
 
-#: cron.bashrc:90 cron.bashrc:116
+#: cron.bashrc:90
 msgid "Unknown cron time"
 msgstr "Tempo de cron desconhecido"
 
 #: cron.bashrc:94
-#, fuzzy
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr "Uso: %s [%s] [%s] [%s]."
 
@@ -859,6 +858,10 @@ msgstr "comando"
 msgid "Time values: "
 msgstr "Valores de tempo: "
 
+#: cron.bashrc:116 cron.bashrc:174
+msgid "Unknown cron time."
+msgstr "Tempo de cron desconhecido."
+
 #: cron.bashrc:120 cron.bashrc:179
 msgid "Usage: %s [%s] [%s]."
 msgstr "Uso: %s [%s] [%s]."
@@ -866,11 +869,6 @@ msgstr "Uso: %s [%s] [%s]."
 #: cron.bashrc:157 cron.bashrc:170
 msgid "Command not found"
 msgstr "Comando não encontrado"
-
-#: cron.bashrc:174
-#, fuzzy
-msgid "Unknown cron time."
-msgstr "Tempo de cron desconhecido"
 
 #: cron.bashrc:179
 msgid "cron time (optional)"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-04 10:14-0300\n"
+"POT-Creation-Date: 2022-11-04 11:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -814,44 +814,60 @@ msgstr ""
 msgid "Turn on (0) or off (1) cron checkings"
 msgstr ""
 
-#: cron.bashrc:90
+#: cron.bashrc:110
+msgid "Command %s finished at %s."
+msgstr ""
+
+#: cron.bashrc:135
 msgid "Unknown cron time"
 msgstr ""
 
-#: cron.bashrc:94
+#: cron.bashrc:139
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr ""
 
-#: cron.bashrc:94 cron.bashrc:120
+#: cron.bashrc:139 cron.bashrc:165
 msgid "cron time"
 msgstr ""
 
-#: cron.bashrc:94 cron.bashrc:120 cron.bashrc:179
+#: cron.bashrc:139 cron.bashrc:165 cron.bashrc:226
 msgid "command id"
 msgstr ""
 
-#: cron.bashrc:94
+#: cron.bashrc:139
 msgid "command"
 msgstr ""
 
-#: cron.bashrc:95 cron.bashrc:121
+#: cron.bashrc:140 cron.bashrc:166
 msgid "Time values: "
 msgstr ""
 
-#: cron.bashrc:116 cron.bashrc:174
+#: cron.bashrc:161 cron.bashrc:221
 msgid "Unknown cron time."
 msgstr ""
 
-#: cron.bashrc:120 cron.bashrc:179
+#: cron.bashrc:165 cron.bashrc:226
 msgid "Usage: %s [%s] [%s]."
 msgstr ""
 
-#: cron.bashrc:157 cron.bashrc:170
+#: cron.bashrc:203 cron.bashrc:217
 msgid "Command not found"
 msgstr ""
 
-#: cron.bashrc:179
+#: cron.bashrc:226
 msgid "cron time (optional)"
+msgstr ""
+
+#: cron.bashrc:248
+msgid "Starting cron function."
+msgstr ""
+
+#: cron.bashrc:257
+msgid "Run (frequency: %s) the command %s."
+msgstr ""
+
+#: cron.bashrc:268
+msgid "Cron finished."
 msgstr ""
 
 #: misc.bashrc:11
