@@ -11,7 +11,7 @@ _1CRONENABLED=0 #true
 
 # @description Generates partial menu
 _nh1cron.menu() {
-  _1menuheader "Cron Section"
+  _1menuheader "$(_1text "Cron Section")"
   # _1menutip Optional complementar instruction
   # _1menuitem X command "Description"
   _1menuitem X 1cronset "$(_1text "Set a cron entry")"
@@ -30,7 +30,8 @@ _nh1cron.clean() {
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
   unset -f 1run _nh1cron.now _nh1cron.tick 1cron 1crond
-  unset -f _nh1cron.interrupt
+  unset -f _nh1cron.interrupt _nh1cron.startup
+  unset -f _nh1cron.crongroup
 }
 
 # @description Autocompletion instructions
@@ -61,6 +62,8 @@ _nh1cron.init() {
         touch "$_1CRONDIR/$_TIM.status" #latest execution
         touch "$_1CRONDIR/$_TIM.pid" #PID for running processes
     done
+
+    _nh1cron.startup
 }
 
 # @description Returns all times possible for cron
@@ -122,6 +125,68 @@ _nh1cron.interrupt() {
         _1verb "$(printf "$(_1text "Finishing command %s.")" $_PID )"
         kill $_PID
     done
+}
+
+# @description Run all commands for given "time"
+# @arg $1 string Mode: normal/force/teste.
+# @arg $2 string Cron time (group)
+_nh1cron.crongroup() {
+    local _TIM _MOD _STA _NOW _MSG _CMD _PID
+    _MOD="$1"
+    _TIM="$2"
+    for _CMD in $(_1db.show "$_1CRONDIR" "cron" "$_TIM" list)
+    do
+        _STA=$(_1db.get "$_1CRONDIR" "status" "$_TIM" "$_CMD")
+        if [ -z "$_STA" ]
+        then
+            _STA="none"
+        fi
+        _NOW=$(_nh1cron.now "$_TIM")
+        if [ "$_STA" != "$_NOW" -o "$_MOD" = "force" ]
+        then
+            _PID=$(_1db.get "$_1CRONDIR" "pid" "$_TIM" "$_CMD")
+
+            _1verb "$(printf "$(_1text "Command %s executed at %s. Running now (%s) again. %i")" "$_CMD" "$_STA" "$_NOW" "$_PID")"
+
+            if [ -n "$_PID" ]
+            then
+                if ps -p $_PID > /dev/null
+                then
+                    _1message info "$(printf "$(_1text "Command %s is still running (PID %i).")" "$_CMD" "$_PID")"
+                else
+                    _1verb "$(printf "$(_1text "Command %s is not more running.")" "$_CMD")"
+                    _1db.set "$_1CRONDIR" "pid" "$_TIM" "$_CMD"
+                    _PID=
+                fi
+            fi
+
+            if [ -z "$_PID" ]
+            then
+                _MSG="$(printf "$(_1text "Run (frequency: %s) the command %s.")" "$_TIM" "$_CMD")"
+                if [ "$_MOD" = "test" ]
+                then
+                    _1message info "$_MSG"
+                else
+                    _1verb "$_MSG"
+                    1run "$_TIM" "$_CMD" &
+                    _1db.set "$_1CRONDIR" "pid" "$_TIM" "$_CMD" "$!"
+                fi
+            fi
+        fi
+    done
+}
+
+# @description Commands for time "start"
+_nh1cron.startup() {
+    local _CMD
+    if [ "$_1CRONENABLED" = 0 ]
+    then
+        for _CMD in $(_1db.show "$_1CRONDIR" "cron" "start" list)
+        do
+            _nh1cron.crongroup "force" "start"
+        done
+    fi
+    1cron
 }
 
 # Alias-like
@@ -253,7 +318,7 @@ _nh1cron.interrupt() {
 # @description Check and run commands from cron
 # @arg $1 string Mode: normal/force/teste. Default: normal
 1cron() {
-    local _MOD _TIM _CMD _NOW _STA _MSG _PID
+    local _MOD _TIM
     if [ $# -eq 1 ]
     then
         _MOD="$1"
@@ -269,46 +334,7 @@ _nh1cron.interrupt() {
     _1verb "$(_1text "Starting cron function.")"
     for _TIM in $(_nh1cron.listtimes)
     do
-        for _CMD in $(_1db.show "$_1CRONDIR" "cron" "$_TIM" list)
-        do
-            _STA=$(_1db.get "$_1CRONDIR" "status" "$_TIM" "$_CMD")
-            if [ -z "$_STA" ]
-            then
-                _STA="none"
-            fi
-            _NOW=$(_nh1cron.now "$_TIM")
-            if [ "$_STA" != "$_NOW" ]
-            then
-                _PID=$(_1db.get "$_1CRONDIR" "pid" "$_TIM" "$_CMD")
-
-                _1verb "$(printf "$(_1text "Command %s executed at %s. Running now (%s) again. %i")" "$_CMD" "$_STA" "$_NOW" "$_PID")"
-
-                if [ -n "$_PID" ]
-                then
-                    if ps -p $_PID > /dev/null
-                    then
-                        _1message info "$(printf "$(_1text "Command %s is still running (PID %i).")" "$_CMD" "$_PID")"
-                    else
-                        _1verb "$(printf "$(_1text "Command %s is not more running.")" "$_CMD")"
-                        _1db.set "$_1CRONDIR" "pid" "$_TIM" "$_CMD"
-                       _PID=
-                    fi
-                fi
-
-                if [ -z "$_PID" ]
-                then
-                    _MSG="$(printf "$(_1text "Run (frequency: %s) the command %s.")" "$_TIM" "$_CMD")"
-                    if [ "$_MOD" = "test" ]
-                    then
-                        _1message info "$_MSG"
-                    else
-                        _1verb "$_MSG"
-                        1run "$_TIM" "$_CMD" &
-                        _1db.set "$_1CRONDIR" "pid" "$_TIM" "$_CMD" "$!"
-                    fi
-                fi
-            fi
-        done
+        _nh1cron.crongroup "$_MOD" "$_TIM"
     done
     _1verb "$(_1text "Cron finished.")"
 }
