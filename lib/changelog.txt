@@ -228,4 +228,4 @@
 1.1n9  2022-11-04: 1crondel created
 1.1n10 2022-11-04: 1cronlist created
 1.1n11 2022-11-04: 1run intial code
-
+1.1n12 2022-11-04: _nh1cron.now and _nh1cron.tick

@@ -29,7 +29,7 @@ _nh1cron.clean() {
   unset -f _nh1cron.menu _nh1cron.complete _nh1cron.init
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
-  unset -f 1run
+  unset -f 1run _nh1cron.now _nh1cron.tick
 }
 
 # @description Autocompletion instructions
@@ -64,6 +64,50 @@ _nh1cron.init() {
 # @description Returns all times possible for cron
 _nh1cron.listtimes() {
     echo -n "${_1CRONTIMES[@]}"
+}
+
+# @description Returns condition based on time of cron
+# @arg $1 string Time of cron
+_nh1cron.now() {
+    local _STA
+    case "$1" in
+        hour)
+            _STA="$(date "+%Y-%m-%d %Hh")"
+            ;;
+        day)
+            _STA="$(date "+%Y-%m-%d")"
+            ;;
+        week)
+            _STA="$(date "+%Y#%W")"
+            ;;
+        month)
+            _STA="$(date "+%Y-%m")"
+            ;;
+        year)
+            _STA="$(date "+%Y")"
+            ;;
+        always)
+            _STA="run"
+            ;;
+        start)
+            _STA="done"
+            ;;
+    esac
+    echo "$_STA"
+}
+
+# @description Set latest run in status
+# @arg $1 string Time of cron
+# @arg $2 string Command ID
+_nh1cron.tick() {
+    local _STA
+    _STA="$(_nh1cron.now "$1")"
+    if [ "$_STA" = "run" ]
+    then
+        1run "$1" "$2"
+    else
+        _1db.set "$_1CRONDIR" "status" "$1" "$2" "$_STA"
+    fi
 }
 
 # Alias-like
@@ -153,6 +197,7 @@ _nh1cron.listtimes() {
             if [ $? -eq 0 ]
             then
                 eval "$_CMD"
+                _nh1cron.tick "$_TIM" "$2"
             else
                 _1message error "$(_1text "Command not found")"
                 return 1
@@ -166,6 +211,7 @@ _nh1cron.listtimes() {
                 if [ $? -eq 0 ]
                 then
                     eval "$_CMD"
+                    _nh1cron.tick "$_TIM" "$1"
                 else
                     _1message error "$(_1text "Command not found")"
                     return 1
