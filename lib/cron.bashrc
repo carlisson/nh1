@@ -19,7 +19,7 @@ _nh1cron.menu() {
   _1menuitem X 1cronlist "$(_1text "List all cron entries")"
   _1menuitem P 1cron "$(_1text "Check and run due commands")"
   _1menuitem P 1crond "$(_1text "Run cron in daemon mode")"
-  _1menuitem P 1run "$(_1text "Run a command now")"
+  _1menuitem X 1run "$(_1text "Run a command now")"
 }
 
 # @description Destroys all global variables created by this file
@@ -29,6 +29,7 @@ _nh1cron.clean() {
   unset -f _nh1cron.menu _nh1cron.complete _nh1cron.init
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
+  unset -f 1run
 }
 
 # @description Autocompletion instructions
@@ -90,7 +91,7 @@ _nh1cron.listtimes() {
             return 1
         fi
     else
-        _1message "$(printf "$(_1text "Usage %s [%s] [%s] [%s].")" "1cronset" "$(_1text "cron time")" "$(_1text "command id")" "$(_1text "command")")"
+        _1message "$(printf "$(_1text "Usage: %s [%s] [%s] [%s].")" "1cronset" "$(_1text "cron time")" "$(_1text "command id")" "$(_1text "command")")"
         _1message "$(_1text "Time values: ") $(_nh1cron.listtimes)"
     fi
     return 0
@@ -112,11 +113,11 @@ _nh1cron.listtimes() {
         then
    	        _1db.set "$_1CRONDIR" "cron" "$1" "$2"
         else
-            _1message error "$(_1text "Unknown cron time")"
+            _1message error "$(_1text "Unknown cron time.")"
             return 1
         fi
     else
-        _1message "$(printf "$(_1text "Usage %s [%s] [%s].")" "1crondel" "$(_1text "cron time")" "$(_1text "command id")")"
+        _1message "$(printf "$(_1text "Usage: %s [%s] [%s].")" "1crondel" "$(_1text "cron time")" "$(_1text "command id")")"
         _1message "$(_1text "Time values: ") $(_nh1cron.listtimes)"
     fi
     return 0
@@ -135,4 +136,48 @@ _nh1cron.listtimes() {
             _1menuitem W "$_CMD" "$_VAL ($_PTH)"
         done
     done
+}
+
+# @description Run a command
+# @arg $1 string Wich time is the command (optional)
+# @arg $2 string Command ID
+# @exitcode 0 It works
+# @exitcode 1 Command not found
+# @exitcode 2 Unknown cron time
+1run() {
+    local _TIM _CMD
+    case $# in
+        2)
+            _TIM="$1"
+            _CMD=$(_1db.get "$_1CRONDIR" "cron" "$_TIM" "$2")
+            if [ $? -eq 0 ]
+            then
+                eval "$_CMD"
+            else
+                _1message error "$(_1text "Command not found")"
+                return 1
+            fi
+            ;;    
+        1)
+            _TIM="$(grep -l "$1" $_1CRONDIR/*.cron | sed 's/\(.*\)\/\([a-z]*\)\.cron/\2/' | head -1)"
+            if [ -n "$_TIM" ]
+            then
+                _CMD=$(_1db.get "$_1CRONDIR" "cron" "$_TIM" "$1")
+                if [ $? -eq 0 ]
+                then
+                    eval "$_CMD"
+                else
+                    _1message error "$(_1text "Command not found")"
+                    return 1
+                fi
+            else
+                _1message error "$(_1text "Unknown cron time.")"
+                return 2
+            fi
+            ;;
+        0)
+            _1message "$(printf "$(_1text "Usage: %s [%s] [%s].")" "1run" "$(_1text "cron time (optional)")" "$(_1text "command id")")"
+            ;;            
+    esac
+    return 0
 }
