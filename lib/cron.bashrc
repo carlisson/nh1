@@ -5,6 +5,7 @@
 # GLOBALS
 _1CRONDIR="$_1UDATA/cron"
 _1CRONTIMES=(hour day week month year always start)
+_1CRONENABLED=0 #true
 
 # Private functions
 
@@ -13,10 +14,11 @@ _nh1cron.menu() {
   _1menuheader "Cron Section"
   # _1menutip Optional complementar instruction
   # _1menuitem X command "Description"
-  _1menuitem P 1cronset "$(_1text "Set a cron entry")"
-  _1menuitem P 1crondel "$(_1text "Remove a cron entry")"
+  _1menuitem X 1cronset "$(_1text "Set a cron entry")"
+  _1menuitem X 1crondel "$(_1text "Remove a cron entry")"
   _1menuitem P 1cronlist "$(_1text "List all cron entries")"
   _1menuitem P 1cron "$(_1text "Check and run due commands")"
+  _1menuitem P 1crond "$(_1text "Run cron in daemon mode")"
   _1menuitem P 1run "$(_1text "Run a command now")"
 }
 
@@ -36,12 +38,14 @@ _nh1cron.complete() {
 
 # @description Set global vars from custom vars (config file)
 _nh1cron.customvars() {
+  _1customvar NORG_CRON _1CRONENABLED number
   _1customvar NORG_CRON_DIR _1CRONDIR
 }
 
 # @description General information about variables and customizing
 _nh1cron.info() {
     _1menuitem W NORG_CRON_DIR "$(_1text "Path for cron rules")"
+    _1menuitem W NORG_CRON "$(_1text "Turn on (0) or off (1) cron checkings")"
 }
 
 # @description Creates paths and copy initial files
@@ -51,7 +55,8 @@ _nh1cron.init() {
 
     for _TIM in "${_1CRONTIMES[@]}"
     do
-        touch "$_1CRONDIR/$_TIM.cron"
+        touch "$_1CRONDIR/$_TIM.cron" #commands to run
+        touch "$_1CRONDIR/$_TIM.status" #latest execution or PID
     done
 }
 
@@ -86,6 +91,32 @@ _nh1cron.listtimes() {
         fi
     else
         _1message "$(printf "$(_1text "Usage %s [%s] [%s] [%s].")" "1cronset" "$(_1text "cron time")" "$(_1text "command id")" "$(_1text "command")")"
+        _1message "$(_1text "Time values: ") $(_nh1cron.listtimes)"
+    fi
+    return 0
+}
+
+# @description Remove a command from cron
+# @arg $1 string Time of cron: hour, day...
+# @arg $2 string Command ID
+1crondel() {
+    local _TIM _CID
+    if [ $# -eq 2 ]
+    then
+       if [ -f "$_1CRONDIR/$1.status" ]
+        then
+   	        _1db.set "$_1CRONDIR" "cron" "$1" "$2"
+        fi
+ 
+         if [ -f "$_1CRONDIR/$1.cron" ]
+        then
+   	        _1db.set "$_1CRONDIR" "cron" "$1" "$2"
+        else
+            _1message error "$(_1text "Unknown cron time")"
+            return 1
+        fi
+    else
+        _1message "$(printf "$(_1text "Usage %s [%s] [%s].")" "1crondel" "$(_1text "cron time")" "$(_1text "command id")")"
         _1message "$(_1text "Time values: ") $(_nh1cron.listtimes)"
     fi
     return 0

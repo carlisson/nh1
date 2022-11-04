@@ -225,3 +225,4 @@
 1.1n6  2022-11-03: 1banner created
 1.1n7  2022-11-03: development of cron module begins
 1.1n8  2022-11-03: 1cronset created
+1.1n9  2022-11-04: 1crondel created
