@@ -12,6 +12,7 @@ _nh1misc.menu() {
   _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
   _1menuitem W 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
   _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl
+  _1menuitem W 1diceware "$(_1text "Generate a random diceware password")" 1d6
   _1menuitem W 1du "$(_1text "Disk usage")" du
   _1menuitem W 1escape "$(_1text "Rename a file or dir, excluding special chars")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
@@ -32,7 +33,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init
+  unset -f _nh1misc.init 1diceware
 }
 
 # @description Autocompletion
@@ -83,8 +84,33 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @description Disk usage
 1du()    { du -h -d 1 ; }
 
-# @description Random password generator
-1pass()  { openssl rand -base64 16 | rev | cut -c 3-13 ; }
+# @description Random password generator. 15chars=75bits entropy
+1pass()  { openssl rand -base64 16 | rev | cut -c 3-15 ; }
+
+# @description Random diceware password generator. 6words=77bits entropy
+1diceware() {
+  local _LANG _DFILE _ROLL _WORDS _PASS _I _J
+  _WORDS=6
+  _LANG="$(echo $LANG | cut -d\. -f 1 | cut -d_ -f 1)"
+  _DFILE="$_1LIB/diceware/diceware.wordlist.txt"
+  if [ -f "$_1LIB/diceware/diceware.wordlist.$_LANG.txt" ]  
+  then
+    _DFILE="$_1LIB/diceware/diceware.wordlist.$_LANG.txt"
+  fi
+  _PASS=""
+  for _I in $(seq 1 $_WORDS)
+  do
+    _ROLL=""
+    for _J in $(seq 1 5)
+    do
+      _ROLL="$_ROLL$(1d6)"
+    done
+    _PASS="$_PASS $(grep $_ROLL "$_DFILE" | sed 's/[1-6]*[\ \t]*//')"
+  done
+  echo $_PASS
+}
+
+# dwd12 entropy: 4words + 2special (40 options)=68bits, +secret=?bits
 
 # @description Random color generator
 1color() { openssl rand -hex 3 ; }

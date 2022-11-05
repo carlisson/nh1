@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-05 15:25-0300\n"
+"POT-Creation-Date: 2022-11-05 20:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -670,7 +670,7 @@ msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 
 #: audio.bashrc:152 audio.bashrc:250 backup.bashrc:193 canva.bashrc:234
-#: canva.bashrc:259 misc.bashrc:116 network.bashrc:313 rpg.bashrc:232
+#: canva.bashrc:259 misc.bashrc:142 network.bashrc:313 rpg.bashrc:232
 #: rpg.bashrc:247
 msgid "Usage: %s."
 msgstr ""
@@ -977,122 +977,126 @@ msgid "Generate a random hexadecimal color"
 msgstr ""
 
 #: misc.bashrc:15
-msgid "Disk usage"
+msgid "Generate a random diceware password"
 msgstr ""
 
 #: misc.bashrc:16
-msgid "Rename a file or dir, excluding special chars"
+msgid "Disk usage"
 msgstr ""
 
 #: misc.bashrc:17
-msgid "Generate a secure password"
+msgid "Rename a file or dir, excluding special chars"
 msgstr ""
 
 #: misc.bashrc:18
-msgid "Make a booklet form a PDF file"
+msgid "Generate a secure password"
 msgstr ""
 
 #: misc.bashrc:19
-msgid "Compress a PDF file"
+msgid "Make a booklet form a PDF file"
 msgstr ""
 
 #: misc.bashrc:20
-msgid "Run one pomodoro (default is %s min)"
+msgid "Compress a PDF file"
 msgstr ""
 
 #: misc.bashrc:21
-msgid "Print percentage for battery (notebook)"
+msgid "Run one pomodoro (default is %s min)"
 msgstr ""
 
 #: misc.bashrc:22
-msgid "Counter 30-30-30 to router reset"
+msgid "Print percentage for battery (notebook)"
 msgstr ""
 
 #: misc.bashrc:23
-msgid "Returns a random special character"
+msgid "Counter 30-30-30 to router reset"
 msgstr ""
 
 #: misc.bashrc:24
-msgid "Countdown timer."
+msgid "Returns a random special character"
 msgstr ""
 
 #: misc.bashrc:25
+msgid "Countdown timer."
+msgstr ""
+
+#: misc.bashrc:26
 msgid "Shows a random tip"
 msgstr ""
 
-#: misc.bashrc:60
+#: misc.bashrc:61
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr ""
 
-#: misc.bashrc:61
+#: misc.bashrc:62
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:177 network.bashrc:244 network.bashrc:260 network.bashrc:278
+#: misc.bashrc:203 network.bashrc:244 network.bashrc:260 network.bashrc:278
 msgid "Usage:"
 msgstr ""
 
-#: misc.bashrc:180
+#: misc.bashrc:206
 msgid "Available timers"
 msgstr ""
 
-#: misc.bashrc:211
+#: misc.bashrc:237
 msgid "finished"
 msgstr ""
 
-#: misc.bashrc:240
+#: misc.bashrc:266
 msgid "30-30-30 method for router reseting"
 msgstr ""
 
-#: misc.bashrc:241
+#: misc.bashrc:267
 msgid "your router will lost all configuration"
 msgstr ""
 
-#: misc.bashrc:242
+#: misc.bashrc:268
 msgid "Turn on the router."
 msgstr ""
 
-#: misc.bashrc:243
+#: misc.bashrc:269
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:244
+#: misc.bashrc:270
 msgid "Turn off the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:245
+#: misc.bashrc:271
 msgid "Turn on the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:246
+#: misc.bashrc:272
 msgid "Release the button"
 msgstr ""
 
-#: misc.bashrc:247
+#: misc.bashrc:273
 msgid "Press ENTER when you are ready."
 msgstr ""
 
-#: misc.bashrc:249 misc.bashrc:253
+#: misc.bashrc:275 misc.bashrc:279
 msgid "Router on"
 msgstr ""
 
-#: misc.bashrc:251
+#: misc.bashrc:277
 msgid "Router off"
 msgstr ""
 
-#: misc.bashrc:256
+#: misc.bashrc:282
 msgid "Your router must be restarted with factory settings!"
 msgstr ""
 
-#: misc.bashrc:294
+#: misc.bashrc:320
 msgid "Tip groups: %s."
 msgstr ""
 
-#: misc.bashrc:302
+#: misc.bashrc:328
 msgid "No tips group %s found."
 msgstr ""
 
-#: misc.bashrc:448
+#: misc.bashrc:474
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 

@@ -235,3 +235,4 @@
 1.1n16 2022-11-04: _nh1cron.startup to run initial commands
 1.1n17 2022-11-05: 1builddoc now works for other scripts
 1.1n18 2022-11-05: 1translate now works for other scripts!
+1.1n19 2022-11-05: 1diceware to generate random password
