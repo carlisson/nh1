@@ -39,6 +39,7 @@ Generates partial menu
 * [_nh1app.where](#_nh1appwhere)
 * [1appxupd](#1appxupd)
 * [1appxadd](#1appxadd)
+* [1appxclear](#1appxclear)
 * [_nh1app.remove](#_nh1appremove)
 * [_nh1app.clear](#_nh1appclear)
 
@@ -306,6 +307,10 @@ Install program using system package manager
 #### Exit codes
 
 * 0
+
+### 1appxclear
+
+Remove old versions of system apps, in debian, snap, flatpak...
 
 ### _nh1app.remove
 

@@ -16,9 +16,15 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 * [_1text](#_1text)
 * [1tint](#1tint)
 * [1tintb](#1tintb)
+* [_nh1.spool](#_nh1spool)
+* [_1message](#_1message)
 * [_1verb](#_1verb)
+* [_1verbs](#_1verbs)
+* [_1verbs.spool](#_1verbsspool)
+* [_1before](#_1before)
 * [_nh1.modrun](#_nh1modrun)
 * [_1menuitem](#_1menuitem)
+* [1banner](#1banner)
 * [_1menuheader](#_1menuheader)
 * [_1menutip](#_1menutip)
 * [_1compl](#_1compl)
@@ -43,6 +49,8 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 * [_nh1info.customizable](#_nh1infocustomizable)
 * [_nh1info.customvars](#_nh1infocustomvars)
 * [1info](#1info)
+* [_nh1.builddoc.self](#_nh1builddocself)
+* [_nh1.bulddoc](#_nh1bulddoc)
 * [1builddoc](#1builddoc)
 * [_1db](#_1db)
 * [_1db.get](#_1dbget)
@@ -99,6 +107,24 @@ Set text background color in shell
 * **0**: If successful.
 * **1**: If an empty string passed.
 
+### _nh1.spool
+
+Proccess message spool
+
+#### Arguments
+
+* **$1** (string): Filename to proccess
+* **$2** (string): Prefix for every line
+
+### _1message
+
+Internal message
+
+#### Arguments
+
+* **$1** (string): Type of message: info, warning, error, bg
+* **$2** (string): Message to show
+
 ### _1verb
 
 Print only if NH1 is in verbose mode
@@ -106,6 +132,22 @@ Print only if NH1 is in verbose mode
 #### Arguments
 
 * **$1** (string): Message to print
+
+### _1verbs
+
+Spools message to shows when possible
+
+#### Arguments
+
+* **$1** (string): Message to print
+
+### _1verbs.spool
+
+Prints dammed verbose messages
+
+### _1before
+
+Procedores to do before all user command
 
 ### _nh1.modrun
 
@@ -130,6 +172,14 @@ Print a line to build help menu
 
 * **0**: If successful.
 * **1**: Some command fail in checking
+
+### 1banner
+
+Print a message inside a banner
+
+#### Arguments
+
+* **$1** (string): Width (optional)
 
 ### _1menuheader
 
@@ -305,9 +355,29 @@ General information
 
 * **$1** (string): Type of information. Default: all
 
+### _nh1.builddoc.self
+
+Build documentation for NH1
+
+### _nh1.bulddoc
+
+Build documentation for some bash script(s) 
+
+#### Arguments
+
+* **$1** (string): Project name
+* **$2** (string): Directory where to put doc
+* **$3** (string): List of bash files
+
 ### 1builddoc
 
 Build documentation
+
+#### Arguments
+
+* **$1** (string): Project name
+* **$2** (string): Documentation directory
+* **$3** (string): List of source files
 
 ### _1db
 
