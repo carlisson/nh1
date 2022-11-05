@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n17
+_1VERSION=1.1n18
 
 _1MODULES=(app audio backup canva cron misc network rpg)
 
@@ -602,6 +602,7 @@ _nh1.customvars() {
 	unset -f _nh1.complete.db _nh1.complete.dbvar _nh1.complete.dbshow
 	unset -f 1tintb _1vardb.show _1message _nh1.spool _1verbs.spool _1verbs
 	unset -f _1before 1banner _nh1.builddoc.self _nh1.builddoc
+	unset -f _nh1.translate.gen _nh1.translate.build
 
 	# Keep isolated to prevent improper extraction
 	unset -f _1text 
@@ -735,46 +736,104 @@ _nh1.customvars() {
 	fi
 }
 
+# @description Creates translation .po using gettext
+# @arg $1 string Path for locale files (where is /locale)
+# @arg $2 string Translation domain
+# @arg $3 string Language code
+# @arg $4 string List of shellscript files
+_nh1.translate.gen() {
+	local _LOC _DOM _LAN
+	if [ "$#" -gt 3 ]
+	then
+		_LOC="$1"
+		mkdir -p "$_LOC/locale"
+		_DOM="$2"
+		_LAN="$3"
+		shift 3
+
+		_1verb "$(_1text "Generating translation file.")"
+		pushd "$_LOC" > /dev/null
+		# Generate pot file for all modules
+		xgettext -o "locale/$_DOM.pot" -L Shell --keyword --keyword=_1text \
+			$*
+		_1verb "$(_1text ".pot file generated. Trying to create/update .po")"
+		if [ -f "locale/$_LAN.po" ]
+		then
+			msgmerge -U "locale/$_LAN.po" "locale/$_DOM.pot"
+		else
+			msginit -o "locale/$_LAN.po" -l "$_LAN" -i "locale/$_DOM.pot"
+		fi
+		_1verb "$(_1text "Done!")"
+		popd > /dev/null
+	fi
+}
+
+# @description Applies translation, building .mo files
+# @arg $1 string Path for locale files (where is /locale)
+# @arg $2 string Translation domain
+# @arg $3 string Language code
+_nh1.translate.build() {
+	local _LOC _DOM _LAN _AUX
+	if [ "$#" -eq 3 ]
+	then
+		_LOC="$1"
+		_DOM="$2"
+		_LAN="$3"
+
+		_AUX="$_LOC/locale/$_LAN/LC_MESSAGES"
+		mkdir -p "$_AUX"
+		_1verb "$(printf "$(_1text "Generating .mo file for %s language")" $_LAN)"
+		msgfmt -o "$_AUX/$_DOM.mo" "$_LOC/locale/$_LAN.po"
+		_1verb "$(_1text "Done!")"
+	fi
+}
+
 # @description Creates and applies translation for NH1
-# @arg $1 string Language code
-# @arg $2 string Generate binaries. Optional. Default: none
+# @arg $1 string Path where is locales/ folder (only for generic usage*)
+# @arg $2 string Domain name (only for generic usage*)
+# @arg $3 string Language code
+# @arg $4 string Generate binaries. Optional. Default: none.
+# @arg $5 string List of source-code files
 # @see _1text
 1translate() {
 	_1before
 
-	local AUX
+	local _A1 _A2 _A3
 	case "$#" in
-		1)
-			_1verb "$(_1text "Generating translation file.")"
-			pushd "$_1LIB" > /dev/null
-			# Generate pot file for all modules
-			xgettext -o "locale/NH1.pot" -L Shell --keyword --keyword=_1text \
-				"$_1RC" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g') \
-				$(_nh1app.avail | xargs -n 1 | sed 's/^\(.*\)$/recipes\/\1.app/g')
-			_1verb "$(_1text ".pot file generated. Trying to create/update .po")"
-			if [ -f "locale/$1.po" ]
-			then
-				msgmerge -U "locale/$1.po" "locale/NH1.pot"
-			else
-				msginit -o "locale/$1.po" -l "$1" -i "locale/NH1.pot"
-			fi
-			_1verb "$(_1text "Done!")"
-			popd > /dev/null
-			;;
-		2)
-			AUX="$_1LIB/locale/$1/LC_MESSAGES"
-			mkdir -p "$AUX"
-			_1verb "$(printf "$(_1text "Generating .mo file for %s language")" $1)"
-			msgfmt -o "$AUX/NH1.mo" "$_1LIB/locale/$1.po"
-			_1verb "$(_1text "Done!")"
-			;;
-		*)
-			printf "$(_1text "Usage: %s.")\n" "1translate <language-code> [compile]"
-			printf "$(_1text "Steps to translate"):\n"
+		0)
+			printf "$(_1text "Usage (for NH1): 1translate [%s] [%s].")\n" "$(_1text "language code")" \
+				"$(_1text "build (optional)")"
+			printf "$(_1text "Usage (generic): 1translate [%s] [%s] [%s] [%s].")\n" \
+				"$(_1text "locales path")" "$(_1text "domain name")" "$(_1text "language code")" \
+				"$(_1text "source-code files")"
+			printf "\n$(_1text "Steps to translate NH1"):\n"
 			printf "  1) $(_1text "Run 1translate <language-code>. For example, 1translate pt_BR");\n"
 			printf "  2) $(_1text "Edit the file <language-code>.po in %s, puting the translated strings");\n" "$_1LIB/locale"
 			printf "  3) $(_1text "Run 1translate <language-code> build. This will generate .mo file. \"build\" can be replaced to anything");\n"
 			printf "  4) $(_1text "Enjoy NH1 in your language! It's useful if you return translated .po to improve NH1 project!").\n"
+			printf "\n$(_1text "Steps to translate generic shellscript"):\n"
+			printf "  1) $(_1text "Run 1translate <locale-path> <domain-name> <language-code> <files>. For example, 1translate ./ hello pt_BR *.sh");\n"
+			printf "  2) $(_1text "Edit the file <language-code>.po in locales/, puting the translated strings");\n"
+			printf "  3) $(_1text "Run 1translate <locale-path> <domain-name> <language-code>. This will generate .mo file.");\n"
+			printf "  4) $(_1text "Enjoy your shellscript in your language!").\n"
+			;;
+		1)
+			_nh1.translate.gen "$_1LIB" "NH1" "$1" \
+				"$_1RC" $(echo ${_1MODULES[@]}' ' | sed 's/ /.bashrc /g') \
+				$(_nh1app.avail | xargs -n 1 | sed 's/^\(.*\)$/recipes\/\1.app/g')
+			;;
+		2)
+			_nh1.translate.build "$_1LIB" "NH1" "$1" \
+			;;
+		3)
+			_nh1.translate.build "$1" "$2" "$3"
+			;;
+		*)
+			_A1="$1"
+			_A2="$2"
+			_A3="$3"
+			shift 3
+			_nh1.translate.gen "$_A1" "$_A2" "$_A3" $*
 			;;
 	esac
 }
