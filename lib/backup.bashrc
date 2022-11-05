@@ -176,6 +176,7 @@ _nh1backup.nextfile() {
 # @exitcode 2 Compression error
 # @exitcode 3 No compression found
 1backup() {
+	_1before
     local _NAME _TARGET _DEST _FILE _COMPL _COUNT _OLD _MSG _LMSG
     _NAME="$1"
     if [ $# -eq 2 ]
@@ -290,6 +291,7 @@ _nh1backup.nextfile() {
 # @description List all backups for one name (id)
 # @arg $1 string Name (id)
 1backlist() {
+	_1before
     _nh1backup.customvars
     if [ $# -eq 1 ]
     then

@@ -200,6 +200,7 @@ _nh1cron.startup() {
 # @exitcode 0 It works
 # @exitcode 1 Unknown cron time
 1cronset() {
+	_1before
     local _TIM _CID
     if [ $# -ge 3 ]
     then
@@ -224,6 +225,7 @@ _nh1cron.startup() {
 # @arg $1 string Time of cron: hour, day...
 # @arg $2 string Command ID
 1crondel() {
+	_1before
     local _TIM _CID
     if [ $# -eq 2 ]
     then
@@ -248,6 +250,7 @@ _nh1cron.startup() {
 
 # @descritpion List all cron configurations
 1cronlist() {
+	_1before
     local _TIM _CMD _PTH _VAL
     for _TIM in "${_1CRONTIMES[@]}"
     do

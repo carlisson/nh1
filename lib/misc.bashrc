@@ -74,6 +74,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 
 # @description Print percentage for battery charge
 1power() {
+	_1before
   if 1check upower
   then
     upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage
@@ -82,13 +83,17 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 
 # Alias like
 # @description Disk usage
-1du()    { du -h -d 1 ; }
+1du() { du -h -d 1 ; }
 
 # @description Random password generator. 15chars=75bits entropy
-1pass()  { openssl rand -base64 16 | rev | cut -c 3-15 ; }
+1pass()  {
+	_1before
+  openssl rand -base64 16 | rev | cut -c 3-15
+}
 
 # @description Random diceware password generator. 6words=77bits entropy
 1diceware() {
+	_1before
   local _LANG _DFILE _ROLL _WORDS _PASS _I _J
   _WORDS=6
   _LANG="$(echo $LANG | cut -d\. -f 1 | cut -d_ -f 1)"
@@ -113,12 +118,16 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # dwd12 entropy: 4words + 2special (40 options)=68bits, +secret=?bits
 
 # @description Random color generator
-1color() { openssl rand -hex 3 ; }
+1color() {
+ 	_1before
+  openssl rand -hex 3
+}
 
 # @description Compress PDF file
 # @arg $1 string PDF input file
 # @arg $2 string PDF output file (optional)
 1pdfopt() {
+	_1before
   if 1check gs
   then
     if [ $# -gt 0 ]
@@ -160,6 +169,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @arg $4 int minutes (optional)
 # @arg $5 int hours to countdown (optional)
 1timer() {
+	_1before
   local HOURS MINUTES SECONDS TITLE COLOR CLOCK IH IM IS UNCLOCK IU AUX
   AUX=""
   if [ $# -eq 1 ]
@@ -305,6 +315,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @exitcode 0 It works
 # @exitcode 1 Tip file not found
 1tip() {
+	_1before
   local _TFIL
   if [ ! -d "$_1MISCTIPS" ]
   then
@@ -388,6 +399,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @stdout Pages sequence
 # @see 1pdfbkl
 1booklet() {
+	_1before
   local _PAG _MIN _MAJ _TOT _BLA _I _MID _REM _OUT _DOB
   _PAG=$1
   if [ $# -ge 2 ]
@@ -455,6 +467,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @arg $2 string single (empty) or double (not empty)
 # @see 1booklet
 1pdfbkl() {
+	_1before
   local _INF _OUF _PAG _TMP _SEQ _MOD _DOB
   if 1check pdfinfo pdfjam
   then

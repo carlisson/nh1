@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n19
+_1VERSION=1.1n20
 
 _1MODULES=(app audio backup canva cron misc network rpg)
 
@@ -203,7 +203,10 @@ _1message() {
 	else
 		_nh1.spool "$_1MSGSPOOL" "$(1tintb $_IMCOLOR " > ") "
 	fi
-	echo " $*"
+	if [ $# -gt 0 ]
+	then
+		echo " $*"
+	fi
 }
 
 # @description Print only if NH1 is in verbose mode
@@ -235,6 +238,7 @@ _1verbs.spool() {
 _1before() {
 	_1message
 	_1verbs.spool
+	1cron
 }
 
 # @description Run it for all modules
@@ -703,6 +707,8 @@ _nh1.customvars() {
 
 # @description List software version and list latest entries from changelog
 1version() {
+	_1before
+
 	_1menuheader "NH1 $_1VERSION"
 	echo
 	tail "$_1LIB/changelog.txt"
@@ -712,6 +718,8 @@ _nh1.customvars() {
 # @arg $1 int Bit (0/1) to set verbose mode. Default: invert current. (Optional)
 # @see _1verb
 1verbose() {
+	_1before
+
 	local NEWV=$_1VERBOSE
 	if [ $# -eq 1 ]
 	then

@@ -53,6 +53,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @arg $1 string TXT output file
 # @see 1id3set
 1id3get() {
+	_1before
   if 1check ffmpeg
   then
     if [ $# -eq 2 ]
@@ -70,6 +71,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @arg $3 string MP3 output file (optional)
 # @see 1id3get
 1id3set() {
+	_1before
   local CIN COUT CMD
   if 1check ffmpeg
   then
@@ -99,6 +101,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @arg $2 string PNG input file
 # @arg $3 string MP4 output file
 1svideo() {
+	_1before
   local SVMIN SVPIN SVMOUT
   if 1check ffmpeg
   then
@@ -119,6 +122,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @arg $1 string Ogg input file
 # @arg $2 string MP3 output file (optional)
 1ogg2mp3() {
+	_1before
   local OGF MPF
   if 1check ffmpeg
   then
@@ -143,6 +147,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @arg $1 string Message
 # @arg $2 string WAV output file
 1talkbr() {
+	_1before
   if 1check espeak
   then
     if [ $# -eq 2 ]
@@ -157,6 +162,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @description Create a MP3 file from a youtube video
 # @arg $1 string Youtube video URL(s)
 1yt3() {
+	_1before
   local YTITLE YFILE YLOCAL YTMPDIR YVID
   if 1check youtube-dl ffmpeg
   then
@@ -216,6 +222,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @arg $1 string input dir with the original music files
 # @arg $2 string output filename
 1genbigmp3() {
+	_1before
   local OLDIFS IFS f i PBN NUMB
   if 1check ffmpeg
   then

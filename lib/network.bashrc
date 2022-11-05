@@ -111,7 +111,9 @@ _nh1network.info() {
 # @description Get HTTP status for given URL
 # @arg $1 string URL
 # @stdout Code for HTTP status
-1httpstatus() { curl --write-out "%{http_code}\n" --silent --output /dev/null "$1" ; }
+1httpstatus() {
+  curl --write-out "%{http_code}\n" --silent --output /dev/null "$1"
+}
 
 # @description Returns baudrate for given number
 # @arg $1 int Number of baudrate in interval 1-13
@@ -212,6 +214,7 @@ _nh1network.info() {
 # @arg $1 string Command: list, new or del (optional. Default: list)
 # @arg $2 string Group name
 1hostgroup() {
+	_1before
   local COMM GRP
   case $# in
     1)
@@ -254,6 +257,7 @@ _nh1network.info() {
 # @arg $2 string Host name
 # @arg $3 string Host IP or IPs
 1hostset() {
+	_1before
   local GRP HNM
   if [ $# -lt 3 ]
   then
@@ -272,6 +276,7 @@ _nh1network.info() {
 # @arg $1 string Group name
 # @arg $2 string Host name
 1hostdel() {
+	_1before
   local GRP HNM
   if [ $# -ne 2 ]
   then
@@ -291,6 +296,7 @@ _nh1network.info() {
 # @exitcode 1 Variable not found
 # @exitcode 2 Insertion fails
 1hostmig() {
+	_1before
   local HVAL
   if [ $# -eq 3 ]
   then
@@ -346,6 +352,7 @@ _nh1network.info() {
 # @exitcode 0 tcpdump works
 # @exitcode 1 tcpdump not found
 1tcpdump() {
+	_1before
   local INFA
   if 1check tcpdump
   then
@@ -368,6 +375,7 @@ _nh1network.info() {
 # @exitcode 0 Machine is on
 # @exitcode 1 Machine not accessible
 1ison() {
+	_1before
   local thename="$1"
   local thehost
   if [ $# -eq 2 ]
@@ -580,6 +588,7 @@ _nh1network.simplessh() {
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
 1ssh() {
+	_1before
   _nh1network.smartssh "$1" "$2" "$3"
   if [ $? -gt 0 ]
   then
@@ -591,6 +600,7 @@ _nh1network.simplessh() {
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for telnet
 1telnet() {
+	_1before
   local destip finalstatus
   if 1check telnet
   then
@@ -605,6 +615,7 @@ _nh1network.simplessh() {
 # @arg $1 string IP
 # @arg $2 int Port (or ports). Optional. Default: 1-1500
 1ports() {
+	_1before
   if [ $# -gt 0 ]
   then
     local aux CHECK
@@ -670,6 +681,7 @@ _nh1network.simplessh() {
 # @arg $1 int (optional) Number of your interface. Default=all
 # @stdout All IP address in network inteface(s)
 1allhosts() {
+	_1before
   if 1check ip ipcalc
   then
     local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4 interfaces
@@ -734,6 +746,7 @@ _nh1network.simplessh() {
 # @description Scan on network for an given port
 # @arg $1 int Port to scan
 1findport() {
+	_1before
   if 1check ip ipcalc
   then
     local port
@@ -761,6 +774,7 @@ _nh1network.simplessh() {
 # @description Check status for every host in given .hosts
 # @arg $1 string set of hosts
 1areon() {
+	_1before
     local FILE TOTAL HLIN HNAM OK AUX
     _nh1network.init
   	if [ $# -ne 1 ]
@@ -809,6 +823,7 @@ _nh1network.simplessh() {
 # @description List VLANs in given switch
 # @arg $1 string IP or name (.hosts) for one or more switchs
 1xt-vlan() {
+	_1before
     local AUX usrhst
 	if [ $# -eq 0 ]
 	then
@@ -838,6 +853,7 @@ _nh1network.simplessh() {
 # @description Connect a serial port with appropriated program
 # @arg $1 int Bauds in 1bauds or traditional scale
 1serial() {
+	_1before
   local _BAU _COM _AUX _TTY _ADJ
 
   if [ $# -eq 1 ]
@@ -892,6 +908,7 @@ _nh1network.simplessh() {
 # @arg $1 string Vendor
 # @stdout MAC prefixes
 1macvendor() {
+	_1before
   if [ $# -eq 1 ]
   then
     grep -i "$1" "$_1LIB/mac-vendors.txt"  | sed 's/\(..\)/\1:/g' | cut -c 1-9 | tr '[:upper:]' '[:lower:]'
@@ -914,6 +931,7 @@ _nh1network.xt-backup() {
 # @description Backup from one or more switchs extreme
 # @arg $1 string host or group
 1xt-backup() {
+	_1before
   local _HOST _SUF _H
   _SUF="$(date +%Y-%m-%d).extreme"
   for _HOST in $@
@@ -936,5 +954,6 @@ _nh1network.xt-backup() {
 
 # @description List network interfaces, excluding loopback
 1interfaces() {
+	_1before
     ip a | grep "^[[:digit:]]" | cut -d\: -f 2 | grep -v lo | xargs
 }

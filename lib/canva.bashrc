@@ -103,6 +103,7 @@ _nh1canva.thelp() {
 
 # @description List all installed templates
 1canva() {
+	_1before
     local _clist _slist
     _nh1canva.init
     
@@ -121,6 +122,7 @@ _nh1canva.thelp() {
 
 # @description List all installed templates
 1token() {
+	_1before
     local _clist _slist
     _nh1canva.init
     
@@ -142,6 +144,7 @@ _nh1canva.thelp() {
 # @arg $2 string output file (.jpg, .png or other)
 # @arg $3 string substitutions in key=value syntax
 1canvagen() {
+	_1before
     local iter tempf tempi tempib
     subst=""
     case $# in
@@ -188,6 +191,7 @@ _nh1canva.thelp() {
 # @arg $2 string output file (.jpg, .png or other)
 # @arg $3 string input file to apply token template
 1tokengen() {
+	_1before
     local template filein fileout temp half hminor
     case $# in
         3)
@@ -216,6 +220,7 @@ _nh1canva.thelp() {
 # @description Add a svg template
 # @arg $1 string SVG to add
 1canvaadd() {
+	_1before
     local ni no
     case $# in
         1)
@@ -241,6 +246,7 @@ _nh1canva.thelp() {
 # @description Add a png template
 # @arg $1 string PNG to add
 1tokenadd() {
+	_1before
     local ni no
     case $# in
         1)
@@ -266,6 +272,7 @@ _nh1canva.thelp() {
 # @description Remove a svg template
 # @arg $1 string Name of template to remove
 1canvadel() {
+	_1before
     if [ -f "$_1CANVALOCAL/$1.svg" ]
     then
         rm "$_1CANVALOCAL/$1.svg"
@@ -277,6 +284,7 @@ _nh1canva.thelp() {
 # @description Remove a png template
 # @arg $1 string Name of template to remove
 1tokendel() {
+	_1before
     if [ -f "$_1CANVALOCAL/$1.png" ]
     then
         rm "$_1CANVALOCAL/$1.png"

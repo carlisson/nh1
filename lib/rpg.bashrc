@@ -117,6 +117,7 @@ _nh1rpg.info() {
 # @arg $1 string Formula like XdY+Z or XdY-Z
 # @see 1dice
 1roll() {
+	_1before
   local ROLLNUM ROLLSID ROLLADD ROLLDET ROLLTOT
 	if [ $(echo $1 | grep d) ]
 	then
@@ -155,6 +156,7 @@ _nh1rpg.info() {
 
 # @description Random playing card
 1card() {
+	_1before
 	local FSUIT FNUMB SUIT NUMB
 	if [ $(shuf -i 1-27 -n 1) -eq 1 ]
 	then
@@ -184,6 +186,7 @@ _nh1rpg.info() {
 # @description List all groups/lists from where to draw elements
 # @arg $1 string group name (optional)
 1drawlist() {
+	_1before
     local _dlist _slist
     
     _dlist=($(_1list "$_1RPGDRAW" "list"))
@@ -211,6 +214,7 @@ _nh1rpg.info() {
 # @description Add a group list from a text file, with one option per line
 # @arg $1 string Input text file
 1drawadd() {
+	_1before
     local ni no
     case $# in
         1)
@@ -239,6 +243,7 @@ _nh1rpg.info() {
 # @description Withdraw one item from a given group
 # @arg $1 string Group name
 1draw() {
+	_1before
 	local _group _list
 	_group="$1"
 	_list="$_1RPGDRAW/$_group.list"
@@ -258,6 +263,7 @@ _nh1rpg.info() {
 # @description Delete a group list
 # @arg $1 string Group name
 1drawdel() {
+	_1before
     if [ -f "$_1RPGDRAW/$1.list" ]
     then
         rm "$_1RPGDRAW/$1.list"

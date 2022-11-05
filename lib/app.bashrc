@@ -50,24 +50,42 @@ _nh1app.clean() {
 # Alias-like
 
 # @description Update all local apps
-1applupd()   { _nh1app.update local ; }
+1applupd()   {
+  	_1before
+    _nh1app.update local
+}
 
 # @description Update all global apps
-1appgupd()   { _nh1app.update global ; }
+1appgupd()   {
+	_1before
+    _nh1app.update global
+}
 
 # @description Uninstall local app
 # @arg $1 string Application name
-1appldel()   { _nh1app.remove local "$1"; }
+1appldel()   {
+   	_1before
+    _nh1app.remove local "$1"
+}
 
 # @description Uninstall global app
 # @arg $1 string Application name
-1appgdel()   { _nh1app.remove global "$1"; }
+1appgdel()   {
+   	_1before
+    _nh1app.remove global "$1"
+}
 
 # @description Remove old versions of local apps
-1applclear() { _nh1app.clear local ; }
+1applclear() {
+	_1before
+    _nh1app.clear local
+}
 
 # @description Remove old versions of global apps
-1appgclear() { _nh1app.clear global ; }
+1appgclear() {
+	_1before
+    _nh1app.clear global
+}
 
 # @description Autocompletion for 1app
 _nh1app.complete() {
@@ -147,6 +165,7 @@ _nh1app.checksetup() {
 
 # @description List all available app image for installation
 1app() {
+	_1before
     local _NAA _NAS _NAU _NAC
     echo "___ $(_1text "1app status") ___"
     printf "%-15s %-45s%s\n" "$(_1text App)" "$(_1text Description)" "$(_1text Installation)"
@@ -460,6 +479,7 @@ _nh1app.add() {
 # @arg $1 string App to install
 # @see _nh1app.add
 1appladd() {
+	_1before
     local _NAA
     for _NAA in "$@"
     do
@@ -471,6 +491,7 @@ _nh1app.add() {
 # @arg $1 string App to install
 # @see _nh1app.add
 1appgadd() {
+	_1before
     local _NAA
     for _NAA in "$@"
     do
@@ -537,6 +558,7 @@ _nh1app.where() {
 
 # @description Upgrade all system packages
 1appxupd() {
+	_1before
     local _UPD
         
     if _nh1app.where dnf > /dev/null
@@ -583,6 +605,7 @@ _nh1app.where() {
 # @arg $1 string Package name
 # @exitcode 0
 1appxadd() {
+	_1before
     local _PKG
 
     _PKG="$1"
@@ -624,6 +647,7 @@ _nh1app.where() {
 
 # @description Remove old versions of system apps, in debian, snap, flatpak...
 1appxclear() {
+	_1before
     local _APP _AUX
     if _nh1app.where snap > /dev/null
     then
