@@ -253,6 +253,7 @@ _nh1app.description() {
 # @arg $2 string Application name
 # @stdout Full file name
 _nh1app.checkversion() {
+    local _BINPATH _DIRPATH _DIRAUX
     if _nh1app.openapp $2
     then
         case "$1" in
@@ -262,13 +263,29 @@ _nh1app.checkversion() {
             local)
                 if [ -L "$_1APPLBIN/$2" ]
                 then
-                    basename $(readlink "$_1APPLBIN/$2")
+                    _BINPATH=$(readlink "$_1APPLBIN/$2")
+                    _DIRPATH=$(dirname "$_BINPATH")
+                    if [ "$DIRPATH" = "$_1APPLBIN" ]
+                    then
+                        basename $_BINPATH
+                    else
+                        _DIRAUX="$(echo "$_1APPLOCAL" | tr '/' 'ª')"
+                        echo "$_BINPATH" | tr '/' 'ª' | sed "s/\\$_DIRAUX//" | tr 'ª' '/' | cut -d/ -f 2
+                    fi
                 fi
                 ;;
             global)
                 if [ -L "$_1APPGBIN/$2" ]
                 then
-                    basename $(readlink "$_1APPGBIN/$2")
+                    _BINPATH=$(readlink "$_1APPGBIN/$2")
+                    _DIRPATH=$(dirname "$_BINPATH")
+                    if [ "$DIRPATH" = "$_1APPGBIN" ]
+                    then
+                        basename "$_BINPATH"
+                    else
+                        _DIRAUX="$(echo "$_1APPGLOBAL" | tr '/' 'ª')"
+                        echo "$_BINPATH" | tr '/' 'ª' | sed "s/\\$_DIRAUX//" | tr 'ª' '/' | cut -d/ -f 2
+                    fi
                 fi
                 ;;
         esac
@@ -325,11 +342,18 @@ _nh1app.mkdesktop() {
 # @arg $3 string App prefix
 # @arg $4 string local or global
 _nh1app.clearold() {
-    local _DIR _LAT _PRE _SCO _F
+    local _DIR _LAT _PRE _SCO _F _SU
     _DIR="$1"
     _LAT="$2"
     _PRE="$3"
     _SCO="$4"
+
+    if [ "$_SCO" = "global" ]
+    then
+        _SU="_1sudo "
+    else
+        _SU=""
+    fi
 
     if [ $_1APPRETAINS = 1 ]
     then
@@ -338,12 +362,13 @@ _nh1app.clearold() {
             _F="$(basename "$_F")"
             if [ "$_LAT" != "$_F" ]
             then
-                _1verb "$(printf "$(_1text "Removing old file %s.")\n" $_F)"
-                if [ "$_SCO" = "local" ]
+                _1verb "$(printf "$(_1text "Removing old app version %s.")\n" $_F)"
+                if [ -f "$_F" ]
                 then
-                    rm "$_DIR/$_F"
-                else
-                    sudo rm "$_DIR/$_F"
+                    $_SU rm "$_DIR/$_F"
+                elif [ -d "$_F" ]
+                then
+                    $_SU rm -r "$_DIR/$_F"
                 fi
             fi
         done
@@ -356,7 +381,7 @@ _nh1app.clearold() {
 # @arg $3 string symlink
 # @arg $4 string local or global
 _nh1app.single() {
-    local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP _PREV
+    local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP _PREV _NABIN
     if 1check curl
     then
         _NAPP="$1"
@@ -369,7 +394,10 @@ _nh1app.single() {
         _nh1app.openapp $_NAPP
         if [[ "$_NANEW" = *$APP_SUFFIX ]]
         then
-            if [ -f "$_NADIR/$_NANEW" ]
+            if [ "$APP_TYPE" = "single" -a -f "$_NADIR/$_NANEW" ]
+            then
+                printf "$(_1text "%s is already up to date.")\n" $_NAPP
+            elif  [ "$APP_TYPE" = "tarball" -a -d "$_NADIR/$_NANEW" ]
             then
                 printf "$(_1text "%s is already up to date.")\n" $_NAPP
             else
@@ -401,7 +429,7 @@ _nh1app.single() {
 
             _nh1app.clearold "$_NADIR" "$_NANEW" "$APP_PREFIX" "$_NAS"
 
-            if [ ! -x "$_NANEW" ]
+            if [ "$APP_TYPE" = "single" -a ! -x "$_NANEW" ]
             then
                 if [ $_NAS = "global" ]
                 then
@@ -413,11 +441,19 @@ _nh1app.single() {
 
             if [ ! -L "$_NASYM" ]
             then
+                case "$APP_TYPE" in
+                    single)
+                        _NABIN="$_NADIR/$_NANEW"
+                        ;;
+                    tarball)
+                        _NABIN="$_NADIR/$_NANEW/$APP_BINARY"
+                        ;;
+                esac
                 if [ $_NAS = "global" ]
                 then
-                    _1sudo ln -s "$_NADIR/$_NANEW" "$_NASYM"
+                    _1sudo ln -s "$_NABIN" "$_NASYM"
                 else
-                    ln -s "$_NADIR/$_NANEW" "$_NASYM"
+                    ln -s "$_NABIN" "$_NASYM"
                 fi
             fi
 
@@ -464,7 +500,7 @@ _nh1app.add() {
         _NAT="$APP_TYPE"
         _nh1app.closeapp
         case "$_NAT" in
-            single)
+            single|tarball)
                  _nh1app.single "$2" "$_NAD" "$_NAB" "$_NAS"
                  ;;
             *)
@@ -679,12 +715,12 @@ _nh1app.remove() {
     then
         if [ "$1" = "local" ]
         then
-            rm "$_1APPLOCAL/$_NAF"
+            rm -r "$_1APPLOCAL/$_NAF"
             rm "$_1APPLBIN/$_NAA"
             rm -f "$_1APPLAPPS/$_NAA.desktop"
             rm -f "$_1APPLICON/$_NAA.png"
         else
-            _1sudo rm "$_1APPGLOBAL/$_NAF"
+            _1sudo rm -r "$_1APPGLOBAL/$_NAF"
             _1sudo rm "$_1APPGBIN/$_NAA"
             _1sudo rm -f "$_1APPGAPPS/$_NAA.desktop"
             _1sudo rm -f "$_1APPLICON/$_NAA.png"

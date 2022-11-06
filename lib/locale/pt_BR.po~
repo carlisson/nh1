@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-05 15:25-0300\n"
+"POT-Creation-Date: 2022-11-05 20:29-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -690,7 +690,7 @@ msgstr ""
 "Você precisa informar o arquivo de entrada OGG e (opcional) a saída MP3"
 
 #: audio.bashrc:152 audio.bashrc:250 backup.bashrc:193 canva.bashrc:234
-#: canva.bashrc:259 misc.bashrc:116 network.bashrc:313 rpg.bashrc:232
+#: canva.bashrc:259 misc.bashrc:142 network.bashrc:313 rpg.bashrc:232
 #: rpg.bashrc:247
 msgid "Usage: %s."
 msgstr "Uso: %s."
@@ -1004,122 +1004,126 @@ msgid "Generate a random hexadecimal color"
 msgstr "Gera uma cor hexadecimal aleatória"
 
 #: misc.bashrc:15
+msgid "Generate a random diceware password"
+msgstr "Gera uma senha segura diceware"
+
+#: misc.bashrc:16
 msgid "Disk usage"
 msgstr "Uso do disco"
 
-#: misc.bashrc:16
+#: misc.bashrc:17
 msgid "Rename a file or dir, excluding special chars"
 msgstr "Renomeia um arquivo ou diretório, excluindo caracteres especiais"
 
-#: misc.bashrc:17
+#: misc.bashrc:18
 msgid "Generate a secure password"
 msgstr "Gera uma senha segura"
 
-#: misc.bashrc:18
+#: misc.bashrc:19
 msgid "Make a booklet form a PDF file"
 msgstr "Faz um livreto a partir de um arquivo PDF"
 
-#: misc.bashrc:19
+#: misc.bashrc:20
 msgid "Compress a PDF file"
 msgstr "Comprime um arquivo PDF"
 
-#: misc.bashrc:20
+#: misc.bashrc:21
 msgid "Run one pomodoro (default is %s min)"
 msgstr "Roda um pomodoro (default é %s min)"
 
-#: misc.bashrc:21
+#: misc.bashrc:22
 msgid "Print percentage for battery (notebook)"
 msgstr "Mostra a porcentagem da bateria (notebook)"
 
-#: misc.bashrc:22
+#: misc.bashrc:23
 msgid "Counter 30-30-30 to router reset"
 msgstr "Contador 30-30-30 para reset de roteador"
 
-#: misc.bashrc:23
+#: misc.bashrc:24
 msgid "Returns a random special character"
 msgstr "Retorna um caractere especial aleatório"
 
-#: misc.bashrc:24
+#: misc.bashrc:25
 msgid "Countdown timer."
 msgstr "Temporizador regressivo."
 
-#: misc.bashrc:25
+#: misc.bashrc:26
 msgid "Shows a random tip"
 msgstr "Mostra uma dica aleatória"
 
-#: misc.bashrc:60
+#: misc.bashrc:61
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 
-#: misc.bashrc:61
+#: misc.bashrc:62
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:177 network.bashrc:244 network.bashrc:260 network.bashrc:278
+#: misc.bashrc:203 network.bashrc:244 network.bashrc:260 network.bashrc:278
 msgid "Usage:"
 msgstr "Uso:"
 
-#: misc.bashrc:180
+#: misc.bashrc:206
 msgid "Available timers"
 msgstr "Temporizadores disponíveis"
 
-#: misc.bashrc:211
+#: misc.bashrc:237
 msgid "finished"
 msgstr "concluído"
 
-#: misc.bashrc:240
+#: misc.bashrc:266
 msgid "30-30-30 method for router reseting"
 msgstr "Método 30-30-30 para resetar um roteador"
 
-#: misc.bashrc:241
+#: misc.bashrc:267
 msgid "your router will lost all configuration"
 msgstr "seu roteador perderá toda a configuração"
 
-#: misc.bashrc:242
+#: misc.bashrc:268
 msgid "Turn on the router."
 msgstr "Ligue o roteador."
 
-#: misc.bashrc:243
+#: misc.bashrc:269
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr "Pressione e segure o botão reset. Espere 30 segundos."
 
-#: misc.bashrc:244
+#: misc.bashrc:270
 msgid "Turn off the router. Wait 30 seconds."
 msgstr "Desligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:245
+#: misc.bashrc:271
 msgid "Turn on the router. Wait 30 seconds."
 msgstr "Ligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:246
+#: misc.bashrc:272
 msgid "Release the button"
 msgstr "Solte o botão"
 
-#: misc.bashrc:247
+#: misc.bashrc:273
 msgid "Press ENTER when you are ready."
 msgstr "Pressione ENTER quando estiver pronto."
 
-#: misc.bashrc:249 misc.bashrc:253
+#: misc.bashrc:275 misc.bashrc:279
 msgid "Router on"
 msgstr "Roteador ligado"
 
-#: misc.bashrc:251
+#: misc.bashrc:277
 msgid "Router off"
 msgstr "Roteador desligado"
 
-#: misc.bashrc:256
+#: misc.bashrc:282
 msgid "Your router must be restarted with factory settings!"
 msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
 
-#: misc.bashrc:294
+#: misc.bashrc:320
 msgid "Tip groups: %s."
 msgstr "Grupos de dicas: %s."
 
-#: misc.bashrc:302
+#: misc.bashrc:328
 msgid "No tips group %s found."
 msgstr "Nenhum grupo de dica com o nome %s."
 
-#: misc.bashrc:448
+#: misc.bashrc:474
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "

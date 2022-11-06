@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-05 20:29-0300\n"
+"POT-Creation-Date: 2022-11-06 18:51-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -54,127 +54,127 @@ msgstr "ciano"
 msgid "white"
 msgstr "branco"
 
-#: /home/cgaldino/sources/nh1/nh1:247
+#: /home/cgaldino/sources/nh1/nh1:251
 msgid "Running for %s"
 msgstr "Rodando para %s"
 
-#: /home/cgaldino/sources/nh1/nh1:269
+#: /home/cgaldino/sources/nh1/nh1:273
 msgid "Done. %i modules not ready for this command."
 msgstr "Feito. %i módulos não estavam prontos para este comando."
 
-#: /home/cgaldino/sources/nh1/nh1:320
+#: /home/cgaldino/sources/nh1/nh1:324
 msgid "You need to give status, command name, message and dependencies"
 msgstr "Você precisa passar status, nome do comando, mensagem e dependências"
 
-#: /home/cgaldino/sources/nh1/nh1:333
+#: /home/cgaldino/sources/nh1/nh1:337
 msgid "Usage: 1banner [%s] [%s]."
 msgstr "Uso: 1banner [%s] [%s]."
 
-#: /home/cgaldino/sources/nh1/nh1:333
+#: /home/cgaldino/sources/nh1/nh1:337
 msgid "size"
 msgstr "tamanho"
 
-#: /home/cgaldino/sources/nh1/nh1:333
+#: /home/cgaldino/sources/nh1/nh1:337
 msgid "text"
 msgstr "texto"
 
-#: /home/cgaldino/sources/nh1/nh1:566
+#: /home/cgaldino/sources/nh1/nh1:570
 msgid "%s is missing for %s"
 msgstr "%s está faltando para %s"
 
-#: /home/cgaldino/sources/nh1/nh1:568
+#: /home/cgaldino/sources/nh1/nh1:572
 msgid "Program %s does not exist or it is unavailable for %s."
 msgstr "O programa %s não existe ou está indisponível para %s."
 
-#: /home/cgaldino/sources/nh1/nh1:587
+#: /home/cgaldino/sources/nh1/nh1:591
 msgid "Destroying all variables..."
 msgstr "Destruindo todas as variáveis..."
 
-#: /home/cgaldino/sources/nh1/nh1:622
+#: /home/cgaldino/sources/nh1/nh1:626
 msgid "Main"
 msgstr "Sessão Principal"
 
-#: /home/cgaldino/sources/nh1/nh1:623
+#: /home/cgaldino/sources/nh1/nh1:627
 msgid "Prints a header inside a banner."
 msgstr "Imprime um cabeçalho dentro de um banner."
 
-#: /home/cgaldino/sources/nh1/nh1:624
+#: /home/cgaldino/sources/nh1/nh1:628
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr "Modifica .bashrc para o NH1 iniciar com o bash"
 
-#: /home/cgaldino/sources/nh1/nh1:625
+#: /home/cgaldino/sources/nh1/nh1:629
 msgid "Build documentation files for NH1"
 msgstr "Gerar arquivos de documenação para o NH1"
 
-#: /home/cgaldino/sources/nh1/nh1:626
+#: /home/cgaldino/sources/nh1/nh1:630
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr "Limpa NH1 da memória (desfaz as mudanças do NH1)"
 
-#: /home/cgaldino/sources/nh1/nh1:627
+#: /home/cgaldino/sources/nh1/nh1:631
 msgid "List, create or delete a internal key-value DB."
 msgstr "Lista, cria ou remove um banco chave-valor interno."
 
-#: /home/cgaldino/sources/nh1/nh1:628
+#: /home/cgaldino/sources/nh1/nh1:632
 msgid "Get a value from a DB variable."
 msgstr "Recupera o valor de uma variável do banco."
 
-#: /home/cgaldino/sources/nh1/nh1:629
+#: /home/cgaldino/sources/nh1/nh1:633
 msgid "Set in DB a value for a variable."
 msgstr "Define no banco um valor para uma variável."
 
-#: /home/cgaldino/sources/nh1/nh1:630
+#: /home/cgaldino/sources/nh1/nh1:634
 msgid "List all variables in a DB."
 msgstr "Lista todas as variáveis em um banco."
 
-#: /home/cgaldino/sources/nh1/nh1:631
+#: /home/cgaldino/sources/nh1/nh1:635
 msgid "List possible custom variables"
 msgstr "Lista possíveis variáveis custom"
 
-#: /home/cgaldino/sources/nh1/nh1:632
+#: /home/cgaldino/sources/nh1/nh1:636
 msgid "Write a string in another color"
 msgstr "Escreve um texto em outra cor"
 
-#: /home/cgaldino/sources/nh1/nh1:633
+#: /home/cgaldino/sources/nh1/nh1:637
 msgid "Write a string with background color"
 msgstr "Escreve um texto com cor de fundo"
 
-#: /home/cgaldino/sources/nh1/nh1:634
+#: /home/cgaldino/sources/nh1/nh1:638
 msgid "Create and apply translation for NH1."
 msgstr "Cria e aplica tradução para NH1."
 
-#: /home/cgaldino/sources/nh1/nh1:635
+#: /home/cgaldino/sources/nh1/nh1:639
 msgid "Update your NH1, using git"
 msgstr "Atualiza seu NH1, usando git"
 
-#: /home/cgaldino/sources/nh1/nh1:636
+#: /home/cgaldino/sources/nh1/nh1:640
 msgid "Enable/disable verbose mode"
 msgstr "Habilita/desabilita o modo verboso"
 
-#: /home/cgaldino/sources/nh1/nh1:637
+#: /home/cgaldino/sources/nh1/nh1:641
 msgid "List NH1 version and latest changes/updates"
 msgstr "Lista a versão do NH1 e as últimas mudanças/atualizações"
 
-#: /home/cgaldino/sources/nh1/nh1:641
+#: /home/cgaldino/sources/nh1/nh1:645
 msgid "planning"
 msgstr "planejamento"
 
-#: /home/cgaldino/sources/nh1/nh1:643
+#: /home/cgaldino/sources/nh1/nh1:647
 msgid "experimental"
 msgstr "experimental"
 
-#: /home/cgaldino/sources/nh1/nh1:645
+#: /home/cgaldino/sources/nh1/nh1:649
 msgid "working"
 msgstr "funcional"
 
-#: /home/cgaldino/sources/nh1/nh1:647
+#: /home/cgaldino/sources/nh1/nh1:651
 msgid "deprecated"
 msgstr "obsoleto"
 
-#: /home/cgaldino/sources/nh1/nh1:650
+#: /home/cgaldino/sources/nh1/nh1:654
 msgid "Power-up your shell"
 msgstr "Dê poderes ao seu shell"
 
-#: /home/cgaldino/sources/nh1/nh1:662
+#: /home/cgaldino/sources/nh1/nh1:666
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
@@ -182,93 +182,93 @@ msgstr ""
 "NH1 está instalado no seu perfil. Rode NH1 para ver todos os comandos "
 "disponíveis"
 
-#: /home/cgaldino/sources/nh1/nh1:664
+#: /home/cgaldino/sources/nh1/nh1:668
 msgid "Installing NH1 in %s..."
 msgstr "Instalando NH1 em %s..."
 
-#: /home/cgaldino/sources/nh1/nh1:666 /home/cgaldino/sources/nh1/nh1:678
-#: /home/cgaldino/sources/nh1/nh1:766 /home/cgaldino/sources/nh1/nh1:787
+#: /home/cgaldino/sources/nh1/nh1:670 /home/cgaldino/sources/nh1/nh1:682
+#: /home/cgaldino/sources/nh1/nh1:774 /home/cgaldino/sources/nh1/nh1:795
 msgid "Done!"
 msgstr "Feito!"
 
-#: /home/cgaldino/sources/nh1/nh1:675
+#: /home/cgaldino/sources/nh1/nh1:679
 msgid "After destroy variables, I will load %s."
 msgstr "Depois de destruir as variáveis, eu carregarei %s."
 
-#: /home/cgaldino/sources/nh1/nh1:690
+#: /home/cgaldino/sources/nh1/nh1:694
 msgid "NH1 was in version %s. "
 msgstr "NH1 estava na versão %s. "
 
-#: /home/cgaldino/sources/nh1/nh1:696
+#: /home/cgaldino/sources/nh1/nh1:700
 msgid "You are using NH1 from tar-ball, not from Git."
 msgstr "Você está usando NH1 a partir do tar-ball, não do Git."
 
-#: /home/cgaldino/sources/nh1/nh1:700
+#: /home/cgaldino/sources/nh1/nh1:704
 msgid "Git program is not available."
 msgstr "Programa git não está disponível."
 
-#: /home/cgaldino/sources/nh1/nh1:721 /home/cgaldino/sources/nh1/nh1:735
+#: /home/cgaldino/sources/nh1/nh1:729 /home/cgaldino/sources/nh1/nh1:743
 msgid "Verbose mode is on"
 msgstr "Modo verboso está ligado"
 
-#: /home/cgaldino/sources/nh1/nh1:723 /home/cgaldino/sources/nh1/nh1:731
+#: /home/cgaldino/sources/nh1/nh1:731 /home/cgaldino/sources/nh1/nh1:739
 msgid "Verbose mode is off"
 msgstr "Modo verboso está desligado"
 
-#: /home/cgaldino/sources/nh1/nh1:754
+#: /home/cgaldino/sources/nh1/nh1:762
 msgid "Generating translation file."
 msgstr "Gerando arquivo de tradução."
 
-#: /home/cgaldino/sources/nh1/nh1:759
+#: /home/cgaldino/sources/nh1/nh1:767
 msgid ".pot file generated. Trying to create/update .po"
 msgstr "Arquivo .pot gerado. Tentando criar/atualizar .po"
 
-#: /home/cgaldino/sources/nh1/nh1:785
+#: /home/cgaldino/sources/nh1/nh1:793
 msgid "Generating .mo file for %s language"
 msgstr "Gerando arquivo .mo para o idioma %s"
 
-#: /home/cgaldino/sources/nh1/nh1:804
+#: /home/cgaldino/sources/nh1/nh1:812
 msgid "Usage (for NH1): 1translate [%s] [%s]."
 msgstr "Uso (para NH1): 1translate [%s] [%s]."
 
-#: /home/cgaldino/sources/nh1/nh1:804 /home/cgaldino/sources/nh1/nh1:807
+#: /home/cgaldino/sources/nh1/nh1:812 /home/cgaldino/sources/nh1/nh1:815
 msgid "language code"
 msgstr "código do idioma"
 
-#: /home/cgaldino/sources/nh1/nh1:805
+#: /home/cgaldino/sources/nh1/nh1:813
 msgid "build (optional)"
 msgstr "gerar (opcional)"
 
-#: /home/cgaldino/sources/nh1/nh1:806
+#: /home/cgaldino/sources/nh1/nh1:814
 msgid "Usage (generic): 1translate [%s] [%s] [%s] [%s]."
 msgstr "Uso (genérico): 1translate [%s] [%s] [%s] [%s]."
 
-#: /home/cgaldino/sources/nh1/nh1:807
+#: /home/cgaldino/sources/nh1/nh1:815
 msgid "locales path"
 msgstr "caminho locales"
 
-#: /home/cgaldino/sources/nh1/nh1:807
+#: /home/cgaldino/sources/nh1/nh1:815
 msgid "domain name"
 msgstr "nome de domínio"
 
-#: /home/cgaldino/sources/nh1/nh1:808 /home/cgaldino/sources/nh1/nh1:961
+#: /home/cgaldino/sources/nh1/nh1:816 /home/cgaldino/sources/nh1/nh1:969
 msgid "source-code files"
 msgstr "arquivos-fonte"
 
-#: /home/cgaldino/sources/nh1/nh1:809
+#: /home/cgaldino/sources/nh1/nh1:817
 msgid "Steps to translate NH1"
 msgstr "Passos para traduzir o NH1"
 
-#: /home/cgaldino/sources/nh1/nh1:810
+#: /home/cgaldino/sources/nh1/nh1:818
 msgid "Run 1translate <language-code>. For example, 1translate pt_BR"
 msgstr "Rode 1translate <código-do-idioma>. Por exemplo, 1translate pt_BR"
 
-#: /home/cgaldino/sources/nh1/nh1:811
+#: /home/cgaldino/sources/nh1/nh1:819
 msgid "Edit the file <language-code>.po in %s, puting the translated strings"
 msgstr ""
 "Edite o arquivo <código-do-idioma>.po em %s, colocando os textos traduzidos"
 
-#: /home/cgaldino/sources/nh1/nh1:812
+#: /home/cgaldino/sources/nh1/nh1:820
 msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
@@ -276,7 +276,7 @@ msgstr ""
 "Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. "
 "\"gen\" pode ser substituído por qualquer coisa"
 
-#: /home/cgaldino/sources/nh1/nh1:813
+#: /home/cgaldino/sources/nh1/nh1:821
 msgid ""
 "Enjoy NH1 in your language! It's useful if you return translated .po to "
 "improve NH1 project!"
@@ -284,11 +284,11 @@ msgstr ""
 "Aproveite NH1 no seu idioma! Considere retornar o .po traduzido para "
 "melhorar o projeto NH1!"
 
-#: /home/cgaldino/sources/nh1/nh1:814
+#: /home/cgaldino/sources/nh1/nh1:822
 msgid "Steps to translate generic shellscript"
 msgstr "Passos para traduzir um shellscript genérico"
 
-#: /home/cgaldino/sources/nh1/nh1:815
+#: /home/cgaldino/sources/nh1/nh1:823
 msgid ""
 "Run 1translate <locale-path> <domain-name> <language-code> <files>. For "
 "example, 1translate ./ hello pt_BR *.sh"
@@ -296,14 +296,14 @@ msgstr ""
 "Rode 1translate <caminho-locale> <nome-de-domínio> <código-do-idioma> "
 "<arquivos>. Por exemplo, 1translate ./ hello pt_BR *.sh"
 
-#: /home/cgaldino/sources/nh1/nh1:816
+#: /home/cgaldino/sources/nh1/nh1:824
 msgid ""
 "Edit the file <language-code>.po in locales/, puting the translated strings"
 msgstr ""
 "Edite o arquivo <código-do-idioma>.po em locales/, colocando os textos "
 "traduzidos"
 
-#: /home/cgaldino/sources/nh1/nh1:817
+#: /home/cgaldino/sources/nh1/nh1:825
 msgid ""
 "Run 1translate <locale-path> <domain-name> <language-code>. This will "
 "generate .mo file."
@@ -311,139 +311,139 @@ msgstr ""
 "Rode 1translate <caminho-locale> <nome-de-domínio> <código-do-idioma>. Isso "
 "vai gerar o arquivo .mo"
 
-#: /home/cgaldino/sources/nh1/nh1:818
+#: /home/cgaldino/sources/nh1/nh1:826
 msgid "Enjoy your shellscript in your language!"
 msgstr "Aproveite o seu shellscript no seu idioma!"
 
-#: /home/cgaldino/sources/nh1/nh1:844
+#: /home/cgaldino/sources/nh1/nh1:852
 msgid "Custom variables"
 msgstr "Variáveis Custom"
 
-#: /home/cgaldino/sources/nh1/nh1:845
+#: /home/cgaldino/sources/nh1/nh1:853
 msgid "You can configure custom variables for NH1. Edit %s to define it."
 msgstr ""
 "Você pode configurar variáveis custom para o NH1. Edite %s para definí-las."
 
-#: /home/cgaldino/sources/nh1/nh1:850
+#: /home/cgaldino/sources/nh1/nh1:858
 msgid "Path to internal key-value databases"
 msgstr "Caminho para os bancos chave-valor internos"
 
-#: /home/cgaldino/sources/nh1/nh1:851
+#: /home/cgaldino/sources/nh1/nh1:859
 msgid "Set verbose mode (1 or 0). Default: 0"
 msgstr "Define o modo verboso (1 ou 0). Default: 0"
 
-#: /home/cgaldino/sources/nh1/nh1:860
+#: /home/cgaldino/sources/nh1/nh1:868
 msgid "Custom variables (in use)"
 msgstr "Variáveis Custom (em uso)"
 
-#: /home/cgaldino/sources/nh1/nh1:890 /home/cgaldino/sources/nh1/nh1:892
+#: /home/cgaldino/sources/nh1/nh1:898 /home/cgaldino/sources/nh1/nh1:900
 msgid "Building documentation for nh1 %s..."
 msgstr "Gerando documentação para %s do nh1..."
 
-#: /home/cgaldino/sources/nh1/nh1:890
+#: /home/cgaldino/sources/nh1/nh1:898
 msgid "main file"
 msgstr "Arquivo principal"
 
-#: /home/cgaldino/sources/nh1/nh1:892
+#: /home/cgaldino/sources/nh1/nh1:900
 msgid "module files"
 msgstr "arquivos de módulo"
 
-#: /home/cgaldino/sources/nh1/nh1:902
+#: /home/cgaldino/sources/nh1/nh1:910
 msgid "Documentation available in %s."
 msgstr "Documentação está disponível em %s."
 
-#: /home/cgaldino/sources/nh1/nh1:920
+#: /home/cgaldino/sources/nh1/nh1:928
 msgid "Building documentation for %s..."
 msgstr "Gerando documentação para %s..."
 
-#: /home/cgaldino/sources/nh1/nh1:958 /home/cgaldino/sources/nh1/nh1:1150
-#: /home/cgaldino/sources/nh1/nh1:1169 /home/cgaldino/sources/nh1/nh1:1191
-#: /home/cgaldino/sources/nh1/nh1:1216
+#: /home/cgaldino/sources/nh1/nh1:966 /home/cgaldino/sources/nh1/nh1:1158
+#: /home/cgaldino/sources/nh1/nh1:1177 /home/cgaldino/sources/nh1/nh1:1199
+#: /home/cgaldino/sources/nh1/nh1:1224
 msgid "Usage: "
 msgstr "Uso: "
 
-#: /home/cgaldino/sources/nh1/nh1:960
+#: /home/cgaldino/sources/nh1/nh1:968
 msgid "Build documentation for NH1"
 msgstr "Gerar arquivos de documenação para o NH1"
 
-#: /home/cgaldino/sources/nh1/nh1:961
+#: /home/cgaldino/sources/nh1/nh1:969
 msgid "project name"
 msgstr "nome do projeto"
 
-#: /home/cgaldino/sources/nh1/nh1:961
+#: /home/cgaldino/sources/nh1/nh1:969
 msgid "doc directory"
 msgstr "diretório da documentação"
 
-#: /home/cgaldino/sources/nh1/nh1:985
+#: /home/cgaldino/sources/nh1/nh1:993
 msgid "Creating database file for %s."
 msgstr "Gerando arquivo de banco para %s"
 
-#: /home/cgaldino/sources/nh1/nh1:991
+#: /home/cgaldino/sources/nh1/nh1:999
 msgid "Database %s exists."
 msgstr "Banco %s existe."
 
-#: /home/cgaldino/sources/nh1/nh1:996
+#: /home/cgaldino/sources/nh1/nh1:1004
 msgid "Excluding database file for %s."
 msgstr "Excluindo arquivo de banco para %s."
 
-#: /home/cgaldino/sources/nh1/nh1:1002
+#: /home/cgaldino/sources/nh1/nh1:1010
 msgid "Database %s does not exist."
 msgstr "Banco %s não existe."
 
-#: /home/cgaldino/sources/nh1/nh1:1039
+#: /home/cgaldino/sources/nh1/nh1:1047
 msgid "Variable %s not found in database %s."
 msgstr "Variável %s não encontrada no banco %s."
 
-#: /home/cgaldino/sources/nh1/nh1:1043 /home/cgaldino/sources/nh1/nh1:1079
+#: /home/cgaldino/sources/nh1/nh1:1051 /home/cgaldino/sources/nh1/nh1:1087
 msgid "Database %s not found."
 msgstr "Banco %s não encontrado."
 
-#: /home/cgaldino/sources/nh1/nh1:1117
+#: /home/cgaldino/sources/nh1/nh1:1125
 msgid "Listing content for %s database."
 msgstr "Listando o conteúdo para o banco %s."
 
-#: /home/cgaldino/sources/nh1/nh1:1148
+#: /home/cgaldino/sources/nh1/nh1:1156
 msgid "Internal databases:%s."
 msgstr "Bancos internos:%s."
 
-#: /home/cgaldino/sources/nh1/nh1:1151
+#: /home/cgaldino/sources/nh1/nh1:1159
 msgid "list all databases."
 msgstr "Lista todos os bancos disponíveis"
 
-#: /home/cgaldino/sources/nh1/nh1:1152 /home/cgaldino/sources/nh1/nh1:1153
+#: /home/cgaldino/sources/nh1/nh1:1160 /home/cgaldino/sources/nh1/nh1:1161
 msgid "name"
 msgstr "nome"
 
-#: /home/cgaldino/sources/nh1/nh1:1152
+#: /home/cgaldino/sources/nh1/nh1:1160
 msgid "creates a new database."
 msgstr "cria um novo banco."
 
-#: /home/cgaldino/sources/nh1/nh1:1153
+#: /home/cgaldino/sources/nh1/nh1:1161
 msgid "removes the database."
 msgstr "remove o banco."
 
-#: /home/cgaldino/sources/nh1/nh1:1170 /home/cgaldino/sources/nh1/nh1:1192
-#: /home/cgaldino/sources/nh1/nh1:1217
+#: /home/cgaldino/sources/nh1/nh1:1178 /home/cgaldino/sources/nh1/nh1:1200
+#: /home/cgaldino/sources/nh1/nh1:1225
 msgid "database name"
 msgstr "nome do banco"
 
-#: /home/cgaldino/sources/nh1/nh1:1170 /home/cgaldino/sources/nh1/nh1:1192
+#: /home/cgaldino/sources/nh1/nh1:1178 /home/cgaldino/sources/nh1/nh1:1200
 msgid "variable name"
 msgstr "nome da variável"
 
-#: /home/cgaldino/sources/nh1/nh1:1192
+#: /home/cgaldino/sources/nh1/nh1:1200
 msgid "variable value"
 msgstr "valor da variável"
 
-#: /home/cgaldino/sources/nh1/nh1:1217
+#: /home/cgaldino/sources/nh1/nh1:1225
 msgid "mode"
 msgstr "modo"
 
-#: /home/cgaldino/sources/nh1/nh1:1218
+#: /home/cgaldino/sources/nh1/nh1:1226
 msgid "Mode: %s or %s. Default: %s."
 msgstr "Modo: %s ou %s. Default: %s."
 
-#: /home/cgaldino/sources/nh1/nh1:1290
+#: /home/cgaldino/sources/nh1/nh1:1298
 msgid "You need run: source %s."
 msgstr "Você precisa rodar: source %s."
 
@@ -499,120 +499,120 @@ msgstr "Remove versões antigas de um aplicativo global (ou de todos)"
 msgid "Remove old versions for all system apps"
 msgstr "Remove versões antigas de todos os apps do sistema"
 
-#: app.bashrc:122
+#: app.bashrc:140
 msgid "Retains old app files? (1 or 0). Default: 0"
 msgstr "Reter arquivos antigos de app? (1 ou 0). Default: 0"
 
-#: app.bashrc:151
+#: app.bashrc:170
 msgid "1app status"
 msgstr "Status do 1App"
 
-#: app.bashrc:152
+#: app.bashrc:171
 msgid "App"
 msgstr "Aplicativo"
 
-#: app.bashrc:152
+#: app.bashrc:171
 msgid "Description"
 msgstr "Descrição"
 
-#: app.bashrc:152
+#: app.bashrc:171
 msgid "Installation"
 msgstr "Instalação"
 
-#: app.bashrc:160
+#: app.bashrc:179
 msgid "local"
 msgstr "local"
 
-#: app.bashrc:166
+#: app.bashrc:185
 msgid "global"
 msgstr "global"
 
-#: app.bashrc:173
+#: app.bashrc:192
 msgid "system"
 msgstr "sistema"
 
-#: app.bashrc:175
+#: app.bashrc:194
 msgid "None"
 msgstr "Nada"
 
-#: app.bashrc:180
+#: app.bashrc:199
 msgid "Usage"
 msgstr "Uso"
 
-#: app.bashrc:182
+#: app.bashrc:201
 msgid " to install locally and "
 msgstr " para instalar localmente e "
 
-#: app.bashrc:184 app.bashrc:188
+#: app.bashrc:203 app.bashrc:207
 msgid " to uninstall."
 msgstr " para desinstalar."
 
-#: app.bashrc:186
+#: app.bashrc:205
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: app.bashrc:267
+#: app.bashrc:303
 msgid "Creating desktop file for %s."
 msgstr "Gerando arquivo desktop para %s"
 
-#: app.bashrc:299
+#: app.bashrc:335
 msgid "No PNG for app. No desktop file created."
 msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 
-#: app.bashrc:322
-msgid "Removing old file %s."
-msgstr "Removendo arquivo antigo %s."
+#: app.bashrc:365
+msgid "Removing old app version %s."
+msgstr "Removendo app na versão antiga %s."
 
-#: app.bashrc:355
+#: app.bashrc:399 app.bashrc:402
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:357
+#: app.bashrc:404
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:413
+#: app.bashrc:468
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
 "tarde."
 
-#: app.bashrc:420
+#: app.bashrc:475
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:452
+#: app.bashrc:507
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:455
+#: app.bashrc:510
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:544 app.bashrc:550 app.bashrc:558 app.bashrc:565 app.bashrc:571
-#: app.bashrc:577
+#: app.bashrc:602 app.bashrc:608 app.bashrc:616 app.bashrc:623 app.bashrc:629
+#: app.bashrc:635
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:594 app.bashrc:599 app.bashrc:611
+#: app.bashrc:653 app.bashrc:658 app.bashrc:670
 msgid "Package %s found."
 msgstr "O pacote %s foi encontrado."
 
-#: app.bashrc:603 app.bashrc:617
+#: app.bashrc:662 app.bashrc:676
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:622
+#: app.bashrc:681
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:630 app.bashrc:640
+#: app.bashrc:690 app.bashrc:700
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:653
+#: app.bashrc:713
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -656,54 +656,54 @@ msgstr "Converte textos em Português para WAV"
 msgid "Extract Youtube video to MP3"
 msgstr "Extrai vídeo do Youtube para MP3"
 
-#: audio.bashrc:62
+#: audio.bashrc:63
 msgid "You need to give 2 params: %s."
 msgstr "Você precisa dar 2 parâmetros: %s."
 
-#: audio.bashrc:89
+#: audio.bashrc:91
 msgid "You need to give 2 or 3 params."
 msgstr "Você precisa dar 2 ou 3 parâmetros."
 
-#: audio.bashrc:90
+#: audio.bashrc:92
 msgid "MP3 input file"
 msgstr "Arquivo de entrada MP3"
 
-#: audio.bashrc:91
+#: audio.bashrc:93
 msgid "TXT metadata input file"
 msgstr "Arquivo de entrada com metadados em TXT"
 
-#: audio.bashrc:92
+#: audio.bashrc:94
 msgid "(optional) MP3 output file"
 msgstr "(Opcional) arquivo de entrada MP3"
 
-#: audio.bashrc:92
+#: audio.bashrc:94
 msgid "Default"
 msgstr "Default"
 
-#: audio.bashrc:113
+#: audio.bashrc:116
 msgid "Call like this: %s."
 msgstr "Chame assim: %s."
 
-#: audio.bashrc:137
+#: audio.bashrc:141
 msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 "Você precisa informar o arquivo de entrada OGG e (opcional) a saída MP3"
 
-#: audio.bashrc:152 audio.bashrc:250 backup.bashrc:193 canva.bashrc:234
-#: canva.bashrc:259 misc.bashrc:142 network.bashrc:313 rpg.bashrc:232
-#: rpg.bashrc:247
+#: audio.bashrc:157 audio.bashrc:257 backup.bashrc:194 canva.bashrc:239
+#: canva.bashrc:265 misc.bashrc:151 network.bashrc:319 rpg.bashrc:236
+#: rpg.bashrc:252
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: audio.bashrc:172
+#: audio.bashrc:178
 msgid "Downloading %s to file %s."
 msgstr "Baixando %s para arquivo %s"
 
-#: audio.bashrc:177
+#: audio.bashrc:183
 msgid "Local file: %s."
 msgstr "Arquivo local: %s."
 
-#: audio.bashrc:192
+#: audio.bashrc:198
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
 
@@ -755,52 +755,52 @@ msgstr "Removido arquivo %s de %s."
 msgid "ERROR removing %s from %s... %i"
 msgstr "ERRO removendo %s de %s... %i"
 
-#: backup.bashrc:189
+#: backup.bashrc:190
 msgid "Backup id %s not recognized."
 msgstr "ID de Backup %s não reconhecido."
 
-#: backup.bashrc:194
+#: backup.bashrc:195
 msgid "Name: backup id"
 msgstr "Nome: id do backup"
 
-#: backup.bashrc:195
+#: backup.bashrc:196
 msgid "Directory: target to backup"
 msgstr "Diretório: alvo para o backup"
 
-#: backup.bashrc:196
+#: backup.bashrc:197
 msgid "Backups are saved in %s"
 msgstr "Backups são salvos em %s"
 
-#: backup.bashrc:199
+#: backup.bashrc:200
 msgid "Running %s for %s, saving in %s..."
 msgstr "Rodando %s para %s, salvando em %s..."
 
-#: backup.bashrc:212 backup.bashrc:224 backup.bashrc:238 backup.bashrc:250
-#: backup.bashrc:262 backup.bashrc:274
+#: backup.bashrc:213 backup.bashrc:225 backup.bashrc:239 backup.bashrc:251
+#: backup.bashrc:263 backup.bashrc:275
 msgid "ERROR"
 msgstr "ERRO"
 
-#: backup.bashrc:232
+#: backup.bashrc:233
 msgid "tar with xz"
 msgstr "tar com xz"
 
-#: backup.bashrc:244
+#: backup.bashrc:245
 msgid "tar with bzip2"
 msgstr "tar com bzip2"
 
-#: backup.bashrc:256
+#: backup.bashrc:257
 msgid "tar with gzip"
 msgstr "tar com gzip"
 
-#: backup.bashrc:266
+#: backup.bashrc:267
 msgid "Running tar without compression! Install gzip, bzip2 or xz!"
 msgstr "Rodando tar sem compressão! Instale gzip, bzip2 ou xz!"
 
-#: backup.bashrc:268
+#: backup.bashrc:269
 msgid "tar without compression"
 msgstr "tar sem compressão"
 
-#: backup.bashrc:279
+#: backup.bashrc:280
 msgid ""
 "No compressor found. Try to install 7zip, zip or tar (with gzip, bzip2 or "
 "xz)."
@@ -808,11 +808,11 @@ msgstr ""
 "Nenhum compactador encontrado. Tente instalar 7zip, zip ou tar (comgzip, "
 "bzip2 ou xz)."
 
-#: backup.bashrc:298
+#: backup.bashrc:300
 msgid "Use 1backlist <name> to find all backups for <name>."
 msgstr "Use 1backlist <nome> para achar todos os backupa para <nome>."
 
-#: backup.bashrc:299
+#: backup.bashrc:301
 msgid "Names"
 msgstr "Nomes"
 
@@ -858,26 +858,25 @@ msgstr ""
 msgid "Help for template: %s."
 msgstr "Ajuda para o template: %s."
 
-#: canva.bashrc:113 canva.bashrc:131
+#: canva.bashrc:114 canva.bashrc:133
 msgid "Templates: %s."
 msgstr "Templates: %s."
 
-#: canva.bashrc:117 canva.bashrc:135
+#: canva.bashrc:118 canva.bashrc:137
 msgid "No template found."
 msgstr "Nenhum template encontrado."
 
-#: canva.bashrc:149 canva.bashrc:210
+#: canva.bashrc:152 canva.bashrc:214
 msgid "Usages:"
 msgstr "Usos:"
 
-#: canva.bashrc:273 canva.bashrc:284
+#: canva.bashrc:280 canva.bashrc:292
 msgid "Template %s not found."
 msgstr "Template %s não encontrado."
 
 #: cron.bashrc:14
-#, fuzzy
 msgid "Cron Section"
-msgstr "Sessão Canva"
+msgstr "Sessão do Cron"
 
 #: cron.bashrc:17
 msgid "Set a cron entry"
@@ -939,51 +938,51 @@ msgstr "Comando %s não está mais rodando."
 msgid "Run (frequency: %s) the command %s."
 msgstr "Rodar (frequência: %s) o comando %s."
 
-#: cron.bashrc:213
+#: cron.bashrc:214
 msgid "Unknown cron time"
 msgstr "Tempo de cron desconhecido"
 
-#: cron.bashrc:217
+#: cron.bashrc:218
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr "Uso: %s [%s] [%s] [%s]."
 
-#: cron.bashrc:217 cron.bashrc:243
+#: cron.bashrc:218 cron.bashrc:245
 msgid "cron time"
 msgstr "tempo do cron"
 
-#: cron.bashrc:217 cron.bashrc:243 cron.bashrc:312
+#: cron.bashrc:218 cron.bashrc:245 cron.bashrc:315
 msgid "command id"
 msgstr "id do comando"
 
-#: cron.bashrc:217
+#: cron.bashrc:218
 msgid "command"
 msgstr "comando"
 
-#: cron.bashrc:218 cron.bashrc:244
+#: cron.bashrc:219 cron.bashrc:246
 msgid "Time values: "
 msgstr "Valores de tempo: "
 
-#: cron.bashrc:239 cron.bashrc:307
+#: cron.bashrc:241 cron.bashrc:310
 msgid "Unknown cron time."
 msgstr "Tempo de cron desconhecido."
 
-#: cron.bashrc:243 cron.bashrc:312
+#: cron.bashrc:245 cron.bashrc:315
 msgid "Usage: %s [%s] [%s]."
 msgstr "Uso: %s [%s] [%s]."
 
-#: cron.bashrc:285 cron.bashrc:303
+#: cron.bashrc:288 cron.bashrc:306
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: cron.bashrc:312
+#: cron.bashrc:315
 msgid "cron time (optional)"
 msgstr "tempo do cron (opcional)"
 
-#: cron.bashrc:334
+#: cron.bashrc:337
 msgid "Starting cron function."
 msgstr "Iniciando a função cron."
 
-#: cron.bashrc:339
+#: cron.bashrc:342
 msgid "Cron finished."
 msgstr "Cron concluído."
 
@@ -1059,71 +1058,71 @@ msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:203 network.bashrc:244 network.bashrc:260 network.bashrc:278
+#: misc.bashrc:213 network.bashrc:247 network.bashrc:264 network.bashrc:283
 msgid "Usage:"
 msgstr "Uso:"
 
-#: misc.bashrc:206
+#: misc.bashrc:216
 msgid "Available timers"
 msgstr "Temporizadores disponíveis"
 
-#: misc.bashrc:237
+#: misc.bashrc:247
 msgid "finished"
 msgstr "concluído"
 
-#: misc.bashrc:266
+#: misc.bashrc:276
 msgid "30-30-30 method for router reseting"
 msgstr "Método 30-30-30 para resetar um roteador"
 
-#: misc.bashrc:267
+#: misc.bashrc:277
 msgid "your router will lost all configuration"
 msgstr "seu roteador perderá toda a configuração"
 
-#: misc.bashrc:268
+#: misc.bashrc:278
 msgid "Turn on the router."
 msgstr "Ligue o roteador."
 
-#: misc.bashrc:269
+#: misc.bashrc:279
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr "Pressione e segure o botão reset. Espere 30 segundos."
 
-#: misc.bashrc:270
+#: misc.bashrc:280
 msgid "Turn off the router. Wait 30 seconds."
 msgstr "Desligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:271
+#: misc.bashrc:281
 msgid "Turn on the router. Wait 30 seconds."
 msgstr "Ligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:272
+#: misc.bashrc:282
 msgid "Release the button"
 msgstr "Solte o botão"
 
-#: misc.bashrc:273
+#: misc.bashrc:283
 msgid "Press ENTER when you are ready."
 msgstr "Pressione ENTER quando estiver pronto."
 
-#: misc.bashrc:275 misc.bashrc:279
+#: misc.bashrc:285 misc.bashrc:289
 msgid "Router on"
 msgstr "Roteador ligado"
 
-#: misc.bashrc:277
+#: misc.bashrc:287
 msgid "Router off"
 msgstr "Roteador desligado"
 
-#: misc.bashrc:282
+#: misc.bashrc:292
 msgid "Your router must be restarted with factory settings!"
 msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
 
-#: misc.bashrc:320
+#: misc.bashrc:331
 msgid "Tip groups: %s."
 msgstr "Grupos de dicas: %s."
 
-#: misc.bashrc:328
+#: misc.bashrc:339
 msgid "No tips group %s found."
 msgstr "Nenhum grupo de dica com o nome %s."
 
-#: misc.bashrc:474
+#: misc.bashrc:487
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "
@@ -1238,138 +1237,138 @@ msgstr "Caminho para os arquivos de rede (hosts e grupos)."
 msgid "Server port. Default: %s."
 msgstr "Porta do servidor. Default: %s."
 
-#: network.bashrc:138
+#: network.bashrc:140
 msgid "Bauds possible:"
 msgstr "Bauds possíveis:"
 
-#: network.bashrc:163
+#: network.bashrc:165
 msgid "You need to give a string to test if it is an IP address."
 msgstr "Você precisa passar um texto para testar se ele é um endereço IP."
 
-#: network.bashrc:204
+#: network.bashrc:206
 msgid "%s is unkown or unavailable."
 msgstr "%s desconhecido ou indisponível."
 
-#: network.bashrc:207
+#: network.bashrc:209
 msgid "You need to put a machine name"
 msgstr "Você precisa passar um nome de máquina"
 
-#: network.bashrc:247 network.bashrc:774
+#: network.bashrc:250 network.bashrc:788
 msgid "Available groups"
 msgstr "Grupos disponíveis"
 
-#: network.bashrc:308
+#: network.bashrc:314
 msgid "Host or group not found."
 msgstr "Host ou grupo não encontrado."
 
-#: network.bashrc:327
+#: network.bashrc:333
 msgid "Trying to connect %s (%s) with iperf."
 msgstr "Tentando conectar %s (%s) com iperf."
 
-#: network.bashrc:330
+#: network.bashrc:336
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr "Você precisa passar um endereço IP onde 1iperfd esteja rodando."
 
-#: network.bashrc:383
+#: network.bashrc:391
 msgid "IP %s returned for machine %s."
 msgstr "IP %s respondeu (máquina %s)."
 
-#: network.bashrc:384
+#: network.bashrc:392
 msgid "%s is active"
 msgstr "%s está ativo"
 
-#: network.bashrc:391
+#: network.bashrc:399
 msgid "%s not found"
 msgstr "%s não encontrado."
 
-#: network.bashrc:447
+#: network.bashrc:455
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr "SSH não está disponível. Tentando conectar via Telnet."
 
-#: network.bashrc:452 network.bashrc:455
+#: network.bashrc:460 network.bashrc:463
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 "Telnet não está disponível. Você pode acessar este IP pelo seu navegador: "
 "%s://%s."
 
-#: network.bashrc:457
+#: network.bashrc:465
 msgid "Cannot connect %s."
 msgstr "Não consegui conectar com %s."
 
-#: network.bashrc:527
+#: network.bashrc:535
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr "Tentando conectar usando cipher %s e host-key %s"
 
-#: network.bashrc:539 network.bashrc:597
+#: network.bashrc:547 network.bashrc:607
 msgid "Connecting via %s."
 msgstr "Conectando via %s."
 
-#: network.bashrc:547
+#: network.bashrc:555
 msgid "Trying connect in simple mode"
 msgstr "Tentando conectar em modo simples"
 
-#: network.bashrc:568
+#: network.bashrc:576
 msgid "It works."
 msgstr "Funcionou."
 
-#: network.bashrc:570
+#: network.bashrc:578
 msgid "Cannot connect with %s using SSH."
 msgstr "Não consegui conectar com %s usando SSH."
 
-#: network.bashrc:633
+#: network.bashrc:644
 msgid "%s is on"
 msgstr "%s está ligada"
 
-#: network.bashrc:638
+#: network.bashrc:649
 msgid "Host not found."
 msgstr "Host não encontrado."
 
-#: network.bashrc:647
+#: network.bashrc:658
 msgid "%s open"
 msgstr "%s aberta"
 
-#: network.bashrc:652
+#: network.bashrc:663
 msgid "%s refused"
 msgstr "%s recusada"
 
-#: network.bashrc:749
+#: network.bashrc:762
 msgid "trying %s:%s"
 msgstr "tentando %s:%s"
 
-#: network.bashrc:757
+#: network.bashrc:770
 msgid "%i hosts with port %i open."
 msgstr "%i hosts com porta %i aberta."
 
-#: network.bashrc:769
+#: network.bashrc:783
 msgid "group"
 msgstr ""
 
-#: network.bashrc:772
+#: network.bashrc:786
 msgid "every host in all groups"
 msgstr "todo host em todos os grupos"
 
-#: network.bashrc:804
+#: network.bashrc:818
 msgid "Unknown group of hosts."
 msgstr "Grupo de hosts desconhecido."
 
-#: network.bashrc:818
+#: network.bashrc:833
 msgid "You can use hostnames contained in .hosts"
 msgstr "Você pode usar hostnames contidos em .hosts"
 
-#: network.bashrc:826
+#: network.bashrc:841
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr "VLANs no Switch! Por favor, informe senha para %s."
 
-#: network.bashrc:874
+#: network.bashrc:890
 msgid "Serial program not found. Checked"
 msgstr "Programa serial não encontrado."
 
-#: network.bashrc:885
+#: network.bashrc:901
 msgid "No ttyUSB found."
 msgstr "Nenhuma porta ttyUSB foi encontrada."
 
-#: network.bashrc:909
+#: network.bashrc:926
 msgid "Doing backup of %s to %s"
 msgstr "Fazendo backup de %s para %s"
 
@@ -1437,67 +1436,67 @@ msgstr "Deleta um grupo das funções de sorteio"
 msgid "Path for draw-lists (RPG)."
 msgstr "Caminho para os grupos de sorteio (RPG)."
 
-#: rpg.bashrc:152
+#: rpg.bashrc:153
 msgid "Params"
 msgstr "Parâmetros"
 
-#: rpg.bashrc:152
+#: rpg.bashrc:153
 msgid "Examples"
 msgstr "Exemplos"
 
-#: rpg.bashrc:161
+#: rpg.bashrc:163
 msgid "Joker"
 msgstr "Coringa"
 
-#: rpg.bashrc:167
+#: rpg.bashrc:169
 msgid "Ace"
 msgstr "Ás"
 
-#: rpg.bashrc:168
+#: rpg.bashrc:170
 msgid "Jack"
 msgstr "Valete"
 
-#: rpg.bashrc:169
+#: rpg.bashrc:171
 msgid "Queen"
 msgstr "Rainha"
 
-#: rpg.bashrc:170
+#: rpg.bashrc:172
 msgid "King"
 msgstr "Rei"
 
-#: rpg.bashrc:175
+#: rpg.bashrc:177
 msgid "Clubs"
 msgstr "Paus"
 
-#: rpg.bashrc:176
+#: rpg.bashrc:178
 msgid "Diamonds"
 msgstr "Ouros"
 
-#: rpg.bashrc:177
+#: rpg.bashrc:179
 msgid "Hearts"
 msgstr "Copas"
 
-#: rpg.bashrc:178
+#: rpg.bashrc:180
 msgid "Spades"
 msgstr "Espadas"
 
-#: rpg.bashrc:180
+#: rpg.bashrc:182
 msgid "%s of %s"
 msgstr "%s de %s"
 
-#: rpg.bashrc:203
+#: rpg.bashrc:206
 msgid "No group found."
 msgstr "Nenhum grupo encontrado."
 
-#: rpg.bashrc:206
+#: rpg.bashrc:209
 msgid "Groups: %s."
 msgstr "Grupos: %s."
 
-#: rpg.bashrc:253
+#: rpg.bashrc:258
 msgid "File not found for group %s."
 msgstr "Arquivo não encontrado para o grupo %s."
 
-#: rpg.bashrc:265
+#: rpg.bashrc:271
 msgid "Group %s not found."
 msgstr "Grupo %s não encontrado."
 
@@ -1508,6 +1507,10 @@ msgstr "Anotações hierárquicas"
 #: recipes/everdo.app:4
 msgid "Get Things Done with Privacity"
 msgstr "Use GTD com Privacidade"
+
+#: recipes/firefox.app:8
+msgid "Mozilla Firefox web browser"
+msgstr "Navegador web Mozilla Firefox"
 
 #: recipes/freetube.app:4
 msgid "Client for Youtube"
