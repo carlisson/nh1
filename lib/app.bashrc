@@ -391,7 +391,18 @@ _nh1app.single() {
         _NANEW=$(_nh1app.checkversion new $_NAPP)
         
         pushd $_NADIR > /dev/null
+
         _nh1app.openapp $_NAPP
+
+        if [ -n "$APP_DEPENDS" ]
+        then
+            if ! 1check $APP_DEPENDS
+            then
+                _1message error "$(printf "$(_1text "App needs %s and it's not available.")" "$(1tint "$APP_DEPENDS")")"
+                return 1
+            fi
+        fi
+
         if [[ "$_NANEW" = *$APP_SUFFIX ]]
         then
             if [ "$APP_TYPE" = "single" -a -f "$_NADIR/$_NANEW" ]

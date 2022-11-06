@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-06 18:51-0300\n"
+"POT-Creation-Date: 2022-11-06 19:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,52 +548,56 @@ msgstr ""
 msgid "Removing old app version %s."
 msgstr ""
 
-#: app.bashrc:399 app.bashrc:402
+#: app.bashrc:401
+msgid "App needs %s and it's not available."
+msgstr ""
+
+#: app.bashrc:410 app.bashrc:413
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:404
+#: app.bashrc:415
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:468
+#: app.bashrc:479
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:475
+#: app.bashrc:486
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:507
+#: app.bashrc:518
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:510
+#: app.bashrc:521
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:602 app.bashrc:608 app.bashrc:616 app.bashrc:623 app.bashrc:629
-#: app.bashrc:635
+#: app.bashrc:613 app.bashrc:619 app.bashrc:627 app.bashrc:634 app.bashrc:640
+#: app.bashrc:646
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:653 app.bashrc:658 app.bashrc:670
+#: app.bashrc:664 app.bashrc:669 app.bashrc:681
 msgid "Package %s found."
 msgstr ""
 
-#: app.bashrc:662 app.bashrc:676
+#: app.bashrc:673 app.bashrc:687
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:681
+#: app.bashrc:692
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:690 app.bashrc:700
+#: app.bashrc:701 app.bashrc:711
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:713
+#: app.bashrc:724
 msgid "App %s installed with file %s"
 msgstr ""
 

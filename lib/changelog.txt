@@ -239,3 +239,4 @@
 1.1n20 2022-11-05: _1before called from all modules
 1.1n21 2022-11-05: 1pass: pass size beats 72bits
 1.1n22 2022-11-06: 1app supporting tarball recipes. Firefox added
+1.1n23 2022-11-06: 1app now checks APP_DEPENDS from recipes

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-06 18:51-0300\n"
+"POT-Creation-Date: 2022-11-06 19:31-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -563,56 +563,60 @@ msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 msgid "Removing old app version %s."
 msgstr "Removendo app na versão antiga %s."
 
-#: app.bashrc:399 app.bashrc:402
+#: app.bashrc:401
+msgid "App needs %s and it's not available."
+msgstr "Programa precisa de %s, que não está(ão) disponível(is)."
+
+#: app.bashrc:410 app.bashrc:413
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:404
+#: app.bashrc:415
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:468
+#: app.bashrc:479
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
 "tarde."
 
-#: app.bashrc:475
+#: app.bashrc:486
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:507
+#: app.bashrc:518
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:510
+#: app.bashrc:521
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:602 app.bashrc:608 app.bashrc:616 app.bashrc:623 app.bashrc:629
-#: app.bashrc:635
+#: app.bashrc:613 app.bashrc:619 app.bashrc:627 app.bashrc:634 app.bashrc:640
+#: app.bashrc:646
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:653 app.bashrc:658 app.bashrc:670
+#: app.bashrc:664 app.bashrc:669 app.bashrc:681
 msgid "Package %s found."
 msgstr "O pacote %s foi encontrado."
 
-#: app.bashrc:662 app.bashrc:676
+#: app.bashrc:673 app.bashrc:687
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:681
+#: app.bashrc:692
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:690 app.bashrc:700
+#: app.bashrc:701 app.bashrc:711
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:713
+#: app.bashrc:724
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 

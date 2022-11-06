@@ -25,7 +25,7 @@ APP_TYPE="tarball"
 APP_BINARY="firefox/firefox"
 
 # Dependences. Specially useful to compilable apps
-APP_DEPENDS=""
+APP_DEPENDS="tar bzip2"
 
 # Prefix for the filenames, to search installed old versions of app
 APP_PREFIX="firefox-"
