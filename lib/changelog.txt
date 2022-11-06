@@ -237,3 +237,4 @@
 1.1n18 2022-11-05: 1translate now works for other scripts!
 1.1n19 2022-11-05: 1diceware to generate random password
 1.1n20 2022-11-05: _1before called from all modules
+1.1n21 2022-11-05: 1pass: pass size beats 72bits

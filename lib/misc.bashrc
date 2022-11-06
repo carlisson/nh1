@@ -85,10 +85,10 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @description Disk usage
 1du() { du -h -d 1 ; }
 
-# @description Random password generator. 15chars=75bits entropy
+# @description Random password generator. 12chars=72bits entropy
 1pass()  {
 	_1before
-  openssl rand -base64 16 | rev | cut -c 3-15
+  openssl rand -base64 16 | rev | cut -c 3-14
 }
 
 # @description Random diceware password generator. 6words=77bits entropy
