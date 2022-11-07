@@ -45,12 +45,14 @@ Documentation for shdoc - https://github.com/reconquest/shdoc
 * [1update](#1update)
 * [1version](#1version)
 * [1verbose](#1verbose)
+* [_nh1.translate.gen](#_nh1translategen)
+* [_nh1.translate.build](#_nh1translatebuild)
 * [1translate](#1translate)
 * [_nh1info.customizable](#_nh1infocustomizable)
 * [_nh1info.customvars](#_nh1infocustomvars)
 * [1info](#1info)
 * [_nh1.builddoc.self](#_nh1builddocself)
-* [_nh1.bulddoc](#_nh1bulddoc)
+* [_nh1.builddoc](#_nh1builddoc)
 * [1builddoc](#1builddoc)
 * [_1db](#_1db)
 * [_1db.get](#_1dbget)
@@ -326,14 +328,38 @@ Enable or disable verbose mode
 
 * [_1verb](#_1verb)
 
+### _nh1.translate.gen
+
+Creates translation .po using gettext
+
+#### Arguments
+
+* **$1** (string): Path for locale files (where is /locale)
+* **$2** (string): Translation domain
+* **$3** (string): Language code
+* **$4** (string): List of shellscript files
+
+### _nh1.translate.build
+
+Applies translation, building .mo files
+
+#### Arguments
+
+* **$1** (string): Path for locale files (where is /locale)
+* **$2** (string): Translation domain
+* **$3** (string): Language code
+
 ### 1translate
 
 Creates and applies translation for NH1
 
 #### Arguments
 
-* **$1** (string): Language code
-* **$2** (string): Generate binaries. Optional. Default: none
+* **$1** (string): Path where is locales/ folder (only for generic usage*)
+* **$2** (string): Domain name (only for generic usage*)
+* **$3** (string): Language code
+* **$4** (string): Generate binaries. Optional. Default: none.
+* **$5** (string): List of source-code files
 
 #### See also
 
@@ -359,7 +385,7 @@ General information
 
 Build documentation for NH1
 
-### _nh1.bulddoc
+### _nh1.builddoc
 
 Build documentation for some bash script(s) 
 

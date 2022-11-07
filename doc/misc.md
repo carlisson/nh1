@@ -18,6 +18,7 @@ Generate partial menu
 * [1power](#1power)
 * [1du](#1du)
 * [1pass](#1pass)
+* [1diceware](#1diceware)
 * [1color](#1color)
 * [1pdfopt](#1pdfopt)
 * [1ajoin](#1ajoin)
@@ -68,7 +69,11 @@ Disk usage
 
 ### 1pass
 
-Random password generator
+Random password generator. 12chars=72bits entropy
+
+### 1diceware
+
+Random diceware password generator. 6words=77bits entropy
 
 ### 1color
 

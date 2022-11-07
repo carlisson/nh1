@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-06 18:51-0300\n"
+"POT-Creation-Date: 2022-11-06 21:48-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -563,56 +563,68 @@ msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 msgid "Removing old app version %s."
 msgstr "Removendo app na versão antiga %s."
 
-#: app.bashrc:399 app.bashrc:402
+#: app.bashrc:400 app.bashrc:465
+msgid "App needs %s and it's not available."
+msgstr "Programa precisa de %s, que não está(ão) disponível(is)."
+
+#: app.bashrc:407
+msgid "Git update for %s"
+msgstr "Atualização git para %s"
+
+#: app.bashrc:434
+msgid "Wrong app type."
+msgstr "Tipo de aplicativo errado."
+
+#: app.bashrc:474 app.bashrc:477
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:404
+#: app.bashrc:479
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:468
+#: app.bashrc:543
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
 "tarde."
 
-#: app.bashrc:475
+#: app.bashrc:550
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:507
+#: app.bashrc:585
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:510
+#: app.bashrc:588
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:602 app.bashrc:608 app.bashrc:616 app.bashrc:623 app.bashrc:629
-#: app.bashrc:635
+#: app.bashrc:680 app.bashrc:686 app.bashrc:694 app.bashrc:701 app.bashrc:707
+#: app.bashrc:713
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:653 app.bashrc:658 app.bashrc:670
+#: app.bashrc:731 app.bashrc:736 app.bashrc:748
 msgid "Package %s found."
 msgstr "O pacote %s foi encontrado."
 
-#: app.bashrc:662 app.bashrc:676
+#: app.bashrc:740 app.bashrc:754
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:681
+#: app.bashrc:759
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:690 app.bashrc:700
+#: app.bashrc:768 app.bashrc:778
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:713
+#: app.bashrc:791
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -1547,6 +1559,10 @@ msgstr "Visualizador de PDF e quadrinhos"
 #: recipes/rancher-desktop.app:4
 msgid "Docker Kubernetes manager"
 msgstr "Gerenciador de Kubernates (docker)"
+
+#: recipes/shdoc.app:8
+msgid "Documentation generator for bash"
+msgstr ""
 
 #: recipes/shelf.app:4
 msgid "Document viewer for different formats"

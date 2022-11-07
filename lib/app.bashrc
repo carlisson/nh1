@@ -44,7 +44,7 @@ _nh1app.clean() {
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
-  unset -f _nh1app.update 1appxadd 1appxclear
+  unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget
 }
 
 # Alias-like
@@ -375,6 +375,70 @@ _nh1app.clearold() {
     fi
 }
 
+# @description Downloader for git
+# @arg $1 string App name
+# @arg $2 string app-directory
+# @arg $3 string symlink
+# @arg $4 string local or global
+_nh1app.gitget() {
+    local _NAPP _NADIR _NASYM _NAS _NABIN
+    if 1check git
+    then
+        _NAPP="$1"
+        _NADIR="$2"
+        _NASYM="$3/$1"
+        _NAS=$4
+        
+        pushd $_NADIR > /dev/null
+
+        _nh1app.openapp $_NAPP
+
+        if [ -n "$APP_DEPENDS" ]
+        then
+            if ! 1check $APP_DEPENDS
+            then
+                _1message error "$(printf "$(_1text "App needs %s and it's not available.")" "$(1tint "$APP_DEPENDS")")"
+                return 1
+            fi
+        fi
+
+        if [ "$APP_TYPE" = "git" ]
+        then
+            printf "$(_1text "Git install/update for %s")\n"  "$(1tint $_1COLOR " $_NAPP")"
+
+            if [ $_NAS = "global" ]
+            then    
+                APP_GET sudo
+            else
+                APP_GET
+            fi
+
+            if [ ! -L "$_NASYM" ]
+            then
+                _NABIN="$_NADIR/$_NAPP-git/$APP_BINARY"
+                if [ $_NAS = "global" ]
+                then
+                    _1sudo ln -s "$_NABIN" "$_NASYM"
+                else
+                    ln -s "$_NABIN" "$_NASYM"
+                fi
+            fi
+
+            # Creates a desktop file any way
+            if [ -f "$_NASYM" ]
+            then
+                _nh1app.mkdesktop "$_NAPP" "$_NAS"
+            fi
+
+        else
+            _1message error "$(_1text "Wrong app type.")"
+            return 2
+        fi
+        _nh1app.closeapp
+        popd > /dev/null
+    fi
+}
+
 # @description Single downloader
 # @arg $1 string App name
 # @arg $2 string app-directory
@@ -512,8 +576,11 @@ _nh1app.add() {
         _nh1app.closeapp
         case "$_NAT" in
             single|tarball)
-                 _nh1app.single "$2" "$_NAD" "$_NAB" "$_NAS"
+                _nh1app.single "$2" "$_NAD" "$_NAB" "$_NAS"
                  ;;
+            git)
+                _nh1app.gitget "$2" "$_NAD" "$_NAB" "$_NAS"
+                ;;
             *)
                 printf "$(_1text "Type unsuported: %s.")\n" $_NAT
             esac

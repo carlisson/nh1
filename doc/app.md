@@ -30,6 +30,7 @@ Generates partial menu
 * [_nh1app.checkversion](#_nh1appcheckversion)
 * [_nh1app.mkdesktop](#_nh1appmkdesktop)
 * [_nh1app.clearold](#_nh1appclearold)
+* [_nh1app.gitget](#_nh1appgitget)
 * [_nh1app.single](#_nh1appsingle)
 * [_nh1app.add](#_nh1appadd)
 * [1appladd](#1appladd)
@@ -208,6 +209,17 @@ Removes old files for app
 * **$1** (string): Path of files
 * **$2** (string): Latest file name
 * **$3** (string): App prefix
+* **$4** (string): local or global
+
+### _nh1app.gitget
+
+Downloader for git
+
+#### Arguments
+
+* **$1** (string): App name
+* **$2** (string): app-directory
+* **$3** (string): symlink
 * **$4** (string): local or global
 
 ### _nh1app.single

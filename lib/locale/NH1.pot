@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-06 19:31-0300\n"
+"POT-Creation-Date: 2022-11-06 21:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,56 +548,64 @@ msgstr ""
 msgid "Removing old app version %s."
 msgstr ""
 
-#: app.bashrc:401
+#: app.bashrc:400 app.bashrc:465
 msgid "App needs %s and it's not available."
 msgstr ""
 
-#: app.bashrc:410 app.bashrc:413
+#: app.bashrc:407
+msgid "Git install/update for %s"
+msgstr ""
+
+#: app.bashrc:434
+msgid "Wrong app type."
+msgstr ""
+
+#: app.bashrc:474 app.bashrc:477
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:415
+#: app.bashrc:479
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:479
+#: app.bashrc:543
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:486
+#: app.bashrc:550
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:518
+#: app.bashrc:585
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:521
+#: app.bashrc:588
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:613 app.bashrc:619 app.bashrc:627 app.bashrc:634 app.bashrc:640
-#: app.bashrc:646
+#: app.bashrc:680 app.bashrc:686 app.bashrc:694 app.bashrc:701 app.bashrc:707
+#: app.bashrc:713
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:664 app.bashrc:669 app.bashrc:681
+#: app.bashrc:731 app.bashrc:736 app.bashrc:748
 msgid "Package %s found."
 msgstr ""
 
-#: app.bashrc:673 app.bashrc:687
+#: app.bashrc:740 app.bashrc:754
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:692
+#: app.bashrc:759
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:701 app.bashrc:711
+#: app.bashrc:768 app.bashrc:778
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:724
+#: app.bashrc:791
 msgid "App %s installed with file %s"
 msgstr ""
 
@@ -1519,6 +1527,10 @@ msgstr ""
 
 #: recipes/rancher-desktop.app:4
 msgid "Docker Kubernetes manager"
+msgstr ""
+
+#: recipes/shdoc.app:8
+msgid "Documentation generator for bash"
 msgstr ""
 
 #: recipes/shelf.app:4
