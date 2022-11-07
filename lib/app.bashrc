@@ -809,7 +809,7 @@ _nh1app.remove() {
 # @description Clear unused old versions for every app
 # @arg $1 string local or global
 _nh1app.clear() {
-    local _NAA _NAN _NAF _NAD _NAP
+    local _NAA _NAN _NAF _NAD _NAP _NAT
     _NAP="none"
     if [ $1 = "local" ]
     then
@@ -824,20 +824,25 @@ _nh1app.clear() {
         if _nh1app.openapp $_NAA
         then
             _NAP="$APP_PREFIX"
+            _NAT="$APP_TYPE"
             _nh1app.closeapp
         fi
 
-        for _NAF in $(ls $_NAD/$_NAP* 2>/dev/null)
-        do
-            if [ "$_NAN" != $(basename "$_NAF") ]
-            then
-                if [ "$1" = "global" ]
+        if [ "$_NAT" = "single" -o "$_NAT" = "tarball" ]
+        then
+
+            for _NAF in $(ls $_NAD/$_NAP* 2>/dev/null)
+            do
+                if [ "$_NAN" != $(basename "$_NAF") ]
                 then
-                    _1sudo rm "$_NAF"
-                else
-                    rm "$_NAF"
+                    if [ "$1" = "global" ]
+                    then
+                        _1sudo rm "$_NAF"
+                    else
+                        rm "$_NAF"
+                    fi
                 fi
-            fi
-        done
+            done
+        fi
    done
 }

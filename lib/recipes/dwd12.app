@@ -28,7 +28,7 @@ APP_BINARY="dwd12"
 APP_DEPENDS="git"
 
 # Prefix for the filenames, to search installed old versions of app
-APP_PREFIX=""
+APP_PREFIX="dwd12"
 
 # App suffix, file extension. Default for single is .AppImage
 APP_SUFFIX=""

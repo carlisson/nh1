@@ -28,7 +28,7 @@ APP_BINARY="shdoc"
 APP_DEPENDS="git"
 
 # Prefix for the filenames, to search installed old versions of app
-APP_PREFIX=""
+APP_PREFIX="shdoc"
 
 # App suffix, file extension. Default for single is .AppImage
 APP_SUFFIX=""
