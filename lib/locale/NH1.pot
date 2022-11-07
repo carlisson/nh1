@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-06 21:52-0300\n"
+"POT-Creation-Date: 2022-11-06 22:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1483,6 +1483,10 @@ msgstr ""
 
 #: recipes/cherrytree.app:4
 msgid "Hierarchical note taking"
+msgstr ""
+
+#: recipes/dwd12.app:8
+msgid "Diceware D12 password generator"
 msgstr ""
 
 #: recipes/everdo.app:4

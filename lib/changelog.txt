@@ -241,3 +241,4 @@
 1.1n22 2022-11-06: 1app supporting tarball recipes. Firefox added
 1.1n23 2022-11-06: 1app now checks APP_DEPENDS from recipes
 1.1n24 2022-11-06: 1app supporting git recipes. shdoc added
+1.1n25 2022-11-06: 1app recipe for dwd12 password generator

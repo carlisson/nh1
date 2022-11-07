@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-06 21:52-0300\n"
+"POT-Creation-Date: 2022-11-06 22:29-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1515,6 +1515,10 @@ msgstr "Grupo %s não encontrado."
 #: recipes/cherrytree.app:4
 msgid "Hierarchical note taking"
 msgstr "Anotações hierárquicas"
+
+#: recipes/dwd12.app:8
+msgid "Diceware D12 password generator"
+msgstr "Gerador de senhas Diceware D12"
 
 #: recipes/everdo.app:4
 msgid "Get Things Done with Privacity"
