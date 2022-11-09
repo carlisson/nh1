@@ -22,7 +22,7 @@ APP_TYPE="git"
 
 # In case of tarball or git, BINARY is the executable file.
 # For single, ignore it.
-APP_BINARY="dwd12"
+APP_BINARY="dwd12.sh"
 
 # Dependences. Specially useful to compilable apps
 APP_DEPENDS="git"
@@ -73,6 +73,14 @@ function APP_GET {
     else
         $AGpre git clone --recursive https://github.com/carlisson/dwd12
         $AGpre mv dwd12 dwd12-git
+    fi
+
+    cd dwd12-git
+    if [ $# -eq 1 ]
+    then
+        _1sudo make install
+    else
+        make user-sets
     fi
 }
 

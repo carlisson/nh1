@@ -243,3 +243,4 @@
 1.1n24 2022-11-06: 1app supporting git recipes. shdoc added
 1.1n25 2022-11-06: 1app recipe for dwd12 password generator
 1.1n26 2022-11-07: Fixed bug in 1app[lg]clear
+1.1n27 2022-11-09: Fixed bug in dwd12 recipe
