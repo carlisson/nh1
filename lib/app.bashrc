@@ -720,20 +720,21 @@ _nh1app.where() {
 # @exitcode 0
 1appxadd() {
 	_1before
-    local _PKG
+    local _PKG _OUT _AID _REM
 
     _PKG="$1"
         
     if _nh1app.where dnf > /dev/null
     then
+        _1message "$(printf "$(_1text "Searching %s in %s...")\n" "$_PKG" "dnf")"
         if $(dnf search -q "$_PKG" | grep -q "^$_PKG\.")
         then
-            _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
+            _1verb "$(printf "$(_1text "Package %s found in %s.")\n" "$_PKG" "dnf")"
             _1sudo dnf install "$_PKG"
             return 0
         elif $(dnf search -q "${_PKG^}" | grep -q "^${_PKG^}\.")
         then
-            _1verb "$(printf "$(_1text "Package %s found.")\n" "${_PKG^}")"
+            _1verb "$(printf "$(_1text "Package %s found in %s.")\n" "${_PKG^}" "dnf")"
             _1sudo dnf install "${_PKG^}"
             return 0
         else
@@ -743,9 +744,10 @@ _nh1app.where() {
 
     if _nh1app.where apt > /dev/null
     then
+        _1message "$(printf "$(_1text "Searching %s in %s...")\n" "$_PKG" "apt")"
         if $(apt show "$_PKG" &>/dev/null)
         then
-            _1verb "$(printf "$(_1text "Package %s found.")\n" "$_PKG")"
+            _1verb "$(printf "$(_1text "Package %s found in %s.")\n" "$_PKG" "apt")"
             _1sudo apt update
             _1sudo apt install "$_PKG"
             _1sudo apt clean
@@ -755,7 +757,31 @@ _nh1app.where() {
         fi
     fi
 
-    # Pending: zypper pacman snap flatpak
+    if _nh1app.where flatpak > /dev/null
+    then
+        _OUT=$(LANG=EN flatpak search "$_PKG" | egrep -i "^$_PKG")
+        if [ $? -eq 0 ]
+        then
+            _1message "$(printf "$(_1text "Searching %s in %s...")\n" "$_PKG" "flatpak")"
+            if [ $(LANG=EN flatpak search "$_PKG" | egrep -i "^$_PKG" | wc -l) -eq 1 ]
+            then
+                _AID="$(LANG=EN flatpak search "$_PKG" | egrep -i "^$_PKG" | sed 's/\(.*\)\t\([a-ZA-Z]*\.[a-zA-Z0-9\.]*\)\t\(.*\)/\2/')"
+                _REM="$(LANG=EN flatpak search "$_PKG" | egrep -i "^$_PKG" | sed 's/\(.*\)\t\([a-zA-Z0-9\.]*\)$/\2/')"
+                _1sudo flatpak install "$_REM" "$_AID"
+                return 0
+            else
+                echo $_OUT
+                _1message warning "$(_1text "The search returned more than one result!")"
+            fi
+            _1verb "$(printf "$(_1text "Package %s found in %s.")\n" "$_PKG" "flatpak")"
+        else
+            printf "$(_1text "Package %s not found in %s.")\n" "$_PKG" "flatpak"
+        fi
+
+    fi
+
+
+    # Pending: zypper pacman snap
     printf "$(_1text "Sorry. Package %s not found in known/installed package managers.")\n" "$_PKG"
 }
 

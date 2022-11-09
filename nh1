@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.1n27
+_1VERSION=1.1n28
 
 _1MODULES=(app audio backup canva cron misc network rpg)
 
@@ -442,10 +442,13 @@ _1list() {
 # @description Run the command as root
 # @arg $1 string Command
 _1sudo() {
+	local _COM
     if [ "$EUID" -eq 0 ]
     then
         $@
     else
+		_COM="$@"
+		_1message info "$(printf "$(_1text "This command needs sudo: %s")\n" "$_COM")"
         sudo $@
     fi
 }
