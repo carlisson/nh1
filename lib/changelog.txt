@@ -246,3 +246,4 @@
 1.1n27 2022-11-09: Fixed bug in dwd12 recipe
 1.1n28 2022-11-09: 1appxadd supporting flatpak now!
 1.1n29 2022-11-09: 1app: Added recipe for Whalebird
+1.1n30 2022-11-09: 1app: added recipe for Sengi

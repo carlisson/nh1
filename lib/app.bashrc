@@ -216,6 +216,11 @@ _nh1app.openapp() {
     if [ -f "$_1APPLIB/$1.app" ]
     then
         source "$_1APPLIB/$1.app"
+        if [ ! "$APP_PREFIX" ]
+        then
+            _1message warning "$(printf "$(_1text "No prefix defined for %s app!")" "$1")"
+            APP_PREFIX="$1-"
+        fi
         if [ ! "$APP_SUFFIX" ]
         then
             # _1verb "$(printf "$(_1text "Suffix not found in app recipe. Using %s.")\n" ".AppImage")"

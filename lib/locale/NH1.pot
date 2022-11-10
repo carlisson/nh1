@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 22:04-0300\n"
+"POT-Creation-Date: 2022-11-09 23:35-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -540,84 +540,88 @@ msgstr ""
 msgid " to install globally and "
 msgstr ""
 
-#: app.bashrc:303
+#: app.bashrc:221
+msgid "No prefix defined for %s app!"
+msgstr ""
+
+#: app.bashrc:308
 msgid "Creating desktop file for %s."
 msgstr ""
 
-#: app.bashrc:335
+#: app.bashrc:340
 msgid "No PNG for app. No desktop file created."
 msgstr ""
 
-#: app.bashrc:365
+#: app.bashrc:370
 msgid "Removing old app version %s."
 msgstr ""
 
-#: app.bashrc:400 app.bashrc:465
+#: app.bashrc:405 app.bashrc:470
 msgid "App needs %s and it's not available."
 msgstr ""
 
-#: app.bashrc:407
+#: app.bashrc:412
 msgid "Git install/update for %s"
 msgstr ""
 
-#: app.bashrc:434
+#: app.bashrc:439
 msgid "Wrong app type."
 msgstr ""
 
-#: app.bashrc:474 app.bashrc:477
+#: app.bashrc:479 app.bashrc:482
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:479
+#: app.bashrc:484
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:543
+#: app.bashrc:548
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:550
+#: app.bashrc:555
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:585
+#: app.bashrc:590
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:588
+#: app.bashrc:593
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:680 app.bashrc:686 app.bashrc:694 app.bashrc:701 app.bashrc:707
-#: app.bashrc:713
+#: app.bashrc:685 app.bashrc:691 app.bashrc:699 app.bashrc:706 app.bashrc:712
+#: app.bashrc:718
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:729 app.bashrc:747 app.bashrc:765
+#: app.bashrc:734 app.bashrc:752 app.bashrc:770
 msgid "Searching %s in %s..."
 msgstr ""
 
-#: app.bashrc:732 app.bashrc:737 app.bashrc:750 app.bashrc:776
+#: app.bashrc:737 app.bashrc:742 app.bashrc:755 app.bashrc:781
 msgid "Package %s found in %s."
 msgstr ""
 
-#: app.bashrc:741 app.bashrc:756 app.bashrc:778
+#: app.bashrc:746 app.bashrc:761 app.bashrc:783
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:774
+#: app.bashrc:779
 msgid "The search returned more than one result!"
 msgstr ""
 
-#: app.bashrc:785
+#: app.bashrc:790
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:794 app.bashrc:804
+#: app.bashrc:799 app.bashrc:809
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:817
+#: app.bashrc:822
 msgid "App %s installed with file %s"
 msgstr ""
 
@@ -1543,6 +1547,10 @@ msgstr ""
 
 #: recipes/rancher-desktop.app:4
 msgid "Docker Kubernetes manager"
+msgstr ""
+
+#: recipes/sengi.app:8
+msgid "FLOSS multi-account Mastodon and Pleroma desktop client"
 msgstr ""
 
 #: recipes/shdoc.app:8

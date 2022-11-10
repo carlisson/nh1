@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 22:04-0300\n"
+"POT-Creation-Date: 2022-11-09 23:35-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -555,88 +555,92 @@ msgstr " para desinstalar."
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: app.bashrc:303
+#: app.bashrc:221
+msgid "No prefix defined for %s app!"
+msgstr "Nenhum prefixo definido para o app %s!"
+
+#: app.bashrc:308
 msgid "Creating desktop file for %s."
 msgstr "Gerando arquivo desktop para %s"
 
-#: app.bashrc:335
+#: app.bashrc:340
 msgid "No PNG for app. No desktop file created."
 msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 
-#: app.bashrc:365
+#: app.bashrc:370
 msgid "Removing old app version %s."
 msgstr "Removendo app na versão antiga %s."
 
-#: app.bashrc:400 app.bashrc:465
+#: app.bashrc:405 app.bashrc:470
 msgid "App needs %s and it's not available."
 msgstr "Programa precisa de %s, que não está(ão) disponível(is)."
 
-#: app.bashrc:407
+#: app.bashrc:412
 msgid "Git install/update for %s"
 msgstr "Instalação/atualização git para %s"
 
-#: app.bashrc:434
+#: app.bashrc:439
 msgid "Wrong app type."
 msgstr "Tipo de aplicativo errado."
 
-#: app.bashrc:474 app.bashrc:477
+#: app.bashrc:479 app.bashrc:482
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:479
+#: app.bashrc:484
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:543
+#: app.bashrc:548
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
 "tarde."
 
-#: app.bashrc:550
+#: app.bashrc:555
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:585
+#: app.bashrc:590
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:588
+#: app.bashrc:593
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:680 app.bashrc:686 app.bashrc:694 app.bashrc:701 app.bashrc:707
-#: app.bashrc:713
+#: app.bashrc:685 app.bashrc:691 app.bashrc:699 app.bashrc:706 app.bashrc:712
+#: app.bashrc:718
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:729 app.bashrc:747 app.bashrc:765
+#: app.bashrc:734 app.bashrc:752 app.bashrc:770
 msgid "Searching %s in %s..."
 msgstr "Buscando %s em %s..."
 
-#: app.bashrc:732 app.bashrc:737 app.bashrc:750 app.bashrc:776
+#: app.bashrc:737 app.bashrc:742 app.bashrc:755 app.bashrc:781
 msgid "Package %s found in %s."
 msgstr "Pacote %s encontrado em %s."
 
-#: app.bashrc:741 app.bashrc:756 app.bashrc:778
+#: app.bashrc:746 app.bashrc:761 app.bashrc:783
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:774
+#: app.bashrc:779
 msgid "The search returned more than one result!"
 msgstr "A busca retornou mais de um resultado!"
 
-#: app.bashrc:785
+#: app.bashrc:790
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:794 app.bashrc:804
+#: app.bashrc:799 app.bashrc:809
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:817
+#: app.bashrc:822
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
@@ -1576,6 +1580,10 @@ msgstr "Visualizador de PDF e quadrinhos"
 msgid "Docker Kubernetes manager"
 msgstr "Gerenciador de Kubernates (docker)"
 
+#: recipes/sengi.app:8
+msgid "FLOSS multi-account Mastodon and Pleroma desktop client"
+msgstr "Cliente desktop livre e multi-conta para Mastodon e Pleroma"
+
 #: recipes/shdoc.app:8
 msgid "Documentation generator for bash"
 msgstr "Gerador de documentação para bash"
@@ -1599,3 +1607,6 @@ msgstr "Shell poderoso com suporte a Python"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "The fediverse at your fingertips"
+#~ msgstr "O fediverso na ponta dos dedos"
