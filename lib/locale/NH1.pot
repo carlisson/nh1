@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-10 16:56-0300\n"
+"POT-Creation-Date: 2022-11-10 17:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -488,148 +488,152 @@ msgstr ""
 msgid "Remove old versions for all system apps"
 msgstr ""
 
-#: app.bashrc:140
+#: app.bashrc:33
+msgid "Helps to create regular expression to make a recipe"
+msgstr ""
+
+#: app.bashrc:141
 msgid "Retains old app files? (1 or 0). Default: 0"
 msgstr ""
 
-#: app.bashrc:170
+#: app.bashrc:171
 msgid "1app status"
 msgstr ""
 
-#: app.bashrc:171
+#: app.bashrc:172
 msgid "App"
 msgstr ""
 
-#: app.bashrc:171
+#: app.bashrc:172
 msgid "Description"
 msgstr ""
 
-#: app.bashrc:171
+#: app.bashrc:172
 msgid "Installation"
 msgstr ""
 
-#: app.bashrc:179
+#: app.bashrc:180
 msgid "local"
 msgstr ""
 
-#: app.bashrc:185
+#: app.bashrc:186
 msgid "global"
 msgstr ""
 
-#: app.bashrc:192
+#: app.bashrc:193
 msgid "system"
 msgstr ""
 
-#: app.bashrc:194
+#: app.bashrc:195
 msgid "None"
 msgstr ""
 
-#: app.bashrc:199
+#: app.bashrc:200
 msgid "Usage"
 msgstr ""
 
-#: app.bashrc:201
+#: app.bashrc:202
 msgid " to install locally and "
 msgstr ""
 
-#: app.bashrc:203 app.bashrc:207
+#: app.bashrc:204 app.bashrc:208
 msgid " to uninstall."
 msgstr ""
 
-#: app.bashrc:205
+#: app.bashrc:206
 msgid " to install globally and "
 msgstr ""
 
-#: app.bashrc:221
+#: app.bashrc:222
 msgid "No prefix defined for %s app!"
 msgstr ""
 
-#: app.bashrc:308
+#: app.bashrc:309
 msgid "Creating desktop file for %s."
 msgstr ""
 
-#: app.bashrc:340
+#: app.bashrc:341
 msgid "No PNG for app. No desktop file created."
 msgstr ""
 
-#: app.bashrc:370
+#: app.bashrc:371
 msgid "Removing old app version %s."
 msgstr ""
 
-#: app.bashrc:405 app.bashrc:470
+#: app.bashrc:406 app.bashrc:471
 msgid "App needs %s and it's not available."
 msgstr ""
 
-#: app.bashrc:412
+#: app.bashrc:413
 msgid "Git install/update for %s"
 msgstr ""
 
-#: app.bashrc:439
+#: app.bashrc:440
 msgid "Wrong app type."
 msgstr ""
 
-#: app.bashrc:479 app.bashrc:482
+#: app.bashrc:480 app.bashrc:483
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:484
+#: app.bashrc:485
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:548
+#: app.bashrc:549
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:555
+#: app.bashrc:556
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:590
+#: app.bashrc:591
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:593
+#: app.bashrc:594
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:685 app.bashrc:691 app.bashrc:699 app.bashrc:706 app.bashrc:712
-#: app.bashrc:718
+#: app.bashrc:686 app.bashrc:692 app.bashrc:700 app.bashrc:707 app.bashrc:713
+#: app.bashrc:719
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:734 app.bashrc:752 app.bashrc:770
+#: app.bashrc:735 app.bashrc:753 app.bashrc:771
 msgid "Searching %s in %s..."
 msgstr ""
 
-#: app.bashrc:737 app.bashrc:742 app.bashrc:755 app.bashrc:781
+#: app.bashrc:738 app.bashrc:743 app.bashrc:756 app.bashrc:782
 msgid "Package %s found in %s."
 msgstr ""
 
-#: app.bashrc:746 app.bashrc:761 app.bashrc:783
+#: app.bashrc:747 app.bashrc:762 app.bashrc:784
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:779
+#: app.bashrc:780
 msgid "The search returned more than one result!"
 msgstr ""
 
-#: app.bashrc:790
+#: app.bashrc:791
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:799 app.bashrc:809
+#: app.bashrc:800 app.bashrc:810
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:822
+#: app.bashrc:823
 msgid "App %s installed with file %s"
 msgstr ""
 
-#: app.bashrc:893 network.bashrc:576
+#: app.bashrc:894 network.bashrc:576
 msgid "It works."
 msgstr ""
 
-#: app.bashrc:897
+#: app.bashrc:898
 msgid "String not found in URL page."
 msgstr ""
 
@@ -1567,10 +1571,6 @@ msgstr ""
 
 #: recipes/thedesk.app:8
 msgid "Mastodon client for PC"
-msgstr ""
-
-#: recipes/vokoscreen.app:8
-msgid "A powerful screencast creator"
 msgstr ""
 
 #: recipes/vscodium.app:4

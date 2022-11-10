@@ -30,6 +30,7 @@ _nh1app.menu() {
   _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
   _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
   _1menuitem X 1appxclear "$(_1text "Remove old versions for all system apps")"
+  _1menuitem X 1appre "$(_1text "Helps to create regular expression to make a recipe")"
 }
 
 # @description Destroy all global variables created by this file
@@ -44,7 +45,7 @@ _nh1app.clean() {
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
-  unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget
+  unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
 }
 
 # Alias-like
