@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 17:22-0300\n"
+"POT-Creation-Date: 2022-11-09 22:04-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1587,6 +1587,10 @@ msgstr "Visualizador de documentos"
 #: recipes/vscodium.app:4
 msgid "Editor for programmer"
 msgstr "Editor para programadores"
+
+#: recipes/whalebird.app:8
+msgid "Federated microblog client"
+msgstr "Cliente para microblog federado"
 
 #: recipes/xonsh.app:8
 msgid "Powerfull shell with Python support"
