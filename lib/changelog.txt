@@ -248,3 +248,4 @@
 1.1n29 2022-11-09: 1app: Added recipe for Whalebird
 1.1n30 2022-11-09: 1app: added recipe for Sengi
 1.1n31 2022-11-10: 1app: added recipe for thedesk
+1.1n32 2022-11-10: 1appre to help RE testing

@@ -877,3 +877,24 @@ _nh1app.clear() {
         fi
    done
 }
+
+# @description Run a regular expression and return info to help you to create a 1app recipe
+# @arg $1 string Target URL
+# @arg $2 string String to search
+1appre() {
+    local _URL _EXP _RES _RE
+    _URL="$1"
+    _EXP="$2"
+    _RE='\(.*\)\(.\{100\}%s.\{100\}\)\(.*\)'
+    _RES=$(curl -s "$_URL" | tr '\n' ' ' | sed "s/$(printf "$_RE" "$_EXP")/\2/" | grep -v "DOCTYPE")
+    if [ -n "$_RES" ]
+    then
+        echo "$_RES" | sed "s/$_EXP/$(1tint $_EXP)/"
+        _1text "It works."
+        echo
+        printf "RE: $_RE\n" "$_EXP"
+    else
+        _1text "String not found in URL page."
+        echo
+    fi
+}
