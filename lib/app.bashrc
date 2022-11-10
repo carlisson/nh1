@@ -889,7 +889,7 @@ _nh1app.clear() {
     _RES=$(curl -s "$_URL" | tr '\n' ' ' | sed "s/$(printf "$_RE" "$_EXP")/\2/" | grep -v "DOCTYPE")
     if [ -n "$_RES" ]
     then
-        echo "$_RES" | sed "s/$_EXP/$(1tint $_EXP)/"
+        echo "$_RES"
         _1text "It works."
         echo
         printf "RE: $_RE\n" "$_EXP"
