@@ -297,8 +297,6 @@ _nh1backup.nextfile() {
     then
         find "$_1BACKDIR" -name "$1*"
     else
-        _1text "Use 1backlist <name> to find all backups for <name>."
-        echo -n "$(_1text "Names"): "
-        _nh1backup.names
+        _1vardb.show "backup"
     fi
 }
