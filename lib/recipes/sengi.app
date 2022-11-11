@@ -5,7 +5,7 @@
 APP_NAME="Sengi"
 
 # Application Description _1text is used for translation
-APP_DESCRIPTION="$(_1text "FLOSS multi-account Mastodon and Pleroma desktop client")"
+APP_DESCRIPTION="$(_1text "Multi-account Mastodon/Pleroma client")"
 
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Network"

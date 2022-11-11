@@ -29,7 +29,7 @@ _nh1app.menu() {
   _1menuitem W 1appgdel "$(_1text "Remove a global app")"
   _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
   _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
-  _1menuitem X 1appxclear "$(_1text "Remove old versions for all system apps")"
+  _1menuitem W 1appxclear "$(_1text "Remove old versions for all system apps")"
   _1menuitem X 1appre "$(_1text "Helps to create regular expression to make a recipe")"
 }
 
@@ -46,46 +46,6 @@ _nh1app.clean() {
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
   unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
-}
-
-# Alias-like
-
-# @description Update all local apps
-1applupd()   {
-  	_1before
-    _nh1app.update local
-}
-
-# @description Update all global apps
-1appgupd()   {
-	_1before
-    _nh1app.update global
-}
-
-# @description Uninstall local app
-# @arg $1 string Application name
-1appldel()   {
-   	_1before
-    _nh1app.remove local "$1"
-}
-
-# @description Uninstall global app
-# @arg $1 string Application name
-1appgdel()   {
-   	_1before
-    _nh1app.remove global "$1"
-}
-
-# @description Remove old versions of local apps
-1applclear() {
-	_1before
-    _nh1app.clear local
-}
-
-# @description Remove old versions of global apps
-1appgclear() {
-	_1before
-    _nh1app.clear global
 }
 
 # @description Autocompletion for 1app
@@ -164,50 +124,6 @@ _nh1app.checksetup() {
     fi
 }
 
-# @description List all available app image for installation
-1app() {
-	_1before
-    local _NAA _NAS _NAU _NAC
-    echo "___ $(_1text "1app status") ___"
-    printf "%-15s %-45s%s\n" "$(_1text App)" "$(_1text Description)" "$(_1text Installation)"
-    for _NAA in $(_nh1app.avail)
-    do
-        printf "%-15s %-45s" "$_NAA" "$(_nh1app.description $_NAA)"
-        _NAC=0
-        _NAU=$(_nh1app.checkversion local "$_NAA")
-        if [ -n "$_NAU" ]
-        then
-            1tint 6 "$(_1text local) "
-            _NAC=$((_NAC+1))
-        fi
-        _NAU=$(_nh1app.checkversion global "$_NAA")
-        if [ -n "$_NAU" ]
-        then
-            1tint 6 "$(_1text global) "
-            _NAC=$((_NAC+1))
-        fi
-        if [ "$_NAC" -eq 0 ]
-        then
-            if 1check -s "$_NAA"
-            then
-                1tint 6 "$(_1text system)"
-            else
-                echo -n "$(_1text None)"
-            fi
-        fi
-        echo
-    done
-    echo "___ $(_1text Usage) ___"
-    1tint 2 1appladd
-    echo -n "$(_1text " to install locally and ")"
-    1tint 1 1appldel
-    echo "$(_1text " to uninstall.")"
-    1tint 2 1appgadd
-    echo -n "$(_1text " to install globally and ")"
-    1tint 1 1appgdel
-    echo "$(_1text " to uninstall.")"
-}
-
 # @description Open app recipe file
 # @arg $1 string App name
 # @exitcode 0 It's ok
@@ -243,12 +159,18 @@ _nh1app.closeapp() {
 
 # @description Returns description for an available app
 # @arg $1 string Application name
+# @arg $2 int Length to print
 # @stdout Application description
 _nh1app.description() {
+    local _STR _SPACES _ILEN _FLEN
+    _FLEN=$2
     if _nh1app.openapp $1
     then
-        echo -n $APP_DESCRIPTION
+        _STR="$APP_DESCRIPTION"
         _nh1app.closeapp
+        _ILEN=${#_STR}
+        _DIFF=$((_FLEN - _ILEN))
+        printf "%s%${_DIFF}s" "$_STR" " "
     else
         echo -n "???"
     fi
@@ -595,30 +517,6 @@ _nh1app.add() {
     fi
 }
 
-# @description Install locally an app
-# @arg $1 string App to install
-# @see _nh1app.add
-1appladd() {
-	_1before
-    local _NAA
-    for _NAA in "$@"
-    do
-        _nh1app.add local "$_NAA"
-    done
-}
-
-# @description Install globally an app
-# @arg $1 string App to install
-# @see _nh1app.add
-1appgadd() {
-	_1before
-    local _NAA
-    for _NAA in "$@"
-    do
-        _nh1app.add global "$_NAA"
-    done
-}
-
 # @description Based on avail, list apps with filters
 # @arg $1 string local or global
 # @arg $2 int installed (1) or not-installed (0)
@@ -674,6 +572,180 @@ _nh1app.where() {
         echo $_PATH
         return 0
     fi
+}
+
+# @description Removes an installed app
+# @arg $1 string local or global 
+# @arg $2 string App name
+_nh1app.remove() {
+    local _NAA _NAF
+    _NAA=$2
+    _NAF=$(_nh1app.checkversion $1 $_NAA)
+    _1verb "$(printf "$(_1text "App %s installed with file %s")" $_NAA $_NAF)"
+    if [ -n "$_NAF" ]
+    then
+        if [ "$1" = "local" ]
+        then
+            rm -r "$_1APPLOCAL/$_NAF"
+            rm "$_1APPLBIN/$_NAA"
+            rm -f "$_1APPLAPPS/$_NAA.desktop"
+            rm -f "$_1APPLICON/$_NAA.png"
+        else
+            _1sudo rm -r "$_1APPGLOBAL/$_NAF"
+            _1sudo rm "$_1APPGBIN/$_NAA"
+            _1sudo rm -f "$_1APPGAPPS/$_NAA.desktop"
+            _1sudo rm -f "$_1APPLICON/$_NAA.png"
+        fi
+    fi
+}
+
+# @description Clear unused old versions for every app
+# @arg $1 string local or global
+_nh1app.clear() {
+    local _NAA _NAN _NAF _NAD _NAP _NAT
+    _NAP="none"
+    if [ $1 = "local" ]
+    then
+        _NAD=$_1APPLOCAL
+    else
+        _NAD=$_1APPGLOBAL
+    fi
+    for _NAA in $(_nh1app.avail)
+    do
+        _NAN=$(_nh1app.checkversion "$1" "$_NAA")
+
+        if _nh1app.openapp $_NAA
+        then
+            _NAP="$APP_PREFIX"
+            _NAT="$APP_TYPE"
+            _nh1app.closeapp
+        fi
+
+        if [ "$_NAT" = "single" -o "$_NAT" = "tarball" ]
+        then
+
+            for _NAF in $(ls $_NAD/$_NAP* 2>/dev/null)
+            do
+                if [ "$_NAN" != $(basename "$_NAF") ]
+                then
+                    if [ "$1" = "global" ]
+                    then
+                        _1sudo rm "$_NAF"
+                    else
+                        rm "$_NAF"
+                    fi
+                fi
+            done
+        fi
+   done
+}
+
+# Alias-like
+
+# @description Update all local apps
+1applupd()   {
+  	_1before
+    _nh1app.update local
+}
+
+# @description Update all global apps
+1appgupd()   {
+	_1before
+    _nh1app.update global
+}
+
+# @description Uninstall local app
+# @arg $1 string Application name
+1appldel()   {
+   	_1before
+    _nh1app.remove local "$1"
+}
+
+# @description Uninstall global app
+# @arg $1 string Application name
+1appgdel()   {
+   	_1before
+    _nh1app.remove global "$1"
+}
+
+# @description Remove old versions of local apps
+1applclear() {
+	_1before
+    _nh1app.clear local
+}
+
+# @description Remove old versions of global apps
+1appgclear() {
+	_1before
+    _nh1app.clear global
+}
+
+# @description List all available app image for installation
+1app() {
+	_1before
+    local _NAA _NAS _NAU _NAC
+    echo "___ $(_1text "1app status") ___"
+    printf "%-15s %-45s%s\n" "$(_1text App)" "$(_1text Description)" "$(_1text Installation)"
+    for _NAA in $(_nh1app.avail)
+    do
+        printf "%-15s %s" "$_NAA" "$(_nh1app.description $_NAA 45)"
+        _NAC=0
+        _NAU=$(_nh1app.checkversion local "$_NAA")
+        if [ -n "$_NAU" ]
+        then
+            1tint 6 "$(_1text local) "
+            _NAC=$((_NAC+1))
+        fi
+        _NAU=$(_nh1app.checkversion global "$_NAA")
+        if [ -n "$_NAU" ]
+        then
+            1tint 6 "$(_1text global) "
+            _NAC=$((_NAC+1))
+        fi
+        if [ "$_NAC" -eq 0 ]
+        then
+            if 1check -s "$_NAA"
+            then
+                1tint 6 "$(_1text system)"
+            else
+                echo -n "$(_1text None)"
+            fi
+        fi
+        echo
+    done
+    echo "___ $(_1text Usage) ___"
+    1tint 2 1appladd
+    echo -n "$(_1text " to install locally and ")"
+    1tint 1 1appldel
+    echo "$(_1text " to uninstall.")"
+    1tint 2 1appgadd
+    echo -n "$(_1text " to install globally and ")"
+    1tint 1 1appgdel
+    echo "$(_1text " to uninstall.")"
+}
+
+# @description Install locally an app
+# @arg $1 string App to install
+# @see _nh1app.add
+1appladd() {
+	_1before
+    local _NAA
+    for _NAA in "$@"
+    do
+        _nh1app.add local "$_NAA"
+    done
+}
+
+# @description Install globally an app
+# @arg $1 string App to install
+# @see _nh1app.add
+1appgadd() {
+	_1before
+    local _NAA
+    for _NAA in "$@"
+    do
+        _nh1app.add global "$_NAA"
+    done
 }
 
 # @description Upgrade all system packages
@@ -810,73 +882,6 @@ _nh1app.where() {
         printf "$(_1text "Cleaning %s...")\n" flatpak
         _1sudo flatpak uninstall --unused
     fi
-}
-
-
-# @description Removes an installed app
-# @arg $1 string local or global 
-# @arg $2 string App name
-_nh1app.remove() {
-    local _NAA _NAF
-    _NAA=$2
-    _NAF=$(_nh1app.checkversion $1 $_NAA)
-    _1verb "$(printf "$(_1text "App %s installed with file %s")" $_NAA $_NAF)"
-    if [ -n "$_NAF" ]
-    then
-        if [ "$1" = "local" ]
-        then
-            rm -r "$_1APPLOCAL/$_NAF"
-            rm "$_1APPLBIN/$_NAA"
-            rm -f "$_1APPLAPPS/$_NAA.desktop"
-            rm -f "$_1APPLICON/$_NAA.png"
-        else
-            _1sudo rm -r "$_1APPGLOBAL/$_NAF"
-            _1sudo rm "$_1APPGBIN/$_NAA"
-            _1sudo rm -f "$_1APPGAPPS/$_NAA.desktop"
-            _1sudo rm -f "$_1APPLICON/$_NAA.png"
-        fi
-    fi
-}
-
-# @description Clear unused old versions for every app
-# @arg $1 string local or global
-_nh1app.clear() {
-    local _NAA _NAN _NAF _NAD _NAP _NAT
-    _NAP="none"
-    if [ $1 = "local" ]
-    then
-        _NAD=$_1APPLOCAL
-    else
-        _NAD=$_1APPGLOBAL
-    fi
-    for _NAA in $(_nh1app.avail)
-    do
-        _NAN=$(_nh1app.checkversion "$1" "$_NAA")
-
-        if _nh1app.openapp $_NAA
-        then
-            _NAP="$APP_PREFIX"
-            _NAT="$APP_TYPE"
-            _nh1app.closeapp
-        fi
-
-        if [ "$_NAT" = "single" -o "$_NAT" = "tarball" ]
-        then
-
-            for _NAF in $(ls $_NAD/$_NAP* 2>/dev/null)
-            do
-                if [ "$_NAN" != $(basename "$_NAF") ]
-                then
-                    if [ "$1" = "global" ]
-                    then
-                        _1sudo rm "$_NAF"
-                    else
-                        rm "$_NAF"
-                    fi
-                fi
-            done
-        fi
-   done
 }
 
 # @description Run a regular expression and return info to help you to create a 1app recipe
