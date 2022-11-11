@@ -681,7 +681,6 @@ _nh1network.simplessh() {
 # @arg $1 int (optional) Number of your interface. Default=all
 # @stdout All IP address in network inteface(s)
 1allhosts() {
-	_1before
   if 1check ip ipcalc
   then
     local aux firstip lastip fp1 fp2 fp3 fp4 lp1 lp2 lp3 lp4 p1 p2 p3 p4 interfaces
