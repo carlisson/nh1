@@ -12,7 +12,7 @@ _nh1misc.menu() {
   _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
   _1menuitem W 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
   _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl
-  _1menuitem W 1diceware "$(_1text "Generate a random diceware password")" 1d6
+  _1menuitem W 1diceware "$(_1text "Generate a random diceware password")"
   _1menuitem W 1du "$(_1text "Disk usage")" du
   _1menuitem W 1escape "$(_1text "Rename a file or dir, excluding special chars")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
