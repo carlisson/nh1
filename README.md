@@ -19,6 +19,7 @@ NH1 is a toolkit with various commands:
  * **1draw**: simple drawlist manager.
  * **1cron**: simple pseudocron task scheduler
  * **1pass** and **1diceware**: random password generators set to 70+ entropy bits.
+ * **1translate**: help translation task, extracting texto to a .po and generating .mo
 
 100+ commands 1-something. To get full list:
 
