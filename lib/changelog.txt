@@ -254,3 +254,4 @@
 1.1n35 2022-11-11: Some minor adjusts in main file
 1.1n36 2022-11-11: _nh1app.description fixed (UTF-8 size in printf)
 1.1n37 2022-11-11: 1backlist now uses _vardb.show
+1.2    2022-11-16: final adjusts for 1.2 version

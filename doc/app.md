@@ -10,12 +10,6 @@ Generates partial menu
 
 * [_nh1app.menu](#_nh1appmenu)
 * [_nh1app.clean](#_nh1appclean)
-* [1applupd](#1applupd)
-* [1appgupd](#1appgupd)
-* [1appldel](#1appldel)
-* [1appgdel](#1appgdel)
-* [1applclear](#1applclear)
-* [1appgclear](#1appgclear)
 * [_nh1app.complete](#_nh1appcomplete)
 * [_nh1app.avail](#_nh1appavail)
 * [_nh1app.setup](#_nh1appsetup)
@@ -23,7 +17,6 @@ Generates partial menu
 * [_nh1app.customvars](#_nh1appcustomvars)
 * [_nh1app.info](#_nh1appinfo)
 * [_nh1app.checksetup](#_nh1appchecksetup)
-* [1app](#1app)
 * [_nh1app.openapp](#_nh1appopenapp)
 * [_nh1app.closeapp](#_nh1appcloseapp)
 * [_nh1app.description](#_nh1appdescription)
@@ -33,16 +26,24 @@ Generates partial menu
 * [_nh1app.gitget](#_nh1appgitget)
 * [_nh1app.single](#_nh1appsingle)
 * [_nh1app.add](#_nh1appadd)
-* [1appladd](#1appladd)
-* [1appgadd](#1appgadd)
 * [_nh1app.list](#_nh1applist)
 * [_nh1app.update](#_nh1appupdate)
 * [_nh1app.where](#_nh1appwhere)
+* [_nh1app.remove](#_nh1appremove)
+* [_nh1app.clear](#_nh1appclear)
+* [1applupd](#1applupd)
+* [1appgupd](#1appgupd)
+* [1appldel](#1appldel)
+* [1appgdel](#1appgdel)
+* [1applclear](#1applclear)
+* [1appgclear](#1appgclear)
+* [1app](#1app)
+* [1appladd](#1appladd)
+* [1appgadd](#1appgadd)
 * [1appxupd](#1appxupd)
 * [1appxadd](#1appxadd)
 * [1appxclear](#1appxclear)
-* [_nh1app.remove](#_nh1appremove)
-* [_nh1app.clear](#_nh1appclear)
+* [1appre](#1appre)
 
 ### _nh1app.menu
 
@@ -51,38 +52,6 @@ Generates partial menu
 ### _nh1app.clean
 
 Destroy all global variables created by this file
-
-### 1applupd
-
-Update all local apps
-
-### 1appgupd
-
-Update all global apps
-
-### 1appldel
-
-Uninstall local app
-
-#### Arguments
-
-* **$1** (string): Application name
-
-### 1appgdel
-
-Uninstall global app
-
-#### Arguments
-
-* **$1** (string): Application name
-
-### 1applclear
-
-Remove old versions of local apps
-
-### 1appgclear
-
-Remove old versions of global apps
 
 ### _nh1app.complete
 
@@ -137,10 +106,6 @@ Check if setup is ok
 * **0**: Setup is ok
 * **1**: Setup is not ok
 
-### 1app
-
-List all available app image for installation
-
 ### _nh1app.openapp
 
 Open app recipe file
@@ -173,6 +138,7 @@ Returns description for an available app
 #### Arguments
 
 * **$1** (string): Application name
+* **$2** (int): Length to print
 
 #### Output on stdout
 
@@ -242,30 +208,6 @@ Internal 1app generic installer
 * **$1** (string): local or global
 * **$2** (string): App to install
 
-### 1appladd
-
-Install locally an app
-
-#### Arguments
-
-* **$1** (string): App to install
-
-#### See also
-
-* [_nh1app.add](#_nh1appadd)
-
-### 1appgadd
-
-Install globally an app
-
-#### Arguments
-
-* **$1** (string): App to install
-
-#### See also
-
-* [_nh1app.add](#_nh1appadd)
-
 ### _nh1app.list
 
 Based on avail, list apps with filters
@@ -304,6 +246,83 @@ Returns full path for a command, if exists
 
 * Path for command
 
+### _nh1app.remove
+
+Removes an installed app
+
+#### Arguments
+
+* **$1** (string): local or global
+* **$2** (string): App name
+
+### _nh1app.clear
+
+Clear unused old versions for every app
+
+#### Arguments
+
+* **$1** (string): local or global
+
+### 1applupd
+
+Update all local apps
+
+### 1appgupd
+
+Update all global apps
+
+### 1appldel
+
+Uninstall local app
+
+#### Arguments
+
+* **$1** (string): Application name
+
+### 1appgdel
+
+Uninstall global app
+
+#### Arguments
+
+* **$1** (string): Application name
+
+### 1applclear
+
+Remove old versions of local apps
+
+### 1appgclear
+
+Remove old versions of global apps
+
+### 1app
+
+List all available app image for installation
+
+### 1appladd
+
+Install locally an app
+
+#### Arguments
+
+* **$1** (string): App to install
+
+#### See also
+
+* [_nh1app.add](#_nh1appadd)
+
+### 1appgadd
+
+Install globally an app
+
+#### Arguments
+
+* **$1** (string): App to install
+
+#### See also
+
+* [_nh1app.add](#_nh1appadd)
+
 ### 1appxupd
 
 Upgrade all system packages
@@ -324,20 +343,12 @@ Install program using system package manager
 
 Remove old versions of system apps, in debian, snap, flatpak...
 
-### _nh1app.remove
+### 1appre
 
-Removes an installed app
-
-#### Arguments
-
-* **$1** (string): local or global 
-* **$2** (string): App name
-
-### _nh1app.clear
-
-Clear unused old versions for every app
+Run a regular expression and return info to help you to create a 1app recipe
 
 #### Arguments
 
-* **$1** (string): local or global
+* **$1** (string): Target URL
+* **$2** (string): String to search
 

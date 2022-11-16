@@ -149,7 +149,7 @@ _nh1network.info() {
 }
 
 # @description Check if a string is an IP address
-# @arg $i string Value to test if is an IP
+# @arg $1 string Value to test if is an IP
 # @exitcode 0 Confirm $1 is IP
 # @exitcode 1 It's not an IP address
 1isip() {

@@ -110,7 +110,7 @@ Check if a string is an IP address
 
 #### Arguments
 
-* $i string Value to test if is an IP
+* **$1** (string): Value to test if is an IP
 
 #### Exit codes
 
@@ -300,7 +300,6 @@ Try to use smart ssh. If it don't works, use simplessh
 
 #### Arguments
 
-* **$1** (string): name or IP
 * **$1** (string): name or IP, or usr@IP
 * **$2** (string): Additional options for ssh
 

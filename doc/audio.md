@@ -75,7 +75,6 @@ Extract ID3V2 metadata from an MP3 file
 
 #### Arguments
 
-* **$1** (string): MP3 input file
 * **$1** (string): TXT output file
 
 #### See also
