@@ -16,6 +16,7 @@ _nh1network.menu() {
   _1menuitem W 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
   _1menuitem W 1get "$(_1text "Start download(s)")" wget
   _1menuitem W 1getadd "$(_1text "Add URL to download later")"
+  _1menuitem W 1getclear "$(_1text "Reset download queue")"
   _1menuitem W 1getlist "$(_1text "List download planning")"
   _1menuitem W 1getdel "$(_1text "Delete URL from list to download")"
   _1menuitem W 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
@@ -54,6 +55,7 @@ _nh1network.clean() {
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
   unset -f 1interfaces 1get 1getadd 1getlist 1getdel _1network.download
+  unset -f 1getclear
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -973,16 +975,13 @@ _nh1network.xt-backup() {
 # @exitcode 1 Error
 _1network.download() {
   local _TARGET _STATUS
-  if 1check wget
-  then
-    _TARGET="$1"
-    pushd "$_1GETDIR" > /dev/null
-    _1message "$(printf "$(_1text "Downloading %s")" "$_TARGET")"
-    wget -c "$_TARGET"
-    _STATUS=$?
-    popd > /dev/null
-    return $_STATUS
-  fi
+  _TARGET="$1"
+  pushd "$_1GETDIR" > /dev/null
+  _1message "$(printf "$(_1text "Downloading %s")" "$_TARGET")"
+  wget -c -nv --show-progress "$_TARGET"
+  _STATUS=$?
+  popd > /dev/null
+  return $_STATUS
 }
 
 # @description Start a download and/or the download list
@@ -1002,11 +1001,12 @@ _1network.download() {
     cat "$_TMP" >> "$_1GETQUEUE"
     shift
   done
-  rm "$_TMP"
+  cp "$_1GETQUEUE" "$_TMP"
 
-  while [ -s "$_1GETQUEUE" ]
+  _IFS=$IFS
+  IFS=$(echo -en "\n\b")
+  for _LIN in $(cat "$_TMP")
   do
-    _LIN=$(head -n 1 "$_1GETQUEUE")
     _STA=0
     while [ $_STA -lt 3 ]
     do
@@ -1025,10 +1025,11 @@ _1network.download() {
         ;;
       3)
         _1message error "$(printf "$(_1text "Error downloading %s.")" "$_LIN")"
-        return 1
         ;;
     esac
   done
+  IFS=$_IFS
+  rm "$_TMP"
   return 0
 }
 
@@ -1036,6 +1037,12 @@ _1network.download() {
 # @arg $1 string URL to download
 1getadd() {
   echo "$1" >> "$_1GETQUEUE"
+}
+
+# @description Reset download queue
+1getclear () {
+  rm "$_1GETQUEUE"
+  touch "$_1GETQUEUE"
 }
 
 # @description List download queue
