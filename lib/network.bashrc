@@ -5,6 +5,7 @@
 _1NETLOCAL="$_1UDATA/network"
 _1SERIALCOM="picocom minicom"
 _1GETDIR="$HOME/Downloads"
+_1GETQUEUE="$_1UDATA/download.queue"
 _1IPERFPORT=2918
 
 # @description Generate partial menu (for Network functions)
@@ -13,10 +14,10 @@ _nh1network.menu() {
   _1menuitem W 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
   _1menuitem W 1areon "$(_1text "Check status for every host in a internal .hosts")"
   _1menuitem W 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
-  _1menuitem P 1get "$(_1text "Start download(s)")"
-  _1menuitem P 1getadd "$(_1text "Add URL to download later")"
-  _1menuitem P 1getlist "$(_1text "List download planning")"
-  _1menuitem P 1getdel "$(_1text "Delete URL from list to download")"
+  _1menuitem W 1get "$(_1text "Start download(s)")" wget
+  _1menuitem W 1getadd "$(_1text "Add URL to download later")"
+  _1menuitem W 1getlist "$(_1text "List download planning")"
+  _1menuitem W 1getdel "$(_1text "Delete URL from list to download")"
   _1menuitem W 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
   _1menuitem W 1host "$(_1text "Return a valid ping-available IP for some host or domain name")"
   _1menuitem W 1hostgroup "$(_1text "Lists all hosts in given group")"
@@ -52,7 +53,7 @@ _nh1network.clean() {
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
-  unset -f 1interfaces 1get 1getadd 1getlist 1getdel
+  unset -f 1interfaces 1get 1getadd 1getlist 1getdel _1network.download
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -98,6 +99,7 @@ _nh1network.complete() {
 _nh1network.init() {
   mkdir -p "$_1NETLOCAL"
   mkdir -p "$_1GETDIR"
+  touch "$_1GETQUEUE"
 }
 
 # @description Load variables defined by user
@@ -965,15 +967,89 @@ _nh1network.xt-backup() {
     ip a | grep "^[[:digit:]]" | cut -d\: -f 2 | grep -v lo | xargs
 }
 
+# @description Do download of given URL
+# @arg $1 string URL to download
+# @exitcode 0 Download ok
+# @exitcode 1 Error
+_1network.download() {
+  local _TARGET _STATUS
+  if 1check wget
+  then
+    _TARGET="$1"
+    pushd "$_1GETDIR" > /dev/null
+    _1message "$(printf "$(_1text "Downloading %s")" "$_TARGET")"
+    wget -c "$_TARGET"
+    _STATUS=$?
+    popd > /dev/null
+    return $_STATUS
+  fi
+}
+
+# @description Start a download and/or the download list
+# @arg $1 string URL to download (optional)
 1get() {
-  echo "vardb downloads"
+  _1before
+  local _TMP _IFS _LIN _STA
+  if ! 1check wget
+  then
+    return 1
+  fi
+  _TMP="$(mktemp)"
+  while [ $# -gt 0 ]
+  do
+    cp "$_1GETQUEUE" "$_TMP"
+    echo "$1" > "$_1GETQUEUE"
+    cat "$_TMP" >> "$_1GETQUEUE"
+    shift
+  done
+  rm "$_TMP"
+
+  while [ -s "$_1GETQUEUE" ]
+  do
+    _LIN=$(head -n 1 "$_1GETQUEUE")
+    _STA=0
+    while [ $_STA -lt 3 ]
+    do
+      _1network.download "$_LIN"
+      if [ $? -eq 0 ]
+      then
+        _STA=100
+      else
+        _STA=$((_STA+1))
+      fi
+    done
+    case $_STA in
+      100)
+        _1verb "$(printf "$(_1text "Download of %s successful.")\n" "$_LIN")"
+        1getdel "$_LIN"
+        ;;
+      3)
+        _1message error "$(printf "$(_1text "Error downloading %s.")" "$_LIN")"
+        return 1
+        ;;
+    esac
+  done
+  return 0
 }
+
+# @description Add a URL to download list
+# @arg $1 string URL to download
 1getadd() {
-  echo
+  echo "$1" >> "$_1GETQUEUE"
 }
+
+# @description List download queue
 1getlist() {
-  echo
+  _1before
+  cat "$_1GETQUEUE"
 }
+
+# @description Delete an item from download queue
+# @arg $1 string URL to remove from download list
 1getdel() {
-  echo
+  local _TMP
+  _TMP="$(mktemp)"
+  cp "$_1GETQUEUE" "$_TMP"
+  grep -hv "^$1$" "$_TMP" > "$_1GETQUEUE"
+  rm "$_TMP"
 }
