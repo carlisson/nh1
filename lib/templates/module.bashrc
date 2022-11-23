@@ -30,6 +30,7 @@ _nh1module.clean() {
   unset _1LOCALVAR
   unset -f _nh1module.menu _nh1module.complete _nh1module.init
   unset -f _nh1module.info _nh1module.customvars _nh1module.clean
+  unset -f _nh1module.usage
 }
 
 # @description Autocompletion instructions
@@ -50,6 +51,16 @@ _nh1module.info() {
 # @description Creates paths and copy initial files
 _nh1module.init() {
   _1menuitem W NORG_CUSTOM_VAR "$(_1text "Description")"
+}
+
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1module.usage() {
+  case $1 in
+    *)
+      echo
+      ;;
+  esac
 }
 
 # Alias-like
