@@ -3,6 +3,7 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
+_1UIDIALOGS=(zenity yad)
 
 # Private functions
 
@@ -21,6 +22,7 @@ _nh1ui.clean() {
   unset -f _nh1ui.menu _nh1ui.complete _nh1ui.init _nh1ui.info
   unset -f _nh1ui.customvars _nh1ui.clean _nh1ui.usage 1uisays
   unset -f 1uiconfirm 1uiask _nh1ui.confirm _nh1ui.ask
+  unset -f _nh1ui.choose
 }
 
 # @description Autocompletion instructions
@@ -88,6 +90,21 @@ _nh1ui.ask() {
     echo $_RSP
 }
 
+# @description Choose best dialog system
+_nh1ui.choose() {
+    local _DIA
+    
+    for _DIA in ${_1UIDIALOGS[@]}
+    do
+        if 1check -s "$_DIA"
+        then
+            echo "$_DIA"
+            return 0
+        fi
+    done
+    echo "none"
+}
+
 # Alias-like
 
 # Public functions
@@ -103,13 +120,19 @@ _nh1ui.ask() {
         _nh1ui.usage "says"
         return 0
     fi
-    if 1check noeciste
-    then
-        noeciste --info --text="$_MSG"
-    else
-        1tint "$_MSG"
-        echo
-    fi
+
+    case "$(_nh1ui.choose)" in
+        yad)
+            yad --title="NH1 $_VERSION" --info --text="$_MSG"
+            ;;
+        zenity)
+            zenity --title="NH1 $_VERSION" --info --text="$_MSG"
+            ;;
+        *)
+            1tint "$_MSG"
+            echo
+            ;;
+    esac
 }
 
 # @description Ask user for confirmation
@@ -126,14 +149,21 @@ _nh1ui.ask() {
         _nh1ui.usage "confirm"
         return 2
     fi
-    if 1check noeciste
-    then
-        noeciste --question --text="$_MSG"
-        return $?
-    else
-        _nh1ui.confirm "$_MSG"
-        return $?
-    fi
+
+    case "$(_nh1ui.choose)" in
+        yad)
+            yad --title="NH1 $_VERSION" --question --text="$_MSG"
+            return $?
+            ;;
+        zenity)
+            zenity --title="NH1 $_VERSION" --question --text="$_MSG"
+            return $?
+            ;;
+        *)
+            _nh1ui.confirm "$_MSG"
+            return $?
+            ;;
+    esac
 }
 
 # @description Ask user for a text
@@ -148,12 +178,19 @@ _nh1ui.ask() {
         _nh1ui.usage "ask"
         return 2
     fi
-    if 1check noeciste
-    then
-        _RSP=$(noeciste --entry --text="$_MSG")
-        echo $_RSP
-    else
-        _RSP=$(_nh1ui.ask "$_MSG")
-        echo $_RSP
-    fi
+
+    case "$(_nh1ui.choose)" in
+        yad)
+            _RSP=$(yad --title="NH1 $_VERSION" --entry --text="$_MSG")
+            echo $_RSP
+            ;;
+        zenity)
+            _RSP=$(zenity --title="NH1 $_VERSION" --entry --text="$_MSG")
+            echo $_RSP
+            ;;
+        *)
+            _RSP=$(_nh1ui.ask "$_MSG")
+            echo $_RSP
+            ;;
+    esac
 }

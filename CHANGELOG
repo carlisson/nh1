@@ -266,3 +266,4 @@
 1.2d9  2022-11-23: Initial planning for 1ui
 1.2d10 2022-11-23: 1uiask, 1uisays, 1uiconfirm working with zenity
 1.2d11 2022-11-23: 1ui simple alternatives (using read and print)
+1.2d12 2022-11-23: _nh1ui.choose created. Added support to yad
