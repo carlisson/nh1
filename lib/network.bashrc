@@ -987,6 +987,7 @@ _1network.download() {
 # @description Start a download and/or the download list
 # @arg $1 string URL to download (optional)
 1get() {
+  #TODO usage
   _1before
   local _TMP _IFS _LIN _STA
   if ! 1check wget

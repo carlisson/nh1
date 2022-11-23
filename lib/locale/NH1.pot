@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 08:38-0300\n"
+"POT-Creation-Date: 2022-11-23 12:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -629,7 +629,7 @@ msgstr ""
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:899 network.bashrc:576
+#: app.bashrc:899 network.bashrc:588
 msgid "It works."
 msgstr ""
 
@@ -710,7 +710,7 @@ msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 
 #: audio.bashrc:157 audio.bashrc:257 backup.bashrc:194 canva.bashrc:238
-#: canva.bashrc:264 misc.bashrc:151 network.bashrc:319 rpg.bashrc:236
+#: canva.bashrc:264 misc.bashrc:151 network.bashrc:331 rpg.bashrc:236
 #: rpg.bashrc:252
 msgid "Usage: %s."
 msgstr ""
@@ -1060,7 +1060,7 @@ msgstr ""
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:213 network.bashrc:247 network.bashrc:264 network.bashrc:283
+#: misc.bashrc:213 network.bashrc:259 network.bashrc:276 network.bashrc:295
 msgid "Usage:"
 msgstr ""
 
@@ -1128,241 +1128,277 @@ msgstr ""
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 
-#: network.bashrc:11
+#: network.bashrc:13
 msgid "Network"
 msgstr ""
 
-#: network.bashrc:12
+#: network.bashrc:14
 msgid "Returns all hosts in all your networks"
 msgstr ""
 
-#: network.bashrc:13
+#: network.bashrc:15
 msgid "Check status for every host in a internal .hosts"
 msgstr ""
 
-#: network.bashrc:14
+#: network.bashrc:16
 msgid "Returns baudrate for a number from 1 to 13"
 msgstr ""
 
-#: network.bashrc:15
-msgid "Search in all network every IP with given port open"
-msgstr ""
-
-#: network.bashrc:16
-msgid "Return a valid ping-available IP for some host or domain name"
-msgstr ""
-
 #: network.bashrc:17
-msgid "Lists all hosts in given group"
+msgid "Start download(s)"
 msgstr ""
 
 #: network.bashrc:18
-msgid "Create or update a host entry"
+msgid "Add URL to download later"
 msgstr ""
 
 #: network.bashrc:19
-msgid "Removes a host entry"
+msgid "Reset download queue"
 msgstr ""
 
 #: network.bashrc:20
-msgid "Migrates a host to another group"
+msgid "List download planning"
 msgstr ""
 
 #: network.bashrc:21
-msgid "Return HTTP status for given URL"
+msgid "Delete URL from list to download"
 msgstr ""
 
 #: network.bashrc:22
-msgid "List network interfaces"
+msgid "Search in all network every IP with given port open"
 msgstr ""
 
 #: network.bashrc:23
-msgid "Run iperf connecting to a 1iperfd IP"
+msgid "Return a valid ping-available IP for some host or domain name"
 msgstr ""
 
 #: network.bashrc:24
-msgid "Run iperfd, waiting for 1iperf connection"
+msgid "Lists all hosts in given group"
 msgstr ""
 
 #: network.bashrc:25
-msgid "Return if a given string is an IP address"
+msgid "Create or update a host entry"
 msgstr ""
 
 #: network.bashrc:26
-msgid "Return if server is on. Params: (-q for quiet or name), IP"
+msgid "Removes a host entry"
 msgstr ""
 
 #: network.bashrc:27
-msgid "Return prefixes for a given vendor"
+msgid "Migrates a host to another group"
 msgstr ""
 
 #: network.bashrc:28
-msgid "Return all networks running on network interfaces"
+msgid "Return HTTP status for given URL"
 msgstr ""
 
 #: network.bashrc:29
-msgid "Scan if given port(s) for a given host is/are open"
+msgid "List network interfaces"
 msgstr ""
 
 #: network.bashrc:30
-msgid "Connect to a serial port"
+msgid "Run iperf connecting to a 1iperfd IP"
 msgstr ""
 
 #: network.bashrc:31
-msgid "Connect a SSH server (working with eXtreme)"
+msgid "Run iperfd, waiting for 1iperf connection"
 msgstr ""
 
 #: network.bashrc:32
-msgid "Run tcpdump in a given network interface"
+msgid "Return if a given string is an IP address"
 msgstr ""
 
 #: network.bashrc:33
-msgid "Connect a Telnet server"
+msgid "Return if server is on. Params: (-q for quiet or name), IP"
 msgstr ""
 
 #: network.bashrc:34
-msgid "Backup configuration of one or more extreme switchs"
+msgid "Return prefixes for a given vendor"
 msgstr ""
 
 #: network.bashrc:35
+msgid "Return all networks running on network interfaces"
+msgstr ""
+
+#: network.bashrc:36
+msgid "Scan if given port(s) for a given host is/are open"
+msgstr ""
+
+#: network.bashrc:37
+msgid "Connect to a serial port"
+msgstr ""
+
+#: network.bashrc:38
+msgid "Connect a SSH server (working with eXtreme)"
+msgstr ""
+
+#: network.bashrc:39
+msgid "Run tcpdump in a given network interface"
+msgstr ""
+
+#: network.bashrc:40
+msgid "Connect a Telnet server"
+msgstr ""
+
+#: network.bashrc:41
+msgid "Backup configuration of one or more extreme switchs"
+msgstr ""
+
+#: network.bashrc:42
 msgid "List all VLANs in given eXtreme switch"
 msgstr ""
 
-#: network.bashrc:105
+#: network.bashrc:116
 msgid "Path for network (hosts and groups) files."
 msgstr ""
 
-#: network.bashrc:106
+#: network.bashrc:117
 msgid "Server port. Default: %s."
 msgstr ""
 
-#: network.bashrc:140
+#: network.bashrc:118
+msgid "Path where save downloads when using 1get."
+msgstr ""
+
+#: network.bashrc:152
 msgid "Bauds possible:"
 msgstr ""
 
-#: network.bashrc:165
+#: network.bashrc:177
 msgid "You need to give a string to test if it is an IP address."
 msgstr ""
 
-#: network.bashrc:206
+#: network.bashrc:218
 msgid "%s is unkown or unavailable."
 msgstr ""
 
-#: network.bashrc:209
+#: network.bashrc:221
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:250 network.bashrc:787
+#: network.bashrc:262 network.bashrc:799
 msgid "Available groups"
 msgstr ""
 
-#: network.bashrc:314
+#: network.bashrc:326
 msgid "Host or group not found."
 msgstr ""
 
-#: network.bashrc:333
+#: network.bashrc:345
 msgid "Trying to connect %s (%s) with iperf."
 msgstr ""
 
-#: network.bashrc:336
+#: network.bashrc:348
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
-#: network.bashrc:391
+#: network.bashrc:403
 msgid "IP %s returned for machine %s."
 msgstr ""
 
-#: network.bashrc:392
+#: network.bashrc:404
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:399
+#: network.bashrc:411
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:455
+#: network.bashrc:467
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr ""
 
-#: network.bashrc:460 network.bashrc:463
+#: network.bashrc:472 network.bashrc:475
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 
-#: network.bashrc:465
+#: network.bashrc:477
 msgid "Cannot connect %s."
 msgstr ""
 
-#: network.bashrc:535
+#: network.bashrc:547
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr ""
 
-#: network.bashrc:547 network.bashrc:607
+#: network.bashrc:559 network.bashrc:619
 msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:555
+#: network.bashrc:567
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:578
+#: network.bashrc:590
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:644
+#: network.bashrc:656
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:649
+#: network.bashrc:661
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:658
+#: network.bashrc:670
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:663
+#: network.bashrc:675
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:761
+#: network.bashrc:773
 msgid "trying %s:%s"
 msgstr ""
 
-#: network.bashrc:769
+#: network.bashrc:781
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:782
+#: network.bashrc:794
 msgid "group"
 msgstr ""
 
-#: network.bashrc:785
+#: network.bashrc:797
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:817
+#: network.bashrc:829
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:832
+#: network.bashrc:844
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:840
+#: network.bashrc:852
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:889
+#: network.bashrc:901
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:900
+#: network.bashrc:912
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:925
+#: network.bashrc:937
 msgid "Doing backup of %s to %s"
+msgstr ""
+
+#: network.bashrc:980
+msgid "Downloading %s"
+msgstr ""
+
+#: network.bashrc:1023
+msgid "Download of %s successful."
+msgstr ""
+
+#: network.bashrc:1027
+msgid "Error downloading %s."
 msgstr ""
 
 #: rpg.bashrc:9
