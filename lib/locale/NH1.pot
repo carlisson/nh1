@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-23 12:07-0300\n"
+"POT-Creation-Date: 2022-11-23 12:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1393,12 +1393,32 @@ msgstr ""
 msgid "Downloading %s"
 msgstr ""
 
-#: network.bashrc:1023
+#: network.bashrc:998
+msgid "Usage: 1get [%s]"
+msgstr ""
+
+#: network.bashrc:999
+msgid "URL is optional. 1get starts download of every URL in queue."
+msgstr ""
+
+#: network.bashrc:1029
 msgid "Download of %s successful."
 msgstr ""
 
-#: network.bashrc:1027
+#: network.bashrc:1033
 msgid "Error downloading %s."
+msgstr ""
+
+#: network.bashrc:1053 network.bashrc:1086
+msgid "Usage: %s [%s]"
+msgstr ""
+
+#: network.bashrc:1066
+msgid "Download Queue"
+msgstr ""
+
+#: network.bashrc:1071
+msgid "Download queue is empty."
 msgstr ""
 
 #: rpg.bashrc:9

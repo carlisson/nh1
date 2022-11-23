@@ -987,12 +987,17 @@ _1network.download() {
 # @description Start a download and/or the download list
 # @arg $1 string URL to download (optional)
 1get() {
-  #TODO usage
   _1before
   local _TMP _IFS _LIN _STA
   if ! 1check wget
   then
     return 1
+  fi
+  if [ $# -eq 0 -a ! -s "$_GETQUEUE" ]
+  then
+    printf "$(_1text "Usage: 1get [%s]")\n" "URL"
+    _1text "URL is optional. 1get starts download of every URL in queue."
+    echo
   fi
   _TMP="$(mktemp)"
   while [ $# -gt 0 ]
@@ -1038,10 +1043,15 @@ _1network.download() {
 # @arg $1 string URL to download
 1getadd() {
   local _URL
-  for _URL in $*
-  do
-    echo "$_URL" >> "$_1GETQUEUE"
-  done
+  if [ $# -gt 0 ]
+  then
+    for _URL in $*
+    do
+      echo "$_URL" >> "$_1GETQUEUE"
+    done
+  else
+    printf "$(_1text "Usage: %s [%s]")\n" "1getadd" "URL(s)"
+  fi
 }
 
 # @description Reset download queue
@@ -1053,15 +1063,26 @@ _1network.download() {
 # @description List download queue
 1getlist() {
   _1before
-  cat "$_1GETQUEUE"
+  1banner "$(_1text "Download Queue")"
+  if [ -s "$_1GETQUEUE" ]
+  then
+    cat "$_1GETQUEUE"
+  else
+    _1message "$(_1text "Download queue is empty.")"
+  fi
 }
 
 # @description Delete an item from download queue
 # @arg $1 string URL to remove from download list
 1getdel() {
   local _TMP
-  _TMP="$(mktemp)"
-  cp "$_1GETQUEUE" "$_TMP"
-  grep -hv "^$1$" "$_TMP" > "$_1GETQUEUE"
-  rm "$_TMP"
+  if [ $# -eq 1 ]
+  then
+    _TMP="$(mktemp)"
+    cp "$_1GETQUEUE" "$_TMP"
+    grep -hv "^$1$" "$_TMP" > "$_1GETQUEUE"
+    rm "$_TMP"
+  else
+    printf "$(_1text "Usage: %s [%s]")\n" "1getdel" "URL"
+  fi
 }
