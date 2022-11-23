@@ -1036,7 +1036,11 @@ _1network.download() {
 # @description Add a URL to download list
 # @arg $1 string URL to download
 1getadd() {
-  echo "$1" >> "$_1GETQUEUE"
+  local _URL
+  for _URL in $*
+  do
+    echo "$_URL" >> "$_1GETQUEUE"
+  done
 }
 
 # @description Reset download queue
