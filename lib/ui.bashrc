@@ -20,7 +20,7 @@ _nh1ui.clean() {
   # unset variables
   unset -f _nh1ui.menu _nh1ui.complete _nh1ui.init _nh1ui.info
   unset -f _nh1ui.customvars _nh1ui.clean _nh1ui.usage 1uisays
-  unset -f 1uiconfirm 1uiask
+  unset -f 1uiconfirm 1uiask _nh1ui.confirm _nh1ui.ask
 }
 
 # @description Autocompletion instructions
@@ -59,6 +59,35 @@ _nh1ui.usage() {
   esac
 }
 
+# @description Question user using read
+# @arg $1 Message, question
+# @exitcode 0 User confirm
+# @exitcode 1 User says no
+_nh1ui.confirm() {
+    local _RSPx
+    1tint "$1 (Y/N) "
+    read _RSP
+    case "$_RSP" in
+        Y|y|yes|YES|Yes)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+# @description Question user using read
+# @arg $1 Message, question
+# @exitcode 0 User confirm
+# @exitcode 1 User says no
+_nh1ui.ask() {
+    local _RSPx
+    echo -n "$1 " >/dev/stderr
+    read _RSP
+    echo $_RSP
+}
+
 # Alias-like
 
 # Public functions
@@ -74,9 +103,12 @@ _nh1ui.usage() {
         _nh1ui.usage "says"
         return 0
     fi
-    if 1check zenity
+    if 1check noeciste
     then
-        zenity --info --text="$_MSG"
+        noeciste --info --text="$_MSG"
+    else
+        1tint "$_MSG"
+        echo
     fi
 }
 
@@ -94,9 +126,12 @@ _nh1ui.usage() {
         _nh1ui.usage "confirm"
         return 2
     fi
-    if 1check zenity
+    if 1check noeciste
     then
-        zenity --question --text="$_MSG"
+        noeciste --question --text="$_MSG"
+        return $?
+    else
+        _nh1ui.confirm "$_MSG"
         return $?
     fi
 }
@@ -113,9 +148,12 @@ _nh1ui.usage() {
         _nh1ui.usage "ask"
         return 2
     fi
-    if 1check zenity
+    if 1check noeciste
     then
-        _RSP=$(zenity --entry --text="$_MSG")
+        _RSP=$(noeciste --entry --text="$_MSG")
+        echo $_RSP
+    else
+        _RSP=$(_nh1ui.ask "$_MSG")
         echo $_RSP
     fi
 }
