@@ -4,6 +4,7 @@
 
 _1NETLOCAL="$_1UDATA/network"
 _1SERIALCOM="picocom minicom"
+_1GETDIR="$HOME/Downloads"
 _1IPERFPORT=2918
 
 # @description Generate partial menu (for Network functions)
@@ -12,6 +13,10 @@ _nh1network.menu() {
   _1menuitem W 1allhosts "$(_1text "Returns all hosts in all your networks")" ip ipcalc
   _1menuitem W 1areon "$(_1text "Check status for every host in a internal .hosts")"
   _1menuitem W 1bauds "$(_1text "Returns baudrate for a number from 1 to 13")"
+  _1menuitem P 1get "$(_1text "Start download(s)")"
+  _1menuitem P 1getadd "$(_1text "Add URL to download later")"
+  _1menuitem P 1getlist "$(_1text "List download planning")"
+  _1menuitem P 1getdel "$(_1text "Delete URL from list to download")"
   _1menuitem W 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
   _1menuitem W 1host "$(_1text "Return a valid ping-available IP for some host or domain name")"
   _1menuitem W 1hostgroup "$(_1text "Lists all hosts in given group")"
@@ -47,7 +52,7 @@ _nh1network.clean() {
   unset -f _nh1network.smartssh _nh1network.ssh _nh1network.simplessh
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
-  unset -f 1interfaces
+  unset -f 1interfaces 1get 1getadd 1getlist 1getdel
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -92,18 +97,21 @@ _nh1network.complete() {
 # @description Initial commands
 _nh1network.init() {
   mkdir -p "$_1NETLOCAL"
+  mkdir -p "$_1GETDIR"
 }
 
 # @description Load variables defined by user
 _nh1network.customvars() {
   _1customvar NORG_NETWORK_DIR _1NETLOCAL
   _1customvar NORG_IPERF_PORT _1IPERFPORT
+  _1customvar NORG_DOWNLOAD_DIR _1GETDIR
 }
 
 # @description Information about custom vars
 _nh1network.info() {
   _1menuitem W NORG_NETWORK_DIR "$(_1text "Path for network (hosts and groups) files.")"
   _1menuitem W NORG_IPERF_PORT "$(printf "$(_1text "Server port. Default: %s.")" "2918")"
+  _1menuitem W NORG_DOWNLOAD_DIR "$(_1text "Path where save downloads when using 1get.")"
 }
 
 # Alias like
@@ -955,4 +963,17 @@ _nh1network.xt-backup() {
 1interfaces() {
 	_1before
     ip a | grep "^[[:digit:]]" | cut -d\: -f 2 | grep -v lo | xargs
+}
+
+1get() {
+  echo "vardb downloads"
+}
+1getadd() {
+  echo
+}
+1getlist() {
+  echo
+}
+1getdel() {
+  echo
 }
