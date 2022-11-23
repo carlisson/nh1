@@ -256,3 +256,4 @@
 1.1n37 2022-11-11: 1backlist now uses _vardb.show
 1.2    2022-11-16: final adjusts for 1.2 version
 1.2d1  2022-11-23: 1get initial organization
+1.2d2  2022-11-23: fixed dev bug in 1version
