@@ -3,7 +3,8 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(zenity yad)
+_1UIDIALOGS=(dialog zenity yad)
+_1UIDIALOGSIZE="7 70"
 
 # Private functions
 
@@ -122,6 +123,9 @@ _nh1ui.choose() {
     fi
 
     case "$(_nh1ui.choose)" in
+        dialog)
+            dialog --msgbox "$_MSG" $_1UIDIALOGSIZE
+            ;;
         yad)
             yad --title="NH1 $_VERSION" --info --text="$_MSG"
             ;;
@@ -151,6 +155,10 @@ _nh1ui.choose() {
     fi
 
     case "$(_nh1ui.choose)" in
+        dialog)
+            dialog --yesno "$_MSG" $_1UIDIALOGSIZE
+            return $?
+            ;;
         yad)
             yad --title="NH1 $_VERSION" --question --text="$_MSG"
             return $?
@@ -180,6 +188,10 @@ _nh1ui.choose() {
     fi
 
     case "$(_nh1ui.choose)" in
+        dialog)
+            _RSP=$(dialog --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
+            echo $_RSP
+            ;;
         yad)
             _RSP=$(yad --title="NH1 $_VERSION" --entry --text="$_MSG")
             echo $_RSP

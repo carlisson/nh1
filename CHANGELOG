@@ -267,3 +267,4 @@
 1.2d10 2022-11-23: 1uiask, 1uisays, 1uiconfirm working with zenity
 1.2d11 2022-11-23: 1ui simple alternatives (using read and print)
 1.2d12 2022-11-23: _nh1ui.choose created. Added support to yad
+1.2d13 2022-11-24: 1ui supporting dialog (curses)
