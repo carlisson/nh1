@@ -3,9 +3,9 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(kdialog dialog zenity yad)
+_1UIDIALOGS=(yad zenity kdialog whiptail dialog)
 _1UIDIALOGSIZE="7 70"
-_1UITITLE="NH1 $_VERSION"
+_1UITITLE="NH1 $_1VERSION"
 
 # Private functions
 
@@ -130,6 +130,9 @@ _nh1ui.choose() {
         kdialog)
             kdialog --title="$_1UITITLE" --msgbox "$_MSG"
             ;;
+        whiptail)
+            whiptail --title "$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
+            ;;
         yad)
             yad --title="$_1UITITLE" --info --text="$_MSG"
             ;;
@@ -167,6 +170,10 @@ _nh1ui.choose() {
             kdialog --title="$_1UITITLE" --yesno "$_MSG"
             return $?
             ;;
+        whiptail)
+            whiptail --title "$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
+            return $?
+            ;;
         yad)
             yad --title="$_1UITITLE" --question --text="$_MSG"
             return $?
@@ -201,6 +208,9 @@ _nh1ui.choose() {
             ;;
         kdialog)
             _RSP=$(kdialog --title="$_1UITITLE" --inputbox "$_MSG")
+            ;;
+        whiptail)
+            _RSP=$(whiptail --title "$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
             ;;
         yad)
             _RSP=$(yad --title="$_1UITITLE" --entry --text="$_MSG")
