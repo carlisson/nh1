@@ -3,8 +3,9 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(dialog zenity yad)
+_1UIDIALOGS=(kdialog dialog zenity yad)
 _1UIDIALOGSIZE="7 70"
+_1UITITLE="NH1 $_VERSION"
 
 # Private functions
 
@@ -124,13 +125,16 @@ _nh1ui.choose() {
 
     case "$(_nh1ui.choose)" in
         dialog)
-            dialog --msgbox "$_MSG" $_1UIDIALOGSIZE
+            dialog --title="$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
+            ;;
+        kdialog)
+            kdialog --title="$_1UITITLE" --msgbox "$_MSG"
             ;;
         yad)
-            yad --title="NH1 $_VERSION" --info --text="$_MSG"
+            yad --title="$_1UITITLE" --info --text="$_MSG"
             ;;
         zenity)
-            zenity --title="NH1 $_VERSION" --info --text="$_MSG"
+            zenity --title="$_1UITITLE" --info --text="$_MSG"
             ;;
         *)
             1tint "$_MSG"
@@ -156,15 +160,19 @@ _nh1ui.choose() {
 
     case "$(_nh1ui.choose)" in
         dialog)
-            dialog --yesno "$_MSG" $_1UIDIALOGSIZE
+            dialog --title="$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
+            return $?
+            ;;
+        kdialog)
+            kdialog --title="$_1UITITLE" --yesno "$_MSG"
             return $?
             ;;
         yad)
-            yad --title="NH1 $_VERSION" --question --text="$_MSG"
+            yad --title="$_1UITITLE" --question --text="$_MSG"
             return $?
             ;;
         zenity)
-            zenity --title="NH1 $_VERSION" --question --text="$_MSG"
+            zenity --title="$_1UITITLE" --question --text="$_MSG"
             return $?
             ;;
         *)
@@ -189,20 +197,20 @@ _nh1ui.choose() {
 
     case "$(_nh1ui.choose)" in
         dialog)
-            _RSP=$(dialog --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
-            echo $_RSP
+            _RSP=$(dialog --title="$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
+            ;;
+        kdialog)
+            _RSP=$(kdialog --title="$_1UITITLE" --inputbox "$_MSG")
             ;;
         yad)
-            _RSP=$(yad --title="NH1 $_VERSION" --entry --text="$_MSG")
-            echo $_RSP
+            _RSP=$(yad --title="$_1UITITLE" --entry --text="$_MSG")
             ;;
         zenity)
-            _RSP=$(zenity --title="NH1 $_VERSION" --entry --text="$_MSG")
-            echo $_RSP
+            _RSP=$(zenity --title="$_1UITITLE" --entry --text="$_MSG")
             ;;
         *)
             _RSP=$(_nh1ui.ask "$_MSG")
-            echo $_RSP
             ;;
     esac
+    echo $_RSP
 }
