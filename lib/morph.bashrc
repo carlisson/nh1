@@ -150,17 +150,20 @@ _nh1morph.usage() {
                     _WRD=$(1words $_MOD)
                     _1verb "$_NUM is $_INT * 100 + $_MOD. $_MOD=$_WRD"
                     case $_INT in
-                        1) printf "$(_1text "one hundred %s")" "$_WRD" ;;
-                        2) printf "$(_1text "two hundred %s")" "$_WRD" ;;
-                        3) printf "$(_1text "three hundred %s")" "$_WRD" ;;
-                        4) printf "$(_1text "four hundred %s")" "$_WRD" ;;
-                        5) printf "$(_1text "five hundred %s")" "$_WRD" ;;
-                        6) printf "$(_1text "six hundred %s")" "$_WRD" ;;
-                        7) printf "$(_1text "seven hundred %s")" "$_WRD" ;;
-                        8) printf "$(_1text "eight hundred %s")" "$_WRD" ;;
-                        9) printf "$(_1text "nine hundred %s")" "$_WRD" ;;
+                        1) printf "$(_1text "one hundred and %s")" "$_WRD" ;;
+                        2) printf "$(_1text "two hundred and %s")" "$_WRD" ;;
+                        3) printf "$(_1text "three hundred and %s")" "$_WRD" ;;
+                        4) printf "$(_1text "four hundred and %s")" "$_WRD" ;;
+                        5) printf "$(_1text "five hundred and %s")" "$_WRD" ;;
+                        6) printf "$(_1text "six hundred and %s")" "$_WRD" ;;
+                        7) printf "$(_1text "seven hundred and %s")" "$_WRD" ;;
+                        8) printf "$(_1text "eight hundred and %s")" "$_WRD" ;;
+                        9) printf "$(_1text "nine hundred and %s")" "$_WRD" ;;
                     esac
                 fi
+            elif [ $_NUM -eq 1000 ]
+            then
+                _1text "one thousand"
             else
                 _1text "many"
             fi

@@ -279,3 +279,4 @@
 1.2d22 2022-11-25: 1words to convert integer (<10) in words
 1.2d23 2022-11-25: 1words works for integer<100
 1.2d24 2022-11-25: 1words works for integer<1k
+1.2d25 2022-11-25: 1words fixed and including 1k
