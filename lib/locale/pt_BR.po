@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 17:45-0300\n"
+"POT-Creation-Date: 2022-11-25 18:28-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1888,6 +1888,10 @@ msgstr "Cliente para Youtube"
 msgid "A set of utilities for shell"
 msgstr "Conjunto de utilitários shell"
 
+#: recipes/hazama.app:8
+msgid "Simple GUI diary"
+msgstr "Diário GUI simples"
+
 #: recipes/kate.app:4
 msgid "Code editor for KDE"
 msgstr "Editor de código para KDE"
@@ -1947,19 +1951,3 @@ msgstr "Shell poderoso com suporte a Python"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
-
-#, fuzzy
-#~ msgid "%s [%s]"
-#~ msgstr "Uso: %s [%s]"
-
-#~ msgid "Use 1backlist <name> to find all backups for <name>."
-#~ msgstr "Use 1backlist <nome> para achar todos os backupa para <nome>."
-
-#~ msgid "Names"
-#~ msgstr "Nomes"
-
-#~ msgid "Create images from SVG templates"
-#~ msgstr "Crie imagens a partir de templates SVG"
-
-#~ msgid "The fediverse at your fingertips"
-#~ msgstr "O fediverso na ponta dos dedos"

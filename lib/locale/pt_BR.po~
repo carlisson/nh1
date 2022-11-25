@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 17:19-0300\n"
+"POT-Creation-Date: 2022-11-25 17:45-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1360,47 +1360,51 @@ msgstr "oitocentos"
 msgid "nine hundred"
 msgstr "novecentos"
 
-#: morph.bashrc:152
-msgid "one hundred %s"
+#: morph.bashrc:153
+msgid "one hundred and %s"
 msgstr "cento e %s"
 
-#: morph.bashrc:153
-msgid "two hundred %s"
+#: morph.bashrc:154
+msgid "two hundred and %s"
 msgstr "duzentos e %s"
 
-#: morph.bashrc:154
-msgid "three hundred %s"
+#: morph.bashrc:155
+msgid "three hundred and %s"
 msgstr "trezentos e %s"
 
-#: morph.bashrc:155
-msgid "four hundred %s"
+#: morph.bashrc:156
+msgid "four hundred and %s"
 msgstr "quatrocentos e %s"
 
-#: morph.bashrc:156
-msgid "five hundred %s"
+#: morph.bashrc:157
+msgid "five hundred and %s"
 msgstr "quinhentos e %s"
 
-#: morph.bashrc:157
-msgid "six hundred %s"
+#: morph.bashrc:158
+msgid "six hundred and %s"
 msgstr "seiscentos e %s"
 
-#: morph.bashrc:158
-msgid "seven hundred %s"
+#: morph.bashrc:159
+msgid "seven hundred and %s"
 msgstr "setecentos e %s"
 
-#: morph.bashrc:159
-msgid "eight hundred %s"
+#: morph.bashrc:160
+msgid "eight hundred and %s"
 msgstr "oitocentos e %s"
 
-#: morph.bashrc:160
-msgid "nine hundred %s"
+#: morph.bashrc:161
+msgid "nine hundred and %s"
 msgstr "novecentos e %s"
 
-#: morph.bashrc:164
+#: morph.bashrc:166
+msgid "one thousand"
+msgstr "cem"
+
+#: morph.bashrc:168
 msgid "many"
 msgstr "muitos"
 
-#: morph.bashrc:167
+#: morph.bashrc:171
 msgid "Argument is not an integer number."
 msgstr "O parâmetro não é um número inteiro."
 
