@@ -118,14 +118,47 @@ _nh1morph.usage() {
                 else
                     _WRD=$(1words $_MOD)
                     case $_INT in
-                        2) printf "$(_1text "twenty-%s")" $_WRD ;;
-                        3) printf "$(_1text "thirty-%s")" $_WRD ;;
-                        4) printf "$(_1text "forty-%s")" $_WRD ;;
-                        5) printf "$(_1text "fifty-%s")" $_WRD ;;
-                        6) printf "$(_1text "sixty-%s")" $_WRD ;;
-                        7) printf "$(_1text "seventy-%s")" $_WRD ;;
-                        8) printf "$(_1text "eighty-%s")" $_WRD ;;
-                        9) printf "$(_1text "ninety-%s")" $_WRD ;;
+                        2) printf "$(_1text "twenty-%s")" "$_WRD" ;;
+                        3) printf "$(_1text "thirty-%s")" "$_WRD" ;;
+                        4) printf "$(_1text "forty-%s")" "$_WRD" ;;
+                        5) printf "$(_1text "fifty-%s")" "$_WRD" ;;
+                        6) printf "$(_1text "sixty-%s")" "$_WRD" ;;
+                        7) printf "$(_1text "seventy-%s")" "$_WRD" ;;
+                        8) printf "$(_1text "eighty-%s")" "$_WRD" ;;
+                        9) printf "$(_1text "ninety-%s")" "$_WRD" ;;
+                    esac
+                fi
+            elif [ $_NUM -lt 1000 ]
+            then
+                _INT=$((_NUM / 100))
+                _MOD=$((_NUM % 100))
+                
+                if [ $_MOD -eq 0 ]
+                then
+                    case $_INT in
+                        1) _1text "one hundred" ;;
+                        2) _1text "two hundred" ;;
+                        3) _1text "three hundred" ;;
+                        4) _1text "four hundred" ;;
+                        5) _1text "five hundred" ;;
+                        6) _1text "six hundred" ;;
+                        7) _1text "seven hundred" ;;
+                        8) _1text "eight hundred" ;;
+                        9) _1text "nine hundred" ;;
+                    esac
+                else
+                    _WRD=$(1words $_MOD)
+                    _1verb "$_NUM is $_INT * 100 + $_MOD. $_MOD=$_WRD"
+                    case $_INT in
+                        1) printf "$(_1text "one hundred %s")" "$_WRD" ;;
+                        2) printf "$(_1text "two hundred %s")" "$_WRD" ;;
+                        3) printf "$(_1text "three hundred %s")" "$_WRD" ;;
+                        4) printf "$(_1text "four hundred %s")" "$_WRD" ;;
+                        5) printf "$(_1text "five hundred %s")" "$_WRD" ;;
+                        6) printf "$(_1text "six hundred %s")" "$_WRD" ;;
+                        7) printf "$(_1text "seven hundred %s")" "$_WRD" ;;
+                        8) printf "$(_1text "eight hundred %s")" "$_WRD" ;;
+                        9) printf "$(_1text "nine hundred %s")" "$_WRD" ;;
                     esac
                 fi
             else

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 16:47-0300\n"
+"POT-Creation-Date: 2022-11-25 17:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1296,11 +1296,83 @@ msgstr ""
 msgid "ninety-%s"
 msgstr ""
 
-#: morph.bashrc:132
+#: morph.bashrc:139
+msgid "one hundred"
+msgstr ""
+
+#: morph.bashrc:140
+msgid "two hundred"
+msgstr ""
+
+#: morph.bashrc:141
+msgid "three hundred"
+msgstr ""
+
+#: morph.bashrc:142
+msgid "four hundred"
+msgstr ""
+
+#: morph.bashrc:143
+msgid "five hundred"
+msgstr ""
+
+#: morph.bashrc:144
+msgid "six hundred"
+msgstr ""
+
+#: morph.bashrc:145
+msgid "seven hundred"
+msgstr ""
+
+#: morph.bashrc:146
+msgid "eight hundred"
+msgstr ""
+
+#: morph.bashrc:147
+msgid "nine hundred"
+msgstr ""
+
+#: morph.bashrc:152
+msgid "one hundred %s"
+msgstr ""
+
+#: morph.bashrc:153
+msgid "two hundred %s"
+msgstr ""
+
+#: morph.bashrc:154
+msgid "three hundred %s"
+msgstr ""
+
+#: morph.bashrc:155
+msgid "four hundred %s"
+msgstr ""
+
+#: morph.bashrc:156
+msgid "five hundred %s"
+msgstr ""
+
+#: morph.bashrc:157
+msgid "six hundred %s"
+msgstr ""
+
+#: morph.bashrc:158
+msgid "seven hundred %s"
+msgstr ""
+
+#: morph.bashrc:159
+msgid "eight hundred %s"
+msgstr ""
+
+#: morph.bashrc:160
+msgid "nine hundred %s"
+msgstr ""
+
+#: morph.bashrc:164
 msgid "many"
 msgstr ""
 
-#: morph.bashrc:135
+#: morph.bashrc:167
 msgid "Argument is not an integer number."
 msgstr ""
 
