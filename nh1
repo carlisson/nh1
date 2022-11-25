@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.2d19
+_1VERSION=1.2d20
 
 _1MODULES=(app audio backup canva cron misc network rpg ui)
 
@@ -53,13 +53,23 @@ _1EMCOLOR=1 # Error
 _1MENUCOL=13
 _1VERBOSE=0 # 0 - disabled; 1 - enabled
 
+if [ "$0" = "/bin/bash" ]
+then
+	_1LIBMODE=0
+else
+	_1LIBMODE=1
+fi
+
 ### GLOBAL INTERNALS
 
 # @description Procedores to do before all user command
 _1before() {
-	_1message
-	_1verbs.spool
-	1cron
+	if [ "$_1LIBMODE" -eq "0" ]
+	then
+		_1message
+		_1verbs.spool
+		1cron
+	fi
 }
 
 # @description Generic complete function, finding formats
@@ -1124,7 +1134,10 @@ _nh1.complete.dbshow() {
 _nh1.customvars() {
 	if [ -f "$_1UDATA/nh1.conf" ]
 	then
-		_1customvar NORG_VERBOSE _1VERBOSE number
+		if [ "$_1LIBMODE" -eq "0" ]
+		then
+			_1customvar NORG_VERBOSE _1VERBOSE number
+		fi
 		_1customvar NORG_DB_DIR _1DBDIR
 	fi
 
@@ -1280,8 +1293,8 @@ _nh1.translate.build() {
 
 # IMPORT MODULES
 source gettext.sh
-_nh1.modrun "source \"$_1LIB/-=-.bashrc\""
 
+_nh1.modrun "source \"$_1LIB/-=-.bashrc\""
 _nh1.customvars
 _nh1.init
 
