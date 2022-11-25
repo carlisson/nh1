@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 18:28-0300\n"
+"POT-Creation-Date: 2022-11-25 20:05-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1935,6 +1935,10 @@ msgstr "Visualizador de documentos"
 #: recipes/thedesk.app:8
 msgid "Mastodon client for PC"
 msgstr "Cliente Mastodon para PC"
+
+#: recipes/ventoy.app:8
+msgid "A new Bootable USB Solution"
+msgstr "Uma nova solução para USB bootável"
 
 #: recipes/vscodium.app:4
 msgid "Editor for programmer"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 18:28-0300\n"
+"POT-Creation-Date: 2022-11-25 20:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1903,6 +1903,10 @@ msgstr ""
 
 #: recipes/thedesk.app:8
 msgid "Mastodon client for PC"
+msgstr ""
+
+#: recipes/ventoy.app:8
+msgid "A new Bootable USB Solution"
 msgstr ""
 
 #: recipes/vscodium.app:4
