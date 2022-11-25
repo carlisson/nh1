@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 16:15-0300\n"
+"POT-Creation-Date: 2022-11-25 16:16-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1172,14 +1172,13 @@ msgstr "Utilitários para transformação de texto"
 msgid "Converts integer to words"
 msgstr "Converte inteiro em palavras"
 
-#: morph.bashrc:51
-#, fuzzy
-msgid "%s [%s]"
+#: morph.bashrc:51 network.bashrc:1053 network.bashrc:1086
+msgid "Usage: %s [%s]"
 msgstr "Uso: %s [%s]"
 
 #: morph.bashrc:51
 msgid "number"
-msgstr ""
+msgstr "número"
 
 #: morph.bashrc:75
 msgid "zero"
@@ -1513,10 +1512,6 @@ msgstr "Download de %s bem-sucedido."
 msgid "Error downloading %s."
 msgstr "Erro baixando %s."
 
-#: network.bashrc:1053 network.bashrc:1086
-msgid "Usage: %s [%s]"
-msgstr "Uso: %s [%s]"
-
 #: network.bashrc:1066
 msgid "Download Queue"
 msgstr "Fila de Downloads"
@@ -1772,6 +1767,10 @@ msgstr "Shell poderoso com suporte a Python"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#, fuzzy
+#~ msgid "%s [%s]"
+#~ msgstr "Uso: %s [%s]"
 
 #~ msgid "Use 1backlist <name> to find all backups for <name>."
 #~ msgstr "Use 1backlist <nome> para achar todos os backupa para <nome>."

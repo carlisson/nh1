@@ -277,3 +277,4 @@
 1.2d20 2022-11-25: _1LIBMODE created. NH1 can be used as lib
 1.2d21 2022-11-25: PT_BR translation updated
 1.2d22 2022-11-25: 1words to convert integer (<10) in words
+1.2d23 2022-11-25: 1words works for intever<100

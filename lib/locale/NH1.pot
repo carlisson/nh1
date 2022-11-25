@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 16:16-0300\n"
+"POT-Creation-Date: 2022-11-25 16:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1152,51 +1152,155 @@ msgstr ""
 msgid "number"
 msgstr ""
 
-#: morph.bashrc:75
+#: morph.bashrc:76
 msgid "zero"
 msgstr ""
 
-#: morph.bashrc:76
+#: morph.bashrc:77
 msgid "one"
 msgstr ""
 
-#: morph.bashrc:77
+#: morph.bashrc:78
 msgid "two"
 msgstr ""
 
-#: morph.bashrc:78
+#: morph.bashrc:79
 msgid "three"
 msgstr ""
 
-#: morph.bashrc:79
+#: morph.bashrc:80
 msgid "four"
 msgstr ""
 
-#: morph.bashrc:80
+#: morph.bashrc:81
 msgid "five"
 msgstr ""
 
-#: morph.bashrc:81
+#: morph.bashrc:82
 msgid "six"
 msgstr ""
 
-#: morph.bashrc:82
+#: morph.bashrc:83
 msgid "seven"
 msgstr ""
 
-#: morph.bashrc:83
+#: morph.bashrc:84
 msgid "eight"
 msgstr ""
 
-#: morph.bashrc:84
+#: morph.bashrc:85
 msgid "nine"
 msgstr ""
 
-#: morph.bashrc:87
+#: morph.bashrc:90
+msgid "ten"
+msgstr ""
+
+#: morph.bashrc:91
+msgid "eleven"
+msgstr ""
+
+#: morph.bashrc:92
+msgid "twelve"
+msgstr ""
+
+#: morph.bashrc:93
+msgid "thirteen"
+msgstr ""
+
+#: morph.bashrc:94
+msgid "fourteen"
+msgstr ""
+
+#: morph.bashrc:95
+msgid "fiveteen"
+msgstr ""
+
+#: morph.bashrc:96
+msgid "sixteen"
+msgstr ""
+
+#: morph.bashrc:97
+msgid "seventeen"
+msgstr ""
+
+#: morph.bashrc:98
+msgid "eighteen"
+msgstr ""
+
+#: morph.bashrc:99
+msgid "nineteen"
+msgstr ""
+
+#: morph.bashrc:109
+msgid "twenty"
+msgstr ""
+
+#: morph.bashrc:110
+msgid "thirty"
+msgstr ""
+
+#: morph.bashrc:111
+msgid "forty"
+msgstr ""
+
+#: morph.bashrc:112
+msgid "fifty"
+msgstr ""
+
+#: morph.bashrc:113
+msgid "sixty"
+msgstr ""
+
+#: morph.bashrc:114
+msgid "seventy"
+msgstr ""
+
+#: morph.bashrc:115
+msgid "eighty"
+msgstr ""
+
+#: morph.bashrc:116
+msgid "ninety"
+msgstr ""
+
+#: morph.bashrc:121
+msgid "twenty-%s"
+msgstr ""
+
+#: morph.bashrc:122
+msgid "thirty-%s"
+msgstr ""
+
+#: morph.bashrc:123
+msgid "forty-%s"
+msgstr ""
+
+#: morph.bashrc:124
+msgid "fifty-%s"
+msgstr ""
+
+#: morph.bashrc:125
+msgid "sixty-%s"
+msgstr ""
+
+#: morph.bashrc:126
+msgid "seventy-%s"
+msgstr ""
+
+#: morph.bashrc:127
+msgid "eighty-%s"
+msgstr ""
+
+#: morph.bashrc:128
+msgid "ninety-%s"
+msgstr ""
+
+#: morph.bashrc:132
 msgid "many"
 msgstr ""
 
-#: morph.bashrc:90
+#: morph.bashrc:135
 msgid "Argument is not an integer number."
 msgstr ""
 

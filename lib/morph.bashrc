@@ -64,7 +64,7 @@ _nh1morph.usage() {
 # @arg $1 int Number
 # @stdout Converted number (string)
 1words() {
-    local _NUM
+    local _NUM _INT _MOD _WRD
     if [ $# -gt 0 ]
     then
         _NUM=$1
@@ -84,6 +84,50 @@ _nh1morph.usage() {
                     8) _1text "eight" ;;
                     9) _1text "nine" ;;
                 esac
+            elif [ $_NUM -lt 20 ]
+            then
+                case $_NUM in
+                    10) _1text "ten" ;;
+                    11) _1text "eleven" ;;
+                    12) _1text "twelve" ;;
+                    13) _1text "thirteen" ;;
+                    14) _1text "fourteen" ;;
+                    15) _1text "fiveteen" ;;
+                    16) _1text "sixteen" ;;
+                    17) _1text "seventeen" ;;
+                    18) _1text "eighteen" ;;
+                    19) _1text "nineteen" ;;
+                esac
+            elif [ $_NUM -lt 100 ]
+            then
+                _INT=$((_NUM / 10))
+                _MOD=$((_NUM % 10))
+                
+                if [ $_MOD -eq 0 ]
+                then
+                    case $_INT in
+                        2) _1text "twenty" ;;
+                        3) _1text "thirty" ;;
+                        4) _1text "forty" ;;
+                        5) _1text "fifty" ;;
+                        6) _1text "sixty" ;;
+                        7) _1text "seventy" ;;
+                        8) _1text "eighty" ;;
+                        9) _1text "ninety" ;;
+                    esac
+                else
+                    _WRD=$(1words $_MOD)
+                    case $_INT in
+                        2) printf "$(_1text "twenty-%s")" $_WRD ;;
+                        3) printf "$(_1text "thirty-%s")" $_WRD ;;
+                        4) printf "$(_1text "forty-%s")" $_WRD ;;
+                        5) printf "$(_1text "fifty-%s")" $_WRD ;;
+                        6) printf "$(_1text "sixty-%s")" $_WRD ;;
+                        7) printf "$(_1text "seventy-%s")" $_WRD ;;
+                        8) printf "$(_1text "eighty-%s")" $_WRD ;;
+                        9) printf "$(_1text "ninety-%s")" $_WRD ;;
+                    esac
+                fi
             else
                 _1text "many"
             fi
