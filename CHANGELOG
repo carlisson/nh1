@@ -273,3 +273,4 @@
 1.2d16 2022-11-25: 1ui supporting xmessage
 1.2d17 2022-11-25: 1ui supporting gxmessage
 1.2d18 2022-11-25: 1ui supporting Xdialog
+1.2d19 2022-11-25: 1ui simplified (no more 1uiask, etc)

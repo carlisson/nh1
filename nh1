@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.2d18
+_1VERSION=1.2d19
 
 _1MODULES=(app audio backup canva cron misc network rpg ui)
 
@@ -748,6 +748,9 @@ _1verbs.spool() {
 		# Load internal menus
 		_nh1.modrun _nh1-=-.menu
 		
+		_1menuheader "$(_1text "Special")"
+		_nh1.modrun _nh1-=-.item
+
 		_1menuheader "$(_1text "Main")"
 		_1menuitem W 1banner "$(_1text "Prints a header inside a banner.")"
 		_1menuitem W 1bashrc "$(_1text "Modify .bashrc to NH1 starts on bash start")"

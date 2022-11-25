@@ -3,28 +3,27 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog xmessage)
+_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
 _1UIDIALOGSIZE="7 70"
 _1UITITLE="NH1 $_1VERSION"
+_1UIDESCRIPTION="$(_1text "User interface for simple user interaction")"
 
 # Private functions
 
-# @description Generates partial menu
-_nh1ui.menu() {
-  _1menuheader "$(_1text "User Interface")"
-  # _1menutip Optional complementar instruction
-  _1menuitem X 1uisays "$(_1text "Show information")"
-  _1menuitem X 1uiconfirm "$(_1text "Ask confirmation from user")"
-  _1menuitem X 1uiask "$(_1text "Ask from user to get a string")"
+# @description Generates special menu
+_nh1ui.item() {
+    _1menuitem W 1ui "$_1UIDESCRIPTION"
 }
 
 # @description Destroys all global variables created by this file
 _nh1ui.clean() {
   # unset variables
-  unset -f _nh1ui.menu _nh1ui.complete _nh1ui.init _nh1ui.info
-  unset -f _nh1ui.customvars _nh1ui.clean _nh1ui.usage 1uisays
-  unset -f 1uiconfirm 1uiask _nh1ui.confirm _nh1ui.ask
-  unset -f _nh1ui.choose
+  unset _nh1ui.description
+  unset -f _nh1ui.complete _nh1ui.init _nh1ui.info
+  unset -f _nh1ui.customvars _nh1ui.clean _nh1ui.usage _nh1ui.say
+  unset -f _nh1ui.confirm _nh1ui.ask _nh1ui.confirm _nh1ui.ask
+  unset -f _nh1ui.choose _nh1ui.simpleask _nh1ui.simpleconfirm
+  unset -f 1ui
 }
 
 # @description Autocompletion instructions
@@ -53,21 +52,20 @@ _nh1ui.init() {
 # @description Usage instructions
 # @arg $1 string Public function name
 _nh1ui.usage() {
-  case $1 in
-    says|confirm|ask)
-        printf "$(_1text "Usage: %s [%s]")\n" "1ui$1" "Message"
-        ;;
-    *)
-      false
-      ;;
-  esac
+    printf "$(_1text "Usage: %s [%s] [%s]")\n" "1ui" "$(_1text "Command")" "$(_1text "Message")"
+    printf "  - ask:     $(_1text "ask a question and receive user entry")\n"
+    printf "  - confirm: $(_1text "ask user for confirmation")\n"
+    printf "  - say:     $(_1text "show a message to user")\n"
+    echo
+    printf "  $(_1text "1ui will work with %s.")\n" $(_nh1ui.choose)
+    echo
 }
 
 # @description Question user using read
 # @arg $1 Message, question
 # @exitcode 0 User confirm
 # @exitcode 1 User says no
-_nh1ui.confirm() {
+_nh1ui.simpleconfirm() {
     local _RSPx
     1tint "$1 (Y/N) "
     read _RSP
@@ -85,7 +83,7 @@ _nh1ui.confirm() {
 # @arg $1 Message, question
 # @exitcode 0 User confirm
 # @exitcode 1 User says no
-_nh1ui.ask() {
+_nh1ui.simpleask() {
     local _RSPx
     echo -n "$1 " >/dev/stderr
     read _RSP
@@ -107,13 +105,9 @@ _nh1ui.choose() {
     echo "none"
 }
 
-# Alias-like
-
-# Public functions
-
 # @description Show information to user
 # @arg $1 Message to show
-1uisays() {
+_nh1ui.say() {
     local _MSG
     if [ $# -gt 0 ]
     then
@@ -160,7 +154,7 @@ _nh1ui.choose() {
 # @exitcode 0 User confirm
 # @exitcode 1 User says no
 # @exitcode 2 Other situation
-1uiconfirm() {
+_nh1ui.confirm() {
     local _MSG
     if [ $# -gt 0 ]
     then
@@ -204,7 +198,7 @@ _nh1ui.choose() {
             return $?
             ;;
         *)
-            _nh1ui.confirm "$_MSG"
+            _nh1ui.simpleconfirm "$_MSG"
             return $?
             ;;
     esac
@@ -213,7 +207,7 @@ _nh1ui.choose() {
 # @description Ask user for a text
 # @arg $1 Question to user
 # @stdout String writen by user
-1uiask() {
+_nh1ui.ask() {
     local _MSG _RSP
     if [ $# -gt 0 ]
     then
@@ -246,8 +240,33 @@ _nh1ui.choose() {
             _RSP=$(zenity --title="$_1UITITLE" --entry --text="$_MSG")
             ;;
         *)
-            _RSP=$(_nh1ui.ask "$_MSG")
+            _RSP=$(_nh1ui.simpleask "$_MSG")
             ;;
     esac
     echo $_RSP
+}
+
+# Alias-like
+
+# Public functions
+
+# @description Main command for User Interface
+# @arg $1 string Help or type of function
+# @arg $2 string Message to show
+1ui() {
+    case "$1" in
+        say)
+            _nh1ui.say "$2"
+            ;;
+        ask)
+            _nh1ui.ask "$2"
+            ;;
+        confirm)
+            _nh1ui.confirm "$2"
+            return $?
+            ;;
+        *)
+            _nh1ui.usage
+            ;;
+    esac
 }
