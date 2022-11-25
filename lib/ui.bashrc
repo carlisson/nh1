@@ -3,7 +3,7 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(yad zenity kdialog gxmessage whiptail dialog xmessage)
+_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog xmessage)
 _1UIDIALOGSIZE="7 70"
 _1UITITLE="NH1 $_1VERSION"
 
@@ -136,6 +136,9 @@ _nh1ui.choose() {
         whiptail)
             whiptail --title "$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
             ;;
+        Xdialog)
+            Xdialog --title="$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
+            ;;
         xmessage)
             xmessage -title "$_1UITITLE" -buttons Ok:0 -default Ok -nearmouse "$_MSG"
             ;;
@@ -184,6 +187,10 @@ _nh1ui.choose() {
             whiptail --title "$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
             return $?
             ;;
+        Xdialog)
+            Xdialog --title="$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
+            return $?
+            ;;
         xmessage)
             xmessage -title "$_1UITITLE" -buttons Ok:0,Cancel:1 -default Ok -nearmouse "$_MSG"
             return $?
@@ -228,6 +235,9 @@ _nh1ui.choose() {
             ;;
         whiptail)
             _RSP=$(whiptail --title "$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
+            ;;
+        Xdialog)
+            _RSP=$(Xdialog --title="$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE)
             ;;
         yad)
             _RSP=$(yad --title="$_1UITITLE" --entry --text="$_MSG")
