@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-23 12:07-0300\n"
+"POT-Creation-Date: 2022-11-23 12:27-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1424,13 +1424,33 @@ msgstr "Fazendo backup de %s para %s"
 msgid "Downloading %s"
 msgstr "Baixando %s"
 
-#: network.bashrc:1023
+#: network.bashrc:998
+msgid "Usage: 1get [%s]"
+msgstr "Uso: 1get [%s]."
+
+#: network.bashrc:999
+msgid "URL is optional. 1get starts download of every URL in queue."
+msgstr "URL é opcional. 1get inicia o download de todas as URL na fila."
+
+#: network.bashrc:1029
 msgid "Download of %s successful."
 msgstr "Download de %s bem-sucedido."
 
-#: network.bashrc:1027
+#: network.bashrc:1033
 msgid "Error downloading %s."
 msgstr "Erro baixando %s."
+
+#: network.bashrc:1053 network.bashrc:1086
+msgid "Usage: %s [%s]"
+msgstr "Uso: %s [%s]"
+
+#: network.bashrc:1066
+msgid "Download Queue"
+msgstr "Fila de Downloads"
+
+#: network.bashrc:1071
+msgid "Download queue is empty."
+msgstr "A fila de downloads está vazia."
 
 #: rpg.bashrc:9
 msgid "RPG"
