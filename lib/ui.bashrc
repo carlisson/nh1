@@ -3,7 +3,7 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(yad zenity kdialog whiptail dialog)
+_1UIDIALOGS=(yad zenity kdialog whiptail dialog xmessage)
 _1UIDIALOGSIZE="7 70"
 _1UITITLE="NH1 $_1VERSION"
 
@@ -133,6 +133,9 @@ _nh1ui.choose() {
         whiptail)
             whiptail --title "$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
             ;;
+        xmessage)
+            xmessage -title "$_1UITITLE" -buttons Ok:0 -default Ok -nearmouse "$_MSG"
+            ;;
         yad)
             yad --title="$_1UITITLE" --info --text="$_MSG"
             ;;
@@ -172,6 +175,10 @@ _nh1ui.choose() {
             ;;
         whiptail)
             whiptail --title "$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
+            return $?
+            ;;
+        xmessage)
+            xmessage -title "$_1UITITLE" -buttons Ok:0,Cancel:1 -default Ok -nearmouse "$_MSG"
             return $?
             ;;
         yad)

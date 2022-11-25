@@ -270,3 +270,4 @@
 1.2d13 2022-11-24: 1ui supporting dialog (curses)
 1.2d14 2022-11-24: 1ui supporting kdialog
 1.2d15 2022-11-24: 1ui supporting whiptail
+1.2d16 2022-11-25: 1ui supporting xmessage
