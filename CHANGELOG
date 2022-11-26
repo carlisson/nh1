@@ -283,3 +283,4 @@
 1.2d26 2022-11-25: 1app: added recipe for Hazama
 1.2d27 2022-11-25: 1app: added recipe for Ventoy
 1.2d28 2022-11-25: 1app: removed xonsh, added manuskript
+1.2d29 2022-11-25: 1ui has 3 modes (nh1.conf): gui, console, none

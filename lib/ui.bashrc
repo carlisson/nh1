@@ -4,6 +4,8 @@
 
 # GLOBALS
 _1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
+_1UICONSOLE=(whiptail dialog)
+_1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="7 70"
 _1UITITLE="NH1 $_1VERSION"
 _1UIDESCRIPTION="$(_1text "User interface for simple user interaction")"
@@ -33,20 +35,17 @@ _nh1ui.complete() {
 
 # @description Set global vars from custom vars (config file)
 _nh1ui.customvars() {
-#  _1customvar NORG_CUSTOM_VAR _1LOCALVAR
-    false
+  _1customvar NORG_UI_LEVEL _1UIGUI
 }
 
 # @description General information about variables and customizing
 _nh1ui.info() {
-#    _1verb "$(_1text "Listing user variables")"
-    false
+  _1menuitem W NORG_UI_LEVEL "$(_1text "GUI level. 0: none; 1: console only; 2: including GUI (default)")"
 }
 
 # @description Creates paths and copy initial files
 _nh1ui.init() {
-  #_1menuitem W NORG_CUSTOM_VAR "$(_1text "Description")"
-  false
+    false
 }
 
 # @description Usage instructions
@@ -94,14 +93,28 @@ _nh1ui.simpleask() {
 _nh1ui.choose() {
     local _DIA
     
-    for _DIA in ${_1UIDIALOGS[@]}
-    do
-        if 1check -s "$_DIA"
-        then
-            echo "$_DIA"
-            return 0
-        fi
-    done
+    case $_1UIGUI in
+        1)
+            for _DIA in ${_1UICONSOLE[@]}
+            do
+                if 1check -s "$_DIA"
+                then
+                    echo "$_DIA"
+                    return 0
+                fi
+            done
+            ;;
+        2)
+            for _DIA in ${_1UIDIALOGS[@]}
+            do
+                if 1check -s "$_DIA"
+                then
+                    echo "$_DIA"
+                    return 0
+                fi
+            done
+            ;;
+    esac
     echo "none"
 }
 
