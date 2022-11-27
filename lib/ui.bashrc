@@ -4,6 +4,7 @@
 
 # GLOBALS
 _1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
+#_UIDIALOGS=(dialog)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="7 70"
@@ -11,6 +12,11 @@ _1UITITLE="NH1 $_1VERSION"
 _1UIDESCRIPTION="$(_1text "User interface for simple user interaction")"
 
 # Private functions
+
+# @description Generate partial menu
+_nh1ui.menu() {
+    false
+}
 
 # @description Generates special menu
 _nh1ui.item() {
@@ -25,7 +31,7 @@ _nh1ui.clean() {
   unset -f _nh1ui.customvars _nh1ui.clean _nh1ui.usage _nh1ui.say
   unset -f _nh1ui.confirm _nh1ui.ask _nh1ui.confirm _nh1ui.ask
   unset -f _nh1ui.choose _nh1ui.simpleask _nh1ui.simpleconfirm
-  unset -f 1ui
+  unset -f 1ui _nh1ui.select _nh1ui.simpleselect
 }
 
 # @description Autocompletion instructions
@@ -87,6 +93,41 @@ _nh1ui.simpleask() {
     echo -n "$1 " >/dev/stderr
     read _RSP
     echo $_RSP
+}
+
+# @description Shows a menu with options to user choose one
+# @arg $1 string Message to show
+# @arg $2 string Every argument
+# @stdout string choonsen option
+# @exitcode 0 User choose
+# @exitcode 1 User cancel
+_nh1ui.simpleselect() {
+    local _OPT _CNT _ARG _OCO
+
+    _1menuheader "$1"
+    shift
+
+    _CNT=0
+
+	_OCO=$_1MENUCOL
+	_1MENUCOL=5
+    for _ARG in "$@"
+    do
+        _CNT=$((_CNT+1))
+        _1menuitem W $_CNT "$_ARG"
+    done
+    _1MENUCOL=$_OCO
+
+    1tint "$(_1text "Enter the number of your choice"): "
+    read _OPT
+    if [ $_OPT -gt 0 -a $_OPT -le $_CNT  2>/dev/null ]
+    then
+        echo $_OPT
+        return 0
+    else
+        echo 0
+        return 1
+    fi
 }
 
 # @description Choose best dialog system
@@ -259,6 +300,23 @@ _nh1ui.ask() {
     echo $_RSP
 }
 
+# @description Shows a menu with options to user choose one
+# @arg $1 string Message to show
+# @arg $2 string Every argument
+# @stdout string choonsen option
+_nh1ui.select() {
+    local _MSG _OPT
+    _MSG="$1"
+    shift
+
+    case "$(_nh1ui.choose)" in
+        *)
+            _OPT=$(_nh1ui.simpleselect "$_MSG" "$@"  3>&1 1>&2 2>&3)
+            ;;
+    esac
+    echo $_OPT
+}
+
 # Alias-like
 
 # Public functions
@@ -277,6 +335,10 @@ _nh1ui.ask() {
         confirm)
             _nh1ui.confirm "$2"
             return $?
+            ;;
+        menu)
+            shift
+            _nh1ui.select "$@"
             ;;
         *)
             _nh1ui.usage

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 21:52-0300\n"
+"POT-Creation-Date: 2022-11-27 17:13-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1797,44 +1797,48 @@ msgstr ""
 msgid "Group %s not found."
 msgstr ""
 
-#: ui.bashrc:11
+#: ui.bashrc:12
 msgid "User interface for simple user interaction"
 msgstr ""
 
-#: ui.bashrc:33
+#: ui.bashrc:39
 msgid "Enabling completion for ui module."
 msgstr ""
 
-#: ui.bashrc:43
+#: ui.bashrc:49
 msgid "GUI level. 0: none; 1: console only; 2: including GUI (default)"
 msgstr ""
 
-#: ui.bashrc:54
+#: ui.bashrc:60
 msgid "Usage: %s [%s] [%s]"
 msgstr ""
 
-#: ui.bashrc:54
+#: ui.bashrc:60
 msgid "Command"
 msgstr ""
 
-#: ui.bashrc:54
+#: ui.bashrc:60
 msgid "Message"
 msgstr ""
 
-#: ui.bashrc:55
+#: ui.bashrc:61
 msgid "ask a question and receive user entry"
 msgstr ""
 
-#: ui.bashrc:56
+#: ui.bashrc:62
 msgid "ask user for confirmation"
 msgstr ""
 
-#: ui.bashrc:57
+#: ui.bashrc:63
 msgid "show a message to user"
 msgstr ""
 
-#: ui.bashrc:59
+#: ui.bashrc:65
 msgid "1ui will work with %s."
+msgstr ""
+
+#: ui.bashrc:121
+msgid "Enter the number of your choice"
 msgstr ""
 
 #: recipes/cherrytree.app:4

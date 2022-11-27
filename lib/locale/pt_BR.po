@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 21:52-0300\n"
+"POT-Creation-Date: 2022-11-27 17:13-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1828,45 +1828,49 @@ msgstr "Arquivo não encontrado para o grupo %s."
 msgid "Group %s not found."
 msgstr "Grupo %s não encontrado."
 
-#: ui.bashrc:11
+#: ui.bashrc:12
 msgid "User interface for simple user interaction"
 msgstr "Interface de usuário para interação simples"
 
-#: ui.bashrc:33
+#: ui.bashrc:39
 msgid "Enabling completion for ui module."
 msgstr "Habilitando completar para o módulo ui."
 
-#: ui.bashrc:43
+#: ui.bashrc:49
 msgid "GUI level. 0: none; 1: console only; 2: including GUI (default)"
 msgstr "Nível da interface. 0: sem; 1: só console; 2: inclui GUI (default)"
 
-#: ui.bashrc:54
+#: ui.bashrc:60
 msgid "Usage: %s [%s] [%s]"
 msgstr "Uso: %s [%s] [%s]"
 
-#: ui.bashrc:54
+#: ui.bashrc:60
 msgid "Command"
 msgstr "Comando"
 
-#: ui.bashrc:54
+#: ui.bashrc:60
 msgid "Message"
 msgstr "Mensagem"
 
-#: ui.bashrc:55
+#: ui.bashrc:61
 msgid "ask a question and receive user entry"
 msgstr "faz uma pergunta e recebe a entrada do usuário"
 
-#: ui.bashrc:56
+#: ui.bashrc:62
 msgid "ask user for confirmation"
 msgstr "pede confirmação ao usuário"
 
-#: ui.bashrc:57
+#: ui.bashrc:63
 msgid "show a message to user"
 msgstr "mostra uma mensagem ao usuário"
 
-#: ui.bashrc:59
+#: ui.bashrc:65
 msgid "1ui will work with %s."
 msgstr "1ui funcionará com %s."
+
+#: ui.bashrc:121
+msgid "Enter the number of your choice"
+msgstr "Entre com o número da sua escolha"
 
 #: recipes/cherrytree.app:4
 msgid "Hierarchical note taking"
