@@ -3,11 +3,11 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
-#_UIDIALOGS=(dialog)
+#_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
+_1UIDIALOGS=(dialog)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
-_1UIDIALOGSIZE="7 70"
+_1UIDIALOGSIZE="12 70"
 _1UITITLE="NH1 $_1VERSION"
 _1UIDESCRIPTION="$(_1text "User interface for simple user interaction")"
 
@@ -173,7 +173,7 @@ _nh1ui.say() {
 
     case "$(_nh1ui.choose)" in
         dialog)
-            dialog --title="$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
+            dialog --title "$_1UITITLE" --msgbox "$_MSG" $_1UIDIALOGSIZE
             ;;
         gxmessage)
             gxmessage -title "$_1UITITLE" -buttons Ok:0 -default Ok -nearmouse "$_MSG"
@@ -220,7 +220,7 @@ _nh1ui.confirm() {
 
     case "$(_nh1ui.choose)" in
         dialog)
-            dialog --title="$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
+            dialog --title "$_1UITITLE" --yesno "$_MSG" $_1UIDIALOGSIZE
             return $?
             ;;
         gxmessage)
@@ -273,7 +273,7 @@ _nh1ui.ask() {
 
     case "$(_nh1ui.choose)" in
         dialog)
-            _RSP=$(dialog --title="$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
+            _RSP=$(dialog --title "$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
             ;;
         gxmessage)
             _RSP=$(gxmessage -title "$_1UITITLE" -entry "$_MSG")
@@ -305,13 +305,24 @@ _nh1ui.ask() {
 # @arg $2 string Every argument
 # @stdout string choonsen option
 _nh1ui.select() {
-    local _MSG _OPT
+    local _MSG _OPT _ENU _AUX _COU
     _MSG="$1"
     shift
 
+    _ENU=""
+    _COU=0
+    for _AUX in "$@"
+    do
+        _COU=$((_COU+1))
+        _ENU="$_ENU $_COU $(1stresc "$_AUX")"
+    done
+
     case "$(_nh1ui.choose)" in
+        dialog)
+            _OPT=$(dialog --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 12 $_ENU 3>&1 1>&2 2>&3)
+            ;;
         *)
-            _OPT=$(_nh1ui.simpleselect "$_MSG" "$@"  3>&1 1>&2 2>&3)
+            _OPT=$(_nh1ui.simpleselect "$_MSG" "$@" 3>&1 1>&2 2>&3)
             ;;
     esac
     echo $_OPT

@@ -10,6 +10,7 @@
 _nh1morph.menu() {
   _1menuheader "$(_1text "Morph Section (strings)")"
   _1menutip "$(_1text "String transformation utilities")"
+  _1menuitem P 1stresc "$(_1text "String escape/simplifier")"
   _1menuitem P 1words "$(_1text "Converts integer to words")"
 }
 
@@ -18,7 +19,7 @@ _nh1morph.clean() {
   # unset variables
   unset -f _nh1morph.menu _nh1morph.complete _nh1morph.init
   unset -f _nh1morph.info _nh1morph.customvars _nh1morph.clean
-  unset -f _nh1morph.usage
+  unset -f _nh1morph.usage 1stresc
 }
 
 # @description Autocompletion instructions
@@ -173,4 +174,11 @@ _nh1morph.usage() {
     else
         _nh1morph.usage words
     fi
+}
+
+# @description Simplify a string, removing spaces and others
+# @arg $1 string String to simplify
+# @stdout string String changed
+1stresc() {
+    echo $* | tr "\\\ \t?!\${}" "/__..S++"
 }
