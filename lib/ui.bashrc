@@ -4,7 +4,7 @@
 
 # GLOBALS
 #_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
-_1UIDIALOGS=(whiptail)
+_1UIDIALOGS=(gxmessage)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="12 70"
@@ -305,21 +305,28 @@ _nh1ui.ask() {
 # @arg $2 string Every argument
 # @stdout string choonsen option
 _nh1ui.select() {
-    local _MSG _OPT _ENU _AUX _COU
+    local _MSG _OPT _ENU _ENB _AUX _COU
     _MSG="$1"
     shift
 
     _ENU=""
+    _ENB="Cancel:0"
     _COU=0
     for _AUX in "$@"
     do
+        _AUX=$(1stresc "$_AUX" | tr ':,' '..')
         _COU=$((_COU+1))
-        _ENU="$_ENU $_COU $(1stresc "$_AUX")"
+        _ENU="$_ENU $_COU $_AUX"
+        _ENB="$_ENB,$_AUX:$_COU"
     done
 
     case "$(_nh1ui.choose)" in
         dialog)
             _OPT=$(dialog --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 12 $_ENU 3>&1 1>&2 2>&3)
+            ;;
+        gxmessage)
+            gxmessage -title "$_1UITITLE" -buttons $_ENB -default Ok -nearmouse "$_MSG"
+            _OPT=$?
             ;;
         whiptail)
             _OPT=$(whiptail --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 5 $_ENU 3>&1 1>&2 2>&3)
