@@ -286,3 +286,4 @@
 1.2d29 2022-11-25: 1ui has 3 modes (nh1.conf): gui, console, none
 1.2d30 2022-11-27: 1ui: added option menu (none only)
 1.2d31 2022-11-27: 1ui: menu with dialog. Added misc 1stresc
+1.2d32 2022-11-29: 1ui: menu with whiptail

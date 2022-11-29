@@ -4,7 +4,7 @@
 
 # GLOBALS
 #_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
-_1UIDIALOGS=(dialog)
+_1UIDIALOGS=(whiptail)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="12 70"
@@ -320,6 +320,9 @@ _nh1ui.select() {
     case "$(_nh1ui.choose)" in
         dialog)
             _OPT=$(dialog --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 12 $_ENU 3>&1 1>&2 2>&3)
+            ;;
+        whiptail)
+            _OPT=$(whiptail --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 5 $_ENU 3>&1 1>&2 2>&3)
             ;;
         *)
             _OPT=$(_nh1ui.simpleselect "$_MSG" "$@" 3>&1 1>&2 2>&3)
