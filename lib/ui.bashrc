@@ -4,7 +4,7 @@
 
 # GLOBALS
 #_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
-_1UIDIALOGS=(gxmessage)
+_1UIDIALOGS=(Xdialog)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="12 70"
@@ -285,7 +285,7 @@ _nh1ui.ask() {
             _RSP=$(whiptail --title "$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE  3>&1 1>&2 2>&3)
             ;;
         Xdialog)
-            _RSP=$(Xdialog --title="$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE)
+            _RSP=$(Xdialog --stdout --title="$_1UITITLE" --inputbox "$_MSG" $_1UIDIALOGSIZE)
             ;;
         yad)
             _RSP=$(yad --title="$_1UITITLE" --entry --text="$_MSG")
@@ -305,12 +305,16 @@ _nh1ui.ask() {
 # @arg $2 string Every argument
 # @stdout string choonsen option
 _nh1ui.select() {
-    local _MSG _OPT _ENU _ENB _AUX _COU
+    local _MSG _OPT _AUX _COU
+    local _ENU # Enumberated list: 1 one 2 two
+    local _ENB # Enum block: one:1,two:2
+    local _ENA # Enum array: 1)one 2)two
     _MSG="$1"
     shift
 
     _ENU=""
     _ENB="Cancel:0"
+    _ENA=""
     _COU=0
     for _AUX in "$@"
     do
@@ -318,6 +322,7 @@ _nh1ui.select() {
         _COU=$((_COU+1))
         _ENU="$_ENU $_COU $_AUX"
         _ENB="$_ENB,$_AUX:$_COU"
+        _ENA="$_ENA $_COU)$_AUX"
     done
 
     case "$(_nh1ui.choose)" in
@@ -330,6 +335,9 @@ _nh1ui.select() {
             ;;
         whiptail)
             _OPT=$(whiptail --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 5 $_ENU 3>&1 1>&2 2>&3)
+            ;;
+        Xdialog)
+            _OPT=$(Xdialog --stdout --title="$_1UITITLE" --combobox "$_MSG" $_1UIDIALOGSIZE $_ENA | cut -d\) -f 1)
             ;;
         *)
             _OPT=$(_nh1ui.simpleselect "$_MSG" "$@" 3>&1 1>&2 2>&3)
