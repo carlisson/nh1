@@ -4,7 +4,7 @@
 
 # GLOBALS
 #_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
-_1UIDIALOGS=(Xdialog)
+_1UIDIALOGS=(zenity)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="12 70"
@@ -333,11 +333,17 @@ _nh1ui.select() {
             gxmessage -title "$_1UITITLE" -buttons $_ENB -default Ok -nearmouse "$_MSG"
             _OPT=$?
             ;;
+        kdialog)
+            _OPT=$(kdialog --title="$_1UITITLE" --menu "$_MSG" $_ENU)
+            ;;
         whiptail)
             _OPT=$(whiptail --title "$_1UITITLE" --menu "$_MSG" $_1UIDIALOGSIZE 5 $_ENU 3>&1 1>&2 2>&3)
             ;;
         Xdialog)
             _OPT=$(Xdialog --stdout --title="$_1UITITLE" --combobox "$_MSG" $_1UIDIALOGSIZE $_ENA | cut -d\) -f 1)
+            ;;
+        zenity)
+            _OPT=$(zenity --title="$_1UITITLE" --list --column='#' --column="$(_1text Option)" $_ENU)
             ;;
         *)
             _OPT=$(_nh1ui.simpleselect "$_MSG" "$@" 3>&1 1>&2 2>&3)
