@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 16:15-0300\n"
+"POT-Creation-Date: 2022-11-30 16:41-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1141,246 +1141,262 @@ msgid "String transformation utilities"
 msgstr ""
 
 #: morph.bashrc:13
-msgid "String escape/simplifier"
+msgid "Transform a string"
 msgstr ""
 
 #: morph.bashrc:14
 msgid "Converts integer to words"
 msgstr ""
 
-#: morph.bashrc:52 network.bashrc:1053 network.bashrc:1086
-msgid "Usage: %s [%s]"
+#: morph.bashrc:52 ui.bashrc:59
+msgid "Usage: %s [%s] [%s]"
 msgstr ""
 
 #: morph.bashrc:52
+msgid "transformation"
+msgstr ""
+
+#: morph.bashrc:52
+msgid "texto"
+msgstr ""
+
+#: morph.bashrc:53
+msgid "Available transformations: %s."
+msgstr ""
+
+#: morph.bashrc:56 network.bashrc:1053 network.bashrc:1086
+msgid "Usage: %s [%s]"
+msgstr ""
+
+#: morph.bashrc:56
 msgid "number"
 msgstr ""
 
-#: morph.bashrc:77
+#: morph.bashrc:105
 msgid "zero"
 msgstr ""
 
-#: morph.bashrc:78
+#: morph.bashrc:106
 msgid "one"
 msgstr ""
 
-#: morph.bashrc:79
+#: morph.bashrc:107
 msgid "two"
 msgstr ""
 
-#: morph.bashrc:80
+#: morph.bashrc:108
 msgid "three"
 msgstr ""
 
-#: morph.bashrc:81
+#: morph.bashrc:109
 msgid "four"
 msgstr ""
 
-#: morph.bashrc:82
+#: morph.bashrc:110
 msgid "five"
 msgstr ""
 
-#: morph.bashrc:83
+#: morph.bashrc:111
 msgid "six"
 msgstr ""
 
-#: morph.bashrc:84
+#: morph.bashrc:112
 msgid "seven"
 msgstr ""
 
-#: morph.bashrc:85
+#: morph.bashrc:113
 msgid "eight"
 msgstr ""
 
-#: morph.bashrc:86
+#: morph.bashrc:114
 msgid "nine"
 msgstr ""
 
-#: morph.bashrc:91
+#: morph.bashrc:119
 msgid "ten"
 msgstr ""
 
-#: morph.bashrc:92
+#: morph.bashrc:120
 msgid "eleven"
 msgstr ""
 
-#: morph.bashrc:93
+#: morph.bashrc:121
 msgid "twelve"
 msgstr ""
 
-#: morph.bashrc:94
+#: morph.bashrc:122
 msgid "thirteen"
 msgstr ""
 
-#: morph.bashrc:95
+#: morph.bashrc:123
 msgid "fourteen"
 msgstr ""
 
-#: morph.bashrc:96
+#: morph.bashrc:124
 msgid "fiveteen"
 msgstr ""
 
-#: morph.bashrc:97
+#: morph.bashrc:125
 msgid "sixteen"
 msgstr ""
 
-#: morph.bashrc:98
+#: morph.bashrc:126
 msgid "seventeen"
 msgstr ""
 
-#: morph.bashrc:99
+#: morph.bashrc:127
 msgid "eighteen"
 msgstr ""
 
-#: morph.bashrc:100
+#: morph.bashrc:128
 msgid "nineteen"
 msgstr ""
 
-#: morph.bashrc:110
+#: morph.bashrc:138
 msgid "twenty"
 msgstr ""
 
-#: morph.bashrc:111
+#: morph.bashrc:139
 msgid "thirty"
 msgstr ""
 
-#: morph.bashrc:112
+#: morph.bashrc:140
 msgid "forty"
 msgstr ""
 
-#: morph.bashrc:113
+#: morph.bashrc:141
 msgid "fifty"
 msgstr ""
 
-#: morph.bashrc:114
+#: morph.bashrc:142
 msgid "sixty"
 msgstr ""
 
-#: morph.bashrc:115
+#: morph.bashrc:143
 msgid "seventy"
 msgstr ""
 
-#: morph.bashrc:116
+#: morph.bashrc:144
 msgid "eighty"
 msgstr ""
 
-#: morph.bashrc:117
+#: morph.bashrc:145
 msgid "ninety"
 msgstr ""
 
-#: morph.bashrc:122
+#: morph.bashrc:150
 msgid "twenty-%s"
 msgstr ""
 
-#: morph.bashrc:123
+#: morph.bashrc:151
 msgid "thirty-%s"
 msgstr ""
 
-#: morph.bashrc:124
+#: morph.bashrc:152
 msgid "forty-%s"
 msgstr ""
 
-#: morph.bashrc:125
+#: morph.bashrc:153
 msgid "fifty-%s"
 msgstr ""
 
-#: morph.bashrc:126
+#: morph.bashrc:154
 msgid "sixty-%s"
 msgstr ""
 
-#: morph.bashrc:127
+#: morph.bashrc:155
 msgid "seventy-%s"
 msgstr ""
 
-#: morph.bashrc:128
+#: morph.bashrc:156
 msgid "eighty-%s"
 msgstr ""
 
-#: morph.bashrc:129
+#: morph.bashrc:157
 msgid "ninety-%s"
 msgstr ""
 
-#: morph.bashrc:140
+#: morph.bashrc:168
 msgid "one hundred"
 msgstr ""
 
-#: morph.bashrc:141
+#: morph.bashrc:169
 msgid "two hundred"
 msgstr ""
 
-#: morph.bashrc:142
+#: morph.bashrc:170
 msgid "three hundred"
 msgstr ""
 
-#: morph.bashrc:143
+#: morph.bashrc:171
 msgid "four hundred"
 msgstr ""
 
-#: morph.bashrc:144
+#: morph.bashrc:172
 msgid "five hundred"
 msgstr ""
 
-#: morph.bashrc:145
+#: morph.bashrc:173
 msgid "six hundred"
 msgstr ""
 
-#: morph.bashrc:146
+#: morph.bashrc:174
 msgid "seven hundred"
 msgstr ""
 
-#: morph.bashrc:147
+#: morph.bashrc:175
 msgid "eight hundred"
 msgstr ""
 
-#: morph.bashrc:148
+#: morph.bashrc:176
 msgid "nine hundred"
 msgstr ""
 
-#: morph.bashrc:154
+#: morph.bashrc:182
 msgid "one hundred and %s"
 msgstr ""
 
-#: morph.bashrc:155
+#: morph.bashrc:183
 msgid "two hundred and %s"
 msgstr ""
 
-#: morph.bashrc:156
+#: morph.bashrc:184
 msgid "three hundred and %s"
 msgstr ""
 
-#: morph.bashrc:157
+#: morph.bashrc:185
 msgid "four hundred and %s"
 msgstr ""
 
-#: morph.bashrc:158
+#: morph.bashrc:186
 msgid "five hundred and %s"
 msgstr ""
 
-#: morph.bashrc:159
+#: morph.bashrc:187
 msgid "six hundred and %s"
 msgstr ""
 
-#: morph.bashrc:160
+#: morph.bashrc:188
 msgid "seven hundred and %s"
 msgstr ""
 
-#: morph.bashrc:161
+#: morph.bashrc:189
 msgid "eight hundred and %s"
 msgstr ""
 
-#: morph.bashrc:162
+#: morph.bashrc:190
 msgid "nine hundred and %s"
 msgstr ""
 
-#: morph.bashrc:167
+#: morph.bashrc:195
 msgid "one thousand"
 msgstr ""
 
-#: morph.bashrc:169
+#: morph.bashrc:197
 msgid "many"
 msgstr ""
 
-#: morph.bashrc:172
+#: morph.bashrc:200
 msgid "Argument is not an integer number."
 msgstr ""
 
@@ -1811,10 +1827,6 @@ msgstr ""
 
 #: ui.bashrc:48
 msgid "GUI level. 0: none; 1: console only; 2: including GUI (default)"
-msgstr ""
-
-#: ui.bashrc:59
-msgid "Usage: %s [%s] [%s]"
 msgstr ""
 
 #: ui.bashrc:59

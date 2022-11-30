@@ -3,15 +3,15 @@
 # @brief String transformations
 
 # GLOBALS
-
+_1MORPHS=(escape)
 # Private functions
 
 # @description Generates partial menu
 _nh1morph.menu() {
   _1menuheader "$(_1text "Morph Section (strings)")"
   _1menutip "$(_1text "String transformation utilities")"
-  _1menuitem P 1stresc "$(_1text "String escape/simplifier")"
-  _1menuitem P 1words "$(_1text "Converts integer to words")"
+  _1menuitem X 1morph "$(_1text "Transform a string")"
+  _1menuitem X 1words "$(_1text "Converts integer to words")"
 }
 
 # @description Destroys all global variables created by this file
@@ -19,7 +19,7 @@ _nh1morph.clean() {
   # unset variables
   unset -f _nh1morph.menu _nh1morph.complete _nh1morph.init
   unset -f _nh1morph.info _nh1morph.customvars _nh1morph.clean
-  unset -f _nh1morph.usage 1stresc
+  unset -f _nh1morph.usage 1morph
 }
 
 # @description Autocompletion instructions
@@ -48,6 +48,10 @@ _nh1morph.init() {
 # @arg $1 string Public function name
 _nh1morph.usage() {
   case $1 in
+    morph)
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "transformation")" "$(_1text "text")"
+        printf "  - $(_1text "Available transformations: %s.")\n" ${_1MORPHS[@]}
+        ;;
     words)
         printf "$(_1text "Usage: %s [%s]")\n" "1$1" "$(_1text "number")"
         ;;
@@ -60,6 +64,30 @@ _nh1morph.usage() {
 # Alias-like
 
 # Public functions
+
+# @description Transforms a string
+# @arg $1 string Desired transformation. List to see all availables.
+# @arg $2 string String to transform
+1morph() {
+    local _MORPH
+    _MORPH="escape"
+    if [ $# -gt 1 ]
+    then
+        _MORPH="$1"
+        shift
+    fi
+    if [ $# -gt 0 ]
+    then
+        case "$_MORPH" in
+            escape)
+                echo $* | tr "\\\ \t?!\${}" "/__..S++"
+                ;;
+        esac
+    else
+        _nh1morph.usage morph
+    fi
+
+}
 
 # @description Converts integer into words
 # @arg $1 int Number
@@ -174,11 +202,4 @@ _nh1morph.usage() {
     else
         _nh1morph.usage words
     fi
-}
-
-# @description Simplify a string, removing spaces and others
-# @arg $1 string String to simplify
-# @stdout string String changed
-1stresc() {
-    echo $* | tr "\\\ \t?!\${}" "/__..S++"
 }
