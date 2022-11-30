@@ -25,8 +25,8 @@ _nh1app.menu() {
   _1menuitem D 1applupd "$(_1text "Update all local apps")"
   _1menuitem D 1appgupd "$(_1text "Update all global apps")"
   _1menuitem D 1appxupd "$(_1text "Upgrade all packages(using OS)")"
-  _1menuitem W 1appldel "$(_1text "Remove a local app")"
-  _1menuitem W 1appgdel "$(_1text "Remove a global app")"
+  _1menuitem D 1appldel "$(_1text "Remove a local app")"
+  _1menuitem D 1appgdel "$(_1text "Remove a global app")"
   _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
   _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
   _1menuitem W 1appxclear "$(_1text "Remove old versions for all system apps")"
@@ -46,7 +46,7 @@ _nh1app.clean() {
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
   unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
-  unset -f _nh1app.list _nh1app.sysupdate _nh1app.sysadd
+  unset -f _nh1app.list _nh1app.sysupdate _nh1app.sysadd _nh1app.sysdel
 }
 
 # @description Autocompletion for 1app
@@ -643,7 +643,6 @@ _nh1app.clear() {
 
 # @description List all available app image for installation
 _nh1app.list() {
-	_1before
     local _NAA _NAS _NAU _NAC
     echo "___ $(_1text "1app status") ___"
     printf "%-15s %-45s%s\n" "$(_1text App)" "$(_1text Description)" "$(_1text Installation)"
@@ -689,7 +688,6 @@ _nh1app.list() {
 # @arg $1 string Package name
 # @exitcode 0
 _nh1app.sysadd() {
-	_1before
     local _PKG _OUT _AID _REM
 
     _PKG="$1"
@@ -757,7 +755,6 @@ _nh1app.sysadd() {
 
 # @description Upgrade all system packages
 _nh1app.sysupdate() {
-	_1before
     local _UPD
         
     if _nh1app.where dnf > /dev/null
@@ -800,6 +797,26 @@ _nh1app.sysupdate() {
     fi
 }
 
+# @description Uninstall a system application
+# @arg $1 string Application to uninstall
+_nh1app.sysdel() {
+    local _PM
+    
+    for _PM in dnf apt snap flatpak
+    do
+        if _nh1app.where $_PM > /dev/null
+        then
+            _1sudo $_PM remove $*
+            if [ $? -eq 0 ]
+            then
+                return 0
+            fi
+        fi
+    done
+
+    _1message "$(_1text "App not found.")"
+}
+
 # @description Usage instructions
 # @arg $1 string Public function name
 _nh1app.usage() {
@@ -809,6 +826,7 @@ _nh1app.usage() {
         printf "  $(_1text "Commands"):\n"
         printf "  - $(1tint list): $(_1text "list all available commands")\n"
         printf "  - $(1tint add): $(_1text "install/update an application")\n"
+        printf "  - $(1tint del): $(_1text "uninstall an application")\n"
         printf "  - $(1tint update): $(_1text "Update all installed packages")\n"
         printf "  - $(1tint help): $(_1text "show this usage instructions")\n"
         printf "  $(_1text "Scopes"):\n"
@@ -821,21 +839,6 @@ _nh1app.usage() {
 }
 
 # Alias-like
-
-
-# @description Uninstall local app
-# @arg $1 string Application name
-1appldel()   {
-   	_1before
-    _nh1app.remove local "$1"
-}
-
-# @description Uninstall global app
-# @arg $1 string Application name
-1appgdel()   {
-   	_1before
-    _nh1app.remove global "$1"
-}
 
 # @description Remove old versions of local apps
 1applclear() {
@@ -879,13 +882,18 @@ _nh1app.usage() {
                 system)
                     _nh1app.sysadd $*
                     ;;
-                all)
-                    _1message "$(printf "$(_1text "Installing/updating %s in %s.")" "local")"
-                    _nh1app.add "local" $*
-                    _1message "$(printf "$(_1text "Installing/updating %s in %s.")" "global")"
-                    _nh1app.add "global" S*
-                    _1message "$(printf "$(_1text "Installing/updating %s in %s.")" "system")"
-                    _nh1app.sysadd $*     
+                *)
+                    _nh1app.usage app
+                    ;;
+            esac          
+            ;;     
+        del)
+            case $_SCO in 
+                global|local)
+                    _nh1app.remove "$_SCO" $*
+                    ;;
+                system)
+                    _nh1app.sysdel $*
                     ;;
                 *)
                     _nh1app.usage app
@@ -983,4 +991,12 @@ _nh1app.usage() {
 
 1appxadd() {
     1app add system $*    
+}
+
+1appldel()   {
+    1app del "local" "$1"
+}
+
+1appgdel()   {
+    1app del "global" "$1"
 }

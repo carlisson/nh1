@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 18:03-0300\n"
+"POT-Creation-Date: 2022-11-30 18:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -556,152 +556,156 @@ msgstr ""
 msgid "App %s installed with file %s"
 msgstr ""
 
-#: app.bashrc:648
+#: app.bashrc:647
 msgid "1app status"
 msgstr ""
 
-#: app.bashrc:649
+#: app.bashrc:648
 msgid "App"
 msgstr ""
 
-#: app.bashrc:649
+#: app.bashrc:648
 msgid "Description"
 msgstr ""
 
-#: app.bashrc:649
+#: app.bashrc:648
 msgid "Installation"
 msgstr ""
 
-#: app.bashrc:657
+#: app.bashrc:656
 msgid "local"
 msgstr ""
 
-#: app.bashrc:663
+#: app.bashrc:662
 msgid "global"
 msgstr ""
 
-#: app.bashrc:670
+#: app.bashrc:669
 msgid "system"
 msgstr ""
 
-#: app.bashrc:672
+#: app.bashrc:671
 msgid "None"
 msgstr ""
 
-#: app.bashrc:677
+#: app.bashrc:676
 msgid "Usage"
 msgstr ""
 
-#: app.bashrc:679
+#: app.bashrc:678
 msgid " to install locally and "
 msgstr ""
 
-#: app.bashrc:681 app.bashrc:685
+#: app.bashrc:680 app.bashrc:684
 msgid " to uninstall."
 msgstr ""
 
-#: app.bashrc:683
+#: app.bashrc:682
 msgid " to install globally and "
 msgstr ""
 
-#: app.bashrc:699 app.bashrc:717 app.bashrc:735
+#: app.bashrc:697 app.bashrc:715 app.bashrc:733
 msgid "Searching %s in %s..."
 msgstr ""
 
-#: app.bashrc:702 app.bashrc:707 app.bashrc:720 app.bashrc:746
+#: app.bashrc:700 app.bashrc:705 app.bashrc:718 app.bashrc:744
 msgid "Package %s found in %s."
 msgstr ""
 
-#: app.bashrc:711 app.bashrc:726 app.bashrc:748
+#: app.bashrc:709 app.bashrc:724 app.bashrc:746
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:744
+#: app.bashrc:742
 msgid "The search returned more than one result!"
 msgstr ""
 
-#: app.bashrc:755
+#: app.bashrc:753
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:765 app.bashrc:771 app.bashrc:779 app.bashrc:786 app.bashrc:792
-#: app.bashrc:798
+#: app.bashrc:762 app.bashrc:768 app.bashrc:776 app.bashrc:783 app.bashrc:789
+#: app.bashrc:795
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:808
+#: app.bashrc:816
+msgid "App not found."
+msgstr ""
+
+#: app.bashrc:824
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr ""
 
-#: app.bashrc:808 cron.bashrc:218
+#: app.bashrc:824 cron.bashrc:218
 msgid "command"
 msgstr ""
 
-#: app.bashrc:808
+#: app.bashrc:824
 msgid "scope"
 msgstr ""
 
-#: app.bashrc:808
+#: app.bashrc:824
 msgid "option"
 msgstr ""
 
-#: app.bashrc:809
+#: app.bashrc:825
 msgid "Commands"
 msgstr ""
 
-#: app.bashrc:810
+#: app.bashrc:826
 msgid "list all available commands"
 msgstr ""
 
-#: app.bashrc:811
+#: app.bashrc:827
 msgid "install/update an application"
 msgstr ""
 
-#: app.bashrc:812
+#: app.bashrc:828
+msgid "uninstall an application"
+msgstr ""
+
+#: app.bashrc:829
 msgid "Update all installed packages"
 msgstr ""
 
-#: app.bashrc:813
+#: app.bashrc:830
 msgid "show this usage instructions"
 msgstr ""
 
-#: app.bashrc:814
+#: app.bashrc:831
 msgid "Scopes"
 msgstr ""
 
-#: app.bashrc:815
+#: app.bashrc:832
 msgid "installed in user space"
 msgstr ""
 
-#: app.bashrc:816
+#: app.bashrc:833
 msgid "installed for all users, with binaries in %s"
 msgstr ""
 
-#: app.bashrc:817
+#: app.bashrc:834
 msgid "installed with system package managers (apt, dnf, snap, etc)"
 msgstr ""
 
-#: app.bashrc:818
+#: app.bashrc:835
 msgid "all installations: local, global and system"
 msgstr ""
 
-#: app.bashrc:883 app.bashrc:885 app.bashrc:887
-msgid "Installing/updating %s in %s."
-msgstr ""
-
-#: app.bashrc:904 app.bashrc:906 app.bashrc:908
+#: app.bashrc:916 app.bashrc:918 app.bashrc:920
 msgid "Updating %s applications."
 msgstr ""
 
-#: app.bashrc:928 app.bashrc:938
+#: app.bashrc:940 app.bashrc:950
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:955 network.bashrc:588
+#: app.bashrc:967 network.bashrc:588
 msgid "It works."
 msgstr ""
 
-#: app.bashrc:959
+#: app.bashrc:971
 msgid "String not found in URL page."
 msgstr ""
 
