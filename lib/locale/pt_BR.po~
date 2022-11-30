@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 17:38-0300\n"
+"POT-Creation-Date: 2022-11-30 17:42-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -672,43 +672,48 @@ msgstr "instalados para todos os usuários, com binários em %s"
 
 #: app.bashrc:746
 msgid "installed with system package managers (apt, dnf, snap, etc)"
-msgstr "instalados com os gerenciadores de pacotes do sistema (apt, dnf, snap, etc)"
+msgstr ""
+"instalados com os gerenciadores de pacotes do sistema (apt, dnf, snap, etc)"
 
 #: app.bashrc:747
 msgid "all installations: local, global and system"
 msgstr "todas as instalações: local, global e system"
 
-#: app.bashrc:862 app.bashrc:880 app.bashrc:898
+#: app.bashrc:812 app.bashrc:814 app.bashrc:816
+msgid "Updating %s applications."
+msgstr "Atualizando aplicativos do escopo %s."
+
+#: app.bashrc:865 app.bashrc:883 app.bashrc:901
 msgid "Searching %s in %s..."
 msgstr "Buscando %s em %s..."
 
-#: app.bashrc:865 app.bashrc:870 app.bashrc:883 app.bashrc:909
+#: app.bashrc:868 app.bashrc:873 app.bashrc:886 app.bashrc:912
 msgid "Package %s found in %s."
 msgstr "Pacote %s encontrado em %s."
 
-#: app.bashrc:874 app.bashrc:889 app.bashrc:911
+#: app.bashrc:877 app.bashrc:892 app.bashrc:914
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:907
+#: app.bashrc:910
 msgid "The search returned more than one result!"
 msgstr "A busca retornou mais de um resultado!"
 
-#: app.bashrc:918
+#: app.bashrc:921
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:927 app.bashrc:937
+#: app.bashrc:930 app.bashrc:940
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:954 network.bashrc:588
+#: app.bashrc:957 network.bashrc:588
 msgid "It works."
 msgstr "Funcionou."
 
-#: app.bashrc:958
+#: app.bashrc:961
 msgid "String not found in URL page."
 msgstr "Texto não encontrado na página da URL."
 
