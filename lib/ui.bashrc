@@ -3,8 +3,7 @@
 # @brief Generic user Interface for dialogs
 
 # GLOBALS
-#_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
-_1UIDIALOGS=(zenity)
+_1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
 _1UICONSOLE=(whiptail dialog)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="12 70"
@@ -341,6 +340,9 @@ _nh1ui.select() {
             ;;
         Xdialog)
             _OPT=$(Xdialog --stdout --title="$_1UITITLE" --combobox "$_MSG" $_1UIDIALOGSIZE $_ENA | cut -d\) -f 1)
+            ;;
+        yad)
+            _OPT=$(yad --title="$_1UITITLE" --list --column='#' --column="$(_1text Option)" $_ENU | cut -d\| -f 1)
             ;;
         zenity)
             _OPT=$(zenity --title="$_1UITITLE" --list --column='#' --column="$(_1text Option)" $_ENU)
