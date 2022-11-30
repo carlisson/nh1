@@ -27,9 +27,9 @@ _nh1app.menu() {
   _1menuitem D 1appxupd "$(_1text "Upgrade all packages(using OS)")"
   _1menuitem D 1appldel "$(_1text "Remove a local app")"
   _1menuitem D 1appgdel "$(_1text "Remove a global app")"
-  _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
-  _1menuitem W 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
-  _1menuitem W 1appxclear "$(_1text "Remove old versions for all system apps")"
+  _1menuitem D 1applclear "$(_1text "Remove old versions for a local app (or all)")"
+  _1menuitem D 1appgclear "$(_1text "Remove old versions for a global app (or all)")"
+  _1menuitem D 1appxclear "$(_1text "Remove old versions for all system apps")"
   _1menuitem X 1appre "$(_1text "Helps to create regular expression to make a recipe")"
 }
 
@@ -47,6 +47,7 @@ _nh1app.clean() {
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
   unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
   unset -f _nh1app.list _nh1app.sysupdate _nh1app.sysadd _nh1app.sysdel
+  unset -f _nh1app.sysclear
 }
 
 # @description Autocompletion for 1app
@@ -817,6 +818,27 @@ _nh1app.sysdel() {
     _1message "$(_1text "App not found.")"
 }
 
+# @description Remove old versions of system apps, in debian, snap, flatpak...
+_nh1app.sysclear() {
+	_1before
+    local _APP _AUX
+    if _nh1app.where snap > /dev/null
+    then
+        _1message info "$(_1text "Cleaning %s...")\n" snap
+        LANG=en_US.UTF-8 snap list --all | awk '/disabled/{print $1, $3}' | \
+            while read _APP _AUX
+            do
+                _1sudo snap remove "$_APP" --revision="$_AUX"
+            done
+    fi
+
+    if _nh1app.where flatpak > /dev/null
+    then
+        printf "$(_1text "Cleaning %s...")\n" flatpak
+        _1sudo flatpak uninstall --unused
+    fi
+}
+
 # @description Usage instructions
 # @arg $1 string Public function name
 _nh1app.usage() {
@@ -828,6 +850,7 @@ _nh1app.usage() {
         printf "  - $(1tint add): $(_1text "install/update an application")\n"
         printf "  - $(1tint del): $(_1text "uninstall an application")\n"
         printf "  - $(1tint update): $(_1text "Update all installed packages")\n"
+        printf "  - $(1tint clean): $(_1text "Remove old files and caches")\n"
         printf "  - $(1tint help): $(_1text "show this usage instructions")\n"
         printf "  $(_1text "Scopes"):\n"
         printf "  - $(1tint local): $(_1text "installed in user space")\n"
@@ -839,18 +862,6 @@ _nh1app.usage() {
 }
 
 # Alias-like
-
-# @description Remove old versions of local apps
-1applclear() {
-	_1before
-    _nh1app.clear local
-}
-
-# @description Remove old versions of global apps
-1appgclear() {
-	_1before
-    _nh1app.clear global
-}
 
 # @description App manager
 # @arg $1 string Command
@@ -921,31 +932,28 @@ _nh1app.usage() {
                     ;;
             esac          
             ;;     
+        clean)
+            case $_SCO in 
+                global|local)
+                    _nh1app.clear "$_SCO"
+                    ;;
+                system)
+                    _nh1app.sysclear
+                    ;;
+                all)
+                    _nh1app.clear "local"
+                    _nh1app.clear "global"
+                    _nh1app.sysclear
+                    ;;
+                *)
+                    _nh1app.usage app
+                    ;;
+            esac
+            ;;
         *)
             _nh1app.usage app
             ;;
     esac
-}
-
-# @description Remove old versions of system apps, in debian, snap, flatpak...
-1appxclear() {
-	_1before
-    local _APP _AUX
-    if _nh1app.where snap > /dev/null
-    then
-        _1message info "$(_1text "Cleaning %s...")\n" snap
-        LANG=en_US.UTF-8 snap list --all | awk '/disabled/{print $1, $3}' | \
-            while read _APP _AUX
-            do
-                _1sudo snap remove "$_APP" --revision="$_AUX"
-            done
-    fi
-
-    if _nh1app.where flatpak > /dev/null
-    then
-        printf "$(_1text "Cleaning %s...")\n" flatpak
-        _1sudo flatpak uninstall --unused
-    fi
 }
 
 # @description Run a regular expression and return info to help you to create a 1app recipe
@@ -999,4 +1007,16 @@ _nh1app.usage() {
 
 1appgdel()   {
     1app del "global" "$1"
+}
+
+1applclear() {
+    1app clean "local"
+}
+
+1appgclear() {
+    1app clean "global"
+}
+
+1appxclear() {
+    1app clean "system"
 }
