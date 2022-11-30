@@ -46,6 +46,7 @@ _nh1app.clean() {
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
   unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
+  unset -f _nh1app.list
 }
 
 # @description Autocompletion for 1app
@@ -640,48 +641,8 @@ _nh1app.clear() {
    done
 }
 
-# Alias-like
-
-# @description Update all local apps
-1applupd()   {
-  	_1before
-    _nh1app.update local
-}
-
-# @description Update all global apps
-1appgupd()   {
-	_1before
-    _nh1app.update global
-}
-
-# @description Uninstall local app
-# @arg $1 string Application name
-1appldel()   {
-   	_1before
-    _nh1app.remove local "$1"
-}
-
-# @description Uninstall global app
-# @arg $1 string Application name
-1appgdel()   {
-   	_1before
-    _nh1app.remove global "$1"
-}
-
-# @description Remove old versions of local apps
-1applclear() {
-	_1before
-    _nh1app.clear local
-}
-
-# @description Remove old versions of global apps
-1appgclear() {
-	_1before
-    _nh1app.clear global
-}
-
 # @description List all available app image for installation
-1app() {
+_nh1app.list() {
 	_1before
     local _NAA _NAS _NAU _NAC
     echo "___ $(_1text "1app status") ___"
@@ -722,6 +683,82 @@ _nh1app.clear() {
     echo -n "$(_1text " to install globally and ")"
     1tint 1 1appgdel
     echo "$(_1text " to uninstall.")"
+}
+
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1app.usage() {
+  case $1 in
+    app)
+        printf "$(_1text "Usage: %s [%s] [%s] [%s]")\n" "1$1" "$(_1text "command")" "$(_1text "scope")" "$(_1text "option")"
+        printf "  $(_1text "Commands"):\n"
+        printf "  - $(1tint list): $(_1text "list all available commands")\n"
+        printf "  - $(1tint help): $(_1text "show this usage instructions")\n"
+        ;;
+  esac
+}
+
+# Alias-like
+
+# @description Update all local apps
+1applupd()   {
+  	_1before
+    _nh1app.update local
+}
+
+# @description Update all global apps
+1appgupd()   {
+	_1before
+    _nh1app.update global
+}
+
+# @description Uninstall local app
+# @arg $1 string Application name
+1appldel()   {
+   	_1before
+    _nh1app.remove local "$1"
+}
+
+# @description Uninstall global app
+# @arg $1 string Application name
+1appgdel()   {
+   	_1before
+    _nh1app.remove global "$1"
+}
+
+# @description Remove old versions of local apps
+1applclear() {
+	_1before
+    _nh1app.clear local
+}
+
+# @description Remove old versions of global apps
+1appgclear() {
+	_1before
+    _nh1app.clear global
+}
+
+# @description App manager
+# @arg $1 string Command
+# @arg $2 string scope
+# @arg $3 string complementar argument
+1app() {
+	_1before
+    local _COM _SCO
+    _COM="list"
+    if [ $# -gt 0 ]
+    then
+        _COM="$1"
+        shift
+    fi
+    case $_COM in
+        list)
+            _nh1app.list
+            ;;
+        *)
+            _nh1app.usage app
+            ;;
+    esac
 }
 
 # @description Install locally an app

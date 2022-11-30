@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 16:41-0300\n"
+"POT-Creation-Date: 2022-11-30 17:03-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -79,7 +79,7 @@ msgstr "Uso: 1banner [%s] [%s]."
 msgid "size"
 msgstr "tamanho"
 
-#: /home/bardo/sources/nh1/nh1:530
+#: /home/bardo/sources/nh1/nh1:530 morph.bashrc:52
 msgid "text"
 msgstr "texto"
 
@@ -511,152 +511,180 @@ msgstr "Remove versões antigas de todos os apps do sistema"
 msgid "Helps to create regular expression to make a recipe"
 msgstr "Ajuda a criar a expressão regular para fazer uma receita"
 
-#: app.bashrc:101
+#: app.bashrc:102
 msgid "Retains old app files? (1 or 0). Default: 0"
 msgstr "Reter arquivos antigos de app? (1 ou 0). Default: 0"
 
-#: app.bashrc:138
+#: app.bashrc:139
 msgid "No prefix defined for %s app!"
 msgstr "Nenhum prefixo definido para o app %s!"
 
-#: app.bashrc:231
+#: app.bashrc:232
 msgid "Creating desktop file for %s."
 msgstr "Gerando arquivo desktop para %s"
 
-#: app.bashrc:263
+#: app.bashrc:264
 msgid "No PNG for app. No desktop file created."
 msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 
-#: app.bashrc:293
+#: app.bashrc:294
 msgid "Removing old app version %s."
 msgstr "Removendo app na versão antiga %s."
 
-#: app.bashrc:328 app.bashrc:393
+#: app.bashrc:329 app.bashrc:394
 msgid "App needs %s and it's not available."
 msgstr "Programa precisa de %s, que não está(ão) disponível(is)."
 
-#: app.bashrc:335
+#: app.bashrc:336
 msgid "Git install/update for %s"
 msgstr "Instalação/atualização git para %s"
 
-#: app.bashrc:362
+#: app.bashrc:363
 msgid "Wrong app type."
 msgstr "Tipo de aplicativo errado."
 
-#: app.bashrc:402 app.bashrc:405
+#: app.bashrc:403 app.bashrc:406
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:407
+#: app.bashrc:408
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:471
+#: app.bashrc:472
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
 "tarde."
 
-#: app.bashrc:478
+#: app.bashrc:479
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:513
+#: app.bashrc:514
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:516
+#: app.bashrc:517
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:584
+#: app.bashrc:585
 msgid "App %s installed with file %s"
 msgstr "Aplicativo %s instalado com o arquivo %s"
 
-#: app.bashrc:687
+#: app.bashrc:648
 msgid "1app status"
 msgstr "Status do 1App"
 
-#: app.bashrc:688
+#: app.bashrc:649
 msgid "App"
 msgstr "Aplicativo"
 
-#: app.bashrc:688
+#: app.bashrc:649
 msgid "Description"
 msgstr "Descrição"
 
-#: app.bashrc:688
+#: app.bashrc:649
 msgid "Installation"
 msgstr "Instalação"
 
-#: app.bashrc:696
+#: app.bashrc:657
 msgid "local"
 msgstr "local"
 
-#: app.bashrc:702
+#: app.bashrc:663
 msgid "global"
 msgstr "global"
 
-#: app.bashrc:709
+#: app.bashrc:670
 msgid "system"
 msgstr "sistema"
 
-#: app.bashrc:711
+#: app.bashrc:672
 msgid "None"
 msgstr "Nada"
 
-#: app.bashrc:716
+#: app.bashrc:677
 msgid "Usage"
 msgstr "Uso"
 
-#: app.bashrc:718
+#: app.bashrc:679
 msgid " to install locally and "
 msgstr " para instalar localmente e "
 
-#: app.bashrc:720 app.bashrc:724
+#: app.bashrc:681 app.bashrc:685
 msgid " to uninstall."
 msgstr " para desinstalar."
 
-#: app.bashrc:722
+#: app.bashrc:683
 msgid " to install globally and "
 msgstr " para instalar globalmente e "
 
-#: app.bashrc:758 app.bashrc:764 app.bashrc:772 app.bashrc:779 app.bashrc:785
-#: app.bashrc:791
+#: app.bashrc:693
+msgid "Usage: %s [%s] [%s] [%s]"
+msgstr "Uso: %s [%s] [%s] [%s]"
+
+#: app.bashrc:693 cron.bashrc:218
+msgid "command"
+msgstr "comando"
+
+#: app.bashrc:693
+msgid "scope"
+msgstr "escopo"
+
+#: app.bashrc:693
+msgid "option"
+msgstr "opção"
+
+#: app.bashrc:694
+msgid "Commands"
+msgstr "Comandos"
+
+#: app.bashrc:695
+msgid "list all available commands"
+msgstr "Lista de todos os comandos disponíveis"
+
+#: app.bashrc:696
+msgid "show this usage instructions"
+msgstr "mostra essas instruções de uso"
+
+#: app.bashrc:795 app.bashrc:801 app.bashrc:809 app.bashrc:816 app.bashrc:822
+#: app.bashrc:828
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:807 app.bashrc:825 app.bashrc:843
+#: app.bashrc:844 app.bashrc:862 app.bashrc:880
 msgid "Searching %s in %s..."
 msgstr "Buscando %s em %s..."
 
-#: app.bashrc:810 app.bashrc:815 app.bashrc:828 app.bashrc:854
+#: app.bashrc:847 app.bashrc:852 app.bashrc:865 app.bashrc:891
 msgid "Package %s found in %s."
 msgstr "Pacote %s encontrado em %s."
 
-#: app.bashrc:819 app.bashrc:834 app.bashrc:856
+#: app.bashrc:856 app.bashrc:871 app.bashrc:893
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:852
+#: app.bashrc:889
 msgid "The search returned more than one result!"
 msgstr "A busca retornou mais de um resultado!"
 
-#: app.bashrc:863
+#: app.bashrc:900
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:872 app.bashrc:882
+#: app.bashrc:909 app.bashrc:919
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:899 network.bashrc:588
+#: app.bashrc:936 network.bashrc:588
 msgid "It works."
 msgstr "Funcionou."
 
-#: app.bashrc:903
+#: app.bashrc:940
 msgid "String not found in URL page."
 msgstr "Texto não encontrado na página da URL."
 
@@ -986,10 +1014,6 @@ msgstr "tempo do cron"
 msgid "command id"
 msgstr "id do comando"
 
-#: cron.bashrc:218
-msgid "command"
-msgstr "comando"
-
 #: cron.bashrc:219 cron.bashrc:246
 msgid "Time values: "
 msgstr "Valores de tempo: "
@@ -1183,10 +1207,6 @@ msgstr "Uso: %s [%s] [%s]"
 #: morph.bashrc:52
 msgid "transformation"
 msgstr "transformação"
-
-#: morph.bashrc:52
-msgid "text"
-msgstr "texto"
 
 #: morph.bashrc:53
 msgid "Available transformations: %s."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 16:15-0300\n"
+"POT-Creation-Date: 2022-11-30 16:41-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1169,246 +1169,258 @@ msgid "String transformation utilities"
 msgstr "Utilitários para transformação de texto"
 
 #: morph.bashrc:13
-msgid "String escape/simplifier"
+msgid "Transform a string"
 msgstr ""
 
 #: morph.bashrc:14
 msgid "Converts integer to words"
 msgstr "Converte inteiro em palavras"
 
-#: morph.bashrc:52 network.bashrc:1053 network.bashrc:1086
+#: morph.bashrc:52 ui.bashrc:59
+msgid "Usage: %s [%s] [%s]"
+msgstr "Uso: %s [%s] [%s]"
+
+#: morph.bashrc:52
+msgid "transformation"
+msgstr "transformação"
+
+#: morph.bashrc:53
+msgid "Available transformations: %s."
+msgstr "Transformações disponíveis: %s."
+
+#: morph.bashrc:56 network.bashrc:1053 network.bashrc:1086
 msgid "Usage: %s [%s]"
 msgstr "Uso: %s [%s]"
 
-#: morph.bashrc:52
+#: morph.bashrc:56
 msgid "number"
 msgstr "número"
 
-#: morph.bashrc:77
+#: morph.bashrc:105
 msgid "zero"
 msgstr "zero"
 
-#: morph.bashrc:78
+#: morph.bashrc:106
 msgid "one"
 msgstr "um"
 
-#: morph.bashrc:79
+#: morph.bashrc:107
 msgid "two"
 msgstr "dois"
 
-#: morph.bashrc:80
+#: morph.bashrc:108
 msgid "three"
 msgstr "três"
 
-#: morph.bashrc:81
+#: morph.bashrc:109
 msgid "four"
 msgstr "quatro"
 
-#: morph.bashrc:82
+#: morph.bashrc:110
 msgid "five"
 msgstr "cinco"
 
-#: morph.bashrc:83
+#: morph.bashrc:111
 msgid "six"
 msgstr "seis"
 
-#: morph.bashrc:84
+#: morph.bashrc:112
 msgid "seven"
 msgstr "sete"
 
-#: morph.bashrc:85
+#: morph.bashrc:113
 msgid "eight"
 msgstr "oito"
 
-#: morph.bashrc:86
+#: morph.bashrc:114
 msgid "nine"
 msgstr "nove"
 
-#: morph.bashrc:91
+#: morph.bashrc:119
 msgid "ten"
 msgstr "dez"
 
-#: morph.bashrc:92
+#: morph.bashrc:120
 msgid "eleven"
 msgstr "onze"
 
-#: morph.bashrc:93
+#: morph.bashrc:121
 msgid "twelve"
 msgstr "doze"
 
-#: morph.bashrc:94
+#: morph.bashrc:122
 msgid "thirteen"
 msgstr "treze"
 
-#: morph.bashrc:95
+#: morph.bashrc:123
 msgid "fourteen"
 msgstr "catorze"
 
-#: morph.bashrc:96
+#: morph.bashrc:124
 msgid "fiveteen"
 msgstr "quinze"
 
-#: morph.bashrc:97
+#: morph.bashrc:125
 msgid "sixteen"
 msgstr "dezesseis"
 
-#: morph.bashrc:98
+#: morph.bashrc:126
 msgid "seventeen"
 msgstr "dezessete"
 
-#: morph.bashrc:99
+#: morph.bashrc:127
 msgid "eighteen"
 msgstr "dezoito"
 
-#: morph.bashrc:100
+#: morph.bashrc:128
 msgid "nineteen"
 msgstr "dezenove"
 
-#: morph.bashrc:110
+#: morph.bashrc:138
 msgid "twenty"
 msgstr "vinte"
 
-#: morph.bashrc:111
+#: morph.bashrc:139
 msgid "thirty"
 msgstr "trinta"
 
-#: morph.bashrc:112
+#: morph.bashrc:140
 msgid "forty"
 msgstr "quarenta"
 
-#: morph.bashrc:113
+#: morph.bashrc:141
 msgid "fifty"
 msgstr "cinquenta"
 
-#: morph.bashrc:114
+#: morph.bashrc:142
 msgid "sixty"
 msgstr "sessenta"
 
-#: morph.bashrc:115
+#: morph.bashrc:143
 msgid "seventy"
 msgstr "setenta"
 
-#: morph.bashrc:116
+#: morph.bashrc:144
 msgid "eighty"
 msgstr "oitenta"
 
-#: morph.bashrc:117
+#: morph.bashrc:145
 msgid "ninety"
 msgstr "noventa"
 
-#: morph.bashrc:122
+#: morph.bashrc:150
 msgid "twenty-%s"
 msgstr "vinte e %s"
 
-#: morph.bashrc:123
+#: morph.bashrc:151
 msgid "thirty-%s"
 msgstr "trinta e %s"
 
-#: morph.bashrc:124
+#: morph.bashrc:152
 msgid "forty-%s"
 msgstr "quarenta e %s"
 
-#: morph.bashrc:125
+#: morph.bashrc:153
 msgid "fifty-%s"
 msgstr "cinquenta e %s"
 
-#: morph.bashrc:126
+#: morph.bashrc:154
 msgid "sixty-%s"
 msgstr "sessenta e %s"
 
-#: morph.bashrc:127
+#: morph.bashrc:155
 msgid "seventy-%s"
 msgstr "setenta e %s"
 
-#: morph.bashrc:128
+#: morph.bashrc:156
 msgid "eighty-%s"
 msgstr "oitenta e %s"
 
-#: morph.bashrc:129
+#: morph.bashrc:157
 msgid "ninety-%s"
 msgstr "noventa e %s"
 
-#: morph.bashrc:140
+#: morph.bashrc:168
 msgid "one hundred"
 msgstr "cem"
 
-#: morph.bashrc:141
+#: morph.bashrc:169
 msgid "two hundred"
 msgstr "duzentos"
 
-#: morph.bashrc:142
+#: morph.bashrc:170
 msgid "three hundred"
 msgstr "trezentos"
 
-#: morph.bashrc:143
+#: morph.bashrc:171
 msgid "four hundred"
 msgstr "quatrocentos"
 
-#: morph.bashrc:144
+#: morph.bashrc:172
 msgid "five hundred"
 msgstr "quinhentos"
 
-#: morph.bashrc:145
+#: morph.bashrc:173
 msgid "six hundred"
 msgstr "seiscentos"
 
-#: morph.bashrc:146
+#: morph.bashrc:174
 msgid "seven hundred"
 msgstr "setecentos"
 
-#: morph.bashrc:147
+#: morph.bashrc:175
 msgid "eight hundred"
 msgstr "oitocentos"
 
-#: morph.bashrc:148
+#: morph.bashrc:176
 msgid "nine hundred"
 msgstr "novecentos"
 
-#: morph.bashrc:154
+#: morph.bashrc:182
 msgid "one hundred and %s"
 msgstr "cento e %s"
 
-#: morph.bashrc:155
+#: morph.bashrc:183
 msgid "two hundred and %s"
 msgstr "duzentos e %s"
 
-#: morph.bashrc:156
+#: morph.bashrc:184
 msgid "three hundred and %s"
 msgstr "trezentos e %s"
 
-#: morph.bashrc:157
+#: morph.bashrc:185
 msgid "four hundred and %s"
 msgstr "quatrocentos e %s"
 
-#: morph.bashrc:158
+#: morph.bashrc:186
 msgid "five hundred and %s"
 msgstr "quinhentos e %s"
 
-#: morph.bashrc:159
+#: morph.bashrc:187
 msgid "six hundred and %s"
 msgstr "seiscentos e %s"
 
-#: morph.bashrc:160
+#: morph.bashrc:188
 msgid "seven hundred and %s"
 msgstr "setecentos e %s"
 
-#: morph.bashrc:161
+#: morph.bashrc:189
 msgid "eight hundred and %s"
 msgstr "oitocentos e %s"
 
-#: morph.bashrc:162
+#: morph.bashrc:190
 msgid "nine hundred and %s"
 msgstr "novecentos e %s"
 
-#: morph.bashrc:167
+#: morph.bashrc:195
 msgid "one thousand"
 msgstr "cem"
 
-#: morph.bashrc:169
+#: morph.bashrc:197
 msgid "many"
 msgstr "muitos"
 
-#: morph.bashrc:172
+#: morph.bashrc:200
 msgid "Argument is not an integer number."
 msgstr "O parâmetro não é um número inteiro."
 
@@ -1843,10 +1855,6 @@ msgstr "Habilitando completar para o módulo ui."
 #: ui.bashrc:48
 msgid "GUI level. 0: none; 1: console only; 2: including GUI (default)"
 msgstr "Nível da interface. 0: sem; 1: só console; 2: inclui GUI (default)"
-
-#: ui.bashrc:59
-msgid "Usage: %s [%s] [%s]"
-msgstr "Uso: %s [%s] [%s]"
 
 #: ui.bashrc:59
 msgid "Command"
