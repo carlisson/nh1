@@ -295,3 +295,4 @@
 1.2d38 2022-11-30: 1app: added recipe for nuclear
 1.2d39 2022-11-30: 1stresc is now 1morph escape
 1.2d40 2022-11-30: first changes to 1app works in one command
+1.2d41 2022-11-30: new 1app update (local|global|system|all)

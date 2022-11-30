@@ -22,9 +22,9 @@ _nh1app.menu() {
   _1menuitem W 1appladd "$(_1text "Install or update an app locally")"
   _1menuitem W 1appgadd "$(_1text "Install or update an app globaly")"
   _1menuitem W 1appxadd "$(_1text "Install or update a package (using OS)")"
-  _1menuitem W 1applupd "$(_1text "Update all local apps")"
-  _1menuitem W 1appgupd "$(_1text "Update all global apps")"
-  _1menuitem W 1appxupd "$(_1text "Upgrade all packages(using OS)")"
+  _1menuitem D 1applupd "$(_1text "Update all local apps")"
+  _1menuitem D 1appgupd "$(_1text "Update all global apps")"
+  _1menuitem D 1appxupd "$(_1text "Upgrade all packages(using OS)")"
   _1menuitem W 1appldel "$(_1text "Remove a local app")"
   _1menuitem W 1appgdel "$(_1text "Remove a global app")"
   _1menuitem W 1applclear "$(_1text "Remove old versions for a local app (or all)")"
@@ -46,7 +46,7 @@ _nh1app.clean() {
   unset -f 1appxupd _nh1app.where _nh1app.complete _nh1app.mkdesktop
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
   unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
-  unset -f _nh1app.list
+  unset -f _nh1app.list _nh1app.sysupdate
 }
 
 # @description Autocompletion for 1app
@@ -685,108 +685,8 @@ _nh1app.list() {
     echo "$(_1text " to uninstall.")"
 }
 
-# @description Usage instructions
-# @arg $1 string Public function name
-_nh1app.usage() {
-  case $1 in
-    app)
-        printf "$(_1text "Usage: %s [%s] [%s] [%s]")\n" "1$1" "$(_1text "command")" "$(_1text "scope")" "$(_1text "option")"
-        printf "  $(_1text "Commands"):\n"
-        printf "  - $(1tint list): $(_1text "list all available commands")\n"
-        printf "  - $(1tint help): $(_1text "show this usage instructions")\n"
-        ;;
-  esac
-}
-
-# Alias-like
-
-# @description Update all local apps
-1applupd()   {
-  	_1before
-    _nh1app.update local
-}
-
-# @description Update all global apps
-1appgupd()   {
-	_1before
-    _nh1app.update global
-}
-
-# @description Uninstall local app
-# @arg $1 string Application name
-1appldel()   {
-   	_1before
-    _nh1app.remove local "$1"
-}
-
-# @description Uninstall global app
-# @arg $1 string Application name
-1appgdel()   {
-   	_1before
-    _nh1app.remove global "$1"
-}
-
-# @description Remove old versions of local apps
-1applclear() {
-	_1before
-    _nh1app.clear local
-}
-
-# @description Remove old versions of global apps
-1appgclear() {
-	_1before
-    _nh1app.clear global
-}
-
-# @description App manager
-# @arg $1 string Command
-# @arg $2 string scope
-# @arg $3 string complementar argument
-1app() {
-	_1before
-    local _COM _SCO
-    _COM="list"
-    if [ $# -gt 0 ]
-    then
-        _COM="$1"
-        shift
-    fi
-    case $_COM in
-        list)
-            _nh1app.list
-            ;;
-        *)
-            _nh1app.usage app
-            ;;
-    esac
-}
-
-# @description Install locally an app
-# @arg $1 string App to install
-# @see _nh1app.add
-1appladd() {
-	_1before
-    local _NAA
-    for _NAA in "$@"
-    do
-        _nh1app.add local "$_NAA"
-    done
-}
-
-# @description Install globally an app
-# @arg $1 string App to install
-# @see _nh1app.add
-1appgadd() {
-	_1before
-    local _NAA
-    for _NAA in "$@"
-    do
-        _nh1app.add global "$_NAA"
-    done
-}
-
 # @description Upgrade all system packages
-1appxupd() {
+_nh1app.sysupdate() {
 	_1before
     local _UPD
         
@@ -828,6 +728,127 @@ _nh1app.usage() {
         printf "$(_1text "Upgrading %s...")\n" flatpak
         _1sudo flatpak update
     fi
+}
+
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1app.usage() {
+  case $1 in
+    app)
+        printf "$(_1text "Usage: %s [%s] [%s] [%s]")\n" "1$1" "$(_1text "command")" "$(_1text "scope")" "$(_1text "option")"
+        printf "  $(_1text "Commands"):\n"
+        printf "  - $(1tint list): $(_1text "list all available commands")\n"
+        printf "  - $(1tint update): $(_1text "Update all installed packages")\n"
+        printf "  - $(1tint help): $(_1text "show this usage instructions")\n"
+        printf "  $(_1text "Scopes"):\n"
+        printf "  - $(1tint local): $(_1text "installed in user space")\n"
+        printf "  - $(1tint global): $(_1text "installed for all users, with binaries in %s")\n" "/usr/local/bin"
+        printf "  - $(1tint system): $(_1text "installed with system package managers (apt, dnf, snap, etc)")\n"
+        printf "  - $(1tint all): $(_1text "all installations: local, global and system")\n"
+        ;;
+  esac
+}
+
+# Alias-like
+
+
+# @description Uninstall local app
+# @arg $1 string Application name
+1appldel()   {
+   	_1before
+    _nh1app.remove local "$1"
+}
+
+# @description Uninstall global app
+# @arg $1 string Application name
+1appgdel()   {
+   	_1before
+    _nh1app.remove global "$1"
+}
+
+# @description Remove old versions of local apps
+1applclear() {
+	_1before
+    _nh1app.clear local
+}
+
+# @description Remove old versions of global apps
+1appgclear() {
+	_1before
+    _nh1app.clear global
+}
+
+# @description App manager
+# @arg $1 string Command
+# @arg $2 string scope
+# @arg $3 string complementar argument
+1app() {
+	_1before
+    local _COM _SCO
+    _COM="list"
+    if [ $# -gt 0 ]
+    then
+        _COM="$1"
+        shift
+    fi
+    if [ $# -gt 0 ]
+    then
+        _SCO="$1"
+        shift
+    fi
+    case $_COM in
+        list)
+            _nh1app.list
+            ;;
+        update)
+            case $_SCO in 
+                global|local)
+                    _nh1app.update "$_SCO"
+                    ;;
+                system)
+                    _nh1app.sysupdate
+                    ;;
+                all)
+                    _1message "$(printf "$(_1text "Updating %s applications.")" "local")"
+                    _nh1app.update "local"
+                    _1message "$(printf "$(_1text "Updating %s applications.")" "global")"
+                    _nh1app.update "global"
+                    _1message "$(printf "$(_1text "Updating %s applications.")" "system")"
+                    _nh1app.sysupdate     
+                    ;;
+                *)
+                    _nh1app.usage app
+                    ;;
+            esac          
+            ;;     
+        *)
+            _nh1app.usage app
+            ;;
+    esac
+}
+
+# @description Install locally an app
+# @arg $1 string App to install
+# @see _nh1app.add
+1appladd() {
+	_1before
+    local _NAA
+    for _NAA in "$@"
+    do
+        _nh1app.add local "$_NAA"
+    done
+}
+
+# @description Install globally an app
+# @arg $1 string App to install
+# @see _nh1app.add
+1appgadd() {
+	_1before
+    local _NAA
+    for _NAA in "$@"
+    do
+        _nh1app.add global "$_NAA"
+    done
 }
 
 # @description Install program using system package manager
@@ -940,4 +961,16 @@ _nh1app.usage() {
         _1text "String not found in URL page."
         echo
     fi
+}
+
+1appxupd() {
+    1app update system
+}
+
+1applupd()   {
+    1app update local
+}
+
+1appgupd()   {
+    1app update global
 }
