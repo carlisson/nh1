@@ -68,6 +68,6 @@ function APP_GET {
 
     # curl -O -L <file-url>. File-url sometimes is similar to APP_VERSION output, bun not the same.
     # APP_VERSION will return just the filename. Now we need the full url.
-    $AGpre curl -O -L $(curl -s '<file-url>'
+    $AGpre curl -O -L $(curl -s '<file-url>')
 }
 

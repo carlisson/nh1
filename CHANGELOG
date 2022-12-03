@@ -300,3 +300,4 @@
 1.2d43 2022-11-30: new 1app del (including initial "system")
 1.2d44 2022-11-30: new 1app clean (local|global|system|all)
 1.2d45 2022-12-03: 1app: added recipe for retroshare
+1.2d46 2022-12-03: 1app: added mirage. Created _nh1app.ghversion

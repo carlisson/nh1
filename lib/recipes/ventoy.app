@@ -52,9 +52,7 @@ function APP_VERSION {
     #      This formula is fine for a lot of apps, but you can need to create a more
     #      soffisticated strategy in some situations.
     
-    echo "ventoy-$(\
-        curl -sL 'https://github.com/ventoy/Ventoy/releases/latest' | tr '\n' ' ' | sed 's/\(.*\)\/releases\/tag\/v\([0-9\.]*\)\"\(.*\)/\2/'
-        )-tarball"
+    echo "ventoy-$(_nh1app.ghversion ventoy Ventoy)-tarball"
 }
 
 # Code to effectly do the download
@@ -72,7 +70,7 @@ function APP_GET {
     AGini=$(mktemp)
     AGpath=$(pwd)
 
-    AGver=$(curl -sL 'https://github.com/ventoy/Ventoy/releases/latest' | tr '\n' ' ' | sed 's/\(.*\)\/releases\/tag\/v\([0-9\.]*\)\"\(.*\)/\2/')
+    AGver="$(_nh1app.ghversion ventoy Ventoy)"
     AGdir="ventoy-$AGver"
     AGname="$AGdir-linux.tar.gz"
     $AGpre curl -O -L "https://github.com/ventoy/Ventoy/releases/download/v$AGver/$AGname"

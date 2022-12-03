@@ -178,6 +178,13 @@ _nh1app.description() {
     fi
 }
 
+# @description Returns latest version for github code
+# @arg $1 string Github project owner
+# @arg $2 string Github project name
+_nh1app.ghversion() {
+    curl -sL "https://github.com/$1/$2/releases/latest" | tr '\n' ' ' | sed 's/\(.*\)\/releases\/tag\/v\([0-9\.]*\)\"\(.*\)/\2/'
+}
+
 # @description Returns newest file version or actual
 # @arg $1 string What to check: new, local or global
 # @arg $2 string Application name
