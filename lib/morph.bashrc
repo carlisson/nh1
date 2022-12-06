@@ -19,12 +19,23 @@ _nh1morph.clean() {
   # unset variables
   unset -f _nh1morph.menu _nh1morph.complete _nh1morph.init
   unset -f _nh1morph.info _nh1morph.customvars _nh1morph.clean
-  unset -f _nh1morph.usage 1morph
+  unset -f _nh1morph.usage 1morph _nh1morph.complete.morph
+}
+
+# @description Completion for 1morph
+# @stdout A list of apps
+_nh1morph.complete.morph() {
+    local _SCO _COM
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=$_1MORPHS
+    fi
 }
 
 # @description Autocompletion instructions
 _nh1morph.complete() {
-    false
+    complete -F _nh1morph.complete.morph 1morph
 }
 
 # @description Set global vars from custom vars (config file)
