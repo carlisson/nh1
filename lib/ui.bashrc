@@ -5,6 +5,7 @@
 # GLOBALS
 _1UIDIALOGS=(yad zenity kdialog Xdialog gxmessage whiptail dialog)
 _1UICONSOLE=(whiptail dialog)
+_1UIWINDOWS=(ask say confirm menu)
 _1UIGUI=2 # Gui level: 0: none; 1: console; 2: all dialogs
 _1UIDIALOGSIZE="12 70"
 _1UITITLE="NH1 $_1VERSION"
@@ -30,12 +31,24 @@ _nh1ui.clean() {
   unset -f _nh1ui.customvars _nh1ui.clean _nh1ui.usage _nh1ui.say
   unset -f _nh1ui.confirm _nh1ui.ask _nh1ui.confirm _nh1ui.ask
   unset -f _nh1ui.choose _nh1ui.simpleask _nh1ui.simpleconfirm
-  unset -f 1ui _nh1ui.select _nh1ui.simpleselect
+  unset -f 1ui _nh1ui.select _nh1ui.simpleselect 
+  unset -f _nh1ui.complete.ui
+}
+
+# @description UI Completion
+# @stdout A list of apps
+_nh1ui.complete.ui() {
+    local _SCO _COM
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=$_1UIWINDOWS
+    fi
 }
 
 # @description Autocompletion instructions
 _nh1ui.complete() {
-    _1verb "$(_1text "Enabling completion for ui module.")"
+    complete -F _nh1ui.complete.ui 1ui
 }
 
 # @description Set global vars from custom vars (config file)
@@ -59,6 +72,7 @@ _nh1ui.usage() {
     printf "$(_1text "Usage: %s [%s] [%s]")\n" "1ui" "$(_1text "Command")" "$(_1text "Message")"
     printf "  - ask:     $(_1text "ask a question and receive user entry")\n"
     printf "  - confirm: $(_1text "ask user for confirmation")\n"
+    printf "  - menu:    $(_1text "show a menu of options")\n"
     printf "  - say:     $(_1text "show a message to user")\n"
     echo
     printf "  $(_1text "1ui will work with %s.")\n" $(_nh1ui.choose)
@@ -317,7 +331,7 @@ _nh1ui.select() {
     _COU=0
     for _AUX in "$@"
     do
-        _AUX=$(1stresc "$_AUX" | tr ':,' '..')
+        _AUX=$(1morph escape "$_AUX" | tr ':,' '..')
         _COU=$((_COU+1))
         _ENU="$_ENU $_COU $_AUX"
         _ENB="$_ENB,$_AUX:$_COU"
@@ -362,23 +376,28 @@ _nh1ui.select() {
 # @arg $1 string Help or type of function
 # @arg $2 string Message to show
 1ui() {
-    case "$1" in
-        say)
-            _nh1ui.say "$2"
-            ;;
-        ask)
-            _nh1ui.ask "$2"
-            ;;
-        confirm)
-            _nh1ui.confirm "$2"
-            return $?
-            ;;
-        menu)
-            shift
-            _nh1ui.select "$@"
-            ;;
-        *)
-            _nh1ui.usage
-            ;;
-    esac
+    if [ $# -gt 1 ]
+    then
+        case "$1" in
+            say)
+                _nh1ui.say "$2"
+                ;;
+            ask)
+                _nh1ui.ask "$2"
+                ;;
+            confirm)
+                _nh1ui.confirm "$2"
+                return $?
+                ;;
+            menu)
+                shift
+                _nh1ui.select "$@"
+                ;;
+            *)
+                _nh1ui.usage
+                ;;
+        esac
+    else
+        _nh1ui.usage
+    fi
 }
