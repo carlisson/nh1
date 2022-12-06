@@ -20,6 +20,7 @@ NH1 is a toolkit with various commands:
  * **1cron**: simple pseudocron task scheduler
  * **1pass** and **1diceware**: random password generators set to 70+ entropy bits.
  * **1translate**: help translation task, extracting texto to a .po and generating .mo
+ * **1ui**: simples UI made to use whiptail, zenity and others (or none, if nothing was found!)
 
 100+ commands 1-something. To get full list:
 
@@ -30,7 +31,7 @@ $ 1help
 ## Install
 
 ```
-$ git clone https://carlisson/nh1
+$ git clone https://codeberg.org/cordeis/nh1
 ```
 
 Or you can download and extract the latest release.

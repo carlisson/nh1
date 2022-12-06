@@ -20,29 +20,26 @@ Generates partial menu
 * [_nh1app.openapp](#_nh1appopenapp)
 * [_nh1app.closeapp](#_nh1appcloseapp)
 * [_nh1app.description](#_nh1appdescription)
+* [_nh1app.ghversion](#_nh1appghversion)
 * [_nh1app.checkversion](#_nh1appcheckversion)
 * [_nh1app.mkdesktop](#_nh1appmkdesktop)
 * [_nh1app.clearold](#_nh1appclearold)
 * [_nh1app.gitget](#_nh1appgitget)
 * [_nh1app.single](#_nh1appsingle)
 * [_nh1app.add](#_nh1appadd)
-* [_nh1app.list](#_nh1applist)
+* [_nh1app.clist](#_nh1appclist)
+* [_nh1app.nlist](#_nh1appnlist)
 * [_nh1app.update](#_nh1appupdate)
 * [_nh1app.where](#_nh1appwhere)
 * [_nh1app.remove](#_nh1appremove)
 * [_nh1app.clear](#_nh1appclear)
-* [1applupd](#1applupd)
-* [1appgupd](#1appgupd)
-* [1appldel](#1appldel)
-* [1appgdel](#1appgdel)
-* [1applclear](#1applclear)
-* [1appgclear](#1appgclear)
+* [_nh1app.list](#_nh1applist)
+* [_nh1app.sysadd](#_nh1appsysadd)
+* [_nh1app.sysupdate](#_nh1appsysupdate)
+* [_nh1app.sysdel](#_nh1appsysdel)
+* [_nh1app.sysclear](#_nh1appsysclear)
+* [_nh1app.usage](#_nh1appusage)
 * [1app](#1app)
-* [1appladd](#1appladd)
-* [1appgadd](#1appgadd)
-* [1appxupd](#1appxupd)
-* [1appxadd](#1appxadd)
-* [1appxclear](#1appxclear)
 * [1appre](#1appre)
 
 ### _nh1app.menu
@@ -144,6 +141,15 @@ Returns description for an available app
 
 * Application description
 
+### _nh1app.ghversion
+
+Returns latest version for github code
+
+#### Arguments
+
+* **$1** (string): Github project owner
+* **$2** (string): Github project name
+
 ### _nh1app.checkversion
 
 Returns newest file version or actual
@@ -208,9 +214,22 @@ Internal 1app generic installer
 * **$1** (string): local or global
 * **$2** (string): App to install
 
-### _nh1app.list
+### _nh1app.clist
 
 Based on avail, list apps with filters
+
+#### Arguments
+
+* **$1** (string): local or global
+* **$2** (int): installed (1) or not-installed (0)
+
+#### Output on stdout
+
+* A list of apps
+
+### _nh1app.nlist
+
+New completion for 1app
 
 #### Arguments
 
@@ -263,71 +282,11 @@ Clear unused old versions for every app
 
 * **$1** (string): local or global
 
-### 1applupd
-
-Update all local apps
-
-### 1appgupd
-
-Update all global apps
-
-### 1appldel
-
-Uninstall local app
-
-#### Arguments
-
-* **$1** (string): Application name
-
-### 1appgdel
-
-Uninstall global app
-
-#### Arguments
-
-* **$1** (string): Application name
-
-### 1applclear
-
-Remove old versions of local apps
-
-### 1appgclear
-
-Remove old versions of global apps
-
-### 1app
+### _nh1app.list
 
 List all available app image for installation
 
-### 1appladd
-
-Install locally an app
-
-#### Arguments
-
-* **$1** (string): App to install
-
-#### See also
-
-* [_nh1app.add](#_nh1appadd)
-
-### 1appgadd
-
-Install globally an app
-
-#### Arguments
-
-* **$1** (string): App to install
-
-#### See also
-
-* [_nh1app.add](#_nh1appadd)
-
-### 1appxupd
-
-Upgrade all system packages
-
-### 1appxadd
+### _nh1app.sysadd
 
 Install program using system package manager
 
@@ -339,9 +298,39 @@ Install program using system package manager
 
 * 0
 
-### 1appxclear
+### _nh1app.sysupdate
+
+Upgrade all system packages
+
+### _nh1app.sysdel
+
+Uninstall a system application
+
+#### Arguments
+
+* **$1** (string): Application to uninstall
+
+### _nh1app.sysclear
 
 Remove old versions of system apps, in debian, snap, flatpak...
+
+### _nh1app.usage
+
+Usage instructions
+
+#### Arguments
+
+* **$1** (string): Public function name
+
+### 1app
+
+App manager
+
+#### Arguments
+
+* **$1** (string): Command
+* **$2** (string): scope
+* **$3** (string): complementar argument
 
 ### 1appre
 

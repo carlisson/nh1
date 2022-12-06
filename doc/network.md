@@ -47,6 +47,12 @@ Generate partial menu (for Network functions)
 * [_nh1network.xt-backup](#_nh1networkxt-backup)
 * [1xt-backup](#1xt-backup)
 * [1interfaces](#1interfaces)
+* [_1network.download](#_1networkdownload)
+* [1get](#1get)
+* [1getadd](#1getadd)
+* [1getclear](#1getclear)
+* [1getlist](#1getlist)
+* [1getdel](#1getdel)
 
 ### _nh1network.menu
 
@@ -405,4 +411,49 @@ Backup from one or more switchs extreme
 ### 1interfaces
 
 List network interfaces, excluding loopback
+
+### _1network.download
+
+Do download of given URL
+
+#### Arguments
+
+* **$1** (string): URL to download
+
+#### Exit codes
+
+* **0**: Download ok
+* **1**: Error
+
+### 1get
+
+Start a download and/or the download list
+
+#### Arguments
+
+* **$1** (string): URL to download (optional)
+
+### 1getadd
+
+Add a URL to download list
+
+#### Arguments
+
+* **$1** (string): URL to download
+
+### 1getclear
+
+Reset download queue
+
+### 1getlist
+
+List download queue
+
+### 1getdel
+
+Delete an item from download queue
+
+#### Arguments
+
+* **$1** (string): URL to remove from download list
 
