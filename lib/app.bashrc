@@ -39,7 +39,7 @@ _nh1app.clean() {
   unset _1APPLAPPS _1APPGAPPS _1APPLICON _1APPGICON _1APPRETAINS
   unset -f _nh1app.menu _nh1app.clean _nh1app.setup 1app
   unset -f _nh1app.single _nh1app.add 1appladd 1appgadd 
-  unset -f _nh1app.checkversion _nh1app.list _nh1app.remove 
+  unset -f _nh1app.checkversion _nh1app.clist _nh1app.remove 
   unset -f _nh1app.checksetup _nh1app.description _nh1app.clear
   unset -f _nh1app.openapp _nh1app.closeapp _nh1app.avail
   unset -f 1applupd 1appgupd 1appldel 1appgdel 1applclear 1appgclear
@@ -47,16 +47,17 @@ _nh1app.clean() {
   unset -f _nh1app.clearold _nh1app.customvars _nh1app.info _nh1app.init
   unset -f _nh1app.update 1appxadd 1appxclear _nh1app.gitget 1appre
   unset -f _nh1app.list _nh1app.sysupdate _nh1app.sysadd _nh1app.sysdel
-  unset -f _nh1app.sysclear
+  unset -f _nh1app.sysclear _nh1app.nlist
 }
 
 # @description Autocompletion for 1app
 _nh1app.complete() {
     _1verb "Enabling complete for 1app."
-    complete -W "$(_nh1app.list local 0)" 1appladd
-    complete -W "$(_nh1app.list global 0)" 1appgadd
-    complete -W "$(_nh1app.list local 1)" 1appldel
-    complete -W "$(_nh1app.list global 1)" 1appgdel
+    complete -F _nh1app.nlist 1app
+    complete -W "$(_nh1app.clist local 0)" 1appladd
+    complete -W "$(_nh1app.clist global 0)" 1appgadd
+    complete -W "$(_nh1app.clist local 1)" 1appldel
+    complete -W "$(_nh1app.clist global 1)" 1appgdel
 }
 
 # @description List all available apps
@@ -530,7 +531,7 @@ _nh1app.add() {
 # @arg $1 string local or global
 # @arg $2 int installed (1) or not-installed (0)
 # @stdout A list of apps
-_nh1app.list() {
+_nh1app.clist() {
     local _A _OUT _CHK
     for _A in $(_nh1app.avail)
     do
@@ -544,6 +545,40 @@ _nh1app.list() {
         fi
     done
     echo $_OUT
+}
+
+# @description New completion for 1app
+# @arg $1 string local or global
+# @arg $2 int installed (1) or not-installed (0)
+# @stdout A list of apps
+_nh1app.nlist() {
+    local _SCO _COM
+  	COMREPLY=()
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+		COMPREPLY=(list add del update clean help)
+	elif [ "$COMP_CWORD" -eq 2 ]
+	then
+		COMPREPLY=(local global system)
+    elif [ "$COMP_CWORD" -gt 2 ]
+    then
+		_COM=("${COMP_WORDS[1]}")
+		_SCO=("${COMP_WORDS[2]}")
+        case "$_COM" in
+            add)
+                if [ "$_SCO" != "system" ]
+                then
+                    COMPREPLY=($(_nh1app.clist "$_SCO" 0))
+                fi
+                ;;
+            del)
+                if [ "$_SCO" != "system" ]
+                then
+                    COMPREPLY=($(_nh1app.clist "$_SCO" 1))
+                fi
+                ;;
+        esac
+    fi
 }
 
 # @description Update all installed apps
@@ -681,15 +716,7 @@ _nh1app.list() {
         fi
         echo
     done
-    echo "___ $(_1text Usage) ___"
-    1tint 2 1appladd
-    echo -n "$(_1text " to install locally and ")"
-    1tint 1 1appldel
-    echo "$(_1text " to uninstall.")"
-    1tint 2 1appgadd
-    echo -n "$(_1text " to install globally and ")"
-    1tint 1 1appgdel
-    echo "$(_1text " to uninstall.")"
+    _1message "$(printf "$(_1text "Use %s to usage instructions.")" "$(1tint "1app help")")"
 }
 
 # @description Install program using system package manager
