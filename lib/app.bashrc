@@ -808,19 +808,58 @@ _nh1app.sysupdate() {
 # @description Uninstall a system application
 # @arg $1 string Application to uninstall
 _nh1app.sysdel() {
-    local _PM
+    local _PM _AUX
     
-    for _PM in dnf apt snap flatpak
-    do
-        if _nh1app.where $_PM > /dev/null
+    if _nh1app.where dnf > /dev/null
+    then
+        rpm -q $1
+        if [ $? -eq 0 ]
         then
-            _1sudo $_PM remove $*
+            _1sudo dnf remove $1
+            return 0
+        fi
+    fi    
+
+    if _nh1app.where apt > /dev/null
+    then
+        dpkg -s $1
+        if [ $? -eq 0 ]
+        then
+            _1sudo apt remove $1
+            return 0
+        fi
+    fi
+
+    if _nh1app.where snap > /dev/null
+    then
+        _AUX= $(snap info $1 2>/dev/null | grep installed | wc -l)
+        if [ $_AUX -eq 1 ]
+        then
+            _1sudo snap remove $1
             if [ $? -eq 0 ]
             then
                 return 0
             fi
         fi
-    done
+    fi
+
+    if _nh1app.where flatpak > /dev/null
+    then
+        _AUX=$(flatpak search $1 | tail -n 1 | tr '\t' '_' | cut -d_ -f 3 |)
+        if [ "$_AUX" != "" ]
+        then
+            flatpak info $_AUX &>/dev/null
+            if [ $? -eq  0 ]
+            then
+                _1sudo flatpak remove $1
+                if [ $? -eq 0 ]
+                then
+                    return 0
+                fi
+            fi
+
+        fi
+    fi
 
     _1message "$(_1text "App not found.")"
 }
