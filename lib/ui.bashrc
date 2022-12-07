@@ -42,7 +42,7 @@ _nh1ui.complete.ui() {
   	COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
-		COMPREPLY=$_1UIWINDOWS
+		COMPREPLY=("${_1UIWINDOWS[@]}")
     fi
 }
 

@@ -872,7 +872,7 @@ _nh1app.sysdel() {
 
     if _nh1app.where flatpak > /dev/null
     then
-        _AUX=$(flatpak search $1 | tail -n 1 | tr '\t' '_' | cut -d_ -f 3 |)
+        _AUX=$(flatpak search $1 | tail -n 1 | tr '\t' '_' | cut -d_ -f 3)
         if [ "$_AUX" != "" ]
         then
             flatpak info $_AUX &>/dev/null
