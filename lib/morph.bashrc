@@ -29,7 +29,7 @@ _nh1morph.complete.morph() {
   	COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
-		COMPREPLY=$_1MORPHS
+		COMPREPLY=("${_1MORPHS[@]}")
     fi
 }
 
