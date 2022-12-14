@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.3b1
+_1VERSION=1.3b2
 
 _1MODULES=(app audio backup canva cron misc morph network rpg ui)
 
@@ -40,6 +40,7 @@ _1DBDIR="$_1UDATA/database"
 # Spool of messages, when it can't be show imediatly
 _1MSGSPOOL="$_1UDATA/.messages"
 _1VRBSPOOL="$_1TMPDIR/nh1_messages.$_1PID"
+_1MSGNOTIFY=1
 
 _1COLOR=6
 _1PCOLOR=5 # Pending
@@ -102,7 +103,7 @@ _1compl() {
 # @description Load custom var from config
 # @arg $1 string Custom var name
 # @arg $2 string Internal var name
-# @arg $3 string Type. string or number. Default: string.
+# @arg $3 string Type. string, number or boolean. Default: string.
 _1customvar() {
 	local CVVAL
 	CVVAL=$(_1db.get "$_1UDATA" "conf" "nh1" "$1")
@@ -113,6 +114,19 @@ _1customvar() {
 			if [ "$3" = "number" ]
 			then
 				eval "$2=\$(($CVVAL*1))"
+				return 0
+			elif [ "$3" = "boolean" ]
+			then
+				# Caution! Boolean is 1 if true and 0 if false
+				# It's usual in programming, but reverse in shellscript
+				case "$CVVAL" in
+					true|0|True)
+						eval "$2=1"
+						;;
+					*)
+						eval "$2=0"
+						;;
+				esac
 				return 0
 			fi
 		fi
@@ -252,7 +266,7 @@ _1db.set() {
 # @exitcode 1 File not found
 # @exitcode 2 Wrong usage
 _1db.show() {
-	local DBPATH DBEXT DBNAME AUXVAR AUXVAL LINE OLDMC MODE
+	local DBPATH DBEXT DBNAME AUXVAR AUXVAL LINE OLDMC MODE MENUTYPE
 	DBPATH="$1"
 	DBEXT="$2"
 	DBNAME="$3"
@@ -277,11 +291,17 @@ _1db.show() {
 	fi
     for LINE in $(sort "$DBPATH/$DBNAME.$DBEXT")
 	do
+		if $(echo "$LINE" | grep "^#" &> /dev/null)
+		then
+			MENUTYPE="P"
+		else
+			MENUTYPE="W"
+		fi
 		AUXVAR=$(echo "$LINE" | sed 's/\([a-zA-Z0-9\-_\+]*\)=\(.*\)/\1/')
 		if [ "$MODE" = "show" ]
 		then
 			AUXVAL=$(echo "$LINE" | sed 's/\([a-zA-Z0-9\-_\+]*\)=\(.*\)/\2/')
-			_1menuitem W $AUXVAR "$AUXVAL"
+			_1menuitem $MENUTYPE $AUXVAR "$AUXVAL"
 		else
 			echo -n "$AUXVAR "
 		fi
@@ -405,6 +425,13 @@ _1message() {
 				;;
 			bg)
 				echo "$*" >> "$_1MSGSPOOL"
+				if [ $_1MSGNOTIFY -gt 0 ]
+				then
+					if 1check "notify-send"
+					then
+						notify-send "$*"
+					fi
+				fi
 				return 0
 				;;
 		esac
@@ -1136,9 +1163,10 @@ _nh1.customvars() {
 	then
 		if [ "$_1LIBMODE" -eq "0" ]
 		then
-			_1customvar NORG_VERBOSE _1VERBOSE number
+			_1customvar NORG_VERBOSE _1VERBOSE boolean
 		fi
 		_1customvar NORG_DB_DIR _1DBDIR
+		_1customvar NORG_MSG_NOTIFY _1MSGNOTIFY boolean
 	fi
 
 	_nh1.modrun "_nh1-=-.customvars"
@@ -1154,7 +1182,8 @@ _nh1.info.customizable() {
 	_1MENUCOL=25
 
 	_1menuitem W NORG_DB_DIR "$(_1text "Path to internal key-value databases")"
-	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode (1 or 0). Default: 0")"
+	_1menuitem W NORG_MSG_NOTIFY "$(_1text "Show notification on desktop. Default: false")" notify-send
+	_1menuitem W NORG_VERBOSE "$(_1text "Set verbose mode. Default: false")"
 	
 	_nh1.modrun "_nh1-=-.info"
 
