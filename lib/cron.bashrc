@@ -5,7 +5,7 @@
 # GLOBALS
 _1CRONDIR="$_1UDATA/cron"
 _1CRONTIMES=(hour day week month year always start)
-_1CRONENABLED=0 #true
+_1CRONENABLED=1 #true
 
 # Private functions
 
@@ -25,7 +25,7 @@ _nh1cron.menu() {
 # @description Destroys all global variables created by this file
 _nh1cron.clean() {
   # unset variables
-  unset _1CRONDIR _1CRONTIMES _1CRPONENABLED
+  unset _1CRONDIR _1CRONTIMES _1CRONENABLED
   unset -f _nh1cron.menu _nh1cron.complete _nh1cron.init
   unset -f _nh1cron.info _nh1cron.customvars _nh1cron.clean
   unset -f _nh1cron.listtimes 1cronset 1crondel 1cronlist
@@ -41,14 +41,14 @@ _nh1cron.complete() {
 
 # @description Set global vars from custom vars (config file)
 _nh1cron.customvars() {
-  _1customvar NORG_CRON _1CRONENABLED number
+  _1customvar NORG_CRON _1CRONENABLED boolean
   _1customvar NORG_CRON_DIR _1CRONDIR
 }
 
 # @description General information about variables and customizing
 _nh1cron.info() {
     _1menuitem W NORG_CRON_DIR "$(_1text "Path for cron rules")"
-    _1menuitem W NORG_CRON "$(_1text "Turn on (0) or off (1) cron checkings")"
+    _1menuitem W NORG_CRON "$(_1text "Turn on (true) or off (false) cron checkings")"
 }
 
 # @description Creates paths and copy initial files
@@ -179,7 +179,7 @@ _nh1cron.crongroup() {
 # @description Commands for time "start"
 _nh1cron.startup() {
     local _CMD
-    if [ "$_1CRONENABLED" = 0 ]
+    if [ "$_1CRONENABLED" -gt 0 ]
     then
         for _CMD in $(_1db.show "$_1CRONDIR" "cron" "start" list)
         do
@@ -329,7 +329,7 @@ _nh1cron.startup() {
         _MOD="normal"
     fi
 
-    if [ "$_MOD" = "normal" -a $_1CRONENABLED -eq 1 ]
+    if [ "$_MOD" = "normal" -a $_1CRONENABLED -eq 0 ]
     then
         return 0
     fi
