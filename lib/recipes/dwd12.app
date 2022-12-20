@@ -71,7 +71,7 @@ function APP_GET {
         cd dwd12-git
         $AGpre git pull
     else
-        $AGpre git clone --recursive https://github.com/carlisson/dwd12
+        $AGpre git clone --recursive https://codeberg.org/cordeis/dwd12
         $AGpre mv dwd12 dwd12-git
     fi
 
