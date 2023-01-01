@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(escape)
+_1MORPHS=(escape leet lower upper)
 # Private functions
 
 # @description Generates partial menu
@@ -61,7 +61,7 @@ _nh1morph.usage() {
   case $1 in
     morph)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "transformation")" "$(_1text "text")"
-        printf "  - $(_1text "Available transformations: %s.")\n" ${_1MORPHS[@]}
+        printf "  - $(_1text "Available transformations: %s.")\n" "$(echo -n ${_1MORPHS[@]})"
         ;;
     words)
         printf "$(_1text "Usage: %s [%s]")\n" "1$1" "$(_1text "number")"
@@ -92,6 +92,15 @@ _nh1morph.usage() {
         case "$_MORPH" in
             escape)
                 echo $* | tr "\\\ \t?!\${}" "/__..S++"
+                ;;
+            leet)
+                echo $* | tr "aAbBeEgGiIlLoOsSzZ" "44883366!!77005522"
+                ;;
+            lower)
+                echo $* | tr '[:upper:]' '[:lower:]'
+                ;;
+            upper)
+                echo $* | tr '[:lower:]' '[:upper:]'
                 ;;
         esac
     else
