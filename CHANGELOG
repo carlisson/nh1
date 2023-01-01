@@ -310,3 +310,4 @@
 1.3b1  2022-12-12: 1app: added recipe for Marktext
 1.3b2  2022-12-14: _1message bg uses notify-send. boolean type for customvar
 1.3b3  2022-12-20: updated recipe for dwd12 (github > codeberg)
+1.3b4  2023-01-01: 1morph: added leet, lower and upper
