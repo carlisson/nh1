@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(escape leet lower upper)
+_1MORPHS=(escape leet lower migu unaccent upper)
 # Private functions
 
 # @description Generates partial menu
@@ -98,6 +98,16 @@ _nh1morph.usage() {
                 ;;
             lower)
                 echo $* | tr '[:upper:]' '[:lower:]'
+                ;;
+            migu)
+                echo $* | tr 'sc' 'xx' | sed 's/qu/k/g' | sed 's/ês/eix/g;s/ões/oinx/g' | \
+                    sed 's/\([aeo]\)u\([ \.?!]\)/\1w\2/g' | \
+                    sed 's/[áÁ]/ah/g;s/[éÉêÊ]/eh/g;s/[íÍ]/ih/g;s/[óÓôÔ]/oh/g;s/[úÚ]/uh/g' | \
+                    sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | \
+                    sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g'
+                ;;
+            unaccent)
+                echo $* | iconv -f utf8 -t ascii//TRANSLIT
                 ;;
             upper)
                 echo $* | tr '[:lower:]' '[:upper:]'
