@@ -14,6 +14,7 @@ _nh1misc.menu() {
   _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl
   _1menuitem W 1diceware "$(_1text "Generate a random diceware password")"
   _1menuitem W 1du "$(_1text "Disk usage")" du
+  _1menuitem W 1dw "$(_1text "Short diceware/dwd12 password")"
   _1menuitem W 1escape "$(_1text "Rename a file or dir, excluding special chars")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
   _1menuitem W 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
@@ -116,6 +117,24 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 }
 
 # dwd12 entropy: 4words + 2special (40 options)=68bits, +secret=?bits
+
+# @description DWD12 or Diceware short mode
+1dw() {
+  local _W1 _W2 _SP _A1 _A2
+  if 1check -s dwd12
+  then
+    _W1=$(dwd12 -w 1)
+    _W2=$(dwd12 -w 1)
+  else
+    _W1=$(1diceware | cut -d\  -f 1)
+    _W2=$(1diceware | cut -d\  -f 1)
+  fi
+  _SP=$(1spchar)
+  _A1=$(1roll "1d${#_1MORPHS[@]}" | cut -d\  -f 1)
+  _A2=$(1roll "1d${#_1MORPHS[@]}" | cut -d\  -f 1)
+  echo "$(1morph ${_1MORPHS[_A1]} $_W1)$_SP$(1morph ${_1MORPHS[_A2]} $_W2)"
+  _1verb "$(printf "$(_1text "Words %s %s; special %s; morphs: %s %s.")" $_W1 $_W2 $_SP ${_1MORPHS[_A1]} ${_1MORPHS[_A2]})"
+}
 
 # @description Random color generator
 1color() {
