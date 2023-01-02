@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-14 09:07-0300\n"
+"POT-Creation-Date: 2022-12-14 09:08-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1008,8 +1008,8 @@ msgid "Path for cron rules"
 msgstr "Caminho para as regras do cron"
 
 #: cron.bashrc:51
-msgid "Turn on (0) or off (1) cron checkings"
-msgstr "Liga (0) ou desliga (1) as checagens do cron"
+msgid "Turn on (true) or off (false) cron checkings"
+msgstr "Liga (true) ou desliga (false) as checagens do cron"
 
 #: cron.bashrc:116
 msgid "Command %s finished at %s."

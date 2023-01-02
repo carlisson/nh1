@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(escape leet lower migu unaccent upper)
+_1MORPHS=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
 # Private functions
 
 # @description Generates partial menu
@@ -80,7 +80,7 @@ _nh1morph.usage() {
 # @arg $1 string Desired transformation. List to see all availables.
 # @arg $2 string String to transform
 1morph() {
-    local _MORPH
+    local _MORPH _AUX1 _AUX2
     _MORPH="escape"
     if [ $# -gt 1 ]
     then
@@ -99,12 +99,67 @@ _nh1morph.usage() {
             lower)
                 echo $* | tr '[:upper:]' '[:lower:]'
                 ;;
-            migu)
+            migu) # Miguxês
                 echo $* | tr 'sc' 'xx' | sed 's/qu/k/g' | sed 's/ês/eix/g;s/ões/oinx/g' | \
                     sed 's/\([aeo]\)u\([ \.?!]\)/\1w\2/g' | \
                     sed 's/[áÁ]/ah/g;s/[éÉêÊ]/eh/g;s/[íÍ]/ih/g;s/[óÓôÔ]/oh/g;s/[úÚ]/uh/g' | \
                     sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | \
                     sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g'
+                ;;
+            randdel) # Random deletion
+                _AUX1=$(echo $*)
+                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                echo ${_AUX1:0:_AUX2-1}${_AUX1:_AUX2}
+                ;;
+            randdup) # Random duplicate
+                _AUX1=$(echo $*)
+                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                echo ${_AUX1:0:_AUX2}${_AUX1:_AUX2-1}
+                ;;
+            randsn) # Random substitute to number
+                _AUX1=$(echo $*)
+                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                echo ${_AUX1:0:_AUX2-1}$(($(1d10)-1))${_AUX1:_AUX2}
+                ;;
+            randspl) # Random split
+                _AUX1=$(echo $*)
+                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                echo ${_AUX1:_AUX2}${_AUX1:0:_AUX2}
+                ;;
+            randssc) # Random substitute to special char
+                _AUX1=$(echo $*)
+                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                echo ${_AUX1:0:_AUX2-1}$(1spchar)${_AUX1:_AUX2}
+                ;;
+            randuc) # Random upper case
+                _AUX1=$(echo $*)
+                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                echo ${_AUX1:0:_AUX2-1}$(echo ${_AUX1:_AUX2-1:1} | tr '[:lower:]' '[:upper:]')${_AUX1:_AUX2}
+                ;;
+            reverse)
+                echo $* | rev
+                ;;
+            rotvow) # Rotate vowels
+                case $(1d6) in
+                    1)
+                        echo $* | tr 'aeiou' 'euioa'
+                        ;;
+                    2)
+                        echo $* | tr 'aeiou' 'eaoui'
+                        ;;
+                    3)
+                        echo $* | tr 'aeiou' 'aeoui'
+                        ;;
+                    4) 
+                        echo $* | tr 'aeiou' 'eioau'
+                        ;;
+                    5)
+                        echo $* | tr 'aeiou' 'eauio'
+                        ;;
+                    6)
+                        echo $* | tr 'aeiou' 'oaiue'
+                        ;;
+                esac
                 ;;
             unaccent)
                 echo $* | iconv -f utf8 -t ascii//TRANSLIT
