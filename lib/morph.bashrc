@@ -108,32 +108,32 @@ _nh1morph.usage() {
                 ;;
             randdel) # Random deletion
                 _AUX1=$(echo $*)
-                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                _AUX2=$(1dice "${#_AUX1}")
                 echo ${_AUX1:0:_AUX2-1}${_AUX1:_AUX2}
                 ;;
             randdup) # Random duplicate
                 _AUX1=$(echo $*)
-                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                _AUX2=$(1dice "${#_AUX1}")
                 echo ${_AUX1:0:_AUX2}${_AUX1:_AUX2-1}
                 ;;
             randsn) # Random substitute to number
                 _AUX1=$(echo $*)
-                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                _AUX2=$(1dice "${#_AUX1}")
                 echo ${_AUX1:0:_AUX2-1}$(($(1d10)-1))${_AUX1:_AUX2}
                 ;;
             randspl) # Random split
                 _AUX1=$(echo $*)
-                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                _AUX2=$(1dice "${#_AUX1}")
                 echo ${_AUX1:_AUX2}${_AUX1:0:_AUX2}
                 ;;
             randssc) # Random substitute to special char
                 _AUX1=$(echo $*)
-                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                _AUX2=$(1dice "${#_AUX1}")
                 echo ${_AUX1:0:_AUX2-1}$(1spchar)${_AUX1:_AUX2}
                 ;;
             randuc) # Random upper case
                 _AUX1=$(echo $*)
-                _AUX2=$(1roll "1d${#_AUX1}" | cut -d\  -f1)
+                _AUX2=$(1dice "${#_AUX1}")
                 echo ${_AUX1:0:_AUX2-1}$(echo ${_AUX1:_AUX2-1:1} | tr '[:lower:]' '[:upper:]')${_AUX1:_AUX2}
                 ;;
             reverse)
