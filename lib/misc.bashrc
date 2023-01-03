@@ -130,8 +130,8 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     _W2=$(1diceware | cut -d\  -f 1)
   fi
   _SP=$(1spchar)
-  _A1=$(1roll "1d${#_1MORPHS[@]}" | cut -d\  -f 1)
-  _A2=$(1roll "1d${#_1MORPHS[@]}" | cut -d\  -f 1)
+  _A1=$(1dice "${#_1MORPHS[@]}")
+  _A2=$(1dice "${#_1MORPHS[@]}")
   echo "$(1morph ${_1MORPHS[_A1]} $_W1)$_SP$(1morph ${_1MORPHS[_A2]} $_W2)"
   _1verb "$(printf "$(_1text "Words %s %s; special %s; morphs: %s %s.")" $_W1 $_W2 $_SP ${_1MORPHS[_A1]} ${_1MORPHS[_A2]})"
 }
