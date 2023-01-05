@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(escape greek leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
+_1MORPHS=(cyrillic escape greek leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -93,6 +93,9 @@ _nh1morph.usage() {
     if [ $# -gt 0 ]
     then
         case "$_MORPH" in
+            cyrillic)
+                echo $* | 1tr "BbCcDdEeFfGgIiJjLlNnPpRrSsTtUuVvYyZz" "БбЦцДдЭэФфГгИиЖжЛлНнПпРрCcТтУуВвЫыЗз"
+                ;;
             escape)
                 echo $* | tr "\\\ \t?!\${}" "/__..S++"
                 ;;
