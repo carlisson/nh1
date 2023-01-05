@@ -130,8 +130,6 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   echo $_PASS
 }
 
-# dwd12 entropy: 4words + 2special (40 options)=68bits, +secret=?bits
-
 # @description DWD12 or Diceware short mode
 1dw() {
   local _W1 _W2 _SP _A1 _A2
