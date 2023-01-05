@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
+_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl super unaccent upper xthicc)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -83,101 +83,105 @@ _nh1morph.usage() {
 # @arg $1 string Desired transformation. List to see all availables.
 # @arg $2 string String to transform
 1morph() {
-    local _MORPH _AUX1 _AUX2
+    local _MORPH _AUX1 _AUX2 _TEXT
     _MORPH="escape"
     if [ $# -gt 1 ]
     then
         _MORPH="$1"
         shift
     fi
+    _TEXT=$(echo $*)
     if [ $# -gt 0 ]
     then
         case "$_MORPH" in
+            cursive)
+                echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz' '𝓐𝓪𝓑𝓫𝓒𝓬𝓓𝓭𝓔𝓮𝓕𝓯𝓖𝓰𝓗𝓱𝓘𝓲𝓙𝓳𝓚𝓴𝓛𝓵𝓜𝓶𝓝𝓷𝓞𝓸𝓟𝓹𝓠𝓺𝓡𝓻𝓢𝓼𝓣𝓽𝓤𝓾𝓥𝓿𝓦𝔀𝓧𝔁𝓨𝔂𝓩𝔃'
+                ;;
             cyrillic)
-                echo $* | 1tr "BbCcDdEeFfGgIiJjLlNnPpRrSsTtUuVvYyZz" "БбЦцДдЭэФфГгИиЖжЛлНнПпРрCcТтУуВвЫыЗз"
+                echo $_TEXT | 1tr "BbCcDdEeFfGgIiJjLlNnPpRrSsTtUuVvYyZz" "БбЦцДдЭэФфГгИиЖжЛлНнПпРрCcТтУуВвЫыЗз"
                 ;;
             escape)
-                echo $* | tr "\\\ \t?!\${}" "/__..S++"
+                echo $_TEXT | tr "\\\ \t?!\${}" "/__..S++"
                 ;;
             greek)
-                echo $* | 1tr "abCcDdeFfGgiLlmnOoPpRrTtUuz" "αβΞξΔδεΦφΓγιΛλμνΩωΠπΡρΘθΥυζ"
+                echo $_TEXT | 1tr "abCcDdeFfGgiLlmnOoPpRrTtUuz" "αβΞξΔδεΦφΓγιΛλμνΩωΠπΡρΘθΥυζ"
                 ;;
             leet)
-                echo $* | tr "aAbBeEgGiIlLoOsSzZ" "44883366!!77005522"
+                echo $_TEXT | tr "aAbBeEgGiIlLoOsSzZ" "44883366!!77005522"
                 ;;
             lower)
-                echo $* | tr '[:upper:]' '[:lower:]'
+                echo $_TEXT | tr '[:upper:]' '[:lower:]'
                 ;;
             migu) # Miguxês
-                echo $* | tr 'sc' 'xx' | sed 's/qu/k/g' | sed 's/ês/eix/g;s/ões/oinx/g' | \
+                echo $_TEXT | tr 'sc' 'xx' | sed 's/qu/k/g' | sed 's/ês/eix/g;s/ões/oinx/g' | \
                     sed 's/\([aeo]\)u\([ \.?!]\)/\1w\2/g' | \
                     sed 's/[áÁ]/ah/g;s/[éÉêÊ]/eh/g;s/[íÍ]/ih/g;s/[óÓôÔ]/oh/g;s/[úÚ]/uh/g' | \
                     sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | sed 's/ç/ss/g' | \
                     sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g'
                 ;;
             phone) # replacing using number-equivalence from simple phone
-                echo $* | tr ' ,.!?;:aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ+-=/' '11111122222233333344444455555566666677777777888888999999990000'
+                echo $_TEXT | tr ' ,.!?;:aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ+-=/' '11111122222233333344444455555566666677777777888888999999990000'
                 ;;
             randdel) # Random deletion
-                _AUX1=$(echo $*)
-                _AUX2=$(1dice "${#_AUX1}")
-                echo ${_AUX1:0:_AUX2-1}${_AUX1:_AUX2}
+                _AUX1=$(1dice "${#_TEXT}")
+                echo ${_TEXT:0:_AUX1-1}${_TEXT:_AUX1}
                 ;;
             randdup) # Random duplicate
-                _AUX1=$(echo $*)
-                _AUX2=$(1dice "${#_AUX1}")
-                echo ${_AUX1:0:_AUX2}${_AUX1:_AUX2-1}
+                _AUX1=$(1dice "${#_TEXT}")
+                echo ${_TEXT:0:_AUX1}${_TEXT:_AUX1-1}
                 ;;
             randsn) # Random substitute to number
-                _AUX1=$(echo $*)
-                _AUX2=$(1dice "${#_AUX1}")
-                echo ${_AUX1:0:_AUX2-1}$(($(1d10)-1))${_AUX1:_AUX2}
+                _AUX1=$(1dice "${#_TEXT}")
+                echo ${_TEXT:0:_AUX1-1}$(($(1d10)-1))${_TEXT:_AUX1}
                 ;;
             randspl) # Random split
-                _AUX1=$(echo $*)
-                _AUX2=$(1dice "${#_AUX1}")
-                echo ${_AUX1:_AUX2}${_AUX1:0:_AUX2}
+                _AUX1=$(1dice "${#_TEXT}")
+                echo ${_TEXT:_AUX1}${_TEXT:0:_AUX1}
                 ;;
             randssc) # Random substitute to special char
-                _AUX1=$(echo $*)
-                _AUX2=$(1dice "${#_AUX1}")
-                echo ${_AUX1:0:_AUX2-1}$(1spchar)${_AUX1:_AUX2}
+                _AUX1=$(1dice "${#_TEXT}")
+                echo ${_TEXT:0:_AUX1-1}$(1spchar)${_TEXT:_AUX1}
                 ;;
             randuc) # Random upper case
-                _AUX1=$(echo $*)
-                _AUX2=$(1dice "${#_AUX1}")
-                echo ${_AUX1:0:_AUX2-1}$(echo ${_AUX1:_AUX2-1:1} | tr '[:lower:]' '[:upper:]')${_AUX1:_AUX2}
+                _AUX1=$(1dice "${#_TEXT}")
+                echo ${_TEXT:0:_AUX1-1}$(echo ${_TEXT:_AUX1-1:1} | tr '[:lower:]' '[:upper:]')${_TEXT:_AUX1}
                 ;;
             reverse)
-                echo $* | rev
+                echo $_TEXT | rev
                 ;;
             rotvow) # Rotate vowels
                 case $(1d6) in
                     1)
-                        echo $* | tr 'aeiou' 'euioa'
+                        echo $_TEXT | tr 'aeiou' 'euioa'
                         ;;
                     2)
-                        echo $* | tr 'aeiou' 'eaoui'
+                        echo $_TEXT | tr 'aeiou' 'eaoui'
                         ;;
                     3)
-                        echo $* | tr 'aeiou' 'aeoui'
+                        echo $_TEXT | tr 'aeiou' 'aeoui'
                         ;;
                     4) 
-                        echo $* | tr 'aeiou' 'eioau'
+                        echo $_TEXT | tr 'aeiou' 'eioau'
                         ;;
                     5)
-                        echo $* | tr 'aeiou' 'eauio'
+                        echo $_TEXT | tr 'aeiou' 'eauio'
                         ;;
                     6)
-                        echo $* | tr 'aeiou' 'oaiue'
+                        echo $_TEXT | tr 'aeiou' 'oaiue'
                         ;;
                 esac
                 ;;
+            super) # Superscript
+                echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ᴬᵃᴮᵇᶜᶜᴰᵈᴱᵉᶠᶠᴳᵍᴴʰᴵᶦᴶʲᴷᵏᴸˡᴹᵐᴺⁿᴼᵒᴾᵖᵠᵠᴿʳˢˢᵀᵗᵁᵘⱽᵛᵂʷˣˣʸʸᶻᶻ⁰¹²³⁴⁵⁶⁷⁸⁹'
+                ;;
             unaccent)
-                echo $* | iconv -f utf8 -t ascii//TRANSLIT
+                echo $_TEXT | iconv -f utf8 -t ascii//TRANSLIT
                 ;;
             upper)
-                echo $* | tr '[:lower:]' '[:upper:]'
+                echo $_TEXT | tr '[:lower:]' '[:upper:]'
+                ;;
+            xthicc) # Extra Thicc
+                echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz' '卂卂乃乃匚匚ᗪᗪ乇乇千千ᎶᎶ卄卄丨丨ﾌﾌҜҜㄥㄥ爪爪几几ㄖㄖ卩卩ɊɊ尺尺丂丂ㄒㄒㄩㄩᐯᐯ山山乂乂ㄚㄚ乙乙'
                 ;;
         esac
     else
