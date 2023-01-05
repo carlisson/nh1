@@ -71,6 +71,19 @@ _nh1misc.init() {
   _1vardb.init "timer"
 }
 
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1misc.usage() {
+  case $1 in
+    tr)
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "chars to find")" "$(_1text "chars to replace")"
+        ;;
+    *)
+      false
+      ;;
+  esac
+}
+
 # @description Completion for functions with pdf input
 _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 
@@ -531,6 +544,8 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
         _AUX=$(echo $_AUX | sed "s/$_C1/$_C2/g")
       done
       echo $_AUX
+      return 0
     fi
   fi
+  _nh1misc.usage tr
 }

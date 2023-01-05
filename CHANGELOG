@@ -322,3 +322,4 @@
 1.3b13 2023-01-05: 1morph updown (upside down)
 1.3b14 2023-01-05: 1morph allows multiple transformations (,)
 1.3b15 2023-01-05: 1morph now can receive text from stdin
+1.3b16 2023-01-05: _nh1misc.usage. Usage for 1tr
