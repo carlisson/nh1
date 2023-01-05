@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl super unaccent upper xthicc)
+_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl super unaccent updown upper xthicc)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -176,6 +176,10 @@ _nh1morph.usage() {
                 ;;
             unaccent)
                 echo $_TEXT | iconv -f utf8 -t ascii//TRANSLIT
+                ;;
+            updown) # Upside down
+                _TEXT=$(1morph reverse $_TEXT)
+                echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ⱯɑBpCcDqEԍᖶɻᘓმHμIᴉᒉᒉKĸΓɼWwИuOobb⥀dᖉʁƧƨꓕϝꓵnΛʌMʍXx⅄λZz0Ɩᘕ3ત૨୧⌋8მ'
                 ;;
             upper)
                 echo $_TEXT | tr '[:lower:]' '[:upper:]'
