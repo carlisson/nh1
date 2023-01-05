@@ -85,13 +85,21 @@ _nh1morph.usage() {
 # @arg $2 string String to transform
 1morph() {
     local _MORPH _AUX1 _AUX2 _TEXT
-    _MORPH="escape"
-    if [ $# -gt 1 ]
+    _TEXT=""
+    if [ $# -gt 0 ]
     then
         _MORPH="$1"
         shift
+    else
+        _nh1morph.usage morph
+        return 0
     fi
-    _TEXT=$(echo $*)
+    if [ $# -gt 0 ]
+    then
+        _TEXT=$(echo $*)
+    else
+        read _TEXT
+    fi
     if echo $_MORPH | grep -q ','
     then
         for _AUX1 in $(echo $_MORPH | tr ',' ' ')
@@ -101,7 +109,7 @@ _nh1morph.usage() {
         echo $_TEXT
         return 0
     fi
-    if [ $# -gt 0 ]
+    if [ "$_TEXT" != "" ]
     then
         case "$_MORPH" in
             cursive)
