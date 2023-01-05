@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cyrillic escape greek leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
+_1MORPHS=(cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -114,6 +114,9 @@ _nh1morph.usage() {
                     sed 's/[áÁ]/ah/g;s/[éÉêÊ]/eh/g;s/[íÍ]/ih/g;s/[óÓôÔ]/oh/g;s/[úÚ]/uh/g' | \
                     sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | sed 's/ç/ss/g' | \
                     sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g'
+                ;;
+            phone) # replacing using number-equivalence from simple phone
+                echo $* | tr ' ,.!?;:aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ+-=/' '11111122222233333344444455555566666677777777888888999999990000'
                 ;;
             randdel) # Random deletion
                 _AUX1=$(echo $*)
