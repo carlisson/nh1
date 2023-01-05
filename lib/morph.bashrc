@@ -65,6 +65,7 @@ _nh1morph.usage() {
     morph)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "transformation")" "$(_1text "text")"
         printf "  - $(_1text "Available transformations: %s.")\n" "$(echo -n ${_1MORPHS[@]})"
+        printf "  - $(_1text "You can apply more transformations using comma (ex: %s)")\n" "unaccent,leet"
         ;;
     words)
         printf "$(_1text "Usage: %s [%s]")\n" "1$1" "$(_1text "number")"
@@ -91,6 +92,15 @@ _nh1morph.usage() {
         shift
     fi
     _TEXT=$(echo $*)
+    if echo $_MORPH | grep -q ','
+    then
+        for _AUX1 in $(echo $_MORPH | tr ',' ' ')
+        do
+            _TEXT=$(1morph $_AUX1 $_TEXT)
+        done
+        echo $_TEXT
+        return 0
+    fi
     if [ $# -gt 0 ]
     then
         case "$_MORPH" in
