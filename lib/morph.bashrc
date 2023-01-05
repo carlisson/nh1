@@ -3,7 +3,10 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
+_1MORPHS=(escape greek leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
+
+# Without exotic alphabets
+_1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
 # Private functions
 
 # @description Generates partial menu
@@ -92,6 +95,9 @@ _nh1morph.usage() {
         case "$_MORPH" in
             escape)
                 echo $* | tr "\\\ \t?!\${}" "/__..S++"
+                ;;
+            greek)
+                echo $* | 1tr "abCcDdeFfGgiLlmnOoPpRrTtUuz" "αβΞξΔδεΦφΓγιΛλμνΩωΠπΡρΘθΥυζ"
                 ;;
             leet)
                 echo $* | tr "aAbBeEgGiIlLoOsSzZ" "44883366!!77005522"

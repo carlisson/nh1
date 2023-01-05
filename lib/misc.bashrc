@@ -25,6 +25,7 @@ _nh1misc.menu() {
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
   _1menuitem W 1timer "$(_1text "Countdown timer.")" seq
   _1menuitem X 1tip "$(_1text "Shows a random tip")" shuf
+  _1menuitem X 1tr "$(_1text "Translate char supporting unicode")" sed
 }
 
 # @description Destroy all global variables created by this file
@@ -34,7 +35,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init 1diceware
+  unset -f _nh1misc.init 1diceware 1tr
 }
 
 # @description Autocompletion
@@ -130,10 +131,10 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     _W2=$(1diceware | cut -d\  -f 1)
   fi
   _SP=$(1spchar)
-  _A1=$(1dice "${#_1MORPHS[@]}")
-  _A2=$(1dice "${#_1MORPHS[@]}")
-  echo "$(1morph ${_1MORPHS[_A1]} $_W1)$_SP$(1morph ${_1MORPHS[_A2]} $_W2)"
-  _1verb "$(printf "$(_1text "Words %s %s; special %s; morphs: %s %s.")" $_W1 $_W2 $_SP ${_1MORPHS[_A1]} ${_1MORPHS[_A2]})"
+  _A1=$(1dice "${#_1MORPHLATIN[@]}")
+  _A2=$(1dice "${#_1MORPHLATIN[@]}")
+  echo "$(1morph ${_1MORPHLATIN[_A1]} $_W1)$_SP$(1morph ${_1MORPHLATIN[_A2]} $_W2)"
+  _1verb "$(printf "$(_1text "Words %s %s; special %s; morphs: %s %s.")" $_W1 $_W2 $_SP ${_1MORPHLATIN[_A1]} ${_1MORPHLATIN[_A2]})"
 }
 
 # @description Random color generator
@@ -507,5 +508,29 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     pdfjam "$_INF" "$_SEQ" -o "$_TMP"
     pdfjam --nup $_MOD "$_TMP" --outfile "$_OUF"
     rm $_TMP
+  fi
+}
+
+# @description Alternative to tr
+# @arg $1 chars to search
+# @arg $2 chars to replace
+1tr() {
+  local _LET _I _AUX _FIND _REPLACE _C1 _C2
+  if 1check sed
+  then
+    if [ $# -eq 2 ] && [ "${#1}" -eq "${#2}" ]
+    then
+      _FIND=$1
+      _REPLACE=$2
+      _LET=$((${#_FIND}-1))
+      _AUX="$(< /dev/stdin)"
+      for _I in $(seq 0 $_LET)
+      do
+        _C1=${_FIND:_I:1}
+        _C2=${_REPLACE:_I:1}
+        _AUX=$(echo $_AUX | sed "s/$_C1/$_C2/g")
+      done
+      echo $_AUX
+    fi
   fi
 }
