@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.3b17
+_1VERSION=1.3b18
 
 _1MODULES=(app audio backup canva cron misc morph network rpg ui)
 
@@ -1321,7 +1321,17 @@ _nh1.translate.build() {
 # If this script isn't sourced, that will raise an error.
 
 # IMPORT MODULES
-source gettext.sh
+
+# If exists gettext.sh, load it; else, create a fake gettext
+if [ -z "$(whereis -b -B $(echo $PATH | tr ':' ' ') -f "gettext.sh" | sed "s/gettext.sh://")" ]
+then
+	gettext() {
+		shift
+		printf "$*"
+	}
+else
+	source gettext.sh
+fi
 
 _nh1.modrun "source \"$_1LIB/-=-.bashrc\""
 _nh1.customvars
