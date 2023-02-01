@@ -204,16 +204,18 @@ _nh1network.info() {
         fi
       done
     fi
-    if HLIN=$(dig +short "$HNAM" | xargs)
+    if 1check -s dig
     then
-      for HIP in ${HLIN/$HNAM/}
-      do
-        if ping -c 1 "$HIP" > /dev/null
-        then
+      if HLIN=$(dig +short "$HNAM" | xargs)
+      then
+        for HIP in ${HLIN/$HNAM/}
+        do
           echo "$HIP"
-          return 0
-        fi
-      done
+        done
+      fi
+    else
+      echo "$HNAM"
+      return 2
     fi
     printf "$(_1text "%s is unkown or unavailable.")\n" $HNAM
     return 1
