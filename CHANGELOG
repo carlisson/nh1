@@ -325,3 +325,4 @@
 1.3b16 2023-01-05: _nh1misc.usage. Usage for 1tr
 1.3b17 2023-01-05: minor changes
 1.3b18 2023-01-31: nh1 runs without error if gettext.sh is missing
+1.3b19 2023-01-31: 1host improved
