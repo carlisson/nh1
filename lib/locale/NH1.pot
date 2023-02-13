@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-13 09:26-0300\n"
+"POT-Creation-Date: 2023-02-13 09:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -520,7 +520,7 @@ msgstr ""
 msgid "Removing old app version %s."
 msgstr ""
 
-#: app.bashrc:338 app.bashrc:403
+#: app.bashrc:338 app.bashrc:403 app.bashrc:515
 msgid "App needs %s and it's not available."
 msgstr ""
 
@@ -532,176 +532,176 @@ msgstr ""
 msgid "Wrong app type."
 msgstr ""
 
-#: app.bashrc:412 app.bashrc:415
+#: app.bashrc:412 app.bashrc:415 app.bashrc:524
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:417
+#: app.bashrc:417 app.bashrc:526
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:481
+#: app.bashrc:481 app.bashrc:618
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:488
+#: app.bashrc:488 app.bashrc:625
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:523
+#: app.bashrc:663
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:526
+#: app.bashrc:666
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:628
-msgid "App %s installed with file %s"
+#: app.bashrc:768
+msgid "App %s removed with file %s"
 msgstr ""
 
-#: app.bashrc:690
+#: app.bashrc:846
 msgid "1app status"
 msgstr ""
 
-#: app.bashrc:691
+#: app.bashrc:847
 msgid "App"
 msgstr ""
 
-#: app.bashrc:691
+#: app.bashrc:847
 msgid "Description"
 msgstr ""
 
-#: app.bashrc:691
+#: app.bashrc:847
 msgid "Installation"
 msgstr ""
 
-#: app.bashrc:699
+#: app.bashrc:855
 msgid "local"
 msgstr ""
 
-#: app.bashrc:705
+#: app.bashrc:861
 msgid "global"
 msgstr ""
 
-#: app.bashrc:712
+#: app.bashrc:868
 msgid "system"
 msgstr ""
 
-#: app.bashrc:714
+#: app.bashrc:870
 msgid "None"
 msgstr ""
 
-#: app.bashrc:719
+#: app.bashrc:875
 msgid "Use %s to usage instructions."
 msgstr ""
 
-#: app.bashrc:732 app.bashrc:750 app.bashrc:768
+#: app.bashrc:888 app.bashrc:906 app.bashrc:924
 msgid "Searching %s in %s..."
 msgstr ""
 
-#: app.bashrc:735 app.bashrc:740 app.bashrc:753 app.bashrc:779
+#: app.bashrc:891 app.bashrc:896 app.bashrc:909 app.bashrc:935
 msgid "Package %s found in %s."
 msgstr ""
 
-#: app.bashrc:744 app.bashrc:759 app.bashrc:781
+#: app.bashrc:900 app.bashrc:915 app.bashrc:937
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:777
+#: app.bashrc:933
 msgid "The search returned more than one result!"
 msgstr ""
 
-#: app.bashrc:788
+#: app.bashrc:944
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:797 app.bashrc:803 app.bashrc:811 app.bashrc:818 app.bashrc:824
-#: app.bashrc:830
+#: app.bashrc:953 app.bashrc:959 app.bashrc:967 app.bashrc:974 app.bashrc:980
+#: app.bashrc:986
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:891
+#: app.bashrc:1047
 msgid "App not found."
 msgstr ""
 
-#: app.bashrc:900 app.bashrc:910
+#: app.bashrc:1056 app.bashrc:1066
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:920
+#: app.bashrc:1076
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr ""
 
-#: app.bashrc:920 cron.bashrc:218
+#: app.bashrc:1076 cron.bashrc:218
 msgid "command"
 msgstr ""
 
-#: app.bashrc:920
+#: app.bashrc:1076
 msgid "scope"
 msgstr ""
 
-#: app.bashrc:920
+#: app.bashrc:1076
 msgid "option"
 msgstr ""
 
-#: app.bashrc:921
+#: app.bashrc:1077
 msgid "Commands"
 msgstr ""
 
-#: app.bashrc:922
+#: app.bashrc:1078
 msgid "list all available commands"
 msgstr ""
 
-#: app.bashrc:923
+#: app.bashrc:1079
 msgid "install/update an application"
 msgstr ""
 
-#: app.bashrc:924
+#: app.bashrc:1080
 msgid "uninstall an application"
 msgstr ""
 
-#: app.bashrc:925
+#: app.bashrc:1081
 msgid "Update all installed packages"
 msgstr ""
 
-#: app.bashrc:926
+#: app.bashrc:1082
 msgid "Remove old files and caches"
 msgstr ""
 
-#: app.bashrc:927
+#: app.bashrc:1083
 msgid "show this usage instructions"
 msgstr ""
 
-#: app.bashrc:928
+#: app.bashrc:1084
 msgid "Scopes"
 msgstr ""
 
-#: app.bashrc:929
+#: app.bashrc:1085
 msgid "installed in user space"
 msgstr ""
 
-#: app.bashrc:930
+#: app.bashrc:1086
 msgid "installed for all users, with binaries in %s"
 msgstr ""
 
-#: app.bashrc:931
+#: app.bashrc:1087
 msgid "installed with system package managers (apt, dnf, snap, etc)"
 msgstr ""
 
-#: app.bashrc:932
+#: app.bashrc:1088
 msgid "all installations: local, global and system"
 msgstr ""
 
-#: app.bashrc:996 app.bashrc:998 app.bashrc:1000
+#: app.bashrc:1152 app.bashrc:1154 app.bashrc:1156
 msgid "Updating %s applications."
 msgstr ""
 
-#: app.bashrc:1044 network.bashrc:590
+#: app.bashrc:1200 network.bashrc:590
 msgid "It works."
 msgstr ""
 
-#: app.bashrc:1048
+#: app.bashrc:1204
 msgid "String not found in URL page."
 msgstr ""
 

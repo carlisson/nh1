@@ -328,3 +328,4 @@
 1.3b19 2023-01-31: 1host improved
 1.3b20 2023-02-10: 1app: added recipe for Diagrams.net (drawio)
 1.3b21 2023-02-13: 1app: added recipe for Haxe
+1.3b22 2023-02-13: 1app allows multiple symlinks in tarball recipes

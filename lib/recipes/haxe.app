@@ -22,7 +22,7 @@ APP_TYPE="tarball"
 
 # In case of tarball or git, BINARY is the executable file.
 # For single, ignore it.
-APP_BINARY="haxe"
+APP_BINARY="haxe haxelib"
 
 # Dependences. Specially useful to compilable apps
 APP_DEPENDS="tar"
