@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-10 09:49-0300\n"
+"POT-Creation-Date: 2023-02-13 09:26-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -2000,6 +2000,10 @@ msgstr "Cliente para Youtube"
 #: recipes/funcoeszz.app:4
 msgid "A set of utilities for shell"
 msgstr "Conjunto de utilitários shell"
+
+#: recipes/haxe.app:8
+msgid "Cross-platform language and toolkit"
+msgstr "Linguagem e toolkit cross-platform"
 
 #: recipes/hazama.app:8
 msgid "Simple GUI diary"
