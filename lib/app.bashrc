@@ -410,9 +410,6 @@ _nh1app.single() {
             if [ "$APP_TYPE" = "single" -a -f "$_NADIR/$_NANEW" ]
             then
                 printf "$(_1text "%s is already up to date.")\n" $_NAPP
-            elif  [ "$APP_TYPE" = "tarball" -a -d "$_NADIR/$_NANEW" ]
-            then
-                printf "$(_1text "%s is already up to date.")\n" $_NAPP
             else
                 _1text "To install/upgrade:"
                 1tint $_1COLOR " $_NAA"
@@ -454,14 +451,7 @@ _nh1app.single() {
 
             if [ ! -L "$_NASYM" ]
             then
-                case "$APP_TYPE" in
-                    single)
-                        _NABIN="$_NADIR/$_NANEW"
-                        ;;
-                    tarball)
-                        _NABIN="$_NADIR/$_NANEW/$APP_BINARY"
-                        ;;
-                esac
+                _NABIN="$_NADIR/$_NANEW"
                 if [ $_NAS = "global" ]
                 then
                     _1sudo ln -s "$_NABIN" "$_NASYM"
@@ -472,6 +462,143 @@ _nh1app.single() {
 
             # Creates a desktop file any way
             if [ -f "$_NASYM" ]
+            then
+                _nh1app.mkdesktop "$_NAPP" "$_NAS"
+            fi
+        
+        else
+        
+            printf "$(_1text "Error geting %s file name. Check the recipe or try again later.")\n" $APP_NAME
+
+        fi
+
+        _nh1app.closeapp
+        popd > /dev/null
+    else
+        printf "$(_1text "%s not found.")\n" "curl"
+    fi    
+}
+
+# @description Tarball downloader
+# @arg $1 string App name
+# @arg $2 string app-directory
+# @arg $3 string symlink
+# @arg $4 string local or global
+_nh1app.tarball() {
+    local _NAPP _NADIR _NASYM _NAS _NANEW _NATMP _PREV _NABIN _SSYM
+    if 1check curl
+    then
+        _NAPP="$1"
+        _NADIR="$2"
+        _NASYM="$3"
+        _NAS=$4
+        _NANEW=$(_nh1app.checkversion new $_NAPP)
+        
+        pushd $_NADIR > /dev/null
+
+        _nh1app.openapp $_NAPP
+
+        if [ -n "$APP_DEPENDS" ]
+        then
+            if ! 1check $APP_DEPENDS
+            then
+                _1message error "$(printf "$(_1text "App needs %s and it's not available.")" "$(1tint "$APP_DEPENDS")")"
+                return 1
+            fi
+        fi
+
+        if [[ "$_NANEW" = *$APP_SUFFIX ]]
+        then
+            if  [ "$APP_TYPE" = "tarball" -a -d "$_NADIR/$_NANEW" ]
+            then
+                printf "$(_1text "%s is already up to date.")\n" $_NAPP
+            else
+                _1text "To install/upgrade:"
+                1tint $_1COLOR " $_NAA"
+                echo
+
+                if [ $_NAS = "global" ]
+                then    
+                    APP_GET sudo
+                else
+                APP_GET
+                fi
+            
+                if [ -f "$_NADIR/$_NANEW" ]
+                then
+                    # If binary is a list, remove all symlinks
+                    if [[ "$APP_BINARY" =~ ' ' ]]
+                    then
+                        for _SSYM in $APP_BINARY
+                        do
+                            if [ -L "$_NASYM/$_SSYM" ]
+                            then        
+                                if [ $_NAS = "global" ]
+                                then        
+                                    _1sudo rm "$_NASYM/$_SSYM"
+                                else        
+                                    rm "$_NASYM/$_SSYM"
+                                fi  
+                            fi
+                        done
+                    else
+                        if [ -L "$_NASYM/$_NAPP" ]
+                        then    
+                            if [ $_NAS = "global" ]
+                            then    
+                                _1sudo rm "$_NASYM/$_NAPP"
+                            else    
+                                rm "$_NASYM/$_NAPP"
+                            fi
+                        fi
+                    fi
+                fi
+            fi
+        
+
+            _nh1app.clearold "$_NADIR" "$_NANEW" "$APP_PREFIX" "$_NAS"
+
+            if [ "$APP_TYPE" = "single" -a ! -x "$_NANEW" ]
+            then
+                if [ $_NAS = "global" ]
+                then
+                    _1sudo chmod a+x "$_NANEW"
+                else
+                    chmod a+x "$_NANEW"
+                fi
+            fi
+
+            _NABIN="$_NADIR/$_NANEW"
+
+            # If binary is a list, remove all symlinks
+            if [[ "$APP_BINARY" =~ ' ' ]]
+            then
+                for _SSYM in $APP_BINARY
+                do
+                    if [ ! -L "$_NASYM/$_SSYM" ]
+                    then        
+                        if [ $_NAS = "global" ]
+                        then        
+                            _1sudo ln -s "$_NABIN/$_SSYM" "$_NASYM/$_SSYM"
+                        else        
+                        ln -s "$_NABIN/$_SSYM" "$_NASYM/$_SSYM"
+                        fi  
+                    fi
+                done
+            else
+                if [ ! -L "$_NASYM" ]
+                then
+                    if [ $_NAS = "global" ]
+                    then
+                        _1sudo ln -s "$_NABIN/$APP_BINARY" "$_NASYM/$_NAPP"
+                    else
+                        ln -s "$_NABIN/$APP_BINARY" "$_NASYM/$_NAPP"
+                    fi
+                fi
+            fi
+
+            # Creates a desktop file any way
+            if [ -f "$_NASYM/$_NAPP" ]
             then
                 _nh1app.mkdesktop "$_NAPP" "$_NAS"
             fi
@@ -513,8 +640,11 @@ _nh1app.add() {
         _NAT="$APP_TYPE"
         _nh1app.closeapp
         case "$_NAT" in
-            single|tarball)
+            single)
                 _nh1app.single "$2" "$_NAD" "$_NAB" "$_NAS"
+                 ;;
+            tarball)
+                _nh1app.tarball "$2" "$_NAD" "$_NAB" "$_NAS"
                  ;;
             git)
                 _nh1app.gitget "$2" "$_NAD" "$_NAB" "$_NAS"
@@ -622,25 +752,43 @@ _nh1app.where() {
 # @arg $1 string local or global 
 # @arg $2 string App name
 _nh1app.remove() {
-    local _NAA _NAF
+    local _NAA _NAF _SSYM
     _NAA=$2
     _NAF=$(_nh1app.checkversion $1 $_NAA)
-    _1verb "$(printf "$(_1text "App %s installed with file %s")" $_NAA $_NAF)"
+    _1verb "$(printf "$(_1text "App %s removed with file %s")" $_NAA $_NAF)"
+    _nh1app.openapp $_NAA
     if [ -n "$_NAF" ]
     then
         if [ "$1" = "local" ]
         then
             rm -r "$_1APPLOCAL/$_NAF"
-            rm "$_1APPLBIN/$_NAA"
             rm -f "$_1APPLAPPS/$_NAA.desktop"
             rm -f "$_1APPLICON/$_NAA.png"
+            if [[ "$APP_BINARY" =~ ' ' ]]
+            then
+                for _SSYM in $APP_BINARY
+                do
+                    rm "$_1APPLBIN/$_SSYM"
+                done
+            else
+                rm "$_1APPLBIN/$_NAA"
+            fi
         else
             _1sudo rm -r "$_1APPGLOBAL/$_NAF"
-            _1sudo rm "$_1APPGBIN/$_NAA"
             _1sudo rm -f "$_1APPGAPPS/$_NAA.desktop"
             _1sudo rm -f "$_1APPLICON/$_NAA.png"
+            if [[ "$APP_BINARY" =~ ' ' ]]
+            then
+                for _SSYM in $APP_BINARY
+                do
+                    _1sudo rm "$_1APPLBIN/$_SSYM"
+                done
+            else
+                _1sudo rm "$_1APPGBIN/$_NAA"
+            fi
         fi
     fi
+    _nh1app.closeapp
 }
 
 # @description Clear unused old versions for every app

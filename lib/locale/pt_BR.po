@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-13 09:26-0300\n"
+"POT-Creation-Date: 2023-02-13 09:55-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -535,7 +535,7 @@ msgstr "PNG não encontrado para o app. Arquivo desktop não criado."
 msgid "Removing old app version %s."
 msgstr "Removendo app na versão antiga %s."
 
-#: app.bashrc:338 app.bashrc:403
+#: app.bashrc:338 app.bashrc:403 app.bashrc:515
 msgid "App needs %s and it's not available."
 msgstr "Programa precisa de %s, que não está(ão) disponível(is)."
 
@@ -547,181 +547,181 @@ msgstr "Instalação/atualização git para %s"
 msgid "Wrong app type."
 msgstr "Tipo de aplicativo errado."
 
-#: app.bashrc:412 app.bashrc:415
+#: app.bashrc:412 app.bashrc:415 app.bashrc:524
 msgid "%s is already up to date."
 msgstr "%s já está atualizado."
 
-#: app.bashrc:417
+#: app.bashrc:417 app.bashrc:526
 msgid "To install/upgrade:"
 msgstr "Prestes a instalar/atualizar:"
 
-#: app.bashrc:481
+#: app.bashrc:481 app.bashrc:618
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 "Erro ao buscar o nome de arquivo %s. Cheque a receita ou tente de novo mais "
 "tarde."
 
-#: app.bashrc:488
+#: app.bashrc:488 app.bashrc:625
 msgid "%s not found."
 msgstr "%s não encontrado."
 
-#: app.bashrc:523
+#: app.bashrc:663
 msgid "Type unsuported: %s."
 msgstr "Tipo não suportado: %s."
 
-#: app.bashrc:526
+#: app.bashrc:666
 msgid "Unknown app: %s."
 msgstr "Aplicativo desconhecido: %s."
 
-#: app.bashrc:628
-msgid "App %s installed with file %s"
-msgstr "Aplicativo %s instalado com o arquivo %s"
+#: app.bashrc:768
+msgid "App %s removed with file %s"
+msgstr "Aplicativo %s removido com o arquivo %s"
 
-#: app.bashrc:690
+#: app.bashrc:846
 msgid "1app status"
 msgstr "Status do 1App"
 
-#: app.bashrc:691
+#: app.bashrc:847
 msgid "App"
 msgstr "Aplicativo"
 
-#: app.bashrc:691
+#: app.bashrc:847
 msgid "Description"
 msgstr "Descrição"
 
-#: app.bashrc:691
+#: app.bashrc:847
 msgid "Installation"
 msgstr "Instalação"
 
-#: app.bashrc:699
+#: app.bashrc:855
 msgid "local"
 msgstr "local"
 
-#: app.bashrc:705
+#: app.bashrc:861
 msgid "global"
 msgstr "global"
 
-#: app.bashrc:712
+#: app.bashrc:868
 msgid "system"
 msgstr "sistema"
 
-#: app.bashrc:714
+#: app.bashrc:870
 msgid "None"
 msgstr "Nada"
 
-#: app.bashrc:719
+#: app.bashrc:875
 msgid "Use %s to usage instructions."
 msgstr "Use %s para instruções de uso."
 
-#: app.bashrc:732 app.bashrc:750 app.bashrc:768
+#: app.bashrc:888 app.bashrc:906 app.bashrc:924
 msgid "Searching %s in %s..."
 msgstr "Buscando %s em %s..."
 
-#: app.bashrc:735 app.bashrc:740 app.bashrc:753 app.bashrc:779
+#: app.bashrc:891 app.bashrc:896 app.bashrc:909 app.bashrc:935
 msgid "Package %s found in %s."
 msgstr "Pacote %s encontrado em %s."
 
-#: app.bashrc:744 app.bashrc:759 app.bashrc:781
+#: app.bashrc:900 app.bashrc:915 app.bashrc:937
 msgid "Package %s not found in %s."
 msgstr "O pacote %s não foi encontrado em %s."
 
-#: app.bashrc:777
+#: app.bashrc:933
 msgid "The search returned more than one result!"
 msgstr "A busca retornou mais de um resultado!"
 
-#: app.bashrc:788
+#: app.bashrc:944
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 "Lamento. O pacote %s não foi encontrado nos gerenciadores de pacotes "
 "conhecidos/instalados."
 
-#: app.bashrc:797 app.bashrc:803 app.bashrc:811 app.bashrc:818 app.bashrc:824
-#: app.bashrc:830
+#: app.bashrc:953 app.bashrc:959 app.bashrc:967 app.bashrc:974 app.bashrc:980
+#: app.bashrc:986
 msgid "Upgrading %s..."
 msgstr "Atualizando %s..."
 
-#: app.bashrc:891
+#: app.bashrc:1047
 msgid "App not found."
 msgstr "Aplicativo não encontrado."
 
-#: app.bashrc:900 app.bashrc:910
+#: app.bashrc:1056 app.bashrc:1066
 msgid "Cleaning %s..."
 msgstr "Limpando %s..."
 
-#: app.bashrc:920
+#: app.bashrc:1076
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr "Uso: %s [%s] [%s] [%s]"
 
-#: app.bashrc:920 cron.bashrc:218
+#: app.bashrc:1076 cron.bashrc:218
 msgid "command"
 msgstr "comando"
 
-#: app.bashrc:920
+#: app.bashrc:1076
 msgid "scope"
 msgstr "escopo"
 
-#: app.bashrc:920
+#: app.bashrc:1076
 msgid "option"
 msgstr "opção"
 
-#: app.bashrc:921
+#: app.bashrc:1077
 msgid "Commands"
 msgstr "Comandos"
 
-#: app.bashrc:922
+#: app.bashrc:1078
 msgid "list all available commands"
 msgstr "Lista de todos os comandos disponíveis"
 
-#: app.bashrc:923
+#: app.bashrc:1079
 msgid "install/update an application"
 msgstr "Instala ou atualiza um aplicativo"
 
-#: app.bashrc:924
+#: app.bashrc:1080
 msgid "uninstall an application"
 msgstr "desinstala um aplicativo"
 
-#: app.bashrc:925
+#: app.bashrc:1081
 msgid "Update all installed packages"
 msgstr "Atualiza todos os pacotes instalados"
 
-#: app.bashrc:926
+#: app.bashrc:1082
 msgid "Remove old files and caches"
 msgstr "Remove arquivos e caches antigos."
 
-#: app.bashrc:927
+#: app.bashrc:1083
 msgid "show this usage instructions"
 msgstr "mostra essas instruções de uso"
 
-#: app.bashrc:928
+#: app.bashrc:1084
 msgid "Scopes"
 msgstr "Escopos"
 
-#: app.bashrc:929
+#: app.bashrc:1085
 msgid "installed in user space"
 msgstr "instalados no espaço do usuário"
 
-#: app.bashrc:930
+#: app.bashrc:1086
 msgid "installed for all users, with binaries in %s"
 msgstr "instalados para todos os usuários, com binários em %s"
 
-#: app.bashrc:931
+#: app.bashrc:1087
 msgid "installed with system package managers (apt, dnf, snap, etc)"
 msgstr ""
 "instalados com os gerenciadores de pacotes do sistema (apt, dnf, snap, etc)"
 
-#: app.bashrc:932
+#: app.bashrc:1088
 msgid "all installations: local, global and system"
 msgstr "todas as instalações: local, global e system"
 
-#: app.bashrc:996 app.bashrc:998 app.bashrc:1000
+#: app.bashrc:1152 app.bashrc:1154 app.bashrc:1156
 msgid "Updating %s applications."
 msgstr "Atualizando aplicativos do escopo %s."
 
-#: app.bashrc:1044 network.bashrc:590
+#: app.bashrc:1200 network.bashrc:590
 msgid "It works."
 msgstr "Funcionou."
 
-#: app.bashrc:1048
+#: app.bashrc:1204
 msgid "String not found in URL page."
 msgstr "Texto não encontrado na página da URL."
 
