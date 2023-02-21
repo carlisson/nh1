@@ -188,7 +188,7 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
         
     	  rm -rf "$YTMPDIR"
         mkdir "$YTMPDIR"
-        1
+        
     	  echo $(date) ':' "$YTITLE" >> .yt3.log
         _1verb "$(tail -1 .yt3.log)"
       done
