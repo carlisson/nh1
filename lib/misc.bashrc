@@ -75,6 +75,9 @@ _nh1misc.init() {
 # @arg $1 string Public function name
 _nh1misc.usage() {
   case $1 in
+    pdfbkl)
+        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
+        ;;
     tr)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "chars to find")" "$(_1text "chars to replace")"
         ;;
@@ -502,7 +505,11 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   local _INF _OUF _PAG _TMP _SEQ _MOD _DOB
   if 1check pdfinfo pdfjam
   then
-    if [ $# -gt 1 ]
+    if [ $# -eq 0 ]
+    then
+      _nh1misc.usage "pdfbkl"
+      return 0
+    elif [ $# -gt 1 ]
     then
       _MOD="2x2"
       _DOB="double"
@@ -516,7 +523,9 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | sed 's/BLANK/\{\}/g')
     _TMP=$(mktemp -u)".pdf"
     _1verb "$(printf "$(_1text "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s.")" $_INF $_PAG $_OUF $_SEQ $_TMP)"
+    _1verb "pdfjam \"$_INF\" \"$_SEQ\" -o \"$_TMP\""
     pdfjam "$_INF" "$_SEQ" -o "$_TMP"
+    _1verb "pdfjam --nup $_MOD \"$_TMP\" --outfile \"$_OUF\""
     pdfjam --nup $_MOD "$_TMP" --outfile "$_OUF"
     rm $_TMP
   fi
