@@ -117,7 +117,6 @@ _nh1rpg.info() {
 # @arg $1 string Formula like XdY+Z or XdY-Z
 # @see 1dice
 1roll() {
-  _1before
   local ROLLNUM ROLLSID ROLLADD ROLLDET ROLLTOT
 	if [ $(echo $1 | grep d) ]
 	then
