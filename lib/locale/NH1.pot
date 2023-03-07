@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 11:35-0300\n"
+"POT-Creation-Date: 2023-03-07 12:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -765,7 +765,7 @@ msgstr ""
 msgid "output mp3 file"
 msgstr ""
 
-#: audio.bashrc:62 audio.bashrc:108
+#: audio.bashrc:62 audio.bashrc:65
 msgid "MP3 input file"
 msgstr ""
 
@@ -773,44 +773,44 @@ msgstr ""
 msgid "Text output file"
 msgstr ""
 
-#: audio.bashrc:107
-msgid "You need to give 2 or 3 params."
+#: audio.bashrc:65
+msgid "Usage: %s <%s> <%s> [%s]"
 msgstr ""
 
-#: audio.bashrc:109
+#: audio.bashrc:65
 msgid "TXT metadata input file"
 msgstr ""
 
-#: audio.bashrc:110
+#: audio.bashrc:65
 msgid "(optional) MP3 output file"
 msgstr ""
 
-#: audio.bashrc:110
-msgid "Default"
+#: audio.bashrc:66
+msgid "Default output file: %s"
 msgstr ""
 
-#: audio.bashrc:132
+#: audio.bashrc:133
 msgid "Call like this: %s."
 msgstr ""
 
-#: audio.bashrc:157
+#: audio.bashrc:158
 msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 
-#: audio.bashrc:173 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:174 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
-#: audio.bashrc:194
+#: audio.bashrc:195
 msgid "Downloading %s to file %s."
 msgstr ""
 
-#: audio.bashrc:199
+#: audio.bashrc:200
 msgid "Local file: %s."
 msgstr ""
 
-#: audio.bashrc:214
+#: audio.bashrc:215
 msgid "You need to give one or more youtube video URLs"
 msgstr ""
 
