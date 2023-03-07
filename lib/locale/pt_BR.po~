@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 11:35-0300\n"
+"POT-Creation-Date: 2023-03-07 12:51-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -652,7 +652,7 @@ msgstr "Limpando %s..."
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr "Uso: %s [%s] [%s] [%s]"
 
-#: app.bashrc:1068 cron.bashrc:218
+#: app.bashrc:1068 cron.bashrc:229
 msgid "command"
 msgstr "comando"
 
@@ -773,7 +773,7 @@ msgstr "Uso: %s <%s>"
 msgid "audio frequency (int)"
 msgstr "frequência do som (inteiro)"
 
-#: audio.bashrc:59 audio.bashrc:62 network.bashrc:127
+#: audio.bashrc:59 audio.bashrc:62 cron.bashrc:126 network.bashrc:127
 msgid "Usage: %s <%s> <%s>"
 msgstr "Uso: %s <%s> <%s>"
 
@@ -785,7 +785,7 @@ msgstr "diretório com os arquivos mp3 de entrada"
 msgid "output mp3 file"
 msgstr "Arquivo mp3 de saída"
 
-#: audio.bashrc:62 audio.bashrc:108
+#: audio.bashrc:62 audio.bashrc:65
 msgid "MP3 input file"
 msgstr "Arquivo de entrada MP3"
 
@@ -793,45 +793,45 @@ msgstr "Arquivo de entrada MP3"
 msgid "Text output file"
 msgstr "Arquivo de texto de saída"
 
-#: audio.bashrc:107
-msgid "You need to give 2 or 3 params."
-msgstr "Você precisa dar 2 ou 3 parâmetros."
+#: audio.bashrc:65
+msgid "Usage: %s <%s> <%s> [%s]"
+msgstr "Uso: %s <%s> <%s> [%s]"
 
-#: audio.bashrc:109
+#: audio.bashrc:65
 msgid "TXT metadata input file"
 msgstr "Arquivo de entrada com metadados em TXT"
 
-#: audio.bashrc:110
+#: audio.bashrc:65
 msgid "(optional) MP3 output file"
 msgstr "(Opcional) arquivo de entrada MP3"
 
-#: audio.bashrc:110
-msgid "Default"
-msgstr "Default"
+#: audio.bashrc:66
+msgid "Default output file: %s"
+msgstr "Arquivo de saída por omissão: %s"
 
-#: audio.bashrc:132
+#: audio.bashrc:133
 msgid "Call like this: %s."
 msgstr "Chame assim: %s."
 
-#: audio.bashrc:157
+#: audio.bashrc:158
 msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 "Você precisa informar o arquivo de entrada OGG e (opcional) a saída MP3"
 
-#: audio.bashrc:173 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:174 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: audio.bashrc:194
+#: audio.bashrc:195
 msgid "Downloading %s to file %s."
 msgstr "Baixando %s para arquivo %s"
 
-#: audio.bashrc:199
+#: audio.bashrc:200
 msgid "Local file: %s."
 msgstr "Arquivo local: %s."
 
-#: audio.bashrc:214
+#: audio.bashrc:215
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
 
@@ -1015,86 +1015,98 @@ msgid "Run cron in daemon mode"
 msgstr "Roda o cron em modo daemon"
 
 #: cron.bashrc:22
+msgid "Run a command every x seconds, minutes or hours"
+msgstr "Roda um comando a cada x segundos, minutos ou horas"
+
+#: cron.bashrc:23
 msgid "Run a command now"
 msgstr "Roda um comando agora"
 
-#: cron.bashrc:39
+#: cron.bashrc:40
 msgid "Enabling complete for cron module."
 msgstr "Habilitando completar para o módulo cron."
 
-#: cron.bashrc:50
+#: cron.bashrc:51
 msgid "Path for cron rules"
 msgstr "Caminho para as regras do cron"
 
-#: cron.bashrc:51
+#: cron.bashrc:52
 msgid "Turn on (true) or off (false) cron checkings"
 msgstr "Liga (true) ou desliga (false) as checagens do cron"
 
-#: cron.bashrc:116
+#: cron.bashrc:117
 msgid "Command %s finished at %s."
 msgstr "Comando %s finalizado em %s."
 
-#: cron.bashrc:125
+#: cron.bashrc:126
+msgid "Interval"
+msgstr "Intervalo"
+
+#: cron.bashrc:126
+msgid "Command ID"
+msgstr "ID do Comando"
+
+#: cron.bashrc:136
 msgid "Finishing command %s."
 msgstr "Encerrado o comando %s."
 
-#: cron.bashrc:149
+#: cron.bashrc:160
 msgid "Command %s executed at %s. Running now (%s) again. %i"
 msgstr "Comando %s executado em %s. Rodando agora (%s) novamente. %i"
 
-#: cron.bashrc:155
+#: cron.bashrc:166
 msgid "Command %s is still running (PID %i)."
 msgstr "Comando %s ainda rodando (PID %i)."
 
-#: cron.bashrc:157
+#: cron.bashrc:168
 msgid "Command %s is not more running."
 msgstr "Comando %s não está mais rodando."
 
-#: cron.bashrc:165
+#: cron.bashrc:176
 msgid "Run (frequency: %s) the command %s."
 msgstr "Rodar (frequência: %s) o comando %s."
 
-#: cron.bashrc:214
+#: cron.bashrc:225
 msgid "Unknown cron time"
 msgstr "Tempo de cron desconhecido"
 
-#: cron.bashrc:218
+#: cron.bashrc:229
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr "Uso: %s [%s] [%s] [%s]."
 
-#: cron.bashrc:218 cron.bashrc:245
+#: cron.bashrc:229 cron.bashrc:256
 msgid "cron time"
 msgstr "tempo do cron"
 
-#: cron.bashrc:218 cron.bashrc:245 cron.bashrc:315
+#: cron.bashrc:229 cron.bashrc:256 cron.bashrc:353
 msgid "command id"
 msgstr "id do comando"
 
-#: cron.bashrc:219 cron.bashrc:246
+#: cron.bashrc:230 cron.bashrc:257
 msgid "Time values: "
 msgstr "Valores de tempo: "
 
-#: cron.bashrc:241 cron.bashrc:310
+#: cron.bashrc:252 cron.bashrc:348
 msgid "Unknown cron time."
 msgstr "Tempo de cron desconhecido."
 
-#: cron.bashrc:245 cron.bashrc:315
+#: cron.bashrc:256 cron.bashrc:353
 msgid "Usage: %s [%s] [%s]."
 msgstr "Uso: %s [%s] [%s]."
 
-#: cron.bashrc:288 cron.bashrc:306
+#: cron.bashrc:326 cron.bashrc:344
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: cron.bashrc:315
+#: cron.bashrc:353
 msgid "cron time (optional)"
 msgstr "tempo do cron (opcional)"
 
-#: cron.bashrc:337
+#: cron.bashrc:375
 msgid "Starting cron function."
 msgstr "Iniciando a função cron."
 
-#: cron.bashrc:342
+#: cron.bashrc:380
 msgid "Cron finished."
 msgstr "Cron concluído."
 
@@ -2131,6 +2143,12 @@ msgstr "Cliente para microblog federado"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "You need to give 2 or 3 params."
+#~ msgstr "Você precisa dar 2 ou 3 parâmetros."
+
+#~ msgid "Default"
+#~ msgstr "Default"
 
 #~ msgid "You need to give 2 params: %s."
 #~ msgstr "Você precisa dar 2 parâmetros: %s."
