@@ -65,6 +65,9 @@ _nh1audio.usage() {
       printf "$(_1text "Usage: %s <%s> <%s> [%s]")\n" "1$1" "$(_1text "MP3 input file")" "$(_1text "TXT metadata input file")" "$(_1text "(optional) MP3 output file")"
       printf "  - $(_1text "Default output file: %s")\n" "<input>-c.mp3"
       ;;
+    ogg2mp3)
+      printf "$(_1text "Usage: %s <%s> [(%s) %s]")\n" "1$1" "$(_1text "input ogg file")" "$(_1text "optional")" "$(_1text "output mp3 file")"
+      ;;
   esac
 }
 
@@ -155,7 +158,7 @@ _nh1audio.usage() {
   	  ffmpeg -i "$OGF" "$MPF"
   	  rm "$OGF"
     else
-      _1text "You need to info OGG input file and (optional) MP3 output"
+      _nh1audio.usage ogg2mp3
     fi
   fi
 }

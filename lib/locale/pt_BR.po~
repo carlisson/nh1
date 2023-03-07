@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 12:51-0300\n"
+"POT-Creation-Date: 2023-03-07 13:01-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -773,7 +773,7 @@ msgstr "Uso: %s <%s>"
 msgid "audio frequency (int)"
 msgstr "frequência do som (inteiro)"
 
-#: audio.bashrc:59 audio.bashrc:62 cron.bashrc:126 network.bashrc:127
+#: audio.bashrc:59 audio.bashrc:62 network.bashrc:127
 msgid "Usage: %s <%s> <%s>"
 msgstr "Uso: %s <%s> <%s>"
 
@@ -1039,6 +1039,14 @@ msgid "Command %s finished at %s."
 msgstr "Comando %s finalizado em %s."
 
 #: cron.bashrc:126
+msgid "Usage: %s [%s] <%s> <%s>"
+msgstr "Uso: %s [%s] <%s> <%s>"
+
+#: cron.bashrc:126
+msgid "(optional) \"quiet\" for quiet mode"
+msgstr "(opcional) \"quiet\" para modo silencioso"
+
+#: cron.bashrc:126
 msgid "Interval"
 msgstr "Intervalo"
 
@@ -1078,7 +1086,7 @@ msgstr "Uso: %s [%s] [%s] [%s]."
 msgid "cron time"
 msgstr "tempo do cron"
 
-#: cron.bashrc:229 cron.bashrc:256 cron.bashrc:353
+#: cron.bashrc:229 cron.bashrc:256 cron.bashrc:374
 msgid "command id"
 msgstr "id do comando"
 
@@ -1086,27 +1094,27 @@ msgstr "id do comando"
 msgid "Time values: "
 msgstr "Valores de tempo: "
 
-#: cron.bashrc:252 cron.bashrc:348
+#: cron.bashrc:252 cron.bashrc:369
 msgid "Unknown cron time."
 msgstr "Tempo de cron desconhecido."
 
-#: cron.bashrc:256 cron.bashrc:353
+#: cron.bashrc:256 cron.bashrc:374
 msgid "Usage: %s [%s] [%s]."
 msgstr "Uso: %s [%s] [%s]."
 
-#: cron.bashrc:326 cron.bashrc:344
+#: cron.bashrc:347 cron.bashrc:365
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: cron.bashrc:353
+#: cron.bashrc:374
 msgid "cron time (optional)"
 msgstr "tempo do cron (opcional)"
 
-#: cron.bashrc:375
+#: cron.bashrc:396
 msgid "Starting cron function."
 msgstr "Iniciando a função cron."
 
-#: cron.bashrc:380
+#: cron.bashrc:401
 msgid "Cron finished."
 msgstr "Cron concluído."
 
