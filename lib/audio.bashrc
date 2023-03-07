@@ -68,6 +68,9 @@ _nh1audio.usage() {
     ogg2mp3)
       printf "$(_1text "Usage: %s <%s> [(%s) %s]")\n" "1$1" "$(_1text "input ogg file")" "$(_1text "optional")" "$(_1text "output mp3 file")"
       ;;
+    svideo)
+      printf "$(_1text "Usage: %s <%s> <%s> <%s>")\n" "1$1" "$(_1text "input mp3 file")" "$(_1text "input png file")" "$(_1text "output mp4 file")"
+      ;;
   esac
 }
 
@@ -133,7 +136,7 @@ _nh1audio.usage() {
 	    ffmpeg -loop 1 -i "$SVPIN" -i "$SVMIN" -c:v libx264 -c:a aac \
         -strict experimental -b:a 192k -shortest "$SVMOUT"
     else
-      printf "$(_1text "Call like this: %s.")\n" "1svideo <MP3-input> <PNG-input> <MP4-output>"
+      _nh1audio.usage svideo
     fi
   fi
 }

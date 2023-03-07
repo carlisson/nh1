@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:24-0300\n"
+"POT-Creation-Date: 2023-03-07 13:33-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -801,24 +801,36 @@ msgstr ""
 msgid "optional"
 msgstr ""
 
-#: audio.bashrc:136
-msgid "Call like this: %s."
+#: audio.bashrc:72
+msgid "Usage: %s <%s> <%s> <%s>"
 msgstr ""
 
-#: audio.bashrc:177 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:72
+msgid "input mp3 file"
+msgstr ""
+
+#: audio.bashrc:72
+msgid "input png file"
+msgstr ""
+
+#: audio.bashrc:72
+msgid "output mp4 file"
+msgstr ""
+
+#: audio.bashrc:180 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
-#: audio.bashrc:198
+#: audio.bashrc:201
 msgid "Downloading %s to file %s."
 msgstr ""
 
-#: audio.bashrc:203
+#: audio.bashrc:206
 msgid "Local file: %s."
 msgstr ""
 
-#: audio.bashrc:218
+#: audio.bashrc:221
 msgid "You need to give one or more youtube video URLs"
 msgstr ""
 
