@@ -48,6 +48,16 @@ _nh1audio.complete.svideo() { _1compl 'mp3' 'png' 0 0 0 ; }
 # @see _nh1audio.complete
 _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1audio.usage() {
+  case $1 in
+    beat)
+        printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "audio frequency (int)")"        
+        ;;
+  esac
+}
+
 # @description Extract ID3V2 metadata from an MP3 file
 # @arg $1 string MP3 input file
 # @arg $1 string TXT output file
@@ -203,6 +213,11 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 # @description Play a simple beat with 0.2 seconds, in given frequency
 # @arg $1 int Frequency
 1beat() {
+  if [ $# -ne 1 ]
+  then
+    _nh1audio.usage beat
+    return 0
+  fi
   ( \speaker-test --frequency $1 --test sine >/dev/null)&
   pid=$!
   \sleep 0.200s
