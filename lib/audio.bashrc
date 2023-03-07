@@ -61,6 +61,10 @@ _nh1audio.usage() {
     id3get)
       printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "MP3 input file")" "$(_1text "Text output file")"
       ;;
+    id3set)
+      printf "$(_1text "Usage: %s <%s> <%s> [%s]")\n" "1$1" "$(_1text "MP3 input file")" "$(_1text "TXT metadata input file")" "$(_1text "(optional) MP3 output file")"
+      printf "  - $(_1text "Default output file: %s")\n" "<input>-c.mp3"
+      ;;
   esac
 }
 
@@ -104,10 +108,7 @@ _nh1audio.usage() {
 	    ffmpeg -i "$CIN" -i "$CMD" -map_metadata 1 -c:a copy \
         -id3v2_version 3 -write_id3v1 1 "$COUT" &> /dev/null
     else
-      _1text "You need to give 2 or 3 params."
-      printf " 1) %s.\n" "$(_1text "MP3 input file")"
-      printf " 2) %s.\n" "$(_1text "TXT metadata input file")"
-      printf " 3) %s. %s: %s.\n" "$(_1text "(optional) MP3 output file")" "$(_1text "Default")" "<input>-c.mp3"
+      _nh1audio.usage id3set
     fi
   fi
 }
