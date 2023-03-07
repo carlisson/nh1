@@ -53,11 +53,14 @@ _nh1audio.complete.ogg2mp3() { _1compl 'ogg' 0 0 0 0 ; }
 _nh1audio.usage() {
   case $1 in
     beat)
-        printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "audio frequency (int)")"        
-        ;;
+      printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "audio frequency (int)")"        
+      ;;
     genbigmp3)
-        printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "directory with input mp3 files")" "$(_1text "output mp3 file")"
-        ;;
+      printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "directory with input mp3 files")" "$(_1text "output mp3 file")"
+      ;;
+    id3get)
+      printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "MP3 input file")" "$(_1text "Text output file")"
+      ;;
   esac
 }
 
@@ -73,7 +76,7 @@ _nh1audio.usage() {
     then
       ffmpeg -i "$1" -f ffmetadata "$2" &> /dev/null
     else
-      printf "$(_1text "You need to give 2 params: %s.")\n" "1id3get <MP3-Input> <TXT-Output>"
+      _nh1audio.usage id3get
     fi
   fi
 }
