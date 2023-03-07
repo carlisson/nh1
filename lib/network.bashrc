@@ -17,6 +17,7 @@ _nh1network.menu() {
   _1menuitem W 1get "$(_1text "Start download(s)")" wget
   _1menuitem W 1getadd "$(_1text "Add URL to download later")"
   _1menuitem W 1getclear "$(_1text "Reset download queue")"
+  _1menuitem W 1geticon "$(_1text "Download favicon from URL")"
   _1menuitem W 1getlist "$(_1text "List download planning")"
   _1menuitem W 1getdel "$(_1text "Delete URL from list to download")"
   _1menuitem W 1findport "$(_1text "Search in all network every IP with given port open")" ip ipcalc
@@ -55,7 +56,7 @@ _nh1network.clean() {
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
   unset -f 1interfaces 1get 1getadd 1getlist 1getdel _1network.download
-  unset -f 1getclear
+  unset -f 1getclear 1geticon
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -116,6 +117,19 @@ _nh1network.info() {
   _1menuitem W NORG_NETWORK_DIR "$(_1text "Path for network (hosts and groups) files.")"
   _1menuitem W NORG_IPERF_PORT "$(printf "$(_1text "Server port. Default: %s.")" "2918")"
   _1menuitem W NORG_DOWNLOAD_DIR "$(_1text "Path where save downloads when using 1get.")"
+}
+
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1network.usage() {
+  case $1 in
+    geticon)
+        printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "URL")" "$(_1text "Output file")"
+        ;;
+    *)
+      false
+      ;;
+  esac
 }
 
 # Alias like
@@ -1086,5 +1100,42 @@ _1network.download() {
     rm "$_TMP"
   else
     printf "$(_1text "Usage: %s [%s]")\n" "1getdel" "URL"
+  fi
+}
+
+# @description Get favicon from given URL
+# @arg $1 string URL
+# @arg $2 string Output file
+1geticon() {
+  if [ $# -ne 2 ]
+  then
+    _nh1network.usage geticon
+    return 2
+  fi
+  local _URL="$1"
+  local _FILE="$2"
+  #local _FAV="$(curl --silent -L "$_URL" | tr '\n' ' ' | sed 's/[''"]//g' | sed 's/\(.*\)=\([^=\<\>]*\.\(ico|png\)\)\(.*\)/\2/g')"
+  local _FAV="$(curl --silent -L "$_URL" | tr '\n' ' ' | tr '<' '\n' | tr '>' ' ' | grep favicon |  sed 's/[''"]//g' | sed 's/\(.*\)href=\([^=\<\> ]*\)\(.*\)/\2/g' | head -n 1)"
+  echo "FAV: $_FAV"
+  if [[ "$_FAV" =~ [\<\>\!] ]] || [ -z "$_FAV" ]
+  then
+    return 1
+  fi
+  if ! [[ "$_FAV" =~ ^http ]]
+  then
+    if [[ "$_FAV" =~ ^\/ ]]
+    then
+      _FAV="$(echo "$_URL" | sed 's/\(http\(s*\):\/\/\([^/]*\)\)\(.*\)/\1/')$_FAV"
+    else
+      _FAV="$_URL/$_FAV"
+    fi
+  fi
+  if [[ "$_FAV" =~ \.ico$ ]]
+  then
+    curl --silent -o "$_FILE" -L "$_FAV"
+  else
+    local _TMP="$(mktemp).ico"
+    curl --silent -o "$_TMP" -L "$_FAV"
+    convert "$_TMP" "$_FILE"
   fi
 }

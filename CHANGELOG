@@ -331,3 +331,4 @@
 1.3b22 2023-02-13: 1app allows multiple symlinks in tarball recipes
 1.3b23 2023-02-21: 1pdfbkl usage info
 1.3b24 2023-03-06: 1roll is now without _1before (it broke 1spchar)
+1.3b25 2023-03-07: 1geticon extract favicon from given URL
