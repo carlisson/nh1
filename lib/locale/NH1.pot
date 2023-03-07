@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 11:20-0300\n"
+"POT-Creation-Date: 2023-03-07 11:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -753,53 +753,64 @@ msgstr ""
 msgid "audio frequency (int)"
 msgstr ""
 
-#: audio.bashrc:73
+#: audio.bashrc:59 network.bashrc:127
+msgid "Usage: %s <%s> <%s>"
+msgstr ""
+
+#: audio.bashrc:59
+msgid "directory with input mp3 files"
+msgstr ""
+
+#: audio.bashrc:59
+msgid "output mp3 file"
+msgstr ""
+
+#: audio.bashrc:76
 msgid "You need to give 2 params: %s."
 msgstr ""
 
-#: audio.bashrc:101
+#: audio.bashrc:104
 msgid "You need to give 2 or 3 params."
 msgstr ""
 
-#: audio.bashrc:102
+#: audio.bashrc:105
 msgid "MP3 input file"
 msgstr ""
 
-#: audio.bashrc:103
+#: audio.bashrc:106
 msgid "TXT metadata input file"
 msgstr ""
 
-#: audio.bashrc:104
+#: audio.bashrc:107
 msgid "(optional) MP3 output file"
 msgstr ""
 
-#: audio.bashrc:104
+#: audio.bashrc:107
 msgid "Default"
 msgstr ""
 
-#: audio.bashrc:126
+#: audio.bashrc:129
 msgid "Call like this: %s."
 msgstr ""
 
-#: audio.bashrc:151
+#: audio.bashrc:154
 msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 
-#: audio.bashrc:167 audio.bashrc:272 backup.bashrc:194 canva.bashrc:238
-#: canva.bashrc:264 misc.bashrc:185 network.bashrc:347 rpg.bashrc:235
-#: rpg.bashrc:251
+#: audio.bashrc:170 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
-#: audio.bashrc:188
+#: audio.bashrc:191
 msgid "Downloading %s to file %s."
 msgstr ""
 
-#: audio.bashrc:193
+#: audio.bashrc:196
 msgid "Local file: %s."
 msgstr ""
 
-#: audio.bashrc:208
+#: audio.bashrc:211
 msgid "You need to give one or more youtube video URLs"
 msgstr ""
 
@@ -1634,10 +1645,6 @@ msgstr ""
 
 #: network.bashrc:119
 msgid "Path where save downloads when using 1get."
-msgstr ""
-
-#: network.bashrc:127
-msgid "Usage: %s <%s> <%s>"
 msgstr ""
 
 #: network.bashrc:127

@@ -55,6 +55,9 @@ _nh1audio.usage() {
     beat)
         printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "audio frequency (int)")"        
         ;;
+    genbigmp3)
+        printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "directory with input mp3 files")" "$(_1text "output mp3 file")"
+        ;;
   esac
 }
 
@@ -269,7 +272,7 @@ _nh1audio.usage() {
       ffmpeg -i $1/final.ogg $2
       rm -f $1/*.ogg
     else
-      printf "$(_1text "Usage: %s.")\n" "1genbigmp3 [DIRECTORY-WITH-INPUT-MP3-FILES] [OUTPUT.mp3]"
+      _nh1audio.usage genbigmp3
     fi
   fi
 }
