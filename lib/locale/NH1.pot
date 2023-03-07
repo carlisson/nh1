@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:41-0300\n"
+"POT-Creation-Date: 2023-03-07 13:46-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -745,7 +745,7 @@ msgstr ""
 msgid "Extract Youtube video to MP3"
 msgstr ""
 
-#: audio.bashrc:56 audio.bashrc:75
+#: audio.bashrc:56 audio.bashrc:75 audio.bashrc:78
 msgid "Usage: %s <%s>"
 msgstr ""
 
@@ -825,21 +825,21 @@ msgstr ""
 msgid "output wave file"
 msgstr ""
 
-#: audio.bashrc:183 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:78
+msgid "Youtube video URL"
+msgstr ""
+
+#: audio.bashrc:186 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
-#: audio.bashrc:204
+#: audio.bashrc:207
 msgid "Downloading %s to file %s."
 msgstr ""
 
-#: audio.bashrc:209
+#: audio.bashrc:212
 msgid "Local file: %s."
-msgstr ""
-
-#: audio.bashrc:224
-msgid "You need to give one or more youtube video URLs"
 msgstr ""
 
 #: backup.bashrc:14
