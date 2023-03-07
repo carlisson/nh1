@@ -19,6 +19,7 @@ _nh1cron.menu() {
   _1menuitem X 1cronlist "$(_1text "List all cron entries")"
   _1menuitem X 1cron "$(_1text "Check and run due commands")"
   _1menuitem X 1crond "$(_1text "Run cron in daemon mode")"
+  _1menuitem X 1every "$(_1text "Run a command every x seconds, minutes or hours")"
   _1menuitem X 1run "$(_1text "Run a command now")"
 }
 
@@ -115,6 +116,16 @@ _nh1cron.tick() {
         _1db.set "$_1CRONDIR" "pid" "$1" "$2"
         _1message bg "$(printf "$(_1text "Command %s finished at %s.")" "$2" "$(date)")"
     fi
+}
+
+# @description Usage instructions
+# @arg $1 string Command
+_nh1cron.usage() {
+    case $1 in
+        every)
+            printf "$(_1text "Usage: %s [%s] <%s> <%s>")\n" "1$1" "$(_1text "(optional) \"quiet\" for quiet mode")" "$(_1text "Interval")" "$(_1text "Command ID")"
+            ;;
+    esac
 }
 
 # @description Routine to run if interrupted
@@ -261,6 +272,54 @@ _nh1cron.startup() {
             _VAL=$(_1db.get "$_1CRONDIR" "status" "$_TIM" "$_CMD")
             _1menuitem W "$_CMD" "$_VAL ($_PTH)"
         done
+    done
+}
+
+# @description Run a command every x seconds (or other time unity)
+# @arg $1 string "quiet" for quiet mode (optional)
+# @arg $2 string Interval
+# @arg $3 string Command
+1every() {
+    local _NUM _UNI _CMD _MOD
+    _MOD="normal"
+    if [ $# -eq 3 ]
+    then
+        _MOD="quiet"
+        shift
+    fi
+    if [ $# -ne 2 ]
+    then
+        _nh1cron.usage every
+        return 0
+    fi
+    _CMD="$2"
+    if [[ $1 =~ ^[0-9]+$ ]]
+    then
+        _NUM=$1
+        _UNI="s"
+    else
+        _NUM=$(echo $1 | sed 's/\(\ *\)//g' | sed 's/^\([0-9]*\)\([a-zA-Z]*\)\(.*\)/\1/')
+        _UNI=$(echo $1 | sed 's/\(\ *\)//g' | sed 's/^\([0-9]*\)\([a-zA-Z]\)\(.*\)/\2/')
+    fi
+    while $(true)
+    do
+        $_CMD
+        if [ "$_MOD" = "quiet" ]
+        then
+            sleep "$_NUM""$_UNI"
+        else
+            case "$_UNI" in
+                s)
+                    1timer $_1COLOR "$_CMD" $_NUM
+                    ;;
+                m)
+                    1timer $_1COLOR "$_CMD" 0 $_NUM
+                    ;;
+                h)
+                    1timer $_1COLOR "$_CMD" 0 0 $_NUM
+                    ;;
+            esac
+        fi
     done
 }
 

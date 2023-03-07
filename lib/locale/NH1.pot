@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 12:15-0300\n"
+"POT-Creation-Date: 2023-03-07 13:01-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -633,7 +633,7 @@ msgstr ""
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr ""
 
-#: app.bashrc:1068 cron.bashrc:218
+#: app.bashrc:1068 cron.bashrc:229
 msgid "command"
 msgstr ""
 
@@ -988,86 +988,106 @@ msgid "Run cron in daemon mode"
 msgstr ""
 
 #: cron.bashrc:22
+msgid "Run a command every x seconds, minutes or hours"
+msgstr ""
+
+#: cron.bashrc:23
 msgid "Run a command now"
 msgstr ""
 
-#: cron.bashrc:39
+#: cron.bashrc:40
 msgid "Enabling complete for cron module."
 msgstr ""
 
-#: cron.bashrc:50
+#: cron.bashrc:51
 msgid "Path for cron rules"
 msgstr ""
 
-#: cron.bashrc:51
+#: cron.bashrc:52
 msgid "Turn on (true) or off (false) cron checkings"
 msgstr ""
 
-#: cron.bashrc:116
+#: cron.bashrc:117
 msgid "Command %s finished at %s."
 msgstr ""
 
-#: cron.bashrc:125
+#: cron.bashrc:126
+msgid "Usage: %s [%s] <%s> <%s>"
+msgstr ""
+
+#: cron.bashrc:126
+msgid "(optional) \"quiet\" for quiet mode"
+msgstr ""
+
+#: cron.bashrc:126
+msgid "Interval"
+msgstr ""
+
+#: cron.bashrc:126
+msgid "Command ID"
+msgstr ""
+
+#: cron.bashrc:136
 msgid "Finishing command %s."
 msgstr ""
 
-#: cron.bashrc:149
+#: cron.bashrc:160
 msgid "Command %s executed at %s. Running now (%s) again. %i"
 msgstr ""
 
-#: cron.bashrc:155
+#: cron.bashrc:166
 msgid "Command %s is still running (PID %i)."
 msgstr ""
 
-#: cron.bashrc:157
+#: cron.bashrc:168
 msgid "Command %s is not more running."
 msgstr ""
 
-#: cron.bashrc:165
+#: cron.bashrc:176
 msgid "Run (frequency: %s) the command %s."
 msgstr ""
 
-#: cron.bashrc:214
+#: cron.bashrc:225
 msgid "Unknown cron time"
 msgstr ""
 
-#: cron.bashrc:218
+#: cron.bashrc:229
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr ""
 
-#: cron.bashrc:218 cron.bashrc:245
+#: cron.bashrc:229 cron.bashrc:256
 msgid "cron time"
 msgstr ""
 
-#: cron.bashrc:218 cron.bashrc:245 cron.bashrc:315
+#: cron.bashrc:229 cron.bashrc:256 cron.bashrc:374
 msgid "command id"
 msgstr ""
 
-#: cron.bashrc:219 cron.bashrc:246
+#: cron.bashrc:230 cron.bashrc:257
 msgid "Time values: "
 msgstr ""
 
-#: cron.bashrc:241 cron.bashrc:310
+#: cron.bashrc:252 cron.bashrc:369
 msgid "Unknown cron time."
 msgstr ""
 
-#: cron.bashrc:245 cron.bashrc:315
+#: cron.bashrc:256 cron.bashrc:374
 msgid "Usage: %s [%s] [%s]."
 msgstr ""
 
-#: cron.bashrc:288 cron.bashrc:306
+#: cron.bashrc:347 cron.bashrc:365
 msgid "Command not found"
 msgstr ""
 
-#: cron.bashrc:315
+#: cron.bashrc:374
 msgid "cron time (optional)"
 msgstr ""
 
-#: cron.bashrc:337
+#: cron.bashrc:396
 msgid "Starting cron function."
 msgstr ""
 
-#: cron.bashrc:342
+#: cron.bashrc:401
 msgid "Cron finished."
 msgstr ""
 
