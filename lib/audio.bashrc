@@ -71,6 +71,9 @@ _nh1audio.usage() {
     svideo)
       printf "$(_1text "Usage: %s <%s> <%s> <%s>")\n" "1$1" "$(_1text "input mp3 file")" "$(_1text "input png file")" "$(_1text "output mp4 file")"
       ;;
+    talkbr)
+      printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "Message")" "$(_1text "output wave file")"
+      ;;
   esac
 }
 

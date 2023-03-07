@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:24-0300\n"
+"POT-Creation-Date: 2023-03-07 13:33-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -821,24 +821,36 @@ msgstr "Arquivo de entrada ogg"
 msgid "optional"
 msgstr "opcional"
 
-#: audio.bashrc:136
-msgid "Call like this: %s."
-msgstr "Chame assim: %s."
+#: audio.bashrc:72
+msgid "Usage: %s <%s> <%s> <%s>"
+msgstr "Uso: %s <%s> <%s> <%s>"
 
-#: audio.bashrc:177 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:72
+msgid "input mp3 file"
+msgstr "Arquivo mp3 de entrada"
+
+#: audio.bashrc:72
+msgid "input png file"
+msgstr "Arquivo png de entrada"
+
+#: audio.bashrc:72
+msgid "output mp4 file"
+msgstr "Arquivo mp4 de saída"
+
+#: audio.bashrc:180 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: audio.bashrc:198
+#: audio.bashrc:201
 msgid "Downloading %s to file %s."
 msgstr "Baixando %s para arquivo %s"
 
-#: audio.bashrc:203
+#: audio.bashrc:206
 msgid "Local file: %s."
 msgstr "Arquivo local: %s."
 
-#: audio.bashrc:218
+#: audio.bashrc:221
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
 
@@ -2158,6 +2170,9 @@ msgstr "Cliente para microblog federado"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "Call like this: %s."
+#~ msgstr "Chame assim: %s."
 
 #~ msgid "You need to info OGG input file and (optional) MP3 output"
 #~ msgstr ""

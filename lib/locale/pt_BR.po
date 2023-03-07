@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:33-0300\n"
+"POT-Creation-Date: 2023-03-07 13:41-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -765,7 +765,7 @@ msgstr "Converte textos em Português para WAV"
 msgid "Extract Youtube video to MP3"
 msgstr "Extrai vídeo do Youtube para MP3"
 
-#: audio.bashrc:56
+#: audio.bashrc:56 audio.bashrc:75
 msgid "Usage: %s <%s>"
 msgstr "Uso: %s <%s>"
 
@@ -837,20 +837,28 @@ msgstr "Arquivo png de entrada"
 msgid "output mp4 file"
 msgstr "Arquivo mp4 de saída"
 
-#: audio.bashrc:180 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:75 ui.bashrc:72
+msgid "Message"
+msgstr "Mensagem"
+
+#: audio.bashrc:75
+msgid "output wave file"
+msgstr "Arquivo wave de saída"
+
+#: audio.bashrc:183 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: audio.bashrc:201
+#: audio.bashrc:204
 msgid "Downloading %s to file %s."
 msgstr "Baixando %s para arquivo %s"
 
-#: audio.bashrc:206
+#: audio.bashrc:209
 msgid "Local file: %s."
 msgstr "Arquivo local: %s."
 
-#: audio.bashrc:221
+#: audio.bashrc:224
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
 
@@ -2022,10 +2030,6 @@ msgstr "Nível da interface. 0: sem; 1: só console; 2: inclui GUI (default)"
 #: ui.bashrc:72
 msgid "Command"
 msgstr "Comando"
-
-#: ui.bashrc:72
-msgid "Message"
-msgstr "Mensagem"
 
 #: ui.bashrc:73
 msgid "ask a question and receive user entry"
