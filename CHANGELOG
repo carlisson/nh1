@@ -333,3 +333,4 @@
 1.3b24 2023-03-06: 1roll is now without _1before (it broke 1spchar)
 1.3b25 2023-03-07: 1geticon extract favicon from given URL
 1.3b26 2023-03-07: 1beat usage created
+1.3b27 2023-03-07: 1genbigmp3 usage improved

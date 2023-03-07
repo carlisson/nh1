@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 10:48-0300\n"
+"POT-Creation-Date: 2023-03-07 11:28-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -765,54 +765,75 @@ msgstr "Converte textos em Português para WAV"
 msgid "Extract Youtube video to MP3"
 msgstr "Extrai vídeo do Youtube para MP3"
 
-#: audio.bashrc:63
+#: audio.bashrc:56
+msgid "Usage: %s <%s>"
+msgstr "Uso: %s <%s>"
+
+#: audio.bashrc:56
+msgid "audio frequency (int)"
+msgstr "frequência do som (inteiro)"
+
+#: audio.bashrc:59
+#, fuzzy
+msgid "Usage: %s <%s> <%s>."
+msgstr "Uso: %s <%s> <%s>"
+
+#: audio.bashrc:59
+msgid "directory with input mp3 files"
+msgstr ""
+
+#: audio.bashrc:59
+#, fuzzy
+msgid "output mp3 file"
+msgstr "Arquivo de saída"
+
+#: audio.bashrc:76
 msgid "You need to give 2 params: %s."
 msgstr "Você precisa dar 2 parâmetros: %s."
 
-#: audio.bashrc:91
+#: audio.bashrc:104
 msgid "You need to give 2 or 3 params."
 msgstr "Você precisa dar 2 ou 3 parâmetros."
 
-#: audio.bashrc:92
+#: audio.bashrc:105
 msgid "MP3 input file"
 msgstr "Arquivo de entrada MP3"
 
-#: audio.bashrc:93
+#: audio.bashrc:106
 msgid "TXT metadata input file"
 msgstr "Arquivo de entrada com metadados em TXT"
 
-#: audio.bashrc:94
+#: audio.bashrc:107
 msgid "(optional) MP3 output file"
 msgstr "(Opcional) arquivo de entrada MP3"
 
-#: audio.bashrc:94
+#: audio.bashrc:107
 msgid "Default"
 msgstr "Default"
 
-#: audio.bashrc:116
+#: audio.bashrc:129
 msgid "Call like this: %s."
 msgstr "Chame assim: %s."
 
-#: audio.bashrc:141
+#: audio.bashrc:154
 msgid "You need to info OGG input file and (optional) MP3 output"
 msgstr ""
 "Você precisa informar o arquivo de entrada OGG e (opcional) a saída MP3"
 
-#: audio.bashrc:157 audio.bashrc:257 backup.bashrc:194 canva.bashrc:238
-#: canva.bashrc:264 misc.bashrc:185 network.bashrc:347 rpg.bashrc:235
-#: rpg.bashrc:251
+#: audio.bashrc:170 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
-#: audio.bashrc:178
+#: audio.bashrc:191
 msgid "Downloading %s to file %s."
 msgstr "Baixando %s para arquivo %s"
 
-#: audio.bashrc:183
+#: audio.bashrc:196
 msgid "Local file: %s."
 msgstr "Arquivo local: %s."
 
-#: audio.bashrc:198
+#: audio.bashrc:211
 msgid "You need to give one or more youtube video URLs"
 msgstr "Você precisa dar um ou mais endereços de vídeo do Youtube"
 
