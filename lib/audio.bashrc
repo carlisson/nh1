@@ -74,6 +74,9 @@ _nh1audio.usage() {
     talkbr)
       printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "Message")" "$(_1text "output wave file")"
       ;;
+    yt3)
+      printf "$(_1text "Usage: %s <%s>")\n" "1$1" "$(_1text "Youtube video URL")"
+      ;;
   esac
 }
 
@@ -221,7 +224,7 @@ _nh1audio.usage() {
 
       rm -rf "$YTMPDIR"
     else
-      _1text "You need to give one or more youtube video URLs"
+      _nh1audio.usage yt3
     fi
   fi
 }
