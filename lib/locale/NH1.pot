@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:01-0300\n"
+"POT-Creation-Date: 2023-03-07 13:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -761,7 +761,7 @@ msgstr ""
 msgid "directory with input mp3 files"
 msgstr ""
 
-#: audio.bashrc:59
+#: audio.bashrc:59 audio.bashrc:69
 msgid "output mp3 file"
 msgstr ""
 
@@ -789,28 +789,36 @@ msgstr ""
 msgid "Default output file: %s"
 msgstr ""
 
-#: audio.bashrc:133
+#: audio.bashrc:69
+msgid "Usage: %s <%s> [(%s) %s]"
+msgstr ""
+
+#: audio.bashrc:69
+msgid "input ogg file"
+msgstr ""
+
+#: audio.bashrc:69
+msgid "optional"
+msgstr ""
+
+#: audio.bashrc:136
 msgid "Call like this: %s."
 msgstr ""
 
-#: audio.bashrc:158
-msgid "You need to info OGG input file and (optional) MP3 output"
-msgstr ""
-
-#: audio.bashrc:174 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
+#: audio.bashrc:177 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
 #: misc.bashrc:185 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
-#: audio.bashrc:195
+#: audio.bashrc:198
 msgid "Downloading %s to file %s."
 msgstr ""
 
-#: audio.bashrc:200
+#: audio.bashrc:203
 msgid "Local file: %s."
 msgstr ""
 
-#: audio.bashrc:215
+#: audio.bashrc:218
 msgid "You need to give one or more youtube video URLs"
 msgstr ""
 
