@@ -5,7 +5,7 @@
 #     Template system for NH1
 #      * -=[name]=- variable substitution
 #      * -={text}=- comment
-#      * -=<com>- internal command
+#      * -=!com!- internal command
 #      * -=(name file)=- includes a external file. a list of attributions
 #        can be passed in var "name", so inclusion will do loop.
 #      * usage: 1angel [command] var=value < angel-input-file > output-file
@@ -117,9 +117,10 @@ _1angel.getValue() {
 # @arg $1 string Text line
 # @arg $2 string Attributions
 _1angel.apply() {
-    local _PAR _FILE _VAR _VAL _FLIN _I _TOTAL _FVAR _FVAL
+    local _PAR _FILE _VAR _VAL _FLIN _I _TOTAL _FVAR _FVAL _ARGS _FREF
     local _LINE="$1"
     shift
+    _ARGS="$* "
     if [[ "$_LINE" =~ "-={" ]]
     then
         _LINE="$(echo $_LINE | sed "s/-={\([^}]*\)}=-//g")"
@@ -136,15 +137,15 @@ _1angel.apply() {
             fi
         done
     fi
-    while [[ "$_LINE" =~ "-=<" ]]
+    while [[ "$_LINE" =~ "-=!" ]]
     do
-        _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=<\([a-zA-Z0-9]*\)>=-\(.*\)/\2/")"
+        _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=!\([a-zA-Z0-9]*\)!=-\(.*\)/\2/")"
         _VAL="$(_1angel.command "$_VAR")"
         if [ $? -eq 0 ]
         then
-            _LINE=$(echo "$_LINE" | sed "s/-=<$_VAR>=-/$_VAL/")
+            _LINE=$(echo "$_LINE" | sed "s/-=!$_VAR!=-/$_VAL/")
         else
-            _LINE="$(echo $_LINE | sed "s/-=<$_VAR>=-//")"
+            _LINE="$(echo $_LINE | sed "s/-=!$_VAR!=-//")"
         fi
     done
     if [[ "$_LINE" =~ "-=(" ]]
@@ -153,17 +154,17 @@ _1angel.apply() {
         _FILE="$(echo "$_LINE" | sed "s/^-=(\([a-zA-Z0-9]*\) \([^ )]*\))=-\(.*\)/\2/")"
         _LINE="$(echo $_LINE | sed "s/-=(\([^)]*\))=-//")"
 
-        if [ -f "$_FILE" ]
+        if [[ "$_FILE" =~ ^= ]]
         then
-            _FVAL=""
-            for _PAR in "$@"
-            do
-                _FVAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
-                if [ "$_FVAR" = "$_VAR" ]
-                then
-                    _FVAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/')"
-                fi
-            done
+            _FREF="$(echo "$_FILE" | sed 's/=\(.*\)/\1/')"
+
+        else
+            _FREF="none"
+        fi
+
+        if [ -f "$_FILE" -o "$_FREF" != "none" ]
+        then
+            _FVAL="$(_1angel.getValue "$_VAR" $_ARGS)"
             if [ ! -z "$_FVAL" ]
             then
                 if [ -f "$_FVAL" ]
@@ -171,7 +172,12 @@ _1angel.apply() {
                     _TOTAL=$(cat "$_FVAL" | wc -l)
                     for _I in $(seq 1 $_TOTAL)
                     do
-                        1angel go $@ $(sed -n "$_I"p "$_FVAL") < $_FILE
+                        _FLIN=$(sed -n "$_I"p "$_FVAL")
+                        if [ $_FREF != "none" ]
+                        then
+                            _FILE=$(_1angel.getValue "$_FREF" $_FLIN)
+                        fi
+                        1angel go $@ $_FLIN < $_FILE
                     done
                 fi
             fi
@@ -207,43 +213,12 @@ _1angel.test() {
 
 # @description Applies a template
 _1angel.go() {
-  local _PAR _VAR _VAL _TMP
+    local _line
 
-    template="$1"
-    fileout="$2"
-            shift 2
-    tempf=$(mktemp -u)
-            
-    tempi=$(mktemp -u).svg
-            
-    cp "$_1CANVALOCAL/$template.svg" $tempi
-    echo "#!/bin/bash" > $tempf
-    echo "pushd" $(dirname $tempi) "> /dev/null" >> $tempf
-            
-    tempib=$(basename $tempi)
-
-  
-
-#  for _PAR in "$@"
-  #do
-    #_VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
-    #_VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/')"
-#
-#
-    #for iter in "$@"
-        #do
-         #   echo $iter | sed "s/\(.*\)=\(.*\)/sed -i 's\/-=\\\[\1\\\]=-\/\2\/g' $tempib/" >> $tempf
-          #      # $(echo $(echo $iter | sed 's/\(.*\)=\(.*\)/sed -i "s\/-=[\1]=-\/\2\/g"/') $tempf)
-           # done
-#
- #           echo "popd > /dev/null" >> $tempf
-#
- #           bash $tempf
-  #          rm $tempf
-   #         
-    #        convert $tempi $fileout
-     #       rm $tempi
-        
+    while read -r _line
+    do
+        _1angel.apply "$_line" $@
+    done
 }
 
 # Public functions
