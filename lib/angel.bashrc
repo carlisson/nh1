@@ -28,7 +28,7 @@ _nh1angel.clean() {
   unset -f _nh1angel.item _nh1angel.complete _nh1angel.init
   unset -f _nh1angel.info _nh1angel.customvars _nh1angel.clean
   unset -f _nh1angel.usage _nh1angel.complete.angel _1angel.go
-  unset -f _1angel.test
+  unset -f _1angel.test _1angel.getValue
 }
 
 # @description UI Completion
@@ -93,6 +93,24 @@ _1angel.command() {
             ;;
     esac
     return 0;
+}
+
+# @description Returns value for given variable, from a argument list
+# @arg $1 string Variable name
+# @arg $2 string List of attributions
+_1angel.getValue() {
+    local _K _E _V
+    _K=$1
+    shift
+    _E="$* "
+    _V="$(echo "$_E" | sed "s/\(.*\)$_K=\([^ ]*\)\(.*\)/\2/" )"
+    if [ ! "$_V" = "$_E" ]
+    then
+        echo $_V
+        return 0
+    else
+        return 1
+    fi
 }
 
 # @description Apply variables in one line
