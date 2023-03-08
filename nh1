@@ -12,9 +12,9 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.3b35
+_1VERSION=1.3b36
 
-_1MODULES=(app audio backup canva cron misc morph network rpg ui)
+_1MODULES=(angel app audio backup canva cron misc morph network rpg ui)
 
 _1PID=$$
 _1TMPDIR="$(mktemp -d)"
