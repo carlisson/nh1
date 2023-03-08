@@ -11,6 +11,7 @@
 #      * usage: 1angel [command] var=value < angel-input-file > output-file
 
 # GLOBALS
+_1ANGELCOMMANDS=(nh1 now today)
 _1ANGELDESCRIPTION="$(_1text "Angel template system")"
 
 # Private functions
@@ -78,6 +79,9 @@ _nh1angel.usage() {
 # @arg $1 string Command
 _1angel.command() {
     case "$1" in
+        nh1)
+            echo "NH1 $_1VERSION"
+            ;;
         now)
             date "+%H:%M"
             ;;
@@ -95,7 +99,7 @@ _1angel.command() {
 # @arg $1 string Text line
 # @arg $2 string Attributions
 _1angel.apply() {
-    local _PAR _VAR _VAL
+    local _PAR _FILE _VAR _VAL _FLIN _I _TOTAL _FVAR _FVAL
     local _LINE="$1"
     shift
     if [[ "$_LINE" =~ "-={" ]]
@@ -106,7 +110,6 @@ _1angel.apply() {
     then
         for _PAR in "$@"
         do
-            echo "$_VAR será $_VAL"
             _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
             _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/')"
             if [ "$_VAR" != "$_VAL" ]
@@ -121,14 +124,41 @@ _1angel.apply() {
         _VAL="$(_1angel.command "$_VAR")"
         if [ $? -eq 0 ]
         then
-            _LINE=$(echo "$_LINE" | sed "s/-=<$_VAR>=-/$_VAL/g")
+            _LINE=$(echo "$_LINE" | sed "s/-=<$_VAR>=-/$_VAL/")
         else
             _LINE="$(echo $_LINE | sed "s/-=<$_VAR>=-//")"
         fi
     done
     if [[ "$_LINE" =~ "-=(" ]]
     then
-        echo Include
+        _VAR="$(echo "$_LINE" | sed "s/^-=(\([a-zA-Z0-9]*\) \([^ )]*\))=-\(.*\)/\1/")"
+        _FILE="$(echo "$_LINE" | sed "s/^-=(\([a-zA-Z0-9]*\) \([^ )]*\))=-\(.*\)/\2/")"
+        _LINE="$(echo $_LINE | sed "s/-=(\([^)]*\))=-//")"
+
+        if [ -f "$_FILE" ]
+        then
+            _FVAL=""
+            for _PAR in "$@"
+            do
+                _FVAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
+                if [ "$_FVAR" = "$_VAR" ]
+                then
+                    _FVAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/')"
+                fi
+            done
+            if [ ! -z "$_FVAL" ]
+            then
+                if [ -f "$_FVAL" ]
+                then
+                    _TOTAL=$(cat "$_FVAL" | wc -l)
+                    for _I in $(seq 1 $_TOTAL)
+                    do
+                        1angel go $@ $(sed -n "$_I"p "$_FVAL") < $_FILE
+                    done
+                fi
+            fi
+            return 0
+        fi
     fi
     echo $_LINE
 }
