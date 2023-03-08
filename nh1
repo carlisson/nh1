@@ -12,7 +12,7 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.3b37
+_1VERSION=1.3b38
 
 _1MODULES=(angel app audio backup canva cron misc morph network rpg ui)
 
