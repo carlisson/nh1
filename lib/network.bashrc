@@ -500,7 +500,7 @@ _nh1network.nossh() {
 # @arg $1 string name or IP, or usr@IP
 # @arg $2 string Additional options for ssh
 _nh1network.smartssh() {
-  local  line next comm aux SAVEIFS pressh args
+  local  line next comm aux SAVEIFS pressh args thiskey
   if 1check nmap
   then
     onlyip=$(_1pretelnet $1)
@@ -518,7 +518,12 @@ _nh1network.smartssh() {
       do
         if [ -n "$next" ]
         then
-          comm="$comm $next$(echo $line | tr -d '[:space:]' | tr -d '|')"
+          thiskey="$(echo $line | tr -d '[:space:]' | tr -d '|')"
+          comm="$comm $next$thiskey"
+          if [ "$next" = "-oHostKeyAlgorithms=+" ]
+          then
+            comm="$comm -oPubkeyAcceptedAlgorithms=+$thiskey"
+          fi
           next=""
         fi
         if $(echo $line | grep -q kex_algorithms)
@@ -533,6 +538,7 @@ _nh1network.smartssh() {
         fi
       done
       IFS=$SAVEIFS
+      _1verb "$comm $pressh $args"
       $comm "$pressh" $args
     else
       _nh1network.nossh "$onlyip"
