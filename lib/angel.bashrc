@@ -12,9 +12,11 @@
 #      * usage: 1angel [command] var=value < angel-input-file > output-file
 
 # GLOBALS
-_1ANGELCOMMANDS=(nh1 now today)
+_1ANGELCOMMANDS=(builder engine now today)
 _1ANGELDESCRIPTION="$(_1text "Angel template system")"
 _1ANGELIGNORE=1 # ignore commands. Used to curly cut wings
+_1ANGELBUILDER="NH1 $_1VERSION" # If you create a software based in NH1 and use 1angel, 
+                                # you can update this var in your program.
 
 # Private functions
 
@@ -40,7 +42,7 @@ _nh1angel.complete.angel() {
   	COMREPLY=()
     if [ "$COMP_CWORD" -eq 1 ]
     then
-		COMPREPLY=("go" "help" "test")
+		COMPREPLY=("help" "run" "show" "test")
     fi
 }
 
@@ -71,8 +73,9 @@ _nh1angel.init() {
 # @arg $1 string Public function name
 _nh1angel.usage() {
     printf "$(_1text "Usage: %s [%s] [%s]* < [%s] > [%s]")\n" "1angel" "$(_1text "Command")" "$(_1text "Attributions (var=value)")" "$(_1text "angel input file")" "$(_1text "output file")"
-    printf "  - go:      $(_1text "apply a template")\n"
     printf "  - help:    $(_1text "show this help")\n"
+    printf "  - run:     $(_1text "apply a template")\n"
+    printf "  - show:    $(_1text "show template content")\n"
     printf "  - test:    $(_1text "test arguments")\n"
     echo
 }
@@ -81,8 +84,11 @@ _nh1angel.usage() {
 # @arg $1 string Command
 _1angel.command() {
     case "$1" in
-        nh1)
-            echo "NH1 $_1VERSION"
+        builder)
+            echo "$_1ANGELBUILDER"
+            ;;
+        engine)
+            echo "1angel (nh1)"
             ;;
         now)
             date "+%H:%M"
@@ -140,6 +146,7 @@ _1angel.apply() {
         return 0
     fi
 
+    # Curly wings
     if [[ "$_LINE" =~ "-={" ]]
     then
         _LINE="$(echo $_LINE | sed "s/-={\([^}]*\)}=-//g")"
@@ -248,9 +255,53 @@ _1angel.test() {
 _1angel.go() {
     local _line
 
+    _1ANGELIGNORE=1 # reset comment-flag
     while read -r _line
     do
         _1angel.apply "$_line" $@
+    done
+}
+
+# @description Show template information
+_1angel.show() {
+    local _MSG _LINE
+    _1ANGELIGNORE=1
+    1tint $_1COLOR "$(_1text "Showing template information")"
+
+    while read -r _LINE
+    do
+        if [[ "$_LINE" =~ "-=@=-" ]]
+        then
+            if [ $_1ANGELIGNORE -eq 0 ]
+            then
+                _1ANGELIGNORE=1
+            else
+                _1ANGELIGNORE=0
+            fi
+        fi
+        if [ "$_1ANGELIGNORE" -eq 0 ]
+        then
+            echo $_LINE
+        else
+            while [[ "$_LINE" =~ "-={" ]]
+            do
+                _MSG="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\2/")"
+                _1message info "$_MSG"
+                _LINE="$(echo $_LINE | sed "s/-={/X/" | sed "s/}=-/X/")" # removing comment marks
+            done
+        fi
+        while [[ "$_LINE" =~ "-=[" ]]
+        do
+            _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\2/")"
+            _VAL="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\4/")"
+            if [ ! -z "$_VAL" ]
+            then
+                printf "$(_1text "Varibale %s with default value %s")\n" "$(1tint $_1COLOR $_VAR)" "$_VAL"
+            else
+                printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
+            fi
+            _LINE="$(echo $_LINE | sed "s/-=\[/X/" | sed "s/\]=-/X/")" # removing comment marks
+        done
     done
 }
 
@@ -262,13 +313,16 @@ _1angel.go() {
 1angel() {
     local _COM
 
-    if [ $# -gt 1 ]
+    if [ $# -ge 1 ]
     then
         _COM="$1"
         shift
         case $_COM in
-            go)
+            run)
                 _1angel.go "$@"
+                ;;
+            show)
+                _1angel.show
                 ;;
             test)
                 _1angel.test "$@"

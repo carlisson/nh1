@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:46-0300\n"
+"POT-Creation-Date: 2023-03-13 12:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,6 +442,70 @@ msgstr ""
 
 #: /home/cgaldino/Sources/nh1/nh1:1359
 msgid "You need run: source %s."
+msgstr ""
+
+#: angel.bashrc:16
+msgid "Angel template system"
+msgstr ""
+
+#: angel.bashrc:75
+msgid "Usage: %s [%s] [%s]* < [%s] > [%s]"
+msgstr ""
+
+#: angel.bashrc:75 ui.bashrc:72
+msgid "Command"
+msgstr ""
+
+#: angel.bashrc:75
+msgid "Attributions (var=value)"
+msgstr ""
+
+#: angel.bashrc:75
+msgid "angel input file"
+msgstr ""
+
+#: angel.bashrc:75
+msgid "output file"
+msgstr ""
+
+#: angel.bashrc:76
+msgid "show this help"
+msgstr ""
+
+#: angel.bashrc:77
+msgid "apply a template"
+msgstr ""
+
+#: angel.bashrc:78
+msgid "show template content"
+msgstr ""
+
+#: angel.bashrc:79
+msgid "test arguments"
+msgstr ""
+
+#: angel.bashrc:233
+msgid "Angel Test"
+msgstr ""
+
+#: angel.bashrc:240
+msgid "Error in %s"
+msgstr ""
+
+#: angel.bashrc:244
+msgid "File: %s for name %s"
+msgstr ""
+
+#: angel.bashrc:269
+msgid "Showing template information"
+msgstr ""
+
+#: angel.bashrc:299
+msgid "Varibale %s with default value %s"
+msgstr ""
+
+#: angel.bashrc:301
+msgid "Varibale %s without default value"
 msgstr ""
 
 #: app.bashrc:20
@@ -1994,10 +2058,6 @@ msgstr ""
 
 #: ui.bashrc:61
 msgid "GUI level. 0: none; 1: console only; 2: including GUI (default)"
-msgstr ""
-
-#: ui.bashrc:72
-msgid "Command"
 msgstr ""
 
 #: ui.bashrc:73
