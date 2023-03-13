@@ -5,6 +5,7 @@
 #     Template system for NH1
 #      * -=[name]=- variable substitution
 #      * -={text}=- comment
+#      * -=@=- multiline comment
 #      * -=!com!- internal command
 #      * -=(name file)=- includes a external file. a list of attributions
 #        can be passed in var "name", so inclusion will do loop.
@@ -13,6 +14,7 @@
 # GLOBALS
 _1ANGELCOMMANDS=(nh1 now today)
 _1ANGELDESCRIPTION="$(_1text "Angel template system")"
+_1ANGELIGNORE=1 # ignore commands. Used to curly cut wings
 
 # Private functions
 
@@ -121,6 +123,23 @@ _1angel.apply() {
     local _LINE="$1"
     shift
     _ARGS="$* "
+
+    # -=@=- Curly cut wings
+    if [[ "$_LINE" =~ "-=@=-" ]]
+    then
+        if [ $_1ANGELIGNORE -eq 0 ]
+        then
+            _1ANGELIGNORE=1
+        else
+            _1ANGELIGNORE=0
+        fi
+        _LINE="$(echo $_LINE | sed "s/-=@=-//")"
+    fi
+    if [ "$_1ANGELIGNORE" -eq 0 ]
+    then
+        return 0
+    fi
+
     if [[ "$_LINE" =~ "-={" ]]
     then
         _LINE="$(echo $_LINE | sed "s/-={\([^}]*\)}=-//g")"
