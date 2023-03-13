@@ -152,7 +152,7 @@ _1angel.apply() {
             _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/')"
             if [ "$_VAR" != "$_VAL" ]
             then
-                _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\]=-/$_VAL/g")
+                _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/g")
             fi
         done
     fi
@@ -203,6 +203,20 @@ _1angel.apply() {
             return 0
         fi
     fi
+
+    # Cleaning line
+    while [[ "$_LINE" =~ "-=[" ]]
+    do
+        _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\2/")"
+        _VAL="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\4/")"
+        if [ ! -z "$_VAL" ]
+        then
+            _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/")
+        else
+            _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\]=-/$_VAR/")
+        fi
+    done
+
     echo $_LINE
 }
 
