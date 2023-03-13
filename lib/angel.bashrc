@@ -22,7 +22,7 @@ _1ANGELBUILDER="NH1 $_1VERSION" # If you create a software based in NH1 and use 
 
 # @description Special menu item
 _nh1angel.item() {
-    _1menuitem W 1angel "$_1UIDESCRIPTION"
+    _1menuitem W 1angel "$_1ANGELDESCRIPTION"
 }
 
 # @description Destroys all global variables created by this file
