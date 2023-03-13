@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 13:46-0300\n"
+"POT-Creation-Date: 2023-03-13 12:31-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -458,6 +458,70 @@ msgstr "Gerando arquivo .mo para o idioma %s"
 #: /home/cgaldino/Sources/nh1/nh1:1359
 msgid "You need run: source %s."
 msgstr "Você precisa rodar: source %s."
+
+#: angel.bashrc:16
+msgid "Angel template system"
+msgstr "Sistema de templates Angel"
+
+#: angel.bashrc:75
+msgid "Usage: %s [%s] [%s]* < [%s] > [%s]"
+msgstr "Uso: %s [%s] [%s]* < [%s] > [%s]"
+
+#: angel.bashrc:75 ui.bashrc:72
+msgid "Command"
+msgstr "Comando"
+
+#: angel.bashrc:75
+msgid "Attributions (var=value)"
+msgstr "Atribuições (var=value)"
+
+#: angel.bashrc:75
+msgid "angel input file"
+msgstr "arquivo de entrada angel"
+
+#: angel.bashrc:75
+msgid "output file"
+msgstr "arquivo de saída"
+
+#: angel.bashrc:76
+msgid "show this help"
+msgstr "mostra esta ajuda"
+
+#: angel.bashrc:77
+msgid "apply a template"
+msgstr "aplicar um template"
+
+#: angel.bashrc:78
+msgid "show template content"
+msgstr "mostra conteúdo do template"
+
+#: angel.bashrc:79
+msgid "test arguments"
+msgstr "testa parâmetros"
+
+#: angel.bashrc:233
+msgid "Angel Test"
+msgstr "Teste do Angel"
+
+#: angel.bashrc:240
+msgid "Error in %s"
+msgstr "Erro em %s"
+
+#: angel.bashrc:244
+msgid "File: %s for name %s"
+msgstr "Arquivo: %s para o nome %s"
+
+#: angel.bashrc:269
+msgid "Showing template information"
+msgstr "Mostrando informações do template"
+
+#: angel.bashrc:299
+msgid "Varibale %s with default value %s"
+msgstr "Variável %s com valor padrão %s"
+
+#: angel.bashrc:301
+msgid "Varibale %s without default value"
+msgstr "Variável %s sem valor padrão"
 
 #: app.bashrc:20
 msgid "Install App"
@@ -2026,10 +2090,6 @@ msgstr "Interface de usuário para interação simples"
 #: ui.bashrc:61
 msgid "GUI level. 0: none; 1: console only; 2: including GUI (default)"
 msgstr "Nível da interface. 0: sem; 1: só console; 2: inclui GUI (default)"
-
-#: ui.bashrc:72
-msgid "Command"
-msgstr "Comando"
 
 #: ui.bashrc:73
 msgid "ask a question and receive user entry"
