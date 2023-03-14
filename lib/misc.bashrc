@@ -21,6 +21,7 @@ _nh1misc.menu() {
   _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
   _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
+  _1menuitem X 1replace "$(_1text "Replace a substring inside a string")"
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
   _1menuitem W 1timer "$(_1text "Countdown timer.")" seq
@@ -35,7 +36,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init 1diceware 1tr
+  unset -f _nh1misc.init 1diceware 1tr 1replace
 }
 
 # @description Autocompletion
@@ -78,9 +79,12 @@ _nh1misc.usage() {
     pdfbkl)
         printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
         ;;
+    replace)
+        printf "$(_1text "Usage: | %s %s %s (full text in stdin)")\n" "1$1" "old text" "new text"
+        ;;
     tr)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "chars to find")" "$(_1text "chars to replace")"
-        ;;
+        ;;        
     *)
       false
       ;;
@@ -555,4 +559,31 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     fi
   fi
   _nh1misc.usage tr
+}
+
+# @description Replace a substring
+# @arg $1 string text to search
+# @arg $2 string text to replace
+# @stdin string full text
+# @stdout string text after replace
+1replace() {
+  local _INP _SEA _REP
+  if [ $# -ne 2 ]
+  then
+    _nh1misc.usage replace
+    return 1
+  fi
+  
+  _SEA="$1"
+  _REP="$2"
+  while read -r _INP
+  do
+    echo "$_INP" | sed "s/$_SEA/$_REP/" &>/dev/null
+    if [ $? -ne 0 ]
+    then
+      _1message error "$(printf "$(_1text "Error replacing \"%s\" to \"%s\" in string: \"%s\"")" "$_SEA" "$_REP" "$_INP")"
+      return 2
+    fi
+  done
+  return 0
 }

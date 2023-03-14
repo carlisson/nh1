@@ -203,7 +203,7 @@ _1angel.apply() {
                         then
                             _FILE=$(_1angel.getValue "$_FREF" $_FLIN)
                         fi
-                        1angel go $@ $_FLIN < $_FILE
+                        1angel run $@ $_FLIN < $_FILE
                     done
                 fi
             fi
