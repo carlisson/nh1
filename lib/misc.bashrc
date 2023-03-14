@@ -80,7 +80,8 @@ _nh1misc.usage() {
         printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
         ;;
     replace)
-        printf "$(_1text "Usage: | %s %s %s (full text in stdin)")\n" "1$1" "old text" "new text"
+        printf "$(_1text "Usage: | %s [%s] [%s]")\n" "1$1" "$(_1text "old text")" "$(_1text "new text")"
+        printf "  - %s\n" "$(_1text "Full text in stdin")"
         ;;
     tr)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "chars to find")" "$(_1text "chars to replace")"
@@ -578,7 +579,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   _REP="$2"
   while read -r _INP
   do
-    echo "$_INP" | sed "s/$_SEA/$_REP/" &>/dev/null
+    echo "$_INP" | sed "s/$_SEA/$_REP/" 2> /dev/null
     if [ $? -ne 0 ]
     then
       _1message error "$(printf "$(_1text "Error replacing \"%s\" to \"%s\" in string: \"%s\"")" "$_SEA" "$_REP" "$_INP")"
