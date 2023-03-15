@@ -579,12 +579,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   _REP="$2"
   while read -r _INP
   do
-    echo "$_INP" | sed "s/$_SEA/$_REP/" 2> /dev/null
-    if [ $? -ne 0 ]
-    then
-      _1message error "$(printf "$(_1text "Error replacing \"%s\" to \"%s\" in string: \"%s\"")" "$_SEA" "$_REP" "$_INP")"
-      return 2
-    fi
+    echo "${_INP/${_SEA}/${_REP}}"
   done
   return 0
 }

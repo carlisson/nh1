@@ -354,3 +354,4 @@
 1.4a1  2023-03-14: bug fix in 1angel
 1.4a2  2023-03-14: 1replace created
 1.4a3  2023-03-14: bug fix in 1replace
+1.4a4  2023-03-14: 1replace without sed, using ${//}
