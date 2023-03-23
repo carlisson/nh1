@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl super unaccent updown upper xthicc)
+_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl sedscape super unaccent updown upper xthicc)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -188,6 +188,10 @@ _nh1morph.usage() {
                         echo $_TEXT | tr 'aeiou' 'oaiue'
                         ;;
                 esac
+                ;;
+            sedscape)
+                echo $_TEXT | 1replace '\' '\\' 0 | 1replace '[' '\[' 0 | 1replace ']' '\]' 0 | \
+                    1replace '$' '\$' 0 | 1replace '.' '\.' 0 | 1replace '\*' '\\*' 0 | 1replace '^' '\^' 0
                 ;;
             super) # Superscript
                 echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ᴬᵃᴮᵇᶜᶜᴰᵈᴱᵉᶠᶠᴳᵍᴴʰᴵᶦᴶʲᴷᵏᴸˡᴹᵐᴺⁿᴼᵒᴾᵖᵠᵠᴿʳˢˢᵀᵗᵁᵘⱽᵛᵂʷˣˣʸʸᶻᶻ⁰¹²³⁴⁵⁶⁷⁸⁹'

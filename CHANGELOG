@@ -359,3 +359,4 @@
 1.4a6  2023-03-22: fixed bug in 1angel
 1.4a7  2023-03-23: 1remove to remove substrings
 1.4a8  2023-03-23: 1remove now do sedscape for intervals
+1.4a9  2023-03-23: sedscape is now inside 1morph
