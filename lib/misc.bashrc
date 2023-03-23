@@ -97,6 +97,14 @@ _nh1misc.usage() {
   esac
 }
 
+# @description Escape a string to use in sed
+# @arg 1 string Entry text
+_nh1misc.sedscape() {
+  local _STR="$*"
+  echo $_STR | 1replace '\' '\\' 0 | 1replace '[' '\[' 0 | 1replace ']' '\]' 0 | \
+    1replace '$' '\$' 0 | 1replace '.' '\.' 0 | 1replace '\*' '\\*' 0 | 1replace '^' '\^' 0
+}
+
 # @description Completion for functions with pdf input
 _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 
@@ -607,17 +615,20 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 1remove() {
   local _INP _SEA _END
 
-  if [ $# -gt 2 -o $# -lt 1 ]
-  then
-    _nh1misc.usage remove
-    return 1
-  fi
+  case $# in
+    1)
+      _SEA="$1"
+      ;;
+    2)
+      _SEA="$(_nh1misc.sedscape "$1")"
+      _END="$(_nh1misc.sedscape "$2")"
+      ;;
+    *)
+      _nh1misc.usage remove
+      return 1
+      ;;
+  esac
   
-  _SEA="$1"
-  if [ $# -eq 2 ]
-  then
-    _END="$2"
-  fi
 
   while read -r _INP
   do

@@ -358,3 +358,4 @@
 1.4a5  2023-03-17: 1replace working to replace one or all
 1.4a6  2023-03-22: fixed bug in 1angel
 1.4a7  2023-03-23: 1remove to remove substrings
+1.4a8  2023-03-23: 1remove now do sedscape for intervals
