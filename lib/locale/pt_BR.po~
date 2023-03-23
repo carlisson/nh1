@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-14 12:01-0300\n"
+"POT-Creation-Date: 2023-03-14 12:02-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1306,8 +1306,8 @@ msgid "%s or %s. Default is %s"
 msgstr "%s ou %s. Default é %s."
 
 #: misc.bashrc:83
-msgid "Usage: | %s %s %s"
-msgstr "Uso: | %s %s %s"
+msgid "Usage: | %s [%s] [%s]"
+msgstr "Uso: | %s [%s] [%s]"
 
 #: misc.bashrc:83
 msgid "old text"
@@ -2258,6 +2258,9 @@ msgstr "Cliente para microblog federado"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "Usage: | %s %s %s"
+#~ msgstr "Uso: | %s %s %s"
 
 #, fuzzy
 #~ msgid "Usage: | %s %s %s (%s)"

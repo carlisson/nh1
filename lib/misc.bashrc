@@ -21,6 +21,7 @@ _nh1misc.menu() {
   _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
   _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
+  _1menuitem X 1remove "$(_1text "Remove a substring from a string")"
   _1menuitem X 1replace "$(_1text "Replace a substring inside a string")"
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
@@ -36,7 +37,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init 1diceware 1tr 1replace
+  unset -f _nh1misc.init 1diceware 1tr 1replace 1remove
 }
 
 # @description Autocompletion
@@ -78,6 +79,10 @@ _nh1misc.usage() {
   case $1 in
     pdfbkl)
         printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
+        ;;
+    remove)
+        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "text to remove or start")" "$(_1text "end of interval to remove")"
+        printf "  - %s\n" "$(_1text "Full text in stdin")"
         ;;
     replace)
         printf "$(_1text "Usage: | %s [%s] [%s]")\n" "1$1" "$(_1text "old text")" "$(_1text "new text")"
@@ -590,6 +595,40 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       fi
     fi
     echo "${_INP/${_SEA}/${_REP}}"
+  done
+  return 0
+}
+
+# @description Remove a string or interval
+# @arg $1 string text to remove or starting interval
+# @arg $2 string ending interval (optional)
+# @stdin string full text
+# @stdout string text after replace
+1remove() {
+  local _INP _SEA _END
+
+  if [ $# -gt 2 -o $# -lt 1 ]
+  then
+    _nh1misc.usage remove
+    return 1
+  fi
+  
+  _SEA="$1"
+  if [ $# -eq 2 ]
+  then
+    _END="$2"
+  fi
+
+  while read -r _INP
+  do
+    case $# in
+      1)
+        echo "${_INP/${_SEA}/}"
+        ;;
+      2)
+        echo "$_INP" | sed "s/$_SEA\(.*\)$_END//g"
+        ;;
+    esac
   done
   return 0
 }
