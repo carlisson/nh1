@@ -565,11 +565,12 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @description Replace a substring
 # @arg $1 string text to search
 # @arg $2 string text to replace
+# @arg $3 int times to replace. 1 to 1 (default), 0 to all
 # @stdin string full text
 # @stdout string text after replace
 1replace() {
   local _INP _SEA _REP
-  if [ $# -ne 2 ]
+  if [ $# -lt 2 ]
   then
     _nh1misc.usage replace
     return 1
@@ -579,6 +580,15 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   _REP="$2"
   while read -r _INP
   do
+    # ${_INP/\//\\\\//g}
+    if [ $# -eq 3 ]
+    then
+      if [ $3 -eq 0 ]
+      then
+        echo "${_INP//${_SEA}/${_REP}}"
+        return 0
+      fi
+    fi
     echo "${_INP/${_SEA}/${_REP}}"
   done
   return 0

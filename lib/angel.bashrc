@@ -169,7 +169,7 @@ _1angel.apply() {
         _VAL="$(_1angel.command "$_VAR")"
         if [ $? -eq 0 ]
         then
-            _LINE=$(echo "$_LINE" | sed "s/-=!$_VAR!=-/$_VAL/")
+            _LINE=$(echo "$_LINE" | 1replace "-=!$_VAR!=-" "$_VAL")
         else
             _LINE="$(echo $_LINE | sed "s/-=!$_VAR!=-//")"
         fi
@@ -187,6 +187,7 @@ _1angel.apply() {
         else
             _FREF="none"
         fi
+        echo "$_VAR ($_FILE) $_ARGS"
 
         if [ -f "$_FILE" -o "$_FREF" != "none" ]
         then
@@ -220,7 +221,7 @@ _1angel.apply() {
         then
             _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/")
         else
-            _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\]=-/$_VAR/")
+            _LINE=$(echo "$_LINE" | 1replace "-=\[$_VAR\]=-" "$_VAR")
         fi
     done
 
@@ -258,7 +259,7 @@ _1angel.go() {
     _1ANGELIGNORE=1 # reset comment-flag
     while read -r _line
     do
-        _1angel.apply "$_line" $@
+        _1angel.apply "$_line" "$@"
     done
 }
 
@@ -287,7 +288,7 @@ _1angel.show() {
             do
                 _MSG="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\2/")"
                 _1message info "$_MSG"
-                _LINE="$(echo $_LINE | sed "s/-={/X/" | sed "s/}=-/X/")" # removing comment marks
+                _LINE="$(echo $_LINE | 1replace "-={" "X" | 1replacee "}=-" "X")" # removing comment marks
             done
         fi
         while [[ "$_LINE" =~ "-=[" ]]
@@ -300,7 +301,7 @@ _1angel.show() {
             else
                 printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
             fi
-            _LINE="$(echo $_LINE | sed "s/-=\[/X/" | sed "s/\]=-/X/")" # removing comment marks
+            _LINE="$(echo $_LINE | 1replace "-=[" "X" | 1replace "]=-" "X")" # removing comment marks
         done
     done
 }
