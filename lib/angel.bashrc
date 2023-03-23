@@ -139,7 +139,7 @@ _1angel.apply() {
         else
             _1ANGELIGNORE=0
         fi
-        _LINE="$(echo $_LINE | sed "s/-=@=-//")"
+        _LINE="$(echo $_LINE | 1remove "-=@=-")"
     fi
     if [ "$_1ANGELIGNORE" -eq 0 ]
     then
@@ -171,7 +171,7 @@ _1angel.apply() {
         then
             _LINE=$(echo "$_LINE" | 1replace "-=!$_VAR!=-" "$_VAL")
         else
-            _LINE="$(echo $_LINE | sed "s/-=!$_VAR!=-//")"
+            _LINE="$(echo $_LINE | 1remove "-=!$_VAR!=-")"
         fi
     done
     if [[ "$_LINE" =~ "-=(" ]]

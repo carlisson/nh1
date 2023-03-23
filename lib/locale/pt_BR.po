@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 18:15-0300\n"
+"POT-Creation-Date: 2023-03-23 19:08-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1455,231 +1455,231 @@ msgstr "Uso: %s [%s]"
 msgid "number"
 msgstr "número"
 
-#: morph.bashrc:228
+#: morph.bashrc:232
 msgid "zero"
 msgstr "zero"
 
-#: morph.bashrc:229
+#: morph.bashrc:233
 msgid "one"
 msgstr "um"
 
-#: morph.bashrc:230
+#: morph.bashrc:234
 msgid "two"
 msgstr "dois"
 
-#: morph.bashrc:231
+#: morph.bashrc:235
 msgid "three"
 msgstr "três"
 
-#: morph.bashrc:232
+#: morph.bashrc:236
 msgid "four"
 msgstr "quatro"
 
-#: morph.bashrc:233
+#: morph.bashrc:237
 msgid "five"
 msgstr "cinco"
 
-#: morph.bashrc:234
+#: morph.bashrc:238
 msgid "six"
 msgstr "seis"
 
-#: morph.bashrc:235
+#: morph.bashrc:239
 msgid "seven"
 msgstr "sete"
 
-#: morph.bashrc:236
+#: morph.bashrc:240
 msgid "eight"
 msgstr "oito"
 
-#: morph.bashrc:237
+#: morph.bashrc:241
 msgid "nine"
 msgstr "nove"
 
-#: morph.bashrc:242
+#: morph.bashrc:246
 msgid "ten"
 msgstr "dez"
 
-#: morph.bashrc:243
+#: morph.bashrc:247
 msgid "eleven"
 msgstr "onze"
 
-#: morph.bashrc:244
+#: morph.bashrc:248
 msgid "twelve"
 msgstr "doze"
 
-#: morph.bashrc:245
+#: morph.bashrc:249
 msgid "thirteen"
 msgstr "treze"
 
-#: morph.bashrc:246
+#: morph.bashrc:250
 msgid "fourteen"
 msgstr "catorze"
 
-#: morph.bashrc:247
+#: morph.bashrc:251
 msgid "fiveteen"
 msgstr "quinze"
 
-#: morph.bashrc:248
+#: morph.bashrc:252
 msgid "sixteen"
 msgstr "dezesseis"
 
-#: morph.bashrc:249
+#: morph.bashrc:253
 msgid "seventeen"
 msgstr "dezessete"
 
-#: morph.bashrc:250
+#: morph.bashrc:254
 msgid "eighteen"
 msgstr "dezoito"
 
-#: morph.bashrc:251
+#: morph.bashrc:255
 msgid "nineteen"
 msgstr "dezenove"
 
-#: morph.bashrc:261
+#: morph.bashrc:265
 msgid "twenty"
 msgstr "vinte"
 
-#: morph.bashrc:262
+#: morph.bashrc:266
 msgid "thirty"
 msgstr "trinta"
 
-#: morph.bashrc:263
+#: morph.bashrc:267
 msgid "forty"
 msgstr "quarenta"
 
-#: morph.bashrc:264
+#: morph.bashrc:268
 msgid "fifty"
 msgstr "cinquenta"
 
-#: morph.bashrc:265
+#: morph.bashrc:269
 msgid "sixty"
 msgstr "sessenta"
 
-#: morph.bashrc:266
+#: morph.bashrc:270
 msgid "seventy"
 msgstr "setenta"
 
-#: morph.bashrc:267
+#: morph.bashrc:271
 msgid "eighty"
 msgstr "oitenta"
 
-#: morph.bashrc:268
+#: morph.bashrc:272
 msgid "ninety"
 msgstr "noventa"
 
-#: morph.bashrc:273
+#: morph.bashrc:277
 msgid "twenty-%s"
 msgstr "vinte e %s"
 
-#: morph.bashrc:274
+#: morph.bashrc:278
 msgid "thirty-%s"
 msgstr "trinta e %s"
 
-#: morph.bashrc:275
+#: morph.bashrc:279
 msgid "forty-%s"
 msgstr "quarenta e %s"
 
-#: morph.bashrc:276
+#: morph.bashrc:280
 msgid "fifty-%s"
 msgstr "cinquenta e %s"
 
-#: morph.bashrc:277
+#: morph.bashrc:281
 msgid "sixty-%s"
 msgstr "sessenta e %s"
 
-#: morph.bashrc:278
+#: morph.bashrc:282
 msgid "seventy-%s"
 msgstr "setenta e %s"
 
-#: morph.bashrc:279
+#: morph.bashrc:283
 msgid "eighty-%s"
 msgstr "oitenta e %s"
 
-#: morph.bashrc:280
+#: morph.bashrc:284
 msgid "ninety-%s"
 msgstr "noventa e %s"
 
-#: morph.bashrc:291
+#: morph.bashrc:295
 msgid "one hundred"
 msgstr "cem"
 
-#: morph.bashrc:292
+#: morph.bashrc:296
 msgid "two hundred"
 msgstr "duzentos"
 
-#: morph.bashrc:293
+#: morph.bashrc:297
 msgid "three hundred"
 msgstr "trezentos"
 
-#: morph.bashrc:294
+#: morph.bashrc:298
 msgid "four hundred"
 msgstr "quatrocentos"
 
-#: morph.bashrc:295
+#: morph.bashrc:299
 msgid "five hundred"
 msgstr "quinhentos"
 
-#: morph.bashrc:296
+#: morph.bashrc:300
 msgid "six hundred"
 msgstr "seiscentos"
 
-#: morph.bashrc:297
+#: morph.bashrc:301
 msgid "seven hundred"
 msgstr "setecentos"
 
-#: morph.bashrc:298
+#: morph.bashrc:302
 msgid "eight hundred"
 msgstr "oitocentos"
 
-#: morph.bashrc:299
+#: morph.bashrc:303
 msgid "nine hundred"
 msgstr "novecentos"
 
-#: morph.bashrc:305
+#: morph.bashrc:309
 msgid "one hundred and %s"
 msgstr "cento e %s"
 
-#: morph.bashrc:306
+#: morph.bashrc:310
 msgid "two hundred and %s"
 msgstr "duzentos e %s"
 
-#: morph.bashrc:307
+#: morph.bashrc:311
 msgid "three hundred and %s"
 msgstr "trezentos e %s"
 
-#: morph.bashrc:308
+#: morph.bashrc:312
 msgid "four hundred and %s"
 msgstr "quatrocentos e %s"
 
-#: morph.bashrc:309
+#: morph.bashrc:313
 msgid "five hundred and %s"
 msgstr "quinhentos e %s"
 
-#: morph.bashrc:310
+#: morph.bashrc:314
 msgid "six hundred and %s"
 msgstr "seiscentos e %s"
 
-#: morph.bashrc:311
+#: morph.bashrc:315
 msgid "seven hundred and %s"
 msgstr "setecentos e %s"
 
-#: morph.bashrc:312
+#: morph.bashrc:316
 msgid "eight hundred and %s"
 msgstr "oitocentos e %s"
 
-#: morph.bashrc:313
+#: morph.bashrc:317
 msgid "nine hundred and %s"
 msgstr "novecentos e %s"
 
-#: morph.bashrc:318
+#: morph.bashrc:322
 msgid "one thousand"
 msgstr "cem"
 
-#: morph.bashrc:320
+#: morph.bashrc:324
 msgid "many"
 msgstr "muitos"
 
-#: morph.bashrc:323
+#: morph.bashrc:327
 msgid "Argument is not an integer number."
 msgstr "O parâmetro não é um número inteiro."
 

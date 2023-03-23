@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-14 12:02-0300\n"
+"POT-Creation-Date: 2023-03-23 18:15-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -328,8 +328,8 @@ msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
 msgstr ""
-"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. \"gen"
-"\" pode ser substituído por qualquer coisa"
+"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. "
+"\"gen\" pode ser substituído por qualquer coisa"
 
 #: /home/bardo/sources/nh1/nh1:960
 msgid ""
@@ -914,7 +914,7 @@ msgid "Youtube video URL"
 msgstr "URL de vídeo do Youtube"
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
-#: misc.bashrc:190 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:195 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -1262,154 +1262,162 @@ msgid "Print percentage for battery (notebook)"
 msgstr "Mostra a porcentagem da bateria (notebook)"
 
 #: misc.bashrc:24
+msgid "Remove a substring from a string"
+msgstr "Remove uma substring de uma string"
+
+#: misc.bashrc:25
 msgid "Replace a substring inside a string"
 msgstr "Substitui uma substring dentro de uma string"
 
-#: misc.bashrc:25
+#: misc.bashrc:26
 msgid "Counter 30-30-30 to router reset"
 msgstr "Contador 30-30-30 para reset de roteador"
 
-#: misc.bashrc:26
+#: misc.bashrc:27
 msgid "Returns a random special character"
 msgstr "Retorna um caractere especial aleatório"
 
-#: misc.bashrc:27
+#: misc.bashrc:28
 msgid "Countdown timer."
 msgstr "Temporizador regressivo."
 
-#: misc.bashrc:28
+#: misc.bashrc:29
 msgid "Shows a random tip"
 msgstr "Mostra uma dica aleatória"
 
-#: misc.bashrc:29
+#: misc.bashrc:30
 msgid "Translate char supporting unicode"
 msgstr "Traduz caractere suportando unicode"
 
-#: misc.bashrc:64
+#: misc.bashrc:65
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 
-#: misc.bashrc:65
+#: misc.bashrc:66
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:80
+#: misc.bashrc:81 misc.bashrc:84
 msgid "Usage: %s %s [%s]"
 msgstr "Uso: %s %s [%s]"
 
-#: misc.bashrc:80
+#: misc.bashrc:81
 msgid "PDF file"
 msgstr "arquivo PDF"
 
-#: misc.bashrc:80
+#: misc.bashrc:81
 msgid "%s or %s. Default is %s"
 msgstr "%s ou %s. Default é %s."
 
-#: misc.bashrc:83
-msgid "Usage: | %s [%s] [%s]"
-msgstr "Uso: | %s [%s] [%s]"
-
-#: misc.bashrc:83
-msgid "old text"
-msgstr "texto anterior"
-
-#: misc.bashrc:83
-msgid "new text"
-msgstr "texto novo"
+#: misc.bashrc:84
+msgid "text to remove or start"
+msgstr "texto para remover ou início"
 
 #: misc.bashrc:84
+msgid "end of interval to remove"
+msgstr "fim do intervalo para remover"
+
+#: misc.bashrc:85 misc.bashrc:89
 msgid "Full text in stdin"
 msgstr "Texto inteiro na entrada padrão"
 
-#: misc.bashrc:87 morph.bashrc:66 ui.bashrc:72
+#: misc.bashrc:88
+msgid "Usage: | %s [%s] [%s]"
+msgstr "Uso: | %s [%s] [%s]"
+
+#: misc.bashrc:88
+msgid "old text"
+msgstr "texto anterior"
+
+#: misc.bashrc:88
+msgid "new text"
+msgstr "texto novo"
+
+#: misc.bashrc:92 morph.bashrc:66 ui.bashrc:72
 msgid "Usage: %s [%s] [%s]"
 msgstr "Uso: %s [%s] [%s]"
 
-#: misc.bashrc:87
+#: misc.bashrc:92
 msgid "chars to find"
 msgstr "caracteres a buscar"
 
-#: misc.bashrc:87
+#: misc.bashrc:92
 msgid "chars to replace"
 msgstr "caracteres a substituir"
 
-#: misc.bashrc:156
+#: misc.bashrc:161
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr "Palavras %s %s; especial %s; transformações %s %s."
 
-#: misc.bashrc:252 network.bashrc:275 network.bashrc:292 network.bashrc:311
+#: misc.bashrc:257 network.bashrc:275 network.bashrc:292 network.bashrc:311
 msgid "Usage:"
 msgstr "Uso:"
 
-#: misc.bashrc:255
+#: misc.bashrc:260
 msgid "Available timers"
 msgstr "Temporizadores disponíveis"
 
-#: misc.bashrc:286
+#: misc.bashrc:291
 msgid "finished"
 msgstr "concluído"
 
-#: misc.bashrc:315
+#: misc.bashrc:320
 msgid "30-30-30 method for router reseting"
 msgstr "Método 30-30-30 para resetar um roteador"
 
-#: misc.bashrc:316
+#: misc.bashrc:321
 msgid "your router will lost all configuration"
 msgstr "seu roteador perderá toda a configuração"
 
-#: misc.bashrc:317
+#: misc.bashrc:322
 msgid "Turn on the router."
 msgstr "Ligue o roteador."
 
-#: misc.bashrc:318
+#: misc.bashrc:323
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr "Pressione e segure o botão reset. Espere 30 segundos."
 
-#: misc.bashrc:319
+#: misc.bashrc:324
 msgid "Turn off the router. Wait 30 seconds."
 msgstr "Desligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:320
+#: misc.bashrc:325
 msgid "Turn on the router. Wait 30 seconds."
 msgstr "Ligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:321
+#: misc.bashrc:326
 msgid "Release the button"
 msgstr "Solte o botão"
 
-#: misc.bashrc:322
+#: misc.bashrc:327
 msgid "Press ENTER when you are ready."
 msgstr "Pressione ENTER quando estiver pronto."
 
-#: misc.bashrc:324 misc.bashrc:328
+#: misc.bashrc:329 misc.bashrc:333
 msgid "Router on"
 msgstr "Roteador ligado"
 
-#: misc.bashrc:326
+#: misc.bashrc:331
 msgid "Router off"
 msgstr "Roteador desligado"
 
-#: misc.bashrc:331
+#: misc.bashrc:336
 msgid "Your router must be restarted with factory settings!"
 msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
 
-#: misc.bashrc:370
+#: misc.bashrc:375
 msgid "Tip groups: %s."
 msgstr "Grupos de dicas: %s."
 
-#: misc.bashrc:378
+#: misc.bashrc:383
 msgid "No tips group %s found."
 msgstr "Nenhum grupo de dica com o nome %s."
 
-#: misc.bashrc:530
+#: misc.bashrc:535
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "
 "temporário: %s."
-
-#: misc.bashrc:585
-msgid "Error replacing \"%s\" to \"%s\" in string: \"%s\""
-msgstr "Erro substituindo \"%s\" por \"%s\" na string: \"%s\""
 
 #: morph.bashrc:14
 msgid "Morph Section (strings)"
@@ -2258,6 +2266,9 @@ msgstr "Cliente para microblog federado"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "Error replacing \"%s\" to \"%s\" in string: \"%s\""
+#~ msgstr "Erro substituindo \"%s\" por \"%s\" na string: \"%s\""
 
 #~ msgid "Usage: | %s %s %s"
 #~ msgstr "Uso: | %s %s %s"
