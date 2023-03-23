@@ -356,3 +356,4 @@
 1.4a3  2023-03-14: bug fix in 1replace
 1.4a4  2023-03-14: 1replace without sed, using ${//}
 1.4a5  2023-03-17: 1replace working to replace one or all
+1.4a6  2023-03-22: fixed bug in 1angel

@@ -156,7 +156,7 @@ _1angel.apply() {
         for _PAR in "$@"
         do
             _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
-            _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/')"
+            _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0)"
             if [ "$_VAR" != "$_VAL" ]
             then
                 _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/g")
@@ -187,7 +187,6 @@ _1angel.apply() {
         else
             _FREF="none"
         fi
-        echo "$_VAR ($_FILE) $_ARGS"
 
         if [ -f "$_FILE" -o "$_FREF" != "none" ]
         then
@@ -221,7 +220,7 @@ _1angel.apply() {
         then
             _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/")
         else
-            _LINE=$(echo "$_LINE" | 1replace "-=\[$_VAR\]=-" "$_VAR")
+            _LINE=$(echo "$_LINE" | 1replace "-=[$_VAR]=-" "$_VAR")
         fi
     done
 
