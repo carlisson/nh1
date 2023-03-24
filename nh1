@@ -12,9 +12,9 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.4.1
+_1VERSION=1.4b1
 
-_1MODULES=(angel app audio backup canva cron misc morph network rpg ui)
+_1MODULES=(angel app audio backup bot canva cron misc morph network rpg ui)
 
 _1PID=$$
 _1TMPDIR="$(mktemp -d)"
@@ -261,7 +261,7 @@ _1db.set() {
 # @arg $2 string File extension
 # @arg $3 string Database name
 # @arg $4 int Size of variable column (optional. Default: 10)
-# @arg $4 string If value is "list", it works lik _1list
+# @arg $4 string If value is "list", it works like _1list
 # @exitcode 0 Ok
 # @exitcode 1 File not found
 # @exitcode 2 Wrong usage
