@@ -99,7 +99,7 @@ _1bot.db.show() {
 
 # @description Find group in received messages
 _nh1bot.telegram.findgroup() {
-    local _GRP
+    local _GRP _NAM _LIN
     _1bot.db.show telegram
     if [ $_1BOTTELEGRAM = 0 ]
     then
@@ -108,12 +108,15 @@ _nh1bot.telegram.findgroup() {
     fi
     _1verbs "URL: https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates"
     _1menuheader "$(_1text "New groups")"
-    for _GRP in "$(curl -s https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates | tr '}{,' '\n\n\n' | grep "\"id\":-" | uniq | 1remove "\"id\":")"
+    for _LIN in $(curl -s https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates | tr '{}' '\n\n' | grep "\"type\":\"group\"" | uniq | \
+        tr " =" "__" | sed "s/\(.*\)\"id\":\(-[0-9]*\),\"title\":\"\([^\"]*\)\"\(.*\)/\2=\3/" | xargs)
     do
+        _GRP=$(echo "$_LIN" | sed "s/\(-[0-9]*\)=\(.*\)/\1/")
+        _NAM=$(echo "$_LIN" | sed "s/\(-[0-9]*\)=\(.*\)/\2/")
         grep -q "=$_GRP$" "$_1BOTDBPATH/telegram.$_1BOTDBEXT"
         if [ $? -eq 1 ]
         then
-            _1message "$(printf "$(_1text "New group found: %s").\n" "$_GRP")"
+            _1message "$(printf "$(_1text "New group found: %s (name: %s)").\n" "$_GRP" "$_NAM")"
         fi
     done
 }
