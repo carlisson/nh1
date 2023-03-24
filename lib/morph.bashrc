@@ -3,7 +3,9 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl sedscape super unaccent updown upper xthicc)
+_1MORPHS=(cursive cyrillic escape greek leet lower migu phone \
+    randdel randdup randsn randssc randuc reverse rotvow randspl \
+    sedscape super unaccent updown upper urlencode xthicc)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -203,6 +205,15 @@ _nh1morph.usage() {
             updown) # Upside down
                 _TEXT=$(1morph reverse $_TEXT)
                 echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ⱯɑBpCcDqEԍᖶɻᘓმHμIᴉᒉᒉKĸΓɼWwИuOobb⥀dᖉʁƧƨꓕϝꓵnΛʌMʍXx⅄λZz0Ɩᘕ3ત૨୧⌋8მ'
+                ;;
+            urlencode)
+                echo $_TEXT | 1replace "%" "%25" 0 | 1replace " " "%20" 0 | 1replace "!" "%21" 0 | 1replace "\"" "%22" 0 | \
+                1replace "#" "%23" 0 | 1replace "\$" "%24" 0 | 1replace "&" "%26" 0 | 1replace "'" "%27" 0 | 1replace "(" "%28" 0 | \
+                1replace ")" "%29" 0 | 1replace "\*" "%2A" 0 | 1replace "+" "%2B" 0 | 1replace "," "%2C" 0 | 1replace "-" "%2D" 0 | \
+                1replace "." "%2E" 0 | 1replace "/" "%2F" 0 | 1replace ":" "%3A" 0 | 1replace ";" "%3B" 0 | 1replace "<" "%3C" 0 | \
+                1replace "=" "%3D" 0 | 1replace ">" "%3E" 0 | 1replace "\?" "%3F" 0 | 1replace "@" "%40" 0 | 1replace "[" "%5B" 0 | \
+                1replace "\\" "%5C" 0 | 1replace "]" "%5D" 0 | 1replace "^" "%5E" 0 | 1replace "_" "%5F" 0 | 1replace "\`" "%60" 0 | \
+                1replace "{" "%7B" 0 | 1replace "|" "%7C" 0 | 1replace "}" "%7D" 0 | 1replace "~" "%7E" 0
                 ;;
             upper)
                 echo $_TEXT | tr '[:lower:]' '[:upper:]'
