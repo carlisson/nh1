@@ -21,6 +21,8 @@ _nh1misc.menu() {
   _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
   _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
+  _1menuitem X 1remove "$(_1text "Remove a substring from a string")"
+  _1menuitem X 1replace "$(_1text "Replace a substring inside a string")"
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
   _1menuitem W 1timer "$(_1text "Countdown timer.")" seq
@@ -35,7 +37,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init 1diceware 1tr
+  unset -f _nh1misc.init 1diceware 1tr 1replace 1remove
 }
 
 # @description Autocompletion
@@ -78,9 +80,17 @@ _nh1misc.usage() {
     pdfbkl)
         printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
         ;;
+    remove)
+        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "text to remove or start")" "$(_1text "end of interval to remove")"
+        printf "  - %s\n" "$(_1text "Full text in stdin")"
+        ;;
+    replace)
+        printf "$(_1text "Usage: | %s [%s] [%s]")\n" "1$1" "$(_1text "old text")" "$(_1text "new text")"
+        printf "  - %s\n" "$(_1text "Full text in stdin")"
+        ;;
     tr)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "chars to find")" "$(_1text "chars to replace")"
-        ;;
+        ;;        
     *)
       false
       ;;
@@ -433,7 +443,6 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @stdout Pages sequence
 # @see 1pdfbkl
 1booklet() {
-	_1before
   local _PAG _MIN _MAJ _TOT _BLA _I _MID _REM _OUT _DOB
   _PAG=$1
   if [ $# -ge 2 ]
@@ -477,21 +486,21 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   if [ $_REM -eq 3 ]
   then
       _I=$((_TOT - 3))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /g")
-      _1verb "3 -- $_I in $_OUT"
+      _OUT=$(echo $_OUT | 1replace " $_I " " $_BLA " 0)
+      _1verbs "3 -- $_I in $_OUT"
   fi
   if [ $_REM -ge 2 ]
   then
       _I=$((_TOT - 2))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /g")
-      _1verb "2 -- $_I in $_OUT"
+      _OUT=$(echo $_OUT | 1replace " $_I " " $_BLA " 0)
+      _1verbs "2 -- $_I in $_OUT"
   fi
   if [ $_REM -ge 1 ]
   then
       _I=$((_TOT - 1))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ / $_BLA /g")
-      _OUT=$(echo $_OUT | sed "s/$_TOT/$_PAG/g")
-      _1verb "1 -- $_I in $_OUT"
+      _OUT=$(echo $_OUT | 1replace " $_I " " $_BLA " 0)
+      _OUT=$(echo $_OUT | 1replace "$_TOT" "$_PAG")
+      _1verbs "1 -- $_I in $_OUT"
   fi
   echo $_OUT
 }
@@ -518,9 +527,9 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       _DOB=""
     fi
     _INF="$1"
-    _OUF=$(echo "$_INF" | sed 's/\.pdf/-booklet.pdf/')
+    _OUF=$(echo "$_INF" | 1replace '.pdf' '-booklet.pdf')
     _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
-    _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | sed 's/BLANK/\{\}/g')
+    _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | 1replace 'BLANK' '{}' 0)
     _TMP=$(mktemp -u)".pdf"
     _1verb "$(printf "$(_1text "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s.")" $_INF $_PAG $_OUF $_SEQ $_TMP)"
     _1verb "pdfjam \"$_INF\" \"$_SEQ\" -o \"$_TMP\""
@@ -548,11 +557,80 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       do
         _C1=${_FIND:_I:1}
         _C2=${_REPLACE:_I:1}
-        _AUX=$(echo $_AUX | sed "s/$_C1/$_C2/g")
+        _AUX=$(echo $_AUX | 1replace "$_C1" "$_C2" 0)
       done
       echo $_AUX
       return 0
     fi
   fi
   _nh1misc.usage tr
+}
+
+# @description Replace a substring
+# @arg $1 string text to search
+# @arg $2 string text to replace
+# @arg $3 int times to replace. 1 to 1 (default), 0 to all
+# @stdin string full text
+# @stdout string text after replace
+1replace() {
+  local _INP _SEA _REP
+  if [ $# -lt 2 ]
+  then
+    _nh1misc.usage replace
+    return 1
+  fi
+  
+  _SEA="$1"
+  _REP="$2"
+  while read -r _INP
+  do
+    # ${_INP/\//\\\\//g}
+    if [ $# -eq 3 ]
+    then
+      if [ $3 -eq 0 ]
+      then
+        echo "${_INP//${_SEA}/${_REP}}"
+        return 0
+      fi
+    fi
+    echo "${_INP/${_SEA}/${_REP}}"
+  done
+  return 0
+}
+
+# @description Remove a string or interval
+# @arg $1 string text to remove or starting interval
+# @arg $2 string ending interval (optional)
+# @stdin string full text
+# @stdout string text after replace
+1remove() {
+  local _INP _SEA _END
+
+  case $# in
+    1)
+      _SEA="$1"
+      ;;
+    2)
+      _SEA="$(1morph sedscape "$1")"
+      _END="$(1morph sedscape "$2")"
+      ;;
+    *)
+      _nh1misc.usage remove
+      return 1
+      ;;
+  esac
+  
+
+  while read -r _INP
+  do
+    case $# in
+      1)
+        echo "${_INP/${_SEA}/}"
+        ;;
+      2)
+        echo "$_INP" | sed "s/$_SEA\(.*\)$_END//g"
+        ;;
+    esac
+  done
+  return 0
 }

@@ -3,7 +3,7 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl super unaccent updown upper xthicc)
+_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl sedscape super unaccent updown upper xthicc)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -131,11 +131,12 @@ _nh1morph.usage() {
                 echo $_TEXT | tr '[:upper:]' '[:lower:]'
                 ;;
             migu) # Miguxês
-                echo $_TEXT | tr 'sc' 'xx' | sed 's/qu/k/g' | sed 's/ês/eix/g;s/ões/oinx/g' | \
+                echo $_TEXT | 1replace "qu" "k" 0 | 1replace "ês" "eix" 0 | 1replace "ões" "oinx" 0 | \
                     sed 's/\([aeo]\)u\([ \.?!]\)/\1w\2/g' | \
                     sed 's/[áÁ]/ah/g;s/[éÉêÊ]/eh/g;s/[íÍ]/ih/g;s/[óÓôÔ]/oh/g;s/[úÚ]/uh/g' | \
-                    sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | sed 's/ç/ss/g' | \
-                    sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g'
+                    sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | \
+                    sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g' | tr 's' 'x' | \
+                    sed 's/c\([aou]\)/k\1/g' | sed 's/c\([ei]\)/x\1/g' | 1tr 'ç' 'x'
                 ;;
             phone) # replacing using number-equivalence from simple phone
                 echo $_TEXT | tr ' ,.!?;:aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ+-=/' '11111122222233333344444455555566666677777777888888999999990000'
@@ -188,6 +189,10 @@ _nh1morph.usage() {
                         echo $_TEXT | tr 'aeiou' 'oaiue'
                         ;;
                 esac
+                ;;
+            sedscape)
+                echo $_TEXT | 1replace '\' '\\' 0 | 1replace '/' '\/' 0 | 1replace '[' '\[' 0 | 1replace ']' '\]' 0 | \
+                    1replace '$' '\$' 0 | 1replace '.' '\.' 0 | 1replace '\*' '\\*' 0 | 1replace '^' '\^' 0
                 ;;
             super) # Superscript
                 echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ᴬᵃᴮᵇᶜᶜᴰᵈᴱᵉᶠᶠᴳᵍᴴʰᴵᶦᴶʲᴷᵏᴸˡᴹᵐᴺⁿᴼᵒᴾᵖᵠᵠᴿʳˢˢᵀᵗᵁᵘⱽᵛᵂʷˣˣʸʸᶻᶻ⁰¹²³⁴⁵⁶⁷⁸⁹'

@@ -64,7 +64,7 @@ _nh1app.complete() {
 # @stdout List of available apps
 _nh1app.avail() {
     pushd $_1APPLIB > /dev/null
-    ls *.app | sed 's/.app//g' | tr '\n' ' '
+    ls *.app | 1remove '.app' | xargs
     popd -n > /dev/null
 }
 
@@ -203,12 +203,11 @@ _nh1app.checkversion() {
                 then
                     _BINPATH=$(readlink "$_1APPLBIN/$2")
                     _DIRPATH=$(dirname "$_BINPATH")
-                    if [ "$DIRPATH" = "$_1APPLBIN" ]
+                    if [ "$_DIRPATH" = "$_1APPLBIN" ]
                     then
                         basename $_BINPATH
                     else
-                        _DIRAUX="$(echo "$_1APPLOCAL" | tr '/' 'ª')"
-                        echo "$_BINPATH" | tr '/' 'ª' | sed "s/\\$_DIRAUX//" | tr 'ª' '/' | cut -d/ -f 2
+                        echo "$_BINPATH" | 1remove "$_1APPLOCAL/"
                     fi
                 fi
                 ;;
@@ -221,8 +220,7 @@ _nh1app.checkversion() {
                     then
                         basename "$_BINPATH"
                     else
-                        _DIRAUX="$(echo "$_1APPGLOBAL" | tr '/' 'ª')"
-                        echo "$_BINPATH" | tr '/' 'ª' | sed "s/\\$_DIRAUX//" | tr 'ª' '/' | cut -d/ -f 2
+                        echo "$_BINPATH" | 1remove "$_1APPGLOBAL/"
                     fi
                 fi
                 ;;

@@ -351,3 +351,17 @@
 1.3b42 2023-03-13: 1angel show to show template info
 1.3b43 2023-03-13: Fixed 1ssh for ssh-rsa
 1.4    2023-03-13: final adjusts for new version
+1.4a1  2023-03-14: bug fix in 1angel
+1.4a2  2023-03-14: 1replace created
+1.4a3  2023-03-14: bug fix in 1replace
+1.4a4  2023-03-14: 1replace without sed, using ${//}
+1.4a5  2023-03-17: 1replace working to replace one or all
+1.4a6  2023-03-22: fixed bug in 1angel
+1.4a7  2023-03-23: 1remove to remove substrings
+1.4a8  2023-03-23: 1remove now do sedscape for intervals
+1.4a9  2023-03-23: sedscape is now inside 1morph
+1.4a10 2023-03-23: 1angel using 1replace and 1remove
+1.4a11 2023-03-24: 1app using 1replace and 1remove
+1.4a12 2023-03-24: 1misc using 1replace and 1remove; verbose 1booklet fixed
+1.4a13 2023-03-24: 1morph using 1replace; migu morph fixed
+1.4.1  2023-03-24: 1angel fixed and some improvements
