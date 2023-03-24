@@ -145,7 +145,7 @@ _nh1bot.telegram.delgroup() {
 # @exitcode 0 Ok
 # @exitcode 1 Token not configured
 _nh1bot.telegram.say() {
-    local _MTO _MSG
+    local _MTO _MSG _GRP
     if [ $_1BOTTELEGRAM = 0 ]
     then
         _1bot.missing telegram token
@@ -156,10 +156,12 @@ _nh1bot.telegram.say() {
         _MTO=$(_1bot.db.get telegram "$1")
         if [ $? -eq 0 ]
         then
+            _GRP="$1"
             shift
-            _MSG="$*"
+            _MSG="$(1morph urlencode "$*")"
+            _1verb "$(printf "$(_1text "Sending message \"%s\" to %s group via %s")" "$_MSG" "$_GRP" "telegram")"
             curl --silent -X POST --data-urlencode "chat_id=$_MTO" \
-                --data-urlencode "text=$_MSG" \
+                --data "text=$_MSG" \
                 "https://api.telegram.org/bot$_1BOTTELEGRAM/sendMessage?disable_web_page_preview=true&parse_mode=html" | \
                 grep -q '"ok":true'
             return $?
