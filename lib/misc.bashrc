@@ -443,7 +443,6 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 # @stdout Pages sequence
 # @see 1pdfbkl
 1booklet() {
-	_1before
   local _PAG _MIN _MAJ _TOT _BLA _I _MID _REM _OUT _DOB
   _PAG=$1
   if [ $# -ge 2 ]
@@ -487,21 +486,21 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   if [ $_REM -eq 3 ]
   then
       _I=$((_TOT - 3))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /g")
-      _1verb "3 -- $_I in $_OUT"
+      _OUT=$(echo $_OUT | 1replace " $_I " " $_BLA " 0)
+      _1verbs "3 -- $_I in $_OUT"
   fi
   if [ $_REM -ge 2 ]
   then
       _I=$((_TOT - 2))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ /\ $_BLA\ /g")
-      _1verb "2 -- $_I in $_OUT"
+      _OUT=$(echo $_OUT | 1replace " $_I " " $_BLA " 0)
+      _1verbs "2 -- $_I in $_OUT"
   fi
   if [ $_REM -ge 1 ]
   then
       _I=$((_TOT - 1))
-      _OUT=$(echo $_OUT | sed "s/\ $_I\ / $_BLA /g")
-      _OUT=$(echo $_OUT | sed "s/$_TOT/$_PAG/g")
-      _1verb "1 -- $_I in $_OUT"
+      _OUT=$(echo $_OUT | 1replace " $_I " " $_BLA " 0)
+      _OUT=$(echo $_OUT | 1replace "$_TOT" "$_PAG")
+      _1verbs "1 -- $_I in $_OUT"
   fi
   echo $_OUT
 }
@@ -528,9 +527,9 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       _DOB=""
     fi
     _INF="$1"
-    _OUF=$(echo "$_INF" | sed 's/\.pdf/-booklet.pdf/')
+    _OUF=$(echo "$_INF" | 1replace '.pdf' '-booklet.pdf')
     _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
-    _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | sed 's/BLANK/\{\}/g')
+    _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | 1replace 'BLANK' '{}' 0)
     _TMP=$(mktemp -u)".pdf"
     _1verb "$(printf "$(_1text "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s.")" $_INF $_PAG $_OUF $_SEQ $_TMP)"
     _1verb "pdfjam \"$_INF\" \"$_SEQ\" -o \"$_TMP\""
@@ -558,7 +557,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       do
         _C1=${_FIND:_I:1}
         _C2=${_REPLACE:_I:1}
-        _AUX=$(echo $_AUX | sed "s/$_C1/$_C2/g")
+        _AUX=$(echo $_AUX | 1replace "$_C1" "$_C2" 0)
       done
       echo $_AUX
       return 0
