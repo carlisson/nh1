@@ -190,7 +190,7 @@ _nh1morph.usage() {
                 esac
                 ;;
             sedscape)
-                echo $_TEXT | 1replace '\' '\\' 0 | 1replace '[' '\[' 0 | 1replace ']' '\]' 0 | \
+                echo $_TEXT | 1replace '\' '\\' 0 | 1replace '/' '\/' 0 | 1replace '[' '\[' 0 | 1replace ']' '\]' 0 | \
                     1replace '$' '\$' 0 | 1replace '.' '\.' 0 | 1replace '\*' '\\*' 0 | 1replace '^' '\^' 0
                 ;;
             super) # Superscript
