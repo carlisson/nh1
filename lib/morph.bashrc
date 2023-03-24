@@ -131,11 +131,12 @@ _nh1morph.usage() {
                 echo $_TEXT | tr '[:upper:]' '[:lower:]'
                 ;;
             migu) # Miguxês
-                echo $_TEXT | tr 'sc' 'xx' | sed 's/qu/k/g' | sed 's/ês/eix/g;s/ões/oinx/g' | \
+                echo $_TEXT | 1replace "qu" "k" 0 | 1replace "ês" "eix" 0 | 1replace "ões" "oinx" 0 | \
                     sed 's/\([aeo]\)u\([ \.?!]\)/\1w\2/g' | \
                     sed 's/[áÁ]/ah/g;s/[éÉêÊ]/eh/g;s/[íÍ]/ih/g;s/[óÓôÔ]/oh/g;s/[úÚ]/uh/g' | \
-                    sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | sed 's/ç/ss/g' | \
-                    sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g'
+                    sed 's/ão/aum/g;s/inh\([oa]\)/eenh\1/g;' | \
+                    sed 's/o\([ \.?!]\)/u\1/g;s/e\([ \.?!]\)/i\1/g' | tr 's' 'x' | \
+                    sed 's/c\([aou]\)/k\1/g' | sed 's/c\([ei]\)/x\1/g' | 1tr 'ç' 'x'
                 ;;
             phone) # replacing using number-equivalence from simple phone
                 echo $_TEXT | tr ' ,.!?;:aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ+-=/' '11111122222233333344444455555566666677777777888888999999990000'
