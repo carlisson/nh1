@@ -159,7 +159,7 @@ _nh1bot.telegram.say() {
             _GRP="$1"
             shift
             _MSG="$(1morph urlencode "$*")"
-            _1verb "$(printf "$(_1text "Sending message \"%s\" to %s group via %s")" "$_MSG" "$_GRP" "telegram")"
+            _1verb "$(printf "$(_1text "Sending %s \"%s\" to %s group via %s")" "$(_1text "message")" "$_MSG" "$_GRP" "telegram")"
             curl --silent -X POST --data-urlencode "chat_id=$_MTO" \
                 --data "text=$_MSG" \
                 "https://api.telegram.org/bot$_1BOTTELEGRAM/sendMessage?disable_web_page_preview=true&parse_mode=html" | \
@@ -169,6 +169,39 @@ _nh1bot.telegram.say() {
     fi
     _nh1bot.usage
 }
+
+# @description Send a file to a telegram group
+# @arg 1 string Group name
+# @arg 2 string Path to file
+# @exitcode 0 Ok
+# @exitcode 1 Token not configured
+_nh1bot.telegram.send() {
+    local _MTO _FIL _GRP _RES
+    if [ $_1BOTTELEGRAM = 0 ]
+    then
+        _1bot.missing telegram token
+        return 1
+    fi
+    if [ $# -eq 2 ]
+    then
+        _MTO=$(_1bot.db.get telegram "$1")
+        if [ $? -eq 0 ]
+        then
+            _GRP="$1"
+            _FIL="$2"
+            if [ -f "$_FIL" ]
+            then
+                _1verb "$(printf "$(_1text "Sending %s \"%s\" to %s group via %s")" "$(_1text "file")" "$_FIL" "$_GRP" "telegram")"
+                _RES=$(curl --silent -F "chat_id=$_MTO" -F "document=@$_FIL" "https://api.telegram.org/bot$_1BOTTELEGRAM/sendDocument")
+                return $?
+            else
+                _1message error "$(printf "$(_1text "File %s not found")" "$_FIL")"
+            fi
+        fi
+    fi
+    _nh1bot.usage
+}
+
 
 # Public functions
 
@@ -194,10 +227,14 @@ _nh1bot.telegram.say() {
             group-del)
                 shift
                 _nh1bot.telegram.delgroup "$@"
-                ;;
+                ;;                
             say)
                 shift
                 _nh1bot.telegram.say "$@"
+                ;;
+            send)
+                shift
+                _nh1bot.telegram.send "$@"
                 ;;
             *)
                 _nh1bot.usage

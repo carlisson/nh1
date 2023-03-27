@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-24 11:15-0300\n"
+"POT-Creation-Date: 2023-03-24 11:18-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1063,29 +1063,33 @@ msgstr "nome do grupo"
 msgid "Group ID"
 msgstr "ID do grupo"
 
-#: bot.bashrc:68 bot.bashrc:69 bot.bashrc:70
-msgid "select Group ID (you need to"
-msgstr ""
+#: bot.bashrc:68
+msgid "Save a group"
+msgstr "Salve um grupo"
+
+#: bot.bashrc:69
+msgid "Delete a group"
+msgstr "Delete um grupo"
 
 #: bot.bashrc:70
-#, fuzzy
 msgid "message"
-msgstr "Mensagem"
+msgstr "mensagem"
+
+#: bot.bashrc:70
+msgid "Send a message"
+msgstr "Envia uma mensagem"
 
 #: bot.bashrc:75
-#, fuzzy
 msgid "%s for %s is missing!"
-msgstr "%s está faltando para %s"
+msgstr "%s está faltando para %s!"
 
 #: bot.bashrc:110
-#, fuzzy
 msgid "New groups"
-msgstr "grupo"
+msgstr "Novos grupos"
 
 #: bot.bashrc:116
-#, fuzzy
 msgid "New group found: %s"
-msgstr "Nenhum grupo encontrado."
+msgstr "Novo grupo encontrado: %s"
 
 #: canva.bashrc:12
 msgid "Canva Section"
