@@ -370,5 +370,6 @@
 1.4b3  2023-03-24: 1morph urlencode created
 1.4b4  2023-03-24: 1morph urlencode improved
 1.4b5  2023-03-27: 1bot telegram send > send files
-1.4b6  2023-03-27: 1bot telegram say urlencode fixed
-1.4b7  2023-03-27: 1cron disabled when in libmode
+1.4b6  2023-03-29: 1bot telegram say urlencode fixed
+1.4b7  2023-03-29: 1cron disabled when in libmode
+1.4b8  2023-03-29: 1angel show improved

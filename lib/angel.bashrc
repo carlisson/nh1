@@ -264,9 +264,10 @@ _1angel.go() {
 
 # @description Show template information
 _1angel.show() {
-    local _MSG _LINE
+    local _MSG _LINE _INCL _AUX
     _1ANGELIGNORE=1
-    1tint $_1COLOR "$(_1text "Showing template information")"
+    _INCL=""
+    _1menuheader "$(_1text "Showing template information")"
 
     while read -r _LINE
     do
@@ -287,21 +288,41 @@ _1angel.show() {
             do
                 _MSG="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\2/")"
                 _1message info "$_MSG"
-                _LINE="$(echo $_LINE | 1replace "-={" "X" | 1replacee "}=-" "X")" # removing comment marks
+                _LINE="$(echo $_LINE | 1replace "-={" "X" | 1replace "}=-" "X")" # removing comment marks
+            done
+            while [[ "$_LINE" =~ "-=(" ]]
+            do
+                _MSG="$(echo $_LINE | sed "s/\(.*\)-=(\([^)]*\)\(.*\))=-/\2/")"
+                _AUX="$(echo "$_MSG" | sed "s/\([^ ]*\) \(.*\)$/\1/")"
+                printf "$(_1text "Includes variable: %s")\n" "$(1tint "$_AUX")"
+                _AUX="$(echo "$_MSG" | sed "s/\([^ ]*\) \(.*\)$/\2/")"
+                if [[ "$_AUX" =~ ^= ]]
+                then
+                   printf " -- $(_1text "using variable %s to get the included angel file")\n" "$(1tint "$(echo "$_AUX" | sed "s/^=//")")"
+                else
+                   printf " -- $(_1text "using this angel file: %s")\n" "$(1tint "$_AUX")"
+                    _INCL="$_INCL $_AUX"
+                fi
+                _LINE="$(echo $_LINE | 1replace "-=\(" "X" | 1replace "\)=-" "X")" # removing comment marks
+            done
+            while [[ "$_LINE" =~ "-=[" ]]
+            do
+                _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\2/")"
+                _VAL="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\4/")"
+                if [ ! -z "$_VAL" ]
+                then
+                    printf "$(_1text "Varibale %s with default value %s")\n" "$(1tint $_1COLOR $_VAR)" "$_VAL"
+                else
+                    printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
+                fi
+                _LINE="$(echo $_LINE | 1replace "-=[" "X" | 1replace "]=-" "X")" # removing comment marks
             done
         fi
-        while [[ "$_LINE" =~ "-=[" ]]
-        do
-            _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\2/")"
-            _VAL="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\4/")"
-            if [ ! -z "$_VAL" ]
-            then
-                printf "$(_1text "Varibale %s with default value %s")\n" "$(1tint $_1COLOR $_VAR)" "$_VAL"
-            else
-                printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
-            fi
-            _LINE="$(echo $_LINE | 1replace "-=[" "X" | 1replace "]=-" "X")" # removing comment marks
-        done
+    done
+    for _AUX in $_INCL
+    do
+        echo
+        _1angel.show < $_AUX
     done
 }
 

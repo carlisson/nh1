@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 09:19-0300\n"
+"POT-Creation-Date: 2023-03-29 12:19-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -511,15 +511,27 @@ msgstr "Erro em %s"
 msgid "File: %s for name %s"
 msgstr "Arquivo: %s para o nome %s"
 
-#: angel.bashrc:269
+#: angel.bashrc:270
 msgid "Showing template information"
 msgstr "Mostrando informações do template"
 
-#: angel.bashrc:299
+#: angel.bashrc:297
+msgid "Includes variable: %s"
+msgstr "Inclui a variável: %s"
+
+#: angel.bashrc:301
+msgid "using variable %s to get the included angel file"
+msgstr "usando variável %s para obter o arquivo angel a ser incluído"
+
+#: angel.bashrc:303
+msgid "using this angel file: %s"
+msgstr "usando este arquivo angel: %s"
+
+#: angel.bashrc:314
 msgid "Varibale %s with default value %s"
 msgstr "Variável %s com valor padrão %s"
 
-#: angel.bashrc:301
+#: angel.bashrc:316
 msgid "Varibale %s without default value"
 msgstr "Variável %s sem valor padrão"
 
@@ -716,7 +728,7 @@ msgstr "Limpando %s..."
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr "Uso: %s [%s] [%s] [%s]"
 
-#: app.bashrc:1066 cron.bashrc:229
+#: app.bashrc:1066 cron.bashrc:234
 msgid "command"
 msgstr "comando"
 
@@ -1193,95 +1205,95 @@ msgstr "Roda um comando agora"
 msgid "Enabling complete for cron module."
 msgstr "Habilitando completar para o módulo cron."
 
-#: cron.bashrc:51
+#: cron.bashrc:56
 msgid "Path for cron rules"
 msgstr "Caminho para as regras do cron"
 
-#: cron.bashrc:52
+#: cron.bashrc:57
 msgid "Turn on (true) or off (false) cron checkings"
 msgstr "Liga (true) ou desliga (false) as checagens do cron"
 
-#: cron.bashrc:117
+#: cron.bashrc:122
 msgid "Command %s finished at %s."
 msgstr "Comando %s finalizado em %s."
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "Usage: %s [%s] <%s> <%s>"
 msgstr "Uso: %s [%s] <%s> <%s>"
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "(optional) \"quiet\" for quiet mode"
 msgstr "(opcional) \"quiet\" para modo silencioso"
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "Interval"
 msgstr "Intervalo"
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "Command ID"
 msgstr "ID do Comando"
 
-#: cron.bashrc:136
+#: cron.bashrc:141
 msgid "Finishing command %s."
 msgstr "Encerrado o comando %s."
 
-#: cron.bashrc:160
+#: cron.bashrc:165
 msgid "Command %s executed at %s. Running now (%s) again. %i"
 msgstr "Comando %s executado em %s. Rodando agora (%s) novamente. %i"
 
-#: cron.bashrc:166
+#: cron.bashrc:171
 msgid "Command %s is still running (PID %i)."
 msgstr "Comando %s ainda rodando (PID %i)."
 
-#: cron.bashrc:168
+#: cron.bashrc:173
 msgid "Command %s is not more running."
 msgstr "Comando %s não está mais rodando."
 
-#: cron.bashrc:176
+#: cron.bashrc:181
 msgid "Run (frequency: %s) the command %s."
 msgstr "Rodar (frequência: %s) o comando %s."
 
-#: cron.bashrc:225
+#: cron.bashrc:230
 msgid "Unknown cron time"
 msgstr "Tempo de cron desconhecido"
 
-#: cron.bashrc:229
+#: cron.bashrc:234
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr "Uso: %s [%s] [%s] [%s]."
 
-#: cron.bashrc:229 cron.bashrc:256
+#: cron.bashrc:234 cron.bashrc:261
 msgid "cron time"
 msgstr "tempo do cron"
 
-#: cron.bashrc:229 cron.bashrc:256 cron.bashrc:374
+#: cron.bashrc:234 cron.bashrc:261 cron.bashrc:379
 msgid "command id"
 msgstr "id do comando"
 
-#: cron.bashrc:230 cron.bashrc:257
+#: cron.bashrc:235 cron.bashrc:262
 msgid "Time values: "
 msgstr "Valores de tempo: "
 
-#: cron.bashrc:252 cron.bashrc:369
+#: cron.bashrc:257 cron.bashrc:374
 msgid "Unknown cron time."
 msgstr "Tempo de cron desconhecido."
 
-#: cron.bashrc:256 cron.bashrc:374
+#: cron.bashrc:261 cron.bashrc:379
 msgid "Usage: %s [%s] [%s]."
 msgstr "Uso: %s [%s] [%s]."
 
-#: cron.bashrc:347 cron.bashrc:365
+#: cron.bashrc:352 cron.bashrc:370
 msgid "Command not found"
 msgstr "Comando não encontrado"
 
-#: cron.bashrc:374
+#: cron.bashrc:379
 msgid "cron time (optional)"
 msgstr "tempo do cron (opcional)"
 
-#: cron.bashrc:396
+#: cron.bashrc:401
 msgid "Starting cron function."
 msgstr "Iniciando a função cron."
 
-#: cron.bashrc:401
+#: cron.bashrc:406
 msgid "Cron finished."
 msgstr "Cron concluído."
 
@@ -1531,231 +1543,231 @@ msgstr "Uso: %s [%s]"
 msgid "number"
 msgstr "número"
 
-#: morph.bashrc:261
+#: morph.bashrc:265
 msgid "zero"
 msgstr "zero"
 
-#: morph.bashrc:262
+#: morph.bashrc:266
 msgid "one"
 msgstr "um"
 
-#: morph.bashrc:263
+#: morph.bashrc:267
 msgid "two"
 msgstr "dois"
 
-#: morph.bashrc:264
+#: morph.bashrc:268
 msgid "three"
 msgstr "três"
 
-#: morph.bashrc:265
+#: morph.bashrc:269
 msgid "four"
 msgstr "quatro"
 
-#: morph.bashrc:266
+#: morph.bashrc:270
 msgid "five"
 msgstr "cinco"
 
-#: morph.bashrc:267
+#: morph.bashrc:271
 msgid "six"
 msgstr "seis"
 
-#: morph.bashrc:268
+#: morph.bashrc:272
 msgid "seven"
 msgstr "sete"
 
-#: morph.bashrc:269
+#: morph.bashrc:273
 msgid "eight"
 msgstr "oito"
 
-#: morph.bashrc:270
+#: morph.bashrc:274
 msgid "nine"
 msgstr "nove"
 
-#: morph.bashrc:275
+#: morph.bashrc:279
 msgid "ten"
 msgstr "dez"
 
-#: morph.bashrc:276
+#: morph.bashrc:280
 msgid "eleven"
 msgstr "onze"
 
-#: morph.bashrc:277
+#: morph.bashrc:281
 msgid "twelve"
 msgstr "doze"
 
-#: morph.bashrc:278
+#: morph.bashrc:282
 msgid "thirteen"
 msgstr "treze"
 
-#: morph.bashrc:279
+#: morph.bashrc:283
 msgid "fourteen"
 msgstr "catorze"
 
-#: morph.bashrc:280
+#: morph.bashrc:284
 msgid "fiveteen"
 msgstr "quinze"
 
-#: morph.bashrc:281
+#: morph.bashrc:285
 msgid "sixteen"
 msgstr "dezesseis"
 
-#: morph.bashrc:282
+#: morph.bashrc:286
 msgid "seventeen"
 msgstr "dezessete"
 
-#: morph.bashrc:283
+#: morph.bashrc:287
 msgid "eighteen"
 msgstr "dezoito"
 
-#: morph.bashrc:284
+#: morph.bashrc:288
 msgid "nineteen"
 msgstr "dezenove"
 
-#: morph.bashrc:294
+#: morph.bashrc:298
 msgid "twenty"
 msgstr "vinte"
 
-#: morph.bashrc:295
+#: morph.bashrc:299
 msgid "thirty"
 msgstr "trinta"
 
-#: morph.bashrc:296
+#: morph.bashrc:300
 msgid "forty"
 msgstr "quarenta"
 
-#: morph.bashrc:297
+#: morph.bashrc:301
 msgid "fifty"
 msgstr "cinquenta"
 
-#: morph.bashrc:298
+#: morph.bashrc:302
 msgid "sixty"
 msgstr "sessenta"
 
-#: morph.bashrc:299
+#: morph.bashrc:303
 msgid "seventy"
 msgstr "setenta"
 
-#: morph.bashrc:300
+#: morph.bashrc:304
 msgid "eighty"
 msgstr "oitenta"
 
-#: morph.bashrc:301
+#: morph.bashrc:305
 msgid "ninety"
 msgstr "noventa"
 
-#: morph.bashrc:306
+#: morph.bashrc:310
 msgid "twenty-%s"
 msgstr "vinte e %s"
 
-#: morph.bashrc:307
+#: morph.bashrc:311
 msgid "thirty-%s"
 msgstr "trinta e %s"
 
-#: morph.bashrc:308
+#: morph.bashrc:312
 msgid "forty-%s"
 msgstr "quarenta e %s"
 
-#: morph.bashrc:309
+#: morph.bashrc:313
 msgid "fifty-%s"
 msgstr "cinquenta e %s"
 
-#: morph.bashrc:310
+#: morph.bashrc:314
 msgid "sixty-%s"
 msgstr "sessenta e %s"
 
-#: morph.bashrc:311
+#: morph.bashrc:315
 msgid "seventy-%s"
 msgstr "setenta e %s"
 
-#: morph.bashrc:312
+#: morph.bashrc:316
 msgid "eighty-%s"
 msgstr "oitenta e %s"
 
-#: morph.bashrc:313
+#: morph.bashrc:317
 msgid "ninety-%s"
 msgstr "noventa e %s"
 
-#: morph.bashrc:324
+#: morph.bashrc:328
 msgid "one hundred"
 msgstr "cem"
 
-#: morph.bashrc:325
+#: morph.bashrc:329
 msgid "two hundred"
 msgstr "duzentos"
 
-#: morph.bashrc:326
+#: morph.bashrc:330
 msgid "three hundred"
 msgstr "trezentos"
 
-#: morph.bashrc:327
+#: morph.bashrc:331
 msgid "four hundred"
 msgstr "quatrocentos"
 
-#: morph.bashrc:328
+#: morph.bashrc:332
 msgid "five hundred"
 msgstr "quinhentos"
 
-#: morph.bashrc:329
+#: morph.bashrc:333
 msgid "six hundred"
 msgstr "seiscentos"
 
-#: morph.bashrc:330
+#: morph.bashrc:334
 msgid "seven hundred"
 msgstr "setecentos"
 
-#: morph.bashrc:331
+#: morph.bashrc:335
 msgid "eight hundred"
 msgstr "oitocentos"
 
-#: morph.bashrc:332
+#: morph.bashrc:336
 msgid "nine hundred"
 msgstr "novecentos"
 
-#: morph.bashrc:338
+#: morph.bashrc:342
 msgid "one hundred and %s"
 msgstr "cento e %s"
 
-#: morph.bashrc:339
+#: morph.bashrc:343
 msgid "two hundred and %s"
 msgstr "duzentos e %s"
 
-#: morph.bashrc:340
+#: morph.bashrc:344
 msgid "three hundred and %s"
 msgstr "trezentos e %s"
 
-#: morph.bashrc:341
+#: morph.bashrc:345
 msgid "four hundred and %s"
 msgstr "quatrocentos e %s"
 
-#: morph.bashrc:342
+#: morph.bashrc:346
 msgid "five hundred and %s"
 msgstr "quinhentos e %s"
 
-#: morph.bashrc:343
+#: morph.bashrc:347
 msgid "six hundred and %s"
 msgstr "seiscentos e %s"
 
-#: morph.bashrc:344
+#: morph.bashrc:348
 msgid "seven hundred and %s"
 msgstr "setecentos e %s"
 
-#: morph.bashrc:345
+#: morph.bashrc:349
 msgid "eight hundred and %s"
 msgstr "oitocentos e %s"
 
-#: morph.bashrc:346
+#: morph.bashrc:350
 msgid "nine hundred and %s"
 msgstr "novecentos e %s"
 
-#: morph.bashrc:351
+#: morph.bashrc:355
 msgid "one thousand"
 msgstr "cem"
 
-#: morph.bashrc:353
+#: morph.bashrc:357
 msgid "many"
 msgstr "muitos"
 
-#: morph.bashrc:356
+#: morph.bashrc:360
 msgid "Argument is not an integer number."
 msgstr "O parâmetro não é um número inteiro."
 
