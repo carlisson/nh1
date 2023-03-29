@@ -162,7 +162,7 @@ _nh1bot.telegram.say() {
             _1verb "$(printf "$(_1text "Sending %s \"%s\" to %s group via %s")" "$(_1text "message")" "$_MSG" "$_GRP" "telegram")"
             curl --silent -X POST --data-urlencode "chat_id=$_MTO" \
                 --data "text=$_MSG" \
-                "https://api.telegram.org/bot$_1BOTTELEGRAM/sendMessage?disable_web_page_preview=true&parse_mode=html" | \
+                "https://api.telegram.org/bot$_1BOTTELEGRAM/sendMessage?disable_web_page_preview=true&parse_mode=markdown" | \
                 grep -q '"ok":true'
             return $?
         fi

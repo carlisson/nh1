@@ -208,29 +208,33 @@ _nh1morph.usage() {
                 echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ⱯɑBpCcDqEԍᖶɻᘓმHμIᴉᒉᒉKĸΓɼWwИuOobb⥀dᖉʁƧƨꓕϝꓵnΛʌMʍXx⅄λZz0Ɩᘕ3ત૨୧⌋8მ'
                 ;;
             urlencode)
-
                 _AUX1="$_TEXT" # input
                 _AUX2=0 # position
                 _AUX3="" # original char
                 _AUX4="" # encoded char
                 _TEXT=""
-
                 for (( _AUX2=0 ; _AUX2<_TLEN ; _AUX2++ ))
                 do
                     _AUX3=${_AUX1:$_AUX2:1}
                     _AUX4="${_AUX3}"
                     case "$_AUX3" in
                         [-_.~a-zA-Z0-9] )
-                            ;;                            
-                        [\!\"\#\$\%\&\'\(\)\*+,/:\;\<\=\>\?\@\[\\\]\^\`\{\|\}°±²³¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ] )
+                            ;;
+                        # [\!\"\#\$\%\&\'\(\)\*+,/:\;\<\=\>\?\@\[\\\]\^\`\{\|\}°±²³¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ] )
+                        [\!\"\#\$\%\&\'\(\)\*+,/:\;\=\?\@\[\\\]\^\`\{\|\}] )
                             printf -v _AUX4 '%%%02x' "'$_AUX3"
+                            ;;
+                        [°±²³¹º£»¼½¾¿])
+                            printf -v _AUX4 '%%%02x' "'$_AUX3"
+                            _AUX4="%C2$_AUX4"
+                            ;;
+                        \ )
+                            _AUX4="%20"
                             ;;
                     esac
                     _TEXT+="${_AUX4}"
                 done
                 echo $_TEXT | 1replace "%5cn" "%0a" 0
-
-
                 ;;
             upper)
                 echo $_TEXT | tr '[:lower:]' '[:upper:]'
