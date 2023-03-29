@@ -403,7 +403,6 @@ _nh1network.usage() {
 # @exitcode 0 Machine is on
 # @exitcode 1 Machine not accessible
 1ison() {
-	_1before
   local thename="$1"
   local thehost
   if [ $# -eq 2 ]
@@ -649,8 +648,7 @@ _nh1network.simplessh() {
 # @arg $1 string IP
 # @arg $2 int Port (or ports). Optional. Default: 1-1500
 1ports() {
-	_1before
-  if [ $# -gt 0 ]
+	if [ $# -gt 0 ]
   then
     local aux CHECK
     local IP="$(1host $1)"; shift
