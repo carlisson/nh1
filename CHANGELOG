@@ -373,3 +373,4 @@
 1.4b6  2023-03-29: 1bot telegram say urlencode fixed
 1.4b7  2023-03-29: 1cron disabled when in libmode
 1.4b8  2023-03-29: 1angel show improved
+1.4b9  2023-03-29: 1httpstatus with timeout of 1 second

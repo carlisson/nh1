@@ -138,7 +138,7 @@ _nh1network.usage() {
 # @arg $1 string URL
 # @stdout Code for HTTP status
 1httpstatus() {
-  curl --write-out "%{http_code}\n" --silent --output /dev/null "$1"
+  curl --max-time 1 --write-out "%{http_code}\n" --silent --output /dev/null "$1"
 }
 
 # @description Returns baudrate for given number
