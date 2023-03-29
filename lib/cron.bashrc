@@ -42,7 +42,12 @@ _nh1cron.complete() {
 
 # @description Set global vars from custom vars (config file)
 _nh1cron.customvars() {
-  _1customvar NORG_CRON _1CRONENABLED boolean
+  if [ $_1LIBMODE -eq 0 ]
+  then
+    _1customvar NORG_CRON _1CRONENABLED boolean
+  else
+    _1CRONENABLED=0
+  fi
   _1customvar NORG_CRON_DIR _1CRONDIR
 }
 
