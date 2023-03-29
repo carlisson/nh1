@@ -375,3 +375,4 @@
 1.4b8  2023-03-29: 1angel show improved
 1.4b9  2023-03-29: 1httpstatus with timeout of 1 second
 1.4b10 2023-03-29: excluded _1before from 1ison and 1ports
+1.4b11 2023-03-29: 1bot shows send option

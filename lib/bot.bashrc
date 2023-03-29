@@ -68,6 +68,7 @@ _nh1bot.usage() {
     printf "  - group-add [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "Group ID")" "$(_1text "Save a group")"
     printf "  - group-del [%s] %s\n" "$(_1text "Group name")" "$(_1text "Delete a group")"
     printf "  - say [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "message")" "$(_1text "Send a message")"
+    printf "  - send [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "path to file")" "$(_1text "Send a file")"
     echo
 }
 
