@@ -377,3 +377,4 @@
 1.4b10 2023-03-29: excluded _1before from 1ison and 1ports
 1.4b11 2023-03-29: 1bot shows send option
 1.4b12 2023-03-29: 1angel run fixed (vars in include)
+1.4b13 2023-03-29: 1angel show fixed (2+ vars in one line)

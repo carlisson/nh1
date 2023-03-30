@@ -293,7 +293,7 @@ _1angel.show() {
             do
                 _MSG="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\2/")"
                 _1message info "$_MSG"
-                _LINE="$(echo $_LINE | 1replace "-={" "X" | 1replace "}=-" "X")" # removing comment marks
+                _LINE="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\1/")" # removing comment marks
             done
             while [[ "$_LINE" =~ "-=(" ]]
             do
@@ -308,7 +308,7 @@ _1angel.show() {
                    printf " -- $(_1text "using this angel file: %s")\n" "$(1tint "$_AUX")"
                     _INCL="$_INCL $_AUX"
                 fi
-                _LINE="$(echo $_LINE | 1replace "-=\(" "X" | 1replace "\)=-" "X")" # removing comment marks
+                _LINE="$(echo $_LINE | sed "s/\(.*\)-=(\([^)]*\)\(.*\))=-/\1/")" # removing comment marks
             done
             while [[ "$_LINE" =~ "-=[" ]]
             do
@@ -320,7 +320,7 @@ _1angel.show() {
                 else
                     printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
                 fi
-                _LINE="$(echo $_LINE | 1replace "-=[" "X" | 1replace "]=-" "X")" # removing comment marks
+                _LINE="$(echo $_LINE | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\1 \5/")" # removing comment marks
             done
         fi
     done
