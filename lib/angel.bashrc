@@ -154,18 +154,21 @@ _1angel.apply() {
 
     if [[ "$_LINE" =~ "-=[" ]]
     then
-        while IFS= read -r _PAR
+        filename='peptides.txt'
+        exec 4<<<"$_ARGS"
+        while IFS= read -u 4 -r _PAR
         do
             if [[ "$_PAR" =~ = ]]
             then
                 _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
                 _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0)"
+                echo "LINE > $_LINE" >&2
                 if [ "$_VAR" != "$_VAL" ]
                 then
                     _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/g")
                 fi
             fi
-        done <<< "$_ARGS"
+        done
     fi
 
     while [[ "$_LINE" =~ "-=!" ]]
