@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 19:08-0300\n"
+"POT-Creation-Date: 2023-03-30 16:20-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "size"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:557 morph.bashrc:66
+#: /home/bardo/sources/nh1/nh1:557 morph.bashrc:68
 msgid "text"
 msgstr ""
 
@@ -452,7 +452,7 @@ msgstr ""
 msgid "Usage: %s [%s] [%s]* < [%s] > [%s]"
 msgstr ""
 
-#: angel.bashrc:75 ui.bashrc:72
+#: angel.bashrc:75 bot.bashrc:63 ui.bashrc:72
 msgid "Command"
 msgstr ""
 
@@ -484,27 +484,39 @@ msgstr ""
 msgid "test arguments"
 msgstr ""
 
-#: angel.bashrc:233
+#: angel.bashrc:241
 msgid "Angel Test"
 msgstr ""
 
-#: angel.bashrc:240
+#: angel.bashrc:248
 msgid "Error in %s"
 msgstr ""
 
-#: angel.bashrc:244
+#: angel.bashrc:252
 msgid "File: %s for name %s"
 msgstr ""
 
-#: angel.bashrc:269
+#: angel.bashrc:278
 msgid "Showing template information"
 msgstr ""
 
-#: angel.bashrc:299
+#: angel.bashrc:305
+msgid "Includes variable: %s"
+msgstr ""
+
+#: angel.bashrc:309
+msgid "using variable %s to get the included angel file"
+msgstr ""
+
+#: angel.bashrc:311
+msgid "using this angel file: %s"
+msgstr ""
+
+#: angel.bashrc:322
 msgid "Varibale %s with default value %s"
 msgstr ""
 
-#: angel.bashrc:301
+#: angel.bashrc:324
 msgid "Varibale %s without default value"
 msgstr ""
 
@@ -572,200 +584,200 @@ msgstr ""
 msgid "No prefix defined for %s app!"
 msgstr ""
 
-#: app.bashrc:241
+#: app.bashrc:239
 msgid "Creating desktop file for %s."
 msgstr ""
 
-#: app.bashrc:273
+#: app.bashrc:271
 msgid "No PNG for app. No desktop file created."
 msgstr ""
 
-#: app.bashrc:303
+#: app.bashrc:301
 msgid "Removing old app version %s."
 msgstr ""
 
-#: app.bashrc:338 app.bashrc:403 app.bashrc:505
+#: app.bashrc:336 app.bashrc:401 app.bashrc:503
 msgid "App needs %s and it's not available."
 msgstr ""
 
-#: app.bashrc:345
+#: app.bashrc:343
 msgid "Git install/update for %s"
 msgstr ""
 
-#: app.bashrc:372
+#: app.bashrc:370
 msgid "Wrong app type."
 msgstr ""
 
-#: app.bashrc:412 app.bashrc:514
+#: app.bashrc:410 app.bashrc:512
 msgid "%s is already up to date."
 msgstr ""
 
-#: app.bashrc:414 app.bashrc:516
+#: app.bashrc:412 app.bashrc:514
 msgid "To install/upgrade:"
 msgstr ""
 
-#: app.bashrc:471 app.bashrc:608
+#: app.bashrc:469 app.bashrc:606
 msgid "Error geting %s file name. Check the recipe or try again later."
 msgstr ""
 
-#: app.bashrc:478 app.bashrc:615
+#: app.bashrc:476 app.bashrc:613
 msgid "%s not found."
 msgstr ""
 
-#: app.bashrc:653
+#: app.bashrc:651
 msgid "Type unsuported: %s."
 msgstr ""
 
-#: app.bashrc:656
+#: app.bashrc:654
 msgid "Unknown app: %s."
 msgstr ""
 
-#: app.bashrc:758
+#: app.bashrc:756
 msgid "App %s removed with file %s"
 msgstr ""
 
-#: app.bashrc:838
+#: app.bashrc:836
 msgid "1app status"
 msgstr ""
 
-#: app.bashrc:839
+#: app.bashrc:837
 msgid "App"
 msgstr ""
 
-#: app.bashrc:839
+#: app.bashrc:837
 msgid "Description"
 msgstr ""
 
-#: app.bashrc:839
+#: app.bashrc:837
 msgid "Installation"
 msgstr ""
 
-#: app.bashrc:847
+#: app.bashrc:845
 msgid "local"
 msgstr ""
 
-#: app.bashrc:853
+#: app.bashrc:851
 msgid "global"
 msgstr ""
 
-#: app.bashrc:860
+#: app.bashrc:858
 msgid "system"
 msgstr ""
 
-#: app.bashrc:862
+#: app.bashrc:860
 msgid "None"
 msgstr ""
 
-#: app.bashrc:867
+#: app.bashrc:865
 msgid "Use %s to usage instructions."
 msgstr ""
 
-#: app.bashrc:880 app.bashrc:898 app.bashrc:916
+#: app.bashrc:878 app.bashrc:896 app.bashrc:914
 msgid "Searching %s in %s..."
 msgstr ""
 
-#: app.bashrc:883 app.bashrc:888 app.bashrc:901 app.bashrc:927
+#: app.bashrc:881 app.bashrc:886 app.bashrc:899 app.bashrc:925
 msgid "Package %s found in %s."
 msgstr ""
 
-#: app.bashrc:892 app.bashrc:907 app.bashrc:929
+#: app.bashrc:890 app.bashrc:905 app.bashrc:927
 msgid "Package %s not found in %s."
 msgstr ""
 
-#: app.bashrc:925
+#: app.bashrc:923
 msgid "The search returned more than one result!"
 msgstr ""
 
-#: app.bashrc:936
+#: app.bashrc:934
 msgid "Sorry. Package %s not found in known/installed package managers."
 msgstr ""
 
-#: app.bashrc:945 app.bashrc:951 app.bashrc:959 app.bashrc:966 app.bashrc:972
-#: app.bashrc:978
+#: app.bashrc:943 app.bashrc:949 app.bashrc:957 app.bashrc:964 app.bashrc:970
+#: app.bashrc:976
 msgid "Upgrading %s..."
 msgstr ""
 
-#: app.bashrc:1039
+#: app.bashrc:1037
 msgid "App not found."
 msgstr ""
 
-#: app.bashrc:1048 app.bashrc:1058
+#: app.bashrc:1046 app.bashrc:1056
 msgid "Cleaning %s..."
 msgstr ""
 
-#: app.bashrc:1068
+#: app.bashrc:1066
 msgid "Usage: %s [%s] [%s] [%s]"
 msgstr ""
 
-#: app.bashrc:1068 cron.bashrc:229
+#: app.bashrc:1066 cron.bashrc:234
 msgid "command"
 msgstr ""
 
-#: app.bashrc:1068
+#: app.bashrc:1066
 msgid "scope"
 msgstr ""
 
-#: app.bashrc:1068
+#: app.bashrc:1066
 msgid "option"
 msgstr ""
 
-#: app.bashrc:1069
+#: app.bashrc:1067 bot.bashrc:66
 msgid "Commands"
 msgstr ""
 
-#: app.bashrc:1070
+#: app.bashrc:1068
 msgid "list all available commands"
 msgstr ""
 
-#: app.bashrc:1071
+#: app.bashrc:1069
 msgid "install/update an application"
 msgstr ""
 
-#: app.bashrc:1072
+#: app.bashrc:1070
 msgid "uninstall an application"
 msgstr ""
 
-#: app.bashrc:1073
+#: app.bashrc:1071
 msgid "Update all installed packages"
 msgstr ""
 
-#: app.bashrc:1074
+#: app.bashrc:1072
 msgid "Remove old files and caches"
 msgstr ""
 
-#: app.bashrc:1075
+#: app.bashrc:1073
 msgid "show this usage instructions"
 msgstr ""
 
-#: app.bashrc:1076
+#: app.bashrc:1074
 msgid "Scopes"
 msgstr ""
 
-#: app.bashrc:1077
+#: app.bashrc:1075
 msgid "installed in user space"
 msgstr ""
 
-#: app.bashrc:1078
+#: app.bashrc:1076
 msgid "installed for all users, with binaries in %s"
 msgstr ""
 
-#: app.bashrc:1079
+#: app.bashrc:1077
 msgid "installed with system package managers (apt, dnf, snap, etc)"
 msgstr ""
 
-#: app.bashrc:1080
+#: app.bashrc:1078
 msgid "all installations: local, global and system"
 msgstr ""
 
-#: app.bashrc:1144 app.bashrc:1146 app.bashrc:1148
+#: app.bashrc:1142 app.bashrc:1144 app.bashrc:1146
 msgid "Updating %s applications."
 msgstr ""
 
-#: app.bashrc:1192 network.bashrc:610
+#: app.bashrc:1190 network.bashrc:609
 msgid "It works."
 msgstr ""
 
-#: app.bashrc:1196
+#: app.bashrc:1194
 msgid "String not found in URL page."
 msgstr ""
 
@@ -894,7 +906,7 @@ msgid "Youtube video URL"
 msgstr ""
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
-#: misc.bashrc:195 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:206 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
@@ -1003,6 +1015,90 @@ msgid ""
 "xz)."
 msgstr ""
 
+#: bot.bashrc:15
+msgid "Bots"
+msgstr ""
+
+#: bot.bashrc:51
+msgid "Token for Telegram bot. Get it from @BotFather"
+msgstr ""
+
+#: bot.bashrc:63
+msgid "Usage: %s %s [%s] [%s]"
+msgstr ""
+
+#: bot.bashrc:63
+msgid "type"
+msgstr ""
+
+#: bot.bashrc:63
+msgid "Other options"
+msgstr ""
+
+#: bot.bashrc:64
+msgid "works as a Telegram bot"
+msgstr ""
+
+#: bot.bashrc:67
+msgid "list new groups for telegram bot"
+msgstr ""
+
+#: bot.bashrc:68 bot.bashrc:69 bot.bashrc:70 bot.bashrc:71
+msgid "Group name"
+msgstr ""
+
+#: bot.bashrc:68
+msgid "Group ID"
+msgstr ""
+
+#: bot.bashrc:68
+msgid "Save a group"
+msgstr ""
+
+#: bot.bashrc:69
+msgid "Delete a group"
+msgstr ""
+
+#: bot.bashrc:70 bot.bashrc:163
+msgid "message"
+msgstr ""
+
+#: bot.bashrc:70
+msgid "Send a message"
+msgstr ""
+
+#: bot.bashrc:71
+msgid "path to file"
+msgstr ""
+
+#: bot.bashrc:71
+msgid "Send a file"
+msgstr ""
+
+#: bot.bashrc:76
+msgid "%s for %s is missing!"
+msgstr ""
+
+#: bot.bashrc:111
+msgid "New groups"
+msgstr ""
+
+#: bot.bashrc:120
+msgid "New group found: %s (name: %s)"
+msgstr ""
+
+#: bot.bashrc:163 bot.bashrc:195
+msgid "Sending %s \"%s\" to %s group via %s"
+msgstr ""
+
+#: bot.bashrc:195
+msgid "file"
+msgstr ""
+
+#: bot.bashrc:199
+msgid "File %s not found"
+msgstr ""
+
 #: canva.bashrc:12
 msgid "Canva Section"
 msgstr ""
@@ -1091,95 +1187,95 @@ msgstr ""
 msgid "Enabling complete for cron module."
 msgstr ""
 
-#: cron.bashrc:51
+#: cron.bashrc:56
 msgid "Path for cron rules"
 msgstr ""
 
-#: cron.bashrc:52
+#: cron.bashrc:57
 msgid "Turn on (true) or off (false) cron checkings"
 msgstr ""
 
-#: cron.bashrc:117
+#: cron.bashrc:122
 msgid "Command %s finished at %s."
 msgstr ""
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "Usage: %s [%s] <%s> <%s>"
 msgstr ""
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "(optional) \"quiet\" for quiet mode"
 msgstr ""
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "Interval"
 msgstr ""
 
-#: cron.bashrc:126
+#: cron.bashrc:131
 msgid "Command ID"
 msgstr ""
 
-#: cron.bashrc:136
+#: cron.bashrc:141
 msgid "Finishing command %s."
 msgstr ""
 
-#: cron.bashrc:160
+#: cron.bashrc:165
 msgid "Command %s executed at %s. Running now (%s) again. %i"
 msgstr ""
 
-#: cron.bashrc:166
+#: cron.bashrc:171
 msgid "Command %s is still running (PID %i)."
 msgstr ""
 
-#: cron.bashrc:168
+#: cron.bashrc:173
 msgid "Command %s is not more running."
 msgstr ""
 
-#: cron.bashrc:176
+#: cron.bashrc:181
 msgid "Run (frequency: %s) the command %s."
 msgstr ""
 
-#: cron.bashrc:225
+#: cron.bashrc:230
 msgid "Unknown cron time"
 msgstr ""
 
-#: cron.bashrc:229
+#: cron.bashrc:234
 msgid "Usage: %s [%s] [%s] [%s]."
 msgstr ""
 
-#: cron.bashrc:229 cron.bashrc:256
+#: cron.bashrc:234 cron.bashrc:261
 msgid "cron time"
 msgstr ""
 
-#: cron.bashrc:229 cron.bashrc:256 cron.bashrc:374
+#: cron.bashrc:234 cron.bashrc:261 cron.bashrc:379
 msgid "command id"
 msgstr ""
 
-#: cron.bashrc:230 cron.bashrc:257
+#: cron.bashrc:235 cron.bashrc:262
 msgid "Time values: "
 msgstr ""
 
-#: cron.bashrc:252 cron.bashrc:369
+#: cron.bashrc:257 cron.bashrc:374
 msgid "Unknown cron time."
 msgstr ""
 
-#: cron.bashrc:256 cron.bashrc:374
+#: cron.bashrc:261 cron.bashrc:379
 msgid "Usage: %s [%s] [%s]."
 msgstr ""
 
-#: cron.bashrc:347 cron.bashrc:365
+#: cron.bashrc:352 cron.bashrc:370
 msgid "Command not found"
 msgstr ""
 
-#: cron.bashrc:374
+#: cron.bashrc:379
 msgid "cron time (optional)"
 msgstr ""
 
-#: cron.bashrc:396
+#: cron.bashrc:401
 msgid "Starting cron function."
 msgstr ""
 
-#: cron.bashrc:401
+#: cron.bashrc:406
 msgid "Cron finished."
 msgstr ""
 
@@ -1252,406 +1348,446 @@ msgid "Returns a random special character"
 msgstr ""
 
 #: misc.bashrc:28
-msgid "Countdown timer."
+msgid "Makes a temporary file, directory or name"
 msgstr ""
 
 #: misc.bashrc:29
-msgid "Shows a random tip"
+msgid "Countdown timer."
 msgstr ""
 
 #: misc.bashrc:30
+msgid "Shows a random tip"
+msgstr ""
+
+#: misc.bashrc:31
 msgid "Translate char supporting unicode"
 msgstr ""
 
-#: misc.bashrc:65
+#: misc.bashrc:66
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr ""
 
-#: misc.bashrc:66
+#: misc.bashrc:67
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:81 misc.bashrc:84
+#: misc.bashrc:82 misc.bashrc:85
 msgid "Usage: %s %s [%s]"
 msgstr ""
 
-#: misc.bashrc:81
+#: misc.bashrc:82
 msgid "PDF file"
 msgstr ""
 
-#: misc.bashrc:81
+#: misc.bashrc:82
 msgid "%s or %s. Default is %s"
 msgstr ""
 
-#: misc.bashrc:84
+#: misc.bashrc:85
 msgid "text to remove or start"
 msgstr ""
 
-#: misc.bashrc:84
+#: misc.bashrc:85
 msgid "end of interval to remove"
 msgstr ""
 
-#: misc.bashrc:85 misc.bashrc:89
+#: misc.bashrc:86 misc.bashrc:90
 msgid "Full text in stdin"
 msgstr ""
 
-#: misc.bashrc:88
+#: misc.bashrc:89
 msgid "Usage: | %s [%s] [%s]"
 msgstr ""
 
-#: misc.bashrc:88
+#: misc.bashrc:89
 msgid "old text"
 msgstr ""
 
-#: misc.bashrc:88
+#: misc.bashrc:89
 msgid "new text"
 msgstr ""
 
-#: misc.bashrc:92 morph.bashrc:66 ui.bashrc:72
+#: misc.bashrc:93 misc.bashrc:103 morph.bashrc:68 ui.bashrc:72
 msgid "Usage: %s [%s] [%s]"
 msgstr ""
 
-#: misc.bashrc:92
+#: misc.bashrc:93
+msgid "mode. Default: name"
+msgstr ""
+
+#: misc.bashrc:93
+msgid "extension (optional)"
+msgstr ""
+
+#: misc.bashrc:95
+msgid "Operation mode"
+msgstr ""
+
+#: misc.bashrc:96
+msgid "only creates a name/path"
+msgstr ""
+
+#: misc.bashrc:97
+msgid "creates a file"
+msgstr ""
+
+#: misc.bashrc:98
+msgid "creates a directory"
+msgstr ""
+
+#: misc.bashrc:99
+msgid "creates a file in current directory"
+msgstr ""
+
+#: misc.bashrc:100
+msgid "Extension"
+msgstr ""
+
+#: misc.bashrc:100
+msgid "Suffix, starting with a dot (.)"
+msgstr ""
+
+#: misc.bashrc:103
 msgid "chars to find"
 msgstr ""
 
-#: misc.bashrc:92
+#: misc.bashrc:103
 msgid "chars to replace"
 msgstr ""
 
-#: misc.bashrc:161
+#: misc.bashrc:172
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr ""
 
-#: misc.bashrc:257 network.bashrc:275 network.bashrc:292 network.bashrc:311
+#: misc.bashrc:268 network.bashrc:275 network.bashrc:292 network.bashrc:311
 msgid "Usage:"
 msgstr ""
 
-#: misc.bashrc:260
+#: misc.bashrc:271
 msgid "Available timers"
 msgstr ""
 
-#: misc.bashrc:291
+#: misc.bashrc:302
 msgid "finished"
 msgstr ""
 
-#: misc.bashrc:320
+#: misc.bashrc:331
 msgid "30-30-30 method for router reseting"
 msgstr ""
 
-#: misc.bashrc:321
+#: misc.bashrc:332
 msgid "your router will lost all configuration"
 msgstr ""
 
-#: misc.bashrc:322
+#: misc.bashrc:333
 msgid "Turn on the router."
 msgstr ""
 
-#: misc.bashrc:323
+#: misc.bashrc:334
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:324
+#: misc.bashrc:335
 msgid "Turn off the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:325
+#: misc.bashrc:336
 msgid "Turn on the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:326
+#: misc.bashrc:337
 msgid "Release the button"
 msgstr ""
 
-#: misc.bashrc:327
+#: misc.bashrc:338
 msgid "Press ENTER when you are ready."
 msgstr ""
 
-#: misc.bashrc:329 misc.bashrc:333
+#: misc.bashrc:340 misc.bashrc:344
 msgid "Router on"
 msgstr ""
 
-#: misc.bashrc:331
+#: misc.bashrc:342
 msgid "Router off"
 msgstr ""
 
-#: misc.bashrc:336
+#: misc.bashrc:347
 msgid "Your router must be restarted with factory settings!"
 msgstr ""
 
-#: misc.bashrc:375
+#: misc.bashrc:386
 msgid "Tip groups: %s."
 msgstr ""
 
-#: misc.bashrc:383
+#: misc.bashrc:394
 msgid "No tips group %s found."
 msgstr ""
 
-#: misc.bashrc:535
+#: misc.bashrc:545
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 
-#: morph.bashrc:14
+#: morph.bashrc:16
 msgid "Morph Section (strings)"
 msgstr ""
 
-#: morph.bashrc:15
+#: morph.bashrc:17
 msgid "String transformation utilities"
 msgstr ""
 
-#: morph.bashrc:16
+#: morph.bashrc:18
 msgid "Transform a string"
 msgstr ""
 
-#: morph.bashrc:17
+#: morph.bashrc:19
 msgid "Converts integer to words"
 msgstr ""
 
-#: morph.bashrc:66
+#: morph.bashrc:68
 msgid "transformation"
 msgstr ""
 
-#: morph.bashrc:67
+#: morph.bashrc:69
 msgid "Available transformations: %s."
 msgstr ""
 
-#: morph.bashrc:68
+#: morph.bashrc:70
 msgid "You can apply more transformations using comma (ex: %s)"
 msgstr ""
 
-#: morph.bashrc:71 network.bashrc:1075 network.bashrc:1108
+#: morph.bashrc:73 network.bashrc:1073 network.bashrc:1106
 msgid "Usage: %s [%s]"
 msgstr ""
 
-#: morph.bashrc:71
+#: morph.bashrc:73
 msgid "number"
 msgstr ""
 
-#: morph.bashrc:232
+#: morph.bashrc:265
 msgid "zero"
 msgstr ""
 
-#: morph.bashrc:233
+#: morph.bashrc:266
 msgid "one"
 msgstr ""
 
-#: morph.bashrc:234
+#: morph.bashrc:267
 msgid "two"
 msgstr ""
 
-#: morph.bashrc:235
+#: morph.bashrc:268
 msgid "three"
 msgstr ""
 
-#: morph.bashrc:236
+#: morph.bashrc:269
 msgid "four"
 msgstr ""
 
-#: morph.bashrc:237
+#: morph.bashrc:270
 msgid "five"
 msgstr ""
 
-#: morph.bashrc:238
+#: morph.bashrc:271
 msgid "six"
 msgstr ""
 
-#: morph.bashrc:239
+#: morph.bashrc:272
 msgid "seven"
 msgstr ""
 
-#: morph.bashrc:240
+#: morph.bashrc:273
 msgid "eight"
 msgstr ""
 
-#: morph.bashrc:241
+#: morph.bashrc:274
 msgid "nine"
 msgstr ""
 
-#: morph.bashrc:246
+#: morph.bashrc:279
 msgid "ten"
 msgstr ""
 
-#: morph.bashrc:247
+#: morph.bashrc:280
 msgid "eleven"
 msgstr ""
 
-#: morph.bashrc:248
+#: morph.bashrc:281
 msgid "twelve"
 msgstr ""
 
-#: morph.bashrc:249
+#: morph.bashrc:282
 msgid "thirteen"
 msgstr ""
 
-#: morph.bashrc:250
+#: morph.bashrc:283
 msgid "fourteen"
 msgstr ""
 
-#: morph.bashrc:251
+#: morph.bashrc:284
 msgid "fiveteen"
 msgstr ""
 
-#: morph.bashrc:252
+#: morph.bashrc:285
 msgid "sixteen"
 msgstr ""
 
-#: morph.bashrc:253
+#: morph.bashrc:286
 msgid "seventeen"
 msgstr ""
 
-#: morph.bashrc:254
+#: morph.bashrc:287
 msgid "eighteen"
 msgstr ""
 
-#: morph.bashrc:255
+#: morph.bashrc:288
 msgid "nineteen"
 msgstr ""
 
-#: morph.bashrc:265
+#: morph.bashrc:298
 msgid "twenty"
 msgstr ""
 
-#: morph.bashrc:266
+#: morph.bashrc:299
 msgid "thirty"
 msgstr ""
 
-#: morph.bashrc:267
+#: morph.bashrc:300
 msgid "forty"
 msgstr ""
 
-#: morph.bashrc:268
+#: morph.bashrc:301
 msgid "fifty"
 msgstr ""
 
-#: morph.bashrc:269
+#: morph.bashrc:302
 msgid "sixty"
 msgstr ""
 
-#: morph.bashrc:270
+#: morph.bashrc:303
 msgid "seventy"
 msgstr ""
 
-#: morph.bashrc:271
+#: morph.bashrc:304
 msgid "eighty"
 msgstr ""
 
-#: morph.bashrc:272
+#: morph.bashrc:305
 msgid "ninety"
 msgstr ""
 
-#: morph.bashrc:277
+#: morph.bashrc:310
 msgid "twenty-%s"
 msgstr ""
 
-#: morph.bashrc:278
+#: morph.bashrc:311
 msgid "thirty-%s"
 msgstr ""
 
-#: morph.bashrc:279
+#: morph.bashrc:312
 msgid "forty-%s"
 msgstr ""
 
-#: morph.bashrc:280
+#: morph.bashrc:313
 msgid "fifty-%s"
 msgstr ""
 
-#: morph.bashrc:281
+#: morph.bashrc:314
 msgid "sixty-%s"
 msgstr ""
 
-#: morph.bashrc:282
+#: morph.bashrc:315
 msgid "seventy-%s"
 msgstr ""
 
-#: morph.bashrc:283
+#: morph.bashrc:316
 msgid "eighty-%s"
 msgstr ""
 
-#: morph.bashrc:284
+#: morph.bashrc:317
 msgid "ninety-%s"
 msgstr ""
 
-#: morph.bashrc:295
+#: morph.bashrc:328
 msgid "one hundred"
 msgstr ""
 
-#: morph.bashrc:296
+#: morph.bashrc:329
 msgid "two hundred"
 msgstr ""
 
-#: morph.bashrc:297
+#: morph.bashrc:330
 msgid "three hundred"
 msgstr ""
 
-#: morph.bashrc:298
+#: morph.bashrc:331
 msgid "four hundred"
 msgstr ""
 
-#: morph.bashrc:299
+#: morph.bashrc:332
 msgid "five hundred"
 msgstr ""
 
-#: morph.bashrc:300
+#: morph.bashrc:333
 msgid "six hundred"
 msgstr ""
 
-#: morph.bashrc:301
+#: morph.bashrc:334
 msgid "seven hundred"
 msgstr ""
 
-#: morph.bashrc:302
+#: morph.bashrc:335
 msgid "eight hundred"
 msgstr ""
 
-#: morph.bashrc:303
+#: morph.bashrc:336
 msgid "nine hundred"
 msgstr ""
 
-#: morph.bashrc:309
+#: morph.bashrc:342
 msgid "one hundred and %s"
 msgstr ""
 
-#: morph.bashrc:310
+#: morph.bashrc:343
 msgid "two hundred and %s"
 msgstr ""
 
-#: morph.bashrc:311
+#: morph.bashrc:344
 msgid "three hundred and %s"
 msgstr ""
 
-#: morph.bashrc:312
+#: morph.bashrc:345
 msgid "four hundred and %s"
 msgstr ""
 
-#: morph.bashrc:313
+#: morph.bashrc:346
 msgid "five hundred and %s"
 msgstr ""
 
-#: morph.bashrc:314
+#: morph.bashrc:347
 msgid "six hundred and %s"
 msgstr ""
 
-#: morph.bashrc:315
+#: morph.bashrc:348
 msgid "seven hundred and %s"
 msgstr ""
 
-#: morph.bashrc:316
+#: morph.bashrc:349
 msgid "eight hundred and %s"
 msgstr ""
 
-#: morph.bashrc:317
+#: morph.bashrc:350
 msgid "nine hundred and %s"
 msgstr ""
 
-#: morph.bashrc:322
+#: morph.bashrc:355
 msgid "one thousand"
 msgstr ""
 
-#: morph.bashrc:324
+#: morph.bashrc:357
 msgid "many"
 msgstr ""
 
-#: morph.bashrc:327
+#: morph.bashrc:360
 msgid "Argument is not an integer number."
 msgstr ""
 
@@ -1815,7 +1951,7 @@ msgstr ""
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:278 network.bashrc:821
+#: network.bashrc:278 network.bashrc:819
 msgid "Available groups"
 msgstr ""
 
@@ -1831,128 +1967,128 @@ msgstr ""
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
-#: network.bashrc:419
+#: network.bashrc:418
 msgid "IP %s returned for machine %s."
 msgstr ""
 
-#: network.bashrc:420
+#: network.bashrc:419
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:427
+#: network.bashrc:426
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:483
+#: network.bashrc:482
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr ""
 
-#: network.bashrc:488 network.bashrc:491
+#: network.bashrc:487 network.bashrc:490
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 
-#: network.bashrc:493
+#: network.bashrc:492
 msgid "Cannot connect %s."
 msgstr ""
 
-#: network.bashrc:569
+#: network.bashrc:568
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr ""
 
-#: network.bashrc:581 network.bashrc:641
+#: network.bashrc:580 network.bashrc:640
 msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:589
+#: network.bashrc:588
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:612
+#: network.bashrc:611
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:678
+#: network.bashrc:676
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:683
+#: network.bashrc:681
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:692
+#: network.bashrc:690
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:697
+#: network.bashrc:695
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:795
+#: network.bashrc:793
 msgid "trying %s:%s"
 msgstr ""
 
-#: network.bashrc:803
+#: network.bashrc:801
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:816
+#: network.bashrc:814
 msgid "group"
 msgstr ""
 
-#: network.bashrc:819
+#: network.bashrc:817
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:851
+#: network.bashrc:849
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:866
+#: network.bashrc:864
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:874
+#: network.bashrc:872
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:923
+#: network.bashrc:921
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:934
+#: network.bashrc:932
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:959
+#: network.bashrc:957
 msgid "Doing backup of %s to %s"
 msgstr ""
 
-#: network.bashrc:1002
+#: network.bashrc:1000
 msgid "Downloading %s"
 msgstr ""
 
-#: network.bashrc:1020
+#: network.bashrc:1018
 msgid "Usage: 1get [%s]"
 msgstr ""
 
-#: network.bashrc:1021
+#: network.bashrc:1019
 msgid "URL is optional. 1get starts download of every URL in queue."
 msgstr ""
 
-#: network.bashrc:1051
+#: network.bashrc:1049
 msgid "Download of %s successful."
 msgstr ""
 
-#: network.bashrc:1055
+#: network.bashrc:1053
 msgid "Error downloading %s."
 msgstr ""
 
-#: network.bashrc:1088
+#: network.bashrc:1086
 msgid "Download Queue"
 msgstr ""
 
-#: network.bashrc:1093
+#: network.bashrc:1091
 msgid "Download queue is empty."
 msgstr ""
 

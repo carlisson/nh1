@@ -365,3 +365,20 @@
 1.4a12 2023-03-24: 1misc using 1replace and 1remove; verbose 1booklet fixed
 1.4a13 2023-03-24: 1morph using 1replace; migu morph fixed
 1.4.1  2023-03-24: 1angel fixed and some improvements
+1.4b1  2023-03-24: 1bot created supporting telegram
+1.4b2  2023-03-24: 1bot telegram group-list improved
+1.4b3  2023-03-24: 1morph urlencode created
+1.4b4  2023-03-24: 1morph urlencode improved
+1.4b5  2023-03-27: 1bot telegram send > send files
+1.4b6  2023-03-29: 1bot telegram say urlencode fixed
+1.4b7  2023-03-29: 1cron disabled when in libmode
+1.4b8  2023-03-29: 1angel show improved
+1.4b9  2023-03-29: 1httpstatus with timeout of 1 second
+1.4b10 2023-03-29: excluded _1before from 1ison and 1ports
+1.4b11 2023-03-29: 1bot shows send option
+1.4b12 2023-03-29: 1angel run fixed (vars in include)
+1.4b13 2023-03-29: 1angel show fixed (2+ vars in one line)
+1.4b14 2023-03-30: 1temp creates a temp filename, file or dir
+1.4b15 2023-03-30: 1angel receives angel file as arg, no more as stdin
+1.4b16 2023-03-30: 1angel - removed debug prints
+1.4.2  2023-03-31: 1bot telegram and changes in 1angel

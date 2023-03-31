@@ -128,7 +128,7 @@ _1angel.apply() {
     local _PAR _FILE _VAR _VAL _FLIN _I _TOTAL _FVAR _FVAL _ARGS _FREF
     local _LINE="$1"
     shift
-    _ARGS="$* "
+    _ARGS=$@
 
     # -=@=- Curly cut wings
     if [[ "$_LINE" =~ "-=@=-" ]]
@@ -151,18 +151,23 @@ _1angel.apply() {
     then
         _LINE="$(echo $_LINE | sed "s/-={\([^}]*\)}=-//g")"
     fi
+
     if [[ "$_LINE" =~ "-=[" ]]
     then
-        for _PAR in "$@"
+        for _PAR in $_ARGS
         do
-            _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
-            _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0)"
-            if [ "$_VAR" != "$_VAL" ]
+            if [[ "$_PAR" =~ = ]]
             then
-                _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/g")
+                _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
+                _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0 | 1replace "%20" " " 0)"
+                if [ "$_VAR" != "$_VAL" ]
+                then
+                    _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/g")
+                fi
             fi
         done
     fi
+
     while [[ "$_LINE" =~ "-=!" ]]
     do
         _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=!\([a-zA-Z0-9]*\)!=-\(.*\)/\2/")"
@@ -203,7 +208,7 @@ _1angel.apply() {
                         then
                             _FILE=$(_1angel.getValue "$_FREF" $_FLIN)
                         fi
-                        1angel run $@ $_FLIN < $_FILE
+                        1angel run $_FILE $@ $_FLIN
                     done
                 fi
             fi
@@ -229,8 +234,10 @@ _1angel.apply() {
 
 # @description Test usage
 _1angel.test() {
-  local _PAR _VAR _VAL
-  1banner "$(_1text "Angel Test")"
+  local _PAR _VAR _VAL _VFILE
+  _VFILE="$1"
+  shift
+  1banner "$(_1text "Angel Test for $_VFILE")"
   for _PAR in "$@"
   do
     _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
@@ -253,20 +260,27 @@ _1angel.test() {
 
 # @description Applies a template
 _1angel.go() {
-    local _line
-
+    local _line _lmax _AUX _VFILE _args
+    
     _1ANGELIGNORE=1 # reset comment-flag
-    while read -r _line
+    _VFILE="$1"
+    shift
+    _lmax=$(wc -l <$_VFILE)
+    _args="$(echo "$@ " | sed "s/=\([^=]\+\) /=\1~~+~~/g" \
+        | 1replace " " "%20" 0 | 1replace "~~+~~" " " 0)"
+
+    for _line in $(seq $_lmax)
     do
-        _1angel.apply "$_line" "$@"
+        _1angel.apply "$(sed -n "$_line"p "$_VFILE")" "$_args"
     done
 }
 
 # @description Show template information
 _1angel.show() {
-    local _MSG _LINE
+    local _MSG _LINE _INCL _AUX
     _1ANGELIGNORE=1
-    1tint $_1COLOR "$(_1text "Showing template information")"
+    _INCL=""
+    _1menuheader "$(_1text "Showing template information")"
 
     while read -r _LINE
     do
@@ -287,21 +301,41 @@ _1angel.show() {
             do
                 _MSG="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\2/")"
                 _1message info "$_MSG"
-                _LINE="$(echo $_LINE | 1replace "-={" "X" | 1replacee "}=-" "X")" # removing comment marks
+                _LINE="$(echo $_LINE | sed "s/\(.*\)-={\([^}]*\)\(.*\)}=-/\1/")" # removing comment marks
+            done
+            while [[ "$_LINE" =~ "-=(" ]]
+            do
+                _MSG="$(echo $_LINE | sed "s/\(.*\)-=(\([^)]*\)\(.*\))=-/\2/")"
+                _AUX="$(echo "$_MSG" | sed "s/\([^ ]*\) \(.*\)$/\1/")"
+                printf "$(_1text "Includes variable: %s")\n" "$(1tint "$_AUX")"
+                _AUX="$(echo "$_MSG" | sed "s/\([^ ]*\) \(.*\)$/\2/")"
+                if [[ "$_AUX" =~ ^= ]]
+                then
+                   printf " -- $(_1text "using variable %s to get the included angel file")\n" "$(1tint "$(echo "$_AUX" | sed "s/^=//")")"
+                else
+                   printf " -- $(_1text "using this angel file: %s")\n" "$(1tint "$_AUX")"
+                    _INCL="$_INCL $_AUX"
+                fi
+                _LINE="$(echo $_LINE | sed "s/\(.*\)-=(\([^)]*\)\(.*\))=-/\1/")" # removing comment marks
+            done
+            while [[ "$_LINE" =~ "-=[" ]]
+            do
+                _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\2/")"
+                _VAL="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\4/")"
+                if [ ! -z "$_VAL" ]
+                then
+                    printf "$(_1text "Varibale %s with default value %s")\n" "$(1tint $_1COLOR $_VAR)" "$_VAL"
+                else
+                    printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
+                fi
+                _LINE="$(echo $_LINE | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\1 \5/")" # removing comment marks
             done
         fi
-        while [[ "$_LINE" =~ "-=[" ]]
-        do
-            _VAR="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\2/")"
-            _VAL="$(echo "$_LINE" | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\4/")"
-            if [ ! -z "$_VAL" ]
-            then
-                printf "$(_1text "Varibale %s with default value %s")\n" "$(1tint $_1COLOR $_VAR)" "$_VAL"
-            else
-                printf "$(_1text "Varibale %s without default value")\n" "$(1tint $_1COLOR $_VAR)"
-            fi
-            _LINE="$(echo $_LINE | 1replace "-=[" "X" | 1replace "]=-" "X")" # removing comment marks
-        done
+    done <$1
+    for _AUX in $_INCL
+    do
+        echo
+        _1angel.show $_AUX
     done
 }
 
@@ -322,7 +356,7 @@ _1angel.show() {
                 _1angel.go "$@"
                 ;;
             show)
-                _1angel.show
+                _1angel.show "$1"
                 ;;
             test)
                 _1angel.test "$@"

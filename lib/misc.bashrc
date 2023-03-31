@@ -25,6 +25,7 @@ _nh1misc.menu() {
   _1menuitem X 1replace "$(_1text "Replace a substring inside a string")"
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
+  _1menuitem X 1temp "$(_1text "Makes a temporary file, directory or name")"
   _1menuitem W 1timer "$(_1text "Countdown timer.")" seq
   _1menuitem X 1tip "$(_1text "Shows a random tip")" shuf
   _1menuitem X 1tr "$(_1text "Translate char supporting unicode")" sed
@@ -37,7 +38,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init 1diceware 1tr 1replace 1remove
+  unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp
 }
 
 # @description Autocompletion
@@ -88,6 +89,16 @@ _nh1misc.usage() {
         printf "$(_1text "Usage: | %s [%s] [%s]")\n" "1$1" "$(_1text "old text")" "$(_1text "new text")"
         printf "  - %s\n" "$(_1text "Full text in stdin")"
         ;;
+    temp)
+      printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "mode. Default: name")" "$(_1text "extension (optional)")"
+      printf "  - %s: name (%s), file (%s), dir (%s), here (%s)\n" \
+        "$(_1text "Operation mode")" \
+        "$(_1text "only creates a name/path")" \
+        "$(_1text "creates a file")" \
+        "$(_1text "creates a directory")" \
+        "$(_1text "creates a file in current directory")"
+      printf "  - %s: %s\n" "$(_1text "Extension")" "$(_1text "Suffix, starting with a dot (.)")"
+      ;;
     tr)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "chars to find")" "$(_1text "chars to replace")"
         ;;        
@@ -633,4 +644,50 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     esac
   done
   return 0
+}
+
+# @description Creates a temporary file, directory or name
+# @arg $1 string Operation mode. Default: name
+# @arg $2 string File extension
+1temp() {
+  local _MOD _EXT _NAM _PAT
+  _PAT="/tmp"
+  _NAM="/tmp"
+  _EXT=""
+  _MOD="name"
+
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+      here)
+        _PAT="$(pwd)"
+        ;;
+      file|name|dir)
+        _MOD="$1"
+        ;;
+      \.*)
+        _EXT="$1"
+        ;;
+      *)
+        _nh1misc.usage temp
+        return 0
+        ;;
+    esac
+    shift
+  done
+
+  while [ -e "$_NAM" ]
+  do
+    _NAM="$_PAT/1temp-$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 5)$_EXT"
+  done
+
+  case "$_MOD" in
+    file)
+      touch "$_NAM"
+      ;;
+    dir)
+      mkdir "$_NAM"
+      ;;
+  esac
+  echo "$_NAM"
 }

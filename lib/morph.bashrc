@@ -3,7 +3,9 @@
 # @brief String transformations
 
 # GLOBALS
-_1MORPHS=(cursive cyrillic escape greek leet lower migu phone randdel randdup randsn randssc randuc reverse rotvow randspl sedscape super unaccent updown upper xthicc)
+_1MORPHS=(cursive cyrillic escape greek leet lower migu phone \
+    randdel randdup randsn randssc randuc reverse rotvow randspl \
+    sedscape super unaccent updown upper urlencode xthicc)
 
 # Without exotic alphabets
 _1MORPHLATIN=(escape leet lower migu randdel randdup randsn randssc randuc reverse rotvow randspl unaccent upper)
@@ -84,7 +86,7 @@ _nh1morph.usage() {
 # @arg $1 string Desired transformation. List to see all availables.
 # @arg $2 string String to transform
 1morph() {
-    local _MORPH _AUX1 _AUX2 _TEXT
+    local _MORPH _AUX1 _AUX2 _AUX3 _AUX4 _TEXT _TLEN
     _TEXT=""
     if [ $# -gt 0 ]
     then
@@ -111,6 +113,7 @@ _nh1morph.usage() {
     fi
     if [ "$_TEXT" != "" ]
     then
+        _TLEN=${#_TEXT}
         case "$_MORPH" in
             cursive)
                 echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz' '𝓐𝓪𝓑𝓫𝓒𝓬𝓓𝓭𝓔𝓮𝓕𝓯𝓖𝓰𝓗𝓱𝓘𝓲𝓙𝓳𝓚𝓴𝓛𝓵𝓜𝓶𝓝𝓷𝓞𝓸𝓟𝓹𝓠𝓺𝓡𝓻𝓢𝓼𝓣𝓽𝓤𝓾𝓥𝓿𝓦𝔀𝓧𝔁𝓨𝔂𝓩𝔃'
@@ -142,27 +145,27 @@ _nh1morph.usage() {
                 echo $_TEXT | tr ' ,.!?;:aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ+-=/' '11111122222233333344444455555566666677777777888888999999990000'
                 ;;
             randdel) # Random deletion
-                _AUX1=$(1dice "${#_TEXT}")
+                _AUX1=$(1dice "$_TLEN")
                 echo ${_TEXT:0:_AUX1-1}${_TEXT:_AUX1}
                 ;;
             randdup) # Random duplicate
-                _AUX1=$(1dice "${#_TEXT}")
+                _AUX1=$(1dice "$_TLEN")
                 echo ${_TEXT:0:_AUX1}${_TEXT:_AUX1-1}
                 ;;
             randsn) # Random substitute to number
-                _AUX1=$(1dice "${#_TEXT}")
+                _AUX1=$(1dice "$_TLEN")
                 echo ${_TEXT:0:_AUX1-1}$(($(1d10)-1))${_TEXT:_AUX1}
                 ;;
             randspl) # Random split
-                _AUX1=$(1dice "${#_TEXT}")
+                _AUX1=$(1dice "$_TLEN")
                 echo ${_TEXT:_AUX1}${_TEXT:0:_AUX1}
                 ;;
             randssc) # Random substitute to special char
-                _AUX1=$(1dice "${#_TEXT}")
+                _AUX1=$(1dice "$_TLEN")
                 echo ${_TEXT:0:_AUX1-1}$(1spchar)${_TEXT:_AUX1}
                 ;;
             randuc) # Random upper case
-                _AUX1=$(1dice "${#_TEXT}")
+                _AUX1=$(1dice "$_TLEN")
                 echo ${_TEXT:0:_AUX1-1}$(echo ${_TEXT:_AUX1-1:1} | tr '[:lower:]' '[:upper:]')${_TEXT:_AUX1}
                 ;;
             reverse)
@@ -203,6 +206,35 @@ _nh1morph.usage() {
             updown) # Upside down
                 _TEXT=$(1morph reverse $_TEXT)
                 echo $_TEXT | 1tr 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789' 'ⱯɑBpCcDqEԍᖶɻᘓმHμIᴉᒉᒉKĸΓɼWwИuOobb⥀dᖉʁƧƨꓕϝꓵnΛʌMʍXx⅄λZz0Ɩᘕ3ત૨୧⌋8მ'
+                ;;
+            urlencode)
+                _AUX1="$_TEXT" # input
+                _AUX2=0 # position
+                _AUX3="" # original char
+                _AUX4="" # encoded char
+                _TEXT=""
+                for (( _AUX2=0 ; _AUX2<_TLEN ; _AUX2++ ))
+                do
+                    _AUX3=${_AUX1:$_AUX2:1}
+                    _AUX4="${_AUX3}"
+                    case "$_AUX3" in
+                        [-_.~a-zA-Z0-9] )
+                            ;;
+                        # [\!\"\#\$\%\&\'\(\)\*+,/:\;\<\=\>\?\@\[\\\]\^\`\{\|\}°±²³¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ] )
+                        [\!\"\#\$\%\&\'\(\)\*+,/:\;\=\?\@\[\\\]\^\`\{\|\}] )
+                            printf -v _AUX4 '%%%02x' "'$_AUX3"
+                            ;;
+                        [°±²³¹º£»¼½¾¿])
+                            printf -v _AUX4 '%%%02x' "'$_AUX3"
+                            _AUX4="%C2$_AUX4"
+                            ;;
+                        \ )
+                            _AUX4="%20"
+                            ;;
+                    esac
+                    _TEXT+="${_AUX4}"
+                done
+                echo $_TEXT | 1replace "%5cn" "%0a" 0
                 ;;
             upper)
                 echo $_TEXT | tr '[:lower:]' '[:upper:]'
