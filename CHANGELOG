@@ -380,3 +380,4 @@
 1.4b13 2023-03-29: 1angel show fixed (2+ vars in one line)
 1.4b14 2023-03-30: 1temp creates a temp filename, file or dir
 1.4b15 2023-03-30: 1angel receives angel file as arg, no more as stdin
+1.4b16 2023-03-30: 1angel - removed debug prints

@@ -160,8 +160,6 @@ _1angel.apply() {
             then
                 _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
                 _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0 | 1replace "%20" " " 0)"
-                echo ">>> ARG [$_PAR]: $_VAR é $_VAL" >&2
-                echo "LINE > $_LINE" >&2
                 if [ "$_VAR" != "$_VAL" ]
                 then
                     _LINE=$(echo "$_LINE" | sed "s/-=\[$_VAR\( \([^]]*\)\)\?\]=-/$_VAL/g")
@@ -236,8 +234,10 @@ _1angel.apply() {
 
 # @description Test usage
 _1angel.test() {
-  local _PAR _VAR _VAL
-  1banner "$(_1text "Angel Test")"
+  local _PAR _VAR _VAL _VFILE
+  _VFILE="$1"
+  shift
+  1banner "$(_1text "Angel Test for $_VFILE")"
   for _PAR in "$@"
   do
     _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
@@ -272,7 +272,6 @@ _1angel.go() {
     for _line in $(seq $_lmax)
     do
         _1angel.apply "$(sed -n "$_line"p "$_VFILE")" "$_args"
-        echo ">>> ARQ $_VFILE LINE $_line" >&2
     done
 }
 
