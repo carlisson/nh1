@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-30 16:20-0300\n"
+"POT-Creation-Date: 2023-03-31 10:44-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,430 +17,430 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/bardo/sources/nh1/nh1:158
+#: /home/bardo/sources/nh1/nh1:157
 msgid "Creating database file for %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:164
+#: /home/bardo/sources/nh1/nh1:163
 msgid "Database %s exists."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:169
+#: /home/bardo/sources/nh1/nh1:168
 msgid "Excluding database file for %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:175
+#: /home/bardo/sources/nh1/nh1:174
 msgid "Database %s does not exist."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:212
+#: /home/bardo/sources/nh1/nh1:211
 msgid "Variable %s not found in database %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:216 /home/bardo/sources/nh1/nh1:252
+#: /home/bardo/sources/nh1/nh1:215 /home/bardo/sources/nh1/nh1:251
 msgid "Database %s not found."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:290
+#: /home/bardo/sources/nh1/nh1:289
 msgid "Listing content for %s database."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:388
+#: /home/bardo/sources/nh1/nh1:387
 msgid "You need to give status, command name, message and dependencies"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:456
+#: /home/bardo/sources/nh1/nh1:455
 msgid "This command needs sudo: %s"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:541
+#: /home/bardo/sources/nh1/nh1:540
 msgid ""
 "NH1 is already installed in your profile. Run NH1 to see all commands "
 "available."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:543
+#: /home/bardo/sources/nh1/nh1:542
 msgid "Installing NH1 in %s..."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:545 /home/bardo/sources/nh1/nh1:850
-#: /home/bardo/sources/nh1/nh1:1292 /home/bardo/sources/nh1/nh1:1313
+#: /home/bardo/sources/nh1/nh1:544 /home/bardo/sources/nh1/nh1:849
+#: /home/bardo/sources/nh1/nh1:1291 /home/bardo/sources/nh1/nh1:1312
 msgid "Done!"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:557
+#: /home/bardo/sources/nh1/nh1:556
 msgid "Usage: 1banner [%s] [%s]."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:557
+#: /home/bardo/sources/nh1/nh1:556
 msgid "size"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:557 morph.bashrc:68
+#: /home/bardo/sources/nh1/nh1:556 morph.bashrc:68
 msgid "text"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:620 /home/bardo/sources/nh1/nh1:705
-#: /home/bardo/sources/nh1/nh1:722 /home/bardo/sources/nh1/nh1:744
-#: /home/bardo/sources/nh1/nh1:771
+#: /home/bardo/sources/nh1/nh1:619 /home/bardo/sources/nh1/nh1:704
+#: /home/bardo/sources/nh1/nh1:721 /home/bardo/sources/nh1/nh1:743
+#: /home/bardo/sources/nh1/nh1:770
 msgid "Usage: "
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:622
+#: /home/bardo/sources/nh1/nh1:621
 msgid "Build documentation for NH1"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:623
+#: /home/bardo/sources/nh1/nh1:622
 msgid "project name"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:623
+#: /home/bardo/sources/nh1/nh1:622
 msgid "doc directory"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:623 /home/bardo/sources/nh1/nh1:955
+#: /home/bardo/sources/nh1/nh1:622 /home/bardo/sources/nh1/nh1:954
 msgid "source-code files"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:644
+#: /home/bardo/sources/nh1/nh1:643
 msgid "%s is missing for %s"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:646
+#: /home/bardo/sources/nh1/nh1:645
 msgid "Program %s does not exist or it is unavailable for %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:665
+#: /home/bardo/sources/nh1/nh1:664
 msgid "Destroying all variables..."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:703
+#: /home/bardo/sources/nh1/nh1:702
 msgid "Internal databases:%s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:706
+#: /home/bardo/sources/nh1/nh1:705
 msgid "list all databases."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:707 /home/bardo/sources/nh1/nh1:708
+#: /home/bardo/sources/nh1/nh1:706 /home/bardo/sources/nh1/nh1:707
 msgid "name"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:707
+#: /home/bardo/sources/nh1/nh1:706
 msgid "creates a new database."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:708
+#: /home/bardo/sources/nh1/nh1:707
 msgid "removes the database."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:723 /home/bardo/sources/nh1/nh1:745
-#: /home/bardo/sources/nh1/nh1:772
+#: /home/bardo/sources/nh1/nh1:722 /home/bardo/sources/nh1/nh1:744
+#: /home/bardo/sources/nh1/nh1:771
 msgid "database name"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:723 /home/bardo/sources/nh1/nh1:745
+#: /home/bardo/sources/nh1/nh1:722 /home/bardo/sources/nh1/nh1:744
 msgid "variable name"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:745
+#: /home/bardo/sources/nh1/nh1:744
 msgid "variable value"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:772
+#: /home/bardo/sources/nh1/nh1:771
 msgid "mode"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:773
+#: /home/bardo/sources/nh1/nh1:772
 msgid "Mode: %s or %s. Default: %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:788
+#: /home/bardo/sources/nh1/nh1:787
 msgid "Special"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:791
+#: /home/bardo/sources/nh1/nh1:790
 msgid "Main"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:792
+#: /home/bardo/sources/nh1/nh1:791
 msgid "Prints a header inside a banner."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:793
+#: /home/bardo/sources/nh1/nh1:792
 msgid "Modify .bashrc to NH1 starts on bash start"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:794
+#: /home/bardo/sources/nh1/nh1:793
 msgid "Build documentation files for NH1"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:795
+#: /home/bardo/sources/nh1/nh1:794
 msgid "Clean NH1 from memory (undo NH1 charge)"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:796
+#: /home/bardo/sources/nh1/nh1:795
 msgid "List, create or delete a internal key-value DB."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:797
+#: /home/bardo/sources/nh1/nh1:796
 msgid "Get a value from a DB variable."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:798
+#: /home/bardo/sources/nh1/nh1:797
 msgid "Set in DB a value for a variable."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:799
+#: /home/bardo/sources/nh1/nh1:798
 msgid "List all variables in a DB."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:800
+#: /home/bardo/sources/nh1/nh1:799
 msgid "List possible custom variables"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:801
+#: /home/bardo/sources/nh1/nh1:800
 msgid "Write a string in another color"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:802
+#: /home/bardo/sources/nh1/nh1:801
 msgid "Write a string with background color"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:803
+#: /home/bardo/sources/nh1/nh1:802
 msgid "Create and apply translation for NH1."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:804
+#: /home/bardo/sources/nh1/nh1:803
 msgid "Update your NH1, using git"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:805
+#: /home/bardo/sources/nh1/nh1:804
 msgid "Enable/disable verbose mode"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:806
+#: /home/bardo/sources/nh1/nh1:805
 msgid "List NH1 version and latest changes/updates"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:810
+#: /home/bardo/sources/nh1/nh1:809
 msgid "planning"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:812
+#: /home/bardo/sources/nh1/nh1:811
 msgid "experimental"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:814
+#: /home/bardo/sources/nh1/nh1:813
 msgid "working"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:816
+#: /home/bardo/sources/nh1/nh1:815
 msgid "deprecated"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:819
+#: /home/bardo/sources/nh1/nh1:818
 msgid "Power-up your shell"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:847
+#: /home/bardo/sources/nh1/nh1:846
 msgid "After destroy variables, I will load %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:867 /home/bardo/sources/nh1/nh1:908
+#: /home/bardo/sources/nh1/nh1:866 /home/bardo/sources/nh1/nh1:907
 msgid "You need to put a string and a color number (optional)"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:869 /home/bardo/sources/nh1/nh1:910
+#: /home/bardo/sources/nh1/nh1:868 /home/bardo/sources/nh1/nh1:909
 msgid "black"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:870 /home/bardo/sources/nh1/nh1:911
+#: /home/bardo/sources/nh1/nh1:869 /home/bardo/sources/nh1/nh1:910
 msgid "red"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:871 /home/bardo/sources/nh1/nh1:912
+#: /home/bardo/sources/nh1/nh1:870 /home/bardo/sources/nh1/nh1:911
 msgid "green"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:872 /home/bardo/sources/nh1/nh1:913
+#: /home/bardo/sources/nh1/nh1:871 /home/bardo/sources/nh1/nh1:912
 msgid "yellow"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:873 /home/bardo/sources/nh1/nh1:914
+#: /home/bardo/sources/nh1/nh1:872 /home/bardo/sources/nh1/nh1:913
 msgid "blue"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:874 /home/bardo/sources/nh1/nh1:915
+#: /home/bardo/sources/nh1/nh1:873 /home/bardo/sources/nh1/nh1:914
 msgid "magenta"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:875 /home/bardo/sources/nh1/nh1:916
+#: /home/bardo/sources/nh1/nh1:874 /home/bardo/sources/nh1/nh1:915
 msgid "cyan"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:876 /home/bardo/sources/nh1/nh1:917
+#: /home/bardo/sources/nh1/nh1:875 /home/bardo/sources/nh1/nh1:916
 msgid "white"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:951
+#: /home/bardo/sources/nh1/nh1:950
 msgid "Usage (for NH1): 1translate [%s] [%s]."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:951 /home/bardo/sources/nh1/nh1:954
+#: /home/bardo/sources/nh1/nh1:950 /home/bardo/sources/nh1/nh1:953
 msgid "language code"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:952
+#: /home/bardo/sources/nh1/nh1:951
 msgid "build (optional)"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:953
+#: /home/bardo/sources/nh1/nh1:952
 msgid "Usage (generic): 1translate [%s] [%s] [%s] [%s]."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:954
+#: /home/bardo/sources/nh1/nh1:953
 msgid "locales path"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:954
+#: /home/bardo/sources/nh1/nh1:953
 msgid "domain name"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:956
+#: /home/bardo/sources/nh1/nh1:955
 msgid "Steps to translate NH1"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:957
+#: /home/bardo/sources/nh1/nh1:956
 msgid "Run 1translate <language-code>. For example, 1translate pt_BR"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:958
+#: /home/bardo/sources/nh1/nh1:957
 msgid "Edit the file <language-code>.po in %s, puting the translated strings"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:959
+#: /home/bardo/sources/nh1/nh1:958
 msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:960
+#: /home/bardo/sources/nh1/nh1:959
 msgid ""
 "Enjoy NH1 in your language! It's useful if you return translated .po to "
 "improve NH1 project!"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:961
+#: /home/bardo/sources/nh1/nh1:960
 msgid "Steps to translate generic shellscript"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:962
+#: /home/bardo/sources/nh1/nh1:961
 msgid ""
 "Run 1translate <locale-path> <domain-name> <language-code> <files>. For "
 "example, 1translate ./ hello pt_BR *.sh"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:963
+#: /home/bardo/sources/nh1/nh1:962
 msgid ""
 "Edit the file <language-code>.po in locales/, puting the translated strings"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:964
+#: /home/bardo/sources/nh1/nh1:963
 msgid ""
 "Run 1translate <locale-path> <domain-name> <language-code>. This will "
 "generate .mo file."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:965
+#: /home/bardo/sources/nh1/nh1:964
 msgid "Enjoy your shellscript in your language!"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:998
+#: /home/bardo/sources/nh1/nh1:997
 msgid "NH1 was in version %s. "
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1004
+#: /home/bardo/sources/nh1/nh1:1003
 msgid "You are using NH1 from tar-ball, not from Git."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1008
+#: /home/bardo/sources/nh1/nh1:1007
 msgid "Git program is not available."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1024 /home/bardo/sources/nh1/nh1:1038
+#: /home/bardo/sources/nh1/nh1:1023 /home/bardo/sources/nh1/nh1:1037
 msgid "Verbose mode is on"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1026 /home/bardo/sources/nh1/nh1:1034
+#: /home/bardo/sources/nh1/nh1:1025 /home/bardo/sources/nh1/nh1:1033
 msgid "Verbose mode is off"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1067
+#: /home/bardo/sources/nh1/nh1:1066
 msgid "Building documentation for %s..."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1087 /home/bardo/sources/nh1/nh1:1089
+#: /home/bardo/sources/nh1/nh1:1086 /home/bardo/sources/nh1/nh1:1088
 msgid "Building documentation for nh1 %s..."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1087
+#: /home/bardo/sources/nh1/nh1:1086
 msgid "main file"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1089
+#: /home/bardo/sources/nh1/nh1:1088
 msgid "module files"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1099
+#: /home/bardo/sources/nh1/nh1:1098
 msgid "Documentation available in %s."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1178
+#: /home/bardo/sources/nh1/nh1:1177
 msgid "Custom variables"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1179
+#: /home/bardo/sources/nh1/nh1:1178
 msgid "You can configure custom variables for NH1. Edit %s to define it."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1184
+#: /home/bardo/sources/nh1/nh1:1183
 msgid "Path to internal key-value databases"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1185
+#: /home/bardo/sources/nh1/nh1:1184
 msgid "Show notification on desktop. Default: false"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1186
+#: /home/bardo/sources/nh1/nh1:1185
 msgid "Set verbose mode. Default: false"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1195
+#: /home/bardo/sources/nh1/nh1:1194
 msgid "Custom variables (in use)"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1217
+#: /home/bardo/sources/nh1/nh1:1216
 msgid "Running for %s"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1239
+#: /home/bardo/sources/nh1/nh1:1238
 msgid "Done. %i modules not ready for this command."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1280
+#: /home/bardo/sources/nh1/nh1:1279
 msgid "Generating translation file."
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1285
+#: /home/bardo/sources/nh1/nh1:1284
 msgid ".pot file generated. Trying to create/update .po"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1311
+#: /home/bardo/sources/nh1/nh1:1310
 msgid "Generating .mo file for %s language"
 msgstr ""
 
-#: /home/bardo/sources/nh1/nh1:1359
+#: /home/bardo/sources/nh1/nh1:1358
 msgid "You need run: source %s."
 msgstr ""
 
@@ -449,74 +449,70 @@ msgid "Angel template system"
 msgstr ""
 
 #: angel.bashrc:75
-msgid "Usage: %s [%s] [%s]* < [%s] > [%s]"
+msgid "Usage: %s [%s] [%s] [%s]* > [%s]"
 msgstr ""
 
-#: angel.bashrc:75 bot.bashrc:63 ui.bashrc:72
+#: angel.bashrc:76 bot.bashrc:62 ui.bashrc:72
 msgid "Command"
 msgstr ""
 
-#: angel.bashrc:75
-msgid "Attributions (var=value)"
-msgstr ""
-
-#: angel.bashrc:75
+#: angel.bashrc:76
 msgid "angel input file"
 msgstr ""
 
-#: angel.bashrc:75
-msgid "output file"
-msgstr ""
-
-#: angel.bashrc:76
-msgid "show this help"
+#: angel.bashrc:77
+msgid "Attributions (var=value)"
 msgstr ""
 
 #: angel.bashrc:77
-msgid "apply a template"
+msgid "output file"
 msgstr ""
 
 #: angel.bashrc:78
-msgid "show template content"
+msgid "show this help"
 msgstr ""
 
 #: angel.bashrc:79
+msgid "apply a template"
+msgstr ""
+
+#: angel.bashrc:80
+msgid "show template content"
+msgstr ""
+
+#: angel.bashrc:81
 msgid "test arguments"
 msgstr ""
 
-#: angel.bashrc:241
-msgid "Angel Test"
-msgstr ""
-
-#: angel.bashrc:248
+#: angel.bashrc:249
 msgid "Error in %s"
 msgstr ""
 
-#: angel.bashrc:252
+#: angel.bashrc:253
 msgid "File: %s for name %s"
 msgstr ""
 
-#: angel.bashrc:278
+#: angel.bashrc:285
 msgid "Showing template information"
 msgstr ""
 
-#: angel.bashrc:305
+#: angel.bashrc:312
 msgid "Includes variable: %s"
 msgstr ""
 
-#: angel.bashrc:309
+#: angel.bashrc:316
 msgid "using variable %s to get the included angel file"
 msgstr ""
 
-#: angel.bashrc:311
+#: angel.bashrc:318
 msgid "using this angel file: %s"
 msgstr ""
 
-#: angel.bashrc:322
+#: angel.bashrc:329
 msgid "Varibale %s with default value %s"
 msgstr ""
 
-#: angel.bashrc:324
+#: angel.bashrc:331
 msgid "Varibale %s without default value"
 msgstr ""
 
@@ -721,7 +717,7 @@ msgstr ""
 msgid "option"
 msgstr ""
 
-#: app.bashrc:1067 bot.bashrc:66
+#: app.bashrc:1067 bot.bashrc:65
 msgid "Commands"
 msgstr ""
 
@@ -1015,87 +1011,87 @@ msgid ""
 "xz)."
 msgstr ""
 
-#: bot.bashrc:15
-msgid "Bots"
+#: bot.bashrc:7
+msgid "Bot system to send messages"
 msgstr ""
 
-#: bot.bashrc:51
+#: bot.bashrc:50
 msgid "Token for Telegram bot. Get it from @BotFather"
 msgstr ""
 
-#: bot.bashrc:63
+#: bot.bashrc:62
 msgid "Usage: %s %s [%s] [%s]"
 msgstr ""
 
-#: bot.bashrc:63
+#: bot.bashrc:62
 msgid "type"
 msgstr ""
 
-#: bot.bashrc:63
+#: bot.bashrc:62
 msgid "Other options"
 msgstr ""
 
-#: bot.bashrc:64
+#: bot.bashrc:63
 msgid "works as a Telegram bot"
 msgstr ""
 
-#: bot.bashrc:67
+#: bot.bashrc:66
 msgid "list new groups for telegram bot"
 msgstr ""
 
-#: bot.bashrc:68 bot.bashrc:69 bot.bashrc:70 bot.bashrc:71
+#: bot.bashrc:67 bot.bashrc:68 bot.bashrc:69 bot.bashrc:70
 msgid "Group name"
 msgstr ""
 
-#: bot.bashrc:68
+#: bot.bashrc:67
 msgid "Group ID"
 msgstr ""
 
-#: bot.bashrc:68
+#: bot.bashrc:67
 msgid "Save a group"
 msgstr ""
 
-#: bot.bashrc:69
+#: bot.bashrc:68
 msgid "Delete a group"
 msgstr ""
 
-#: bot.bashrc:70 bot.bashrc:163
+#: bot.bashrc:69 bot.bashrc:162
 msgid "message"
 msgstr ""
 
-#: bot.bashrc:70
+#: bot.bashrc:69
 msgid "Send a message"
 msgstr ""
 
-#: bot.bashrc:71
+#: bot.bashrc:70
 msgid "path to file"
 msgstr ""
 
-#: bot.bashrc:71
+#: bot.bashrc:70
 msgid "Send a file"
 msgstr ""
 
-#: bot.bashrc:76
+#: bot.bashrc:75
 msgid "%s for %s is missing!"
 msgstr ""
 
-#: bot.bashrc:111
+#: bot.bashrc:110
 msgid "New groups"
 msgstr ""
 
-#: bot.bashrc:120
+#: bot.bashrc:119
 msgid "New group found: %s (name: %s)"
 msgstr ""
 
-#: bot.bashrc:163 bot.bashrc:195
+#: bot.bashrc:162 bot.bashrc:194
 msgid "Sending %s \"%s\" to %s group via %s"
 msgstr ""
 
-#: bot.bashrc:195
+#: bot.bashrc:194
 msgid "file"
 msgstr ""
 
-#: bot.bashrc:199
+#: bot.bashrc:198
 msgid "File %s not found"
 msgstr ""
 

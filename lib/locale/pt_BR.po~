@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-29 15:44-0300\n"
+"POT-Creation-Date: 2023-03-30 16:20-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 
 #: /home/bardo/sources/nh1/nh1:158
 msgid "Creating database file for %s."
@@ -499,39 +500,39 @@ msgstr "mostra conteúdo do template"
 msgid "test arguments"
 msgstr "testa parâmetros"
 
-#: angel.bashrc:233
+#: angel.bashrc:241
 msgid "Angel Test"
 msgstr "Teste do Angel"
 
-#: angel.bashrc:240
+#: angel.bashrc:248
 msgid "Error in %s"
 msgstr "Erro em %s"
 
-#: angel.bashrc:244
+#: angel.bashrc:252
 msgid "File: %s for name %s"
 msgstr "Arquivo: %s para o nome %s"
 
-#: angel.bashrc:270
+#: angel.bashrc:278
 msgid "Showing template information"
 msgstr "Mostrando informações do template"
 
-#: angel.bashrc:297
+#: angel.bashrc:305
 msgid "Includes variable: %s"
 msgstr "Inclui a variável: %s"
 
-#: angel.bashrc:301
+#: angel.bashrc:309
 msgid "using variable %s to get the included angel file"
 msgstr "usando variável %s para obter o arquivo angel a ser incluído"
 
-#: angel.bashrc:303
+#: angel.bashrc:311
 msgid "using this angel file: %s"
 msgstr "usando este arquivo angel: %s"
 
-#: angel.bashrc:314
+#: angel.bashrc:322
 msgid "Varibale %s with default value %s"
 msgstr "Variável %s com valor padrão %s"
 
-#: angel.bashrc:316
+#: angel.bashrc:324
 msgid "Varibale %s without default value"
 msgstr "Variável %s sem valor padrão"
 
@@ -926,7 +927,7 @@ msgid "Youtube video URL"
 msgstr "URL de vídeo do Youtube"
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:238 canva.bashrc:264
-#: misc.bashrc:195 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:206 network.bashrc:347 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -1374,142 +1375,182 @@ msgid "Returns a random special character"
 msgstr "Retorna um caractere especial aleatório"
 
 #: misc.bashrc:28
+msgid "Makes a temporary file, directory or name"
+msgstr "Cria um arquivo, diretório ou nome demporário"
+
+#: misc.bashrc:29
 msgid "Countdown timer."
 msgstr "Temporizador regressivo."
 
-#: misc.bashrc:29
+#: misc.bashrc:30
 msgid "Shows a random tip"
 msgstr "Mostra uma dica aleatória"
 
-#: misc.bashrc:30
+#: misc.bashrc:31
 msgid "Translate char supporting unicode"
 msgstr "Traduz caractere suportando unicode"
 
-#: misc.bashrc:65
+#: misc.bashrc:66
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 
-#: misc.bashrc:66
+#: misc.bashrc:67
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:81 misc.bashrc:84
+#: misc.bashrc:82 misc.bashrc:85
 msgid "Usage: %s %s [%s]"
 msgstr "Uso: %s %s [%s]"
 
-#: misc.bashrc:81
+#: misc.bashrc:82
 msgid "PDF file"
 msgstr "arquivo PDF"
 
-#: misc.bashrc:81
+#: misc.bashrc:82
 msgid "%s or %s. Default is %s"
 msgstr "%s ou %s. Default é %s."
 
-#: misc.bashrc:84
+#: misc.bashrc:85
 msgid "text to remove or start"
 msgstr "texto para remover ou início"
 
-#: misc.bashrc:84
+#: misc.bashrc:85
 msgid "end of interval to remove"
 msgstr "fim do intervalo para remover"
 
-#: misc.bashrc:85 misc.bashrc:89
+#: misc.bashrc:86 misc.bashrc:90
 msgid "Full text in stdin"
 msgstr "Texto inteiro na entrada padrão"
 
-#: misc.bashrc:88
+#: misc.bashrc:89
 msgid "Usage: | %s [%s] [%s]"
 msgstr "Uso: | %s [%s] [%s]"
 
-#: misc.bashrc:88
+#: misc.bashrc:89
 msgid "old text"
 msgstr "texto anterior"
 
-#: misc.bashrc:88
+#: misc.bashrc:89
 msgid "new text"
 msgstr "texto novo"
 
-#: misc.bashrc:92 morph.bashrc:68 ui.bashrc:72
+#: misc.bashrc:93 misc.bashrc:103 morph.bashrc:68 ui.bashrc:72
 msgid "Usage: %s [%s] [%s]"
 msgstr "Uso: %s [%s] [%s]"
 
-#: misc.bashrc:92
+#: misc.bashrc:93
+msgid "mode. Default: name"
+msgstr "modo. Default: name"
+
+#: misc.bashrc:93
+msgid "extension (optional)"
+msgstr "extensão (opcional)"
+
+#: misc.bashrc:95
+msgid "Operation mode"
+msgstr "Modo de operação"
+
+#: misc.bashrc:96
+msgid "only creates a name/path"
+msgstr "só cria um nome/caminho"
+
+#: misc.bashrc:97
+msgid "creates a file"
+msgstr "cria um arquivo"
+
+#: misc.bashrc:98
+msgid "creates a directory"
+msgstr "cria um diretório"
+
+#: misc.bashrc:99
+msgid "creates a file in current directory"
+msgstr "cria um arquivo no diretório atual"
+
+#: misc.bashrc:100
+msgid "Extension"
+msgstr "Extensão"
+
+#: misc.bashrc:100
+msgid "Suffix, starting with a dot (.)"
+msgstr "Sufixo, começando com um ponto (.)"
+
+#: misc.bashrc:103
 msgid "chars to find"
 msgstr "caracteres a buscar"
 
-#: misc.bashrc:92
+#: misc.bashrc:103
 msgid "chars to replace"
 msgstr "caracteres a substituir"
 
-#: misc.bashrc:161
+#: misc.bashrc:172
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr "Palavras %s %s; especial %s; transformações %s %s."
 
-#: misc.bashrc:257 network.bashrc:275 network.bashrc:292 network.bashrc:311
+#: misc.bashrc:268 network.bashrc:275 network.bashrc:292 network.bashrc:311
 msgid "Usage:"
 msgstr "Uso:"
 
-#: misc.bashrc:260
+#: misc.bashrc:271
 msgid "Available timers"
 msgstr "Temporizadores disponíveis"
 
-#: misc.bashrc:291
+#: misc.bashrc:302
 msgid "finished"
 msgstr "concluído"
 
-#: misc.bashrc:320
+#: misc.bashrc:331
 msgid "30-30-30 method for router reseting"
 msgstr "Método 30-30-30 para resetar um roteador"
 
-#: misc.bashrc:321
+#: misc.bashrc:332
 msgid "your router will lost all configuration"
 msgstr "seu roteador perderá toda a configuração"
 
-#: misc.bashrc:322
+#: misc.bashrc:333
 msgid "Turn on the router."
 msgstr "Ligue o roteador."
 
-#: misc.bashrc:323
+#: misc.bashrc:334
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr "Pressione e segure o botão reset. Espere 30 segundos."
 
-#: misc.bashrc:324
+#: misc.bashrc:335
 msgid "Turn off the router. Wait 30 seconds."
 msgstr "Desligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:325
+#: misc.bashrc:336
 msgid "Turn on the router. Wait 30 seconds."
 msgstr "Ligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:326
+#: misc.bashrc:337
 msgid "Release the button"
 msgstr "Solte o botão"
 
-#: misc.bashrc:327
+#: misc.bashrc:338
 msgid "Press ENTER when you are ready."
 msgstr "Pressione ENTER quando estiver pronto."
 
-#: misc.bashrc:329 misc.bashrc:333
+#: misc.bashrc:340 misc.bashrc:344
 msgid "Router on"
 msgstr "Roteador ligado"
 
-#: misc.bashrc:331
+#: misc.bashrc:342
 msgid "Router off"
 msgstr "Roteador desligado"
 
-#: misc.bashrc:336
+#: misc.bashrc:347
 msgid "Your router must be restarted with factory settings!"
 msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
 
-#: misc.bashrc:375
+#: misc.bashrc:386
 msgid "Tip groups: %s."
 msgstr "Grupos de dicas: %s."
 
-#: misc.bashrc:383
+#: misc.bashrc:394
 msgid "No tips group %s found."
 msgstr "Nenhum grupo de dica com o nome %s."
 
-#: misc.bashrc:534
+#: misc.bashrc:545
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "

@@ -4,17 +4,16 @@
 
 # GLOBALS
 _1BOTTELEGRAM=0
+_1BOTDESCRIPTION="$(_1text "Bot system to send messages")"
 _1BOTDBPATH="$_1UDATA/bots"
 _1BOTDBEXT="bt"
 _1BOTTYPES=(telegram)
 
 # Private functions
 
-# @description Generates partial menu
-_nh1bot.menu() {
-  _1menuheader "$(_1text "Bots")"
-  # _1menutip Optional complementar instruction
-  # _1menuitem X command "Description"
+# @description Special menu item
+_nh1bot.item() {
+    _1menuitem W 1bot "$_1BOTDESCRIPTION"
 }
 
 # @description Destroys all global variables created by this file

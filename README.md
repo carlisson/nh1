@@ -9,6 +9,7 @@ NH1 is a toolkit with various commands:
  * Messages in languages: English, Portuguese.
  * **1angel**: a template system. Read more in https://codeberg.org/bardo/angel.
  * **1app**: "package manager" for AppImage, tarballs and git (without compile). Softwares are downloaded directly from its creator's website.
+ * **1bot**: a bot to send messages. Supported: telegram.
  * **1backup**: tools to backup folders using any available compressor.
  * **1booklet**: makes a page sequence for printing in booklet mode. 1pdfbkl generates the booklet PDF ready to print.
  * **1canva**: using templates in SVG, 1canva ease cover/banner/etc creation.

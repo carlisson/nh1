@@ -72,7 +72,9 @@ _nh1angel.init() {
 # @description Usage instructions
 # @arg $1 string Public function name
 _nh1angel.usage() {
-    printf "$(_1text "Usage: %s [%s] [%s]* < [%s] > [%s]")\n" "1angel" "$(_1text "Command")" "$(_1text "Attributions (var=value)")" "$(_1text "angel input file")" "$(_1text "output file")"
+    printf "$(_1text "Usage: %s [%s] [%s] [%s]* > [%s]")\n" \
+        "1angel" "$(_1text "Command")" "$(_1text "angel input file")" \
+        "$(_1text "Attributions (var=value)")" "$(_1text "output file")"
     printf "  - help:    $(_1text "show this help")\n"
     printf "  - run:     $(_1text "apply a template")\n"
     printf "  - show:    $(_1text "show template content")\n"
