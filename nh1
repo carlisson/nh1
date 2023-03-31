@@ -12,13 +12,12 @@
 shopt -s expand_aliases
 
 # Global variables
-_1VERSION=1.4b14
-
 _1MODULES=(angel app audio backup bot canva cron misc morph network rpg ui)
 
 _1PID=$$
 _1TMPDIR="$(mktemp -d)"
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+_1VERSION="$(tail -n 1 "$_1DIR/CHANGELOG" | cut -d\  -f 1)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1UDATA="$HOME/.norg"
 _1VARSDB="$_1UDATA"

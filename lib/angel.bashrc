@@ -128,7 +128,7 @@ _1angel.apply() {
     local _PAR _FILE _VAR _VAL _FLIN _I _TOTAL _FVAR _FVAL _ARGS _FREF
     local _LINE="$1"
     shift
-    _ARGS="$(echo "$@" | sed "s/=\([^=]\+\) /=\1\n/g")"
+    _ARGS=$@
 
     # -=@=- Curly cut wings
     if [[ "$_LINE" =~ "-=@=-" ]]
@@ -154,14 +154,13 @@ _1angel.apply() {
 
     if [[ "$_LINE" =~ "-=[" ]]
     then
-        filename='peptides.txt'
-        exec 4<<<"$_ARGS"
-        while IFS= read -u 4 -r _PAR
+        for _PAR in $_ARGS
         do
             if [[ "$_PAR" =~ = ]]
             then
                 _VAR="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\1/')"
-                _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0)"
+                _VAL="$(echo $_PAR | sed 's/^\([a-zA-Z0-9]*\)=\(.*\)$/\2/' | 1replace '/' '\/' 0 | 1replace "%20" " " 0)"
+                echo ">>> ARG [$_PAR]: $_VAR é $_VAL" >&2
                 echo "LINE > $_LINE" >&2
                 if [ "$_VAR" != "$_VAL" ]
                 then
@@ -211,7 +210,7 @@ _1angel.apply() {
                         then
                             _FILE=$(_1angel.getValue "$_FREF" $_FLIN)
                         fi
-                        1angel run $@ $_FLIN < $_FILE
+                        1angel run $_FILE $@ $_FLIN
                     done
                 fi
             fi
@@ -261,12 +260,19 @@ _1angel.test() {
 
 # @description Applies a template
 _1angel.go() {
-    local _line _AUX
+    local _line _lmax _AUX _VFILE _args
     
     _1ANGELIGNORE=1 # reset comment-flag
-    while read -r _line
+    _VFILE="$1"
+    shift
+    _lmax=$(wc -l <$_VFILE)
+    _args="$(echo "$@ " | sed "s/=\([^=]\+\) /=\1~~+~~/g" \
+        | 1replace " " "%20" 0 | 1replace "~~+~~" " " 0)"
+
+    for _line in $(seq $_lmax)
     do
-        _1angel.apply "$_line" "$@"
+        _1angel.apply "$(sed -n "$_line"p "$_VFILE")" "$_args"
+        echo ">>> ARQ $_VFILE LINE $_line" >&2
     done
 }
 
@@ -326,11 +332,11 @@ _1angel.show() {
                 _LINE="$(echo $_LINE | sed "s/\(.*\)-=\[\([a-zA-Z0-9]*\)\( \([^]]*\)\)\?\]=-\(.*\)/\1 \5/")" # removing comment marks
             done
         fi
-    done
+    done <$1
     for _AUX in $_INCL
     do
         echo
-        _1angel.show < $_AUX
+        _1angel.show $_AUX
     done
 }
 
@@ -351,7 +357,7 @@ _1angel.show() {
                 _1angel.go "$@"
                 ;;
             show)
-                _1angel.show
+                _1angel.show "$1"
                 ;;
             test)
                 _1angel.test "$@"
