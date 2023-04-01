@@ -3,6 +3,7 @@
 # @brief Network utilities
 
 _1NETLOCAL="$_1UDATA/network"
+_1NETTIMEOUT=1 # timeout for pings and others
 _1SERIALCOM="picocom minicom"
 _1GETDIR="$HOME/Downloads"
 _1GETQUEUE="$_1UDATA/download.queue"
@@ -46,7 +47,7 @@ _nh1network.menu() {
 
 # @description Clean variables
 _nh1network.clean() {
-  unset _1IPERFPORT _1NETLOCAL _1SERIALCOM
+  unset _1IPERFPORT _1NETLOCAL _1SERIALCOM _1NETTIMEOUT
   unset -f _nh1network.menu _nh1network.clean 1isip 1host 1iperf 1iperfd
   unset -f 1tcpdump 1ison _1pressh 1ssh 1ports 1findport 1allhosts
   unset -f 1mynet 1areon 1xt-vlan 1bauds 1serial 1macvendor 1httpstatus
@@ -108,13 +109,15 @@ _nh1network.init() {
 # @description Load variables defined by user
 _nh1network.customvars() {
   _1customvar NORG_NETWORK_DIR _1NETLOCAL
-  _1customvar NORG_IPERF_PORT _1IPERFPORT
+  _1customvar NORG_NETWORK_TIMEOUT _1NETTIMEOUT number
+  _1customvar NORG_IPERF_PORT _1IPERFPORT number
   _1customvar NORG_DOWNLOAD_DIR _1GETDIR
 }
 
 # @description Information about custom vars
 _nh1network.info() {
   _1menuitem W NORG_NETWORK_DIR "$(_1text "Path for network (hosts and groups) files.")"
+  _1menuitem W NORG_NETWORK_TIMEOUT "$(_1text "Timeout for check functions.")"
   _1menuitem W NORG_IPERF_PORT "$(printf "$(_1text "Server port. Default: %s.")" "2918")"
   _1menuitem W NORG_DOWNLOAD_DIR "$(_1text "Path where save downloads when using 1get.")"
 }
@@ -138,7 +141,7 @@ _nh1network.usage() {
 # @arg $1 string URL
 # @stdout Code for HTTP status
 1httpstatus() {
-  curl --max-time 1 --write-out "%{http_code}\n" --silent --output /dev/null "$1"
+  curl --max-time $_1NETTIMEOUT --write-out "%{http_code}\n" --silent --output /dev/null "$1"
 }
 
 # @description Returns baudrate for given number
@@ -211,7 +214,7 @@ _nh1network.usage() {
     then
       for HIP in ${HLIN/$HNAM=/}
       do
-        if ping -c 1 "$HIP" > /dev/null
+        if ping -c 1 -w $_1NETTIMEOUT "$HIP" > /dev/null
         then
           echo "$HIP"
           return 0
@@ -411,7 +414,7 @@ _nh1network.usage() {
   else
     thehost=$(1host $1)
   fi
-  if ping -q -c 1 -w 1 "$thehost" &> /dev/null
+  if ping -q -c 1 -w $_1NETTIMEOUT "$thehost" &> /dev/null
 	then
 		if [ $thename != "-q" ]
 		then
@@ -683,7 +686,7 @@ _nh1network.simplessh() {
       		fi
       	fi
       else
-    		timeout 1 bash -c "(</dev/tcp/$IP/$p) &> /dev/null"
+    		timeout $_1NETTIMEOUT bash -c "(</dev/tcp/$IP/$p) &> /dev/null"
     		CHECK=$?
     		if [ $CHECK = 0 ]
     		then

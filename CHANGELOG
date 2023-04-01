@@ -383,3 +383,4 @@
 1.4b16 2023-03-30: 1angel - removed debug prints
 1.4.2  2023-03-31: 1bot telegram and changes in 1angel
 1.4c1  2023-03-31: 1angel go checks if angelfile exists
+1.4c2  2023-04-01: new var NORG_NETWORK_TIMEOUT for net checkings
