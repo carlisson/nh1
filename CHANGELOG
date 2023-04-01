@@ -382,3 +382,4 @@
 1.4b15 2023-03-30: 1angel receives angel file as arg, no more as stdin
 1.4b16 2023-03-30: 1angel - removed debug prints
 1.4.2  2023-03-31: 1bot telegram and changes in 1angel
+1.4c1  2023-03-31: 1angel go checks if angelfile exists

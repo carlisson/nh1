@@ -267,14 +267,17 @@ _1angel.go() {
     _1ANGELIGNORE=1 # reset comment-flag
     _VFILE="$1"
     shift
-    _lmax=$(wc -l <$_VFILE)
-    _args="$(echo "$@ " | sed "s/=\([^=]\+\) /=\1~~+~~/g" \
-        | 1replace " " "%20" 0 | 1replace "~~+~~" " " 0)"
+    if [ -f "$_VFILE" ]
+    then
+        _lmax=$(wc -l <$_VFILE)
+        _args="$(echo "$@ " | sed "s/=\([^=]\+\) /=\1~~+~~/g" \
+            | 1replace " " "%20" 0 | 1replace "~~+~~" " " 0)"
 
-    for _line in $(seq $_lmax)
-    do
-        _1angel.apply "$(sed -n "$_line"p "$_VFILE")" "$_args"
-    done
+        for _line in $(seq $_lmax)
+        do
+            _1angel.apply "$(sed -n "$_line"p "$_VFILE")" "$_args"
+        done
+    fi
 }
 
 # @description Show template information
