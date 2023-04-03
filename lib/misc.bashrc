@@ -16,6 +16,7 @@ _nh1misc.menu() {
   _1menuitem W 1du "$(_1text "Disk usage")" du
   _1menuitem W 1dw "$(_1text "Short diceware/dwd12 password")"
   _1menuitem W 1escape "$(_1text "Rename a file or dir, excluding special chars")"
+  _1menuitem X 1line "$(_1text "Get a specific line from a text file")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
   _1menuitem W 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
   _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
@@ -38,7 +39,7 @@ _nh1misc.clean() {
   unset -f _nh1misc.menu _nh1misc.clean 1power 1pdfopt 1ajoin 1pomo
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
-  unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp
+  unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp 1line
 }
 
 # @description Autocompletion
@@ -78,6 +79,9 @@ _nh1misc.init() {
 # @arg $1 string Public function name
 _nh1misc.usage() {
   case $1 in
+    line)
+        printf "$(_text "Usage: %s %s %s")\n" "1$1" "$(_1text "text file")" "$(_1text "line number")"
+        ;;
     pdfbkl)
         printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
         ;;
@@ -690,4 +694,21 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
       ;;
   esac
   echo "$_NAM"
+}
+
+# @description Returns a specific line from a text file or show total of lines
+# @arg $1 String Path to text file
+# @arg $2 Int Number of line (optional)
+1line() {
+  case $# in
+    2)
+      sed -n "$2p" $1
+      ;;
+    1)
+      wc -l < $1
+      ;;
+    *)
+    _nh1misc.usage line
+    ;;
+  esac
 }
