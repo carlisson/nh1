@@ -734,7 +734,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     fi
 
     _ABR=1
-    if [ $# -gt 0 ]
+    if [ $# -gt 1 ]
     then
       if [ $((${2})) -eq 0 ]
       then
