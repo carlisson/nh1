@@ -15,6 +15,7 @@ _nh1misc.menu() {
   _1menuitem W 1diceware "$(_1text "Generate a random diceware password")"
   _1menuitem W 1du "$(_1text "Disk usage")" du
   _1menuitem W 1dw "$(_1text "Short diceware/dwd12 password")"
+  _1menuitem X 1elapsed "$(_1text "Calculates how much time has passed")"
   _1menuitem W 1escape "$(_1text "Rename a file or dir, excluding special chars")"
   _1menuitem X 1line "$(_1text "Get a specific line from a text file")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
@@ -40,6 +41,7 @@ _nh1misc.clean() {
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
   unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp 1line
+  unset -f 1elapsed
 }
 
 # @description Autocompletion
@@ -79,8 +81,11 @@ _nh1misc.init() {
 # @arg $1 string Public function name
 _nh1misc.usage() {
   case $1 in
+    elapsed)
+        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "previous date or timestamp")" "$(_1text "Abbreviate [1]? 0:yes;1:no")"
+        ;;
     line)
-        printf "$(_text "Usage: %s %s %s")\n" "1$1" "$(_1text "text file")" "$(_1text "line number")"
+        printf "$(_1text "Usage: %s %s %s")\n" "1$1" "$(_1text "text file")" "$(_1text "line number")"
         ;;
     pdfbkl)
         printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
@@ -711,4 +716,195 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     _nh1misc.usage line
     ;;
   esac
+}
+
+# @description Calculates how much time has passed from a timestamp to today
+# @arg $1 int Timestamp
+# @arg $2 int Abbreviate? 0:yes; 1:no (default)
+1elapsed() {
+  local _NOW _PRE _ABR _DIF _PC _AUX _P1 _P2 _P3 _P4 _P5 _P6
+
+  if [ $# -gt 0 ]
+  then
+    if [ $((${1})) -gt 0 ]
+    then
+      _PRE=$1
+    else
+      _PRE=$(date -d"$1" "+%s")
+    fi
+
+    _ABR=1
+    if [ $# -gt 0 ]
+    then
+      if [ $((${2})) -eq 0 ]
+      then
+        _ABR=0
+      fi
+    fi
+
+    _NOW=$(date +%s)
+    _PC=0
+
+    _DIF=$(( $_NOW - $_PRE ))
+    if [ $_DIF -gt 0 ]
+    then
+
+      if [ $_DIF -gt 220752000 ] # 1 year
+      then
+        if [ $_ABR -eq 0 ]
+        then
+            _1text "+1y"
+            return 0
+        else
+            _PC=1
+            if [ $_DIF -ge 441504000 ]
+            then
+                _P1="$(printf "$(_1text "%s years")" $((_DIF / 220752000)))"
+            else
+                _P1="$(printf "$(_1text "%s year")" $((_DIF / 220752000)))"
+            fi
+            _DIF=$((_DIF % 220752000))
+        fi
+    fi
+    if [ $_DIF -gt 604800 ] # 1 week
+    then
+        if [ $_ABR -eq 0 ]
+        then
+            printf "$(_1text "%sw")" $((_DIF / 604800))
+            return 0
+        else
+            _PC=$((_PC+1))
+            if [ $_DIF -ge 1209600 ]
+            then
+                _AUX="$(printf "$(_1text "%s weeks")" $((_DIF / 604800)))"
+            else
+                _AUX="$(printf "$(_1text "%s week")" $((_DIF / 604800)))"
+            fi
+            if [ $_PC -eq 1 ]
+            then
+              _P1="$_AUX"
+            else
+              _P2="$_AUX"
+            fi
+            _DIF=$((_DIF % 604800))
+        fi
+    fi
+    if [ $_DIF -gt 86400 ] # 1 day
+    then
+        if [ $_ABR -eq 0 ]
+        then
+            printf "$(_1text "%sd")" $((_DIF / 86400))
+            return 0
+        else
+            _PC=$((_PC+1))
+            if [ $_DIF -ge 172800 ]
+            then
+                _AUX="$(printf "$(_1text "%s days")" $((_DIF / 86400)))"
+            else
+                _AUX="$(printf "$(_1text "%s day")" $((_DIF / 86400)))"
+            fi
+            case $_PC in
+              1) _P1="$_AUX" ;;
+              2) _P2="$_AUX" ;;
+              3) _P3="$_AUX" ;;
+            esac
+            _DIF=$((_DIF % 86400))
+        fi
+    fi
+    if [ $_DIF -gt 3600 ] # 1 hour
+    then
+        if [ $_ABR -eq 0 ]
+        then
+            printf "$(_1text "%sh")" $((_DIF / 3600))
+            return 0
+        else
+            _PC=$((_PC+1))
+            if [ $_DIF -ge 7200 ]
+            then
+                _AUX="$(printf "$(_1text "%s hours")" $((_DIF / 3600)))"
+            else
+                _AUX="$(printf "$(_1text "%s hour")" $((_DIF / 3600)))"
+            fi
+            case $_PC in
+              1) _P1="$_AUX" ;;
+              2) _P2="$_AUX" ;;
+              3) _P3="$_AUX" ;;
+              4) _P4="$_AUX" ;;
+            esac
+            _DIF=$((_DIF % 3600))
+        fi
+    fi
+    if [ $_DIF -gt 60 ] # 1 min
+    then
+        if [ $_ABR -eq 0 ]
+        then
+            printf "$(_1text "%smin")" $((_DIF / 60))
+            return 0
+        else
+            _PC=$((_PC+1))
+            if [ $_DIF -ge 120 ]
+            then
+                _AUX="$(printf "$(_1text "%s minutes")" $((_DIF / 60)))"
+            else
+                _AUX="$(printf "$(_1text "%s minute")" $((_DIF / 60)))"
+            fi
+            case $_PC in
+              1) _P1="$_AUX" ;;
+              2) _P2="$_AUX" ;;
+              3) _P3="$_AUX" ;;
+              4) _P4="$_AUX" ;;
+              5) _P5="$_AUX" ;;
+            esac
+            _DIF=$((_DIF % 60))
+        fi
+    fi
+    if [ $_DIF -gt 0 ] # 1 min
+    then
+        if [ $_DIF -eq 0 ]
+        then
+            printf "$(_1text "%ss")" $_DIF
+            return 0
+        else
+            _PC=$((_PC+1))
+            if [ $_DIF -gt 1 ]
+            then
+                _AUX="$(printf "$(_1text "%s seconds")" $_DIF)"
+            else
+                _AUX="$(printf "$(_1text "%s second")" $_DIF)"
+            fi
+            case $_PC in
+              1) _P1="$_AUX" ;;
+              2) _P2="$_AUX" ;;
+              3) _P3="$_AUX" ;;
+              4) _P4="$_AUX" ;;
+              5) _P5="$_AUX" ;;
+              6) _P6="$_AUX" ;;
+            esac
+        fi
+    fi
+    case $_PC in
+      6)
+        printf "$(_1text "%s, %s, %s, %s, %s and %s")\n" "$_P1" "$_P2" "$_P3" "$_P4" "$_P5" "$_P6"
+        ;;
+      5)
+        printf "$(_1text "%s, %s, %s, %s and %s")\n" "$_P1" "$_P2" "$_P3" "$_P4" "$_P5"
+        ;;
+      4)
+        printf "$(_1text "%s, %s, %s and %s")\n" "$_P1" "$_P2" "$_P3" "$_P4"
+        ;;
+      3)
+        printf "$(_1text "%s, %s and %s")\n" "$_P1" "$_P2" "$_P3"
+        ;;
+      2)
+        printf "$(_1text "%s and %s")\n" "$_P1" "$_P2"
+        ;;
+      1)
+        echo "$_P1"
+        ;;
+    esac
+    return 0
+  fi
+  fi
+  _nh1misc.usage elapsed
+  return 1
 }
