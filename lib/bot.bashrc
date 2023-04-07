@@ -4,10 +4,11 @@
 
 # GLOBALS
 _1BOTTELEGRAM=0
+_1BOTNTALK=0
 _1BOTDESCRIPTION="$(_1text "Bot system to send messages")"
 _1BOTDBPATH="$_1UDATA/bots"
 _1BOTDBEXT="bt"
-_1BOTTYPES=(telegram)
+_1BOTTYPES=(nextcloud telegram)
 
 # Private functions
 
@@ -43,17 +44,20 @@ _nh1bot.complete() {
 # @description Set global vars from custom vars (config file)
 _nh1bot.customvars() {
   _1customvar NORG_BOT_TELEGRAM _1BOTTELEGRAM
+  _1customvar NORG_BOT_NEXTCLOUD _1BOTNTALK
 }
 
 # @description General information about variables and customizing
 _nh1bot.info() {
   _1menuitem W NORG_BOT_TELEGRAM "$(_1text "Token for Telegram bot. Get it from @BotFather")"
+  _1menuitem W NORG_BOT_NEXTCLOUD "$(_1text "Login and password for Nextcloud bot. In format server|login|password")"
 }
 
 # @description Creates paths and copy initial files
 _nh1bot.init() {
   mkdir -p "$_1BOTDBPATH"
   touch "$_1BOTDBPATH/telegram.$_1BOTDBEXT"
+  touch "$_1BOTDBPATH/nextcloud.$_1BOTDBEXT"
 }
 
 # @description Usage instructions
@@ -61,6 +65,7 @@ _nh1bot.init() {
 _nh1bot.usage() {
     printf "$(_1text "Usage: %s %s [%s] [%s]")\n" "1bot" "$(_1text "type")" "$(_1text "Command")" "$(_1text "Other options")"
     printf "  - telegram $(_1text "works as a Telegram bot")\n"
+    printf "  - nextcloud $(_1text "works as a Nextcloud talk bot")\n"
     echo
     echo "$(_1text "Commands"):"
     printf "  - group-list %s\n" "$(_1text "list new groups for telegram bot")"
@@ -122,21 +127,23 @@ _nh1bot.telegram.findgroup() {
 }
 
 # @description Save a group to send messages
-# @arg 1 string Group name
-# @arg 2 int Group ID
-_nh1bot.telegram.savegroup() {
-    if [ $# -eq 2 ]
+# @arg $1 string Bot type
+# @arg $2 string Group name
+# @arg $3 int Group ID
+_nh1bot.savegroup() {
+    if [ $# -eq 3 ]
     then
-        _1bot.db.set telegram "$1" "$2"
+        _1bot.db.set "$1" "$2" "$3"
     else
         _nh1bot.usage
     fi
 }
 
 # @description Remove a group
-# @arg 1 string Group name
-_nh1bot.telegram.delgroup() {
-    return _1bot.db.set telegram "$1"
+# @arg $1 string Bot type
+# @arg $2 string Group name
+_nh1bot.delgroup() {
+    return _1bot.db.set "$1" "$2"
 }
 
 # @description Send a message to a telegram group
@@ -169,6 +176,41 @@ _nh1bot.telegram.say() {
     fi
     _nh1bot.usage
 }
+
+# @description Send a message to a Nextcloud Talk room
+# @arg 1 string Group name
+# @arg 2 string Message to send
+# @exitcode 0 Ok
+# @exitcode 1 Credentials not configured
+_nh1bot.nextcloud.say() {
+    local _MTO _MSG _GRP _USR _PASS _SRV
+    if [ $_1BOTNTALK = 0 ]
+    then
+        _1bot.missing nextcloud credentials
+        return 1
+    else
+        _SRV=$(echo $_1BOTNTALK | cut -d\| -f 1)
+        _USR=$(echo $_1BOTNTALK | cut -d\| -f 2)
+        _PASS=$(echo $_1BOTNTALK | cut -d\| -f 3)
+    fi
+    if [ $# -eq 2 ]
+    then
+        _MTO=$(_1bot.db.get nextcloud "$1")
+        if [ $? -eq 0 ]
+        then
+            _GRP="$1"
+            shift
+            _MSG="$(1morph urlencode "$*")"
+            _1verb "$(printf "$(_1text "Sending %s \"%s\" to %s group via %s")" "$(_1text "message")" "$_MSG" "$_GRP" "nextcloud talk")"
+
+            curl -H "Content-Type: application/json" -H "Accept: application/json" -H "OCS-APIRequest: true" -v -u {$_USR:$_PASS} \
+                -d '{"message":"$_MSG"}' $_SRV/ocs/v2.php/apps/spreed/api/v1/chat/$_GRP
+            return $?
+        fi
+    fi
+    _nh1bot.usage
+}
+
 
 # @description Send a file to a telegram group
 # @arg 1 string Group name
@@ -206,42 +248,63 @@ _nh1bot.telegram.send() {
 # Public functions
 
 1bot() {
-    local _SRV
+    local _SRV _AUX
     if [ $# -ge 2 ]
     then
-        _SRV=$1
-        if [ $_SRV != "telegram" ]
-        then
-            _nh1bot.usage
-            return 1
-        fi
-        shift
-        case "$1" in
+        _AUX="$1"
+        case "$2" in
             group-list)
-                _nh1bot.telegram.findgroup
+                shift 2
+                case "$1" in
+                    telegram)
+                        _nh1bot.telegram.findgroup
+                        return 0
+                        ;;
+                    *)
+                        _1bot.db.show "$_AUX"
+                        return 0
+                        ;;
+                esac
                 ;;
             group-add)
-                shift
-                _nh1bot.telegram.savegroup "$@"
+                shift 2
+                _nh1bot.savegroup "$_AUX" "$@"
+                return 0
                 ;;
             group-del)
-                shift
-                _nh1bot.telegram.delgroup "$@"
+                shift 2
+                _nh1bot.delgroup "$_AUX" "$@"
+                return 0
                 ;;                
             say)
-                shift
-                _nh1bot.telegram.say "$@"
+                shift 2
+                case "$_AUX" in
+                    telegram)
+                        _nh1bot.telegram.say "$@"
+                        return 0
+                        ;;
+                    nextcloud)
+                        _nh1bot.nextcloud.say "$@"
+                        return 0
+                        ;;
+                esac
                 ;;
             send)
-                shift
-                _nh1bot.telegram.send "$@"
+                shift 2
+                case "$_AUX" in
+                    telegram)
+                        _nh1bot.telegram.send "$@"
+                        return 0
+                        ;;
+                esac
                 ;;
             *)
                 _nh1bot.usage
+                return 2
                 ;;
         esac
-    else
-        _nh1bot.usage
     fi
+    _nh1bot.usage
+    return 1
 }
 
