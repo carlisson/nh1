@@ -21,6 +21,7 @@ _nh1misc.menu() {
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
   _1menuitem W 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
   _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
+  _1menuitem X 1png2ico "$(_1text "Generates a favicon from a PNG file")" convert
   _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
   _1menuitem X 1remove "$(_1text "Remove a substring from a string")"
@@ -41,7 +42,7 @@ _nh1misc.clean() {
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
   unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp 1line
-  unset -f 1elapsed
+  unset -f 1elapsed 1png2ico
 }
 
 # @description Autocompletion
@@ -82,16 +83,19 @@ _nh1misc.init() {
 _nh1misc.usage() {
   case $1 in
     elapsed)
-        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "previous date or timestamp")" "$(_1text "Abbreviate [1]? 0:yes;1:no")"
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "previous date or timestamp")" "$(_1text "Abbreviate [1]? 0:yes;1:no")"
         ;;
     line)
-        printf "$(_1text "Usage: %s %s %s")\n" "1$1" "$(_1text "text file")" "$(_1text "line number")"
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "text file")" "$(_1text "line number")"
         ;;
     pdfbkl)
-        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
+        ;;
+    png2ico)
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "PNG file")" "$(_1text "Favicon output file (optional)")"
         ;;
     remove)
-        printf "$(_1text "Usage: %s %s [%s]")\n" "1$1" "$(_1text "text to remove or start")" "$(_1text "end of interval to remove")"
+        printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "text to remove or start")" "$(_1text "end of interval to remove")"
         printf "  - %s\n" "$(_1text "Full text in stdin")"
         ;;
     replace)
@@ -907,4 +911,37 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   fi
   _nh1misc.usage elapsed
   return 1
+}
+
+# @description Convert a PNG file to ICO (favicon)
+# @arg $1 string PNG file
+# @arg $2 string ICO file (optional)
+1png2ico() {
+  local _PNG _ICO  
+  if 1check convert
+  then
+    case $# in
+      1)
+        _PNG="$1"
+        _ICO="$(basename $1 .png).ico"
+        ;;
+      2)
+        _PNG="$1"
+        _ICO="$2"
+        ;;
+      *)
+        _nh1misc.usage png2ico
+        return 1
+        ;;
+    esac
+    convert "$_PNG" -bordercolor white -border 0 \
+        \( -clone 0 -resize 16x16 \) \
+        \( -clone 0 -resize 32x32 \) \
+        \( -clone 0 -resize 48x48 \) \
+        \( -clone 0 -resize 64x64 \) \
+        -delete 0 -alpha off -colors 256 $_ICO
+    return $?
+  else
+    return 2
+  fi
 }
