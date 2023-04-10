@@ -200,11 +200,11 @@ _nh1bot.nextcloud.say() {
         then
             _GRP="$1"
             shift
-            _MSG="$(1morph urlencode "$*")"
+            _MSG="$*"
             _1verb "$(printf "$(_1text "Sending %s \"%s\" to %s group via %s")" "$(_1text "message")" "$_MSG" "$_GRP" "nextcloud talk")"
 
-            curl -H "Content-Type: application/json" -H "Accept: application/json" -H "OCS-APIRequest: true" -v -u {$_USR:$_PASS} \
-                -d '{"message":"$_MSG"}' $_SRV/ocs/v2.php/apps/spreed/api/v1/chat/$_GRP
+            curl -H "Content-Type: application/json" -H "Accept: application/json" -H "OCS-APIRequest: true" -q -u \
+                "$_USR:$_PASS" -d "{\"token\":\"$_MTO\",\"message\":\"$_MSG\"}" "$_SRV/ocs/v2.php/apps/spreed/api/v1/chat/$_MTO" >2&
             return $?
         fi
     fi
