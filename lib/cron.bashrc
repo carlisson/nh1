@@ -199,7 +199,7 @@ _nh1cron.startup() {
     then
         for _CMD in $(_1db.show "$_1CRONDIR" "cron" "start" list)
         do
-            _nh1cron.crongroup "force" "start"
+            _nh1cron.crongroup "normal" "start"
         done
     fi
     1cron
