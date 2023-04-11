@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 10:07-0300\n"
+"POT-Creation-Date: 2023-04-07 10:09-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1405,9 +1405,10 @@ msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:86 misc.bashrc:92 misc.bashrc:95 misc.bashrc:98
-msgid "Usage: %s %s [%s]"
-msgstr "Uso: %s %s [%s]"
+#: misc.bashrc:86 misc.bashrc:89 misc.bashrc:92 misc.bashrc:95 misc.bashrc:98
+#: misc.bashrc:106 misc.bashrc:116 morph.bashrc:68 ui.bashrc:72
+msgid "Usage: %s [%s] [%s]"
+msgstr "Uso: %s [%s] [%s]"
 
 #: misc.bashrc:86
 msgid "previous date or timestamp"
@@ -1416,10 +1417,6 @@ msgstr "data anterior ou timestamp"
 #: misc.bashrc:86
 msgid "Abbreviate [1]? 0:yes;1:no"
 msgstr "Abreviar [1]? 0:sim;1:não"
-
-#: misc.bashrc:89
-msgid "Usage: %s %s %s"
-msgstr "Uso: %s %s %s"
 
 #: misc.bashrc:89
 msgid "text file"
@@ -1468,10 +1465,6 @@ msgstr "texto anterior"
 #: misc.bashrc:102
 msgid "new text"
 msgstr "texto novo"
-
-#: misc.bashrc:106 misc.bashrc:116 morph.bashrc:68 ui.bashrc:72
-msgid "Usage: %s [%s] [%s]"
-msgstr "Uso: %s [%s] [%s]"
 
 #: misc.bashrc:106
 msgid "mode. Default: name"
@@ -2534,6 +2527,12 @@ msgstr "Cliente para microblog federado"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "Usage: %s %s [%s]"
+#~ msgstr "Uso: %s %s [%s]"
+
+#~ msgid "Usage: %s %s %s"
+#~ msgstr "Uso: %s %s %s"
 
 #~ msgid "Angel Test"
 #~ msgstr "Teste do Angel"
