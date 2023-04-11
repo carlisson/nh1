@@ -139,7 +139,7 @@ _nh1val.usage() {
                 fi
                 ;;
             name)
-                if [ "$_AUX" = "" ]
+                if [ "$_TXT" = "" ]
                 then
                     return 1
                 fi
