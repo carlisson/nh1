@@ -152,13 +152,14 @@ _nh1bot.delgroup() {
 # @exitcode 0 Ok
 # @exitcode 1 Token not configured
 _nh1bot.telegram.say() {
+    echo "[$1] [$2]"
     local _MTO _MSG _GRP
     if [ $_1BOTTELEGRAM = 0 ]
     then
         _1bot.missing telegram token
         return 1
     fi
-    if [ $# -eq 2 ]
+    if [ $# -gt 1 ]
     then
         _MTO=$(_1bot.db.get telegram "$1")
         if [ $? -eq 0 ]
@@ -193,7 +194,7 @@ _nh1bot.nextcloud.say() {
         _USR=$(echo $_1BOTNTALK | cut -d\| -f 2)
         _PASS=$(echo $_1BOTNTALK | cut -d\| -f 3)
     fi
-    if [ $# -eq 2 ]
+    if [ $# -gt 1 ]
     then
         _MTO=$(_1bot.db.get nextcloud "$1")
         if [ $? -eq 0 ]
