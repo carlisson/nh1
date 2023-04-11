@@ -139,6 +139,10 @@ _nh1val.usage() {
                 fi
                 ;;
             name)
+                if [ "$_AUX" = "" ]
+                then
+                    return 1
+                fi
                 _AUX="$(1morph unaccent,upper $_TXT | tr -d ' .0-9A-Z')"
                 if [ "$_AUX" = "" ]
                 then
