@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-11 11:34-0300\n"
+"POT-Creation-Date: 2023-04-11 13:36-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1063,7 +1063,7 @@ msgstr ""
 msgid "Delete a group"
 msgstr ""
 
-#: bot.bashrc:74 bot.bashrc:169 bot.bashrc:204
+#: bot.bashrc:74 bot.bashrc:170 bot.bashrc:205
 msgid "message"
 msgstr ""
 
@@ -1091,15 +1091,15 @@ msgstr ""
 msgid "New group found: %s (name: %s)"
 msgstr ""
 
-#: bot.bashrc:169 bot.bashrc:204 bot.bashrc:236
+#: bot.bashrc:170 bot.bashrc:205 bot.bashrc:237
 msgid "Sending %s \"%s\" to %s group via %s"
 msgstr ""
 
-#: bot.bashrc:236
+#: bot.bashrc:237
 msgid "file"
 msgstr ""
 
-#: bot.bashrc:240
+#: bot.bashrc:241
 msgid "File %s not found"
 msgstr ""
 
@@ -2507,6 +2507,10 @@ msgstr ""
 
 #: recipes/shelf.app:4
 msgid "Document viewer for different formats"
+msgstr ""
+
+#: recipes/speek.app:8
+msgid "Decentralized and secure messenger"
 msgstr ""
 
 #: recipes/thedesk.app:8

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-11 10:15-0300\n"
+"POT-Creation-Date: 2023-04-11 11:34-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -2439,6 +2439,10 @@ msgstr "CPF brasileiro (registro civil)"
 #: val.bashrc:65
 msgid "E-mail address"
 msgstr "Endereço de email"
+
+#: val.bashrc:66
+msgid "Person name"
+msgstr "Nome da pessoa"
 
 #: recipes/cherrytree.app:4
 msgid "Hierarchical note taking"

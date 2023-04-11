@@ -397,3 +397,4 @@
 1.4c13 2023-04-11: fixed args when nh1 sourced by a shellscript
 1.4c14 2023-04-11: fixed 1bot say (telegram and nextcloud)
 1.4c15 2023-04-11: fixed cron startup
+1.4c16 2023-04-11: 1app recipe for Speek
