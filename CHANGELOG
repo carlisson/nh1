@@ -394,3 +394,4 @@
 1.4c10 2023-04-11: 1val validate name
 1.4c11 2023-04-11: 1val name improved
 1.4c12 2023-04-11: 1val name bug fixed
+1.4c13 2023-04-11: fixed args when nh1 sourced by a shellscript

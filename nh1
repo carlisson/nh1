@@ -1336,7 +1336,7 @@ _nh1.modrun "source \"$_1LIB/-=-.bashrc\""
 _nh1.customvars
 _nh1.init
 
-if [ $# -gt 0 ]
+if [ "${BASH_SOURCE[1]}" = "" -a $# -gt 0 ]
 then
 	_1RUN=1$1
 	shift
