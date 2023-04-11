@@ -144,7 +144,7 @@ _nh1canva.thelp() {
 # @arg $3 string substitutions in key=value syntax
 1canvagen() {
 	_1before
-    local iter tempf tempi tempib
+    local iter tsvg
     subst=""
     case $# in
         0)
@@ -159,28 +159,11 @@ _nh1canva.thelp() {
             template="$1"
             fileout="$2"
             shift 2
-            tempf=$(mktemp -u)
+            tsvg=$(1temp file .svg)
             
-            tempi=$(mktemp -u).svg
-            
-            cp "$_1CANVALOCAL/$template.svg" $tempi
-            echo "#!/bin/bash" > $tempf
-            echo "pushd" $(dirname $tempi) "> /dev/null" >> $tempf
-            
-            tempib=$(basename $tempi)
-            for iter in "$@"
-            do
-                echo $iter | sed "s/\(.*\)=\(.*\)/sed -i 's\/-=\\\[\1\\\]=-\/\2\/g' $tempib/" >> $tempf
-                # $(echo $(echo $iter | sed 's/\(.*\)=\(.*\)/sed -i "s\/-=[\1]=-\/\2\/g"/') $tempf)
-            done
-
-            echo "popd > /dev/null" >> $tempf
-
-            bash $tempf
-            rm $tempf
-            
-            convert $tempi $fileout
-            rm $tempi
+            1angel run "$_1CANVALOCAL/$template.svg" $* > $tsvg
+            convert $tsvg "$fileout"
+            rm $tsvg
             ;;
     esac
 }

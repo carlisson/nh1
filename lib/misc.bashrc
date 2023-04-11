@@ -187,8 +187,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
 
 # @description Random color generator
 1color() {
- 	_1before
-  openssl rand -hex 3
+ 	openssl rand -hex 3
 }
 
 # @description Compress PDF file
