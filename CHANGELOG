@@ -391,3 +391,4 @@
 1.4c7  2023-04-07: 1png2ico to create a favicon using imagemagick
 1.4c8  2023-04-07: 1bot nextcloud (talk) is working
 1.4c9  2023-04-11: 1val to validate CPF and email address
+1.4c10 2023-04-11: 1val validate name

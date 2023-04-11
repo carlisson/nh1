@@ -3,7 +3,7 @@
 # @brief Value validators
 
 # GLOBALS
-_1VALS=(cpf email)
+_1VALS=(cpf email name)
 _1VALDESCRIPTION="$(_1text "Value validators")"
 
 # Private functions
@@ -63,6 +63,7 @@ _nh1val.usage() {
     printf "  - help:    $(_1text "show this help")\n"
     printf "  - cpf:     $(_1text "Brazilian civic card number")\n"
     printf "  - email:   $(_1text "E-mail address")\n"
+    printf "  - name:    $(_1text "Person name")\n"
     echo
 }
 
@@ -137,6 +138,17 @@ _nh1val.usage() {
                     return 1
                 fi
                 ;;
+            name)
+                _AUX="$(1morph unaccent,upper $_TXT | tr -d ' .0-9A-Z')"
+                if [ "$_AUX" = "" ]
+                then
+                    echo $_TXT
+                    return 0
+                else
+                    return 1
+                fi
+                ;;
+
         esac
     fi
     _nh1val.usage
