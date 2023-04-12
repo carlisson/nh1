@@ -85,6 +85,7 @@ _nh1angel.usage() {
 # @description Run an internal command
 # @arg $1 string Command
 _1angel.command() {
+    local _ACM
     case "$1" in
         builder)
             echo "$_1ANGELBUILDER"
@@ -99,6 +100,12 @@ _1angel.command() {
             date "+%Y-%m-%d"
             ;;
         *)
+            _ACM="angel.$1"
+            if [ "$(type -t "$_ACM")" == "function" ]
+            then
+                $_ACM
+                return $?
+            fi
             return 1
             ;;
     esac
