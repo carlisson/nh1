@@ -553,7 +553,7 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     _OUF=$(echo "$_INF" | 1replace '.pdf' '-booklet.pdf')
     _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
     _SEQ=$(1booklet $_PAG BLANK $_DOB | tr ' ' ',' | 1replace 'BLANK' '{}' 0)
-    _TMP=$(mktemp -u)".pdf"
+    _TMP="$(1temp .pdf)"
     _1verb "$(printf "$(_1text "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s.")" $_INF $_PAG $_OUF $_SEQ $_TMP)"
     _1verb "pdfjam \"$_INF\" \"$_SEQ\" -o \"$_TMP\""
     pdfjam "$_INF" "$_SEQ" -o "$_TMP"
