@@ -111,9 +111,10 @@ _nh1bot.telegram.findgroup() {
         _1bot.missing telegram token
         return 1
     fi
-    _1verbs "URL: https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates"
+    _1verb "URL: https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates"
     _1menuheader "$(_1text "New groups")"
-    for _LIN in $(curl -s https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates | tr '{}' '\n\n' | grep "\"type\":\"group\"" | uniq | \
+    for _LIN in $(curl -s https://api.telegram.org/bot$_1BOTTELEGRAM/getUpdates | tr '{}' '\n\n' | grep "\"type\":\"group\"" | \
+        sed 's/\"type\":\"group\"\(.*\)//' | uniq | \
         tr " =" "__" | sed "s/\(.*\)\"id\":\(-[0-9]*\),\"title\":\"\([^\"]*\)\"\(.*\)/\2=\3/" | xargs)
     do
         _GRP=$(echo "$_LIN" | sed "s/\(-[0-9]*\)=\(.*\)/\1/")
@@ -256,7 +257,7 @@ _nh1bot.telegram.send() {
         case "$2" in
             group-list)
                 shift 2
-                case "$1" in
+                case "$_AUX" in
                     telegram)
                         _nh1bot.telegram.findgroup
                         return 0

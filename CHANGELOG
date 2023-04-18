@@ -403,3 +403,4 @@
 1.4.3  2023-04-11: some bug fixes and improvements
 1.4d1  2023-04-11: 1angel can run commands from angel.* functions
 1.4d2  2023-04-14: 1pdfbkl using 1temp
+1.4d3  2023-04-18: fixed bug in 1bot telegram group-list
