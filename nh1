@@ -22,6 +22,7 @@ _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1UDATA="$HOME/.norg"
 _1VARSDB="$_1UDATA"
 _1GDATA="/opt/norg"
+_1CONFSTAT="$(stat -c %y "$_1UDATA/nh1.conf")"
 
 if [ "$_1DIR" = "/usr/bin" ]
 then
@@ -69,6 +70,15 @@ _1before() {
 		_1message
 		_1verbs.spool
 		1cron
+		if [ "$_1CONFSTAT" != "$(stat -c %y "$_1UDATA/nh1.conf")" ]
+		then
+			1ui confirm "$(_1text "NH1 config file has changed. Reload nh1?")"
+			if [ $? -eq 0 ]
+			then
+				_1CONFSTAT="$(stat -c %y "$_1UDATA/nh1.conf")"
+				1refresh
+			fi
+		fi
 	fi
 }
 

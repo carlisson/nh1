@@ -405,3 +405,4 @@
 1.4d2  2023-04-14: 1pdfbkl using 1temp
 1.4d3  2023-04-18: fixed bug in 1bot telegram group-list
 1.4d4  2023-05-10: 1app recipe for 2Hot
+1.4d5  2023-05-12: if nh1.conf changes, nh1 asks user for refresh
