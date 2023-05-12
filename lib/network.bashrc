@@ -26,6 +26,7 @@ _nh1network.menu() {
   _1menuitem W 1hostgroup "$(_1text "Lists all hosts in given group")"
   _1menuitem W 1hostset "$(_1text "Create or update a host entry")"
   _1menuitem W 1hostdel "$(_1text "Removes a host entry")"
+  _1menuitem X 1hostimport "$(_1text "Imports hosts from DHCPD")"
   _1menuitem W 1hostmig "$(_1text "Migrates a host to another group")"
   _1menuitem W 1httpstatus "$(_1text "Return HTTP status for given URL")" curl
   _1menuitem W 1interfaces "$(_1text "List network interfaces")" ip
@@ -57,7 +58,7 @@ _nh1network.clean() {
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
   unset -f 1interfaces 1get 1getadd 1getlist 1getdel _1network.download
-  unset -f 1getclear 1geticon
+  unset -f 1getclear 1geticon 1hostimport
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -128,6 +129,9 @@ _nh1network.usage() {
   case $1 in
     geticon)
         printf "$(_1text "Usage: %s <%s> <%s>")\n" "1$1" "$(_1text "URL")" "$(_1text "Output file")"
+        ;;
+    hostimport)
+        printf "$(_1text "Usage: %s %s")\n" "1$1" "$(_1text "New host group name")"
         ;;
     *)
       false
@@ -1144,5 +1148,34 @@ _1network.download() {
     local _TMP="$(mktemp).ico"
     curl --silent -o "$_TMP" -L "$_FAV"
     convert "$_TMP" "$_FILE"
+  fi
+}
+
+# @description Imports hosts from dhcpd.conf
+# @arg $1 string Hostgroup name
+1hostimport() {
+  if [ $# -eq 1 ]
+  then
+    if [ ! -f "$_1NETLOCAL/$1.hosts" ]
+    then
+      if [ -f "/etc/dhcp/dhcpd.conf" ]
+      then
+        cat "/etc/dhcp/dhcpd.conf" | tr '\n' ' ' | sed "s/host /\n/g" | grep fixed | sed "s/\([^a-zA-Z]*\)\([A-Za-z]\+\){\(.*\)172\([^;]*\)\(.*\)/\2=172\4/g" > $_NETLOCAL/$1.hosts
+        if [ $? -eq 0 ]
+        then
+          return 0
+        else
+          return 3
+      else
+        _1message error "$(_1text "DHCPD file not found. Are you in a network server?")"
+        return 2
+      fi
+    else
+      _1message error "$(printf "$(_1text "A network group with name %s already exists.")" "$1")"
+      return 1
+    fi
+  else
+    network.usage hostimport
+    return 0
   fi
 }
