@@ -1166,6 +1166,7 @@ _1network.download() {
           return 0
         else
           return 3
+        fi
       else
         _1message error "$(_1text "DHCPD file not found. Are you in a network server?")"
         return 2
