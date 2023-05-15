@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-15 11:05-0300\n"
+"POT-Creation-Date: 2023-05-15 11:35-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -1072,78 +1072,91 @@ msgid "works as a Nextcloud talk bot"
 msgstr "trabalha como um bot do Nextcloud"
 
 #: bot.bashrc:71
+msgid "Path to remote file"
+msgstr "caminho para o arquivo remoto"
+
+#: bot.bashrc:71
+msgid "Get a file from server"
+msgstr "Pega um arquivo do servidor"
+
+#: bot.bashrc:72
 msgid "list new groups for telegram bot"
 msgstr "lista novos grupos para o bot do telegram"
 
-#: bot.bashrc:72 bot.bashrc:73 bot.bashrc:75 bot.bashrc:76
+#: bot.bashrc:73 bot.bashrc:74 bot.bashrc:76 bot.bashrc:77
 msgid "Group name"
 msgstr "nome do grupo"
 
-#: bot.bashrc:72
+#: bot.bashrc:73
 msgid "Group ID"
 msgstr "ID do grupo"
 
-#: bot.bashrc:72
+#: bot.bashrc:73
 msgid "Save a group"
 msgstr "Salve um grupo"
 
-#: bot.bashrc:73
+#: bot.bashrc:74
 msgid "Delete a group"
 msgstr "Delete um grupo"
 
-#: bot.bashrc:74
+#: bot.bashrc:75
 msgid "Remote directory"
 msgstr "Diretório remoto"
 
-#: bot.bashrc:74
+#: bot.bashrc:75
 msgid "Local file"
 msgstr "Arquivo local"
 
-#: bot.bashrc:74
+#: bot.bashrc:75
 msgid "Puts a file"
 msgstr "Coloca um arquivo"
 
-#: bot.bashrc:75 bot.bashrc:172 bot.bashrc:207
+#: bot.bashrc:76 bot.bashrc:173 bot.bashrc:208
 msgid "message"
 msgstr "mensagem"
 
-#: bot.bashrc:75
+#: bot.bashrc:76
 msgid "Send a message"
 msgstr "Envia uma mensagem"
 
-#: bot.bashrc:76
+#: bot.bashrc:77
 msgid "path to file"
 msgstr "caminho para o arquivo"
 
-#: bot.bashrc:76
+#: bot.bashrc:77
 msgid "Send a file"
 msgstr "Envia um arquivo"
 
-#: bot.bashrc:81
+#: bot.bashrc:82
 msgid "%s for %s is missing!"
 msgstr "%s está faltando para %s!"
 
-#: bot.bashrc:116
+#: bot.bashrc:117
 msgid "New groups"
 msgstr "Novos grupos"
 
-#: bot.bashrc:126
+#: bot.bashrc:127
 msgid "New group found: %s (name: %s)"
 msgstr "Novo grupo encontrado: %s (nome: %s)"
 
-#: bot.bashrc:172 bot.bashrc:207 bot.bashrc:239
+#: bot.bashrc:173 bot.bashrc:208 bot.bashrc:240
 msgid "Sending %s \"%s\" to %s group via %s"
 msgstr "Enviando %s \"%s\" para o grupo %s via %s"
 
-#: bot.bashrc:239 bot.bashrc:271
+#: bot.bashrc:240 bot.bashrc:271 bot.bashrc:301
 msgid "file"
 msgstr "arquivo"
 
-#: bot.bashrc:243
+#: bot.bashrc:244
 msgid "File %s not found"
 msgstr "Arquivo %s não encontrado."
 
 #: bot.bashrc:271
+#, fuzzy
+msgid "Geting %s \"%s\" from %s via %s"
+msgstr "Enviando %s \"%s\" para o grupo %s via %s"
+
+#: bot.bashrc:301
 msgid "Putting %s \"%s\" into %s directory on %s"
 msgstr "Enviando %s \"%s\" para o diretório %s via %s"
 

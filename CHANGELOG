@@ -409,4 +409,5 @@
 1.4d6  2023-05-12: 1hostimport to import from dhcpd.conf
 1.4d7  2023-05-13: created template mynh2.sh to write NH1 based scripts
 1.4d8  2023-05-13: fixed bug in 1hostimport
-1.4d9  2023-05-15: 1bot nexctcloud put to send a file via Webdav
+1.4d9  2023-05-15: 1bot nextcloud put to send a file via Webdav
+1.4d10 2023-05-15: 1bot nextcloud get to download a file via Webdav

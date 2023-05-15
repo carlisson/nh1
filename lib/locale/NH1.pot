@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-15 11:05-0300\n"
+"POT-Creation-Date: 2023-05-15 11:35-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1048,78 +1048,90 @@ msgid "works as a Nextcloud talk bot"
 msgstr ""
 
 #: bot.bashrc:71
+msgid "Path to remote file"
+msgstr ""
+
+#: bot.bashrc:71
+msgid "Get a file from server"
+msgstr ""
+
+#: bot.bashrc:72
 msgid "list new groups for telegram bot"
 msgstr ""
 
-#: bot.bashrc:72 bot.bashrc:73 bot.bashrc:75 bot.bashrc:76
+#: bot.bashrc:73 bot.bashrc:74 bot.bashrc:76 bot.bashrc:77
 msgid "Group name"
 msgstr ""
 
-#: bot.bashrc:72
+#: bot.bashrc:73
 msgid "Group ID"
 msgstr ""
 
-#: bot.bashrc:72
+#: bot.bashrc:73
 msgid "Save a group"
 msgstr ""
 
-#: bot.bashrc:73
+#: bot.bashrc:74
 msgid "Delete a group"
 msgstr ""
 
-#: bot.bashrc:74
+#: bot.bashrc:75
 msgid "Remote directory"
 msgstr ""
 
-#: bot.bashrc:74
+#: bot.bashrc:75
 msgid "Local file"
 msgstr ""
 
-#: bot.bashrc:74
+#: bot.bashrc:75
 msgid "Puts a file"
 msgstr ""
 
-#: bot.bashrc:75 bot.bashrc:172 bot.bashrc:207
+#: bot.bashrc:76 bot.bashrc:173 bot.bashrc:208
 msgid "message"
 msgstr ""
 
-#: bot.bashrc:75
+#: bot.bashrc:76
 msgid "Send a message"
 msgstr ""
 
-#: bot.bashrc:76
+#: bot.bashrc:77
 msgid "path to file"
 msgstr ""
 
-#: bot.bashrc:76
+#: bot.bashrc:77
 msgid "Send a file"
 msgstr ""
 
-#: bot.bashrc:81
+#: bot.bashrc:82
 msgid "%s for %s is missing!"
 msgstr ""
 
-#: bot.bashrc:116
+#: bot.bashrc:117
 msgid "New groups"
 msgstr ""
 
-#: bot.bashrc:126
+#: bot.bashrc:127
 msgid "New group found: %s (name: %s)"
 msgstr ""
 
-#: bot.bashrc:172 bot.bashrc:207 bot.bashrc:239
+#: bot.bashrc:173 bot.bashrc:208 bot.bashrc:240
 msgid "Sending %s \"%s\" to %s group via %s"
 msgstr ""
 
-#: bot.bashrc:239 bot.bashrc:271
+#: bot.bashrc:240 bot.bashrc:271 bot.bashrc:301
 msgid "file"
 msgstr ""
 
-#: bot.bashrc:243
+#: bot.bashrc:244
 msgid "File %s not found"
 msgstr ""
 
 #: bot.bashrc:271
+msgid "Geting %s \"%s\" from %s via %s"
+msgstr ""
+
+#: bot.bashrc:301
 msgid "Putting %s \"%s\" into %s directory on %s"
 msgstr ""
 

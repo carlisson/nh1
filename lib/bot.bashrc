@@ -68,6 +68,7 @@ _nh1bot.usage() {
     printf "  - nextcloud $(_1text "works as a Nextcloud talk bot")\n"
     echo
     echo "$(_1text "Commands"):"
+    printf "  - get [%s] %s\n" "$(_1text "Path to remote file")" "$(_1text "Get a file from server")"
     printf "  - group-list %s\n" "$(_1text "list new groups for telegram bot")"
     printf "  - group-add [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "Group ID")" "$(_1text "Save a group")"
     printf "  - group-del [%s] %s\n" "$(_1text "Group name")" "$(_1text "Delete a group")"
@@ -247,6 +248,34 @@ _nh1bot.telegram.send() {
     _nh1bot.usage
 }
 
+# @description Get a file from a Nextcloud account
+# @arg 1 string Path to remote file
+# @exitcode 0 Ok
+# @exitcode 1 Token not configured
+_nh1bot.nextcloud.get() {
+    local _RTO _FIL _USR _PASS _SRV
+    if [ $_1BOTNTALK = 0 ]
+    then
+        _1bot.missing nextcloud credentials
+        return 1
+    else
+        _SRV=$(echo $_1BOTNTALK | cut -d\| -f 1)
+        _USR=$(echo $_1BOTNTALK | cut -d\| -f 2)
+        _PASS=$(echo $_1BOTNTALK | cut -d\| -f 3)
+    fi
+    if [ $# -ge 1 ]
+    then
+        _RTO="$1"
+        shift
+        _FIL="$(echo "$_RTO" | sed 's/\(.*\)\/\([^\/]*\)/\2/')"
+        _1verb "$(printf "$(_1text "Geting %s \"%s\" from %s via %s")" "$(_1text "file")" "$_FIL" "$_RTO" "nextcloud files")"
+
+        curl --silent -u $_USR:$_PASS -o "$_FIL" "$_SRV/remote.php/dav/files/$_USR/$_RTO/" >2&
+        return $?
+    fi
+    _nh1bot.usage
+}
+
 # @description Puts a file into a Nextcloud account
 # @arg 1 string Destination path
 # @arg 2 string Path to file
@@ -270,7 +299,6 @@ _nh1bot.nextcloud.put() {
         _FIL="$*"
         _1verb "$(printf "$(_1text "Putting %s \"%s\" into %s directory on %s")" "$(_1text "file")" "$_FIL" "$_RTO" "nextcloud files")"
 
-        echo "curl --silent -u $_USR:$_PASS -T \"$_FIL\" \"$_SRV/remote.php/dav/files/$_USR/$_RTO/\""
         curl --silent -u $_USR:$_PASS -T "$_FIL" "$_SRV/remote.php/dav/files/$_USR/$_RTO/" >2&
         return $?
     fi
@@ -286,6 +314,15 @@ _nh1bot.nextcloud.put() {
     then
         _AUX="$1"
         case "$2" in
+            get)
+                shift 2
+                case "$_AUX" in
+                    nextcloud)
+                        _nh1bot.nextcloud.get "$@"
+                        return 0
+                        ;;
+                esac
+                ;;
             group-list)
                 shift 2
                 case "$_AUX" in
