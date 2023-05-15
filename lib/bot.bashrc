@@ -71,6 +71,7 @@ _nh1bot.usage() {
     printf "  - group-list %s\n" "$(_1text "list new groups for telegram bot")"
     printf "  - group-add [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "Group ID")" "$(_1text "Save a group")"
     printf "  - group-del [%s] %s\n" "$(_1text "Group name")" "$(_1text "Delete a group")"
+    printf "  - put [%s] [%s] %s\n" "$(_1text "Remote directory")" "$(_1text "Local file")" "$(_1text "Puts a file")"
     printf "  - say [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "message")" "$(_1text "Send a message")"
     printf "  - send [%s] [%s] %s\n" "$(_1text "Group name")" "$(_1text "path to file")" "$(_1text "Send a file")"
     echo
@@ -205,7 +206,7 @@ _nh1bot.nextcloud.say() {
             _MSG="$*"
             _1verb "$(printf "$(_1text "Sending %s \"%s\" to %s group via %s")" "$(_1text "message")" "$_MSG" "$_GRP" "nextcloud talk")"
 
-            curl -H "Content-Type: application/json" -H "Accept: application/json" -H "OCS-APIRequest: true" -q -u \
+            curl --silent -H "Content-Type: application/json" -H "Accept: application/json" -H "OCS-APIRequest: true" -q -u \
                 "$_USR:$_PASS" -d "{\"token\":\"$_MTO\",\"message\":\"$_MSG\"}" "$_SRV/ocs/v2.php/apps/spreed/api/v1/chat/$_MTO" >2&
             return $?
         fi
@@ -246,10 +247,40 @@ _nh1bot.telegram.send() {
     _nh1bot.usage
 }
 
+# @description Puts a file into a Nextcloud account
+# @arg 1 string Destination path
+# @arg 2 string Path to file
+# @exitcode 0 Ok
+# @exitcode 1 Token not configured
+_nh1bot.nextcloud.put() {
+    local _RTO _FIL _USR _PASS _SRV
+    if [ $_1BOTNTALK = 0 ]
+    then
+        _1bot.missing nextcloud credentials
+        return 1
+    else
+        _SRV=$(echo $_1BOTNTALK | cut -d\| -f 1)
+        _USR=$(echo $_1BOTNTALK | cut -d\| -f 2)
+        _PASS=$(echo $_1BOTNTALK | cut -d\| -f 3)
+    fi
+    if [ $# -gt 1 ]
+    then
+        _RTO="$1"
+        shift
+        _FIL="$*"
+        _1verb "$(printf "$(_1text "Putting %s \"%s\" into %s directory on %s")" "$(_1text "file")" "$_FIL" "$_RTO" "nextcloud files")"
+
+        echo "curl --silent -u $_USR:$_PASS -T \"$_FIL\" \"$_SRV/remote.php/dav/files/$_USR/$_RTO/\""
+        curl --silent -u $_USR:$_PASS -T "$_FIL" "$_SRV/remote.php/dav/files/$_USR/$_RTO/" >2&
+        return $?
+    fi
+    _nh1bot.usage
+}
 
 # Public functions
 
 1bot() {
+    _1before
     local _SRV _AUX
     if [ $# -ge 2 ]
     then
@@ -277,7 +308,16 @@ _nh1bot.telegram.send() {
                 shift 2
                 _nh1bot.delgroup "$_AUX" "$@"
                 return 0
-                ;;                
+                ;;       
+            put)
+                shift 2
+                case "$_AUX" in
+                    nextcloud)
+                        _nh1bot.nextcloud.put "$@"
+                        return 0
+                        ;;
+                esac
+                ;;
             say)
                 shift 2
                 case "$_AUX" in

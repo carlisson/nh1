@@ -850,8 +850,6 @@ _1verbs.spool() {
 
 # @description Reload NH1 and all related modules
 1refresh() {
-	_1before
-
 	local LOCAL1RC=$_1RC
 	_1verb "$(printf "$(_1text "After destroy variables, I will load %s.")" $_1RC)"
 	1clean
