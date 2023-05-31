@@ -411,3 +411,5 @@
 1.4d8  2023-05-13: fixed bug in 1hostimport
 1.4d9  2023-05-15: 1bot nextcloud put to send a file via Webdav
 1.4d10 2023-05-15: 1bot nextcloud get to download a file via Webdav
+1.4d11 2023-05-30: 1app new recipe pulse-browser
+1.4d12 2023-05-31: desktop entry fixed for tarball recipes

@@ -207,7 +207,7 @@ _nh1app.checkversion() {
                     then
                         basename $_BINPATH
                     else
-                        echo "$_BINPATH" | 1remove "$_1APPLOCAL/"
+                        echo "$_BINPATH" | 1remove "$_1APPLOCAL/" | cut -d/ -f1
                     fi
                 fi
                 ;;
@@ -220,7 +220,7 @@ _nh1app.checkversion() {
                     then
                         basename "$_BINPATH"
                     else
-                        echo "$_BINPATH" | 1remove "$_1APPGLOBAL/"
+                        echo "$_BINPATH" | 1remove "$_1APPGLOBAL/" | cut -d/ -f1
                     fi
                 fi
                 ;;
@@ -235,6 +235,12 @@ _nh1app.checkversion() {
 _nh1app.mkdesktop() {
     local _APP _NATMP
     _APP="$1"
+    if [ "$2" = "global" ]
+    then
+        _NASYM="$_1APPGBIN/$1"
+    else
+        _NASYM="$_1APPLBIN/$1"
+    fi
     
     _1verb "$(printf "$(_1text "Creating desktop file for %s.")\n" $_APP)"
 
@@ -759,7 +765,7 @@ _nh1app.remove() {
     then
         if [ "$1" = "local" ]
         then
-            rm -r "$_1APPLOCAL/$_NAF"
+            rm -rf "$_1APPLOCAL/$_NAF"
             rm -f "$_1APPLAPPS/$_NAA.desktop"
             rm -f "$_1APPLICON/$_NAA.png"
             if [[ "$APP_BINARY" =~ ' ' ]]
@@ -779,7 +785,7 @@ _nh1app.remove() {
             then
                 for _SSYM in $APP_BINARY
                 do
-                    _1sudo rm "$_1APPLBIN/$_SSYM"
+                    _1sudo rm "$_1APPGBIN/$_SSYM"
                 done
             else
                 _1sudo rm "$_1APPGBIN/$_NAA"
