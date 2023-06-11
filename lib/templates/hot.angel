@@ -1,4 +1,4 @@
-OUTDIR|/home/bardo/sources/nh1-page
+OUTDIR|-=[dir]=-
 TITLE|NORG Handy One
 ACTION|2Hot!|https://bardo.codeberg.page/nh1
 TEMPLATE|tab
@@ -28,10 +28,10 @@ DCARD|1ssh|Smart ssh link configurator
 DCARD|1timer and 1pomo|Shell stop-watchs
 
 SECTION|1app recipes
-ICARD|Firefox|Navegador da Mozilla|/home/bardo/sources/nh1/lib/recipes/firefox.png|https://mozilla.org/firefox
+-=(recipes hot.rec.angel)=-
 
 MENUSECTION|Try NH1 today
-HBUTTON|Download 1.4.3|https://codeberg.org/bardo/nh1/releases/tag/v1.4.3|download
+HBUTTON|Download -=[version]=-|https://codeberg.org/bardo/nh1/releases/tag/v-=[version]=-|download
 BUTTON|Codeberg|https://codeberg.org/bardo/nh1|code
 BUTTON|Wiki (PT-BR)|https://wiki.cordeis.com/norg/start|world
 BUTTON|Documentation|https://codeberg.org/bardo/nh1/src/branch/master/doc|book

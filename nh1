@@ -17,7 +17,12 @@ _1MODULES=(angel app audio backup bot canva cron misc morph network rpg ui val)
 _1PID=$$
 _1TMPDIR="$(mktemp -d)"
 _1DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Running version
 _1VERSION="$(tail -n 1 "$_1DIR/CHANGELOG" | cut -d\  -f 1)"
+
+# Latest stable version
+_1VSTABLE="$(cat "$_1DIR/CHANGELOG" | cut -d\  -f1 | grep -v [a-z] | tail -1)"
 _1RC="$_1DIR/$(basename "${BASH_SOURCE[0]}")"
 _1UDATA="$HOME/.norg"
 _1VARSDB="$_1UDATA"
@@ -631,6 +636,16 @@ _1verbs.spool() {
 		printf "  1builddoc - $(_1text "Build documentation for NH1")\n"
 		printf "  1builddoc [%s] [%s] [<%s>]\n" "$(_1text "project name")" "$(_1text "doc directory")" "$(_1text "source-code files")"
 	fi
+}
+
+# @description Build NH1 Homepage, using 2hot and 1angel
+1buildhot() {
+	local _RECFILE="$(1temp)"
+	pushd "$_1LIB/templates" > /dev/null
+	echo name=Firefox description=Navegador da Mozilla image="$_1LIB/recipes/firefox.png" url=https://mozilla.org/firefox > "$_RECFILE"
+	1angel run hot.angel dir="$(realpath "$_1DIR/../nh1-page")" version="$_1VSTABLE" recipes="$_RECFILE" > "$_1DIR/nh1.hot"
+	rm "$_RECFILE"
+	pushd > /dev/null
 }
 
 # @description Check if a program exists. Finish NH1 if it do not exists.
