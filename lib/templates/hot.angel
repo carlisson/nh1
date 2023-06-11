@@ -27,7 +27,7 @@ DCARD|1serial|To ease the usage of serial port
 DCARD|1ssh|Smart ssh link configurator
 DCARD|1timer and 1pomo|Shell stop-watchs
 
-SECTION|1app recipes
+CARDSECTION|1app recipes
 -=(recipes hot.rec.angel)=-
 
 MENUSECTION|Try NH1 today

@@ -640,9 +640,25 @@ _1verbs.spool() {
 
 # @description Build NH1 Homepage, using 2hot and 1angel
 1buildhot() {
+	local _REC _BHAPP _BHIMG
 	local _RECFILE="$(1temp)"
 	pushd "$_1LIB/templates" > /dev/null
-	echo name=Firefox description=Navegador da Mozilla image="$_1LIB/recipes/firefox.png" url=https://mozilla.org/firefox > "$_RECFILE"
+	for _REC in $(ls $_1LIB/recipes/*.app)
+	do
+		_BHAPP="$(basename "$_REC" .app)"
+		_BHIMG="$_1LIB/recipes/$_BHAPP.jpg"
+		if [ ! -f "$_BHIMG" ]
+		then
+			_BHIMG="$_1LIB/recipes/$_BHAPP.png"
+			if [ ! -f "$_BHIMG" ]
+			then
+				_BHIMG="$_1LIB/recipes/generic.png"
+			fi
+		fi
+		_nh1app.openapp "$_BHAPP"
+		echo name=$APP_NAME description=$APP_DESCRIPTION image=$_BHIMG url="#" >> "$_RECFILE"
+		_nh1app.closeapp
+	done
 	1angel run hot.angel dir="$(realpath "$_1DIR/../nh1-page")" version="$_1VSTABLE" recipes="$_RECFILE" > "$_1DIR/nh1.hot"
 	rm "$_RECFILE"
 	pushd > /dev/null
