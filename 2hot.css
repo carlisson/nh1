@@ -1,0 +1,120 @@
+html {
+background-color: #000000;
+color: #777777;
+}
+
+.section h2,
+.section h3,
+.section h4,
+.section h5,
+.section h6,
+.section p,
+.page center {
+color: #777777;
+}
+
+:root {
+--tblr-primary-color: #fd5400;
+--tblr-secondary-color: #bb8dea;
+--tblr-primary-bg: #000000;
+--tblr-secondary-bg: #000000;
+--tblr-body-bg: #000000;
+
+}
+div.section {
+text-align: center;
+}
+div.section h2 {
+text-align: center;
+}
+a {
+color: #bb8dea;
+}
+a.btn {
+background-color: #bb8dea;
+color: #000000;
+width: 400px;
+max-width: 100%;
+font-weight: bold;
+}
+a.hot,
+.bghot {
+background-color: #fd5400;
+}
+.bglink {
+background-color: #bb8dea;
+}
+.hot {
+color: #fd5400;
+}
+a.btn i {
+margin-right: 5px;
+}
+.intro-text {
+text-align: left;
+font-size: 1.4em;
+font-style: italic;
+}
+.float {
+display: block;
+float: right;
+}
+.special {
+border: 1px solid #bb8dea;
+}
+.checklist li {
+list-style-type: none;
+text-align: left;
+}
+.label-no,
+.label-yes,
+.label-stat {
+text-align: left;
+}
+.label-no {
+text-decoration-line: line-through;
+}
+.label-stat {
+padding-left: 25px;
+margin-left: 25px;
+}
+input[type="checkbox"]:checked {
+background-color: #bb8dea;
+}
+.alert-hot {
+border-left-color: #fd5400;
+}
+.alert .badge {
+font-size: 2em;
+float: left;
+}
+.menu,
+.social {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+margin: 10px auto;
+position: relative;
+text-align: center;
+}
+.menu .btn {
+width: 200px;
+}
+.social .btn {
+width: 2em;
+}
+.social .btn .button-label {
+display: none;
+}
+.faq > div {
+width: 100%;
+}
+.faq .card-title {
+cursor: grab;
+background-color: #bb8dea;
+color: #000000;
+}
+iframe,
+img {
+max-width: 95%;
+}
