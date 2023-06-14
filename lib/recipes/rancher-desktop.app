@@ -3,6 +3,7 @@
 APP_NAME="Rancher Desktop"
 APP_DESCRIPTION="$(_1text "Docker Kubernetes manager")"
 APP_CATEGORIES="Utility;"
+APP_SITE="https://rancherdesktop.io"
 
 # It can be:
 #

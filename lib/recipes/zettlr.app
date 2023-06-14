@@ -4,6 +4,7 @@ APP_NAME="Zettlr"
 APP_DESCRIPTION="$(_1text "Markdown editor for the 21st century")"
 APP_CATEGORIES="Office;"
 APP_MIME="text/x-markdown"
+APP_SITE="https://www.zettlr.com/"
 
 # It can be:
 #

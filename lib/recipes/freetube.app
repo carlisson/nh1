@@ -3,6 +3,7 @@
 APP_NAME="FeeTube"
 APP_DESCRIPTION="$(_1text "Client for Youtube")"
 APP_CATEGORIES="AudioVideo;Video"
+APP_SITE="https://freetubeapp.io/"
 
 # It can be:
 #

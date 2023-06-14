@@ -7,6 +7,9 @@ APP_NAME="Nuclear"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Desktop music player using free sources")"
 
+# URL to website of the project
+APP_SITE="https://nuclear.js.org/"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="AudioVideo;Audio;Player;"
 

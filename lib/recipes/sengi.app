@@ -7,6 +7,9 @@ APP_NAME="Sengi"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Multi-account Mastodon/Pleroma client")"
 
+# URL to website of the project
+APP_SITE="https://github.com/NicolasConstant/sengi"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Network"
 

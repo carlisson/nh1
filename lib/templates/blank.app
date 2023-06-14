@@ -7,6 +7,9 @@ APP_NAME="App"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Description")"
 
+# URL to website of the project
+APP_SITE="#"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Office"
 

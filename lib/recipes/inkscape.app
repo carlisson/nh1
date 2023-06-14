@@ -4,6 +4,7 @@ APP_NAME="Inkscape"
 APP_DESCRIPTION="Vector graphics editor"
 APP_CATEGORIES="Graphics;"
 APP_MIME="image/svg+xml"
+APP_SITE="https://inkscape.org/"
 
 # It can be:
 #

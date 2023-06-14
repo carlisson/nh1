@@ -3,6 +3,8 @@
 APP_NAME="Diagrams"
 APP_DESCRIPTION="$(_1text "Security-first diagramming for teams")"
 APP_CATEGORIES="Graphics;"
+APP_SITE="https://github.com/jgraph/drawio-desktop"
+
 # APP_MIME="image/svg+xml"
 
 # It can be:

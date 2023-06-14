@@ -7,6 +7,9 @@ APP_NAME="Pulse Browser"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Pulse web browser")"
 
+# URL to website of the project
+APP_SITE="https://pulsebrowser.app/"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Network;WebBrowser"
 

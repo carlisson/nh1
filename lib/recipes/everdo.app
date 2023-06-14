@@ -3,6 +3,7 @@
 APP_NAME="Everdo"
 APP_DESCRIPTION="$(_1text "Get Things Done with Privacity")"
 APP_CATEGORIES="Utility;"
+APP_SITE="https://everdo.net"
 
 # It can be:
 #

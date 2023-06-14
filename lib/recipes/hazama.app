@@ -7,6 +7,9 @@ APP_NAME="Hazama"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Simple GUI diary")"
 
+# URL to website of the project
+APP_SITE="https://github.com/krrr/Hazama"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Utility"
 

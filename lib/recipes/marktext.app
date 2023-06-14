@@ -7,6 +7,9 @@ APP_NAME="Marktext"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Markdown editor")"
 
+# URL to website of the project
+APP_SITE="https://github.com/marktext/marktext/"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Office"
 

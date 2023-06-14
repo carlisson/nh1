@@ -7,6 +7,9 @@ APP_NAME="Whalebird"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Federated microblog client")"
 
+# URL to website of the project
+APP_SITE="https://whalebird.social/en"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Network;"
 

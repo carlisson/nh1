@@ -3,6 +3,7 @@
 APP_NAME="CherryTree"
 APP_DESCRIPTION="$(_1text "Hierarchical note taking")"
 APP_CATEGORIES="Utility;"
+APP_SITE="https://www.giuspen.net/cherrytree/"
 
 # It can be:
 #

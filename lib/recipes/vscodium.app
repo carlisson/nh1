@@ -4,6 +4,7 @@ APP_NAME="VS Codium"
 APP_DESCRIPTION="$(_1text "Editor for programmer")"
 APP_CATEGORIES="Utility;TextEditor;Development;"
 APP_MIME="text/plain;text/x-chdr;text/x-csrc;text/x-c++hdr;text/x-c++src;text/x-java;text/x-dsrc;text/x-pascal;text/x-perl;text/x-python;application/x-php;application/x-httpd-php3;application/x-httpd-php4;application/x-httpd-php5;application/xml;text/html;text/css;text/x-sql;text/x-diff;"
+APP_SITE="https://github.com/VSCodium/vscodium"
 
 # It can be:
 #

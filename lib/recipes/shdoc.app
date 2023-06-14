@@ -7,6 +7,9 @@ APP_NAME="shdoc"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Documentation generator for bash")"
 
+# URL to website of the project
+APP_SITE="https://github.com/reconquest/shdoc"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="System;"
 

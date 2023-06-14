@@ -2,6 +2,7 @@
 
 APP_NAME="Funções ZZ"
 APP_DESCRIPTION="$(_1text "A set of utilities for shell")"
+APP_SITE="http://funcoeszz.net/"
 
 # It can be:
 #

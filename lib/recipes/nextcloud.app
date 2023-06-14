@@ -3,6 +3,7 @@
 APP_NAME="Nextcloud"
 APP_DESCRIPTION="$(_1text "Client for Nextcloud desktop")"
 APP_CATEGORIES="Utility;Internet"
+APP_SITE="https://nextcloud.com/install/"
 
 # It can be:
 #

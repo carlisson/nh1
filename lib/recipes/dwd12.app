@@ -10,6 +10,9 @@ APP_DESCRIPTION="$(_1text "Diceware D12 password generator")"
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="System;"
 
+# URL to website of the project
+APP_SITE="https://codeberg.org/bardo/dwd12"
+
 # Mime tipes for application (it will be in .desktop file)
 #APP_MIME="text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;"
 

@@ -7,6 +7,9 @@ APP_NAME="2hot"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Static linktree and hotsite generator")"
 
+# URL to website of the project
+APP_SITE="https://codeberg.org/bardo/2hot"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="System;"
 

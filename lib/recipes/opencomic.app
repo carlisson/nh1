@@ -3,6 +3,7 @@
 APP_NAME="OpenComic"
 APP_DESCRIPTION="$(_1text "Comic and PDF viewer")"
 APP_CATEGORIES="Graphics;"
+APP_SITE="https://github.com/ollm/OpenComic"
 
 # It can be:
 #

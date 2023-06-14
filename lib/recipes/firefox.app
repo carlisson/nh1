@@ -7,6 +7,9 @@ APP_NAME="Firefox"
 # Application Description _1text is used for translation
 APP_DESCRIPTION="$(_1text "Mozilla Firefox web browser")"
 
+# URL to website of the project
+APP_SITE="https://mozilla.org/firefox"
+
 # Application Cattegories, to use in .desktop file.
 APP_CATEGORIES="Network;WebBrowser"
 

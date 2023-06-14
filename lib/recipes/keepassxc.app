@@ -4,6 +4,7 @@ APP_NAME="KeepassXC"
 APP_DESCRIPTION="$(_1text "Password manager")"
 APP_CATEGORIES="Utility;"
 APP_MIME="application/x-keepass2;"
+APP_SITE="https://keepassxc.org/"
 
 # It can be:
 #
