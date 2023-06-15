@@ -27,40 +27,55 @@ DCARD|1serial|To ease the usage of serial port
 DCARD|1ssh|Smart ssh link configurator
 DCARD|1timer and 1pomo|Shell stop-watchs
 
+CARDSECTION|Stats for NH1
+CSTAT|Modules|13|Modules working in NH1
+CSTAT|Audio functions|9|Commands to manipulate multimedia
+CSTAT|Miscelania|25|A lot of different utilities
+CSTAT|Network|35|Commands to network
+CSTAT|RPG|15|Dice rollers and more
+CSTAT|Bots|2|Systems supported for send message and/or files
+CSTAT|Morphs|23|String transformations
+CSTAT|Latin Morphs|14|String transformations resulting latin characters
+CSTAT|User Interface|7|UI systems to build dialogs and more
+CSTAT|Console UI|2|Text-only user interface dialog systems
+CSTAT|Windows UI|4|Graphic-only user interface dialog systems
+CSTAT|Validators|3|Functions to test/validate strings
+CSTAT|Recipes|33|Recipes to install local or global software
+
 CARDSECTION|1app recipes
-ICARD|2hot|Gerador de hotsites e linktrees estáticos|/home/bardo/sources/nh1/lib/recipes/generic.png|#
-ICARD|CherryTree|Anotações hierárquicas|/home/bardo/sources/nh1/lib/recipes/cherrytree.png|#
-ICARD|Diagrams|Diagramas para equipes, com segurança|/home/bardo/sources/nh1/lib/recipes/drawio.png|#
-ICARD|dwd12|Gerador de senhas Diceware D12|/home/bardo/sources/nh1/lib/recipes/generic.png|#
-ICARD|Everdo|Use GTD com Privacidade|/home/bardo/sources/nh1/lib/recipes/everdo.png|#
-ICARD|Firefox|Navegador web Mozilla Firefox|/home/bardo/sources/nh1/lib/recipes/firefox.png|#
-ICARD|FeeTube|Cliente para Youtube|/home/bardo/sources/nh1/lib/recipes/freetube.png|#
-ICARD|Funções ZZ|Conjunto de utilitários shell|/home/bardo/sources/nh1/lib/recipes/generic.png|#
-ICARD|Haxe|Linguagem e toolkit cross-platform|/home/bardo/sources/nh1/lib/recipes/generic.png|#
-ICARD|Hazama|Diário GUI simples|/home/bardo/sources/nh1/lib/recipes/hazama.png|#
-ICARD|Inkscape|Vector graphics editor|/home/bardo/sources/nh1/lib/recipes/inkscape.png|#
-ICARD|Kate|Editor de código para KDE|/home/bardo/sources/nh1/lib/recipes/kate.png|#
-ICARD|KeepassXC|Gerenciador de senhas|/home/bardo/sources/nh1/lib/recipes/keepassxc.png|#
-ICARD|LibreWolf|Navegador Web|/home/bardo/sources/nh1/lib/recipes/librewolf.png|#
-ICARD|Manuskript|Ferramenta aberta para escritores|/home/bardo/sources/nh1/lib/recipes/manuskript.png|#
-ICARD|Marktext|Editor de Markdown|/home/bardo/sources/nh1/lib/recipes/marktext.png|#
-ICARD|Mirage|Um cliente de chat Matrix customizável|/home/bardo/sources/nh1/lib/recipes/mirage.png|#
-ICARD|Nextcloud|Cliente desktop para Nextcloud|/home/bardo/sources/nh1/lib/recipes/nextcloud.png|#
-ICARD|Nuclear|Tocador de música que usa fontes grátis/livres|/home/bardo/sources/nh1/lib/recipes/nuclear.png|#
-ICARD|OnlyOffice Desktop Edition|OnlyOffice para Desktop|/home/bardo/sources/nh1/lib/recipes/onlyoffice.png|#
-ICARD|OpenComic|Visualizador de PDF e quadrinhos|/home/bardo/sources/nh1/lib/recipes/opencomic.png|#
-ICARD|Pulse Browser|Pulse web browser|/home/bardo/sources/nh1/lib/recipes/pulse-browser.png|#
-ICARD|Rancher Desktop|Gerenciador de Kubernates (docker)|/home/bardo/sources/nh1/lib/recipes/rancher-desktop.png|#
-ICARD|RetroShare|Comunicação segura para todos|/home/bardo/sources/nh1/lib/recipes/retroshare.png|#
-ICARD|Sengi|Cliente multi-conta Mastodon/Pleroma|/home/bardo/sources/nh1/lib/recipes/sengi.png|#
-ICARD|shdoc|Gerador de documentação para bash|/home/bardo/sources/nh1/lib/recipes/generic.png|#
-ICARD|Shelf|Visualizador de documentos|/home/bardo/sources/nh1/lib/recipes/shelf.png|#
-ICARD|Speek|Mensageiro descentralizado e seguro|/home/bardo/sources/nh1/lib/recipes/speek.png|#
-ICARD|The Desk|Cliente Mastodon para PC|/home/bardo/sources/nh1/lib/recipes/thedesk.png|#
-ICARD|Ventoy|Uma nova solução para USB bootável|/home/bardo/sources/nh1/lib/recipes/ventoy.png|#
-ICARD|VS Codium|Editor para programadores|/home/bardo/sources/nh1/lib/recipes/vscodium.png|#
-ICARD|Whalebird|Cliente para microblog federado|/home/bardo/sources/nh1/lib/recipes/whalebird.png|#
-ICARD|Zettlr|Um editor Markdown para o século 21|/home/bardo/sources/nh1/lib/recipes/zettlr.png|#
+ICARD|2hot|Static linktree and hotsite generator|/home/bardo/sources/nh1/lib/recipes/2hot.jpg|https://codeberg.org/bardo/2hot
+ICARD|CherryTree|Hierarchical note taking|/home/bardo/sources/nh1/lib/recipes/cherrytree.jpg|https://www.giuspen.net/cherrytree/
+ICARD|Diagrams|Security-first diagramming for teams|/home/bardo/sources/nh1/lib/recipes/drawio.png|https://github.com/jgraph/drawio-desktop
+ICARD|dwd12|Diceware D12 password generator|/home/bardo/sources/nh1/lib/recipes/dwd12.jpg|https://codeberg.org/bardo/dwd12
+ICARD|Everdo|Get Things Done with Privacity|/home/bardo/sources/nh1/lib/recipes/everdo.png|https://everdo.net
+ICARD|Firefox|Mozilla Firefox web browser|/home/bardo/sources/nh1/lib/recipes/firefox.png|https://mozilla.org/firefox
+ICARD|FeeTube|Client for Youtube|/home/bardo/sources/nh1/lib/recipes/freetube.png|https://freetubeapp.io/
+ICARD|Funções ZZ|A set of utilities for shell|/home/bardo/sources/nh1/lib/recipes/funcoeszz.jpg|http://funcoeszz.net/
+ICARD|Haxe|Cross-platform language and toolkit|/home/bardo/sources/nh1/lib/recipes/haxe.jpg|https://haxe.org/
+ICARD|Hazama|Simple GUI diary|/home/bardo/sources/nh1/lib/recipes/hazama.png|https://github.com/krrr/Hazama
+ICARD|Inkscape|Vector graphics editor|/home/bardo/sources/nh1/lib/recipes/inkscape.png|https://inkscape.org/
+ICARD|Kate|Code editor for KDE|/home/bardo/sources/nh1/lib/recipes/kate.png|https://kate-editor.org/
+ICARD|KeepassXC|Password manager|/home/bardo/sources/nh1/lib/recipes/keepassxc.png|https://keepassxc.org/
+ICARD|LibreWolf|Web Browser|/home/bardo/sources/nh1/lib/recipes/librewolf.png|https://librewolf.net/
+ICARD|Manuskript|Open source tool for writers|/home/bardo/sources/nh1/lib/recipes/manuskript.jpg|https://www.theologeek.ch/manuskript/
+ICARD|Marktext|Markdown editor|/home/bardo/sources/nh1/lib/recipes/marktext.png|https://github.com/marktext/marktext/
+ICARD|Mirage|A customizable Matrix chat client|/home/bardo/sources/nh1/lib/recipes/mirage.png|https://github.com/mirukana/mirage
+ICARD|Nextcloud|Client for Nextcloud desktop|/home/bardo/sources/nh1/lib/recipes/nextcloud.png|https://nextcloud.com/install/
+ICARD|Nuclear|Desktop music player using free sources|/home/bardo/sources/nh1/lib/recipes/nuclear.png|https://nuclear.js.org/
+ICARD|OnlyOffice Desktop Edition|OnlyOffice Desktop|/home/bardo/sources/nh1/lib/recipes/onlyoffice.png|https://www.onlyoffice.com/pt/
+ICARD|OpenComic|Comic and PDF viewer|/home/bardo/sources/nh1/lib/recipes/opencomic.png|https://github.com/ollm/OpenComic
+ICARD|Pulse Browser|Pulse web browser|/home/bardo/sources/nh1/lib/recipes/pulse-browser.png|https://pulsebrowser.app/
+ICARD|Rancher Desktop|Docker Kubernetes manager|/home/bardo/sources/nh1/lib/recipes/rancher-desktop.png|https://rancherdesktop.io
+ICARD|RetroShare|Secure communication for everyone|/home/bardo/sources/nh1/lib/recipes/retroshare.png|https://retroshare.cc/
+ICARD|Sengi|Multi-account Mastodon/Pleroma client|/home/bardo/sources/nh1/lib/recipes/sengi.png|https://github.com/NicolasConstant/sengi
+ICARD|shdoc|Documentation generator for bash|/home/bardo/sources/nh1/lib/recipes/generic.png|https://github.com/reconquest/shdoc
+ICARD|Shelf|Document viewer for different formats|/home/bardo/sources/nh1/lib/recipes/shelf.png|https://mauikit.org/apps/shelf/
+ICARD|Speek|Decentralized and secure messenger|/home/bardo/sources/nh1/lib/recipes/speek.png|https://speek.network/
+ICARD|The Desk|Mastodon client for PC|/home/bardo/sources/nh1/lib/recipes/thedesk.png|https://thedesk.top/en/
+ICARD|Ventoy|A new Bootable USB Solution|/home/bardo/sources/nh1/lib/recipes/ventoy.jpg|https://www.ventoy.net/en/index.html
+ICARD|VS Codium|Editor for programmer|/home/bardo/sources/nh1/lib/recipes/vscodium.png|https://github.com/VSCodium/vscodium
+ICARD|Whalebird|Federated microblog client|/home/bardo/sources/nh1/lib/recipes/whalebird.png|https://whalebird.social/en
+ICARD|Zettlr|Markdown editor for the 21st century|/home/bardo/sources/nh1/lib/recipes/zettlr.png|https://www.zettlr.com/
 
 MENUSECTION|Try NH1 today
 HBUTTON|Download 1.4.3|https://codeberg.org/bardo/nh1/releases/tag/v1.4.3|download

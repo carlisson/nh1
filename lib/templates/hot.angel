@@ -27,6 +27,21 @@ DCARD|1serial|To ease the usage of serial port
 DCARD|1ssh|Smart ssh link configurator
 DCARD|1timer and 1pomo|Shell stop-watchs
 
+CARDSECTION|Stats for NH1
+CSTAT|Modules|-=[countmod]=-|Modules working in NH1
+CSTAT|Audio functions|-=[countaudio]=-|Commands to manipulate multimedia
+CSTAT|Miscelania|-=[countmisc]=-|A lot of different utilities
+CSTAT|Network|-=[countnet]=-|Commands to network
+CSTAT|RPG|-=[countrpg]=-|Dice rollers and more
+CSTAT|Bots|-=[countbots]=-|Systems supported for send message and/or files
+CSTAT|Morphs|-=[countmorphs]=-|String transformations
+CSTAT|Latin Morphs|-=[countlatin]=-|String transformations resulting latin characters
+CSTAT|User Interface|-=[countui]=-|UI systems to build dialogs and more
+CSTAT|Console UI|-=[countconsole]=-|Text-only user interface dialog systems
+CSTAT|Windows UI|-=[countwindows]=-|Graphic-only user interface dialog systems
+CSTAT|Validators|-=[countval]=-|Functions to test/validate strings
+CSTAT|Recipes|-=[countrec]=-|Recipes to install local or global software
+
 CARDSECTION|1app recipes
 -=(recipes hot.rec.angel)=-
 

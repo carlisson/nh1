@@ -640,7 +640,8 @@ _1verbs.spool() {
 
 # @description Build NH1 Homepage, using 2hot and 1angel
 1buildhot() {
-	local _REC _BHAPP _BHIMG
+	local _REC _BHAPP _BHIMG _CRE _CMO _CAU _CBT _CMI _CMS
+	local _CML _CNE _CRP _CUI _CCI _CWI _CVA
 	local _RECFILE="$(1temp)"
 	pushd "$_1LIB/templates" > /dev/null
 	for _REC in $(ls $_1LIB/recipes/*.app)
@@ -655,11 +656,30 @@ _1verbs.spool() {
 				_BHIMG="$_1LIB/recipes/generic.png"
 			fi
 		fi
-		_nh1app.openapp "$_BHAPP"
-		echo name=$APP_NAME description=$APP_DESCRIPTION image=$_BHIMG url="#" >> "$_RECFILE"
+		LANG="en" _nh1app.openapp "$_BHAPP"
+		echo name=$APP_NAME description=$APP_DESCRIPTION image=$_BHIMG url="$APP_SITE" >> "$_RECFILE"
 		_nh1app.closeapp
 	done
-	1angel run hot.angel dir="$(realpath "$_1DIR/../nh1-page")" version="$_1VSTABLE" recipes="$_RECFILE" > "$_1DIR/nh1.hot"
+	_CRE=$(ls $_1LIB/recipes/*.app | wc -w)
+	_CMO="${#_1MODULES[@]}"
+	_CAU=$(grep _1menuitem $_1LIB/audio.bashrc | wc -l)
+	_CBT="${#_1BOTTYPES[@]}"
+	_CMI=$(grep _1menuitem $_1LIB/misc.bashrc | wc -l)
+	_CMS="${#_1MORPHS[@]}"
+	_CML="${#_1MORPHLATIN[@]}"
+	_CNE=$(grep _1menuitem $_1LIB/network.bashrc | wc -l)
+	_CRP=$(grep _1menuitem $_1LIB/rpg.bashrc | wc -l)
+	_CUI="${#_1UIDIALOGS[@]}"
+	_CCI="${#_1UICONSOLE[@]}"
+	_CWI="${#_1UIWINDOWS[@]}"
+	_CVA="${#_1VALS[@]}"
+	1angel run hot.angel dir="$(realpath "$_1DIR/../nh1-page")" \
+		version="$_1VSTABLE" countrec="$_CRE" countmod="$_CMO" \
+		countaudio="$_CAU" countbots="$_CBT" countmisc="$_CMI" \
+		countmorphs="$_CMS" countlatin="$_CML" countnet="$_CNE" \
+		countrpg="$_CRP" countui="$_CUI" countconsole="$_CCI" \
+		countwindows="$_CWI" countval="$_CVA" \
+		recipes="$_RECFILE" > "$_1DIR/nh1.hot"
 	rm "$_RECFILE"
 	pushd > /dev/null
 }
