@@ -3,16 +3,6 @@ background-color: #000000;
 color: #777777;
 }
 
-.section h2,
-.section h3,
-.section h4,
-.section h5,
-.section h6,
-.section p,
-.page center {
-color: #777777;
-}
-
 :root {
 --tblr-primary-color: #fd5400;
 --tblr-secondary-color: #bb8dea;
