@@ -40,7 +40,7 @@ CSTAT|User Interface|7|UI systems to build dialogs and more
 CSTAT|Console UI|2|Text-only user interface dialog systems
 CSTAT|Windows UI|4|Graphic-only user interface dialog systems
 CSTAT|Validators|3|Functions to test/validate strings
-CSTAT|Recipes|33|Recipes to install local or global software
+CSTAT|Recipes|34|Recipes to install local or global software
 
 CARDSECTION|1app recipes
 ICARD|2hot|Static linktree and hotsite generator|/home/bardo/sources/nh1/lib/recipes/2hot.jpg|https://codeberg.org/bardo/2hot
@@ -70,6 +70,7 @@ ICARD|RetroShare|Secure communication for everyone|/home/bardo/sources/nh1/lib/r
 ICARD|Sengi|Multi-account Mastodon/Pleroma client|/home/bardo/sources/nh1/lib/recipes/sengi.png|https://github.com/NicolasConstant/sengi
 ICARD|shdoc|Documentation generator for bash|/home/bardo/sources/nh1/lib/recipes/generic.png|https://github.com/reconquest/shdoc
 ICARD|Shelf|Document viewer for different formats|/home/bardo/sources/nh1/lib/recipes/shelf.png|https://mauikit.org/apps/shelf/
+ICARD|shunit2|xUnit based unit test for bash scripts|/home/bardo/sources/nh1/lib/recipes/generic.png|https://github.com/kward/shunit2
 ICARD|Speek|Decentralized and secure messenger|/home/bardo/sources/nh1/lib/recipes/speek.png|https://speek.network/
 ICARD|The Desk|Mastodon client for PC|/home/bardo/sources/nh1/lib/recipes/thedesk.png|https://thedesk.top/en/
 ICARD|Ventoy|A new Bootable USB Solution|/home/bardo/sources/nh1/lib/recipes/ventoy.jpg|https://www.ventoy.net/en/index.html
@@ -78,7 +79,7 @@ ICARD|Whalebird|Federated microblog client|/home/bardo/sources/nh1/lib/recipes/w
 ICARD|Zettlr|Markdown editor for the 21st century|/home/bardo/sources/nh1/lib/recipes/zettlr.png|https://www.zettlr.com/
 
 MENUSECTION|Try NH1 today
-HBUTTON|Download 1.4.3|https://codeberg.org/bardo/nh1/releases/tag/v1.4.3|download
+HBUTTON|Download 1.4.4|https://codeberg.org/bardo/nh1/releases/tag/v1.4.4|download
 BUTTON|Codeberg|https://codeberg.org/bardo/nh1|code
 BUTTON|Wiki (PT-BR)|https://wiki.cordeis.com/norg/start|world
 BUTTON|Documentation|https://codeberg.org/bardo/nh1/src/branch/master/doc|book

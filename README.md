@@ -1,7 +1,9 @@
 
-Wiki (Portuguese): http://wiki.cordeis.com/norg/start
+Project page: https://bardo.codeberg.page/nh1
 
-NH1 is a toolkit with various commands:
+Wiki (Portuguese): https://wiki.cordeis.com/norg/start
+
+NH1 is a toolkit with various commands!
 
 ## Features
 
@@ -35,6 +37,7 @@ $ 1help
 
 With 1app, you can install an application from AppImage, tar-ball or github, even in homespace! Supported apps:
 
+ * 2Hot
  * Cherrytree
  * Draw.io
  * DWD12
@@ -55,11 +58,13 @@ With 1app, you can install an application from AppImage, tar-ball or github, eve
  * Nuclear
  * OnlyOffice
  * OpenComic
+ * Pulse Browser
  * Rancher Desktop
  * Retroshare
  * Sengi
  * shdoc
  * Shelf
+ * shunit2
  * Speek
  * The Desk
  * Ventoy
