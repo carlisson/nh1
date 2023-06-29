@@ -56,8 +56,7 @@ function APP_VERSION {
     #      soffisticated strategy in some situations.
     
     echo "manuskript-$(\
-        curl -s 'https://www.theologeek.ch/manuskript/download/' | tr '\n' ' ' | sed 's/\(.*\)archive\/\([0-9\.]*\).tar.gz\(.*\)/\2/'
-        )-tarball"
+        curl -s 'https://www.theologeek.ch/manuskript/download/' | tr '\n' ' ' | sed 's/\(.*\)archive\/\([0-9\.]*\).zip\(.*\)/\2/')-tarball"
 }
 
 # Code to effectly do the download
@@ -72,10 +71,10 @@ function APP_GET {
         AGpre=""
     fi
 
-    AGver=$(curl -s 'https://www.theologeek.ch/manuskript/download/' | tr '\n' ' ' | sed 's/\(.*\)archive\/\([0-9\.]*\).tar.gz\(.*\)/\2/')
-    AGname="$AGver.tar.gz"
+    AGver=$(curl -s 'https://www.theologeek.ch/manuskript/download/' | tr '\n' ' ' | sed 's/\(.*\)archive\/\([0-9\.]*\).zip\(.*\)/\2/')
+    AGname="$AGver.zip"
     $AGpre curl -O -L "https://github.com/olivierkes/manuskript/archive/$AGname"
-    $AGpre tar -zxf "$AGname"
+    $AGpre unzip "$AGname"
     $AGpre mv "manuskript-$AGver" "manuskript-$AGver-tarball"
     $AGpre rm "$AGname"
 }
