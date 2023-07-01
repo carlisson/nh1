@@ -422,3 +422,4 @@
 1.4d19 2023-06-29: fixed manuskript 1app recipe
 1.4.4  2023-06-29: some bug fixes and improvements
 1.4e1  2023-07-01: created misc_test.sh testing 1pass
+1.4e2  2023-07-01: created test for 1diceware
