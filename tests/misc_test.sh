@@ -34,6 +34,14 @@ testDW() {
   assertTrue "Error message. Check it!" "[ $($NH1 dw | wc -l) -eq 1 ]"
 }
 
+testColor() {
+  local color1 color2
+  color1="$($NH1 color)"
+  color2="$($NH1 color)"
+  assertNotEquals "1color not working" "$color1" "$color2"
+  assertTrue "This color is not ok" "[[ $color1 =~ ^[0-9A-Fa-f]{6}$ ]]"
+}
+
 # Load shUnit2.
 if [ -f "$HOME/bin/shunit2" ]
 then
