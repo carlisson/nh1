@@ -47,7 +47,6 @@ testColor() {
 testPdfOpt() {
   local pdffile="$TDIR/example.pdf"
   local pdfoptf="$TDIR/example-opt.pdf"
-  echo $pdffile $pdfoptf
   assertTrue "PDF Example file not found" "[ -f $pdffile ]"
   if [ -f "$pdfoptf" ]
   then 
@@ -60,6 +59,15 @@ testPdfOpt() {
   then
     rm "$pdfoptf"
   fi
+}
+
+testAJoin() {
+  assertEquals "um" "$($NH1 ajoin , um)"
+  assertEquals "um,dois" "$($NH1 ajoin , um dois)"
+  assertEquals "1,2,3" "$($NH1 ajoin , 1 2 3)"
+  assertEquals "1=2=3=4" "$($NH1 ajoin = 1 2 3 4)"
+  assertEquals "um:dois" "$($NH1 ajoin : um dois)"
+  assertEquals "10203040506070809" "$($NH1 ajoin 0 1 2 3 4 5 6 7 8 9)"
 }
 
 # Load shUnit2.
