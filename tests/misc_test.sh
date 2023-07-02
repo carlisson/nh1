@@ -70,6 +70,27 @@ testAJoin() {
   assertEquals "10203040506070809" "$($NH1 ajoin 0 1 2 3 4 5 6 7 8 9)"
 }
 
+testEscape() {
+  local fori="/tmp/action#.txt"
+  local fdes="/tmp/action_.txt"
+  touch "$fori"
+  $NH1 escape "$fori"
+  assertTrue "File not generated" "[ -f \"$fdes\" ]"
+  rm -f "$fori" "$fdes"
+  fori="/tmp/action th-Test10%.txt"
+  fdes="/tmp/action_th_Test10_.txt"
+  rm -f "$fori" "$fdes"
+  touch "$fori"
+  $NH1 escape "$fori"
+  assertTrue "File not generated" "[ -f \"$fdes\" ]"  
+  rm -f "$fori" "$fdes"
+  fori="/tmp/action321XP.txt"
+  touch "$fori"
+  $NH1 escape "$fori"
+  assertTrue "File not generated" "[ -f \"$fori\" ]"  
+  rm -f "$fori"
+}
+
 # Load shUnit2.
 if [ -f "$HOME/bin/shunit2" ]
 then
