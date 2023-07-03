@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TDIR="$(dirname "${BASH_SOURCE[0]}")"
+TREPEAT=10 #Random test: repeats X times
 
 NH1=$(grep nh1 ~/.bashrc | sed 's/source\ //')
 
@@ -97,6 +98,21 @@ testTip() {
   local tip=$($NH1 tip)
   assertTrue "1tip failed" $?
   assertTrue "1tip generated a empty string" "[ ${#tip} -gt 0 ]"
+}
+
+testSpChar() {
+  local i char
+  for i in $(seq 1 $TREPEAT)
+  do
+    char="$($NH1 spchar)"
+    assertEquals "1spchar returns a big string" 1 ${#char}
+    case $char in
+      \"|\*|\\|\{|\}|\^|ª|\-|\+|\¬)
+        char="_"
+        ;;
+    esac
+    assertTrue "1spchar returns non-special char" "! [[ \"$char\" == ['0-9a-zA-Z'] ]]"
+  done
 }
 
 # Load shUnit2.
