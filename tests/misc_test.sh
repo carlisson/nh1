@@ -52,7 +52,9 @@ testPdfOpt() {
   then 
     rm "$pdfoptf"
   fi
-  $NH1 pdfopt "$pdffile"
+  pushd "$TDIR" > /dev/null
+  $NH1 pdfopt example.pdf
+  popd > /dev/null
   assertTrue "Optimized PDF not created" "[ -f $pdfoptf ]"
   assertTrue "Optimized file is too big" "[ $(stat -c%s $pdffile) -gt $(stat -c%s $pdfoptf) ]"
   if [ -f "$pdfoptf" ]
@@ -89,6 +91,12 @@ testEscape() {
   $NH1 escape "$fori"
   assertTrue "File not generated" "[ -f \"$fori\" ]"  
   rm -f "$fori"
+}
+
+testTip() {
+  local tip=$($NH1 tip)
+  assertTrue "1tip failed" $?
+  assertTrue "1tip generated a empty string" "[ ${#tip} -gt 0 ]"
 }
 
 # Load shUnit2.
