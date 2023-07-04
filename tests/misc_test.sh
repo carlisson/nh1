@@ -115,6 +115,20 @@ testSpChar() {
   done
 }
 
+testBooklet() {
+  assertEquals "Booklet for 4 pages" "4 1 2 3" "$($NH1 booklet 4)"
+  assertEquals "Booklet for 5 pages" "5 1 2 5 5 3 4 5" "$($NH1 booklet 5)"
+  assertEquals "Booklet for 5 pages, blank=2" "2 1 2 2 2 3 4 5" "$($NH1 booklet 5 2)"
+  assertEquals "Booklet for 6 pages" "6 1 2 6 6 3 4 5" "$($NH1 booklet 6)"
+  assertEquals "Booklet for 7 pages" "7 1 2 7 6 3 4 5" "$($NH1 booklet 7)"
+  assertEquals "Booklet for 12 pages" "12 1 2 11 10 3 4 9 8 5 6 7" "$($NH1 booklet 12)"
+  assertEquals "Booklet for 4 pages, blank=2, double" "4 1 4 1 2 3 2 3" "$($NH1 booklet 4 2 double)"
+  assertEquals "Booklet for 5 pages, blank=4, double" "4 1 4 1 2 4 2 4 4 3 4 3 4 5 4 5" "$($NH1 booklet 5 4 double)"
+  assertEquals "Booklet for 6 pages, blank=2, double" "2 1 2 1 2 2 2 2 6 3 6 3 4 5 4 5" "$($NH1 booklet 6 2 double)"
+  assertEquals "Booklet for 7 pages, blank=6, double" "6 1 6 1 2 7 2 7 6 3 6 3 4 5 4 5" "$($NH1 booklet 7 6 double)"
+  assertEquals "Booklet for 12 pages, blank=2, double" "12 1 12 1 2 11 2 11 10 3 10 3 4 9 4 9 8 5 8 5 6 7 6 7" "$($NH1 booklet 12 2 double)"
+}
+
 # Load shUnit2.
 if [ -f "$HOME/bin/shunit2" ]
 then
