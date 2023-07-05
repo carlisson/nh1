@@ -528,7 +528,7 @@ _nh1app.tarball() {
                 APP_GET
                 fi
             
-                if [ -f "$_NADIR/$_NANEW" ]
+                if [ -e "$_NADIR/$_NANEW" ]
                 then
                     # If binary is a list, remove all symlinks
                     if [[ "$APP_BINARY" =~ ' ' ]]
