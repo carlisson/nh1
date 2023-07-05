@@ -432,3 +432,4 @@
 1.4e9  2023-07-03: created test for 1spchar
 1.4e10 2023-07-03: fixed firefox 1app recipe
 1.4e11 2023-07-03: created test for 1booklet
+1.4e12 2023-07-05: fixed firefox 1app recipe (broken for 115.0)

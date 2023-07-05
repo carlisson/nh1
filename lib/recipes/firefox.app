@@ -54,7 +54,7 @@ function APP_VERSION {
     #                        ALL 2nd GROUP=\(href=\"\([0-9\.]*\)\/\"\)
     #      This formula is fine for a lot of apps, but you can need to create a more
     #      soffisticated strategy in some situations.
-    echo "firefox-$(curl -sL 'https://www.mozilla.org/en-US/firefox/notes/' | tr '\n' ' ' | sed 's/\(.*\)www\.mozilla\.org\/\(.*\)firefox\/\(.*\)\/releasenotes\(.*\)/\3/')-tarball"
+    echo "firefox-$(curl -sL 'https://www.mozilla.org/en-US/firefox/notes/' | tr '\n' ' ' | sed 's/\(.*\)<div class="c-release-version">\([0-9\.]*\)<\/div>\(.*\)/\2/')-tarball"
 }
 
 # Code to effectly do the download AKI
@@ -71,7 +71,7 @@ function APP_GET {
 
     AGlang="$(echo "$LANG" | tr '_' '-' | sed 's/\..*//')"
     AGname="?product=firefox-latest-ssl&os=linux64&lang=$AGlang"
-    AGver="$(curl -sL 'https://www.mozilla.org/en-US/firefox/notes/' | tr '\n' ' ' | sed 's/\(.*\)www\.mozilla\.org\/\(.*\)firefox\/\(.*\)\/releasenotes\(.*\)/\3/')"
+    AGver="$(curl -sL 'https://www.mozilla.org/en-US/firefox/notes/' | tr '\n' ' ' | sed 's/\(.*\)<div class="c-release-version">\([0-9\.]*\)<\/div>\(.*\)/\2/')"
     $AGpre curl -O -L "https://download.mozilla.org/$AGname"
     $AGpre mkdir -p "firefox-$AGver-tarball"
     $AGpre tar -jxf "$AGname" -C "firefox-$AGver-tarball"

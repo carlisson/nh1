@@ -1189,7 +1189,7 @@ _nh1app.usage() {
     _URL="$1"
     _EXP="$2"
     _RE='\(.*\)\(.\{100\}%s.\{100\}\)\(.*\)'
-    _RES=$(curl -s "$_URL" | tr '\n' ' ' | sed "s/$(printf "$_RE" "$_EXP")/\2/" | grep -v "DOCTYPE")
+    _RES=$(curl -sL "$_URL" | tr '\n' ' ' | sed "s/$(printf "$_RE" "$_EXP")/\2/" | grep -v "DOCTYPE")
     if [ -n "$_RES" ]
     then
         echo "$_RES"
