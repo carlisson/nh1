@@ -129,6 +129,45 @@ testBooklet() {
   assertEquals "Booklet for 12 pages, blank=2, double" "12 1 12 1 2 11 2 11 10 3 10 3 4 9 4 9 8 5 8 5 6 7 6 7" "$($NH1 booklet 12 2 double)"
 }
 
+testTr() {
+  local i
+  local c
+  local strb stra # string-before and stringe-after
+
+  strb="1 2 3 testing 45,6 then 9 or 8 or 7 too."
+  for i in $(seq 0 9)
+  do
+    c='x'
+    stra="$(echo "$strb" | tr $i x)"
+    assertEquals "Digit check ($i)" "$stra" "$(echo "$strb" | $NH1 tr $i x)"
+  done
+
+  strb="The book is on the table. ABC or 80! 1+2=3 (Is this working?)"
+  for i in {a..z}
+  do
+    c='?'
+    stra="$(echo "$strb" | tr $i "$c")"
+    assertEquals "Alphabetic char check ($i)" "$stra" "$(echo "$strb" | $NH1 tr $i "$c")"
+  done
+  for i in {A..Z}
+  do
+    c='?'
+    stra="$(echo "$strb" | tr $i "$c")"
+    assertEquals "Alphabetic char check ($i)" "$stra" "$(echo "$strb" | $NH1 tr $i "$c")"
+  done
+  for i in ' ' '.' ',' ';' ':' '!' '?' '(' ')' '-' '+' '=' '%'
+  do
+    c='0'
+    stra="$(echo "$strb" | tr "$i" "$c")"
+    assertEquals "Simple special char check ($i)" "$stra" "$(echo "$strb" | $NH1 tr "$i" "$c")"
+  done
+
+  strb="Sábado faço 10% da 1ª atividade"
+  assertEquals "Special char check (á)" "Sabado faço 10% da 1ª atividade" "$(echo "$strb" | $NH1 tr "á" 'a')"
+  assertEquals "Special char check (ç)" "Sábado faco 10% da 1ª atividade" "$(echo "$strb" | $NH1 tr "ç" 'c')"
+  assertEquals "Special char check (ª)" "Sábado faço 10% da 1a atividade" "$(echo "$strb" | $NH1 tr "ª" 'a')"
+}
+
 # Load shUnit2.
 if [ -f "$HOME/bin/shunit2" ]
 then
