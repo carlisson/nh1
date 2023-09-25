@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-22 09:23-0300\n"
+"POT-Creation-Date: 2023-09-25 18:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,7 +906,7 @@ msgid "Youtube video URL"
 msgstr ""
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:221 canva.bashrc:247
-#: misc.bashrc:218 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:224 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
@@ -1388,303 +1388,325 @@ msgid "Replace a substring inside a string"
 msgstr ""
 
 #: misc.bashrc:29
-msgid "Counter 30-30-30 to router reset"
+msgid "Safely removes a file"
 msgstr ""
 
 #: misc.bashrc:30
-msgid "Returns a random special character"
+msgid "Counter 30-30-30 to router reset"
 msgstr ""
 
 #: misc.bashrc:31
-msgid "Makes a temporary file, directory or name"
+msgid "Returns a random special character"
 msgstr ""
 
 #: misc.bashrc:32
-msgid "Countdown timer."
+msgid "Makes a temporary file, directory or name"
 msgstr ""
 
 #: misc.bashrc:33
-msgid "Shows a random tip"
+msgid "Countdown timer."
 msgstr ""
 
 #: misc.bashrc:34
+msgid "Shows a random tip"
+msgstr ""
+
+#: misc.bashrc:35
 msgid "Translate char supporting unicode"
 msgstr ""
 
-#: misc.bashrc:70
+#: misc.bashrc:71
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr ""
 
-#: misc.bashrc:71
+#: misc.bashrc:72
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:86 misc.bashrc:89 misc.bashrc:92 misc.bashrc:95 misc.bashrc:98
-#: misc.bashrc:106 misc.bashrc:116 morph.bashrc:68 ui.bashrc:72 val.bashrc:60
+#: misc.bashrc:87 misc.bashrc:90 misc.bashrc:93 misc.bashrc:96 misc.bashrc:99
+#: misc.bashrc:112 misc.bashrc:122 morph.bashrc:68 ui.bashrc:72 val.bashrc:60
 msgid "Usage: %s [%s] [%s]"
 msgstr ""
 
-#: misc.bashrc:86
+#: misc.bashrc:87
 msgid "previous date or timestamp"
 msgstr ""
 
-#: misc.bashrc:86
+#: misc.bashrc:87
 msgid "Abbreviate [1]? 0:yes;1:no"
 msgstr ""
 
-#: misc.bashrc:89
+#: misc.bashrc:90
 msgid "text file"
 msgstr ""
 
-#: misc.bashrc:89
+#: misc.bashrc:90
 msgid "line number"
 msgstr ""
 
-#: misc.bashrc:92
+#: misc.bashrc:93
 msgid "PDF file"
 msgstr ""
 
-#: misc.bashrc:92
+#: misc.bashrc:93
 msgid "%s or %s. Default is %s"
 msgstr ""
 
-#: misc.bashrc:95
+#: misc.bashrc:96
 msgid "PNG file"
 msgstr ""
 
-#: misc.bashrc:95
+#: misc.bashrc:96
 msgid "Favicon output file (optional)"
 msgstr ""
 
-#: misc.bashrc:98
+#: misc.bashrc:99
 msgid "text to remove or start"
 msgstr ""
 
-#: misc.bashrc:98
+#: misc.bashrc:99
 msgid "end of interval to remove"
 msgstr ""
 
-#: misc.bashrc:99 misc.bashrc:103
+#: misc.bashrc:100 misc.bashrc:104
 msgid "Full text in stdin"
 msgstr ""
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "Usage: | %s [%s] [%s]"
 msgstr ""
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "old text"
 msgstr ""
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "new text"
 msgstr ""
 
-#: misc.bashrc:106
-msgid "mode. Default: name"
+#: misc.bashrc:107 morph.bashrc:73 network.bashrc:1080 network.bashrc:1113
+msgid "Usage: %s [%s]"
 msgstr ""
 
-#: misc.bashrc:106
-msgid "extension (optional)"
+#: misc.bashrc:107
+msgid "file to safely remove"
 msgstr ""
 
 #: misc.bashrc:108
-msgid "Operation mode"
+msgid ""
+"This command will permanently delete the file and it can no longer be "
+"recovered."
 msgstr ""
 
 #: misc.bashrc:109
-msgid "only creates a name/path"
-msgstr ""
-
-#: misc.bashrc:110
-msgid "creates a file"
-msgstr ""
-
-#: misc.bashrc:111
-msgid "creates a directory"
+msgid "You can give a list of files"
 msgstr ""
 
 #: misc.bashrc:112
+msgid "mode. Default: name"
+msgstr ""
+
+#: misc.bashrc:112
+msgid "extension (optional)"
+msgstr ""
+
+#: misc.bashrc:114
+msgid "Operation mode"
+msgstr ""
+
+#: misc.bashrc:115
+msgid "only creates a name/path"
+msgstr ""
+
+#: misc.bashrc:116
+msgid "creates a file"
+msgstr ""
+
+#: misc.bashrc:117
+msgid "creates a directory"
+msgstr ""
+
+#: misc.bashrc:118
 msgid "creates a file in current directory"
 msgstr ""
 
-#: misc.bashrc:113
+#: misc.bashrc:119
 msgid "Extension"
 msgstr ""
 
-#: misc.bashrc:113
+#: misc.bashrc:119
 msgid "Suffix, starting with a dot (.)"
 msgstr ""
 
-#: misc.bashrc:116
+#: misc.bashrc:122
 msgid "chars to find"
 msgstr ""
 
-#: misc.bashrc:116
+#: misc.bashrc:122
 msgid "chars to replace"
 msgstr ""
 
-#: misc.bashrc:185
+#: misc.bashrc:191
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr ""
 
-#: misc.bashrc:280 network.bashrc:282 network.bashrc:299 network.bashrc:318
+#: misc.bashrc:286 network.bashrc:282 network.bashrc:299 network.bashrc:318
 msgid "Usage:"
 msgstr ""
 
-#: misc.bashrc:283
+#: misc.bashrc:289
 msgid "Available timers"
 msgstr ""
 
-#: misc.bashrc:314
+#: misc.bashrc:320
 msgid "finished"
 msgstr ""
 
-#: misc.bashrc:343
+#: misc.bashrc:349
 msgid "30-30-30 method for router reseting"
 msgstr ""
 
-#: misc.bashrc:344
+#: misc.bashrc:350
 msgid "your router will lost all configuration"
 msgstr ""
 
-#: misc.bashrc:345
+#: misc.bashrc:351
 msgid "Turn on the router."
 msgstr ""
 
-#: misc.bashrc:346
+#: misc.bashrc:352
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:347
+#: misc.bashrc:353
 msgid "Turn off the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:348
+#: misc.bashrc:354
 msgid "Turn on the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:349
+#: misc.bashrc:355
 msgid "Release the button"
 msgstr ""
 
-#: misc.bashrc:350
+#: misc.bashrc:356
 msgid "Press ENTER when you are ready."
 msgstr ""
 
-#: misc.bashrc:352 misc.bashrc:356
+#: misc.bashrc:358 misc.bashrc:362
 msgid "Router on"
 msgstr ""
 
-#: misc.bashrc:354
+#: misc.bashrc:360
 msgid "Router off"
 msgstr ""
 
-#: misc.bashrc:359
+#: misc.bashrc:365
 msgid "Your router must be restarted with factory settings!"
 msgstr ""
 
-#: misc.bashrc:398
+#: misc.bashrc:404
 msgid "Tip groups: %s."
 msgstr ""
 
-#: misc.bashrc:406
+#: misc.bashrc:412
 msgid "No tips group %s found."
 msgstr ""
 
-#: misc.bashrc:557
+#: misc.bashrc:563
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 
-#: misc.bashrc:759
+#: misc.bashrc:765
 msgid "+1y"
 msgstr ""
 
-#: misc.bashrc:765
+#: misc.bashrc:771
 msgid "%s years"
 msgstr ""
 
-#: misc.bashrc:767
+#: misc.bashrc:773
 msgid "%s year"
 msgstr ""
 
-#: misc.bashrc:776
+#: misc.bashrc:782
 msgid "%sw"
 msgstr ""
 
-#: misc.bashrc:782
+#: misc.bashrc:788
 msgid "%s weeks"
 msgstr ""
 
-#: misc.bashrc:784
+#: misc.bashrc:790
 msgid "%s week"
 msgstr ""
 
-#: misc.bashrc:799
+#: misc.bashrc:805
 msgid "%sd"
 msgstr ""
 
-#: misc.bashrc:805
+#: misc.bashrc:811
 msgid "%s days"
 msgstr ""
 
-#: misc.bashrc:807
+#: misc.bashrc:813
 msgid "%s day"
 msgstr ""
 
-#: misc.bashrc:821
+#: misc.bashrc:827
 msgid "%sh"
 msgstr ""
 
-#: misc.bashrc:827
+#: misc.bashrc:833
 msgid "%s hours"
 msgstr ""
 
-#: misc.bashrc:829
+#: misc.bashrc:835
 msgid "%s hour"
 msgstr ""
 
-#: misc.bashrc:844
+#: misc.bashrc:850
 msgid "%smin"
 msgstr ""
 
-#: misc.bashrc:850
+#: misc.bashrc:856
 msgid "%s minutes"
 msgstr ""
 
-#: misc.bashrc:852
+#: misc.bashrc:858
 msgid "%s minute"
 msgstr ""
 
-#: misc.bashrc:868
+#: misc.bashrc:874
 msgid "%ss"
 msgstr ""
 
-#: misc.bashrc:874
+#: misc.bashrc:880
 msgid "%s seconds"
 msgstr ""
 
-#: misc.bashrc:876
+#: misc.bashrc:882
 msgid "%s second"
 msgstr ""
 
-#: misc.bashrc:890
+#: misc.bashrc:896
 msgid "%s, %s, %s, %s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:893
+#: misc.bashrc:899
 msgid "%s, %s, %s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:896
+#: misc.bashrc:902
 msgid "%s, %s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:899
+#: misc.bashrc:905
 msgid "%s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:902
+#: misc.bashrc:908
 msgid "%s and %s"
 msgstr ""
 
@@ -1714,10 +1736,6 @@ msgstr ""
 
 #: morph.bashrc:70
 msgid "You can apply more transformations using comma (ex: %s)"
-msgstr ""
-
-#: morph.bashrc:73 network.bashrc:1080 network.bashrc:1113
-msgid "Usage: %s [%s]"
 msgstr ""
 
 #: morph.bashrc:73

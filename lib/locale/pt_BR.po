@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-22 09:22-0300\n"
+"POT-Creation-Date: 2023-09-25 18:29-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -332,8 +332,8 @@ msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
 msgstr ""
-"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. \"gen"
-"\" pode ser substituído por qualquer coisa"
+"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. "
+"\"gen\" pode ser substituído por qualquer coisa"
 
 #: /home/bardo/sources/nh1/nh1:1018
 msgid ""
@@ -926,7 +926,7 @@ msgid "Youtube video URL"
 msgstr "URL de vídeo do Youtube"
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:221 canva.bashrc:247
-#: misc.bashrc:218 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:224 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -1415,305 +1415,329 @@ msgid "Replace a substring inside a string"
 msgstr "Substitui uma substring dentro de uma string"
 
 #: misc.bashrc:29
+msgid "Safely removes a file"
+msgstr "Remove um arquivo com segurança"
+
+#: misc.bashrc:30
 msgid "Counter 30-30-30 to router reset"
 msgstr "Contador 30-30-30 para reset de roteador"
 
-#: misc.bashrc:30
+#: misc.bashrc:31
 msgid "Returns a random special character"
 msgstr "Retorna um caractere especial aleatório"
 
-#: misc.bashrc:31
+#: misc.bashrc:32
 msgid "Makes a temporary file, directory or name"
 msgstr "Cria um arquivo, diretório ou nome demporário"
 
-#: misc.bashrc:32
+#: misc.bashrc:33
 msgid "Countdown timer."
 msgstr "Temporizador regressivo."
 
-#: misc.bashrc:33
+#: misc.bashrc:34
 msgid "Shows a random tip"
 msgstr "Mostra uma dica aleatória"
 
-#: misc.bashrc:34
+#: misc.bashrc:35
 msgid "Translate char supporting unicode"
 msgstr "Traduz caractere suportando unicode"
 
-#: misc.bashrc:70
+#: misc.bashrc:71
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr "Duração de um Pomodoro (%s). Default: %s minutos."
 
-#: misc.bashrc:71
+#: misc.bashrc:72
 msgid "Path for tip groups (text files)."
 msgstr "Caminho para os grupos de dicas (arquivos de texto)."
 
-#: misc.bashrc:86 misc.bashrc:89 misc.bashrc:92 misc.bashrc:95 misc.bashrc:98
-#: misc.bashrc:106 misc.bashrc:116 morph.bashrc:68 ui.bashrc:72 val.bashrc:60
+#: misc.bashrc:87 misc.bashrc:90 misc.bashrc:93 misc.bashrc:96 misc.bashrc:99
+#: misc.bashrc:112 misc.bashrc:122 morph.bashrc:68 ui.bashrc:72 val.bashrc:60
 msgid "Usage: %s [%s] [%s]"
 msgstr "Uso: %s [%s] [%s]"
 
-#: misc.bashrc:86
+#: misc.bashrc:87
 msgid "previous date or timestamp"
 msgstr "data anterior ou timestamp"
 
-#: misc.bashrc:86
+#: misc.bashrc:87
 msgid "Abbreviate [1]? 0:yes;1:no"
 msgstr "Abreviar [1]? 0:sim;1:não"
 
-#: misc.bashrc:89
+#: misc.bashrc:90
 msgid "text file"
 msgstr "arquivo de texto"
 
-#: misc.bashrc:89
+#: misc.bashrc:90
 msgid "line number"
 msgstr "número da linha"
 
-#: misc.bashrc:92
+#: misc.bashrc:93
 msgid "PDF file"
 msgstr "arquivo PDF"
 
-#: misc.bashrc:92
+#: misc.bashrc:93
 msgid "%s or %s. Default is %s"
 msgstr "%s ou %s. Default é %s."
 
-#: misc.bashrc:95
+#: misc.bashrc:96
 msgid "PNG file"
 msgstr "arquivo PNG"
 
-#: misc.bashrc:95
+#: misc.bashrc:96
 msgid "Favicon output file (optional)"
 msgstr "arquivo favicon de saída (opcional)"
 
-#: misc.bashrc:98
+#: misc.bashrc:99
 msgid "text to remove or start"
 msgstr "texto para remover ou início"
 
-#: misc.bashrc:98
+#: misc.bashrc:99
 msgid "end of interval to remove"
 msgstr "fim do intervalo para remover"
 
-#: misc.bashrc:99 misc.bashrc:103
+#: misc.bashrc:100 misc.bashrc:104
 msgid "Full text in stdin"
 msgstr "Texto inteiro na entrada padrão"
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "Usage: | %s [%s] [%s]"
 msgstr "Uso: | %s [%s] [%s]"
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "old text"
 msgstr "texto anterior"
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "new text"
 msgstr "texto novo"
 
-#: misc.bashrc:106
+#: misc.bashrc:107 morph.bashrc:73 network.bashrc:1080 network.bashrc:1113
+msgid "Usage: %s [%s]"
+msgstr "Uso: %s [%s]"
+
+#: misc.bashrc:107
+msgid "file to safely remove"
+msgstr "arquivo a remover com segurança"
+
+#: misc.bashrc:108
+msgid ""
+"This command will permanently delete the file and it can no longer be "
+"recovered."
+msgstr ""
+"Este comando deletará o arquivo permanentemente e ele não poderá mais ser "
+"recuperado."
+
+#: misc.bashrc:109
+msgid "You can give a list of files"
+msgstr "Você pode fornecer uma lista de arquivos"
+
+#: misc.bashrc:112
 msgid "mode. Default: name"
 msgstr "modo. Default: name"
 
-#: misc.bashrc:106
+#: misc.bashrc:112
 msgid "extension (optional)"
 msgstr "extensão (opcional)"
 
-#: misc.bashrc:108
+#: misc.bashrc:114
 msgid "Operation mode"
 msgstr "Modo de operação"
 
-#: misc.bashrc:109
+#: misc.bashrc:115
 msgid "only creates a name/path"
 msgstr "só cria um nome/caminho"
 
-#: misc.bashrc:110
+#: misc.bashrc:116
 msgid "creates a file"
 msgstr "cria um arquivo"
 
-#: misc.bashrc:111
+#: misc.bashrc:117
 msgid "creates a directory"
 msgstr "cria um diretório"
 
-#: misc.bashrc:112
+#: misc.bashrc:118
 msgid "creates a file in current directory"
 msgstr "cria um arquivo no diretório atual"
 
-#: misc.bashrc:113
+#: misc.bashrc:119
 msgid "Extension"
 msgstr "Extensão"
 
-#: misc.bashrc:113
+#: misc.bashrc:119
 msgid "Suffix, starting with a dot (.)"
 msgstr "Sufixo, começando com um ponto (.)"
 
-#: misc.bashrc:116
+#: misc.bashrc:122
 msgid "chars to find"
 msgstr "caracteres a buscar"
 
-#: misc.bashrc:116
+#: misc.bashrc:122
 msgid "chars to replace"
 msgstr "caracteres a substituir"
 
-#: misc.bashrc:185
+#: misc.bashrc:191
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr "Palavras %s %s; especial %s; transformações %s %s."
 
-#: misc.bashrc:280 network.bashrc:282 network.bashrc:299 network.bashrc:318
+#: misc.bashrc:286 network.bashrc:282 network.bashrc:299 network.bashrc:318
 msgid "Usage:"
 msgstr "Uso:"
 
-#: misc.bashrc:283
+#: misc.bashrc:289
 msgid "Available timers"
 msgstr "Temporizadores disponíveis"
 
-#: misc.bashrc:314
+#: misc.bashrc:320
 msgid "finished"
 msgstr "concluído"
 
-#: misc.bashrc:343
+#: misc.bashrc:349
 msgid "30-30-30 method for router reseting"
 msgstr "Método 30-30-30 para resetar um roteador"
 
-#: misc.bashrc:344
+#: misc.bashrc:350
 msgid "your router will lost all configuration"
 msgstr "seu roteador perderá toda a configuração"
 
-#: misc.bashrc:345
+#: misc.bashrc:351
 msgid "Turn on the router."
 msgstr "Ligue o roteador."
 
-#: misc.bashrc:346
+#: misc.bashrc:352
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr "Pressione e segure o botão reset. Espere 30 segundos."
 
-#: misc.bashrc:347
+#: misc.bashrc:353
 msgid "Turn off the router. Wait 30 seconds."
 msgstr "Desligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:348
+#: misc.bashrc:354
 msgid "Turn on the router. Wait 30 seconds."
 msgstr "Ligue o roteador. Espere 30 segundos."
 
-#: misc.bashrc:349
+#: misc.bashrc:355
 msgid "Release the button"
 msgstr "Solte o botão"
 
-#: misc.bashrc:350
+#: misc.bashrc:356
 msgid "Press ENTER when you are ready."
 msgstr "Pressione ENTER quando estiver pronto."
 
-#: misc.bashrc:352 misc.bashrc:356
+#: misc.bashrc:358 misc.bashrc:362
 msgid "Router on"
 msgstr "Roteador ligado"
 
-#: misc.bashrc:354
+#: misc.bashrc:360
 msgid "Router off"
 msgstr "Roteador desligado"
 
-#: misc.bashrc:359
+#: misc.bashrc:365
 msgid "Your router must be restarted with factory settings!"
 msgstr "Seu roteador deve estar resetado com a configuração de fábrica!"
 
-#: misc.bashrc:398
+#: misc.bashrc:404
 msgid "Tip groups: %s."
 msgstr "Grupos de dicas: %s."
 
-#: misc.bashrc:406
+#: misc.bashrc:412
 msgid "No tips group %s found."
 msgstr "Nenhum grupo de dica com o nome %s."
 
-#: misc.bashrc:557
+#: misc.bashrc:563
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 "Arquivo de entrada %s com %i páginas, saída %s. Sequência: %s. Arquivo "
 "temporário: %s."
 
-#: misc.bashrc:759
+#: misc.bashrc:765
 msgid "+1y"
 msgstr "+1a"
 
-#: misc.bashrc:765
+#: misc.bashrc:771
 msgid "%s years"
 msgstr "%s anos"
 
-#: misc.bashrc:767
+#: misc.bashrc:773
 msgid "%s year"
 msgstr "%s ano"
 
-#: misc.bashrc:776
+#: misc.bashrc:782
 msgid "%sw"
 msgstr "%ssem"
 
-#: misc.bashrc:782
+#: misc.bashrc:788
 msgid "%s weeks"
 msgstr "%s semanas"
 
-#: misc.bashrc:784
+#: misc.bashrc:790
 msgid "%s week"
 msgstr "%s semana"
 
-#: misc.bashrc:799
+#: misc.bashrc:805
 msgid "%sd"
 msgstr "%sd"
 
-#: misc.bashrc:805
+#: misc.bashrc:811
 msgid "%s days"
 msgstr "%s dias"
 
-#: misc.bashrc:807
+#: misc.bashrc:813
 msgid "%s day"
 msgstr "%s dia"
 
-#: misc.bashrc:821
+#: misc.bashrc:827
 msgid "%sh"
 msgstr "%sh"
 
-#: misc.bashrc:827
+#: misc.bashrc:833
 msgid "%s hours"
 msgstr "%s horas"
 
-#: misc.bashrc:829
+#: misc.bashrc:835
 msgid "%s hour"
 msgstr "%s hora"
 
-#: misc.bashrc:844
+#: misc.bashrc:850
 msgid "%smin"
 msgstr "%smin"
 
-#: misc.bashrc:850
+#: misc.bashrc:856
 msgid "%s minutes"
 msgstr "%s minutos"
 
-#: misc.bashrc:852
+#: misc.bashrc:858
 msgid "%s minute"
 msgstr "%s minuto"
 
-#: misc.bashrc:868
+#: misc.bashrc:874
 msgid "%ss"
 msgstr "%ss"
 
-#: misc.bashrc:874
+#: misc.bashrc:880
 msgid "%s seconds"
 msgstr "%s segundos"
 
-#: misc.bashrc:876
+#: misc.bashrc:882
 msgid "%s second"
 msgstr "%s segundo"
 
-#: misc.bashrc:890
+#: misc.bashrc:896
 msgid "%s, %s, %s, %s, %s and %s"
 msgstr "%s, %s, %s, %s, %s e %s"
 
-#: misc.bashrc:893
+#: misc.bashrc:899
 msgid "%s, %s, %s, %s and %s"
 msgstr "%s, %s, %s, %s e %s"
 
-#: misc.bashrc:896
+#: misc.bashrc:902
 msgid "%s, %s, %s and %s"
 msgstr "%s, %s, %s e %s"
 
-#: misc.bashrc:899
+#: misc.bashrc:905
 msgid "%s, %s and %s"
 msgstr "%s, %s e %s"
 
-#: misc.bashrc:902
+#: misc.bashrc:908
 msgid "%s and %s"
 msgstr "%s e %s"
 
@@ -1744,10 +1768,6 @@ msgstr "Transformações disponíveis: %s."
 #: morph.bashrc:70
 msgid "You can apply more transformations using comma (ex: %s)"
 msgstr "Você pode aplicar mais tranformações usando vírgula (ex: %s)"
-
-#: morph.bashrc:73 network.bashrc:1080 network.bashrc:1113
-msgid "Usage: %s [%s]"
-msgstr "Uso: %s [%s]"
 
 #: morph.bashrc:73
 msgid "number"
