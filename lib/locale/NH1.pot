@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-15 23:39-0300\n"
+"POT-Creation-Date: 2023-10-15 23:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,7 +906,7 @@ msgid "Youtube video URL"
 msgstr ""
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:221 canva.bashrc:247
-#: misc.bashrc:222 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:228 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
@@ -1392,315 +1392,334 @@ msgid "Replace a substring inside a string"
 msgstr ""
 
 #: misc.bashrc:30
-msgid "Counter 30-30-30 to router reset"
+msgid "Safely removes a file"
 msgstr ""
 
 #: misc.bashrc:31
-msgid "Returns a random special character"
+msgid "Counter 30-30-30 to router reset"
 msgstr ""
 
 #: misc.bashrc:32
-msgid "Makes a temporary file, directory or name"
+msgid "Returns a random special character"
 msgstr ""
 
 #: misc.bashrc:33
-msgid "Countdown timer."
+msgid "Makes a temporary file, directory or name"
 msgstr ""
 
 #: misc.bashrc:34
-msgid "Shows a random tip"
+msgid "Countdown timer."
 msgstr ""
 
 #: misc.bashrc:35
+msgid "Shows a random tip"
+msgstr ""
+
+#: misc.bashrc:36
 msgid "Translate char supporting unicode"
 msgstr ""
 
-#: misc.bashrc:71
+#: misc.bashrc:72
 msgid "Duration of a Pomodoro (%s). Default: %s min."
 msgstr ""
 
-#: misc.bashrc:72
+#: misc.bashrc:73
 msgid "Path for tip groups (text files)."
 msgstr ""
 
-#: misc.bashrc:87 misc.bashrc:90 misc.bashrc:93 misc.bashrc:99 misc.bashrc:102
-#: misc.bashrc:110 misc.bashrc:120 morph.bashrc:68 ui.bashrc:72 val.bashrc:60
+#: misc.bashrc:88 misc.bashrc:91 misc.bashrc:94 misc.bashrc:100 misc.bashrc:103
+#: misc.bashrc:116 misc.bashrc:126 morph.bashrc:68 ui.bashrc:72 val.bashrc:60
 msgid "Usage: %s [%s] [%s]"
 msgstr ""
 
-#: misc.bashrc:87
+#: misc.bashrc:88
 msgid "previous date or timestamp"
 msgstr ""
 
-#: misc.bashrc:87
+#: misc.bashrc:88
 msgid "Abbreviate [1]? 0:yes;1:no"
 msgstr ""
 
-#: misc.bashrc:90
+#: misc.bashrc:91
 msgid "text file"
 msgstr ""
 
-#: misc.bashrc:90
+#: misc.bashrc:91
 msgid "line number"
 msgstr ""
 
-#: misc.bashrc:93
+#: misc.bashrc:94
 msgid "PDF file"
 msgstr ""
 
-#: misc.bashrc:93
+#: misc.bashrc:94
 msgid "%s or %s. Default is %s"
 msgstr ""
 
-#: misc.bashrc:96 morph.bashrc:73 network.bashrc:1080 network.bashrc:1113
+#: misc.bashrc:97 misc.bashrc:111 morph.bashrc:73 network.bashrc:1080
+#: network.bashrc:1113
 msgid "Usage: %s [%s]"
 msgstr ""
 
-#: misc.bashrc:96
+#: misc.bashrc:97
 msgid "8-pages PDF file"
 msgstr ""
 
-#: misc.bashrc:99
+#: misc.bashrc:100
 msgid "PNG file"
 msgstr ""
 
-#: misc.bashrc:99
+#: misc.bashrc:100
 msgid "Favicon output file (optional)"
 msgstr ""
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "text to remove or start"
 msgstr ""
 
-#: misc.bashrc:102
+#: misc.bashrc:103
 msgid "end of interval to remove"
 msgstr ""
 
-#: misc.bashrc:103 misc.bashrc:107
+#: misc.bashrc:104 misc.bashrc:108
 msgid "Full text in stdin"
 msgstr ""
 
-#: misc.bashrc:106
+#: misc.bashrc:107
 msgid "Usage: | %s [%s] [%s]"
 msgstr ""
 
-#: misc.bashrc:106
+#: misc.bashrc:107
 msgid "old text"
 msgstr ""
 
-#: misc.bashrc:106
+#: misc.bashrc:107
 msgid "new text"
 msgstr ""
 
-#: misc.bashrc:110
-msgid "mode. Default: name"
-msgstr ""
-
-#: misc.bashrc:110
-msgid "extension (optional)"
+#: misc.bashrc:111
+msgid "file to safely remove"
 msgstr ""
 
 #: misc.bashrc:112
-msgid "Operation mode"
+msgid ""
+"This command will permanently delete the file and it can no longer be "
+"recovered."
 msgstr ""
 
 #: misc.bashrc:113
-msgid "only creates a name/path"
-msgstr ""
-
-#: misc.bashrc:114
-msgid "creates a file"
-msgstr ""
-
-#: misc.bashrc:115
-msgid "creates a directory"
+msgid "You can give a list of files"
 msgstr ""
 
 #: misc.bashrc:116
+msgid "mode. Default: name"
+msgstr ""
+
+#: misc.bashrc:116
+msgid "extension (optional)"
+msgstr ""
+
+#: misc.bashrc:118
+msgid "Operation mode"
+msgstr ""
+
+#: misc.bashrc:119
+msgid "only creates a name/path"
+msgstr ""
+
+#: misc.bashrc:120
+msgid "creates a file"
+msgstr ""
+
+#: misc.bashrc:121
+msgid "creates a directory"
+msgstr ""
+
+#: misc.bashrc:122
 msgid "creates a file in current directory"
 msgstr ""
 
-#: misc.bashrc:117
+#: misc.bashrc:123
 msgid "Extension"
 msgstr ""
 
-#: misc.bashrc:117
+#: misc.bashrc:123
 msgid "Suffix, starting with a dot (.)"
 msgstr ""
 
-#: misc.bashrc:120
+#: misc.bashrc:126
 msgid "chars to find"
 msgstr ""
 
-#: misc.bashrc:120
+#: misc.bashrc:126
 msgid "chars to replace"
 msgstr ""
 
-#: misc.bashrc:189
+#: misc.bashrc:195
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr ""
 
-#: misc.bashrc:284 network.bashrc:282 network.bashrc:299 network.bashrc:318
+#: misc.bashrc:290 network.bashrc:282 network.bashrc:299 network.bashrc:318
 msgid "Usage:"
 msgstr ""
 
-#: misc.bashrc:287
+#: misc.bashrc:293
 msgid "Available timers"
 msgstr ""
 
-#: misc.bashrc:318
+#: misc.bashrc:324
 msgid "finished"
 msgstr ""
 
-#: misc.bashrc:347
+#: misc.bashrc:353
 msgid "30-30-30 method for router reseting"
 msgstr ""
 
-#: misc.bashrc:348
+#: misc.bashrc:354
 msgid "your router will lost all configuration"
 msgstr ""
 
-#: misc.bashrc:349
+#: misc.bashrc:355
 msgid "Turn on the router."
 msgstr ""
 
-#: misc.bashrc:350
+#: misc.bashrc:356
 msgid "Press and hold reset button. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:351
+#: misc.bashrc:357
 msgid "Turn off the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:352
+#: misc.bashrc:358
 msgid "Turn on the router. Wait 30 seconds."
 msgstr ""
 
-#: misc.bashrc:353
+#: misc.bashrc:359
 msgid "Release the button"
 msgstr ""
 
-#: misc.bashrc:354
+#: misc.bashrc:360
 msgid "Press ENTER when you are ready."
 msgstr ""
 
-#: misc.bashrc:356 misc.bashrc:360
+#: misc.bashrc:362 misc.bashrc:366
 msgid "Router on"
 msgstr ""
 
-#: misc.bashrc:358
+#: misc.bashrc:364
 msgid "Router off"
 msgstr ""
 
-#: misc.bashrc:363
+#: misc.bashrc:369
 msgid "Your router must be restarted with factory settings!"
 msgstr ""
 
-#: misc.bashrc:402
+#: misc.bashrc:408
 msgid "Tip groups: %s."
 msgstr ""
 
-#: misc.bashrc:410
+#: misc.bashrc:416
 msgid "No tips group %s found."
 msgstr ""
 
-#: misc.bashrc:561
+#: misc.bashrc:567
 msgid "Input file %s with %i pages, output %s. Sequence: %s Temp file: %s."
 msgstr ""
 
-#: misc.bashrc:763
+#: misc.bashrc:769
 msgid "+1y"
 msgstr ""
 
-#: misc.bashrc:769
+#: misc.bashrc:775
 msgid "%s years"
 msgstr ""
 
-#: misc.bashrc:771
+#: misc.bashrc:777
 msgid "%s year"
 msgstr ""
 
-#: misc.bashrc:780
+#: misc.bashrc:786
 msgid "%sw"
 msgstr ""
 
-#: misc.bashrc:786
+#: misc.bashrc:792
 msgid "%s weeks"
 msgstr ""
 
-#: misc.bashrc:788
+#: misc.bashrc:794
 msgid "%s week"
 msgstr ""
 
-#: misc.bashrc:803
+#: misc.bashrc:809
 msgid "%sd"
 msgstr ""
 
-#: misc.bashrc:809
+#: misc.bashrc:815
 msgid "%s days"
 msgstr ""
 
-#: misc.bashrc:811
+#: misc.bashrc:817
 msgid "%s day"
 msgstr ""
 
-#: misc.bashrc:825
+#: misc.bashrc:831
 msgid "%sh"
 msgstr ""
 
-#: misc.bashrc:831
+#: misc.bashrc:837
 msgid "%s hours"
 msgstr ""
 
-#: misc.bashrc:833
+#: misc.bashrc:839
 msgid "%s hour"
 msgstr ""
 
-#: misc.bashrc:848
+#: misc.bashrc:854
 msgid "%smin"
 msgstr ""
 
-#: misc.bashrc:854
+#: misc.bashrc:860
 msgid "%s minutes"
 msgstr ""
 
-#: misc.bashrc:856
+#: misc.bashrc:862
 msgid "%s minute"
 msgstr ""
 
-#: misc.bashrc:872
+#: misc.bashrc:878
 msgid "%ss"
 msgstr ""
 
-#: misc.bashrc:878
+#: misc.bashrc:884
 msgid "%s seconds"
 msgstr ""
 
-#: misc.bashrc:880
+#: misc.bashrc:886
 msgid "%s second"
 msgstr ""
 
-#: misc.bashrc:894
+#: misc.bashrc:900
 msgid "%s, %s, %s, %s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:897
+#: misc.bashrc:903
 msgid "%s, %s, %s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:900
+#: misc.bashrc:906
 msgid "%s, %s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:903
+#: misc.bashrc:909
 msgid "%s, %s and %s"
 msgstr ""
 
-#: misc.bashrc:906
+#: misc.bashrc:912
 msgid "%s and %s"
 msgstr ""
 
-#: misc.bashrc:969
+#: misc.bashrc:975
 msgid "PDF file don't have 8 pages"
 msgstr ""
 

@@ -27,6 +27,7 @@ _nh1misc.menu() {
   _1menuitem W 1power "$(_1text "Print percentage for battery (notebook)")" upower
   _1menuitem X 1remove "$(_1text "Remove a substring from a string")"
   _1menuitem X 1replace "$(_1text "Replace a substring inside a string")"
+  _1menuitem X 1rm "$(_1text "Safely removes a file")" shred
   _1menuitem W 1rr30 "$(_1text "Counter 30-30-30 to router reset")" seq
   _1menuitem X 1spchar "$(_1text "Returns a random special character")"
   _1menuitem X 1temp "$(_1text "Makes a temporary file, directory or name")"
@@ -43,7 +44,7 @@ _nh1misc.clean() {
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
   unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp 1line
-  unset -f 1elapsed 1png2ico
+  unset -f 1elapsed 1png2ico 1rm
 }
 
 # @description Autocompletion
@@ -105,6 +106,11 @@ _nh1misc.usage() {
     replace)
         printf "$(_1text "Usage: | %s [%s] [%s]")\n" "1$1" "$(_1text "old text")" "$(_1text "new text")"
         printf "  - %s\n" "$(_1text "Full text in stdin")"
+        ;;
+    rm)
+        printf "$(_1text "Usage: %s [%s]")\n" "1$1" "$(_1text "file to safely remove")"
+        printf "  - %s\n" "$(_1text "This command will permanently delete the file and it can no longer be recovered.")"
+        printf "  - %s\n" "$(_1text "You can give a list of files")"
         ;;
     temp)
       printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "mode. Default: name")" "$(_1text "extension (optional)")"
@@ -966,14 +972,32 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
     if [ "$_PAG" -ne 8 ]
     then
-		_1message error "$(_1text "PDF file don't have 8 pages")"
-		return 1
-	fi
+		  _1message error "$(_1text "PDF file don't have 8 pages")"
+		  return 1
+	  fi
     _TMP1="$(1temp .pdf)"
     _TMP2="$(1temp .pdf)"
     pdfjam "$_INF" 8,1,2,3 -o "$_TMP1"
     pdfjam --angle 180 "$_INF" 7,6,5,4 -o "$_TMP2"
     pdfjam "$_TMP1" "$_TMP2" --nup 4x2 --landscape -o "$_OUF"
     rm $_TMP1 $_TMP2
+  fi
+}
+
+# @description Safely removes a file
+# @arg $1 string File to remove
+1rm() {
+  local _FIL
+  if [ $# -gt 0 ]
+  then
+    if 1check shred
+    then
+      for _FIL in "$@"
+      do
+        shred -vzu -n5 "$_FIL"
+      done
+    fi
+  else
+    _nh1misc.usage rm
   fi
 }
