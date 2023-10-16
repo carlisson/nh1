@@ -20,6 +20,7 @@ _nh1misc.menu() {
   _1menuitem X 1line "$(_1text "Get a specific line from a text file")"
   _1menuitem W 1pass "$(_1text "Generate a secure password")" openssl
   _1menuitem W 1pdfbkl "$(_1text "Make a booklet form a PDF file")" pdfjam
+  _1menuitem X 1pdfpmd "$(_1text "Make a pocketmod from a PDF file")" pdfjam
   _1menuitem W 1pdfopt "$(_1text "Compress a PDF file")" gs
   _1menuitem X 1png2ico "$(_1text "Generates a favicon from a PNG file")" convert
   _1menuitem W 1pomo "$(printf "$(_1text "Run one pomodoro (default is %s min)")" "$_1MISCPOMOMIN")" seq
@@ -90,6 +91,9 @@ _nh1misc.usage() {
         ;;
     pdfbkl)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "PDF file")" "$(printf "$(_1text "%s or %s. Default is %s")" "single" "double" "single")"
+        ;;
+    pdfpmd)
+        printf "$(_1text "Usage: %s [%s]")\n" "1$1" "$(_1text "8-pages PDF file")"
         ;;
     png2ico)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "PNG file")" "$(_1text "Favicon output file (optional)")"
@@ -942,5 +946,34 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
     return $?
   else
     return 2
+  fi
+}
+
+# @description Make a booklet from a PDF file
+# @arg $1 string 8-pages PDF input file
+1pdfpmd() {
+	_1before
+  local _INF _OUF _PAG _TMP1 _TMP2
+  if 1check pdfinfo pdfjam
+  then
+    if [ $# -ne 1 ]
+    then
+      _nh1misc.usage "pdfpmd"
+      return 0
+    fi
+    _INF="$1"
+    _OUF=$(echo "$_INF" | 1replace '.pdf' '-pocketmod.pdf')
+    _PAG=$(pdfinfo $_INF | grep Pages | xargs | cut -d\  -f 2)
+    if [ "$_PAG" -ne 8 ]
+    then
+		_1message error "$(_1text "PDF file don't have 8 pages")"
+		return 1
+	fi
+    _TMP1="$(1temp .pdf)"
+    _TMP2="$(1temp .pdf)"
+    pdfjam "$_INF" 8,1,2,3 -o "$_TMP1"
+    pdfjam --angle 180 "$_INF" 7,6,5,4 -o "$_TMP2"
+    pdfjam "$_TMP1" "$_TMP2" --nup 4x2 --landscape -o "$_OUF"
+    rm $_TMP1 $_TMP2
   fi
 }
