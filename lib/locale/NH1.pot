@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-15 23:57-0300\n"
+"POT-Creation-Date: 2024-01-24 09:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -905,7 +905,7 @@ msgstr ""
 msgid "Youtube video URL"
 msgstr ""
 
-#: audio.bashrc:186 backup.bashrc:194 canva.bashrc:221 canva.bashrc:247
+#: audio.bashrc:186 backup.bashrc:194 canva.bashrc:237 canva.bashrc:263
 #: misc.bashrc:228 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
@@ -1135,55 +1135,83 @@ msgstr ""
 msgid "Putting %s \"%s\" into %s directory on %s"
 msgstr ""
 
-#: canva.bashrc:12
+#: canva.bashrc:13
 msgid "Canva Section"
 msgstr ""
 
-#: canva.bashrc:13 canva.bashrc:17
+#: canva.bashrc:14 canva.bashrc:18
 msgid "List all templates or help for given template"
 msgstr ""
 
-#: canva.bashrc:14
+#: canva.bashrc:15
 msgid "Generate image from template"
 msgstr ""
 
-#: canva.bashrc:15 canva.bashrc:19
+#: canva.bashrc:16 canva.bashrc:20
 msgid "Install or update a template"
 msgstr ""
 
-#: canva.bashrc:16 canva.bashrc:20
+#: canva.bashrc:17 canva.bashrc:21
 msgid "Remove installed template"
 msgstr ""
 
-#: canva.bashrc:18
+#: canva.bashrc:19
 msgid "Generates image from template"
 msgstr ""
 
-#: canva.bashrc:50
+#: canva.bashrc:22
+msgid "Download random wallpaper"
+msgstr ""
+
+#: canva.bashrc:54
 msgid "Path for 1canva and 1token internal templates."
 msgstr ""
 
-#: canva.bashrc:51
+#: canva.bashrc:55
 msgid "Size for 1token images (it will be generated as squares sizexsize)."
 msgstr ""
 
-#: canva.bashrc:93
+#: canva.bashrc:56
+msgid "Image categories from unsplash"
+msgstr ""
+
+#: canva.bashrc:64
+msgid "Usage: %s %s ([%s] [%s])"
+msgstr ""
+
+#: canva.bashrc:64
+msgid "output image file"
+msgstr ""
+
+#: canva.bashrc:64
+msgid "input pdf"
+msgstr ""
+
+#: canva.bashrc:64
+msgid "cut coords"
+msgstr ""
+
+#: canva.bashrc:65
+msgid "to create a rectangle from A (x1,y1) to B (x2,y2). Format: x1,y1-x2,y2."
+msgstr ""
+
+#: canva.bashrc:109
 msgid "Help for template: %s."
 msgstr ""
 
-#: canva.bashrc:113 canva.bashrc:132
+#: canva.bashrc:129 canva.bashrc:148
 msgid "Templates: %s."
 msgstr ""
 
-#: canva.bashrc:117 canva.bashrc:136
+#: canva.bashrc:133 canva.bashrc:152
 msgid "No template found."
 msgstr ""
 
-#: canva.bashrc:151 canva.bashrc:196
+#: canva.bashrc:167 canva.bashrc:212
 msgid "Usages:"
 msgstr ""
 
-#: canva.bashrc:262 canva.bashrc:274
+#: canva.bashrc:278 canva.bashrc:290
 msgid "Template %s not found."
 msgstr ""
 
@@ -2614,10 +2642,6 @@ msgstr ""
 
 #: recipes/ventoy.app:8
 msgid "A new Bootable USB Solution"
-msgstr ""
-
-#: recipes/vscodium.app:4
-msgid "Editor for programmer"
 msgstr ""
 
 #: recipes/whalebird.app:8

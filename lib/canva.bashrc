@@ -6,6 +6,7 @@
 
 _1CANVALOCAL="$_1UDATA/canvas"
 _1TOKENSIZE=500
+_1WPTAGS="cyberpunk,vintage"
 
 # @description Generate partial menu
 _nh1canva.menu() {
@@ -18,6 +19,7 @@ _nh1canva.menu() {
   _1menuitem X 1tokengen "$(_1text "Generates image from template")" convert
   _1menuitem X 1tokenadd "$(_1text "Install or update a template")"
   _1menuitem W 1tokendel "$(_1text "Remove installed template")"
+  _1menuitem X 1wallpaper "$(_1text "Download random wallpaper")" wget pdftoppm convert composite
 }
 
 # @description Destroy all global variables created by this file
@@ -28,6 +30,7 @@ _nh1canva.clean() {
   unset -f _nh1canva.thelp _nh1canva.clean _nh1canva.complete.list
   unset -f _nh1canva.menu _nh1canva.init 1token 1tokenadd 1tokengen
   unset -f 1tokendel _nh1canva.complete.listp _nh1canva.complete.tokenadd
+  unset -f 1wallpaper _nh1canva.usage _nh1canva.get_unsplash
 }
 
 # @description Auto-completion
@@ -43,12 +46,25 @@ _nh1canva.complete() {
 _nh1canva.customvars() {
     _1customvar NORG_CANVA_DIR _1CANVALOCAL
     _1customvar NORG_TOKEN_SIZE _1TOKENSIZE number
+    _1customvar NORG_WALLPAPER_TAGS _1WPTAGS
 }
 
 # @description Information about custom vars
 _nh1canva.info() {
     _1menuitem W NORG_CANVA_DIR "$(_1text "Path for 1canva and 1token internal templates.")"
     _1menuitem W NORG_TOKEN_SIZE "$(_1text "Size for 1token images (it will be generated as squares sizexsize).")"
+    _1menuitem W NORG_WALLPAPER_TAGS "$(_1text "Image categories from unsplash")"
+}
+
+# @description Usage instructions
+# @arg $1 string Public function name
+_nh1canva.usage() {
+  case $1 in
+    wallpaper)
+        printf "$(_1text "Usage: %s %s ([%s] [%s])")\n" "1$1" "$(_1text "output image file")" "$(_1text "input pdf")" "$(_1text "cut coords")"
+        printf "  - $(1tint "cut coords"): $(_1text "to create a rectangle from A (x1,y1) to B (x2,y2). Format: x1,y1-x2,y2.")\n"
+        ;;
+  esac
 }
 
 # Alias-like
@@ -272,5 +288,64 @@ _nh1canva.thelp() {
         rm "$_1CANVALOCAL/$1.png"
     else
         printf "$(_1text "Template %s not found.")\n" $1
+    fi
+}
+
+# @description Download a random wallpaper file from unsplash site
+# @arg $1 string Output file
+_nh1canva.get_unsplash() {
+    wget -q -O "$1" https://source.unsplash.com/1920x1080/?$_1WPTAGS
+}
+
+# @description Download random wallpaper
+# @arg $1 string Help or type of function
+# @arg $2 string Output file
+# @arg $3 string (optional) PDF to include in image
+# @arg $4 string (optional) PDF cut in format x1,y1-x2,y2
+1wallpaper() {
+    _1before
+    if 1check wget pdftoppm convert composite
+    then
+        case $# in
+            1)
+                _nh1canva.get_unsplash "$1"
+                ;;
+            3)
+                EP_PDF="$2"
+
+                EP_FROM_X="$(echo $3 | cut -d- -f1 | cut -d, -f1)"
+                EP_FROM_Y="$(echo $3 | cut -d- -f1 | cut -d, -f2)"
+
+                EP_TO_X="$(echo $3 | cut -d- -f2 | cut -d, -f1)"
+                EP_TO_Y="$(echo $3 | cut -d- -f2 | cut -d, -f2)"
+
+                EP_SIZE_X=$(($EP_TO_X - $EP_FROM_X))
+                EP_SIZE_Y=$(($EP_TO_Y - $EP_FROM_Y))
+
+                EP_TEMP="$(1temp)"
+
+            	EP_OUT="$1"
+
+                _nh1canva.get_unsplash "$EP_TEMP-rand.jpg"
+                EP_IMG="$EP_TEMP-rand.jpg"
+
+                pdftoppm -jpeg -f 1 -l 1 "$EP_PDF" "$EP_TEMP"
+
+                # Recortar a imagem para obter apenas a região desejada
+                convert "$EP_TEMP-1.jpg" -crop "$EP_SIZE_X"x"$EP_SIZE_Y"+$EP_FROM_X+$EP_FROM_Y "$EP_TEMP-cut.jpg"
+
+                convert "$EP_TEMP-cut.jpg" -resize 1200x500 "$EP_TEMP-ciz.jpg"
+
+                convert "$EP_IMG" -resize 1920x1080^ -gravity center -extent 1920x1080 "$EP_TEMP-siz.jpg"
+
+                composite -blend 80x20 -geometry +600+200 "$EP_TEMP-ciz.jpg" "$EP_TEMP-siz.jpg" "$EP_OUT"
+
+                ;;
+            *)
+                _nh1canva.usage wallpaper
+                ;;
+        esac
+    else
+        return 1
     fi
 }

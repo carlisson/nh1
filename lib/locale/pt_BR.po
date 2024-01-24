@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-15 23:57-0300\n"
+"POT-Creation-Date: 2024-01-24 09:55-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -332,8 +332,8 @@ msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
 msgstr ""
-"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. \"gen"
-"\" pode ser substituído por qualquer coisa"
+"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. "
+"\"gen\" pode ser substituído por qualquer coisa"
 
 #: /home/bardo/sources/nh1/nh1:1018
 msgid ""
@@ -925,7 +925,7 @@ msgstr "Arquivo wave de saída"
 msgid "Youtube video URL"
 msgstr "URL de vídeo do Youtube"
 
-#: audio.bashrc:186 backup.bashrc:194 canva.bashrc:221 canva.bashrc:247
+#: audio.bashrc:186 backup.bashrc:194 canva.bashrc:237 canva.bashrc:263
 #: misc.bashrc:228 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr "Uso: %s."
@@ -1152,7 +1152,6 @@ msgid "File %s not found"
 msgstr "Arquivo %s não encontrado."
 
 #: bot.bashrc:271
-#, fuzzy
 msgid "Geting %s \"%s\" from %s via %s"
 msgstr "Enviando %s \"%s\" para o grupo %s via %s"
 
@@ -1160,57 +1159,85 @@ msgstr "Enviando %s \"%s\" para o grupo %s via %s"
 msgid "Putting %s \"%s\" into %s directory on %s"
 msgstr "Enviando %s \"%s\" para o diretório %s via %s"
 
-#: canva.bashrc:12
+#: canva.bashrc:13
 msgid "Canva Section"
 msgstr "Sessão Canva"
 
-#: canva.bashrc:13 canva.bashrc:17
+#: canva.bashrc:14 canva.bashrc:18
 msgid "List all templates or help for given template"
 msgstr "Lista todos os templates ou ajuda a usar um template"
 
-#: canva.bashrc:14
+#: canva.bashrc:15
 msgid "Generate image from template"
 msgstr "Gera imagem a partir de um template"
 
-#: canva.bashrc:15 canva.bashrc:19
+#: canva.bashrc:16 canva.bashrc:20
 msgid "Install or update a template"
 msgstr "Instala ou atualiza um template"
 
-#: canva.bashrc:16 canva.bashrc:20
+#: canva.bashrc:17 canva.bashrc:21
 msgid "Remove installed template"
 msgstr "Remove um template instalado"
 
-#: canva.bashrc:18
+#: canva.bashrc:19
 msgid "Generates image from template"
 msgstr "Gera imagem a partir de um template"
 
-#: canva.bashrc:50
+#: canva.bashrc:22
+msgid "Download random wallpaper"
+msgstr "Baixa papel de parede aleatório"
+
+#: canva.bashrc:54
 msgid "Path for 1canva and 1token internal templates."
 msgstr "Caminho para os templates internos do 1canva e do 1token."
 
-#: canva.bashrc:51
+#: canva.bashrc:55
 msgid "Size for 1token images (it will be generated as squares sizexsize)."
 msgstr ""
 "Tamanho para imagens do 1token (serão geradas como quadrados "
 "tamanhoXtamanho)."
 
-#: canva.bashrc:93
+#: canva.bashrc:56
+msgid "Image categories from unsplash"
+msgstr "Categorias de imagem do unsplash"
+
+#: canva.bashrc:64
+msgid "Usage: %s %s ([%s] [%s])"
+msgstr "Uso: %s %s ([%s] [%s])"
+
+#: canva.bashrc:64
+msgid "output image file"
+msgstr "Arquivo de imagem de saída"
+
+#: canva.bashrc:64
+msgid "input pdf"
+msgstr "Arquivo pdf de entrada"
+
+#: canva.bashrc:64
+msgid "cut coords"
+msgstr "coords de corte"
+
+#: canva.bashrc:65
+msgid "to create a rectangle from A (x1,y1) to B (x2,y2). Format: x1,y1-x2,y2."
+msgstr "cria um retângulo de A (x1,y1) a B (x2,y2). Formato: x1,y1-x2-y2."
+
+#: canva.bashrc:109
 msgid "Help for template: %s."
 msgstr "Ajuda para o template: %s."
 
-#: canva.bashrc:113 canva.bashrc:132
+#: canva.bashrc:129 canva.bashrc:148
 msgid "Templates: %s."
 msgstr "Templates: %s."
 
-#: canva.bashrc:117 canva.bashrc:136
+#: canva.bashrc:133 canva.bashrc:152
 msgid "No template found."
 msgstr "Nenhum template encontrado."
 
-#: canva.bashrc:151 canva.bashrc:196
+#: canva.bashrc:167 canva.bashrc:212
 msgid "Usages:"
 msgstr "Usos:"
 
-#: canva.bashrc:262 canva.bashrc:274
+#: canva.bashrc:278 canva.bashrc:290
 msgid "Template %s not found."
 msgstr "Template %s não encontrado."
 
@@ -2649,10 +2676,6 @@ msgstr "Cliente Mastodon para PC"
 msgid "A new Bootable USB Solution"
 msgstr "Uma nova solução para USB bootável"
 
-#: recipes/vscodium.app:4
-msgid "Editor for programmer"
-msgstr "Editor para programadores"
-
 #: recipes/whalebird.app:8
 msgid "Federated microblog client"
 msgstr "Cliente para microblog federado"
@@ -2660,6 +2683,9 @@ msgstr "Cliente para microblog federado"
 #: recipes/zettlr.app:4
 msgid "Markdown editor for the 21st century"
 msgstr "Um editor Markdown para o século 21"
+
+#~ msgid "Editor for programmer"
+#~ msgstr "Editor para programadores"
 
 #~ msgid "Usage: %s %s [%s]"
 #~ msgstr "Uso: %s %s [%s]"
