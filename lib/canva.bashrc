@@ -340,6 +340,8 @@ _nh1canva.get_unsplash() {
 
                 composite -blend 80x20 -geometry +600+200 "$EP_TEMP-ciz.jpg" "$EP_TEMP-siz.jpg" "$EP_OUT"
 
+                rm $EP_TEMP-rand.jpg $EP_TEMP-cut.jpg $EP_TEMP-ciz.jpg $EP_TEMP-siz.jpg $EP_TEMP-1.jpg
+
                 ;;
             *)
                 _nh1canva.usage wallpaper

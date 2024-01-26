@@ -439,3 +439,4 @@
 1.4e16 2023-10-15: created 1pdfpmd - pdf to pocketmod
 1.4e17 2024-01-22: 1app recipes: removed vscodium (no appimage); fixed firefox
 1.4e18 2024-01-24: 1wallpaper to download random wallpapers from unsplash
+1.4e19 2024-01-26: 1wallpaper fixed, removing temp files
