@@ -41,6 +41,7 @@ _nh1network.menu() {
   _1menuitem W 1ssh "$(_1text "Connect a SSH server (working with eXtreme)")" ssh
   _1menuitem W 1tcpdump "$(_1text "Run tcpdump in a given network interface")" tcpdump
   _1menuitem W 1telnet "$(_1text "Connect a Telnet server")" telnet
+  _1menuitem X 1traceroute "$(_1text "Trace route to a server")" ping
   _1menuitem W 1xt-backup "$(_1text "Backup configuration of one or more extreme switchs")" ssh
   _1menuitem W 1xt-vlan "$(_1text "List all VLANs in given eXtreme switch")" ssh
   echo
@@ -58,7 +59,7 @@ _nh1network.clean() {
   unset -f _nh1network.nossh 1hostgroup 1hostset 1hostdel 1hostmig
   unset -f _nh1network.complete.hostvar _nh1network.complete.hostmig
   unset -f 1interfaces 1get 1getadd 1getlist 1getdel _1network.download
-  unset -f 1getclear 1geticon 1hostimport
+  unset -f 1getclear 1geticon 1hostimport 1traceroute
 }
 
 # @description Autocompletion for 1hostget and 1hostget
@@ -132,6 +133,9 @@ _nh1network.usage() {
         ;;
     hostimport)
         printf "$(_1text "Usage: %s %s")\n" "1$1" "$(_1text "New host group name")"
+        ;;
+    traceroute)
+        printf "$(_1text "Usage: %s %s")\n" "1$1" "$(_1text "IP or domain to test")"
         ;;
     *)
       false
@@ -1178,5 +1182,38 @@ _1network.download() {
   else
     network.usage hostimport
     return 0
+  fi
+}
+
+# @description Trace network route to a server
+# @arg $1 string Server name or IP
+1traceroute() {
+  
+  if [ $# -eq 1 ]
+  then
+
+    URL="$1"
+    DONE='false'
+    FINALIP="$(dig +short $URL)"
+
+    for i in $(seq 1 150)
+    do
+        if [ $DONE = 'false' ]
+        then
+            IP=$(ping -t $i -c 1 $URL | grep icmp_seq | sed 's/.*(\(.*\)).*/\1/')
+            echo "TTL $i: $IP"
+            if [ "$IP" = "$FINALIP" ]
+            then
+                DONE='true'
+                echo "Done."
+            fi
+        fi
+    done
+    if [ $DONE = 'false' ]
+    then
+      printf "$(_1text "Address %s is currently unreachable!")\n" "$URL"
+    fi
+  else
+    _nh1network.usage traceroute
   fi
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-24 09:55-0300\n"
+"POT-Creation-Date: 2024-01-26 19:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -773,7 +773,7 @@ msgstr ""
 msgid "Updating %s applications."
 msgstr ""
 
-#: app.bashrc:1196 network.bashrc:616
+#: app.bashrc:1196 network.bashrc:620
 msgid "It works."
 msgstr ""
 
@@ -829,7 +829,7 @@ msgstr ""
 msgid "audio frequency (int)"
 msgstr ""
 
-#: audio.bashrc:59 audio.bashrc:62 network.bashrc:131
+#: audio.bashrc:59 audio.bashrc:62 network.bashrc:132
 msgid "Usage: %s <%s> <%s>"
 msgstr ""
 
@@ -906,7 +906,7 @@ msgid "Youtube video URL"
 msgstr ""
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:237 canva.bashrc:263
-#: misc.bashrc:228 network.bashrc:354 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:228 network.bashrc:358 rpg.bashrc:235 rpg.bashrc:251
 msgid "Usage: %s."
 msgstr ""
 
@@ -1484,8 +1484,8 @@ msgstr ""
 msgid "%s or %s. Default is %s"
 msgstr ""
 
-#: misc.bashrc:97 misc.bashrc:111 morph.bashrc:73 network.bashrc:1080
-#: network.bashrc:1113
+#: misc.bashrc:97 misc.bashrc:111 morph.bashrc:73 network.bashrc:1084
+#: network.bashrc:1117
 msgid "Usage: %s [%s]"
 msgstr ""
 
@@ -1587,7 +1587,7 @@ msgstr ""
 msgid "Words %s %s; special %s; morphs: %s %s."
 msgstr ""
 
-#: misc.bashrc:290 network.bashrc:282 network.bashrc:299 network.bashrc:318
+#: misc.bashrc:290 network.bashrc:286 network.bashrc:303 network.bashrc:322
 msgid "Usage:"
 msgstr ""
 
@@ -2132,208 +2132,220 @@ msgid "Connect a Telnet server"
 msgstr ""
 
 #: network.bashrc:44
-msgid "Backup configuration of one or more extreme switchs"
+msgid "Trace route to a server"
 msgstr ""
 
 #: network.bashrc:45
+msgid "Backup configuration of one or more extreme switchs"
+msgstr ""
+
+#: network.bashrc:46
 msgid "List all VLANs in given eXtreme switch"
 msgstr ""
 
-#: network.bashrc:120
+#: network.bashrc:121
 msgid "Path for network (hosts and groups) files."
 msgstr ""
 
-#: network.bashrc:121
+#: network.bashrc:122
 msgid "Timeout for check functions."
 msgstr ""
 
-#: network.bashrc:122
+#: network.bashrc:123
 msgid "Server port. Default: %s."
 msgstr ""
 
-#: network.bashrc:123
+#: network.bashrc:124
 msgid "Path where save downloads when using 1get."
 msgstr ""
 
-#: network.bashrc:131
+#: network.bashrc:132
 msgid "URL"
 msgstr ""
 
-#: network.bashrc:131
+#: network.bashrc:132
 msgid "Output file"
 msgstr ""
 
-#: network.bashrc:134
+#: network.bashrc:135 network.bashrc:138
 msgid "Usage: %s %s"
 msgstr ""
 
-#: network.bashrc:134
+#: network.bashrc:135
 msgid "New host group name"
 msgstr ""
 
-#: network.bashrc:173
+#: network.bashrc:138
+msgid "IP or domain to test"
+msgstr ""
+
+#: network.bashrc:177
 msgid "Bauds possible:"
 msgstr ""
 
-#: network.bashrc:198
+#: network.bashrc:202
 msgid "You need to give a string to test if it is an IP address."
 msgstr ""
 
-#: network.bashrc:241
+#: network.bashrc:245
 msgid "%s is unkown or unavailable."
 msgstr ""
 
-#: network.bashrc:244
+#: network.bashrc:248
 msgid "You need to put a machine name"
 msgstr ""
 
-#: network.bashrc:285 network.bashrc:826
+#: network.bashrc:289 network.bashrc:830
 msgid "Available groups"
 msgstr ""
 
-#: network.bashrc:349
+#: network.bashrc:353
 msgid "Host or group not found."
 msgstr ""
 
-#: network.bashrc:368
+#: network.bashrc:372
 msgid "Trying to connect %s (%s) with iperf."
 msgstr ""
 
-#: network.bashrc:371
+#: network.bashrc:375
 msgid "You need to put a IP address where 1iperfd is running."
 msgstr ""
 
-#: network.bashrc:425
+#: network.bashrc:429
 msgid "IP %s returned for machine %s."
 msgstr ""
 
-#: network.bashrc:426
+#: network.bashrc:430
 msgid "%s is active"
 msgstr ""
 
-#: network.bashrc:433
+#: network.bashrc:437
 msgid "%s not found"
 msgstr ""
 
-#: network.bashrc:489
+#: network.bashrc:493
 msgid "SSH is not available. Trying to connect via Telnet."
 msgstr ""
 
-#: network.bashrc:494 network.bashrc:497
+#: network.bashrc:498 network.bashrc:501
 msgid ""
 "Telnet is not available. You can access this IP in your browser: %s://%s."
 msgstr ""
 
-#: network.bashrc:499
+#: network.bashrc:503
 msgid "Cannot connect %s."
 msgstr ""
 
-#: network.bashrc:575
+#: network.bashrc:579
 msgid "Trying to connect using cipher %s and host-key %s"
 msgstr ""
 
-#: network.bashrc:587 network.bashrc:647
+#: network.bashrc:591 network.bashrc:651
 msgid "Connecting via %s."
 msgstr ""
 
-#: network.bashrc:595
+#: network.bashrc:599
 msgid "Trying connect in simple mode"
 msgstr ""
 
-#: network.bashrc:618
+#: network.bashrc:622
 msgid "Cannot connect with %s using SSH."
 msgstr ""
 
-#: network.bashrc:683
+#: network.bashrc:687
 msgid "%s is on"
 msgstr ""
 
-#: network.bashrc:688
+#: network.bashrc:692
 msgid "Host not found."
 msgstr ""
 
-#: network.bashrc:697
+#: network.bashrc:701
 msgid "%s open"
 msgstr ""
 
-#: network.bashrc:702
+#: network.bashrc:706
 msgid "%s refused"
 msgstr ""
 
-#: network.bashrc:800
+#: network.bashrc:804
 msgid "trying %s:%s"
 msgstr ""
 
-#: network.bashrc:808
+#: network.bashrc:812
 msgid "%i hosts with port %i open."
 msgstr ""
 
-#: network.bashrc:821
+#: network.bashrc:825
 msgid "group"
 msgstr ""
 
-#: network.bashrc:824
+#: network.bashrc:828
 msgid "every host in all groups"
 msgstr ""
 
-#: network.bashrc:856
+#: network.bashrc:860
 msgid "Unknown group of hosts."
 msgstr ""
 
-#: network.bashrc:871
+#: network.bashrc:875
 msgid "You can use hostnames contained in .hosts"
 msgstr ""
 
-#: network.bashrc:879
+#: network.bashrc:883
 msgid "VLANs in SWITCH! Please inform password for %s."
 msgstr ""
 
-#: network.bashrc:928
+#: network.bashrc:932
 msgid "Serial program not found. Checked"
 msgstr ""
 
-#: network.bashrc:939
+#: network.bashrc:943
 msgid "No ttyUSB found."
 msgstr ""
 
-#: network.bashrc:964
+#: network.bashrc:968
 msgid "Doing backup of %s to %s"
 msgstr ""
 
-#: network.bashrc:1007
+#: network.bashrc:1011
 msgid "Downloading %s"
 msgstr ""
 
-#: network.bashrc:1025
+#: network.bashrc:1029
 msgid "Usage: 1get [%s]"
 msgstr ""
 
-#: network.bashrc:1026
+#: network.bashrc:1030
 msgid "URL is optional. 1get starts download of every URL in queue."
 msgstr ""
 
-#: network.bashrc:1056
+#: network.bashrc:1060
 msgid "Download of %s successful."
 msgstr ""
 
-#: network.bashrc:1060
+#: network.bashrc:1064
 msgid "Error downloading %s."
 msgstr ""
 
-#: network.bashrc:1093
+#: network.bashrc:1097
 msgid "Download Queue"
 msgstr ""
 
-#: network.bashrc:1098
+#: network.bashrc:1102
 msgid "Download queue is empty."
 msgstr ""
 
-#: network.bashrc:1171
+#: network.bashrc:1175
 msgid "DHCPD file not found. Are you in a network server?"
 msgstr ""
 
-#: network.bashrc:1175
+#: network.bashrc:1179
 msgid "A network group with name %s already exists."
+msgstr ""
+
+#: network.bashrc:1214
+msgid "Address %s is currently unreachable!"
 msgstr ""
 
 #: rpg.bashrc:9
