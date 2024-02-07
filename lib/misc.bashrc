@@ -12,6 +12,7 @@ _nh1misc.menu() {
   _1menuitem X 1ajoin "$(_1text "Join an array, using first param as delimiter")"
   _1menuitem W 1booklet "$(_1text "Generate a seq for booklet, for given page number")"
   _1menuitem W 1color "$(_1text "Generate a random hexadecimal color")" openssl
+  _1menuitem X 1crypt "$(_1text "Encrypt and decrypt files")"
   _1menuitem W 1diceware "$(_1text "Generate a random diceware password")"
   _1menuitem W 1du "$(_1text "Disk usage")" du
   _1menuitem W 1dw "$(_1text "Short diceware/dwd12 password")"
@@ -44,7 +45,7 @@ _nh1misc.clean() {
   unset -f 1booklet 1pdfbkl _nh1misc.complete _nh1misc.complete.pdfbkl
   unset -f _nh1misc.customvars _nh1misc.info _nh1misc.complete.from_pdf
   unset -f _nh1misc.init 1diceware 1tr 1replace 1remove 1temp 1line
-  unset -f 1elapsed 1png2ico 1rm
+  unset -f 1elapsed 1png2ico 1rm 1crypt
 }
 
 # @description Autocompletion
@@ -84,6 +85,9 @@ _nh1misc.init() {
 # @arg $1 string Public function name
 _nh1misc.usage() {
   case $1 in
+    crypt)
+        printf "$(_1text "Usage: %s (enc|dec) [%s]")\n" "1$1" "$(_1text "file")"
+        ;;
     elapsed)
         printf "$(_1text "Usage: %s [%s] [%s]")\n" "1$1" "$(_1text "previous date or timestamp")" "$(_1text "Abbreviate [1]? 0:yes;1:no")"
         ;;
@@ -1000,4 +1004,60 @@ _nh1misc.complete.from_pdf() { _1compl 'pdf' 0 0 0 0 ; }
   else
     _nh1misc.usage rm
   fi
+}
+
+# @description Encrypt or decrypt a file
+# @arg $1 "enc" to encrypt, "dec" to decrypt. Optional
+# @arg $2 file to encrypt or decrypt
+1crypt() {
+  local _CF _CM _CO
+  if [ $# -eq 1 ]
+  then
+    _CF="$1"
+    if [ ${_CF: -4} == ".gpg" ] || [ ${_CF: -4} == ".enc" ]
+    then
+      _CM="dec"
+    else
+      _CM="enc"
+    fi
+  elif [ $# -eq 2 ]
+  then
+    _CM="$1"
+    _CF="$2"
+  else
+    _nh1misc.usage crypt
+    return 1
+  fi
+  _CO=${_CF:0:-4}
+  case "$_CM" in
+    enc)
+      if 1check openssl
+      then
+        _CO="${_CF}.enc"
+        openssl enc -aes-256-cbc -iter 5 -in "$_CF" -out "$_CO"
+      elif 1check gpg
+      then
+        gpg -c "$_CF"
+      else
+        _1message error "$(_1text "No encryption program found. Please install gpg or openssl.")"
+        return 2
+      fi
+      ;;
+    dec)
+      case ${_CF: -4} in
+        .gpg)
+          gpg "$_CF"
+          ;;
+        .enc)
+          openssl enc -aes-256-cbc -d -iter 5 -in "$_CF" -out "$_CO"
+          ;;
+        *)
+          _1message error "$(_1text "Unknown file format.")"
+          ;;
+      esac
+      ;;
+    *)
+      _1message error "$(_1text "Unknown option.")"
+      ;;
+  esac
 }
