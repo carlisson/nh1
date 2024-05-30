@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 12:53-0300\n"
+"POT-Creation-Date: 2024-05-30 15:53-0300\n"
 "PO-Revision-Date: 2022-10-06 16:09-0300\n"
 "Last-Translator: Cárlisson Galdino <carlisson@nti.ufal.br>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -332,8 +332,8 @@ msgid ""
 "Run 1translate <language-code> build. This will generate .mo file. \"build\" "
 "can be replaced to anything"
 msgstr ""
-"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. "
-"\"gen\" pode ser substituído por qualquer coisa"
+"Rode 1translate <código-do-idioma> gen. Isso vai gerar o arquivo .mo. \"gen"
+"\" pode ser substituído por qualquer coisa"
 
 #: /home/bardo/sources/nh1/nh1:1018
 msgid ""
@@ -926,7 +926,7 @@ msgid "Youtube video URL"
 msgstr "URL de vídeo do Youtube"
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:237 canva.bashrc:263
-#: misc.bashrc:232 network.bashrc:358 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:232 network.bashrc:358 rpg.bashrc:247 rpg.bashrc:263
 msgid "Usage: %s."
 msgstr "Uso: %s."
 
@@ -1519,7 +1519,7 @@ msgid "%s or %s. Default is %s"
 msgstr "%s ou %s. Default é %s."
 
 #: misc.bashrc:101 misc.bashrc:115 morph.bashrc:73 network.bashrc:1084
-#: network.bashrc:1117
+#: network.bashrc:1117 rpg.bashrc:73
 msgid "Usage: %s [%s]"
 msgstr "Uso: %s [%s]"
 
@@ -1789,7 +1789,8 @@ msgstr "Arquivo PDF não tem 8 páginas"
 
 #: misc.bashrc:1042
 msgid "No encryption program found. Please install gpg or openssl."
-msgstr "Nenhum programa de criptografia encontrado. Por favor instale gpg ou openssl."
+msgstr ""
+"Nenhum programa de criptografia encontrado. Por favor instale gpg ou openssl."
 
 #: misc.bashrc:1055
 msgid "Unknown file format."
@@ -2440,90 +2441,98 @@ msgid "Roll one d100 dice"
 msgstr "Role um dado d100"
 
 #: rpg.bashrc:19
+msgid "Discrete Uniform Distribution"
+msgstr "Distribuição Uniforme Discreta"
+
+#: rpg.bashrc:20
 msgid "Sort a random playing card"
 msgstr "Sorteie uma carta de baralho"
 
-#: rpg.bashrc:20
+#: rpg.bashrc:21
 msgid "Draw an item from a list"
 msgstr "Sorteia um ítem de uma lista"
 
-#: rpg.bashrc:21
+#: rpg.bashrc:22
 msgid "List groups to draw-functions"
 msgstr "Lista grupos para funções de sorteio"
 
-#: rpg.bashrc:22
+#: rpg.bashrc:23
 msgid "Add a new group to draw-functions"
 msgstr "Adiciona um novo grupo às funções de sorteio"
 
-#: rpg.bashrc:23
+#: rpg.bashrc:24
 msgid "Delete a group from draw-functions"
 msgstr "Deleta um grupo das funções de sorteio"
 
-#: rpg.bashrc:63
+#: rpg.bashrc:65
 msgid "Path for draw-lists (RPG)."
 msgstr "Caminho para os grupos de sorteio (RPG)."
 
-#: rpg.bashrc:152
+#: rpg.bashrc:73
+msgid "Number of competitors"
+msgstr "Número de competidores"
+
+#: rpg.bashrc:164
 msgid "Params"
 msgstr "Parâmetros"
 
-#: rpg.bashrc:152
+#: rpg.bashrc:164
 msgid "Examples"
 msgstr "Exemplos"
 
-#: rpg.bashrc:162
+#: rpg.bashrc:174
 msgid "Joker"
 msgstr "Coringa"
 
-#: rpg.bashrc:168
+#: rpg.bashrc:180
 msgid "Ace"
 msgstr "Ás"
 
-#: rpg.bashrc:169
+#: rpg.bashrc:181
 msgid "Jack"
 msgstr "Valete"
 
-#: rpg.bashrc:170
+#: rpg.bashrc:182
 msgid "Queen"
 msgstr "Rainha"
 
-#: rpg.bashrc:171
+#: rpg.bashrc:183
 msgid "King"
 msgstr "Rei"
 
-#: rpg.bashrc:176
+#: rpg.bashrc:188
 msgid "Clubs"
 msgstr "Paus"
 
-#: rpg.bashrc:177
+#: rpg.bashrc:189
 msgid "Diamonds"
 msgstr "Ouros"
 
-#: rpg.bashrc:178
+#: rpg.bashrc:190
 msgid "Hearts"
 msgstr "Copas"
 
-#: rpg.bashrc:179
+#: rpg.bashrc:191
 msgid "Spades"
 msgstr "Espadas"
 
-#: rpg.bashrc:181
+#: rpg.bashrc:193
 msgid "%s of %s"
 msgstr "%s de %s"
 
-#: rpg.bashrc:205
+#: rpg.bashrc:217
 msgid "No group found."
 msgstr "Nenhum grupo encontrado."
 
-#: rpg.bashrc:208
+#: rpg.bashrc:220
 msgid "Groups: %s."
 msgstr "Grupos: %s."
 
-#: rpg.bashrc:257
+#: rpg.bashrc:269
 msgid "File not found for group %s."
 msgstr "Arquivo não encontrado para o grupo %s."
 
-#: rpg.bashrc:270
+#: rpg.bashrc:282
 msgid "Group %s not found."
 msgstr "Grupo %s não encontrado."
 

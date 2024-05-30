@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 12:53-0300\n"
+"POT-Creation-Date: 2024-05-30 15:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,7 +906,7 @@ msgid "Youtube video URL"
 msgstr ""
 
 #: audio.bashrc:186 backup.bashrc:194 canva.bashrc:237 canva.bashrc:263
-#: misc.bashrc:232 network.bashrc:358 rpg.bashrc:235 rpg.bashrc:251
+#: misc.bashrc:232 network.bashrc:358 rpg.bashrc:247 rpg.bashrc:263
 msgid "Usage: %s."
 msgstr ""
 
@@ -1493,7 +1493,7 @@ msgid "%s or %s. Default is %s"
 msgstr ""
 
 #: misc.bashrc:101 misc.bashrc:115 morph.bashrc:73 network.bashrc:1084
-#: network.bashrc:1117
+#: network.bashrc:1117 rpg.bashrc:73
 msgid "Usage: %s [%s]"
 msgstr ""
 
@@ -2409,90 +2409,98 @@ msgid "Roll one d100 dice"
 msgstr ""
 
 #: rpg.bashrc:19
-msgid "Sort a random playing card"
+msgid "Discrete Uniform Distribution"
 msgstr ""
 
 #: rpg.bashrc:20
-msgid "Draw an item from a list"
+msgid "Sort a random playing card"
 msgstr ""
 
 #: rpg.bashrc:21
-msgid "List groups to draw-functions"
+msgid "Draw an item from a list"
 msgstr ""
 
 #: rpg.bashrc:22
-msgid "Add a new group to draw-functions"
+msgid "List groups to draw-functions"
 msgstr ""
 
 #: rpg.bashrc:23
+msgid "Add a new group to draw-functions"
+msgstr ""
+
+#: rpg.bashrc:24
 msgid "Delete a group from draw-functions"
 msgstr ""
 
-#: rpg.bashrc:63
+#: rpg.bashrc:65
 msgid "Path for draw-lists (RPG)."
 msgstr ""
 
-#: rpg.bashrc:152
+#: rpg.bashrc:73
+msgid "Number of competitors"
+msgstr ""
+
+#: rpg.bashrc:164
 msgid "Params"
 msgstr ""
 
-#: rpg.bashrc:152
+#: rpg.bashrc:164
 msgid "Examples"
 msgstr ""
 
-#: rpg.bashrc:162
+#: rpg.bashrc:174
 msgid "Joker"
 msgstr ""
 
-#: rpg.bashrc:168
+#: rpg.bashrc:180
 msgid "Ace"
 msgstr ""
 
-#: rpg.bashrc:169
+#: rpg.bashrc:181
 msgid "Jack"
 msgstr ""
 
-#: rpg.bashrc:170
+#: rpg.bashrc:182
 msgid "Queen"
 msgstr ""
 
-#: rpg.bashrc:171
+#: rpg.bashrc:183
 msgid "King"
 msgstr ""
 
-#: rpg.bashrc:176
+#: rpg.bashrc:188
 msgid "Clubs"
 msgstr ""
 
-#: rpg.bashrc:177
+#: rpg.bashrc:189
 msgid "Diamonds"
 msgstr ""
 
-#: rpg.bashrc:178
+#: rpg.bashrc:190
 msgid "Hearts"
 msgstr ""
 
-#: rpg.bashrc:179
+#: rpg.bashrc:191
 msgid "Spades"
 msgstr ""
 
-#: rpg.bashrc:181
+#: rpg.bashrc:193
 msgid "%s of %s"
 msgstr ""
 
-#: rpg.bashrc:205
+#: rpg.bashrc:217
 msgid "No group found."
 msgstr ""
 
-#: rpg.bashrc:208
+#: rpg.bashrc:220
 msgid "Groups: %s."
 msgstr ""
 
-#: rpg.bashrc:257
+#: rpg.bashrc:269
 msgid "File not found for group %s."
 msgstr ""
 
-#: rpg.bashrc:270
+#: rpg.bashrc:282
 msgid "Group %s not found."
 msgstr ""
 

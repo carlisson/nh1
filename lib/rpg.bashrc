@@ -16,6 +16,7 @@ _nh1rpg.menu() {
   _1menuitem W 1d12 "$(_1text "Roll one d12 dice")"
   _1menuitem W 1d20 "$(_1text "Roll one d20 dice")"
   _1menuitem W 1d100 "$(_1text "Roll one d100 dice")"
+  _1menuitem X 1dud "$(_1text "Discrete Uniform Distribution")"
   _1menuitem W 1card "$(_1text "Sort a random playing card")"
   _1menuitem W 1draw "$(_1text "Draw an item from a list")"
   _1menuitem W 1drawlist "$(_1text "List groups to draw-functions")"
@@ -30,6 +31,7 @@ _nh1rpg.clean() {
   unset -f _nh1rpg.menu _nh1rpg.clean 1dice 1roll 1card
   unset -f 1draw 1drawlist 1drawadd 1drawdel _nh1rpg.init
   unset -f _nh1rpg.complete _nh1rpg.complete.draw _nh1rpg.info
+  unset -f 1dud _nh1rpg.usage
 }
 
 # @description Auto-completion
@@ -61,6 +63,16 @@ _nh1rpg.customvars() {
 # @description General information about variables and customizing
 _nh1rpg.info() {
   _1menuitem W NORG_DRAW_LISTS_DIR "$(_1text "Path for draw-lists (RPG).")"
+}
+
+# @description Usage instructions
+# @arg string command name
+_nh1rpg.usage() {
+	case "$1" in
+		"dud")
+			printf "$(_1text "Usage: %s [%s]")\n" "1$1" "$(_1text "Number of competitors")"
+			;;
+	esac
 }
 
 # Alias like
@@ -269,4 +281,35 @@ _nh1rpg.info() {
     else
         printf "$(_1text "Group %s not found.")\n" $1
     fi
+}
+
+# @description Discrete Uniform Distribution
+# @arg $1 int Number of competitors
+1dud() {
+	_1before
+	local _N _NVA _TOT _RAN _RPC
+	_N=$1
+	if [ $# -eq 1 ]
+	then
+		if [ "$_N" != "-h" ] && [ "$_N" != "--help" ]
+			then
+			
+			_NVA=$_N
+			_TOT=$((_N * (_N+1) / 2))
+			_RAN=$(shuf -i 1-$_TOT -n 1)
+			_RPC=$((_RAN * 100 / _TOT))"%"
+			while $(true)
+			do
+				if [ $_RAN -le $_NVA ]
+				then
+					echo $((_N - _NVA + 1)) "($_RPC)"
+					return 0
+				else
+					_RAN=$((_RAN - _NVA))
+					_NVA=$((_NVA - 1))
+				fi
+			done	
+		fi
+	fi
+	_nh1rpg.usage "dud"
 }
