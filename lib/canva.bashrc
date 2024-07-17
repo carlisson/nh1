@@ -297,6 +297,28 @@ _nh1canva.get_unsplash() {
     wget -q -O "$1" https://source.unsplash.com/1920x1080/?$_1WPTAGS
 }
 
+# @description Download a random wallpaper file from wallhaven site
+# @arg $1 string Output file
+_nh1canva.get_wallhaven() {
+    local _cbase
+    _cbase=$(curl 'https://wallhaven.cc/search?categories=110&purity=100&resolutions=1920x1080&sorting=random&order=desc&ai_art_filter=1' | \
+        sed 's/\(.*\)data-src=\"\([^ ]*jpg\)\"\(.*\)/\2/g' | \
+        sed 's/\/th/\/w/' | \
+        sed 's/small\//full\//' | \
+        sed 's/\(.*\)\//\1\/wallhaven-/')
+    wget -q -O "$1" "$_cbase"
+    if [ $? -ne 0 ]
+    then
+        _cbase=$(basename $_cbase .jpg).png
+        wget -q -O "$1.png" "$_cbase"
+        if [ $? -eq 0 ]
+        then
+            convert $1.png $1
+            rm $1.png
+        fi
+    fi
+}
+
 # @description Download random wallpaper
 # @arg $1 string Help or type of function
 # @arg $2 string Output file
@@ -308,7 +330,7 @@ _nh1canva.get_unsplash() {
     then
         case $# in
             1)
-                _nh1canva.get_unsplash "$1"
+                _nh1canva.get_wallhaven "$1"
                 ;;
             3)
                 EP_PDF="$2"
@@ -326,7 +348,7 @@ _nh1canva.get_unsplash() {
 
             	EP_OUT="$1"
 
-                _nh1canva.get_unsplash "$EP_TEMP-rand.jpg"
+                _nh1canva.get_wallhaven "$EP_TEMP-rand.jpg"
                 EP_IMG="$EP_TEMP-rand.jpg"
 
                 pdftoppm -jpeg -f 1 -l 1 "$EP_PDF" "$EP_TEMP"
