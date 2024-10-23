@@ -22,7 +22,7 @@ _nh1virtual.clean() {
   unset _1LOCALCONT
   unset -f _nh1virtual.menu _nh1virtual.complete _nh1virtual.init
   unset -f _nh1virtual.info _nh1virtual.customvars _nh1virtual.clean
-  unset -f _nh1virtual.usage
+  unset -f _nh1virtual.usage _nh1virtual.contbuild _nh1virtual.contcheck
 }
 
 # @description Autocompletion instructions
@@ -70,21 +70,35 @@ _nh1virtual.usage() {
 _nh1virtual.contbuild() {
   if 1check getenforce
   then
-      _DF="$1"
-      if [ $# -eq 2 ]
-      then
-        _CN="$2"
-      else
-        _CN="$(echo "$1" | sed 's/\([^\.]\)\.\(df\|Dockerfile\)$/\1/g')"
-      fi
-
-      if [ "$(getenforce)" == "Enforcing" ]
-      then
-          echo "$(printf "$(_1text "SE Linux enabled. Please run %s.")" "sudo setenforce 0")"
-          exit
-      fi
+    if [ "$(getenforce)" == "Enforcing" ]
+    then
+      echo "$(printf "$(_1text "SE Linux enabled. Please run %s.")" "sudo setenforce 0")"
+      exit
+    fi
   fi
+
+  _DF="$1"
+  if [ $# -eq 2 ]
+  then
+    _CN="$2"
+  else
+    _CN="$(echo "$1" | sed 's/\([^\.]\)\.\(df\|Dockerfile\)$/\1/g')"
+  fi
+
   $_1VIRTUALCONT build -t "$_CN" -f "$1" .
+}
+
+# @description Check if a conatiner exists in local scope
+# @arg string Container name
+_nh1virtual.contcheck() {
+  if $_1VIRTUALCONT images | grep "^localhost/$1" &> /dev/null
+  then
+    _1verb "$(_1text "Container exists.")"
+    return 0
+  else
+    _1verb "$(_1text "Container not found.")"
+    return 1
+  fi
 }
 
 # Alias-like
