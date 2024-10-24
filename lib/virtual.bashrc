@@ -81,7 +81,7 @@ _nh1virtual.contse() {
 _nh1virtual.contbuild() {
   _nh1virtual.contse
 
-  _DF="$1"
+  local _DF="$1"
   if [ $# -eq 2 ]
   then
     _CN="$2"
@@ -92,28 +92,35 @@ _nh1virtual.contbuild() {
   $_1VIRTUALCONT build -t "$_CN" -f "$1" .
 }
 
-# @description Check if a conatiner exists in local scope
+# @description Check if a conatiner exists and is running in local scope
 # @arg string Container name
 _nh1virtual.contcheck() {
-  if $_1VIRTUALCONT images | grep "^localhost/$1" &> /dev/null
+  if $_1VIRTUALCONT ps | grep localhost/$1: &> /dev/null
   then
-    _1verb "$(_1text "Container exists.")"
-    return 0
+    $_1VIRTUALCONT ps | grep localhost/$1: | cut -d\  -f 1
+  elif $_1VIRTUALCONT images | grep "^localhost/$1" &> /dev/null
+  then
+    echo "exists"
   else
-    _1verb "$(_1text "Container not found.")"
-    return 1
+    echo "none"
   fi
 }
 
 # @description Lists all local containers
 _nh1virtual.contlist() {
   _1menuheader "$(_1text "Local containers")"
+  local _AUX
   for _EC in $($_1VIRTUALCONT images | grep "^localhost/" | sed 's/^localhost\/\([^\s]*\) .*$/\1/g')
   do
     echo -n "$_EC "
     if [ -f "$_EC.df" ] || [ -f "$_EC.Dockerfile" ]
     then
-      1tint $_1COLOR " ($(_1text "dockerfile"))"
+      1tint $_1PCOLOR " $(_1text "dockerfile")"
+    fi
+    _AUX="$(_nh1virtual.contcheck $_EC)"
+    if [ "$_AUX" != "none" ]
+    then
+      1tint $_1WCOLOR " $(_1text "$_AUX")"
     fi
     echo
   done
@@ -121,35 +128,49 @@ _nh1virtual.contlist() {
 
 # @description Start a saved container
 # @arg string Container to start (name)
+# @arg string "optional params"
 _nh1virtual.contstart() {
   _nh1virtual.contse
 
-  _APP="$1"
-  if _nh1virtual.contcheck $_APP
-  then
-    $_1VIRTUALCONT run -it --rm -v .:/app $_APP
-  else
-    _1message error "$(_1text "Container not found. Run 1container build first.")"
-  fi
+  local _APP="$1"
+  shift
+  case "$(_nh1virtual.contcheck $_APP)" in
+    exists)
+      $_1VIRTUALCONT run -it --rm -v .:/app $@ $_APP
+      ;;
+    none)
+      _1message error "$(_1text "Container not found. Run 1container build first.")"
+      ;;
+    *)
+      _1message info "$(_1text "Container is already running.")"
+      ;;
+  esac
 }
 
 # @description Start a saved container with X-server compatibility
 # @arg string Container to start (name)
 _nh1virtual.contstartx() {
+  _nh1virtual.contstart "$1" -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --device=/dev/dri:/dev/dri
+}
+
+# @description Stop a container
+# @arg string Container to start (name)
+_nh1virtual.contstop() {
   _nh1virtual.contse
 
-  _APP="$1"
-  if _nh1virtual.contcheck $_APP
-  then
-    if ! xhost | grep -q "local:$_1VIRTUALCONT"
-    then
-        xhost +local:$_1VIRTUALCONT
-    fi
-    echo "Display é $DISPLAY"
-    $_1VIRTUALCONT run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v .:/app --device=/dev/dri:/dev/dri $_APP
-  else
-    _1message error "$(_1text "Container not found. Run 1container build first.")"
-  fi
+  local _APP="$1"
+  local _STT="$(_nh1virtual.contcheck $_APP)"
+  case $_STT in
+    exists)
+      _1message info "$(_1text "Container is not running.")"
+      ;;
+    none)
+      _1message error "$(_1text "Container not found. Run 1container build first.")"
+      ;;
+    *)
+      $_1VIRTUALCONT stop $_STT
+      ;;
+  esac
 }
 
 # Alias-like

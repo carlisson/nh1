@@ -448,3 +448,4 @@
 1.4e25 2024-10-23: 1container with options build and check
 1.4e26 2024-10-23: 1container list created
 1.4e26 2024-10-24: 1container start and startx created
+1.4e27 2024-10-24: 1container improved (including stop function)
