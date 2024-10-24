@@ -82,7 +82,7 @@ _nh1virtual.contbuild() {
   then
     _CN="$2"
   else
-    _CN="$(echo "$1" | sed 's/\([^\.]\)\.\(df\|Dockerfile\)$/\1/g')"
+    _CN="$(echo "$1" | sed 's/\([^\.]*\)\.\(df\|Dockerfile\)$/\1/g')"
   fi
 
   $_1VIRTUALCONT build -t "$_CN" -f "$1" .
@@ -101,12 +101,26 @@ _nh1virtual.contcheck() {
   fi
 }
 
+# @description Lists all local containers
+_nh1virtual.contlist() {
+  _1menuheader "$(_1text "Local containers")"
+  for _EC in $($_1VIRTUALCONT images | grep "^localhost/" | sed 's/^localhost\/\([^\s]*\) .*$/\1/g')
+  do
+    echo -n "$_EC "
+    if [ -f "$_EC.df" ] || [ -f "$_EC.Dockerfile" ]
+    then
+      1tint $_1COLOR " ($(_1text "dockerfile"))"
+    fi
+    echo
+  done
+}
+
 # Alias-like
 
 # Public functions
 
 1container() {
-    if [ $# -gt 1 ]
+    if [ $# -ge 1 ]
     then
         case "$1" in
             build)
