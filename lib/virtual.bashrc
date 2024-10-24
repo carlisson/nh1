@@ -13,7 +13,7 @@ _nh1virtual.menu() {
   _1menuheader "Virtual"
   # _1menutip Optional complementar instruction
   # _1menuitem X command "Description"
-  _1menuitem W NORG_VIRTUAL_CONTAINER "$(_1text "Description")"
+  _1menuitem W 1container "$(_1text "Manage container from docker or podman")"
 }
 
 # @description Destroys all global variables created by this file
@@ -23,6 +23,8 @@ _nh1virtual.clean() {
   unset -f _nh1virtual.menu _nh1virtual.complete _nh1virtual.init
   unset -f _nh1virtual.info _nh1virtual.customvars _nh1virtual.clean
   unset -f _nh1virtual.usage _nh1virtual.contbuild _nh1virtual.contcheck
+  unset -f _nh1virtual.contlist _nh1virtual.contstart _nh1virutal.contse
+  unset -f _nh1virtual.contstart _nh1virtual.contstartx _nh1virtual.contstop
 }
 
 # @description Autocompletion instructions
@@ -58,7 +60,16 @@ _nh1virtual.init() {
 # @arg $1 string Public function name
 _nh1virtual.usage() {
   case $1 in
-    *)
+    1container)
+      printf "$(_1text "Usage:")\n"
+      printf "  - 1container build [%s] [%s]: %s.\n" "$(_1text "Dockerfile file name")" "$(_1text "Directory")" "$(_1text "creates a container from a Dockerfile")"
+      printf "  - 1container check [%s]: %s.\n" "$(_1text "Container name")" "$(_1text "return if containers is running or exists")"
+      printf "  - 1container list: %s.\n" "$(_1text "lists all local containers")"
+      printf "  - 1container start [%s]: %s.\n" "$(_1text "Container name")" "$(_1text "starts the given container")"
+      printf "  - 1container startx [%s]: %s.\n" "$(_1text "Container name")" "$(_1text "starts the given container ready for GUI")"
+      printf "  - 1container stop [%s]: %s.\n" "$(_1text "Container name")" "$(_1text "stop the given container")"
+      echo
+      printf "  $(_1text "1container will work with %s.")\n" $_1VIRTUALCONT
       echo
       ;;
   esac
@@ -200,10 +211,10 @@ _nh1virtual.contstop() {
                 _nh1virtual.contstop "$2"
                 ;;
             *)
-                _nh1virtual.contusage
+                _nh1virtual.usage 1container
                 ;;
         esac
     else
-        _nh1virtual.contusage
+        _nh1virtual.usage 1container
     fi
 }
