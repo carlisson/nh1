@@ -64,18 +64,22 @@ _nh1virtual.usage() {
   esac
 }
 
-# @description Build a container from Dockerfile
-# @arg $1 string Dockerfile, use name.df or name.Dockerfile
-# @arg $2 string Container name. If empty, use "name"
-_nh1virtual.contbuild() {
+# @description Prepare to run container, disabling SE Linux.
+_nh1virtual.contse() {
   if 1check getenforce
   then
     if [ "$(getenforce)" == "Enforcing" ]
     then
       echo "$(printf "$(_1text "SE Linux enabled. Please run %s.")" "sudo setenforce 0")"
-      exit
     fi
   fi
+}
+
+# @description Build a container from Dockerfile
+# @arg $1 string Dockerfile, use name.df or name.Dockerfile
+# @arg $2 string Container name. If empty, use "name"
+_nh1virtual.contbuild() {
+  _nh1virtual.contse
 
   _DF="$1"
   if [ $# -eq 2 ]
@@ -115,6 +119,39 @@ _nh1virtual.contlist() {
   done
 }
 
+# @description Start a saved container
+# @arg string Container to start (name)
+_nh1virtual.contstart() {
+  _nh1virtual.contse
+
+  _APP="$1"
+  if _nh1virtual.contcheck $_APP
+  then
+    $_1VIRTUALCONT run -it --rm -v .:/app $_APP
+  else
+    _1message error "$(_1text "Container not found. Run 1container build first.")"
+  fi
+}
+
+# @description Start a saved container with X-server compatibility
+# @arg string Container to start (name)
+_nh1virtual.contstartx() {
+  _nh1virtual.contse
+
+  _APP="$1"
+  if _nh1virtual.contcheck $_APP
+  then
+    if ! xhost | grep -q "local:$_1VIRTUALCONT"
+    then
+        xhost +local:$_1VIRTUALCONT
+    fi
+    echo "Display é $DISPLAY"
+    $_1VIRTUALCONT run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v .:/app --device=/dev/dri:/dev/dri $_APP
+  else
+    _1message error "$(_1text "Container not found. Run 1container build first.")"
+  fi
+}
+
 # Alias-like
 
 # Public functions
@@ -134,6 +171,9 @@ _nh1virtual.contlist() {
                 ;;
             start)
                 _nh1virtual.contstart "$2"
+                ;;
+            startx)
+                _nh1virtual.contstartx "$2"
                 ;;
             stop)
                 _nh1virtual.contstop "$2"
