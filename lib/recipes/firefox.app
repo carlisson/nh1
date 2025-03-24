@@ -74,7 +74,7 @@ function APP_GET {
     AGver="$(curl -sL 'https://www.mozilla.org/en-US/firefox/notes/' | tr '\n' ' ' | sed 's/\(.*\) class="c-release-version">\([0-9\.]*\)<\/\(.*\)/\2/')"
     $AGpre curl -O -L "https://download.mozilla.org/$AGname"
     $AGpre mkdir -p "firefox-$AGver-tarball"
-    $AGpre tar -jxf "$AGname" -C "firefox-$AGver-tarball"
+    $AGpre tar -Jxf "$AGname" -C "firefox-$AGver-tarball"
     $AGpre rm "$AGname"
 }
 
