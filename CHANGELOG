@@ -451,3 +451,4 @@
 1.4e27 2024-10-24: 1container improved (including stop function)
 1.4e28 2024-10-24: 1container usage help
 1.4e29 2025-03-24: Firefox recipe fix
+1.4e30 2025-05-08: 1host fixed (for DNS query)

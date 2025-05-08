@@ -84,7 +84,7 @@ _nh1network.complete.hostmig() {
       1|3)
     		COMPREPLY=($(_1list $_1NETLOCAL "hosts"))
         ;;
-      2) 
+      2)
     		_ARG=("${COMP_WORDS[1]}");
     		COMPREPLY=($(_1db.show "$_1NETLOCAL" "hosts" "$_ARG" "list"))
         ;;
@@ -237,6 +237,7 @@ _nh1network.usage() {
         do
           echo "$HIP"
         done
+        return 0
       fi
     else
       echo "$HNAM"
@@ -1188,7 +1189,7 @@ _1network.download() {
 # @description Trace network route to a server
 # @arg $1 string Server name or IP
 1traceroute() {
-  
+
   if [ $# -eq 1 ]
   then
 
